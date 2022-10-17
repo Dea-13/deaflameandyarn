@@ -1,0 +1,283 @@
+.card {
+    padding: 2%;
+}
+
+h3 {
+    text-transform: uppercase;
+}
+
+.purple-background {
+    padding: 10px;
+    background-color: rgba(115, 103, 240, 0.12);
+}
+
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+}
+
+.full-width {
+    width: -webkit-fill-available;
+    height: 85%;
+}
+
+select {
+    width: 100%;
+}
+
+.grey-bg {
+    margin-top: 5%;
+}
+
+.grey-bg div {
+    background-color: whitesmoke;
+    border: 1px solid grey;
+    margin: 2px;
+    padding: 5px;
+}
+
+.grey-bg-handle {
+    margin-top: 0%;
+}
+
+.grey-bg-handle div {
+    background-color: whitesmoke;
+    border: 1px solid grey;
+    margin: 2px;
+    padding: 5px;
+}
+
+.input-search {
+    width: fit-content;
+    margin-left: 5%;
+}
+
+.red-bg {
+    margin-top: 5%;
+    padding: 10px;
+    background-color: #F67280;
+}
+
+.grid span,
+.flex h3 {
+    color: black;
+}
+
+.warning-bc {
+    background: #ffcccb !important;
+    margin-right: 10%;
+}
+
+.white-border {
+    border: 1px solid white;
+    width: -webkit-fill-available;
+    padding: 2px;
+    margin-top: 0.2%;
+}
+
+.input-check {
+    width: unset;
+    margin-right: 0.2%;
+    width: 2%;
+}
+
+.input-rows-label {
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+}
+
+.bottom-10 {
+    margin-bottom: 10px;
+}
+
+.bottom-20 {
+    margin-bottom: 20px;
+}
+
+.top-20 {
+    margin-top: 20px;
+}
+
+.green-bg,
+.text-bg-green {
+    background: #90ee90;
+}
+
+.padd-10 {
+    padding: 10px 10px 10px 10px;
+}
+
+.width-50 {
+    width: 50% !important;
+}
+
+.width-select {
+    width: inherit;
+    display: flex;
+    align-items: center;
+}
+
+:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+.btn-pallet {
+    width: max-content;
+    background: limegreen;
+    color: white;
+    // margin-left: 10px;
+}
+
+.fixed-height {
+    max-height: 400px;
+    overflow: auto;
+    padding-right: 5px;
+}
+
+.redAcviteBox .red-bg {
+    border: 1px solid red;
+}
+
+.redAcviteBox .green-bg {
+    opacity: 0.7;
+}
+
+.greenAcviteBox .green-bg {
+    border: 1px solid red;
+}
+
+.greenAcviteBox .red-bg {
+    opacity: 0.7;
+}
+
+.width-label {
+    width: auto;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.width-100 {
+    width: -webkit-fill-available !important;
+}
+
+.text-end {
+    text-align: end;
+}
+
+.grid span {
+    margin-right: 10px;
+}
+
+@media (max-width: 992px) {
+    .resp-new-order {
+        margin-top: 4%;
+    }
+}
+.scale {
+    border: 1px solid rgb(204, 204, 204);
+    padding-top: 10px;
+    margin-top: 5px;
+}
+.scale p{
+    font-size: 16px;    
+}
+
+.scale .red{
+    color: #fd3e51;
+}
+
+.scale .bold{
+    font-weight: bold;
+}
+
+.redTolerance {
+    color: #fd3e51;
+}
+
+.greenTolerance{
+    color: limegreen;
+}
+
+.border{
+    border: 1px solid grey;
+}
+
+.dms {
+    font-size: 12px;
+}

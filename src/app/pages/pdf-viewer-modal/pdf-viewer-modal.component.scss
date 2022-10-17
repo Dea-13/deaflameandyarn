@@ -1,0 +1,77 @@
+::ng-deep.modal-dialog,
+.modal-body {
+  max-width: 1000px !important;
+  width: 1000px;
+}
+button:focus {
+  outline: 0px auto -webkit-focus-ring-color !important;
+}
+.modal-header {
+  padding: 0rem 0rem!important;
+}
+:ng-deep.ng2-pdf-viewer-container {
+  position: relative!important;
+}
+.btn-primary, .btn-success{
+  background-color: #7367f0!important;
+  border: 1px solid #7367f0;
+}
+.btn-primary{
+  height: max-content;
+  padding: 15px;
+}
+.fa{
+  font-size:15px
+}
+.buttons-fluid{
+  display: flex;
+  margin-bottom: 30px;
+}
+.buttons-section{
+  display: inline-grid;   
+  height: -webkit-fill-available;
+}
+.mat-h4, .mat-subheading-1, .mat-typography h4, h4{
+  font: 500 20px/32px "Poppins", sans-serif!important;
+  color: #7367f0!important;
+  font-size: 17px!important;
+  font-weight: 600!important;
+  margin: 5px 10px 5px;
+}
+.btn-primary:focus, .btn-primary.focus, .btn-success:focus, .btn-success.focus, .btn-secondary:focus, .btn-secondary.focus{
+  box-shadow: none!important;
+}
+.close {
+    padding: 0.2rem 0.62rem;
+    box-shadow: none!important;
+    border-radius: 0.357rem;
+    background: transparent!important;
+    opacity: 1;
+    transition: none!important;
+    position: relative!important;
+    transform: inherit!important;
+    margin: 10px 10px 5px;
+    font-size: 16px;
+    color: red;
+}
+.modal .modal-header .close:hover, .modal .modal-header .close:focus, .modal .modal-header .close:active {
+    opacity: 1;
+    outline: none;
+    transform: none;
+    box-shadow: none;
+}
+@page orientation-portrait {
+  size: portrait;
+}
+
+@page orientation-landscape {
+  size: landscape;
+}
+
+.landscape-page {
+  page: orientation-landscape;
+}
+
+.portrait-page {
+  page: orientation-portrait;
+}

@@ -1,0 +1,466 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$vuexy-primary: mat.define-palette(mat.$indigo-palette);
+$vuexy-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$vuexy-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$vuexy-theme: mat.define-light-theme((
+  color: (
+    primary: $vuexy-primary,
+    accent: $vuexy-accent,
+    warn: $vuexy-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($vuexy-theme);
+
+@import './app/@core/scss/core.scss';
+@import './assets/scss/styles';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import './app/@core/scss/angular/libs/datatables.component.scss';
+@import './app/@core/scss/base/pages/app-user.scss';
+@import './app/@core/scss/angular/libs/select.component.scss';
+
+.error {
+  border: 1px solid red;
+}
+
+// ngx-toastr css
+@import '~ngx-toastr/toastr.css';
+
+// extended toastr scss
+@import './app/@core/scss/base/plugins/extensions/ext-component-toastr';
+
+.toast-close-button {
+  line-height: 1;
+}
+
+.ngx-datatable.bootstrap.core-bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+.ngx-datatable.bootstrap.core-bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active:hover a {
+  width: 35px !important;
+}
+
+.ngx-pagination .current {
+  background: #7367f0 !important;
+}
+
+.modal-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  // padding-top: 20%!important;
+  // padding-bottom: 20%!important;
+}
+
+// @import './app/@core/scss/base/pages/app-calendar.scss';
+@import './app/@core/scss/angular/libs/flatpickr.component.scss';
+@import './app/@core/scss/angular/libs/select.component.scss';
+
+@import './app/@core/scss/base/bootstrap-extended/include.scss'; // Bootstrap includes
+// @import '~@fullcalendar/daygrid/main.css';
+
+//  Main Sidebar
+app-calendar-main-sidebar {
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+}
+
+// Sidebar Toggle Button
+.fc-sidebarToggle-button {
+  background-image: url(str-replace(str-replace($menu, 'currentColor', $body-color), '#', '%23'));
+  width: 24px;
+  height: 24px;
+  margin-right: 0.7rem !important;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// Hide sidebar toggle in lg screen
+@include media-breakpoint-up(lg) {
+  .fc-sidebarToggle-button {
+    display: none !important;
+  }
+}
+
+.fc {
+  .fc-button-primary {
+    &:not(:disabled) {
+      &:active:focus {
+        box-shadow: none !important;
+      }
+    }
+  }
+
+  .fc-button-active {
+    &:focus {
+      box-shadow: none !important;
+
+      &:active {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+// ! Fix: fixed chrome bug
+.fc-scrollgrid-section-liquid {
+  height: 1px !important;
+}
+
+.datatable-body-cell-label {
+  width: -webkit-fill-available !important;
+}
+
+.search-btn {
+  border: 1px solid #d8d6de;
+}
+
+.search-input {
+  border: 1px solid #d8d6de;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+.ngx-datatable.bootstrap.core-bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+.ngx-datatable.bootstrap.core-bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active:hover a {
+  border-radius: unset !important;
+  width: auto !important;
+}
+
+.ngx-datatable.bootstrap.core-bootstrap .datatable-footer .datatable-pager .pager {
+  background-color: transparent !important;
+}
+
+.datatable-icon-prev,
+.datatable-icon-skip {
+  display: none !important;
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after,
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+  content: none !important;
+}
+
+.pagination-previous,
+.pagination-next {
+  font-size: 18px !important;
+}
+
+.modal .modal-content {
+  box-shadow: none !important;
+}
+
+::ng-deep ng-select {
+  width: -webkit-fill-available !important;
+}
+
+.current {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.ngx-datatable.bootstrap {
+  font-size: 11px;
+  margin: 15px;
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: 0.75s linear infinite spinner-border;
+  animation: 0.75s linear infinite spinner-border;
+  color: #7367f0 !important;
+}
+
+.loader-section {
+  text-align: center;
+  z-index: 9999;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+select.form-control:not([multiple=multiple]) {
+  background-position: calc(100% - 9px) 10px, calc(100% - 20px) 13px, 100% 0 !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #7367f0 !important;
+  color: white !important;
+}
+.ngx-datatable .datatable-footer .datatable-footer-inner {
+  width: 100% !important;
+}
+
+//RESPONSIVE
+
+//! Toastr icon position in small screen fix
+@media (max-width: 480px) and (min-width: 241px) {
+  #toast-container>.toast {
+    &:after {
+      top: 1.44rem;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+
+  .container-xxl,
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: -webkit-fill-available !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .ngx-datatable.bootstrap {
+    margin: 5px;
+  }
+}
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ngx-datatable *, .ngx-datatable :after, .ngx-datatable :before{
+  font-family: "Montserrat", Helvetica, Arial, serif;
+  // font-weight: 600;
+  font-size: 10px;
+}
+.ngx-datatable.bootstrap.core-bootstrap .datatable-body-row .datatable-body-cell {
+  padding: 0.3rem 1rem!important;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  font-size: 12px!important;
+}
+.text-truncate {
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  font-size: 12px;
+}
+.modal-title{
+  font-family: Roboto, "Helvetica Neue", sans-serif!important;
+  font-size: 15px!important;
+  font-weight: 400!important;
+}
+.datatable-header-cell-template-wrap span, .datatable-header-cell-template-wrap div div .text-center{
+  font-size: 9px!important;
+} 
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #7367f0!important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #7367f0!important;
+}
+.toast-container *{
+  font-size: 13px;
+}
+.ngx-pagination{
+    float: right!important;
+}
+.bell-orange{
+  color: orange!important;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.bell-red{
+  color: red!important;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.date-bell{
+  display: flex;
+}
+.mat-menu-content{
+  display: flex;
+}
+::ng-deep .ngx-datatable.bootstrap.core-bootstrap .datatable-header {
+    height: auto!important;
+}
+
+::ng-deep .form-control {
+    border: 1px solid #d8d6de!important;
+}
+
+:host ::ng-deep.ngx-datatable .datatable-header .datatable-header-cell .sort-btn {
+    // position: relative!important;
+    bottom: 15px!important;    
+}
+
+// ::ng-deep.ng-dropdown-panel .scroll-host{
+//     width: auto!important;
+// }
+.form-control{
+    width: -webkit-fill-available;
+}
+.flex{
+    display: flex;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.text-center {
+    line-height: 3.625!important;
+}
+.btn-sm, .btn-group-sm > .btn {
+    padding: 0.486rem 0.3rem 0.3rem 0rem;
+}
+.show-results{
+    padding-top: 5px;
+}
+.mat-menu-panel, .width-select {
+    min-width: 200px!important;
+}
+.menu-btn{
+    left: -5px!important;
+}
+// Badge
+
+.badge {
+  color: $white;
+  &[class*='badge-'] {
+    [class*='icon-'] {
+      line-height: 1;
+    }
+
+    a {
+      color: $white;
+    }
+
+    // badge dropdown alignment
+    .dropdown-toggle,
+    &.dropdown-toggle {
+      span,
+      i,
+      svg {
+        vertical-align: text-top;
+      }
+      i,
+      svg {
+        padding-left: 0.2rem;
+      }
+      &::after {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 1rem;
+      }
+    }
+    .dropdown-menu {
+      a {
+        color: $dropdown-color;
+      }
+    }
+  }
+
+  i,
+  svg {
+    height: 12px;
+    width: 11px;
+    font-size: 12px;
+    stroke-width: 3;
+    vertical-align: top;
+  }
+
+  // square badge
+  &.badge-square {
+    border-radius: 0;
+  }
+
+  // badge-up
+  // to align badge over any element
+  &.badge-up {
+    position: absolute;
+    top: -17px;
+    right: -3px;
+    min-width: 1.429rem;
+    min-height: 1.429rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.786rem;
+    line-height: 0.786;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    &.badge-sm {
+      top: -0.5rem;
+      right: -0.5rem;
+    }
+  }
+}
+
+// For fullscreen search
+.badge-icon {
+  i,
+  svg {
+    font-size: 100%;
+    margin-right: 5px;
+  }
+}
+
+// badge dropup pointer
+.dropup {
+  .badge {
+    cursor: pointer;
+  }
+}
+.note-icon{
+  margin-left: 7px;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 1.5rem;
+  color: #6e6b7b;
+}
+.badge.badge-up {
+  top: -7px!important;
+  right: 7px!important;
+}
+.row-btns{
+  width: auto;
+  float: right;
+  margin: 10px 6px 10px 6px;
+}
+.modal-dialog {
+  position: initial!important;
+}

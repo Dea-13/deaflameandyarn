@@ -1,0 +1,65 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="users-list-wrapper">
+            <div class="card">
+                <div class="row">
+                    <div class="d-flex align-items-center ml-3 ml-md-10"><h4 style="font-weight: bold;">{{name}}</h4></div>
+                    
+                    <label class="d-flex align-items-center ml-1 ml-md-3">
+                         <span class="width-search">Поръчка, Профил, Клиент</span>
+                        <input [(ngModel)]="searchValue" name="searchValue" type="text"(keydown.enter)="searchTable(searchValue)" class="form-control ml-25 search-input" />
+                        <button class="btn search-btn search" (click)="searchTable(searchValue)" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <button class="btn search-btn clear-btn" (click)="clearTable()" type="submit">
+                            <i class="fa fa-times"></i>
+                        </button>                        
+                        <span class="length-show-rows">{{rows.length}} операции</span>                        
+                    </label>
+                </div>
+                <table>
+                    <div class="inf-scroll"
+                        infiniteScroll
+                        [scrollWindow]="false"
+                        [infiniteScrollDistance]="0.1"
+                        (scrolled)="onScroll()">
+                        <tr *ngFor="let row of rows" (click)="redirectToConfirmation(row)">
+                            <div class="glossy-row">
+                                <td class="img-section"><div><img src="{{'data:image/jpg;base64,' + row.image}}" /></div></td>
+                                <td style="width: 25%;">
+                                    <p><b>{{row.orderNo}}</b></p>                                    
+                                    <p><b>{{row.salesOrderDescription}}</b></p>
+                                    <p><b>{{row.sourceDocumentClient}}</b></p>
+                                    <p><b>{{row.profile}}/{{row.alloy}}, L={{row.length}}</b></p>
+                                    <p><b>Повърхност: {{row.surface}}</b></p>
+                                    <p><b>RefNo: {{row.routingReferenceNo}}</b></p>
+                                    <p><b>{{row.color1}}</b></p>
+                                </td>
+                                <td style="width: 15%;">
+                                    <p><i>Време за изпълнение: {{row.duration}}</i></p>
+                                    <p><i>Начало: {{row.startDate | date:'dd/MM/yyyy H:mm:ss'}}</i></p>
+                                    <p><i>Край: {{row.endDate | date:'dd/MM/yyyy H:mm:ss'}}</i></p>
+                                    <p><i>Сл.оп.:{{row.nextOperation}}</i></p>
+                                    <p><i>{{row.inputQuantity}}kg поръчка</i></p>
+                                    <p><i>{{row.producedQuantity}} готови</i></p>
+                                    <!-- <p><i>{{row.scrappedQuantity}} пресовани</i></p> -->
+                                    <p class="red-text"><i>({{row.scrappedQuantity}} скрап)</i></p>
+                                </td>
+                                <td><i>{{row.comments}}</i></td>
+                            </div>
+                        </tr>
+                    </div>
+
+                </table>
+                <div class="col-12">
+                    <button class="btn btn-light row-btns" (click)="backClicked()" rippleEffect>Назад</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div *ngIf="loading" class="loader-section">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<br>
+<div class="container-fluid">
+    <div class="modal-header">
+        <h4>PDF-Viewer</h4>
+        <button type="button" class="close" (click)="dismiss()"><i class="fa">&#xf00d;</i></button>
+    </div>
+
+    <br><br>
+    <div *ngIf="pdfSrc" class="container-fluid buttons-fluid">
+
+        <div class="buttons-section">
+            <button type="button" class="btn btn-primary btn-sm" (click)="previousPage()"><i class="fa">&#xf100;</i></button>&nbsp;
+
+            <button type="button" class="btn btn-primary btn-sm" (click)="nextPage()"><i class="fa">&#xf101;</i></button>&nbsp;
+
+            <button type="button" class="btn btn-primary btn-sm" (click)="plusZoom()"><i class="fa">&#xf00e;</i></button>&nbsp;
+
+            <button type="button" class="btn btn-primary btn-sm" (click)="minusZoom()"><i class="fa">&#xf010;</i></button> &nbsp;
+
+            <button type="button" class="btn btn-primary btn-sm" (click)="rotate()"><i class="fa">&#xf01e;</i></button>&nbsp;
+
+            <button type="button" class="btn btn-primary btn-sm" (click)="print()"><i class="fa">&#xf02f;</i></button>&nbsp;
+
+            <button type="button" class="btn btn-primary btn-sm" (click)='download()'><i class="fa">&#xf019;</i></button> &nbsp;
+
+            <br>
+        </div>
+        <div class="container-fluid h-100 w-80 portrait-page">
+            <pdf-viewer class="portrait-page" [src]="pdfSrc" id="pdf-report-id" [show-all]="true" [(page)]="pageVariable" [render-text]="true"
+                [zoom]="zoom" [rotation]="angle" [show-borders]="true" (error)="errorTest($event)"
+                [original-size]="false" (after-load-complete)="afterLoadComplete($event)"
+                (page-rendered)="pageRendered($event)" (text-layer-rendered)="textLayerRendered($event)"
+                (after-load-complete)="onLoaded($event)" style=" height: 600px;"></pdf-viewer>
+
+        </div>
+    </div>
+</div>

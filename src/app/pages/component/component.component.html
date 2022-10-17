@@ -1,0 +1,96 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="users-list-wrapper">
+            <div class="card">
+                <!-- <div class="flex">
+                    <ng-select [(ngModel)]="locCode" class="mg-2" (ngModelChange)="getMaterialInventories()">
+                        <ng-option *ngFor="let item of locationCode" [value]="item.id">{{item.textValue}}</ng-option>
+                    </ng-select>
+                </div> -->
+                <div class="flex">
+                    <div class="margin-top-10 row col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                        <h3 class="row col-12">Материали</h3>
+                    </div>
+                    <div class="margin-top-10 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                        <!-- <button class="btn btn-primary" (click)="openPdf()" rippleEffect>
+                            Отвори PDF
+                        </button> -->
+                    </div>
+                </div>
+                <ngx-datatable #myTable [rows]="rows" [rowHeight]="'auto'" class="bootstrap core-bootstrap"
+                    [limit]="selectedOption" [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="40"
+                    [scrollbarH]="true">
+
+                    <!-- <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                            <div style="padding-left:35px;">
+                                <div><strong>DropDown</strong></div>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-row-detail> -->
+
+                    <!-- <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+                        [canAutoResize]="false">
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                            <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded"
+                                [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                                (click)="toggleExpandRow(row)">
+                            </a>
+                        </ng-template>
+                    </ngx-datatable-column> -->
+                    <ngx-datatable-column prop="productName">
+                        <ng-template class="content" ngx-datatable-header-template>
+                            <span>Продукт</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column prop="productVariant">
+                        <ng-template class="content" ngx-datatable-header-template>
+                            <span>Вариант</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column prop="lotNo">
+                        <ng-template class="content" ngx-datatable-header-template>
+                            <span>Партида</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-name="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>                            
+                            <ng-select [(ngModel)]="currentStockValue" appendTo="body" (ngModelChange)="getStockSn(currentStockValue, rowIndex)">
+                                <ng-option *ngFor="let item of currentStock" [value]="item.sn">{{item.sn}}</ng-option>
+                            </ng-select>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column prop="quantity">
+                        <ng-template class="content" ngx-datatable-header-template>
+                            <span>К-во</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+                <div *ngIf="locName" class="section-nav">
+                    <p>НАВ склад за консумация: {{locName}}</p>
+                    <p ><u>Наличности в НАВ на :</u></p>
+                    <div *ngFor="let item of inventories">
+                        <p>Вариант: {{item.variant}}, Партида:{{item.lotNo}}</p>
+                    </div>                                    
+                    <div *ngIf="!inventories">
+                        <p>Вариант: , Партида:</p>
+                    </div>
+                    <p class="red"><i>Забележка: Наличностите от НАВ се обновяват на всеки 15 минути</i></p>
+                </div>
+                <div *ngIf="currentStock" class="section-nav">
+                    <p><u>Наличности в МЕС:</u></p>
+                    <div *ngFor="let item of currentStock">
+                        <p>{{item.warehouseName}}, операция: {{item.operationNo}}, кг. {{item.quantityAltUoM1}}, бр. {{item.quantity}}, Партида:{{item.sn}}</p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-light row-btns" (click)="completeComponent()" rippleEffect>Завърши</button>
+                    <button class="btn btn-light row-btns" (click)="backClicked()" rippleEffect>Назад</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div *ngIf="loading" class="loader-section">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
