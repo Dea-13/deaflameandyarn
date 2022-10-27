@@ -15,9 +15,8 @@ import { CoreTranslationService } from './@core/services/translation.service';
 
 import { menu } from './menu/menu';
 import { locale as menuEnglish } from './menu/i18n/en';
-import { locale as menuFrench } from './menu/i18n/fr';
-import { locale as menuGerman } from './menu/i18n/de';
-import { locale as menuPortuguese } from './menu/i18n/pt';
+import { locale as menuArabic } from './menu/i18n/ar';
+import { locale as menuBulgarian } from './menu/i18n/bg';
 import { APP_CONFIG } from '../environments/environment';
 import { ElectronService } from './core/services';
 
@@ -37,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 //  public reportServer: string = APP_CONFIG.apiReportServer;
 //  public reportUrl: string = 'SmartApps.MES.Reports/reportPacketLabel';
-//  public showParameters: string = "true"; 
+//  public showParameters: string = "true";
 //  public parameters: any = {
 //    "ConfirmationId": 529517
 //   };
@@ -92,7 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._translateService.setDefaultLang('en');
 
     // Set the translations for the menu
-    this._coreTranslationService.translate(menuEnglish, menuFrench, menuGerman, menuPortuguese);
+    this._coreTranslationService.translate(menuEnglish, menuArabic, menuBulgarian);
 
     // Set the private defaults
     this._unsubscribeAll = new Subject();
@@ -106,10 +105,10 @@ export class AppComponent implements OnInit, OnDestroy {
     //   console.log('NodeJS childProcess', this.electronService.childProcess);
 
 
-    //   this.electronService.serialPort.SerialPort.list().then((ports:any)=>{ 
-    //     console.log("SerialPort -> ports: ", ports);  
-    //   }).catch((err:any)=>{ 
-    //     console.log("SerialPort -> err: ", err);  
+    //   this.electronService.serialPort.SerialPort.list().then((ports:any)=>{
+    //     console.log("SerialPort -> ports: ", ports);
+    //   }).catch((err:any)=>{
+    //     console.log("SerialPort -> err: ", err);
     //   });
 
 
@@ -120,9 +119,9 @@ export class AppComponent implements OnInit, OnDestroy {
     //   })
     //   let buffer = [];
     //   let buffer_ascii = ''
-    //   this.port.on('data', function(data) {  
-    //     buffer.push(Buffer.from(data, 'ascii'))  
-    //     console.log('buffer: ', buffer.toString()); 
+    //   this.port.on('data', function(data) {
+    //     buffer.push(Buffer.from(data, 'ascii'))
+    //     console.log('buffer: ', buffer.toString());
     //   });
 
     // } else {

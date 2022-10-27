@@ -30,6 +30,18 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ComponentComponent } from './pages/component/component.component';
 import { PdfViewerModalComponent } from './pages/pdf-viewer-modal/pdf-viewer-modal.component';
+import { StayComponent } from '../app/main/pages/stay/stay.component';
+import { ConfirmedComponent } from '../app/main/pages/confirmed/confirmed.component';
+import { DispatchedComponent } from '../app/main/pages/dispatched/dispatched.component';
+import { ProductivityComponent } from '../app/main/pages/productivity/productivity.component';
+import { ScrapComponent } from '../app/main/pages/scrap/scrap.component';
+import { NewMatrixComponent } from '../app/main/pages/new-matrix/new-matrix.component';
+import { NoMotionComponent } from '../app/main/pages/no-motion/no-motion.component';
+import { MarkedComponent } from '../app/main/pages/marked/marked.component';
+import { TestComponent } from '../app/main/pages/test/test.component';
+import { MovementMatrixComponent } from '../app/main/pages/movement-matrix/movement-matrix.component';
+import { UserViewComponent } from '../app/main/pages/user-view/user-view.component';
+import { StatedComponent } from '../app/main/pages/stated/stated.component';
 
 const appRoutes: Routes = [
   {
@@ -64,6 +76,68 @@ const appRoutes: Routes = [
   {
     path: 'api/component',
     component: ComponentComponent,
+    pathMatch: 'full'
+  },
+  // -----------
+
+  {
+    path: 'api/stated',
+    component: StatedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/confirmed',
+    component: ConfirmedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/dispatched',
+    component: DispatchedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/productivity',
+    component: ProductivityComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/stay',
+    component: StayComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/scrap',
+    component: ScrapComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/new-matrix',
+    component: NewMatrixComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/no-motion',
+    component: NoMotionComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/marked',
+    component: MarkedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/test',
+    component: TestComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/movement-matrix',
+    component: MovementMatrixComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/user-view',
+    component: UserViewComponent,
     pathMatch: 'full'
   },
   {

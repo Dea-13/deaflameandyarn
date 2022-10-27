@@ -18,10 +18,33 @@ import { ContentHeaderModule } from '../../layout/components/content-header/cont
 import { AuthLoginV2Component } from './authentication/auth-login-v2/auth-login-v2.component';
 import { ConfirmationComponent } from '../../pages/confirmation/confirmation.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { StatedComponent } from './stated/stated.component';
+import { ConfirmedComponent } from './confirmed/confirmed.component';
+import { DispatchedComponent } from './dispatched/dispatched.component';
+import { ProductivityComponent } from './productivity/productivity.component';
+import { StayComponent } from './stay/stay.component';
+import { ScrapComponent } from './scrap/scrap.component';
+import { NewMatrixComponent } from './new-matrix/new-matrix.component';
+import { NoMotionComponent } from './no-motion/no-motion.component';
+import { MarkedComponent } from './marked/marked.component';
+import { TestComponent } from './test/test.component';
+import { MovementMatrixComponent } from './movement-matrix/movement-matrix.component';
+import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
   declarations: [
-
+    StatedComponent,
+    ConfirmedComponent,
+    DispatchedComponent,
+    ProductivityComponent,
+    StayComponent,
+    ScrapComponent,
+    NewMatrixComponent,
+    NoMotionComponent,
+    MarkedComponent,
+    TestComponent,
+    MovementMatrixComponent,
+    UserViewComponent,
   ],
   imports: [
     CommonModule,
@@ -29,13 +52,13 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ContentHeaderModule,
     NgbModule,
     NgSelectModule,
-    FormsModule,    
+    FormsModule,
     MiscellaneousModule,
     InfiniteScrollModule,
     PdfViewerModule,
     NgxDatatableModule,
   ],
 
-  providers: []
+  providers: [],
 })
 export class PagesModule {}

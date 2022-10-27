@@ -1,5 +1,5 @@
 <!-- vertical-layout -->
-<ng-container *ngIf="coreConfig.layout.type === 'vertical'" style="display: none;">
+<ng-container *ngIf="coreConfig.layout.type === 'vertical'" style="display: block;">
   <vertical-layout></vertical-layout>
 </ng-container>
 <!-- / vertical-layout -->
@@ -11,7 +11,7 @@
 <!-- / horizontal-layout -->
 
 <!-- theme customizer -->
-<!-- <core-sidebar
+<core-sidebar
   name="themeCustomizer"
   class="customizer d-none d-md-block"
   [invisibleOverlay]="true"
@@ -24,5 +24,5 @@
     <span [data-feather]="'settings'" [class]="'spinner'"></span>
   </a>
   <core-theme-customizer></core-theme-customizer>
-</core-sidebar> -->
+</core-sidebar>
 <!-- / theme customizer -->

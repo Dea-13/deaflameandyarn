@@ -12,7 +12,7 @@ import { ElectronService } from '../../../../core/services';
 @Component({
   selector: 'app-auth-login-v2',
   templateUrl: './auth-login-v2.component.html',
-  styleUrls: ['./auth-login-v2.component.scss'],  
+  styleUrls: ['./auth-login-v2.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AuthLoginV2Component implements OnInit {
@@ -70,12 +70,12 @@ export class AuthLoginV2Component implements OnInit {
     };
   }
 
-  closeTime(){        
+  closeTime(){
     if (this.electronService.isElectron) {
-      this.myIntervalCloseApp = setInterval(() => {      
+      this.myIntervalCloseApp = setInterval(() => {
         this.electronService.closeWindows()
       }, 600000);
-    }    
+    }
   }
 
 
@@ -96,60 +96,61 @@ export class AuthLoginV2Component implements OnInit {
   }
 
   inputCart(ev) {
-    this.cart = ev.target.value;     
+    this.cart = ev.target.value;
     this.cartLength = this.cart.length;
     console.log('inputCart: ', this.cart);
     if(this.cartLength >= 11 && this.cartLength <= 14){
       console.log('inputCart222: ', this.cart, this.cartLength);
-      setTimeout(() => {    
-        this.onSubmit();        
-      }, 500);    
+      setTimeout(() => {
+        this.onSubmit();
+      }, 500);
     }
   }
 
   onSubmit() {
     let url;
-    // stop here if form is invalid
-    if(!this.enableOtherForm){
-      this.submittedUser = true;
-      if (this.loginFormUser.invalid) {
-        return;
-      } else {
-        url = this.appLoginService.loginUser(this.loginFormUser.controls.email.value, this.loginFormUser.controls.password.value);
-      }
-    } else {
-      this.submittedCard = true;
-      if (this.loginFormCard.invalid) {
-        return;
-      } else {
-        url = this.appLoginService.loginCard(this.loginFormCard.controls.card.value);
-      }
-    }
+    this._router.navigate(['/api/machines']);
+    // // stop here if form is invalid
+    // if(!this.enableOtherForm){
+    //   this.submittedUser = true;
+    //   if (this.loginFormUser.invalid) {
+    //     return;
+    //   } else {
+    //     url = this.appLoginService.loginUser(this.loginFormUser.controls.email.value, this.loginFormUser.controls.password.value);
+    //   }
+    // } else {
+    //   this.submittedCard = true;
+    //   if (this.loginFormCard.invalid) {
+    //     return;
+    //   } else {
+    //     url = this.appLoginService.loginCard(this.loginFormCard.controls.card.value);
+    //   }
+    // }
 
-    url.subscribe(config => {      
-      // console.log('++++++++', JSON.parse(config.permissionGroup.jsonData).calendar.read);
-      if (config) {        
-        localStorage.setItem('currentUser', JSON.stringify(config));        
-        //redirect to home page
-        setTimeout(() => {
-          this._router.navigate(['/api/machines']);
-        }, 100);
-        // Login
-        this.loading = true;
-      }      
-    }, error => {
-      console.log('error: ', error, error['status'], error['status'] == 401);
-      if(error['status'] == 401){
-        this.toastrService.error(
-          'Грешен потребител или парола', '',
-          { toastClass: 'toast ngx-toastr', closeButton: false }
-        );
-        // Login
-        this.loading = false;
-      }
-    });
+    // url.subscribe(config => {
+    //   // console.log('++++++++', JSON.parse(config.permissionGroup.jsonData).calendar.read);
+    //   if (config) {
+    //     localStorage.setItem('currentUser', JSON.stringify(config));
+    //     //redirect to home page
+    //     setTimeout(() => {
+    //       this._router.navigate(['/api/machines']);
+    //     }, 100);
+    //     // Login
+    //     this.loading = true;
+    //   }
+    // }, error => {
+    //   console.log('error: ', error, error['status'], error['status'] == 401);
+    //   if(error['status'] == 401){
+    //     this.toastrService.error(
+    //       'Грешен потребител или парола', '',
+    //       { toastClass: 'toast ngx-toastr', closeButton: false }
+    //     );
+    //     // Login
+    //     this.loading = false;
+    //   }
+    // });
 
- 
+
   }
 
   // Lifecycle Hooks
@@ -181,7 +182,7 @@ export class AuthLoginV2Component implements OnInit {
 
   changeForm(value){
     console.log('changeForm', value);
-    if(value == 1){            
+    if(value == 1){
       this.enableOtherForm = true;
       setTimeout(() =>  this.triggerRedClick(), 5);
     } else {
@@ -189,16 +190,16 @@ export class AuthLoginV2Component implements OnInit {
     }
   }
 
-  triggerRedClick() {    
+  triggerRedClick() {
       let el: HTMLElement = this.myDivRed.nativeElement;
-      el.focus()    
+      el.focus()
   }
 
   /**
    * On destroy
    */
   ngOnDestroy(): void {
-    clearInterval(this.myIntervalCloseApp);  
+    clearInterval(this.myIntervalCloseApp);
     // Unsubscribe from all subscriptions
     // this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
