@@ -17,4 +17,12 @@ export class MatrixService {
     return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
   }
 
+  getConfirmedMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+  }
+
+  getDispatchedMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+  }
+
 }

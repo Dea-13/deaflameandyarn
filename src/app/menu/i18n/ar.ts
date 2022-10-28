@@ -44,6 +44,17 @@ export const locale = {
       show: '',
       result: '',
       search: '',
+      bolster1: '',
+      dieHolder: '',
+      container: '',
+      price: '',
+      invoicePrice: '',
+      notes: '',
+      customer: '',
+      orderDate: '',
+      confirmation: '',
+      confirmationDate: '',
+      dispatchedDate: '',
 
     }
   }

@@ -19,19 +19,6 @@ export class StatedComponent implements OnInit {
   public reorderable = true;
   public columns = [
     { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
-    { name: '', prop: '' },
 ];
   public ColumnMode = ColumnMode;
   public searchValue = '';

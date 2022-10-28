@@ -44,6 +44,17 @@ export const locale = {
       show: 'Покажи',
       result: 'резултати',
       search: 'Търси',
+      bolster1: 'Bolster1',
+      dieHolder: 'Държач за матрица',
+      container: 'Контейнер',
+      price: 'Цена',
+      invoicePrice: 'Цена по фактура',
+      notes: 'Забележки',
+      customer: 'Клиент',
+      orderDate: 'Дата заявка',
+      confirmation: 'Потвърждение',
+      confirmationDate: 'Дата потвърждение',
+      dispatchedDate: 'Дата експедиция',
     }
   }
 }
