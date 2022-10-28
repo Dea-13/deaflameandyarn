@@ -25,6 +25,25 @@ export const locale = {
       NEWMATRIX: 'New matrix',
       PRODUCTIVITY: 'Productivity',
       STAY: 'Stay'
+    },
+    translate: {
+      matrix: 'Matrix',
+      profile: 'Profile',
+      currentResource: 'Current Resource',
+      plaseSklad: 'Warehouse Space',
+      press: 'Press',
+      manufacturer: 'Manufacturer',
+      matricologist: 'Matriologist',
+      diameter: 'Diameter',
+      thickness: 'Thickness',
+      weight: 'Weight',
+      channels: 'Channels',
+      client: 'Client',
+      kg: 'KG',
+      kgSap: 'KG (SAP)',
+      show: 'Show',
+      result: 'Result',
+      search: 'Search',
     }
   }
 }

@@ -25,6 +25,26 @@ export const locale = {
       NEWMATRIX: '',
       PRODUCTIVITY: '',
       STAY: ''
+    },
+    translate: {
+      matrix: '',
+      profile: '',
+      currentResource: '',
+      plaseSklad: '',
+      press: '',
+      manufacturer: '',
+      matricologist: '',
+      diameter: '',
+      thickness: '',
+      weight: '',
+      channels: '',
+      client: '',
+      kg: '',
+      kgSap: '',
+      show: '',
+      result: '',
+      search: '',
+
     }
   }
 }

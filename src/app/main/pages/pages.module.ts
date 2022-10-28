@@ -32,20 +32,7 @@ import { MovementMatrixComponent } from './movement-matrix/movement-matrix.compo
 import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
-  declarations: [
-    StatedComponent,
-    ConfirmedComponent,
-    DispatchedComponent,
-    ProductivityComponent,
-    StayComponent,
-    ScrapComponent,
-    NewMatrixComponent,
-    NoMotionComponent,
-    MarkedComponent,
-    TestComponent,
-    MovementMatrixComponent,
-    UserViewComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     CoreCommonModule,

@@ -25,6 +25,25 @@ export const locale = {
       NEWMATRIX: 'Нова матрица',
       PRODUCTIVITY: 'Продуктивност',
       STAY: 'Свръх престой'
+    },
+    translate: {
+      matrix: 'Матрица',
+      profile: 'Профил',
+      currentResource: 'Текущ ресурс',
+      plaseSklad: 'Място в Склад',
+      press: 'Преса',
+      manufacturer: 'Производител',
+      matricologist: 'Матричар',
+      diameter: 'Диаметър',
+      thickness: 'Дебелина',
+      weight: 'Гр./м',
+      channels: 'Канали',
+      client: 'Клиент',
+      kg: 'KG',
+      kgSap: 'KG (SAP)',
+      show: 'Покажи',
+      result: 'резултати',
+      search: 'Търси',
     }
   }
 }

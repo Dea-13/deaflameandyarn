@@ -39,10 +39,13 @@ $vuexy-theme: mat.define-light-theme((
 @import './app/@core/scss/angular/libs/datatables.component.scss';
 @import './app/@core/scss/base/pages/app-user.scss';
 @import './app/@core/scss/angular/libs/select.component.scss';
+/* You can add global styles to this file, and also import other style files */
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/themes/dark.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 
-.error {
-  border: 1px solid red;
-}
 
 // ngx-toastr css
 @import '~ngx-toastr/toastr.css';
