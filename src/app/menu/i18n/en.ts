@@ -55,6 +55,13 @@ export const locale = {
       confirmation: 'Confirmation',
       confirmationDate: 'Confirmation date',
       dispatchedDate: 'Dispatched date',
+      diedId: 'Died ID',
+      status: 'Status',
+      totalWeight: 'Total Weight',
+      usedPieces: 'Used Pieces',
+      finalNitriding: 'Final Nitriding',
+      kgToFianlNitriding: 'KG to final nitriding',
+      kgAfterFianlNitriding: 'KG after final nitriding',
     }
   }
 }

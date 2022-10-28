@@ -48,8 +48,8 @@ export const menu: CoreMenu[] = [
                 url: 'api/dispatched'
               },
               {
-                id: 'profiles',
-                title: 'Profiles',
+                id: 'using',
+                title: 'In Use',
                 translate: 'MENU.USING',
                 type: 'collapsible',
                 icon: 'navigantion',

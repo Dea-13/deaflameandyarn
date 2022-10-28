@@ -55,6 +55,13 @@ export const locale = {
       confirmation: 'Потвърждение',
       confirmationDate: 'Дата потвърждение',
       dispatchedDate: 'Дата експедиция',
+      diedId: 'Died ID',
+      status: 'Статус',
+      totalWeight: 'Общо КГ',
+      usedPieces: 'Брой употреба',
+      finalNitriding: 'Последно азотиране',
+      kgToFianlNitriding: 'КГ до последно азотиране',
+      kgAfterFianlNitriding: 'КГ след последно азотиране',
     }
   }
 }

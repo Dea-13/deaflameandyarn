@@ -25,4 +25,8 @@ export class MatrixService {
     return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
   }
 
+  getproductivityMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+  }
+
 }
