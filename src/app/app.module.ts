@@ -19,6 +19,7 @@ import { AppComponent } from '../app/app.component';
 import { LayoutModule } from '../app/layout/layout.module';
 import { SampleModule } from '../app/main/sample/sample.module';
 import { InterceptorInterceptor } from './auth/helpers/interceptor.interceptor';
+import { NgbNavItem } from '@ng-bootstrap/ng-bootstrap';
 
 import { MachinesComponent } from './main/pages/machines/machines.component';
 import { OperationsComponent } from './main/pages/operations/operations.component';
@@ -48,6 +49,9 @@ import { FreeAddressComponent } from './main/pages/free-address/free-address.com
 import { OccupiedMatricesComponent } from './main/pages/occupied-matrices/occupied-matrices.component';
 import { EmployeesComponent } from './main/pages/employees/employees.component';
 import { ManufacturersComponent } from './main/pages/manufacturers/manufacturers.component';
+import { NewMatrixModalComponent } from './main/modals/new-matrix-modal/new-matrix-modal.component';
+import { NewManufacturersModalComponent } from './main/modals/new-manufacturers-modal/new-manufacturers-modal.component';
+import { NewEmployeesModalComponent } from './main/modals/new-employees-modal/new-employees-modal.component';
 
 const appRoutes: Routes = [
   {
@@ -207,7 +211,10 @@ const appRoutes: Routes = [
     FreeAddressComponent,
     OccupiedMatricesComponent,
     ManufacturersComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    NewMatrixModalComponent,
+    NewManufacturersModalComponent,
+    NewEmployeesModalComponent
   ],
 
   imports: [

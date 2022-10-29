@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { APP_CONFIG } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../service';
 
 
@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const currentUser = this._authenticationService.currentUserValue;
     const isLoggedIn = currentUser && currentUser.token;
-    const isApiUrl = request.url.startsWith(APP_CONFIG.apiUrl);
+    const isApiUrl = request.url.startsWith(environment.apiUrl);
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {

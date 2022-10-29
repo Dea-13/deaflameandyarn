@@ -1,0 +1,62 @@
+<div class="slideout-content">
+  <!-- Modal to add new user starts-->
+  <div id="modals-slide-in">
+    <div class="modal-dialog material-dialog-center modal-content pt-0">
+      <div class="modal-body flex-grow-1">
+        <form [formGroup]="createEmployeeForm" class="add-new-user modal-content pt-0" #newUserForm="ngForm">
+          <div class="row form-group">
+            <div class="col-md-12 col-12">
+              <div class="alert alert-primary flex" role="alert">
+                <div class="alert-body">
+                  {{ translateSnackBar.employeeModalTitle }}
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.name }}</label>
+                <input type="text" formControlName="name" id="basic-icon-default-uname" class="form-control dt-uname"
+                  aria-label="jdoe1" maxlength="50" aria-describedby="basic-icon-default-uname2" name="user-name"
+                  [ngClass]="{ 'error': submitted && createEmployeeForm.get('name').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.department }}</label>
+                <input type="text" formControlName="department" id="basic-icon-default-uname" class="form-control dt-uname"
+                  aria-label="jdoe1" maxlength="50" aria-describedby="basic-icon-default-uname2" name="user-name"
+                  [ngClass]="{ 'error': submitted && createEmployeeForm.get('department').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.privilege}}</label>
+                <input type="text" formControlName="privilege" id="basic-icon-default-uname"
+                  class="form-control dt-uname" aria-label="jdoe1" maxlength="50"
+                  aria-describedby="basic-icon-default-uname2" name="user-name"
+                  [ngClass]="{ 'error': submitted && createEmployeeForm.get('privilege').invalid }" required />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="modal-btn">
+          <button class="btn btn-primary" rippleEffect (click)="submitForm()">
+            <span class="d-none d-sm-inline-block">{{ translateSnackBar.submit }}</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading" class="loader-section">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

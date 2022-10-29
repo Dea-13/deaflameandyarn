@@ -6,6 +6,8 @@ import {
 } from '@swimlane/ngx-datatable';
 import { TranslateService } from '@ngx-translate/core';
 import { ManufacturersService } from '../../../@core/services/manufacturers.service';
+import { NewManufacturersModalComponent } from '../../modals/new-manufacturers-modal/new-manufacturers-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-manufacturers',
@@ -37,7 +39,8 @@ export class ManufacturersComponent implements OnInit {
 
   constructor(
     private manufacturersService: ManufacturersService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit(): void {
@@ -87,5 +90,16 @@ export class ManufacturersComponent implements OnInit {
     this.loading = true;
     searchValue = '';
     this.getRequest(count, '');
+  }
+
+  modalManufacturer(row) {
+    console.log("new/edit manufacturer");
+    const modalRef = this.modalService.open(NewManufacturersModalComponent, {});
+    modalRef.componentInstance.manufacturerItem = { 'data': row };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry == true) {
+        this.getRequest(10, '');
+      }
+    });
   }
 }

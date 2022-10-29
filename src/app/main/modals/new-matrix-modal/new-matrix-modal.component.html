@@ -1,0 +1,337 @@
+<div class="slideout-content">
+  <!-- Modal to add new user starts-->
+  <div id="modals-slide-in">
+    <div class="modal-dialog material-dialog-center modal-content pt-0">
+      <div class="modal-body flex-grow-1">
+        <div class="row">
+          <div class="col-md-12 col-12">
+            <div class="alert alert-primary flex" role="alert">
+              <div class="alert-body">
+                {{ translateSnackBar.modalMatrix }}
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Nav tabs -->
+        <form class="form form-general" [formGroup]="createMatrixForm">
+          <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
+            <div class="flex col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="row row-first-column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+                <div class="border-field">
+                  <span class="label-section">{{ translateSnackBar.technicalData }}</span>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.channels }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.holder }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.support }}</label>
+                      <div class="flex">
+                        <input class="form-control input" type="checkbox" style="width: 5%;margin-right: 5%;">
+                        <ng-select appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.pressWasher }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.type }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group flex">
+                      <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }}</label>
+                      <input class="form-control input" type="checkbox" style="width: 5%;">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border-field">
+                  <span class="label-section">{{ translateSnackBar.technicalDataOther }}</span>
+                  <div class="col-md-12 col-12">
+                    <label for="city-column">{{ translateSnackBar.container }}</label>
+                    <div class="form-group flex">
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.matrixComplect }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.tulling1 }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.tulling2 }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border-field">
+                  <span class="label-section">{{ translateSnackBar.dates }}</span>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.dateStated }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.plannedDelivery }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.realExpedition }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.inUseBy }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row row-second-column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+                <div class="border-field" style="margin-bottom: 20px;">
+                  <span class="label-section">{{ translateSnackBar.others }}</span>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.client }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.maker }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of personList" [value]="s.id">{{ s.fullName }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.applicant }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.matricologist }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.price }}</label>
+                      <input type="text" class="form-control dt-uname" />
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.erpDmaActiv }}</label>
+                      <input type="text" class="form-control dt-uname" />
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.gr }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group flex">
+                      <label for="city-column" class="label-checkbox">{{ translateSnackBar.requiredTest }}</label>
+                      <input class="form-control input" type="checkbox" style="width: 5%;">
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.productionKg }}</label>
+                      <input type="text" class="form-control dt-uname" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border-field" style="margin-bottom: 20px;">
+                  <span class="label-section">{{ translateSnackBar.presses }}</span>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.press }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.altPress1 }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.altPress2 }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border-field" style="margin-bottom: 20px;">
+                  <span class="label-section">{{ translateSnackBar.storage }}</span>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.storageGroup }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.storageFreePlace }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row-third-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="border-field">
+                <span class="label-section">{{ translateSnackBar.additional }}</span>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="city-column">{{ translateSnackBar.noteRequest }}</label>
+                    <ng-select appendTo="body">
+                      <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="city-column">{{ translateSnackBar.use }}</label>
+                    <ng-select appendTo="body">
+                      <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="city-column">{{ translateSnackBar.notes }}</label>
+                    <ng-select appendTo="body">
+                      <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="city-column">{{ translateSnackBar.reasonBrak }}</label>
+                    <ng-select appendTo="body">
+                      <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
+            <div class="col-sm-12">
+              <span class="label-section">{{ translateSnackBar.prodDataProfile }}</span>
+              <ngx-datatable class="bootstrap core-bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                [columnMode]="ColumnMode.force" [columns]="columnsFirstTable" [headerHeight]="50" [footerHeight]="50"
+                [rowHeight]="'auto'" [reorderable]="reorderable">
+              </ngx-datatable>
+            </div>
+            <div class="col-sm-12">
+              <span class="label-section">{{ translateSnackBar.lengthBackEnd }}</span>
+              <ngx-datatable class="bootstrap core-bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                [columnMode]="ColumnMode.force" [columns]="columnsSecondTable" [headerHeight]="50" [footerHeight]="50"
+                [rowHeight]="'auto'" [reorderable]="reorderable">
+              </ngx-datatable>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal to add new user Ends-->
+</div>
+<div *ngIf="loading" class="loader-section">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

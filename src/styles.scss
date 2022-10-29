@@ -467,3 +467,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .modal-dialog {
   position: initial!important;
 }
+////////////////////// NEW CSS
+.flex{
+  display: flex;
+}
+
+.alert-body{
+  width: -webkit-fill-available;
+}
+
+.alert-primary .close {
+  color: red!important;
+  padding: 0 10px 0 10px;
+}
+
+.label-checkbox{
+  width: -webkit-fill-available;
+  line-height: 40px;
+}

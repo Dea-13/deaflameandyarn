@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APP_CONFIG } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class WarehouseService {
@@ -14,11 +14,11 @@ export class WarehouseService {
   }
 
   getFreeAddressWarehouse(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+    return this._http.get<any>(`${environment.apiUrl}`);
   }
 
   getOccupiedMatrixWarehouse(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+    return this._http.get<any>(`${environment.apiUrl}`);
   }
 
 }

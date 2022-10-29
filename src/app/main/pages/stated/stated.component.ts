@@ -6,6 +6,8 @@ import {
 } from '@swimlane/ngx-datatable';
 import { MatrixService } from '../../../@core/services/matrix.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NewMatrixModalComponent } from '../../modals/new-matrix-modal/new-matrix-modal.component';
 
 @Component({
   selector: 'app-stated',
@@ -19,7 +21,7 @@ export class StatedComponent implements OnInit {
   public reorderable = true;
   public columns = [
     { name: '', prop: '' },
-];
+  ];
   public ColumnMode = ColumnMode;
   public searchValue = '';
   public selectedOption = 10;
@@ -39,7 +41,8 @@ export class StatedComponent implements OnInit {
 
   constructor(
     private matrixService: MatrixService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit(): void {
@@ -100,5 +103,16 @@ export class StatedComponent implements OnInit {
     this.loading = true;
     searchValue = '';
     this.getRequest(count, '');
+  }
+
+  modalMatrix(row) {
+    console.log("new/edit matrix");
+    const modalRef = this.modalService.open(NewMatrixModalComponent, {});
+    modalRef.componentInstance.matrixItem = { 'data': row };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry == true) {
+        this.getRequest(10, '');
+      }
+    });
   }
 }

@@ -6,6 +6,8 @@ import {
 } from '@swimlane/ngx-datatable';
 import { TranslateService } from '@ngx-translate/core';
 import { EmployeesService } from '../../../@core/services/employees.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NewEmployeesModalComponent } from '../../modals/new-employees-modal/new-employees-modal.component';
 
 @Component({
   selector: 'app-employees',
@@ -37,7 +39,8 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     private employeesService: EmployeesService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit(): void {
@@ -87,5 +90,16 @@ export class EmployeesComponent implements OnInit {
     this.loading = true;
     searchValue = '';
     this.getRequest(count, '');
+  }
+
+  modalEmployee(row) {
+    console.log("new/edit employee");
+    const modalRef = this.modalService.open(NewEmployeesModalComponent, {});
+    modalRef.componentInstance.employeeItem = { 'data': row };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry == true) {
+        this.getRequest(10, '');
+      }
+    });
   }
 }

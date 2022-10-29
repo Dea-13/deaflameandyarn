@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { APP_CONFIG } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 import { ToastrService } from 'ngx-toastr';
 import { User, Role } from '../models';
@@ -54,13 +54,13 @@ export class AuthenticationService {
    */
   loginUser(userName: string, password: string) {
     return this._http
-      .post<any>(`${APP_CONFIG.apiUrl}Login`, { userName, password })
+      .post<any>(`${environment.apiUrl}Login`, { userName, password })
       .pipe(
         map(user => {
           // login user successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));            
+            localStorage.setItem('currentUser', JSON.stringify(user));
             // Display welcome toast!
             setTimeout(() => {
               this._toastrService.success(
@@ -86,7 +86,7 @@ export class AuthenticationService {
    */
   loginCard(cart: string) {
     return this._http
-      .get<any>(`${APP_CONFIG.apiUrl}Login/cart/${cart}`)
+      .get<any>(`${environment.apiUrl}Login/cart/${cart}`)
       .pipe(
         map(user => {
           // login card successful if there's a jwt token in the response
