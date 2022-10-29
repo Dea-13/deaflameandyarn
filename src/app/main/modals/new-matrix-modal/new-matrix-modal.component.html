@@ -16,6 +16,39 @@
           </div>
         </div>
         <!-- Nav tabs -->
+          <div class="col-sm-12 flex">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+              <div class="form-group">
+                <label for="city-column">{{ translateSnackBar.profile }}</label>
+                <div class="flex">
+                  <ng-select appendTo="body">
+                    <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                  </ng-select>
+                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">...</button>
+                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+              <div class="form-group">
+                <label for="city-column">{{ translateSnackBar.matrix }}</label>
+                <div class="flex">
+                  <ng-select appendTo="body">
+                    <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                  </ng-select>
+                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">...</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+              <div class="form-group">
+                <label for="city-column">{{ translateSnackBar.status }}</label>
+                <ng-select appendTo="body">
+                  <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                </ng-select>
+              </div>
+            </div>
+        </div>
         <form class="form form-general" [formGroup]="createMatrixForm">
           <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
             <div class="flex col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
