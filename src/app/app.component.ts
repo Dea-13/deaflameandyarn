@@ -17,7 +17,7 @@ import { menu } from './menu/menu';
 import { locale as menuEnglish } from './menu/i18n/en';
 import { locale as menuArabic } from './menu/i18n/ar';
 import { locale as menuBulgarian } from './menu/i18n/bg';
-import { APP_CONFIG } from '../environments/environment';
+import { environment } from '../environments/environment';
 import { ElectronService } from './core/services';
 
 
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   port: any;
 
-//  public reportServer: string = APP_CONFIG.apiReportServer;
+//  public reportServer: string = environment.apiReportServer;
 //  public reportUrl: string = 'SmartApps.MES.Reports/reportPacketLabel';
 //  public showParameters: string = "true";
 //  public parameters: any = {
@@ -85,7 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._coreMenuService.setCurrentMenu('main');
 
     // Add languages to the translation service
-    this._translateService.addLangs(['en', 'fr', 'de', 'pt']);
+    this._translateService.addLangs(['en', 'bg']);
 
     // This language will be used as a fallback when a translation isn't found in the current language
     this._translateService.setDefaultLang('en');
