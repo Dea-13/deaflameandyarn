@@ -4,15 +4,15 @@ import {
   DatatableComponent,
   SelectionType,
 } from '@swimlane/ngx-datatable';
-import { MatrixService } from '../../../@core/services/matrix.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ProfilesService } from '../../../@core/services/profiles.service';
 
 @Component({
-  selector: 'app-scrap',
-  templateUrl: './scrap.component.html',
-  styleUrls: ['./scrap.component.scss'],
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss'],
 })
-export class ScrapComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   // Public
   public rows = [];
   public loadingIndicator = true;
@@ -36,7 +36,7 @@ export class ScrapComponent implements OnInit {
   public translateSnackBar: any;
 
   constructor(
-    private matrixService: MatrixService,
+    private profilesService: ProfilesService,
     public translate: TranslateService
   ) {}
 
@@ -52,24 +52,30 @@ export class ScrapComponent implements OnInit {
 
   makeTable() {
     this.columns = [
-      { name: this.translateSnackBar.matrix, prop: 'name' },
-      { name: this.translateSnackBar.profile, prop: 'name' },
-      { name: this.translateSnackBar.press, prop: 'name' },
-      { name: this.translateSnackBar.manufacturer, prop: 'name' },
-      { name: this.translateSnackBar.diameter, prop: 'name' },
-      { name: this.translateSnackBar.thickness, prop: 'name' },
-      { name: this.translateSnackBar.bolster1, prop: 'name' },
-      { name: this.translateSnackBar.bolster1, prop: 'name' },
-      { name: this.translateSnackBar.notes, prop: 'name' },
-      { name: this.translateSnackBar.customer, prop: 'name' },
-      { name: this.translateSnackBar.scrapDate, prop: 'name' },
+      { name: this.translateSnackBar.erpItem, prop: 'name' },
+      { name: this.translateSnackBar.erpVariant, prop: 'name' },
+      { name: this.translateSnackBar.opNo, prop: 'name' },
+      { name: this.translateSnackBar.cnc1, prop: 'name' },
+      { name: this.translateSnackBar.cnc2, prop: 'name' },
+      { name: this.translateSnackBar.subContractor1, prop: 'name' },
+      { name: this.translateSnackBar.punching1, prop: 'name' },
+      { name: this.translateSnackBar.punching2, prop: 'name' },
+      { name: this.translateSnackBar.garda3, prop: 'name' },
+      { name: this.translateSnackBar.minutesPerPiece, prop: 'name' },
+      { name: this.translateSnackBar.weightPerPiece, prop: 'name' },
+      { name: this.translateSnackBar.lprkr, prop: 'name' },
+      { name: this.translateSnackBar.lobr, prop: 'name' },
+      { name: this.translateSnackBar.npr, prop: 'name' },
+      { name: this.translateSnackBar.setupSameProfile, prop: 'name' },
+      { name: this.translateSnackBar.setupOtherProfile, prop: 'name' },
+      { name: this.translateSnackBar.finalTreatment, prop: 'name' },
     ];
   }
 
   getRequest(count, searchValue) {
     this.limit = count;
-    // this.matrixService
-    // .getScrapMatrix(this.offset, this.limit, searchValue)
+    // this.profilesService
+    // .getProductProfiles(this.offset, this.limit, searchValue)
     // .subscribe((data) => {
     //   this.rows = data.list;
     //   this.totalResult = data['total'];

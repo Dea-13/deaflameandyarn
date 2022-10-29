@@ -4,15 +4,15 @@ import {
   DatatableComponent,
   SelectionType,
 } from '@swimlane/ngx-datatable';
-import { MatrixService } from '../../../@core/services/matrix.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ProfilesService } from '../../../@core/services/profiles.service';
 
 @Component({
-  selector: 'app-scrap',
-  templateUrl: './scrap.component.html',
-  styleUrls: ['./scrap.component.scss'],
+  selector: 'app-raw-material-production',
+  templateUrl: './raw-material-production.component.html',
+  styleUrls: ['./raw-material-production.component.scss'],
 })
-export class ScrapComponent implements OnInit {
+export class RawMaterialProductionComponent implements OnInit {
   // Public
   public rows = [];
   public loadingIndicator = true;
@@ -36,7 +36,7 @@ export class ScrapComponent implements OnInit {
   public translateSnackBar: any;
 
   constructor(
-    private matrixService: MatrixService,
+    private profilesService: ProfilesService,
     public translate: TranslateService
   ) {}
 
@@ -52,24 +52,19 @@ export class ScrapComponent implements OnInit {
 
   makeTable() {
     this.columns = [
-      { name: this.translateSnackBar.matrix, prop: 'name' },
-      { name: this.translateSnackBar.profile, prop: 'name' },
-      { name: this.translateSnackBar.press, prop: 'name' },
-      { name: this.translateSnackBar.manufacturer, prop: 'name' },
-      { name: this.translateSnackBar.diameter, prop: 'name' },
-      { name: this.translateSnackBar.thickness, prop: 'name' },
-      { name: this.translateSnackBar.bolster1, prop: 'name' },
-      { name: this.translateSnackBar.bolster1, prop: 'name' },
-      { name: this.translateSnackBar.notes, prop: 'name' },
-      { name: this.translateSnackBar.customer, prop: 'name' },
-      { name: this.translateSnackBar.scrapDate, prop: 'name' },
+      { name: this.translateSnackBar.material, prop: 'name' },
+      { name: this.translateSnackBar.description, prop: 'name' },
+      { name: this.translateSnackBar.f, prop: 'name' },
+      { name: this.translateSnackBar.language, prop: 'name' },
+      { name: this.translateSnackBar.alloy, prop: 'name' },
+      { name: this.translateSnackBar.priority, prop: 'name' },
     ];
   }
 
   getRequest(count, searchValue) {
     this.limit = count;
-    // this.matrixService
-    // .getScrapMatrix(this.offset, this.limit, searchValue)
+    // this.profilesService
+    // .getRawMaterialProductionProfiles(this.offset, this.limit, searchValue)
     // .subscribe((data) => {
     //   this.rows = data.list;
     //   this.totalResult = data['total'];

@@ -29,4 +29,16 @@ export class MatrixService {
     return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
   }
 
+  getScrapMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+  }
+
+  getMarkedMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+  }
+
+  getTestMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${APP_CONFIG.apiUrl}`);
+  }
+
 }

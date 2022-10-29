@@ -147,9 +147,26 @@ export const menu: CoreMenu[] = [
     id: 'profiles',
     title: 'Profiles',
     translate: 'MENU.PROFILES',
-    type: 'item',
+    type: 'collapsible',
     icon: 'package',
-    url: 'api/profiles'
+    children: [
+      {
+        id: 'products',
+        title: 'Products',
+        translate: 'MENU.PRODUCTS',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/products'
+      },
+      {
+        id: 'rawMaterial',
+        title: 'Raw material for production',
+        translate: 'MENU.RAWMATERIAL',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/raw-material-production'
+      },
+    ]
   },
   {
     id: 'warehouse',

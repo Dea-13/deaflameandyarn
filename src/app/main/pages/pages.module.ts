@@ -30,9 +30,12 @@ import { MarkedComponent } from './marked/marked.component';
 import { TestComponent } from './test/test.component';
 import { MovementMatrixComponent } from './movement-matrix/movement-matrix.component';
 import { UserViewComponent } from './user-view/user-view.component';
+import { ProductsComponent } from './products/products.component';
+import { RawMaterialProductionComponent } from './raw-material-production/raw-material-production.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     CoreCommonModule,

@@ -42,6 +42,8 @@ import { TestComponent } from '../app/main/pages/test/test.component';
 import { MovementMatrixComponent } from '../app/main/pages/movement-matrix/movement-matrix.component';
 import { UserViewComponent } from '../app/main/pages/user-view/user-view.component';
 import { StatedComponent } from '../app/main/pages/stated/stated.component';
+import { ProductsComponent } from './main/pages/products/products.component';
+import { RawMaterialProductionComponent } from './main/pages/raw-material-production/raw-material-production.component';
 
 const appRoutes: Routes = [
   {
@@ -141,6 +143,16 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/products',
+    component: ProductsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/raw-material-production',
+    component: RawMaterialProductionComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -166,6 +178,8 @@ const appRoutes: Routes = [
     TestComponent,
     MovementMatrixComponent,
     UserViewComponent,
+    ProductsComponent,
+    RawMaterialProductionComponent
   ],
 
   imports: [
