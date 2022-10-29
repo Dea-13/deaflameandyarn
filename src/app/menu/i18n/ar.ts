@@ -27,6 +27,11 @@ export const locale = {
       STAY: '',
       PRODUCTS: '',
       RAWMATERIAL: '',
+      FREEADDRESS: '',
+      OCCUPIEDMATRIX: '',
+      CONFIRMATION: '',
+      REPORTS: '',
+      SETTINGS: ''
     },
     translate: {
       matrix: '',
@@ -92,6 +97,18 @@ export const locale = {
       language: '',
       alloy: '',
       priority: '',
+      resource: '',
+      place: '',
+      partOfGroup: '',
+      size: '',
+      freeCapacity: '',
+      countMatrix: '',
+      capacity: '',
+      name: '',
+      department: '',
+      privilege: '',
+      email: '',
+      defaultShipmentTerms: '',
 
     }
   }

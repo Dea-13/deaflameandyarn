@@ -172,9 +172,26 @@ export const menu: CoreMenu[] = [
     id: 'warehouse',
     title: 'Warehouse',
     translate: 'MENU.SKLAD',
-    type: 'item',
+    type: 'collapsible',
     icon: 'box',
-    url: 'api/warehouse'
+    children: [
+      {
+        id: 'freeAddress',
+        title: 'Free addresses',
+        translate: 'MENU.FREEADDRESS',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/free-addresses'
+      },
+      {
+        id: 'occupiedMatrix',
+        title: 'Occupied matrices',
+        translate: 'MENU.OCCUPIEDMATRIX',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/occupied-matrices'
+      },
+    ]
   },
   {
     id: 'manufacture',
@@ -182,7 +199,7 @@ export const menu: CoreMenu[] = [
     translate: 'MENU.MANUFACTURER',
     type: 'item',
     icon: 'user-check',
-    url: 'api/manufacture'
+    url: 'api/manufacturers'
   },
   {
     id: 'employee',
@@ -190,6 +207,30 @@ export const menu: CoreMenu[] = [
     translate: 'MENU.EMPLOYEES',
     type: 'item',
     icon: 'users',
-    url: 'api/employee'
+    url: 'api/employees'
+  },
+  {
+    id: 'confirmations',
+    title: 'Confirmations',
+    translate: 'MENU.CONFIRMATION',
+    type: 'item',
+    icon: 'check-circle',
+    url: 'api/confirmations'
+  },
+  {
+    id: 'reports',
+    title: 'Reports',
+    translate: 'MENU.REPORTS',
+    type: 'item',
+    icon: 'file-text',
+    url: 'api/reports'
+  },
+  {
+    id: 'settings',
+    title: 'Settings',
+    translate: 'MENU.SETTINGS',
+    type: 'item',
+    icon: 'settings',
+    url: 'api/settings'
   }
 ]

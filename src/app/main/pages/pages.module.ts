@@ -32,10 +32,13 @@ import { MovementMatrixComponent } from './movement-matrix/movement-matrix.compo
 import { UserViewComponent } from './user-view/user-view.component';
 import { ProductsComponent } from './products/products.component';
 import { RawMaterialProductionComponent } from './raw-material-production/raw-material-production.component';
+import { FreeAddressComponent } from './free-address/free-address.component';
+import { OccupiedMatricesComponent } from './occupied-matrices/occupied-matrices.component';
+import { ManufacturersComponent } from './manufacturers/manufacturers.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     CoreCommonModule,

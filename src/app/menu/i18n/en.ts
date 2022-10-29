@@ -27,6 +27,11 @@ export const locale = {
       STAY: 'Stay',
       PRODUCTS: 'Products',
       RAWMATERIAL: 'Raw material for production',
+      FREEADDRESS: 'Free Addresses',
+      OCCUPIEDMATRIX: 'Occupied matrices',
+      CONFIRMATION: 'Confirmations',
+      REPORTS: 'Reports',
+      SETTINGS: 'Settings'
     },
     translate: {
       matrix: 'Matrix',
@@ -92,6 +97,18 @@ export const locale = {
       language: 'Language',
       alloy: 'Alloy',
       priority: 'Priority',
+      resource: 'Resource',
+      place: 'Place',
+      partOfGroup: 'Part of group',
+      size: 'Size',
+      freeCapacity: 'Free capacity',
+      countMatrix: 'Count matrices',
+      capacity: 'Capacity',
+      name: 'Name',
+      department: 'Department',
+      privilege: 'Privilege',
+      email: 'Email',
+      defaultShipmentTerms: 'Default Shipment Terms',
     }
   }
 }

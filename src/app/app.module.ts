@@ -44,6 +44,10 @@ import { UserViewComponent } from '../app/main/pages/user-view/user-view.compone
 import { StatedComponent } from '../app/main/pages/stated/stated.component';
 import { ProductsComponent } from './main/pages/products/products.component';
 import { RawMaterialProductionComponent } from './main/pages/raw-material-production/raw-material-production.component';
+import { FreeAddressComponent } from './main/pages/free-address/free-address.component';
+import { OccupiedMatricesComponent } from './main/pages/occupied-matrices/occupied-matrices.component';
+import { EmployeesComponent } from './main/pages/employees/employees.component';
+import { ManufacturersComponent } from './main/pages/manufacturers/manufacturers.component';
 
 const appRoutes: Routes = [
   {
@@ -153,6 +157,26 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/free-addresses',
+    component: FreeAddressComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/occupied-matrices',
+    component: OccupiedMatricesComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/manufacturers',
+    component: ManufacturersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/employees',
+    component: EmployeesComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -179,7 +203,11 @@ const appRoutes: Routes = [
     MovementMatrixComponent,
     UserViewComponent,
     ProductsComponent,
-    RawMaterialProductionComponent
+    RawMaterialProductionComponent,
+    FreeAddressComponent,
+    OccupiedMatricesComponent,
+    ManufacturersComponent,
+    EmployeesComponent
   ],
 
   imports: [

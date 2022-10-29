@@ -1,5 +1,5 @@
 export const locale = {
-  lang: 'en',
+  lang: 'bg',
   data: {
     MENU: {
       HOME: 'Home',
@@ -27,6 +27,11 @@ export const locale = {
       STAY: 'Свръх престой',
       PRODUCTS: 'Изделия',
       RAWMATERIAL: 'Суровина за производство',
+      FREEADDRESS: 'Свободни адреси',
+      OCCUPIEDMATRIX: 'Заети матрици в адрес',
+      CONFIRMATION: 'Потвърждения',
+      REPORTS: 'Отчети',
+      SETTINGS: 'Настройки'
     },
     translate: {
       matrix: 'Матрица',
@@ -92,6 +97,18 @@ export const locale = {
       language: 'Език',
       alloy: 'Сплав',
       priority: 'Приоритет',
+      resource: 'Ресурс',
+      place: 'Място',
+      partOfGroup: 'Част от група',
+      size: 'Размери',
+      freeCapacity: 'Свободен капацитет',
+      countMatrix: 'Брой матрици',
+      capacity: 'Капацитет',
+      name: 'Име',
+      department: 'Отдел',
+      privilege: 'Привилегия',
+      email: 'Имейл',
+      defaultShipmentTerms: 'Условия за доставка по подразбиране',
     }
   }
 }
