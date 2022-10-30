@@ -109,7 +109,7 @@ export class AuthLoginV2Component implements OnInit {
 
   onSubmit() {
     let url;
-    this._router.navigate(['/api/machines']);
+    this._router.navigate(['/api/information-matrix']);
     // // stop here if form is invalid
     // if(!this.enableOtherForm){
     //   this.submittedUser = true;

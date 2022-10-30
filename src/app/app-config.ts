@@ -18,8 +18,8 @@ import { CoreConfig } from "./@core/types";
 // prettier-ignore
 export const coreConfig: CoreConfig = {
   app: {
-    appName     : 'ShopFloor',                                        // App Name
-    appTitle    : 'ShopFloor', // App Title
+    appName     : 'DMS',                                        // App Name
+    appTitle    : 'DMS', // App Title
     appLogoImage: 'assets/images/logo/logo.svg',                  // App Logo
     appLanguage : 'en',                                           // App Default Language (en, fr, de, pt etc..)
   },
