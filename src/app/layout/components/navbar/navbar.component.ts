@@ -131,6 +131,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._translateService.use(language);
 
     this._coreConfigService.setConfig({ app: { appLanguage: language } }, { emitEvent: true });
+    window.location.reload();
   }
 
   /**

@@ -15,7 +15,7 @@ import { CoreTranslationService } from './@core/services/translation.service';
 
 import { menu } from './menu/menu';
 import { locale as menuEnglish } from './menu/i18n/en';
-import { locale as menuArabic } from './menu/i18n/ar';
+// import { locale as menuArabic } from './menu/i18n/ar';
 import { locale as menuBulgarian } from './menu/i18n/bg';
 import { environment } from '../environments/environment';
 import { ElectronService } from './core/services';
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._translateService.setDefaultLang('en');
 
     // Set the translations for the menu
-    this._coreTranslationService.translate(menuEnglish, menuArabic, menuBulgarian);
+    this._coreTranslationService.translate(menuEnglish, menuBulgarian);
 
     // Set the private defaults
     this._unsubscribeAll = new Subject();
