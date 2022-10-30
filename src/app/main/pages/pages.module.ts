@@ -40,10 +40,10 @@ import { InformationMatrixComponent } from './information-matrix/information-mat
 import { InformationWarehouseComponent } from './information-warehouse/information-warehouse.component';
 import { UsedMatrixComponent } from './used-matrix/used-matrix.component';
 import { UsedStatusComponent } from './used-status/used-status.component';
+import { InformationProfilesComponent } from './information-profiles/information-profiles.component';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     CoreCommonModule,

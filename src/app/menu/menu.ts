@@ -177,10 +177,27 @@ export const menu: CoreMenu[] = [
       {
         id: 'products',
         title: 'Products',
-        translate: 'MENU.PRODUCTS',
-        type: 'item',
+        translate: 'MENU.LISTPROFILES',
+        type: 'collapsible',
         icon: 'circle',
-        url: 'api/products'
+        children: [
+          {
+            id: 'infoProfiles',
+            title: 'Information profiles',
+            translate: 'MENU.INFOPROFILES',
+            type: 'item',
+            icon: 'info',
+            url: 'api/information-profiles'
+          },
+          {
+            id: 'products',
+            title: 'Products',
+            translate: 'MENU.PRODUCTS',
+            type: 'item',
+            icon: 'circle',
+            url: 'api/products'
+          },
+        ]
       },
       {
         id: 'rawMaterial',
@@ -204,7 +221,7 @@ export const menu: CoreMenu[] = [
         title: 'Information Warehouse',
         translate: 'MENU.INFOSKLAD',
         type: 'item',
-        icon: 'circle',
+        icon: 'info',
         url: 'api/information-warehouse'
       },
       {

@@ -47,6 +47,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
 
+  getUsedMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
   ///////////////// MODAL
   createMatrix(matrix: any) {
     const data = JSON.stringify(matrix);

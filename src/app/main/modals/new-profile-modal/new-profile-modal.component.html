@@ -1,0 +1,170 @@
+<div class="slideout-content">
+  <!-- Modal to add new user starts-->
+  <div id="modals-slide-in">
+    <div class="modal-dialog material-dialog-center modal-content pt-0">
+      <div class="modal-body flex-grow-1">
+        <div class="row">
+          <div class="col-md-12 col-12">
+            <div class="alert alert-primary flex" role="alert">
+              <div class="alert-body">
+                {{ translateSnackBar.modalMatrix }}
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+        <form class="form form-general" [formGroup]="createProfileForm">
+          <div class="col-sm-12 flex">
+            <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
+              <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-fill nav-pills">
+                <ng-container [ngbNavItem]="1">
+                    <a ngbNavLink>{{ translateSnackBar.general }}</a>
+                    <ng-template ngbNavContent>
+                        <div class="flex">
+                          <div class="col-sm-5">
+                            <div class="col-sm-12 flex">
+                              <h2 for="city-column">{{ translateSnackBar.profile }}</h2>
+                              <input type="text" class="form-control dt-uname" />
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <label for="city-column">{{ translateSnackBar.group }}</label>
+                              <ng-select appendTo="body">
+                                <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                              </ng-select>
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <label for="city-column" class="label-checkbox">{{ translateSnackBar.inUse }}</label>
+                              <input class="form-control input" type="checkbox" style="width: 5%;margin-top: -1%;">
+                            </div>
+
+                            <div class="col-sm-12 flex">
+                              <label for="city-column" class="label-checkbox">{{ translateSnackBar.visibleSide }}</label>
+                              <input class="form-control input" type="checkbox" style="width: 5%;margin-top: -1%;">
+                            </div>
+                          </div>
+
+                          <div class="col-sm-3">
+                            <div class="col-sm-12 flex" style="visibility: hidden;">
+                              <div class="col-sm-6">{{ translateSnackBar.min }}</div>
+                              <div class="col-sm-6">{{ translateSnackBar.max }}</div>
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <label for="city-column">{{ translateSnackBar.size }} 1</label>
+                              <input type="text" class="form-control dt-uname" />
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <label for="city-column">{{ translateSnackBar.size }} 2</label>
+                              <input type="text" class="form-control dt-uname" />
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <label for="city-column">{{ translateSnackBar.size }} 3</label>
+                              <input type="text" class="form-control dt-uname" />
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <label for="city-column">{{ translateSnackBar.size }} 4</label>
+                              <input type="text" class="form-control dt-uname" />
+                            </div>
+                          </div>
+
+                          <div class="col-sm-4">
+                            <div class="col-sm-12 flex">
+                              <div class="col-sm-6">{{ translateSnackBar.min }}</div>
+                              <div class="col-sm-6">{{ translateSnackBar.max }}</div>
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                            </div>
+                            <div class="col-sm-12 flex">
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                              <div class="col-sm-6"><input type="text" class="form-control dt-uname" /></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12 block">
+                          <div class="col-sm-4 flex">
+                            <label for="city-column">{{ translateSnackBar.weight }}</label>
+                            <input type="text" class="form-control dt-uname" />
+                          </div>
+                          <div class="col-sm-4 flex">
+                            <label for="city-column">{{ translateSnackBar.cut }}</label>
+                            <input type="text" class="form-control dt-uname" />
+                          </div>
+                          <div class="col-sm-4 flex">
+                            <label for="city-column">{{ translateSnackBar.perimeter }}</label>
+                            <input type="text" class="form-control dt-uname" />
+                          </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="2">
+                    <a ngbNavLink>{{ translateSnackBar.extrusion }}</a>
+                    <ng-template ngbNavContent>
+                      tab 2
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="3">
+                    <a ngbNavLink>{{ translateSnackBar.speeds }}</a>
+                    <ng-template ngbNavContent>
+                      tab 3
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="4">
+                    <a ngbNavLink>{{ translateSnackBar.lengthFrontBack }}</a>
+                    <ng-template ngbNavContent>
+                      tab 4
+                    </ng-template>
+                </ng-container>
+            </nav>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            </div>
+            <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
+              <div class="col-sm-12">
+                <ngx-datatable class="bootstrap core-bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                  [columnMode]="ColumnMode.force" [columns]="columnsFirstTable" [headerHeight]="50" [footerHeight]="50"
+                  [rowHeight]="'auto'" [reorderable]="reorderable">
+                </ngx-datatable>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 flex">
+            <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
+
+            </div>
+            <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
+              <div class="col-sm-12">
+                <div class="flex">
+                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">+ {{
+                    translateSnackBar.add }}</button>
+                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">- {{
+                    translateSnackBar.remove }}</button>
+                </div>
+                <ngx-datatable class="bootstrap core-bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                  [columnMode]="ColumnMode.force" [columns]="columnsSecondTable" [headerHeight]="50" [footerHeight]="50"
+                  [rowHeight]="'auto'" [reorderable]="reorderable">
+                </ngx-datatable>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal to add new user Ends-->
+</div>
+<div *ngIf="loading" class="loader-section">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

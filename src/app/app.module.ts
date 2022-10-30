@@ -56,6 +56,8 @@ import { InformationMatrixComponent } from './main/pages/information-matrix/info
 import { InformationWarehouseComponent } from './main/pages/information-warehouse/information-warehouse.component';
 import { UsedMatrixComponent } from './main/pages/used-matrix/used-matrix.component';
 import { UsedStatusComponent } from './main/pages/used-status/used-status.component';
+import { InformationProfilesComponent } from './main/pages/information-profiles/information-profiles.component';
+import { NewProfileModalComponent } from './main/modals/new-profile-modal/new-profile-modal.component';
 
 const appRoutes: Routes = [
   {
@@ -135,6 +137,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/in-use-matrix',
+    component: UsedMatrixComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/no-motion',
     component: NoMotionComponent,
     pathMatch: 'full'
@@ -160,6 +167,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/information-profiles',
+    component: InformationProfilesComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/products',
     component: ProductsComponent,
     pathMatch: 'full'
@@ -167,6 +179,11 @@ const appRoutes: Routes = [
   {
     path: 'api/raw-material-production',
     component: RawMaterialProductionComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/information-warehouse',
+    component: InformationWarehouseComponent,
     pathMatch: 'full'
   },
   {
@@ -227,7 +244,9 @@ const appRoutes: Routes = [
     InformationMatrixComponent,
     InformationWarehouseComponent,
     UsedMatrixComponent,
-    UsedStatusComponent
+    UsedStatusComponent,
+    InformationProfilesComponent,
+    NewProfileModalComponent
   ],
 
   imports: [

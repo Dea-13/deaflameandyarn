@@ -13,6 +13,11 @@ export class ProfilesService {
     this.onProfilesListChanged = new BehaviorSubject({});
   }
 
+  ////////////////// PAGE
+  getInformationProfiles(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
   getProductProfiles(offset:number, limt:any, search:any) {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
@@ -21,4 +26,14 @@ export class ProfilesService {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
 
+  ///////////////// MODAL
+  createProfile(profile: any) {
+    const data = JSON.stringify(profile);
+    return this._http.post<any>(`${environment.apiUrl}`, data);
+  }
+
+  updateProfile(profile: any) {
+    const data = JSON.stringify(profile);
+    return this._http.put(`${environment.apiUrl}`, data);
+  }
 }

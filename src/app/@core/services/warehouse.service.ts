@@ -13,6 +13,10 @@ export class WarehouseService {
     this.onWarehouseListChanged = new BehaviorSubject({});
   }
 
+  getInformationWarehouse(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
   getFreeAddressWarehouse(offset:number, limt:any, search:any) {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
