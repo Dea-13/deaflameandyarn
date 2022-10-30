@@ -14,6 +14,11 @@ export class MatrixService {
   }
 
   ////////////////// PAGE
+
+  getInformationMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
   getStatedMatrix(offset:number, limt:any, search:any) {
     return this._http.get<any>(`${environment.apiUrl}`);
   }

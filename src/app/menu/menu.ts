@@ -17,6 +17,14 @@ export const menu: CoreMenu[] = [
         icon: 'package',
         children: [
           {
+            id: 'infoMatrix',
+            title: 'Information matrix',
+            translate: 'MENU.INFOMATRIX',
+            type: 'item',
+            icon: 'info',
+            url: 'api/information-matrix'
+          },
+          {
             id: 'status',
             title: 'Status',
             translate: 'MENU.STATUS',
@@ -54,6 +62,14 @@ export const menu: CoreMenu[] = [
                 type: 'collapsible',
                 icon: 'navigantion',
                 children: [
+                  {
+                    id: 'using',
+                    title: 'In Use',
+                    translate: 'MENU.USINGMENU',
+                    type: 'item',
+                    icon: 'circle',
+                    url: 'api/used-by-status'
+                  },
                   {
                     id: 'productivity',
                     title: 'Productivity',
@@ -97,6 +113,14 @@ export const menu: CoreMenu[] = [
             type: 'collapsible',
             icon: 'play',
             children: [
+              {
+                id: 'using',
+                title: 'In Use',
+                translate: 'MENU.USINGMENU',
+                type: 'item',
+                icon: 'circle',
+                url: 'api/in-use-matrix'
+              },
               {
                 id: 'nomotion',
                 title: 'No Motion',
@@ -175,6 +199,14 @@ export const menu: CoreMenu[] = [
     type: 'collapsible',
     icon: 'box',
     children: [
+      {
+        id: 'infosklad',
+        title: 'Information Warehouse',
+        translate: 'MENU.INFOSKLAD',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/information-warehouse'
+      },
       {
         id: 'freeAddress',
         title: 'Free addresses',

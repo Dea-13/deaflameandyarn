@@ -31,7 +31,10 @@ export const locale = {
       OCCUPIEDMATRIX: '',
       CONFIRMATION: '',
       REPORTS: '',
-      SETTINGS: ''
+      SETTINGS: '',
+      INFOMATRIX: '',
+      USINGMENU: '',
+      INFOSKLAD: '',
     },
     translate: {
       matrix: '',
@@ -153,7 +156,9 @@ export const locale = {
       prodDataProfile: '',
       speed: '',
       lengthBackEnd: '',
-      lengthStart: ''
+      lengthStart: '',
+      visibleSide: '',
+      tempering: '',
 
     }
   }

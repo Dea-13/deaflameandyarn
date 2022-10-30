@@ -36,9 +36,14 @@ import { FreeAddressComponent } from './free-address/free-address.component';
 import { OccupiedMatricesComponent } from './occupied-matrices/occupied-matrices.component';
 import { ManufacturersComponent } from './manufacturers/manufacturers.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { InformationMatrixComponent } from './information-matrix/information-matrix.component';
+import { InformationWarehouseComponent } from './information-warehouse/information-warehouse.component';
+import { UsedMatrixComponent } from './used-matrix/used-matrix.component';
+import { UsedStatusComponent } from './used-status/used-status.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     CoreCommonModule,

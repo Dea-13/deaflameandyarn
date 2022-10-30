@@ -31,7 +31,10 @@ export const locale = {
       OCCUPIEDMATRIX: 'Заети матрици в адрес',
       CONFIRMATION: 'Потвърждения',
       REPORTS: 'Отчети',
-      SETTINGS: 'Настройки'
+      SETTINGS: 'Настройки',
+      INFOMATRIX: 'Информация матрици',
+      USINGMENU: 'Употребявани',
+      INFOSKLAD: 'Информация склад',
     },
     translate: {
       matrix: 'Матрица',
@@ -153,7 +156,9 @@ export const locale = {
       prodDataProfile: 'Данни за производителността на профила',
       speed: 'Скорост',
       lengthBackEnd: 'Дължина на заден край',
-      lengthStart: 'Начало дължина'
+      lengthStart: 'Начало дължина',
+      visibleSide: 'Видими страни?',
+      tempering: 'Закаляване',
     }
   }
 }

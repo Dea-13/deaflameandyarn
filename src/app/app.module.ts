@@ -52,6 +52,10 @@ import { ManufacturersComponent } from './main/pages/manufacturers/manufacturers
 import { NewMatrixModalComponent } from './main/modals/new-matrix-modal/new-matrix-modal.component';
 import { NewManufacturersModalComponent } from './main/modals/new-manufacturers-modal/new-manufacturers-modal.component';
 import { NewEmployeesModalComponent } from './main/modals/new-employees-modal/new-employees-modal.component';
+import { InformationMatrixComponent } from './main/pages/information-matrix/information-matrix.component';
+import { InformationWarehouseComponent } from './main/pages/information-warehouse/information-warehouse.component';
+import { UsedMatrixComponent } from './main/pages/used-matrix/used-matrix.component';
+import { UsedStatusComponent } from './main/pages/used-status/used-status.component';
 
 const appRoutes: Routes = [
   {
@@ -90,6 +94,11 @@ const appRoutes: Routes = [
   },
   // -----------
 
+  {
+    path: 'api/information-matrix',
+    component: InformationMatrixComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'api/stated',
     component: StatedComponent,
@@ -214,7 +223,11 @@ const appRoutes: Routes = [
     EmployeesComponent,
     NewMatrixModalComponent,
     NewManufacturersModalComponent,
-    NewEmployeesModalComponent
+    NewEmployeesModalComponent,
+    InformationMatrixComponent,
+    InformationWarehouseComponent,
+    UsedMatrixComponent,
+    UsedStatusComponent
   ],
 
   imports: [

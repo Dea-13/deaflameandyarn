@@ -10,18 +10,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewMatrixModalComponent } from '../../modals/new-matrix-modal/new-matrix-modal.component';
 
 @Component({
-  selector: 'app-stated',
-  templateUrl: './stated.component.html',
-  styleUrls: ['./stated.component.scss'],
+  selector: 'app-information-matrix',
+  templateUrl: './information-matrix.component.html',
+  styleUrls: ['./information-matrix.component.scss'],
 })
-export class StatedComponent implements OnInit {
+export class InformationMatrixComponent implements OnInit {
   // Public
   public rows = [];
   public loadingIndicator = true;
   public reorderable = true;
-  public columns = [
-    { name: '', prop: '' },
-  ];
+  public columns = [{ name: '', prop: '' }];
   public ColumnMode = ColumnMode;
   public searchValue = '';
   public selectedOption = 10;
@@ -42,7 +40,7 @@ export class StatedComponent implements OnInit {
   constructor(
     private matrixService: MatrixService,
     public translate: TranslateService,
-    private modalService: NgbModal,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -55,37 +53,34 @@ export class StatedComponent implements OnInit {
     console.log('TRANSLATE', this.translateSnackBar);
   }
 
-  makeTable(){
+  makeTable() {
     this.columns = [
-      { name: this.translateSnackBar.matrix, prop: "name" },
-      { name: this.translateSnackBar.profile, prop: "name" },
-      { name: this.translateSnackBar.press, prop: "name" },
-      { name: this.translateSnackBar.manufacturer, prop: "name" },
-      { name: this.translateSnackBar.matricologist, prop: "name" },
-      { name: this.translateSnackBar.diameter, prop: "name" },
-      { name: this.translateSnackBar.thickness, prop: "name" },
-      { name: this.translateSnackBar.alloy, prop: "name" },
-      { name: this.translateSnackBar.tempering, prop: "name" },
-      { name: this.translateSnackBar.bolster1, prop: "name" },
-      { name: this.translateSnackBar.bolster1, prop: "name" },
-      { name: this.translateSnackBar.dieHolder, prop: "name" },
-      { name: this.translateSnackBar.container, prop: "name" },
-      { name: this.translateSnackBar.noteRequest, prop: "name" },
-      { name: this.translateSnackBar.visibleSide, prop: "name" },
-      { name: this.translateSnackBar.client, prop: "name" },
-      { name: this.translateSnackBar.orderDate, prop: "name" },
+      { name: this.translateSnackBar.matrix, prop: 'name' },
+      { name: this.translateSnackBar.profile, prop: 'name' },
+      { name: this.translateSnackBar.currentResource, prop: 'name' },
+      { name: this.translateSnackBar.plaseSklad, prop: 'name' },
+      { name: this.translateSnackBar.press, prop: 'name' },
+      { name: this.translateSnackBar.manufacturer, prop: 'name' },
+      { name: this.translateSnackBar.matricologist, prop: 'name' },
+      { name: this.translateSnackBar.diameter, prop: 'name' },
+      { name: this.translateSnackBar.thickness, prop: 'name' },
+      { name: this.translateSnackBar.weight, prop: 'name' },
+      { name: this.translateSnackBar.channels, prop: 'name' },
+      { name: this.translateSnackBar.client, prop: 'name' },
+      { name: this.translateSnackBar.kg, prop: 'name' },
+      { name: this.translateSnackBar.kgSap, prop: 'name' },
     ];
   }
 
   getRequest(count, searchValue) {
     this.limit = count;
     // this.matrixService
-      // .getStatedMatrix(this.offset, this.limit, searchValue)
-      // .subscribe((data) => {
-      //   this.rows = data.list;
-      //   this.totalResult = data['total'];
-        this.loading = false;
-      // });
+    // .getInformationMatrix(this.offset, this.limit, searchValue)
+    // .subscribe((data) => {
+    //   this.rows = data.list;
+    //   this.totalResult = data['total'];
+    this.loading = false;
+    // });
   }
 
   pageChanged(page: number, count) {
@@ -109,9 +104,9 @@ export class StatedComponent implements OnInit {
   }
 
   modalMatrix(row) {
-    console.log("new/edit matrix");
+    console.log('new/edit matrix');
     const modalRef = this.modalService.open(NewMatrixModalComponent, {});
-    modalRef.componentInstance.matrixItem = { 'data': row };
+    modalRef.componentInstance.matrixItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
         this.getRequest(10, '');
