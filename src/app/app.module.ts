@@ -117,6 +117,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/used-by-status',
+    component: UsedStatusComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/productivity',
     component: ProductivityComponent,
     pathMatch: 'full'

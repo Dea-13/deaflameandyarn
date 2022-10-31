@@ -22,7 +22,7 @@ export const locale = {
       DISPATCHED: 'Експедирани',
       USING: 'В употреба',
       SCRAP: 'Бракувани',
-      NEWMATRIX: 'Нова матрица',
+      NEWMATRIX: 'Нова матрица по месец',
       PRODUCTIVITY: 'Продуктивност',
       STAY: 'Свръх престой',
       PRODUCTS: 'Изделия',
@@ -180,6 +180,13 @@ export const locale = {
       perimeter: 'Периметър',
       min: 'Мин',
       max: 'Макс',
+      names: 'Имена',
+      die: 'Die',
+      cavities: 'Празнини',
+      producer: 'Производител',
+      dieCorrector: 'Коректор на матрицата',
+      lastUpdated: 'Последна актуализация',
+      confition: 'Състояние',
     }
   }
 }

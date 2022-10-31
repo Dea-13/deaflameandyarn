@@ -22,7 +22,7 @@ export const locale = {
       DISPATCHED: 'Dispatched',
       USING: 'Using',
       SCRAP: 'Scrap',
-      NEWMATRIX: 'New matrix',
+      NEWMATRIX: 'New matrix by month',
       PRODUCTIVITY: 'Productivity',
       STAY: 'Stay',
       PRODUCTS: 'Products',
@@ -180,6 +180,13 @@ export const locale = {
       perimeter: 'Perimeter',
       min: 'Min',
       max: 'Max',
+      names: 'Names',
+      die: 'Die',
+      cavities: 'Cavities',
+      producer: 'Producer',
+      dieCorrector: 'Die Corrector',
+      lastUpdated: 'Last Updated',
+      confition: 'Condition',
     }
   }
 }

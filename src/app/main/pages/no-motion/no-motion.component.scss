@@ -1,0 +1,39 @@
+.pager {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f2f7;
+  border-top-left-radius: 28px;
+  border-bottom-left-radius: 28px;
+  border-top-right-radius: 28px;
+  border-bottom-right-radius: 28px;
+  height: 36px;
+}
+
+::ng-deep .datatable-body-cell-label {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.content {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar {
+  width: 30%;
+  margin: 0 20px 20px 20px;
+}
+
+.list-group .list-group-item-action:active {
+  background-color: #7367f0;
+  outline: 0;
+}
+
+.ngx-datatable {
+  width: -webkit-fill-available;
+}

@@ -51,6 +51,22 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
 
+  getUsedByStatus(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
+  getStayMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
+  getNewMatrixByMonth(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
+  getNoMotionMatrix(offset:number, limt:any, search:any) {
+    return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
   ///////////////// MODAL
   createMatrix(matrix: any) {
     const data = JSON.stringify(matrix);
