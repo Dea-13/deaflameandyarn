@@ -6,25 +6,25 @@
           <div class="col-md-6 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <select class="form-control mx-25" [(ngModel)]="selectedOption">
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
+                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1, limit)">
+                  <ng-option [value]="10">10</ng-option>
+                  <ng-option [value]="15">15</ng-option>
+                  <ng-option [value]="20">20</ng-option>
+                  <ng-option [value]="25">25</ng-option>
+                  <ng-option [value]="50">50</ng-option>
+                  <ng-option [value]="100">100</ng-option>
+                </ng-select>
                 {{ translateSnackBar.result }}
               </label>
             </div>
           </div>
           <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
             <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
-              <label class="d-flex align-items-center ml-1 ml-md-0">
+              <!-- <label class="d-flex align-items-center ml-1 ml-md-0">
                 {{ translateSnackBar.search }}:
                 <input [(ngModel)]="searchValue" name="searchValue" type="search" class="form-control ml-25"
                   (keyup)="getRequest(10)" />
-              </label>
+              </label> -->
               <button class="btn btn-primary ml-1" rippleEffect (click)="modalProfile('new')">
                 <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
                 <span class="d-none d-sm-inline-block"> {{ translateSnackBar.modalProfile }} </span>
@@ -32,33 +32,6 @@
             </div>
           </div>
         </div>
-        <!-- <ngx-datatable [rows]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }" [rowHeight]="'auto'" class="bootstrap core-bootstrap" [limit]="selectedOption"
-                    [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="30" [scrollbarH]="true">
-                    <ngx-datatable-column prop="partName">
-                        <ng-template ngx-datatable-header-template>
-                            <div class="row">
-                                <div class="col-md-12 col-12 flex">
-                                    <div container="body">
-                                        <button [matMenuTriggerFor]="menuFilter" type="button"
-                                            class="btn icon-btn btn-sm hide-arrow" rippleEffect>
-                                            <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                                        </button>
-                                        <mat-menu #menuFilter="matMenu">
-                                            <ng-select (click)="$event.stopPropagation()" appendTo="body"
-                                                class="select-table width-select" [multiple]="true" [closeOnSelect]="false"
-                                                [(ngModel)]="selectedPartName"
-                                                (ngModelChange)="getRequest(10)">
-                                                <ng-option *ngFor="let t of partName" [value]="t.name">{{ t.name }}
-                                                </ng-option>
-                                            </ng-select>
-                                        </mat-menu>
-                                    </div>
-                                    <div class="text-center">{{ translateSnackBar.result }}</div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngx-datatable-column>
-                </ngx-datatable> -->
         <section class="example-container">
           <table mat-table
             [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
@@ -651,7 +624,7 @@
 
 
         <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
-          (pageChange)="pageChanged($event, countRows)">
+          (pageChange)="pageChanged($event, limit)">
         </pagination-controls>
       </div>
     </section>

@@ -1,9 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ColumnMode,
-  DatatableComponent,
-  SelectionType,
-} from '@swimlane/ngx-datatable';
 import { ProfilesService } from '../../../@core/services/profiles.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -71,7 +66,7 @@ export class InformationProfilesComponent implements OnInit {
     { id: 12, name: 'extrusionspeed/true' },
     { id: 13, name: 'extrusionspeedsms/true' },
     { id: 14, name: 'opperf/true' },
-    { id: 15, name: 'tbillet/true' },
+    { id: 10, name: 'tbillet/true' },
     { id: 16, name: 'texit/true' },
     { id: 17, name: 'puller/true' },
     { id: 18, name: 'scrapstart/true' },
@@ -143,12 +138,6 @@ export class InformationProfilesComponent implements OnInit {
   public selImportant: string = '';
   public selInUse: string = '';
 
-  public loadingIndicator = true;
-  public reorderable = true;
-  // public columns = [{ name: '', prop: '' }];
-  public ColumnMode = ColumnMode;
-  public searchValue = '';
-  public selectedOption = 10;
   //for pagination
   public cPage: number = 1;
   public limit: number = 10;
@@ -156,8 +145,7 @@ export class InformationProfilesComponent implements OnInit {
   public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
   public maxSize = 10;
-  public itemsPerPage = 15;
-  public countRows: number = 15;
+  public itemsPerPage = 10;
   public languageOptions: any;
   public searchMaterial: any = '';
   public loading: boolean = false;
@@ -167,204 +155,201 @@ export class InformationProfilesComponent implements OnInit {
     private profilesService: ProfilesService,
     public translate: TranslateService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loading = true;
-    this.pageChanged(1, 15);
+    this.pageChanged(1, 10);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    console.log('TRANSLATE', this.translateSnackBar);
   }
 
   getRequest(count) {
+    this.loading = true;
     this.limit = count;
     this.profilesService
-    .getInformationProfiles(
-      this.offset, this.limit, this.selProfileName, this.selGroupCode, this.selSection, this.selPerimeter,
-      this.selGrM, this.selPrimaryPress, this.selAlternativePress, this.selSize1, this.selSize2, this.selSize3,
-      this.selSize4, this.selUsage, this.selExtrusionSpeed, this.selExtrusionSpeedSms, this.selOpPerf,
-      this.selTbillet, this.selTExit, this.selPuller, this.selScrapStart, this.selScrapStartSms, this.selScrapEnd,
-      this.selCooling, this.selCoolingSms, this.selCoolingAdd, this.selBasketOrdering, this.selNotesExtrusion,
-      this.selImportant, this.selInUse
-    )
-    .subscribe((data) => {
-      this.rows = data.list;
-      this.totalResult = data['total'];
-    this.loading = false;
-    });
+      .getInformationProfiles(
+        this.offset,
+        this.limit,
+        this.selProfileName,
+        this.selGroupCode,
+        this.selSection,
+        this.selPerimeter,
+        this.selGrM,
+        this.selPrimaryPress,
+        this.selAlternativePress,
+        this.selSize1,
+        this.selSize2,
+        this.selSize3,
+        this.selSize4,
+        this.selUsage,
+        this.selExtrusionSpeed,
+        this.selExtrusionSpeedSms,
+        this.selOpPerf,
+        this.selTbillet,
+        this.selTExit,
+        this.selPuller,
+        this.selScrapStart,
+        this.selScrapStartSms,
+        this.selScrapEnd,
+        this.selCooling,
+        this.selCoolingSms,
+        this.selCoolingAdd,
+        this.selBasketOrdering,
+        this.selNotesExtrusion,
+        this.selImportant,
+        this.selInUse
+      )
+      .subscribe((data) => {
+        this.rows = data.list;
+        this.totalResult = data.total;
+        this.loading = false;
+      });
   }
 
   getFilters() {
+    this.loading = true;
     for (let i = 0; i < this.urls.length; i++) {
       this.profilesService.getFilters(this.urls[i].name).subscribe((data) => {
         switch (this.urls[i].id) {
           case 0:
             {
               this.profileNameArr = data;
-              console.log('filter', data);
             }
             break;
           case 1:
             {
               this.groupCodeArr = data;
-              console.log('filter', data);
             }
             break;
           case 2:
             {
               this.sectionArr = data;
-              console.log('filter', data);
             }
             break;
           case 3:
             {
               this.perimeterArr = data;
-              console.log('filter', data);
             }
             break;
           case 4:
             {
               this.grmArr = data;
-              console.log('filter', data);
             }
             break;
           case 5:
             {
               this.primarypressArr = data;
-              console.log('filter', data);
             }
             break;
           case 6:
             {
               this.alternativepressArr = data;
-              console.log('filter', data);
             }
             break;
           case 7:
             {
               this.size1Arr = data;
-              console.log('filter', data);
             }
             break;
           case 8:
             {
               this.size2Arr = data;
-              console.log('filter', data);
             }
             break;
           case 9:
             {
               this.size3Arr = data;
-              console.log('filter', data);
             }
             break;
           case 10:
             {
               this.size4Arr = data;
-              console.log('filter', data);
             }
             break;
           case 11:
             {
               this.usageArr = data;
-              console.log('filter', data);
             }
             break;
           case 12:
             {
               this.extrusionspeedArr = data;
-              console.log('filter', data);
             }
             break;
           case 13:
             {
               this.extrusionspeedsmsArr = data;
-              console.log('filter', data);
             }
             break;
           case 14:
             {
               this.opperfArr = data;
-              console.log('filter', data);
             }
             break;
-          case 15:
+          case 10:
             {
               this.tbilletArr = data;
-              console.log('filter', data);
             }
             break;
           case 16:
             {
               this.texitArr = data;
-              console.log('filter', data);
             }
             break;
           case 17:
             {
               this.pullerArr = data;
-              console.log('filter', data);
             }
             break;
           case 18:
             {
               this.scrapstartArr = data;
-              console.log('filter', data);
             }
             break;
           case 19:
             {
               this.scrapstartsmsArr = data;
-              console.log('filter', data);
             }
             break;
           case 20:
             {
               this.scrapendArr = data;
-              console.log('filter', data);
             }
             break;
           case 21:
             {
               this.coolingArr = data;
-              console.log('filter', data);
             }
             break;
           case 22:
             {
               this.coolingsmsArr = data;
-              console.log('filter', data);
             }
             break;
           case 23:
             {
               this.coolingaddArr = data;
-              console.log('filter', data);
             }
             break;
           case 24:
             {
               this.basketorderingArr = data;
-              console.log('filter', data);
             }
             break;
           case 25:
             {
               this.notesextrusionArr = data;
-              console.log('filter', data);
             }
             break;
           case 26:
             {
               this.importantArr = data;
-              console.log('filter', data);
             }
             break;
         }
-        console.log('filter', data);
         this.loading = false;
       });
     }

@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -20,13 +19,10 @@ $vuexy-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$vuexy-theme: mat.define-light-theme((
-  color: (
-    primary: $vuexy-primary,
-    accent: $vuexy-accent,
-    warn: $vuexy-warn,
-  )
-));
+$vuexy-theme: mat.define-light-theme((color: (primary: $vuexy-primary,
+        accent: $vuexy-accent,
+        warn: $vuexy-warn,
+      )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -231,6 +227,7 @@ select.form-control:not([multiple=multiple]) {
   background-color: #7367f0 !important;
   color: white !important;
 }
+
 .ngx-datatable .datatable-footer .datatable-footer-inner {
   width: 100% !important;
 }
@@ -264,105 +261,139 @@ select.form-control:not([multiple=multiple]) {
   }
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.ngx-datatable *, .ngx-datatable :after, .ngx-datatable :before{
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ngx-datatable *,
+.ngx-datatable :after,
+.ngx-datatable :before {
   font-family: "Montserrat", Helvetica, Arial, serif;
   // font-weight: 600;
   font-size: 10px;
 }
+
 .ngx-datatable.bootstrap.core-bootstrap .datatable-body-row .datatable-body-cell {
-  padding: 0.3rem 1rem!important;
+  padding: 0.3rem 1rem !important;
 }
+
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-  font-size: 12px!important;
+  font-size: 12px !important;
 }
+
 .text-truncate {
   overflow: visible;
   text-overflow: ellipsis;
   white-space: pre-line;
   font-size: 12px;
 }
-.modal-title{
-  font-family: Roboto, "Helvetica Neue", sans-serif!important;
-  font-size: 15px!important;
-  font-weight: 400!important;
+
+.modal-title {
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
 }
-.datatable-header-cell-template-wrap span, .datatable-header-cell-template-wrap div div .text-center{
-  font-size: 9px!important;
+
+.datatable-header-cell-template-wrap span,
+.datatable-header-cell-template-wrap div div .text-center {
+  font-size: 9px !important;
 }
+
 .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-  background-color: #7367f0!important;
+  background-color: #7367f0 !important;
 }
+
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-  background-color: #7367f0!important;
+  background-color: #7367f0 !important;
 }
-.toast-container *{
+
+.toast-container * {
   font-size: 13px;
 }
-.ngx-pagination{
-    float: right!important;
+
+.ngx-pagination {
+  float: right !important;
 }
-.bell-orange{
-  color: orange!important;
+
+.bell-orange {
+  color: orange !important;
   margin-left: 10px;
   cursor: pointer;
 }
-.bell-red{
-  color: red!important;
+
+.bell-red {
+  color: red !important;
   margin-left: 10px;
   cursor: pointer;
 }
-.date-bell{
+
+.date-bell {
   display: flex;
 }
-.mat-menu-content{
+
+.mat-menu-content {
   display: flex;
 }
+
 ::ng-deep .ngx-datatable.bootstrap.core-bootstrap .datatable-header {
-    height: auto!important;
+  height: auto !important;
 }
 
 ::ng-deep .form-control {
-    border: 1px solid #d8d6de!important;
+  border: 1px solid #d8d6de !important;
 }
 
 :host ::ng-deep.ngx-datatable .datatable-header .datatable-header-cell .sort-btn {
-    // position: relative!important;
-    bottom: 15px!important;
+  // position: relative!important;
+  bottom: 15px !important;
 }
 
 // ::ng-deep.ng-dropdown-panel .scroll-host{
 //     width: auto!important;
 // }
-.form-control{
-    width: -webkit-fill-available;
+.form-control {
+  width: -webkit-fill-available;
 }
-.flex{
-    display: flex;
-    padding-left: 0px;
-    padding-right: 0px;
+
+.flex {
+  display: flex;
+  padding-left: 0px;
+  padding-right: 0px;
 }
+
 .text-center {
-    line-height: 3.625!important;
+  line-height: 3.625 !important;
 }
-.btn-sm, .btn-group-sm > .btn {
-    padding: 0.486rem 0.3rem 0.3rem 0rem;
+
+.btn-sm,
+.btn-group-sm>.btn {
+  padding: 0.486rem 0.3rem 0.3rem 0rem;
 }
-.show-results{
-    padding-top: 5px;
+
+.show-results {
+  padding-top: 5px;
 }
-.mat-menu-panel, .width-select {
-    min-width: 200px!important;
+
+.mat-menu-panel,
+.width-select {
+  min-width: 200px !important;
 }
-.menu-btn{
-    left: -5px!important;
+
+.menu-btn {
+  left: -5px !important;
 }
+
 // Badge
 
 .badge {
   color: $white;
+
   &[class*='badge-'] {
     [class*='icon-'] {
       line-height: 1;
@@ -375,15 +406,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     // badge dropdown alignment
     .dropdown-toggle,
     &.dropdown-toggle {
+
       span,
       i,
       svg {
         vertical-align: text-top;
       }
+
       i,
       svg {
         padding-left: 0.2rem;
       }
+
       &::after {
         position: relative;
         top: 0;
@@ -391,6 +425,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         font-size: 1rem;
       }
     }
+
     .dropdown-menu {
       a {
         color: $dropdown-color;
@@ -427,6 +462,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     line-height: 0.786;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
+
     &.badge-sm {
       top: -0.5rem;
       right: -0.5rem;
@@ -436,6 +472,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // For fullscreen search
 .badge-icon {
+
   i,
   svg {
     font-size: 100%;
@@ -449,56 +486,62 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     cursor: pointer;
   }
 }
-.note-icon{
+
+.note-icon {
   margin-left: 7px;
   height: 1.5rem;
   width: 1.5rem;
   font-size: 1.5rem;
   color: #6e6b7b;
 }
+
 .badge.badge-up {
-  top: -7px!important;
-  right: 7px!important;
+  top: -7px !important;
+  right: 7px !important;
 }
-.row-btns{
+
+.row-btns {
   width: auto;
   float: right;
   margin: 10px 6px 10px 6px;
 }
+
 .modal-dialog {
-  position: initial!important;
+  position: initial !important;
 }
+
 ////////////////////// NEW CSS
-.flex{
+.flex {
   display: flex;
 }
 
-.alert-body{
+.alert-body {
   width: -webkit-fill-available;
 }
 
 .alert-primary .close {
-  color: red!important;
+  color: red !important;
   padding: 0 10px 0 10px;
 }
 
-.label-checkbox{
+.label-checkbox {
   width: -webkit-fill-available;
   line-height: 40px;
 }
 
-.main-menu.menu-light .navigation li a > * {
+.main-menu.menu-light .navigation li a>* {
   font-size: 14px;
 }
 
-.main-menu.menu-light .navigation > li ul li ul a {
+.main-menu.menu-light .navigation>li ul li ul a {
   padding: 10px 15px 10px 30px;
 }
 
-.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a svg, .vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a i {
-  height: 16px!important;
-  width: 16px!important;
-  min-width: fit-content!important;
+.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content>li>a svg,
+.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content>li>a i {
+  height: 16px !important;
+  width: 16px !important;
+  min-width: fit-content !important;
 }
 
 table {
@@ -508,18 +551,69 @@ table {
 .mat-elevation-z8 {
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 0px 4px 1px rgb(0 0 0 / 11%), 0px 3px 14px 2px rgb(0 0 0 / 6%);
 }
-.filter-th{
+
+.filter-th {
   display: contents;
 }
-.th-header{
+
+.th-header {
   top: 3px;
   position: relative;
 }
-.example-container{
+
+.example-container {
   max-width: 100%;
   overflow: auto;
   margin: 1%;
 }
-th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
   vertical-align: initial;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  vertical-align: middle;
+}
+
+.mat-menu-trigger,
+th {
+  color: #7367f0 !important;
+  font-size: 13px !important;
+}
+
+td.mat-cell {
+  font-size: 12px !important;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+  height: 38px !important;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+table {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mat-menu-content:not(:empty) {
+  padding: 13px !important;
+}
+
+.mat-row .mat-cell {
+  color: grey;
 }

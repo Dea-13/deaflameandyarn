@@ -175,20 +175,20 @@ export const menu: CoreMenu[] = [
     icon: 'package',
     children: [
       {
+        id: 'infoProfiles',
+        title: 'Information profiles',
+        translate: 'MENU.INFOPROFILES',
+        type: 'item',
+        icon: 'info',
+        url: 'api/information-profiles'
+      },
+      {
         id: 'products',
         title: 'Products',
         translate: 'MENU.LISTPROFILES',
         type: 'collapsible',
         icon: 'circle',
         children: [
-          {
-            id: 'infoProfiles',
-            title: 'Information profiles',
-            translate: 'MENU.INFOPROFILES',
-            type: 'item',
-            icon: 'info',
-            url: 'api/information-profiles'
-          },
           {
             id: 'products',
             title: 'Products',
