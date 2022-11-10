@@ -32,10 +32,10 @@
             </div>
           </div>
         </div>
-        <section class="example-container">
+        <section class="example-container mat-elevation-z8">
           <table mat-table
             [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
-            recycleRows class="mat-elevation-z8 example-table">
+             class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="profileName">
               <th mat-header-cell *matHeaderCellDef>
