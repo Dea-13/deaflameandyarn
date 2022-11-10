@@ -22,3 +22,23 @@ white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 }
+
+.demo-table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  // border-bottom: 1px solid transparent;
+  // border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-bottom: 1px solid #7367f0!important;
+  border-top: 1px solid #7367f0!important;
+  // border-color: red;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+  min-width: 130px;
+}

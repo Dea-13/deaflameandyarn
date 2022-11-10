@@ -20,6 +20,9 @@ import { LayoutModule } from '../app/layout/layout.module';
 import { SampleModule } from '../app/main/sample/sample.module';
 import { InterceptorInterceptor } from './auth/helpers/interceptor.interceptor';
 import { NgbNavItem } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
 
 import { MachinesComponent } from './main/pages/machines/machines.component';
 import { OperationsComponent } from './main/pages/operations/operations.component';
@@ -259,6 +262,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     InfiniteScrollModule,
+    NgxPaginationModule,
+    MatMenuModule,
+    MatTableModule,
 
 
     RouterModule.forRoot(appRoutes, {

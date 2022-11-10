@@ -500,3 +500,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 16px!important;
   min-width: fit-content!important;
 }
+
+table {
+  border-collapse: initial;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 0px 4px 1px rgb(0 0 0 / 11%), 0px 3px 14px 2px rgb(0 0 0 / 6%);
+}
+.filter-th{
+  display: contents;
+}
+.th-header{
+  top: 3px;
+  position: relative;
+}
+.example-container{
+  max-width: 100%;
+  overflow: auto;
+  margin: 1%;
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  vertical-align: initial;
+}

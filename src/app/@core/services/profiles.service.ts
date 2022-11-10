@@ -14,8 +14,13 @@ export class ProfilesService {
   }
 
   ////////////////// PAGE
-  getInformationProfiles(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
+  getInformationProfiles(
+    offset: number, limit:number,
+    profileName:string, groupCode:string, section:string, perimeter:string, grM:string, primaryPress:string, alternativePress:string, size1:string, size2:string, size3:string,
+    size4:string, usage:string, extrusionSpeed:string, extrusionSpeedSms:string, opPerf:string, tbillet:string, tExit:string, puller:string, scrapStart:string, scrapStartSms:string,
+    scrapEnd:string, cooling:string, coolingSms:string, coolingAdd:string, basketOrdering:string, notesExtrusion:string, important:string, inUse:string
+    ) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles?offset=${offset}&limit=${limit}&profileName=${profileName}&groupCode=${groupCode}&section=${section}&perimeter=${perimeter}&grM=${grM}&primaryPress=${primaryPress}&alternativePress=${alternativePress}&size1=${size1}&size2=${size2}&size3=${size3}&size4=${size4}&usage=${usage}&extrusionSpeed=${extrusionSpeed}&extrusionSpeedSms=${extrusionSpeedSms}&opPerf=${opPerf}&tbillet=${tbillet}&tExit=${tExit}&puller=${puller}&scrapStart=${scrapStart}&scrapStartSms=${scrapStartSms}&scrapEnd=${scrapEnd}&cooling=${cooling}&coolingSms=${coolingSms}&coolingAdd=${coolingAdd}&basketOrdering=${basketOrdering}&notesExtrusion=${notesExtrusion}&important=${important}&inUse=${inUse}`);
   }
 
   getProductProfiles(offset:number, limt:any, search:any) {
@@ -24,6 +29,10 @@ export class ProfilesService {
 
   getRawMaterialProductionProfiles(offset:number, limt:any, search:any) {
     return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
+  getFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/all/${url}`);
   }
 
   ///////////////// MODAL
