@@ -66,7 +66,7 @@ export class InformationProfilesComponent implements OnInit {
     { id: 12, name: 'extrusionspeed/true' },
     { id: 13, name: 'extrusionspeedsms/true' },
     { id: 14, name: 'opperf/true' },
-    { id: 10, name: 'tbillet/true' },
+    { id: 15, name: 'tbillet/true' },
     { id: 16, name: 'texit/true' },
     { id: 17, name: 'puller/true' },
     { id: 18, name: 'scrapstart/true' },
@@ -289,7 +289,7 @@ export class InformationProfilesComponent implements OnInit {
               this.opperfArr = data;
             }
             break;
-          case 10:
+          case 15:
             {
               this.tbilletArr = data;
             }

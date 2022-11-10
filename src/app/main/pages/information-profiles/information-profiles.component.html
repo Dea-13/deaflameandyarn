@@ -607,8 +607,8 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selInUse" (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of importantArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
+                      <ng-option value="true">True</ng-option>
+                      <ng-option value="false">False</ng-option>
                     </ng-select>
                   </mat-menu>
                 </div>
