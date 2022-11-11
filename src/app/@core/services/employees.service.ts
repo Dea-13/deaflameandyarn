@@ -14,8 +14,12 @@ export class EmployeesService {
   }
 
   ////////////////// PAGE
-  getEmployees(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
+  getEmployees(offset:number, limit:any, name:string, department: string, privilege: string) {
+    return this._http.get<any>(`${environment.apiUrl}Employees?offset=${offset}&limit=${limit}&name=${name}&department=${department}&privilege=${privilege}`);
+  }
+
+  getFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}Employees/all/${url}`);
   }
 
   ///////////////// MODAL
