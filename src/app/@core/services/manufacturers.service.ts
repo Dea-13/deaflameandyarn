@@ -14,8 +14,12 @@ export class ManufacturersService {
   }
 
   ////////////////// PAGE
-  getManufacturers(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
+  getManufacturers(offset:number, limit:any, name:string) {
+    return this._http.get<any>(`${environment.apiUrl}Suppliers?offset=${offset}&limit=${limit}&name=${name}`);
+  }
+
+  getFilters() {
+    return this._http.get<any>(`${environment.apiUrl}Suppliers/all/name`);
   }
 
   ///////////////// MODAL

@@ -1,9 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ColumnMode,
-  DatatableComponent,
-  SelectionType,
-} from '@swimlane/ngx-datatable';
 import { TranslateService } from '@ngx-translate/core';
 import { EmployeesService } from '../../../@core/services/employees.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -23,11 +18,6 @@ export class EmployeesComponent implements OnInit {
     { id: 2, name: 'privilege' }
   ];
   public rows = [];
-  public loadingIndicator = true;
-  public reorderable = true;
-  public columns = [{ name: '', prop: '' }];
-  public ColumnMode = ColumnMode;
-  public searchValue = '';
   public selectedOption = 10;
   //for pagination
   public cPage: number = 1;

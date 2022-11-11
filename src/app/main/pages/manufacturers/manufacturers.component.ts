@@ -1,9 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ColumnMode,
-  DatatableComponent,
-  SelectionType,
-} from '@swimlane/ngx-datatable';
 import { TranslateService } from '@ngx-translate/core';
 import { ManufacturersService } from '../../../@core/services/manufacturers.service';
 import { NewManufacturersModalComponent } from '../../modals/new-manufacturers-modal/new-manufacturers-modal.component';
@@ -16,12 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ManufacturersComponent implements OnInit {
   // Public
+  displayedColumns: string[] = ['name', 'email', 'defaultShipmentTerms'];
   public rows = [];
-  public loadingIndicator = true;
-  public reorderable = true;
-  public columns = [{ name: '', prop: '' }];
-  public ColumnMode = ColumnMode;
-  public searchValue = '';
   public selectedOption = 10;
   //for pagination
   public cPage: number = 1;
@@ -36,40 +27,47 @@ export class ManufacturersComponent implements OnInit {
   public searchMaterial: any = '';
   public loading: boolean = false;
   public translateSnackBar: any;
+  public selName: string = '';
+  public selDepartment: string = '';
+  public selPrevilege: string = '';
+
+  public nameArr: Array<any> = [];
+  public departmentArr: Array<any> = [];
+  public priviligeArr: Array<any> = [];
 
   constructor(
-    private manufacturersService: ManufacturersService,
+    private manufacturerService: ManufacturersService,
     public translate: TranslateService,
     private modalService: NgbModal,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loading = true;
     this.pageChanged(1, 15);
+    this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.makeTable();
     console.log('TRANSLATE', this.translateSnackBar);
   }
 
-  makeTable() {
-    this.columns = [
-      { name: this.translateSnackBar.name, prop: 'name' },
-      { name: this.translateSnackBar.email, prop: 'name' },
-      { name: this.translateSnackBar.defaultShipmentTerms, prop: 'name' },
-    ];
+  getRequest(count) {
+    this.limit = count;
+    this.manufacturerService
+      .getManufacturers(this.offset, this.limit, this.selName)
+      .subscribe((data) => {
+        this.rows = data.list;
+        this.totalResult = data.total;
+        this.loading = false;
+      });
   }
 
-  getRequest(count, searchValue) {
-    this.limit = count;
-    // this.manufacturersService
-    // .getManufacturers(this.offset, this.limit, searchValue)
-    // .subscribe((data) => {
-    //   this.rows = data.list;
-    //   this.totalResult = data['total'];
-    this.loading = false;
-    // });
+  getFilters() {
+    this.loading = true;
+    this.manufacturerService.getFilters().subscribe((data) => {
+      this.nameArr = data;
+      this.loading = false;
+    });
   }
 
   pageChanged(page: number, count) {
@@ -78,27 +76,15 @@ export class ManufacturersComponent implements OnInit {
     this.offset = 10 * (this.cPage - 1);
     this.leastDaysAgo = this.limit * this.cPage;
     this.itemsPerPage = count;
-    this.getRequest(count, '');
+    this.getRequest(count);
   }
-
-  searchTable(count, searchMaterial) {
-    this.loading = true;
-    this.getRequest(count, searchMaterial);
-  }
-
-  clearTable(count, searchValue) {
-    this.loading = true;
-    searchValue = '';
-    this.getRequest(count, '');
-  }
-
   modalManufacturer(row) {
     console.log("new/edit manufacturer");
     const modalRef = this.modalService.open(NewManufacturersModalComponent, {});
     modalRef.componentInstance.manufacturerItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest(10, '');
+        this.getRequest(10);
       }
     });
   }

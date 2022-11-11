@@ -1,4 +1,4 @@
-.pager{
+.pager {
   display: inline-block;
   list-style: none;
   margin: 0;
@@ -10,15 +10,38 @@
   border-bottom-right-radius: 28px;
   height: 36px;
 }
+
 ::ng-deep .datatable-body-cell-label {
-white-space: nowrap!important;
-overflow: hidden!important;
-text-overflow: ellipsis!important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .content {
-width:100%;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  background: #e6e6fa;
+}
+
+table.mat-table {
+  width: -webkit-fill-available;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  width: 200px;
 }
