@@ -57,6 +57,7 @@ export const locale = {
       result: '',
       search: '',
       bolster1: '',
+      bolster2: '',
       dieHolder: '',
       container: '',
       price: '',

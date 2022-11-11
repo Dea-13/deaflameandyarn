@@ -14,6 +14,7 @@ import { CoreCommonModule } from './@core/common.module';
 import { CoreSidebarModule, CoreThemeCustomizerModule } from './@core/components';
 
 import { coreConfig } from '../app/app-config';
+import { Ng2FlatpickrModule } from 'ng2-flatpickr';
 
 import { AppComponent } from '../app/app.component';
 import { LayoutModule } from '../app/layout/layout.module';
@@ -111,12 +112,12 @@ const appRoutes: Routes = [
   },
   {
     path: 'api/confirmed',
-    component: ConfirmedComponent,
+    component: StatedComponent,
     pathMatch: 'full'
   },
   {
     path: 'api/dispatched',
-    component: DispatchedComponent,
+    component: StatedComponent,
     pathMatch: 'full'
   },
   {
@@ -126,7 +127,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'api/productivity',
-    component: ProductivityComponent,
+    component: StatedComponent,
     pathMatch: 'full'
   },
   {
@@ -136,7 +137,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'api/scrap',
-    component: ScrapComponent,
+    component: StatedComponent,
     pathMatch: 'full'
   },
   {
@@ -221,7 +222,8 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     ConfirmationComponent,
     AuthLoginV2Component,
     MachinesComponent,
@@ -265,6 +267,7 @@ const appRoutes: Routes = [
     NgxPaginationModule,
     MatMenuModule,
     MatTableModule,
+    Ng2FlatpickrModule,
 
 
     RouterModule.forRoot(appRoutes, {

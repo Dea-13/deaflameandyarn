@@ -57,6 +57,7 @@ export const locale = {
       result: 'резултати',
       search: 'Търси',
       bolster1: 'Bolster1',
+      bolster2: 'Bolster2',
       dieHolder: 'Държач за матрица',
       container: 'Контейнер',
       price: 'Цена',

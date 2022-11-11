@@ -15,8 +15,8 @@ export class MatrixService {
 
   ////////////////// PAGE
 
-  getInformationMatrix(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
+  getInformationMatrix(offset:number, limit:any, status:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, CorrectorName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, DateOrder:string, Price:string, PriceInv:string, DateConfirmation:string, DateExpedition:string, DateScrapped:string, Channels:string, GrM:string, LastModified:string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${status}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&CorrectorName=${CorrectorName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&DateOrder=${DateOrder}&Price=${Price}&PriceInv=${PriceInv}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&Channels=${Channels}&GrM=${GrM}&LastModified=${LastModified}`);
   }
 
   getStatedMatrix(offset:number, limt:any, search:any) {
@@ -65,6 +65,10 @@ export class MatrixService {
 
   getNoMotionMatrix(offset:number, limt:any, search:any) {
     return this._http.get<any>(`${environment.apiUrl}`);
+  }
+
+  getStatusFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/${url}`);
   }
 
   ///////////////// MODAL

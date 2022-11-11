@@ -4,13 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewProfileModalComponent } from '../../modals/new-profile-modal/new-profile-modal.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
   selector: 'app-information-profiles',
   templateUrl: './information-profiles.component.html',
@@ -48,7 +41,6 @@ export class InformationProfilesComponent implements OnInit {
     'important',
     'inUse',
   ];
-  clickedRows = new Set<PeriodicElement>();
 
   public urls = [
     { id: 0, name: 'profilename/true' },

@@ -16,14 +16,14 @@ export const menu: CoreMenu[] = [
         type: 'collapsible',
         icon: 'package',
         children: [
-          {
-            id: 'infoMatrix',
-            title: 'Information matrix',
-            translate: 'MENU.INFOMATRIX',
-            type: 'item',
-            icon: 'info',
-            url: 'api/information-matrix'
-          },
+          // {
+          //   id: 'infoMatrix',
+          //   title: 'Information matrix',
+          //   translate: 'MENU.INFOMATRIX',
+          //   type: 'item',
+          //   icon: 'info',
+          //   url: 'api/information-matrix'
+          // },
           {
             id: 'status',
             title: 'Status',
@@ -62,14 +62,14 @@ export const menu: CoreMenu[] = [
                 type: 'collapsible',
                 icon: 'navigantion',
                 children: [
-                  {
-                    id: 'using',
-                    title: 'In Use',
-                    translate: 'MENU.USINGMENU',
-                    type: 'item',
-                    icon: 'circle',
-                    url: 'api/used-by-status'
-                  },
+                  // {
+                  //   id: 'using',
+                  //   title: 'In Use',
+                  //   translate: 'MENU.USINGMENU',
+                  //   type: 'item',
+                  //   icon: 'circle',
+                  //   url: 'api/used-by-status'
+                  // },
                   {
                     id: 'productivity',
                     title: 'Productivity',
@@ -78,14 +78,14 @@ export const menu: CoreMenu[] = [
                     icon: 'circle',
                     url: 'api/productivity'
                   },
-                  {
-                    id: 'stay',
-                    title: 'Stay',
-                    translate: 'MENU.STAY',
-                    type: 'item',
-                    icon: 'circle',
-                    url: 'api/stay'
-                  },
+                  // {
+                  //   id: 'stay',
+                  //   title: 'Stay',
+                  //   translate: 'MENU.STAY',
+                  //   type: 'item',
+                  //   icon: 'circle',
+                  //   url: 'api/stay'
+                  // },
                 ]
               },
               {
