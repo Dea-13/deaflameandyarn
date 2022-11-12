@@ -22,15 +22,19 @@ export class ManufacturersService {
     return this._http.get<any>(`${environment.apiUrl}Suppliers/all/name`);
   }
 
+  deleteManufacturers(id:number) {
+    return this._http.delete<any>(`${environment.apiUrl}Suppliers/${id}`);
+  }
+
   ///////////////// MODAL
   createManufacturer(manufacturer: any) {
     const data = JSON.stringify(manufacturer);
-    return this._http.post<any>(`${environment.apiUrl}`, data);
+    return this._http.post<any>(`${environment.apiUrl}Suppliers`, data);
   }
 
   updateManufacturer(manufacturer: any) {
     const data = JSON.stringify(manufacturer);
-    return this._http.put(`${environment.apiUrl}`, data);
+    return this._http.put(`${environment.apiUrl}Suppliers`, data);
 }
 
 }

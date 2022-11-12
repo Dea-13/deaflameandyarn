@@ -18,7 +18,7 @@ export class NewEmployeesModalComponent implements OnInit {
   public submitted: boolean;
   public userName: string;
   public loading: boolean = false;
-  public manufacturer: any;
+  public employee: any;
   public translateSnackBar: any;
 
   constructor(
@@ -33,18 +33,18 @@ export class NewEmployeesModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitted = false;
-    this.manufacturer = this.employeeItem.data;
+    this.employee = this.employeeItem.data;
     this.createEmployeeForm = this.formBuilder.group({
       name: ['', Validators.required],
       department: ['', Validators.required],
       privilege: ['', Validators.required],
     });
 
-    if (this.manufacturer.id) {
+    if (this.employee.id) {
       this.createEmployeeForm = this.formBuilder.group({
-        name: this.manufacturer.name,
-        department: this.manufacturer.department,
-        privilege: this.manufacturer.privilege,
+        name: this.employee.name,
+        department: this.employee.department,
+        privilege: this.employee.privilege,
       });
     }
 
@@ -57,7 +57,7 @@ export class NewEmployeesModalComponent implements OnInit {
     console.log(
       'submitForm',
       !this.createEmployeeForm.invalid,
-      this.manufacturer
+      this.employee
     );
     this.submitted = true;
     let obj;
@@ -71,9 +71,10 @@ export class NewEmployeesModalComponent implements OnInit {
       };
       console.log('obj', obj);
 
-      if (this.employeeItem.id) {
+      if (this.employee.id) {
         //edit
-        obj.id = this.manufacturer.id;
+        obj.id = this.employee.id;
+        obj.plant = this.employee.plant;
         this.employeeService
           .updateEmployee(obj)
           .subscribe((employeeService) => {

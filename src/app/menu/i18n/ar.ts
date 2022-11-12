@@ -214,6 +214,10 @@ export const locale = {
       basketOrdering: '',
       notesExtrusion: '',
       important: '',
+      deleteMsg: '',
+      edit: '',
+      delete: '',
+      emailMsg: '',
 
     }
   }

@@ -28,18 +28,21 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.email }}</label>
-                <input type="text" formControlName="email" id="basic-icon-default-uname" class="form-control dt-uname"
-                  aria-label="jdoe1" maxlength="50" aria-describedby="basic-icon-default-uname2" name="user-name"
-                  [ngClass]="{ 'error': submitted && createManufacturerForm.get('email').invalid }" required />
+                <input type="email" formControlName="email" id="basic-icon-default-uname" class="form-control dt-uname"
+                  email="true" aria-label="jdoe1" maxlength="50" aria-describedby="basic-icon-default-uname2"
+                  name="user-name" [ngClass]="{ 'error': submitted && createManufacturerForm.get('email').invalid }"
+                  required />
               </div>
             </div>
             <div class="col-sm-12">
               <div class="form-group">
-                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.numberDays}}</label>
-                <input type="text" formControlName="numberDays" id="basic-icon-default-uname"
+                <label class="form-label" for="basic-icon-default-uname">{{
+                  translateSnackBar.defaultShipmentTerms}}</label>
+                <input type="text" formControlName="defaultShipmentTerms" id="basic-icon-default-uname"
                   class="form-control dt-uname" aria-label="jdoe1" maxlength="50"
                   aria-describedby="basic-icon-default-uname2" name="user-name"
-                  [ngClass]="{ 'error': submitted && createManufacturerForm.get('numberDays').invalid }" required />
+                  [ngClass]="{ 'error': submitted && createManufacturerForm.get('defaultShipmentTerms').invalid }"
+                  required />
               </div>
             </div>
           </div>

@@ -214,6 +214,10 @@ export const locale = {
       basketOrdering: 'Нареждане в кош',
       notesExtrusion: 'Заб. екструзия',
       important: 'Важно',
+      deleteMsg: 'Успешно изтрито.',
+      edit: 'Редактирай',
+      delete: 'Изтрий',
+      emailMsg: 'Неправилно въведен имейл!',
     }
   }
 }

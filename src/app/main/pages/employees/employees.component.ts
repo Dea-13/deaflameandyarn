@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { EmployeesService } from '../../../@core/services/employees.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewEmployeesModalComponent } from '../../modals/new-employees-modal/new-employees-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employees',
@@ -11,7 +12,7 @@ import { NewEmployeesModalComponent } from '../../modals/new-employees-modal/new
 })
 export class EmployeesComponent implements OnInit {
   // Public
-  displayedColumns: string[] = ['name', 'department', 'privilege'];
+  displayedColumns: string[] = ['name', 'department', 'privilege', 'star'];
   public urls = [
     { id: 0, name: 'name' },
     { id: 1, name: 'department' },
@@ -44,6 +45,7 @@ export class EmployeesComponent implements OnInit {
     private employeesService: EmployeesService,
     public translate: TranslateService,
     private modalService: NgbModal,
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -103,7 +105,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   modalEmployee(row) {
-    console.log("new/edit employee");
+    console.log("new/edit employee", row);
     const modalRef = this.modalService.open(NewEmployeesModalComponent, {});
     modalRef.componentInstance.employeeItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
@@ -111,5 +113,26 @@ export class EmployeesComponent implements OnInit {
         this.getRequest(10);
       }
     });
+  }
+
+  deleteEmployee(row) {
+    this.loading = true;
+    this.employeesService.deleteEmployee(row.id).subscribe(employeesService => {
+      this.getRequest(10);
+      this.toastrService.success(this.translateSnackBar.deleteMsg, '', {
+        toastClass: 'toast ngx-toastr',
+        closeButton: true,
+      });
+      this.loading = false;
+    },
+      (error) => {
+        this.toastrService.success(this.translateSnackBar.deleteMsg, '', {
+          toastClass: 'toast ngx-toastr',
+          closeButton: true,
+        });
+        this.loading = false;
+        this.getRequest(10);
+      }
+    );
   }
 }

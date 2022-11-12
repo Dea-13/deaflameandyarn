@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ManufacturersService } from '../../../@core/services/manufacturers.service';
 import { NewManufacturersModalComponent } from '../../modals/new-manufacturers-modal/new-manufacturers-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manufacturers',
@@ -11,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ManufacturersComponent implements OnInit {
   // Public
-  displayedColumns: string[] = ['name', 'email', 'defaultShipmentTerms'];
+  displayedColumns: string[] = ['name', 'email', 'defaultShipmentTerms', 'star'];
   public rows = [];
   public selectedOption = 10;
   //for pagination
@@ -23,8 +24,6 @@ export class ManufacturersComponent implements OnInit {
   public maxSize = 10;
   public itemsPerPage = 15;
   public countRows: number = 15;
-  public languageOptions: any;
-  public searchMaterial: any = '';
   public loading: boolean = false;
   public translateSnackBar: any;
   public selName: string = '';
@@ -39,6 +38,7 @@ export class ManufacturersComponent implements OnInit {
     private manufacturerService: ManufacturersService,
     public translate: TranslateService,
     private modalService: NgbModal,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -87,5 +87,26 @@ export class ManufacturersComponent implements OnInit {
         this.getRequest(10);
       }
     });
+  }
+
+  deleteManufacturer(row) {
+    this.loading = true;
+    this.manufacturerService.deleteManufacturers(row.id).subscribe(manufacturerService => {
+      this.getRequest(10);
+      this.toastrService.success(this.translateSnackBar.deleteMsg, '', {
+        toastClass: 'toast ngx-toastr',
+        closeButton: true,
+      });
+      this.loading = false;
+    },
+      (error) => {
+        this.toastrService.success(this.translateSnackBar.deleteMsg, '', {
+          toastClass: 'toast ngx-toastr',
+          closeButton: true,
+        });
+        this.loading = false;
+        this.getRequest(10);
+      }
+    );
   }
 }

@@ -35,16 +35,16 @@ export class NewManufacturersModalComponent implements OnInit {
     this.submitted = false;
     this.manufacturer = this.manufacturerItem.data;
     this.createManufacturerForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.email]],
       email: ['', Validators.required],
-      numberDays: ['', Validators.required],
+      defaultShipmentTerms: ['', Validators.required],
     });
 
     if (this.manufacturer.id) {
       this.createManufacturerForm = this.formBuilder.group({
         name: this.manufacturer.name,
         email: this.manufacturer.email,
-        numberDays: this.manufacturer.numberDays,
+        defaultShipmentTerms: this.manufacturer.defaultShipmentTerms,
       });
     }
 
@@ -56,22 +56,28 @@ export class NewManufacturersModalComponent implements OnInit {
   submitForm() {
     console.log(
       'submitForm',
-      !this.createManufacturerForm.invalid,
+      this.createManufacturerForm,
       this.manufacturer
     );
     this.submitted = true;
     let obj;
+    if (this.createManufacturerForm.controls.email.status == 'INVALID') {
+      return this.toastrService.error(this.translateSnackBar.emailMsg, '', {
+        toastClass: 'toast ngx-toastr',
+        closeButton: true,
+      });
+    }
     if (!this.createManufacturerForm.invalid) {
       this.loading = true;
 
       obj = {
         name: this.createManufacturerForm.controls.name.value,
         email: this.createManufacturerForm.controls.email.value,
-        numberDays: this.createManufacturerForm.controls.numberDays.value,
+        defaultShipmentTerms: this.createManufacturerForm.controls.defaultShipmentTerms.value,
       };
       console.log('obj', obj);
 
-      if (this.manufacturerItem.service == 'edit') {
+      if (this.manufacturer.id) {
         //edit
         obj.id = this.manufacturer.id;
         this.manufacturersService

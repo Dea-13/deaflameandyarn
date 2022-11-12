@@ -22,15 +22,19 @@ export class EmployeesService {
     return this._http.get<any>(`${environment.apiUrl}Employees/all/${url}`);
   }
 
+  deleteEmployee(id:number) {
+    return this._http.delete<any>(`${environment.apiUrl}Employees/${id}`);
+  }
+
   ///////////////// MODAL
   createEmployee(employee: any) {
     const data = JSON.stringify(employee);
-    return this._http.post<any>(`${environment.apiUrl}`, data);
+    return this._http.post<any>(`${environment.apiUrl}Employees`, data);
   }
 
   updateEmployee(employee: any) {
     const data = JSON.stringify(employee);
-    return this._http.put(`${environment.apiUrl}`, data);
+    return this._http.put(`${environment.apiUrl}Employees`, data);
   }
 
 }

@@ -214,6 +214,10 @@ export const locale = {
       basketOrdering: 'Basket Ordering',
       notesExtrusion: 'Notes Extrusion',
       important: 'Important',
+      deleteMsg: 'Successfully deleted.',
+      edit: 'Edit',
+      delete: 'Delete',
+      emailMsg: 'Email is not entered correctly',
     }
   }
 }
