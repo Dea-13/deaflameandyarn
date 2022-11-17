@@ -6,6 +6,7 @@ import {
 } from '@swimlane/ngx-datatable';
 import { TranslateService } from '@ngx-translate/core';
 import { WarehouseService } from '../../../@core/services/warehouse.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-free-address',
@@ -14,11 +15,12 @@ import { WarehouseService } from '../../../@core/services/warehouse.service';
 })
 export class FreeAddressComponent implements OnInit {
   // Public
+  displayedColumns: string[] = [];
+  public urls = [
+    { id: 0, name: 'resourcename' },
+    { id: 1, name: 'storageplace' },
+  ];
   public rows = [];
-  public loadingIndicator = true;
-  public reorderable = true;
-  public columns = [{ name: '', prop: '' }];
-  public ColumnMode = ColumnMode;
   public searchValue = '';
   public selectedOption = 10;
   //for pagination
@@ -34,45 +36,68 @@ export class FreeAddressComponent implements OnInit {
   public searchMaterial: any = '';
   public loading: boolean = false;
   public translateSnackBar: any;
+  public resourceName: Array<any> = [];
+  public storagePlace: Array<any> = [];
+  public status: number;
+  public resourceNameArr: string = '';
+  public storagePlaceArr: string = '';
 
   constructor(
     private warehouseService: WarehouseService,
-    public translate: TranslateService
-  ) {}
+    public translate: TranslateService,
+    private router: Router
+  ) {
+    this.router.url == '/api/occupied-matrices' ? this.status = 1 : this.status = 0;
+    if(this.status == 0){
+      this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'matrix', 'diameter', 'thickness', 'size', 'freeCapacity'];
+    } else {
+      this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'matrix', 'diameter', 'countMatrix', 'capacity'];
+    }
+   }
 
   ngOnInit(): void {
     this.loading = true;
+
     this.pageChanged(1, 15);
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.makeTable();
+    this.getFilters();
     console.log('TRANSLATE', this.translateSnackBar);
   }
 
-  makeTable() {
-    this.columns = [
-      { name: this.translateSnackBar.resource, prop: 'name' },
-      { name: this.translateSnackBar.place, prop: 'name' },
-      { name: this.translateSnackBar.partOfGroup, prop: 'name' },
-      { name: this.translateSnackBar.matrix, prop: 'name' },
-      { name: this.translateSnackBar.diameter, prop: 'name' },
-      { name: this.translateSnackBar.thickness, prop: 'name' },
-      { name: this.translateSnackBar.size, prop: 'name' },
-      { name: this.translateSnackBar.freeCapacity, prop: 'name' },
-    ];
+  getRequest(count) {
+    this.limit = count;
+    this.warehouseService
+      .getInformationWarehouse(this.offset, this.limit, this.resourceName, this.storagePlace, this.status)
+      .subscribe((data) => {
+        this.rows = data.list;
+        this.totalResult = data.total;
+        this.loading = false;
+      });
   }
 
-  getRequest(count, searchValue) {
-    this.limit = count;
-    // this.warehouseService
-    // .getFreeAddressWarehouse(this.offset, this.limit, searchValue)
-    // .subscribe((data) => {
-    //   this.rows = data.list;
-    //   this.totalResult = data['total'];
-    this.loading = false;
-    // });
+  getFilters() {
+    this.loading = true;
+    for (let i = 0; i < this.urls.length; i++) {
+      this.warehouseService.getFilters(this.urls[i].name).subscribe((data) => {
+        switch (this.urls[i].id) {
+          case 0:
+            {
+              this.resourceNameArr = data;
+            }
+            break;
+          case 1:
+            {
+              this.storagePlaceArr = data;
+            }
+            break;
+        }
+        this.loading = false;
+      });
+    }
   }
+
 
   pageChanged(page: number, count) {
     console.log('event', page);
@@ -80,17 +105,6 @@ export class FreeAddressComponent implements OnInit {
     this.offset = 10 * (this.cPage - 1);
     this.leastDaysAgo = this.limit * this.cPage;
     this.itemsPerPage = count;
-    this.getRequest(count, '');
-  }
-
-  searchTable(count, searchMaterial) {
-    this.loading = true;
-    this.getRequest(count, searchMaterial);
-  }
-
-  clearTable(count, searchValue) {
-    this.loading = true;
-    searchValue = '';
-    this.getRequest(count, '');
+    this.getRequest(count);
   }
 }

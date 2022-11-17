@@ -202,7 +202,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'api/occupied-matrices',
-    component: OccupiedMatricesComponent,
+    component: FreeAddressComponent,
     pathMatch: 'full'
   },
   {

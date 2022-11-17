@@ -216,14 +216,14 @@ export const menu: CoreMenu[] = [
     type: 'collapsible',
     icon: 'box',
     children: [
-      {
-        id: 'infosklad',
-        title: 'Information Warehouse',
-        translate: 'MENU.INFOSKLAD',
-        type: 'item',
-        icon: 'info',
-        url: 'api/information-warehouse'
-      },
+      // {
+      //   id: 'infosklad',
+      //   title: 'Information Warehouse',
+      //   translate: 'MENU.INFOSKLAD',
+      //   type: 'item',
+      //   icon: 'info',
+      //   url: 'api/information-warehouse'
+      // },
       {
         id: 'freeAddress',
         title: 'Free addresses',

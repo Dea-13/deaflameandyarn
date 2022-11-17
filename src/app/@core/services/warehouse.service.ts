@@ -13,16 +13,20 @@ export class WarehouseService {
     this.onWarehouseListChanged = new BehaviorSubject({});
   }
 
-  getInformationWarehouse(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
+  getInformationWarehouse(offset:number, limit:number, resourceName:Array<any>, storagePlace:Array<any>, status:number) {
+    return this._http.get<any>(`${environment.apiUrl}Resource?offset=${offset}&limit=${limit}&resourceName=${resourceName}&storagePlace=${storagePlace}&status=${status}`);
   }
 
-  getFreeAddressWarehouse(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
-  }
+  // getFreeAddressWarehouse(offset:number, limt:any, search:any) {
+  //   return this._http.get<any>(`${environment.apiUrl}`);
+  // }
 
-  getOccupiedMatrixWarehouse(offset:number, limt:any, search:any) {
-    return this._http.get<any>(`${environment.apiUrl}`);
+  // getOccupiedMatrixWarehouse(offset:number, limt:any, search:any) {
+  //   return this._http.get<any>(`${environment.apiUrl}`);
+  // }
+
+  getFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}Resource/all/${url}`);
   }
 
 }
