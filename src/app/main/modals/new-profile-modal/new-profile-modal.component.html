@@ -16,518 +16,559 @@
           </div>
         </div>
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
-          <div class="col-sm-12 flex">
-            <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
-              <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-fill nav-pills">
-                <ng-container [ngbNavItem]="1">
-                  <a ngbNavLink>{{ translateSnackBar.general }}</a>
-                  <ng-template ngbNavContent>
-                    <div class="flex">
-                      <div class="col-sm-5">
-                        <div class="col-sm-12 flex">
-                          <h2>{{ translateSnackBar.profile }}</h2>
-                          <input type="text" [(ngModel)]="profileName" class="form-control dt-uname" />
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.group }}</label>
-                          <ng-select appendTo="body" [(ngModel)]="groupCode">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <label class="label-checkbox">{{ translateSnackBar.inUse }}</label>
-                          <input class="form-control input" [(ngModel)]="usage" type="checkbox" style="width: 5%;margin-top: -1%;">
-                        </div>
-
-                        <div class="col-sm-12 flex">
-                          <label class="label-checkbox">{{ translateSnackBar.visibleSide }}</label>
-                          <input class="form-control input" [(ngModel)]="visSides" type="checkbox" style="width: 5%;margin-top: -1%;">
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3">
-                        <div class="col-sm-12 flex" style="visibility: hidden;">
-                          <div class="col-sm-6">{{ translateSnackBar.min }}</div>
-                          <div class="col-sm-6">{{ translateSnackBar.max }}</div>
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.size }} 1</label>
-                          <input type="text" [(ngModel)]="size1" class="form-control dt-uname" />
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.size }} 2</label>
-                          <input type="text" [(ngModel)]="size2" class="form-control dt-uname" />
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.size }} 3</label>
-                          <input type="text" [(ngModel)]="size3" class="form-control dt-uname" />
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.size }} 4</label>
-                          <input type="text" [(ngModel)]="size4" class="form-control dt-uname" />
-                        </div>
-                      </div>
-
-                      <div class="col-sm-4">
-                        <div class="col-sm-12 flex">
-                          <div class="col-sm-6">{{ translateSnackBar.min }}</div>
-                          <div class="col-sm-6">{{ translateSnackBar.max }}</div>
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size1TolDown" class="form-control dt-uname" /></div>
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size1TolUp" class="form-control dt-uname" /></div>
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size2TolDown" class="form-control dt-uname" /></div>
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size2TolUp" class="form-control dt-uname" /></div>
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size3TolDown" class="form-control dt-uname" /></div>
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size3TolUp" class="form-control dt-uname" /></div>
-                        </div>
-                        <div class="col-sm-12 flex">
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size4TolDown" class="form-control dt-uname" /></div>
-                          <div class="col-sm-6"><input type="text" [(ngModel)]="size4TolUp" class="form-control dt-uname" /></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12 block">
-                      <div class="col-sm-4 flex">
-                        <label>{{ translateSnackBar.weight }}</label>
-                        <input type="text" [(ngModel)]="grM" class="form-control dt-uname" />
-                      </div>
-                      <div class="col-sm-4 flex">
-                        <label>{{ translateSnackBar.cut }}</label>
-                        <input type="text" [(ngModel)]="section" class="form-control dt-uname" />
-                      </div>
-                      <div class="col-sm-4 flex">
-                        <label>{{ translateSnackBar.perimeter }}</label>
-                        <input type="text" [(ngModel)]="perimeter" class="form-control dt-uname" />
-                      </div>
-                    </div>
-                  </ng-template>
-                </ng-container>
-                <ng-container [ngbNavItem]="2">
-                  <a ngbNavLink>{{ translateSnackBar.extrusion }}</a>
-                  <ng-template ngbNavContent>
-                    <div class="flex">
-                      <div class="col-sm-4">
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.cooling }}</label>
-                          <input class="form-control input" [(ngModel)]="cooling" type="text">
-                        </div>
-
-                        <div class="col-sm-12 flex">
-                          <label class="line-fixed">{{ translateSnackBar.additionalOp }}</label>
-                          <input class="form-control input" [(ngModel)]="addOperations" type="text">
-                        </div>
-
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.tMin }}</label>
-                          <input class="form-control input" [(ngModel)]="texit" type="text">
-                        </div>
-                      </div>
-
-                      <div class="col-sm-4">
-                        <div class="col-sm-12 flex hidden">
-                          <label></label>
-                          <input class="form-control input w-70" type="text">
-                        </div>
-                        <div class="col-sm-12 flex hidden">
-                          <label></label>
-                          <input class="form-control input w-70" type="text">
-                        </div>
-                        <div class="col-sm-12 flex bottom-fixed">
-                          <label>{{ translateSnackBar.tMax }}</label>
-                          <input class="form-control input w-70" [(ngModel)]="tbillet " type="text">
-                        </div>
-                      </div>
-
-                      <div class="col-sm-4">
-                        <div class="col-sm-12 flex">
-                          <label class="line-fixed">{{ translateSnackBar.stackBasket }}</label>
-                          <input class="form-control input" [(ngModel)]="basketOrdering" type="text">
-                        </div>
-
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.use }}</label>
-                          <input class="form-control input" [(ngModel)]="inUse" type="text">
-                        </div>
-
-                        <div class="col-sm-12 flex">
-                          <label>{{ translateSnackBar.puller }}</label>
-                          <input class="form-control input" [(ngModel)]="puller" type="text">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12 block">
-                      <div class="col-sm-12 flex">
-                        <label class="width-fixed">{{ translateSnackBar.memo }}</label>
-                        <input type="text" [(ngModel)]="notesExtrusion" class="form-control dt-uname" />
+        <div class="col-sm-12 flex">
+          <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
+            <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-fill nav-pills">
+              <ng-container [ngbNavItem]="1">
+                <a ngbNavLink>{{ translateSnackBar.general }}</a>
+                <ng-template ngbNavContent>
+                  <div class="flex">
+                    <div class="col-sm-5">
+                      <div class="col-sm-12 flex header-section-profile">
+                        <h2>{{ translateSnackBar.profile }}</h2>
+                        <input type="text" [(ngModel)]="sectionProfiles.profileName" class="form-control dt-uname" />
                       </div>
                       <div class="col-sm-12 flex">
-                        <label class="width-fixed">{{ translateSnackBar.important }}</label>
-                        <textarea class="form-control" [(ngModel)]="important" name="important"></textarea>
+                        <label class="w-17-label">{{ translateSnackBar.group }}</label>
+                        <ng-select appendTo="body" [(ngModel)]="sectionProfiles.groupCode">
+                          <ng-option *ngFor="let g of groupCode" [value]="g.name">{{ g.name }}</ng-option>
+                        </ng-select>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <label class="label-checkbox">{{ translateSnackBar.inUse }}</label>
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.inUse" type="checkbox"
+                          style="width: 5%;margin-top: -1%;">
+                      </div>
+
+                      <div class="col-sm-12 flex">
+                        <label class="label-checkbox">{{ translateSnackBar.visibleSide }}</label>
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.sectVisSidesion" type="checkbox"
+                          style="width: 5%;margin-top: -1%;">
                       </div>
                     </div>
-                  </ng-template>
-                </ng-container>
-                <ng-container [ngbNavItem]="3">
-                  <a ngbNavLink>{{ translateSnackBar.speeds }}</a>
-                  <ng-template ngbNavContent>
+
+                    <div class="col-sm-3">
+                      <div class="col-sm-12 flex" style="visibility: hidden;">
+                        <div class="col-sm-6">{{ translateSnackBar.min }}</div>
+                        <div class="col-sm-6">{{ translateSnackBar.max }}</div>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.size }} 1</label>
+                        <input type="number" [(ngModel)]="sectionProfiles.size1" class="form-control dt-uname" />
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.size }} 2</label>
+                        <input type="number" [(ngModel)]="sectionProfiles.size2" class="form-control dt-uname" />
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.size }} 3</label>
+                        <input type="number" [(ngModel)]="sectionProfiles.size3" class="form-control dt-uname" />
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.size }} 4</label>
+                        <input type="number" [(ngModel)]="sectionProfiles.size4" class="form-control dt-uname" />
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="col-sm-12 flex">
+                        <div class="col-sm-6">{{ translateSnackBar.min }}</div>
+                        <div class="col-sm-6">{{ translateSnackBar.max }}</div>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size1TolDown"
+                            class="form-control dt-uname" /></div>
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size1TolUp"
+                            class="form-control dt-uname" /></div>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size2TolDown"
+                            class="form-control dt-uname" /></div>
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size2TolUp"
+                            class="form-control dt-uname" /></div>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size3TolDown"
+                            class="form-control dt-uname" /></div>
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size3TolUp"
+                            class="form-control dt-uname" /></div>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size4TolDown"
+                            class="form-control dt-uname" /></div>
+                        <div class="col-sm-6"><input type="number" [(ngModel)]="sectionProfiles.size4TolUp"
+                            class="form-control dt-uname" /></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 block">
+                    <div class="col-sm-4 flex">
+                      <label>{{ translateSnackBar.weight }}</label>
+                      <input type="number" [(ngModel)]="sectionProfiles.grM" class="form-control dt-uname" />
+                    </div>
+                    <div class="col-sm-4 flex">
+                      <label>{{ translateSnackBar.cut }}</label>
+                      <input type="number" [(ngModel)]="sectionProfiles.section" class="form-control dt-uname" />
+                    </div>
+                    <div class="col-sm-4 flex">
+                      <label>{{ translateSnackBar.perimeter }}</label>
+                      <input type="number" [(ngModel)]="sectionProfiles.perimeter" class="form-control dt-uname" />
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+              <ng-container [ngbNavItem]="2">
+                <a ngbNavLink>{{ translateSnackBar.extrusion }}</a>
+                <ng-template ngbNavContent>
+                  <div class="flex">
+                    <div class="col-sm-4">
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.cooling }}</label>
+                        <input class="form-control input" [(ngModel)]="cooling" type="text">
+                      </div>
+
+                      <div class="col-sm-12 flex">
+                        <label class="line-fixed">{{ translateSnackBar.additionalOp }}</label>
+                        <input class="form-control input" [(ngModel)]="addOperations" type="text">
+                      </div>
+
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.tMin }}</label>
+                        <input class="form-control input" [(ngModel)]="texit" type="text">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="col-sm-12 flex hidden">
+                        <label></label>
+                        <input class="form-control input w-70" type="text">
+                      </div>
+                      <div class="col-sm-12 flex hidden">
+                        <label></label>
+                        <input class="form-control input w-70" type="text">
+                      </div>
+                      <div class="col-sm-12 flex bottom-fixed">
+                        <label>{{ translateSnackBar.tMax }}</label>
+                        <input class="form-control input w-70" [(ngModel)]="tbillet " type="text">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.stackBasket }}</label>
+                        <input class="form-control input" [(ngModel)]="basketOrdering" type="text">
+                      </div>
+
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.use }}</label>
+                        <input class="form-control input" [(ngModel)]="inUse" type="text">
+                      </div>
+
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.puller }}</label>
+                        <input class="form-control input" [(ngModel)]="puller" type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 block">
+                    <div class="col-sm-12 flex">
+                      <label class="width-fixed">{{ translateSnackBar.memo }}</label>
+                      <input type="text" [(ngModel)]="notesExtrusion" class="form-control dt-uname" />
+                    </div>
+                    <div class="col-sm-12 flex">
+                      <label class="width-fixed">{{ translateSnackBar.important }}</label>
+                      <textarea class="form-control" [(ngModel)]="important" name="important"></textarea>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+              <ng-container [ngbNavItem]="3">
+                <a ngbNavLink>{{ translateSnackBar.speeds }}</a>
+                <ng-template ngbNavContent>
+                  <div class="col-sm-12">
+
                     <div class="col-sm-12">
-                      <div class="col-sm-12">
-                        <table class="clasic-table">
-                          <thead>
-                            <th>
-                              <button class="add-button">
-                                <i class="fa fa-plus-circle"></i>
-                              </button>
-                            </th>
-                            <th>{{ translateSnackBar.cavities }}</th>
-                            <th>{{ translateSnackBar.alloy }}</th>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <div class="flex">
-
-                                </div>
-                              </td>
-                              <td>Test</td>
-                              <td>Test</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <div class="col-sm-12">
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.firstbilletTemp }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td></td>
-                              <td>
-                                <div class="flex">
-                                  <h4>{{ translateSnackBar.coolingAir }}</h4>
-                                </div>
-                              </td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.taper }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td>
-                                <div>
-                                  <label class="line-fixed">{{ translateSnackBar.exit }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td>
-                                <div>
-                                  <label class="line-fixed">{{ translateSnackBar.hotSaw }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td>
-                                <div>
-                                  <label class="line-fixed">{{ translateSnackBar.table }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.speedMin }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td><input class="form-control input" type="text"></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.pullerForce }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.exitTemp }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td></td>
-                              <td>
-                                <h4>{{ translateSnackBar.coolingWater }}</h4>
-                              </td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.scrapStart }}</label>
-                                  <input class="form-control input" [(ngModel)]="scrapStart" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.scrapEnd }}</label>
-                                  <input class="form-control input" [(ngModel)]="scrapEnd" type="text">
-                                </div>
-                              </td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td><input class="form-control input" type="text"></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.streching }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td><input class="form-control input" type="text"></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.maxWaitBd }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td><input class="form-control input" type="text"></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="flex">
-                                  <label class="line-fixed">{{ translateSnackBar.putOven }}</label>
-                                  <input class="form-control input" type="text">
-                                </div>
-                              </td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="col-sm-12"></div>
-                    </div>
-                  </ng-template>
-                </ng-container>
-                <ng-container [ngbNavItem]="4">
-                  <a ngbNavLink>{{ translateSnackBar.lengthFrontBack }}</a>
-                  <ng-template ngbNavContent>
-                    <div class="col-sm-12 grid">
-                      <table class="clasic-table">
-                        <thead>
-                          <th>
-                            <button class="add-button">
-                              <i class="fa fa-plus-circle"></i>
-                            </button>
-                          </th>
-                          <th>{{ translateSnackBar.channels }}</th>
-                          <th>{{ translateSnackBar.alloy }}</th>
-                          <th>{{ translateSnackBar.lengthStart }}</th>
-                          <th>{{ translateSnackBar.lengthEnd }}</th>
-                        </thead>
+                      <table style="border: none;">
                         <tbody>
                           <tr>
                             <td>
                               <div class="flex">
-
+                                <label class="line-fixed">{{ translateSnackBar.firstbilletTemp }}</label>
+                                <input class="form-control input" type="text">
                               </div>
                             </td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <div class="flex">
+                                <h4>{{ translateSnackBar.coolingAir }}</h4>
+                              </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.taper }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td>
+                              <div>
+                                <label class="line-fixed">{{ translateSnackBar.exit }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td>
+                              <div>
+                                <label class="line-fixed">{{ translateSnackBar.hotSaw }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td>
+                              <div>
+                                <label class="line-fixed">{{ translateSnackBar.table }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.speedMin }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td><input class="form-control input" type="text"></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.pullerForce }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.exitTemp }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <h4>{{ translateSnackBar.coolingWater }}</h4>
+                            </td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.scrapStart }}</label>
+                                <input class="form-control input" [(ngModel)]="scrapStart" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.scrapEnd }}</label>
+                                <input class="form-control input" [(ngModel)]="scrapEnd" type="text">
+                              </div>
+                            </td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input class="form-control input" type="text"></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.streching }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input class="form-control input" type="text"></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.maxWaitBd }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td><input class="form-control input" type="text"></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="flex">
+                                <label class="line-fixed">{{ translateSnackBar.putOven }}</label>
+                                <input class="form-control input" type="text">
+                              </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                  </ng-template>
-                </ng-container>
-                <ng-container [ngbNavItem]="5">
-                  <a ngbNavLink>{{ translateSnackBar.additionalInfo }}</a>
-                  <ng-template ngbNavContent>
-                    <div class="col-sm-12 block">
-                      <div class="col-sm-12 flex">
-                        <label>{{ translateSnackBar.infoMatrix }}</label>
+                    <div class="col-sm-12"></div>
+                  </div>
+                </ng-template>
+              </ng-container>
+              <ng-container [ngbNavItem]="4">
+                <a ngbNavLink>{{ translateSnackBar.lengthFrontBack }}</a>
+                <ng-template ngbNavContent>
+                  <div class="col-sm-12 grid">
+                    <table class="clasic-table">
+                      <thead>
+                        <th>
+                          <button class="add-button" (click)="addRowSpeedLength(rowsLength)">
+                            <i class="fa fa-plus-circle"></i>
+                          </button>
+                        </th>
+                        <th>{{ translateSnackBar.channels }}</th>
+                        <th>{{ translateSnackBar.alloy }}</th>
+                        <th>{{ translateSnackBar.lengthStart }}</th>
+                        <th>{{ translateSnackBar.lengthEnd }}</th>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let rowLength of rowsLength; let i = index">
+                          <td class="width-10">
+                            <div class="flex">
+                              <span *ngIf="!this.isEditableRowsLength[i] && rowLength.id"
+                                (click)="this.isEditableRowsLength[i]=!this.isEditableRowsLength[i];$event.preventDefault(); $event.stopPropagation();">
+                                <i data-feather="edit" class="mr-25" title="Modify"></i>
+                              </span>
+                              <span *ngIf="this.isEditableRowsLength[i] || !rowLength.id"
+                                (click)="saveRowsLength(rowsLength, i);$event.preventDefault(); $event.stopPropagation();">
+                                <i data-feather="save" class="mr-25" title="Save"></i>
+                              </span>
+                              <span *ngIf="this.isEditableRowsLength[i] && rowLength.id"
+                                (click)="deleteRowsLength(rowsLength,i);$event.preventDefault(); $event.stopPropagation();">
+                                <i data-feather="delete" class="mr-25" title="Delete"></i>
+                              </span>
+                            </div>
+                          </td>
+                          <td><input class="form-control input" type="text"></td>
+                          <td><input class="form-control input" type="text"></td>
+                          <td><input class="form-control input" type="text"></td>
+                          <td><input class="form-control input" type="text"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </ng-template>
+              </ng-container>
+              <ng-container [ngbNavItem]="5">
+                <a ngbNavLink>{{ translateSnackBar.additionalInfo }}</a>
+                <ng-template ngbNavContent>
+                  <div class="col-sm-12 block">
+                    <div class="col-sm-12 flex">
+                      <label>{{ translateSnackBar.infoMatrix }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                    <div class="col-sm-12 flex">
+                      <label>{{ translateSnackBar.followRecipee }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                    <div class="col-sm-12 flex">
+                      <label>{{ translateSnackBar.secondHandScrap }}</label>
+                      <ng-select appendTo="body">
+                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="col-sm-4">
+                      <div class="col-sm-12">
+                        <label>Breda {{ translateSnackBar.manufacturing }}</label>
                         <ng-select appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
-                      <div class="col-sm-12 flex">
-                        <label>{{ translateSnackBar.followRecipee }}</label>
-                        <ng-select appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
-                      </div>
-                      <div class="col-sm-12 flex">
-                        <label>{{ translateSnackBar.secondHandScrap }}</label>
+                      <div class="col-sm-12">
+                        <label>Breda {{ translateSnackBar.scrap }}</label>
                         <ng-select appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
                     </div>
-                    <div class="flex">
-                      <div class="col-sm-4">
-                        <div class="col-sm-12">
-                          <label>Breda {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select appendTo="body">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
-                        <div class="col-sm-12">
-                          <label>Breda {{ translateSnackBar.scrap }}</label>
-                          <ng-select appendTo="body">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
-                      </div>
 
-                      <div class="col-sm-4">
-                        <div class="col-sm-12">
-                          <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select appendTo="body">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
-                        <div class="col-sm-12">
-                          <label>SMS1 {{ translateSnackBar.scrap }}</label>
-                          <ng-select appendTo="body">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
+                    <div class="col-sm-4">
+                      <div class="col-sm-12">
+                        <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
+                        <ng-select appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
                       </div>
-
-                      <div class="col-sm-4">
-                        <div class="col-sm-12">
-                          <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select appendTo="body">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
-                        <div class="col-sm-12">
-                          <label>SMS2 {{ translateSnackBar.scrap }}</label>
-                          <ng-select appendTo="body">
-                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                          </ng-select>
-                        </div>
+                      <div class="col-sm-12">
+                        <label>SMS1 {{ translateSnackBar.scrap }}</label>
+                        <ng-select appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
                       </div>
                     </div>
-                  </ng-template>
-                </ng-container>
-              </nav>
-              <div [ngbNavOutlet]="nav" class="mt-2"></div>
-            </div>
-            <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
-              <div class="col-sm-12">
-                <table class="clasic-table">
-                  <button class="add-button">
+
+                    <div class="col-sm-4">
+                      <div class="col-sm-12">
+                        <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
+                        <ng-select appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
+                      </div>
+                      <div class="col-sm-12">
+                        <label>SMS2 {{ translateSnackBar.scrap }}</label>
+                        <ng-select appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </nav>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
+            <table class="clasic-table">
+              <thead>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of rowsDies">
+                  <td>{{row.dieId}}</td>
+                  <td>{{row.currentResource}}</td>
+                  <td>{{row.primaryResourceName}}</td>
+                  <td>{{row.dimensions}}</td>
+                  <td>{{row.producerName}}</td>
+                  <td></td>
+                  <td>{{row.dateOrder | date:'MMM d, y, h:mm:ss a'}}</td>
+                  <td>{{row.alloy}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table *ngIf="active===3" class="clasic-table">
+              <thead>
+                <th class="width-10">
+                  <button class="add-button" (click)="addRowSpeedTable(rowsSpeed)">
                     <i class="fa fa-plus-circle"></i>
                   </button>
-                  <tbody>
-                    <tr>
-                      <td>Test</td>
-                      <td>Test</td>
-                      <td>Test</td>
-                      <td>Test</td>
-                      <td>Test</td>
-                      <td>Test</td>
-                      <td>Test</td>
-                      <td>Test</td>
-                    </tr>
-                  </tbody>
-                </table>
+                </th>
+                <th>{{ translateSnackBar.cavities }}</th>
+                <th>{{ translateSnackBar.alloy }}</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rowSpeed of rowsSpeed; let i = index">
+                  <td class="width-10">
+                    <div class="flex">
+                      <span *ngIf="!this.isEditableRowSpeed[i] && rowSpeed.id"
+                        (click)="this.isEditableRowSpeed[i]=!this.isEditableRowSpeed[i];$event.preventDefault(); $event.stopPropagation();">
+                        <i data-feather="edit" class="mr-25" title="Modify"></i>
+                      </span>
+                      <span *ngIf="this.isEditableRowSpeed[i] || !rowSpeed.id"
+                        (click)="saveRowsSpeed(rowsSpeed, i);$event.preventDefault(); $event.stopPropagation();">
+                        <i data-feather="save" class="mr-25" title="Save"></i>
+                      </span>
+                      <span *ngIf="this.isEditableRowSpeed[i] && rowSpeed.id"
+                        (click)="deleteRowsSpeed(rowsSpeed,i);$event.preventDefault(); $event.stopPropagation();">
+                        <i data-feather="delete" class="mr-25" title="Delete"></i>
+                      </span>
+                    </div>
+                  </td>
+                  <td><input class="form-control input" type="text"></td>
+                  <td><input class="form-control input" type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-sm-12 flex margin-10">
+          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
+
+            <img class="center-img" src="{{'data:image/png;base64,' + sectionProfiles.fileData}}">
+          </div>
+          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
+            <div class="col-sm-12">
+              <div class="flex">
+                <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">+ {{
+                  translateSnackBar.add }}</button>
+                <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">- {{
+                  translateSnackBar.remove }}</button>
               </div>
+              <table class="clasic-table">
+                <thead>
+                  <th>{{ translateSnackBar.file }}</th>
+                  <!-- <th>{{ translateSnackBar.size }}</th> -->
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{sectionProfiles.fileName}}</td>
+                    <!-- <td></td> -->
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-
-          <div class="col-sm-12 flex margin-10">
-            <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
-
-            </div>
-            <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
-              <div class="col-sm-12">
-                <div class="flex">
-                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">+ {{
-                    translateSnackBar.add }}</button>
-                  <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">- {{
-                    translateSnackBar.remove }}</button>
-                </div>
-                <table class="clasic-table">
-                  <thead>
-                    <th>{{ translateSnackBar.file }}</th>
-                    <th>{{ translateSnackBar.size }}</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Test</td>
-                      <td>Test</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+        </div>
         <!-- </form> -->
+        <div class="col-sm-12">
+          <button rippleEffect class="btn btn-primary save-center" [swal]="SweetAlertBottomEnd">{{
+            translateSnackBar.save }}</button>
+        </div>
       </div>
     </div>
   </div>
@@ -538,3 +579,6 @@
     <span class="sr-only">Loading...</span>
   </div>
 </div>
+<swal #SweetAlertBottomEnd title="{{ translateSnackBar.saveMsg }}" icon="success" [showConfirmButton]="false"
+  [timer]="1500" [position]="'bottom-end'">
+</swal>

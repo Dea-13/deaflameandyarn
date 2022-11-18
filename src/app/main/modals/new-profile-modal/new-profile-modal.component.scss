@@ -95,6 +95,7 @@ input {
 
 .ng-select {
   width: -webkit-fill-available !important;
+  margin-bottom: 10px;
 }
 
 .border-field {
@@ -243,4 +244,39 @@ input {
 
 .margin-10{
   margin-top: 10px;
+}
+
+.center-img, .save-center{
+  margin: 0 auto;
+  display: block;
+}
+
+.save-center{
+  margin: 20px auto;
+  display: block;
+}
+
+.header-section-profile{
+  display: flex;
+  margin-right: 1rem;
+}
+
+.header-section-profile h2{
+  width: 75%;
+}
+
+.w-17-label{
+  width: 70%;
+}
+
+.label-checkbox{
+  width: 43%;
+}
+
+table{
+  margin-bottom: 10px;
+}
+
+.width-10{
+  width: 10%;
 }

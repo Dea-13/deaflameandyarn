@@ -36,6 +36,19 @@ export class ProfilesService {
   }
 
   ///////////////// MODAL
+
+  getProfileDies(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/dies/${id}`);
+  }
+
+  getProfiles(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/${id}`);
+  }
+
+  getGroupCode() {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/all/groupcode/true`);
+  }
+
   createProfile(profile: any) {
     const data = JSON.stringify(profile);
     return this._http.post<any>(`${environment.apiUrl}`, data);

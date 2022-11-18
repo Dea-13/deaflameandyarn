@@ -630,7 +630,7 @@ table {
 }
 
 .fa-plus-circle{
-  font-size: 25px;
+  font-size: 20px!important;
   color: yellowgreen;
 }
 
@@ -647,4 +647,15 @@ table {
 
 .clasic-table tr{
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+th {
+  min-height: 40px;
+  height: 40px;
+  background: #F5F5F5;
+  text-align: left;
+}
+
+td{
+  font-size: 12px;
 }

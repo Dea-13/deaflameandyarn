@@ -244,6 +244,8 @@ export const locale = {
       secondHandScrap: 'Secondary scrap',
       manufacturing: 'manufacturing',
       scrap: 'scrap',
+      save: 'Save',
+      saveMsg: 'Your work has been saved.',
     }
   }
 }

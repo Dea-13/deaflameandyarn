@@ -205,7 +205,7 @@ export const locale = {
       tbillet: 'Темп. балаванка',
       tExit: 'Темп. изход',
       puller: 'Пулер',
-      scrapStart: 'Скрап начко',
+      scrapStart: 'Скрап начало',
       scrapStartSms: 'Скрап начало SMS',
       scrapEnd: 'Скрап край',
       cooling: 'Охлаждане',
@@ -244,6 +244,8 @@ export const locale = {
       secondHandScrap: 'Вторичен скрап',
       manufacturing: 'производителност',
       scrap: 'скрап',
+      save: 'Запази',
+      saveMsg: 'Вашата работа е запазена.',
     }
   }
 }

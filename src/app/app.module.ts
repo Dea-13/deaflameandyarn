@@ -15,6 +15,7 @@ import { CoreSidebarModule, CoreThemeCustomizerModule } from './@core/components
 
 import { coreConfig } from '../app/app-config';
 import { Ng2FlatpickrModule } from 'ng2-flatpickr';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AppComponent } from '../app/app.component';
 import { LayoutModule } from '../app/layout/layout.module';
@@ -268,6 +269,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatTableModule,
     Ng2FlatpickrModule,
+    SweetAlert2Module.forRoot(),
 
 
     RouterModule.forRoot(appRoutes, {

@@ -4,11 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfilesService } from '../../../@core/services/profiles.service';
-import {
-  ColumnMode,
-  DatatableComponent,
-  SelectionType,
-} from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-new-profile-modal',
@@ -27,25 +22,6 @@ export class NewProfileModalComponent implements OnInit {
   public translateSnackBar: any;
   public rows = [];
   public active = 1;
-  public profileName: string = '';
-  public groupCode: string = '';
-  public usage: string = '';
-  public visSides: string = '';
-  public size1: string = '';
-  public size2: string = '';
-  public size3: string = '';
-  public size4: string = '';
-  public size1TolDown: string = '';
-  public size2TolDown: string = '';
-  public size3TolDown: string = '';
-  public size4TolDown: string = '';
-  public size1TolUp: string = '';
-  public size2TolUp: string = '';
-  public size3TolUp: string = '';
-  public size4TolUp: string = '';
-  public grM: string = '';
-  public section: string = '';
-  public perimeter: string = '';
   public cooling: string = '';
   public addOperations: string = '';
   public texit: string = '';
@@ -57,6 +33,14 @@ export class NewProfileModalComponent implements OnInit {
   public important: string = '';
   public scrapStart: string = '';
   public scrapEnd: string = '';
+  public rowsDies: Array<any> = [];
+  public sectionProfiles: any = {};
+  public rowsSpeed: Array<any> = [];
+  public isEditableRowSpeed = {};
+  public howSpeedTable: boolean;
+  public isEditableRowsLength = {};
+  public rowsLength: Array<any> = [];
+  public groupCode: Array<any> = [];
 
 
   constructor(
@@ -77,69 +61,148 @@ export class NewProfileModalComponent implements OnInit {
     //   department: ['', Validators.required],
     //   privilege: ['', Validators.required],
     // });
-
+    console.log('this.profile: ', this.profile);
     if (this.profile.id) {
       // this.createProfileForm = this.formBuilder.group({
       //   name: this.profile.name,
       //   department: this.profile.department,
       //   privilege: this.profile.privilege,
       // });
+      this.getProfileDies(this.profile.id);
+      this.getProfiles(this.profile.id);
     }
+    this.getGroupCode();
 
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
   }
 
+  //---------------------------------------------------------SECTION PROFILES----------------------------------------------
+  getProfileDies(id) {
+    this.loading = true;
+    console.log('getProfileDies: ', id);
+    this.profilesService.getProfileDies(id).subscribe(data => {
+      console.log("getProfileDies", data);
+      this.rowsDies = data;
+      this.loading = false;
+    });
+  }
+
+  getProfiles(id) {
+    this.loading = true;
+    console.log('getProfiles: ', id);
+    this.profilesService.getProfiles(id).subscribe(data => {
+      console.log("getProfiles", data);
+      this.sectionProfiles = data;
+      this.loading = false;
+    });
+  }
+
+  getGroupCode() {
+    this.loading = true;
+    this.profilesService.getGroupCode().subscribe(data => {
+      console.log("getGroupCode", data);
+      this.groupCode = data;
+      this.loading = false;
+    });
+  }
+
+  //---------------------------------------------------------SECTION SPEEDS----------------------------------------------
+  addRowSpeedTable(rowsSpeed) {
+    console.log("add row", rowsSpeed);
+    let emptyRow = {
+      cavities: "",
+      alloy: "",
+    };
+    this.rowsSpeed.push(emptyRow);
+    this.rowsSpeed = [...this.rowsSpeed];
+  }
+
+  saveRowsSpeed(rowsSpeed, ind) {
+    console.log("save row", rowsSpeed, ind);
+    this.isEditableRowSpeed[ind] = false;
+  }
+
+  deleteRowsSpeed(rowsSpeed, ind) {
+    console.log("delete row", rowsSpeed, ind);
+    this.isEditableRowSpeed[ind] = false;
+  }
+
+  //---------------------------------------------------------SECTION FRONT/BACK END LENGTHS----------------------------------------------
+  addRowSpeedLength(rowsLength) {
+    console.log("add row", rowsLength);
+    let emptyRow = {
+      channels: "",
+      alloy: "",
+      lengthStart: "",
+      lengthEnd: "",
+    };
+    this.rowsLength.push(emptyRow);
+    this.rowsLength = [...this.rowsLength];
+  }
+
+  saveRowsLength(rowsLength, ind) {
+    console.log("save row", rowsLength, ind);
+    this.isEditableRowsLength[ind] = false;
+  }
+
+  deleteRowsLength(rowsLength, ind) {
+    console.log("delete row", rowsLength, ind);
+    this.isEditableRowsLength[ind] = false;
+  }
+
   submitForm() {
-    console.log('submitForm', !this.createProfileForm.invalid, this.profile);
-    this.submitted = true;
-    let obj;
-    if (!this.createProfileForm.invalid) {
-      this.loading = true;
+    console.log('submitForm', this.profile);
+    this.activeModal.dismiss();
+    this.passEntry.emit(true);
+    // this.submitted = true;
+    // let obj;
+    // if (!this.createProfileForm.invalid) {
+    //   this.loading = true;
 
-      obj = {
-        // name: this.createProfileForm.controls.name.value,
-        // department: this.createProfileForm.controls.department.value,
-        // privilege: this.createProfileForm.controls.privilege.value,
-      };
-      console.log('obj', obj);
+    //   obj = {
+    //     // name: this.createProfileForm.controls.name.value,
+    //     // department: this.createProfileForm.controls.department.value,
+    //     // privilege: this.createProfileForm.controls.privilege.value,
+    //   };
+    //   console.log('obj', obj);
 
-      if (this.profileItem.id) {
-        //edit
-        obj.id = this.profile.id;
-        this.profilesService.updateProfile(obj).subscribe((profileService) => {
-          this.activeModal.dismiss();
-          this.passEntry.emit(true);
-          this.loading = false;
-          this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-            toastClass: 'toast ngx-toastr',
-            closeButton: true,
-          });
-        });
-      } else {
-        //create
-        this.profilesService.createProfile(obj).subscribe(
-          (profileService) => {
-            this.activeModal.dismiss();
-            this.passEntry.emit(true);
-            this.loading = false;
-            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-              toastClass: 'toast ngx-toastr',
-              closeButton: true,
-            });
-          },
-          (error) => {
-            this.toastrService.error(error.error);
-          }
-        );
-      }
-    } else {
-      this.toastrService.error(this.translateSnackBar.fillMsg, '', {
-        toastClass: 'toast ngx-toastr',
-        closeButton: true,
-      });
-    }
+    //   if (this.profileItem.id) {
+    //     //edit
+    //     obj.id = this.profile.id;
+    //     this.profilesService.updateProfile(obj).subscribe((profileService) => {
+    //       this.activeModal.dismiss();
+    //       this.passEntry.emit(true);
+    //       this.loading = false;
+    //       this.toastrService.success(this.translateSnackBar.succesMsg, '', {
+    //         toastClass: 'toast ngx-toastr',
+    //         closeButton: true,
+    //       });
+    //     });
+    //   } else {
+    //     //create
+    //     this.profilesService.createProfile(obj).subscribe(
+    //       (profileService) => {
+    //         this.activeModal.dismiss();
+    //         this.passEntry.emit(true);
+    //         this.loading = false;
+    //         this.toastrService.success(this.translateSnackBar.succesMsg, '', {
+    //           toastClass: 'toast ngx-toastr',
+    //           closeButton: true,
+    //         });
+    //       },
+    //       (error) => {
+    //         this.toastrService.error(error.error);
+    //       }
+    //     );
+    //   }
+    // } else {
+    //   this.toastrService.error(this.translateSnackBar.fillMsg, '', {
+    //     toastClass: 'toast ngx-toastr',
+    //     closeButton: true,
+    //   });
+    // }
   }
 
   closeModal(): void {
