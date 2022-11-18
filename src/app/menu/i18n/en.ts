@@ -37,6 +37,10 @@ export const locale = {
       INFOSKLAD: 'Information Warehouse',
       LISTPROFILES: 'List Profiles',
       INFOPROFILES: 'Information Profiles',
+      EXTRUSION: 'Extrusion Confirmation',
+      SAWCONFIRMATION: 'Saw Confirmation',
+      SCRAPDECLARATION: 'Scrap Declaration',
+      DIESCANMODULE: 'Die Scan Module',
     },
     translate: {
       matrix: 'Matrix',
@@ -246,6 +250,16 @@ export const locale = {
       scrap: 'scrap',
       save: 'Save',
       saveMsg: 'Your work has been saved.',
+      workPlace: 'WorkPlace',
+      resourceReporting: 'Reporting resource',
+      directionReporting: 'Counting direction',
+      scanning: 'Scan',
+      barcodeMatrix: 'Barcode Die',
+      employee: 'Employee',
+      last20Movements: 'Last 20 moves',
+      positionMatrix: 'Die positions',
+      skladPlace: 'Storage space',
+      msgSkladMatrix: 'The Matrix is now in the Matrix Warehouse!',
     }
   }
 }

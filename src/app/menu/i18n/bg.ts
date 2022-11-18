@@ -37,6 +37,10 @@ export const locale = {
       INFOSKLAD: 'Информация склад',
       LISTPROFILES: 'Списък профили',
       INFOPROFILES: 'Информация профили',
+      EXTRUSION: 'Потвърждение за екструдиране',
+      SAWCONFIRMATION: 'Видях потвърждение',
+      SCRAPDECLARATION: 'Декларация за скрап',
+      DIESCANMODULE: 'Модул за сканиране на матрицата',
     },
     translate: {
       matrix: 'Матрица',
@@ -246,6 +250,16 @@ export const locale = {
       scrap: 'скрап',
       save: 'Запази',
       saveMsg: 'Вашата работа е запазена.',
+      workPlace: 'Работно място',
+      resourceReporting: 'Ресурс за отчитане',
+      directionReporting: 'Посока на отчитане',
+      scanning: 'Сканиране',
+      barcodeMatrix: 'Баркод Матрица',
+      employee: 'Служител',
+      last20Movements: 'Последни 20 движения',
+      positionMatrix: 'Позиции на матриците',
+      skladPlace: 'Складово място',
+      msgSkladMatrix: 'Матрицата вече се намира в Склад Матрици!',
     }
   }
 }

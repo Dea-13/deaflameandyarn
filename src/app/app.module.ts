@@ -63,6 +63,7 @@ import { UsedMatrixComponent } from './main/pages/used-matrix/used-matrix.compon
 import { UsedStatusComponent } from './main/pages/used-status/used-status.component';
 import { InformationProfilesComponent } from './main/pages/information-profiles/information-profiles.component';
 import { NewProfileModalComponent } from './main/modals/new-profile-modal/new-profile-modal.component';
+import { DieScanPageComponent } from './main/pages/die-scan-page/die-scan-page.component';
 
 const appRoutes: Routes = [
   {
@@ -217,6 +218,26 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/extrusion-confirmation',
+    component: DieScanPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/saw-confirmation',
+    component: DieScanPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/scrap-declaration',
+    component: DieScanPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/die-scan-module',
+    component: DieScanPageComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -257,7 +278,9 @@ const appRoutes: Routes = [
     UsedMatrixComponent,
     UsedStatusComponent,
     InformationProfilesComponent,
-    NewProfileModalComponent
+    NewProfileModalComponent,
+    DieScanPageComponent
+
   ],
 
   imports: [

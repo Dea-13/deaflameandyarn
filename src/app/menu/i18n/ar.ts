@@ -37,6 +37,10 @@ export const locale = {
       INFOSKLAD: '',
       LISTPROFILES: '',
       INFOPROFILES: '',
+      EXTRUSION: '',
+      SAWCONFIRMATION: '',
+      SCRAPDECLARATION: '',
+      DIESCANMODULE: '',
     },
     translate: {
       matrix: '',
@@ -246,6 +250,16 @@ export const locale = {
       scrap: '',
       save: '',
       saveMsg: '',
+      workPlace: '',
+      resourceReporting: '',
+      directionReporting: '',
+      scanning: '',
+      barcodeMatrix: '',
+      employee: '',
+      last20Movements: '',
+      positionMatrix: '',
+      skladPlace: '',
+      msgSkladMatrix: '',
 
     }
   }

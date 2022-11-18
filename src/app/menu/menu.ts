@@ -262,9 +262,42 @@ export const menu: CoreMenu[] = [
     id: 'confirmations',
     title: 'Confirmations',
     translate: 'MENU.CONFIRMATION',
-    type: 'item',
+    type: 'collapsible',
     icon: 'check-circle',
-    url: 'api/confirmations'
+    children: [
+      {
+        id: 'extrusionConfirmation',
+        title: 'Extrusion Confirmation',
+        translate: 'MENU.EXTRUSION',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/extrusion-confirmation'
+      },
+      {
+        id: 'sawConfirmation',
+        title: 'Saw Confirmation',
+        translate: 'MENU.SAWCONFIRMATION',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/saw-confirmation'
+      },
+      {
+        id: 'scrapDeclaration',
+        title: 'Scrap Declaration',
+        translate: 'MENU.SCRAPDECLARATION',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/scrap-declaration'
+      },
+      {
+        id: 'dieScanModule',
+        title: 'Die Scan Module',
+        translate: 'MENU.DIESCANMODULE',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/die-scan-module'
+      },
+    ]
   },
   {
     id: 'reports',

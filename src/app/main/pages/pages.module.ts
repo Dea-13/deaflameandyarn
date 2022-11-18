@@ -41,6 +41,7 @@ import { InformationWarehouseComponent } from './information-warehouse/informati
 import { UsedMatrixComponent } from './used-matrix/used-matrix.component';
 import { UsedStatusComponent } from './used-status/used-status.component';
 import { InformationProfilesComponent } from './information-profiles/information-profiles.component';
+import { DieScanPageComponent } from './die-scan-page/die-scan-page.component';
 
 @NgModule({
   declarations: [],
