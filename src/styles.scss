@@ -636,6 +636,8 @@ table {
 
 .clasic-table {
   border: 1px solid rgba(0, 0, 0, 0.12);
+  width: -webkit-fill-available;
+  border-collapse: collapse;
 }
 
 .clasic-table th, .clasic-table td{

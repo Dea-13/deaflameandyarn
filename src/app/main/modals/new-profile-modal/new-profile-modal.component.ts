@@ -26,12 +26,38 @@ export class NewProfileModalComponent implements OnInit {
   public profile: any;
   public translateSnackBar: any;
   public rows = [];
-  public loadingIndicator = true;
-  public reorderable = true;
-  public columnsFirstTable = [{ name: '', prop: '' }];
-  public columnsSecondTable = [{ name: '', prop: '' }];
-  public ColumnMode = ColumnMode;
   public active = 1;
+  public profileName: string = '';
+  public groupCode: string = '';
+  public usage: string = '';
+  public visSides: string = '';
+  public size1: string = '';
+  public size2: string = '';
+  public size3: string = '';
+  public size4: string = '';
+  public size1TolDown: string = '';
+  public size2TolDown: string = '';
+  public size3TolDown: string = '';
+  public size4TolDown: string = '';
+  public size1TolUp: string = '';
+  public size2TolUp: string = '';
+  public size3TolUp: string = '';
+  public size4TolUp: string = '';
+  public grM: string = '';
+  public section: string = '';
+  public perimeter: string = '';
+  public cooling: string = '';
+  public addOperations: string = '';
+  public texit: string = '';
+  public tbillet: string = '';
+  public basketOrdering: string = '';
+  public inUse: string = '';
+  public puller: string = '';
+  public notesExtrusion: string = '';
+  public important: string = '';
+  public scrapStart: string = '';
+  public scrapEnd: string = '';
+
 
   constructor(
     private profilesService: ProfilesService,
@@ -46,42 +72,23 @@ export class NewProfileModalComponent implements OnInit {
   ngOnInit(): void {
     this.submitted = false;
     this.profile = this.profileItem.data;
-    this.createProfileForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      department: ['', Validators.required],
-      privilege: ['', Validators.required],
-    });
+    // this.createProfileForm = this.formBuilder.group({
+    //   name: ['', Validators.required],
+    //   department: ['', Validators.required],
+    //   privilege: ['', Validators.required],
+    // });
 
     if (this.profile.id) {
-      this.createProfileForm = this.formBuilder.group({
-        name: this.profile.name,
-        department: this.profile.department,
-        privilege: this.profile.privilege,
-      });
+      // this.createProfileForm = this.formBuilder.group({
+      //   name: this.profile.name,
+      //   department: this.profile.department,
+      //   privilege: this.profile.privilege,
+      // });
     }
 
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.makeTable();
-  }
-
-  makeTable() {
-    this.columnsFirstTable = [
-      { name: this.translateSnackBar.matrix, prop: 'name' },
-      { name: this.translateSnackBar.resource, prop: 'name' },
-      { name: this.translateSnackBar.forPress, prop: 'name' },
-      { name: this.translateSnackBar.size, prop: 'name' },
-      { name: this.translateSnackBar.client, prop: 'name' },
-      { name: this.translateSnackBar.produced, prop: 'name' },
-      { name: this.translateSnackBar.lastActivity, prop: 'name' },
-      { name: this.translateSnackBar.storageFreePlace, prop: 'name' },
-    ];
-
-    this.columnsSecondTable = [
-      { name: this.translateSnackBar.file, prop: 'name' },
-      { name: this.translateSnackBar.size, prop: 'name' }
-    ];
   }
 
   submitForm() {
