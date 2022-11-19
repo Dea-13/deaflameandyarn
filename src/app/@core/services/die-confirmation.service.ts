@@ -14,7 +14,7 @@ export class DieConfirmationService {
   }
 
   ////////////////// PAGE
-  getBarCode(offset: number, limit:number, diedId:number) {
+  getBarCode(offset: number, limit:number, diedId:string) {
     return this._http.get<any>(`${environment.apiUrl}Dies/confirmation?offset=${offset}&limit=${limit}&DiedId=${diedId}`);
   }
 
