@@ -1,0 +1,33 @@
+.colored {
+  background-color: #CBC3E3;
+  padding: 1%;
+}
+
+.refresh-btn {
+  width: 20px;
+  height: 20px;
+}
+
+.w-50-select {
+  width: 50%;
+}
+
+.example-table,
+.full-width {
+  width: -webkit-fill-available !important;
+}
+
+.fixed-height {
+  border: 2px solid #CBC3E3;
+  margin: 1px 0px 1px 0px;
+  padding: 10px;
+  height: 230px;
+}
+
+.col-sm-12 {
+  border-bottom: 2px solid #7367f0;
+}
+
+.boxes .fixed-height {
+  // margin-right: 5px;
+}
