@@ -29,7 +29,7 @@ export class DieScanModalComponent implements OnInit {
   public itemsPerPage = 10;
   public languageOptions: any;
   public rows: Array<any> = [];
-  selectedRow: any;
+  public selectedRow: any;
 
   constructor(
     private toastrService: ToastrService,

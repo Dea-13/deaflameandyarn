@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatrixService } from '../../../@core/services/matrix.service';
 import { NewMatrixModalComponent } from '../../modals/new-matrix-modal/new-matrix-modal.component';
 import { Router } from '@angular/router';
+import { DetailsDieModalComponent } from '../../modals/details-die-modal/details-die-modal.component';
 
 @Component({
   selector: 'app-stated',
@@ -396,5 +397,18 @@ export class StatedComponent implements OnInit {
       this.selDateScrapped = '';
     }
     this.getRequest(10);
+  }
+
+  modalDetailsDie(row) {
+    if(this.statusId == 40){
+      console.log('new/edit modalDetailsDie');
+      const modalRef = this.modalService.open(DetailsDieModalComponent, {});
+      modalRef.componentInstance.dieItem = { data: row };
+      modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+        if (receivedEntry == true) {
+          this.getRequest(10);
+        }
+      });
+    }
   }
 }

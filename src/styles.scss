@@ -667,3 +667,8 @@ td{
 .block{
   display: block;
 }
+
+.mat-row:hover .mat-cell {
+  background: #e6e6fa;
+  cursor: pointer;
+}

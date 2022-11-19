@@ -72,6 +72,23 @@ export class MatrixService {
   }
 
   ///////////////// MODAL
+
+  getExtrusion(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}ExtrusionConfirmation/GetExtrusionConfirmation/${id}`);
+  }
+
+  getImage(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/image/${id}`);
+  }
+
+  getMovements(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/getLastDieMovementByDieId?dieID=${id}`);
+  }
+
+  getExtrusionData(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProductionData/GetExtrusionData/${id}`);
+  }
+
   createMatrix(matrix: any) {
     const data = JSON.stringify(matrix);
     return this._http.post<any>(`${environment.apiUrl}`, data);

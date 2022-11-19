@@ -61,3 +61,14 @@ img{
 .example-table{
   max-height: -webkit-fill-available;
 }
+
+::ng-deep .check-btn{
+  color: #7367f0;
+  margin: 0 auto;
+  display: block;
+  font-size: 25px;
+  width: 70px;
+  height: 90px;
+  position: relative;
+  transform: translateY(20%);
+}

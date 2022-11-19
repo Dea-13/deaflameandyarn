@@ -26,4 +26,12 @@ export class DieConfirmationService {
     return this._http.get<any>(`${environment.apiUrl}DieMovement/getLastDieMovement?resourceID=${id}`);
   }
 
+  getResource() {
+    return this._http.get<any>(`${environment.apiUrl}Resource/resources`);
+  }
+
+  getEmployee() {
+    return this._http.get<any>(`${environment.apiUrl}Employees/all/employee`);
+  }
+
 }

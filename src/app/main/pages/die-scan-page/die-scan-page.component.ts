@@ -22,6 +22,10 @@ export class DieScanPageComponent implements OnInit {
   public barCode: string = '';
   public image: any = { name: ''};
   public lastMovements: Array<any> = [];
+  public resource: Array<any> = [];
+  public employee: Array<any> = [];
+  public resourceIn: number;
+  public currentResource: number;
 
   constructor(
     public translate: TranslateService,
@@ -34,7 +38,24 @@ export class DieScanPageComponent implements OnInit {
       this.translateSnackBar = snackBar;
     });
 
+    this.getResource();
+    this.getEmployee();
+  }
 
+  getResource(){
+    this.dieService.getResource().subscribe(data => {
+      console.log("getBarCode", data);
+      this.resource = data;
+      this.loading = false;
+    });
+  }
+
+  getEmployee(){
+    this.dieService.getEmployee().subscribe(data => {
+      console.log("getEmployee", data);
+      this.employee = data;
+      this.loading = false;
+    });
   }
 
   getImage(row) {
@@ -46,9 +67,9 @@ export class DieScanPageComponent implements OnInit {
     });
   }
 
-  getMovements(row) {
+  getMovements(resourceIn) {
     this.loading = true;
-    this.dieService.getMovements(row.resourceIn).subscribe(data => {
+    this.dieService.getMovements(resourceIn).subscribe(data => {
       console.log("getMovements", data);
       this.rowsMovements = data;
       this.loading = false;
@@ -70,10 +91,14 @@ export class DieScanPageComponent implements OnInit {
     modalRef.componentInstance.dieItem = { 'die': this.barCode };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry) {
-        this.getMovements(receivedEntry);
         this.getImage(receivedEntry);
+        this.currentResource = receivedEntry.resourceIn;
       }
     });
+  }
+
+  lastMovementRow(row){
+
   }
 
 }
