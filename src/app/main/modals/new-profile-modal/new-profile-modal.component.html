@@ -566,8 +566,7 @@
         </div>
         <!-- </form> -->
         <div class="col-sm-12">
-          <button rippleEffect class="btn btn-primary save-center" [swal]="SweetAlertBottomEnd">{{
-            translateSnackBar.save }}</button>
+          <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()" [swal]="SweetAlertBottomEnd">{{ translateSnackBar.save }}</button>
         </div>
       </div>
     </div>

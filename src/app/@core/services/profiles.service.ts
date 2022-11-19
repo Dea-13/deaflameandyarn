@@ -51,11 +51,11 @@ export class ProfilesService {
 
   createProfile(profile: any) {
     const data = JSON.stringify(profile);
-    return this._http.post<any>(`${environment.apiUrl}`, data);
+    return this._http.post<any>(`${environment.apiUrl}Profiles`, data);
   }
 
-  updateProfile(profile: any) {
+  updateProfile(profile: any, id: number) {
     const data = JSON.stringify(profile);
-    return this._http.put(`${environment.apiUrl}`, data);
+    return this._http.put(`${environment.apiUrl}Profiles/${id}`, data);
   }
 }

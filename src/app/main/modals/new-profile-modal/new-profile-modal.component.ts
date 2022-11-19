@@ -56,18 +56,8 @@ export class NewProfileModalComponent implements OnInit {
   ngOnInit(): void {
     this.submitted = false;
     this.profile = this.profileItem.data;
-    // this.createProfileForm = this.formBuilder.group({
-    //   name: ['', Validators.required],
-    //   department: ['', Validators.required],
-    //   privilege: ['', Validators.required],
-    // });
     console.log('this.profile: ', this.profile);
     if (this.profile.id) {
-      // this.createProfileForm = this.formBuilder.group({
-      //   name: this.profile.name,
-      //   department: this.profile.department,
-      //   privilege: this.profile.privilege,
-      // });
       this.getProfileDies(this.profile.id);
       this.getProfiles(this.profile.id);
     }
@@ -154,8 +144,29 @@ export class NewProfileModalComponent implements OnInit {
 
   submitForm() {
     console.log('submitForm', this.profile);
+    let obj;
     this.activeModal.dismiss();
     this.passEntry.emit(true);
+    obj = {
+      ProfileName: this.sectionProfiles.profileName,
+      GroupCode: this.sectionProfiles.groupCode,
+      Section: this.sectionProfiles.section,
+      Perimeter: this.sectionProfiles.perimeter,
+      Size1: this.sectionProfiles.size1,
+      Size2: this.sectionProfiles.size2,
+      Size3: this.sectionProfiles.size3,
+      Size4: this.sectionProfiles.size4,
+      Tbillet: '',
+      Texit: '',
+      Puller: '',
+      Cooling: '',
+      BasketOrdering: '',
+      AddOperations: '',
+      NotesExtrusion: '',
+      Important: '',
+      Created: new Date(),
+      InUse: this.sectionProfiles.inUse,
+    }
     // this.submitted = true;
     // let obj;
     // if (!this.createProfileForm.invalid) {
@@ -168,35 +179,35 @@ export class NewProfileModalComponent implements OnInit {
     //   };
     //   console.log('obj', obj);
 
-    //   if (this.profileItem.id) {
-    //     //edit
-    //     obj.id = this.profile.id;
-    //     this.profilesService.updateProfile(obj).subscribe((profileService) => {
-    //       this.activeModal.dismiss();
-    //       this.passEntry.emit(true);
-    //       this.loading = false;
-    //       this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-    //         toastClass: 'toast ngx-toastr',
-    //         closeButton: true,
-    //       });
-    //     });
-    //   } else {
-    //     //create
-    //     this.profilesService.createProfile(obj).subscribe(
-    //       (profileService) => {
-    //         this.activeModal.dismiss();
-    //         this.passEntry.emit(true);
-    //         this.loading = false;
-    //         this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-    //           toastClass: 'toast ngx-toastr',
-    //           closeButton: true,
-    //         });
-    //       },
-    //       (error) => {
-    //         this.toastrService.error(error.error);
-    //       }
-    //     );
-    //   }
+      if (this.profile.id) {
+        //edit
+        obj.id = this.profile.id;
+        this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
+          this.activeModal.dismiss();
+          this.passEntry.emit(true);
+          this.loading = false;
+          this.toastrService.success(this.translateSnackBar.succesMsg, '', {
+            toastClass: 'toast ngx-toastr',
+            closeButton: true,
+          });
+        });
+      } else {
+        //create
+        this.profilesService.createProfile(obj).subscribe(
+          (profileService) => {
+            this.activeModal.dismiss();
+            this.passEntry.emit(true);
+            this.loading = false;
+            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
+              toastClass: 'toast ngx-toastr',
+              closeButton: true,
+            });
+          },
+          (error) => {
+            this.toastrService.error(error.error);
+          }
+        );
+      }
     // } else {
     //   this.toastrService.error(this.translateSnackBar.fillMsg, '', {
     //     toastClass: 'toast ngx-toastr',
