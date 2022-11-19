@@ -4,11 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatrixService } from '../../../@core/services/matrix.service';
-import {
-  ColumnMode,
-  DatatableComponent,
-  SelectionType,
-} from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-new-matrix-modal',
@@ -25,16 +20,9 @@ export class NewMatrixModalComponent implements OnInit {
   public loading: boolean = false;
   public matrix: any;
   public translateSnackBar: any;
+  public columnsFirstTable: Array<any> = [];
+  public columnsSecondTable: Array<any> = [];
   public rows = [];
-  public loadingIndicator = true;
-  public reorderable = true;
-  public columnsFirstTable = [
-    { name: '', prop: '' },
-  ];
-  public columnsSecondTable = [
-    { name: '', prop: '' },
-  ];
-  public ColumnMode = ColumnMode;
 
   constructor(
     private matrixService: MatrixService,
@@ -66,23 +54,6 @@ export class NewMatrixModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.makeTable();
-  }
-
-  makeTable(){
-    this.columnsFirstTable = [
-      { name: this.translateSnackBar.press, prop: "name" },
-      { name: this.translateSnackBar.channels, prop: "name" },
-      { name: this.translateSnackBar.alloy, prop: "name" },
-      { name: this.translateSnackBar.speed, prop: "name" },
-    ];
-
-    this.columnsSecondTable = [
-      { name: this.translateSnackBar.alloy, prop: "name" },
-      { name: this.translateSnackBar.channels, prop: "name" },
-      { name: this.translateSnackBar.lengthBackEnd, prop: "name" },
-      { name: this.translateSnackBar.lengthStart, prop: "name" },
-    ];
   }
 
   submitForm() {

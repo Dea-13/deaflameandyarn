@@ -344,17 +344,31 @@
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
             <div class="col-sm-12">
               <span class="label-section">{{ translateSnackBar.prodDataProfile }}</span>
-              <ngx-datatable class="bootstrap core-bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator"
-                [columnMode]="ColumnMode.force" [columns]="columnsFirstTable" [headerHeight]="50" [footerHeight]="50"
-                [rowHeight]="'auto'" [reorderable]="reorderable">
-              </ngx-datatable>
+              <table class="clasic-table">
+                <thead>
+                  <th>{{ translateSnackBar.press }}</th>
+                  <th>{{ translateSnackBar.channels }}</th>
+                  <th>{{ translateSnackBar.alloy }}</th>
+                  <th>{{ translateSnackBar.speed }}</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of columnsFirstTable; let i = index"> </tr>
+                </tbody>
+              </table>
             </div>
             <div class="col-sm-12">
               <span class="label-section">{{ translateSnackBar.lengthBackEnd }}</span>
-              <ngx-datatable class="bootstrap core-bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator"
-                [columnMode]="ColumnMode.force" [columns]="columnsSecondTable" [headerHeight]="50" [footerHeight]="50"
-                [rowHeight]="'auto'" [reorderable]="reorderable">
-              </ngx-datatable>
+              <table class="clasic-table">
+                <thead>
+                  <th>{{ translateSnackBar.alloy }}</th>
+                  <th>{{ translateSnackBar.channels }}</th>
+                  <th>{{ translateSnackBar.lengthBackEnd }}</th>
+                  <th>{{ translateSnackBar.lengthStart }}</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of columnsSecondTable; let i = index"></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </form>

@@ -40,8 +40,6 @@ table.mat-table {
   width: -webkit-fill-available;
 }
 
-th.mat-header-cell,
-td.mat-cell,
-td.mat-footer-cell {
-  width: 200px;
+.w-200-px {
+  width: 30%;
 }

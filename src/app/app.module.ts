@@ -228,7 +228,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'api/scrap-declaration',
+    path: 'api/declaration-scrap',
     component: DieScanPageComponent,
     pathMatch: 'full'
   },

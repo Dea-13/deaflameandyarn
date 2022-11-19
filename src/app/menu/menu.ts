@@ -287,7 +287,7 @@ export const menu: CoreMenu[] = [
         translate: 'MENU.SCRAPDECLARATION',
         type: 'item',
         icon: 'circle',
-        url: 'api/scrap-declaration'
+        url: 'api/declaration-scrap'
       },
       {
         id: 'dieScanModule',

@@ -78,6 +78,7 @@ export class ManufacturersComponent implements OnInit {
     this.itemsPerPage = count;
     this.getRequest(count);
   }
+
   modalManufacturer(row) {
     console.log("new/edit manufacturer");
     const modalRef = this.modalService.open(NewManufacturersModalComponent, {});
