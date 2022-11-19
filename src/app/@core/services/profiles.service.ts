@@ -56,6 +56,6 @@ export class ProfilesService {
 
   updateProfile(profile: any, id: number) {
     const data = JSON.stringify(profile);
-    return this._http.put(`${environment.apiUrl}Profiles/${id}`, data);
+    return this._http.put(`${environment.apiUrl}Profiles`, data);
   }
 }

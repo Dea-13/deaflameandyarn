@@ -260,6 +260,10 @@ export const locale = {
       positionMatrix: '',
       skladPlace: '',
       msgSkladMatrix: '',
+      view: '',
+      resourceName: '',
+      resourceIn: '',
+      modalBarcodeMatrix: '',
 
     }
   }

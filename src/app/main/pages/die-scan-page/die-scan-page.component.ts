@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { DieConfirmationService } from '../../../@core/services/die-confirmation.service';
+import { DieScanModalComponent } from '../../modals/die-scan-modal/die-scan-modal.component';
 
 @Component({
   selector: 'app-die-scan-page',
@@ -9,74 +11,70 @@ import { DieConfirmationService } from '../../../@core/services/die-confirmation
 })
 export class DieScanPageComponent implements OnInit {
 
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['dieId', 'resourceIn', 'resourceOut', 'movementDateTime', 'notes', 'computerName',];
   displayedColumnsDie: string[] = ['matrix', 'skladPlace', 'lastTransaction',];
   public loading: boolean;
   public translateSnackBar: any;
   public rowsMovements: Array<any> = [];
   public rowsDie: Array<any> = [];
 
-  //for pagination
-  public cPage: number = 1;
-  public limit: number = 10;
-  public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
-  public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 10;
-  public languageOptions: any;
-  public searchMaterial: any = '';
   public diedId: string = '';
-  public barCode: Array<any> = [];
-  public image: any;
+  public barCode: string = '';
+  public image: any = { name: ''};
   public lastMovements: Array<any> = [];
 
   constructor(
     public translate: TranslateService,
-    public dieService: DieConfirmationService
+    public dieService: DieConfirmationService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.pageChanged(1, 10);
+
+
   }
 
-  getBarCode(count) {
+  getImage(row) {
     this.loading = true;
-    this.limit = count;
-    this.dieService.getBarCode(this.offset, this.limit, this.diedId).subscribe(data => {
-      console.log("getBarCode", data);
-      this.barCode = data;
-      this.loading = false;
-    });
-  }
-
-  pageChanged(page: number, count) {
-    console.log('event', page);
-    this.cPage = page;
-    this.offset = 10 * (this.cPage - 1);
-    this.leastDaysAgo = this.limit * this.cPage;
-    this.itemsPerPage = count;
-    this.getBarCode(count);
-  }
-
-  getImage() {
-    this.loading = true;
-    this.dieService.getImage(7579).subscribe(data => {
+    this.dieService.getImage(row.profile).subscribe(data => {
       console.log("getImage", data);
       this.image = data;
       this.loading = false;
     });
   }
 
-  getMovements() {
+  getMovements(row) {
     this.loading = true;
-    this.dieService.getMovements(9).subscribe(data => {
+    this.dieService.getMovements(row.resourceIn).subscribe(data => {
       console.log("getMovements", data);
-      this.lastMovements = data;
+      this.rowsMovements = data;
       this.loading = false;
+    });
+  }
+
+  getBarCodesTable(barCode, event){
+    console.log("getBarCodesTable", this.barCode, event);
+    let length = this.barCode.toString().length;
+    console.log("length", length);
+    if(this.barCode.toString().length == 7){
+      // this.diedId = this.barCode;
+      // this.getBarCode(10);
+      this.openBarCodeModal();
+    }
+  }
+
+  openBarCodeModal(){
+    console.log('new/edit profile');
+    const modalRef = this.modalService.open(DieScanModalComponent, {});
+    modalRef.componentInstance.dieItem = { 'die': this.barCode };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry) {
+        this.getMovements(receivedEntry);
+        this.getImage(receivedEntry);
+      }
     });
   }
 

@@ -14,8 +14,8 @@ export class DieConfirmationService {
   }
 
   ////////////////// PAGE
-  getBarCode(offset: number, limit:number, diedId:string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies/confirmation?offset=${offset}&limit=${limit}&DiedId=8348002`);
+  getBarCode(offset: number, limit:number, diedId:number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/confirmation?offset=${offset}&limit=${limit}&DiedId=${diedId}`);
   }
 
   getImage(id:number) {

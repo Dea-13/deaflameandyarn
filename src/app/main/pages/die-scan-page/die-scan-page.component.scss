@@ -22,6 +22,8 @@
   margin: 1px 0px 1px 0px;
   padding: 10px;
   height: 230px;
+  overflow: auto;
+  display: block;
 }
 
 .col-sm-12 {
@@ -34,4 +36,28 @@
 
 label{
   margin-right: 10px;
+}
+
+.btn-view{
+  width: -webkit-fill-available;
+  margin-top: 10px;
+}
+
+img{
+  width: -webkit-fill-available;
+  margin: 0 auto;
+  display: block;
+}
+
+.padd-img{
+  // padding: 7% 1% 0% 1%;
+  position: relative;
+  /* top: 100%; */
+  -webkit-transform: translateY(20%);
+  -ms-transform: translateY(20%);
+  transform: translateY(20%);
+}
+
+.example-table{
+  max-height: -webkit-fill-available;
 }

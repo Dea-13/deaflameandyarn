@@ -260,6 +260,10 @@ export const locale = {
       positionMatrix: 'Die positions',
       skladPlace: 'Storage space',
       msgSkladMatrix: 'The Matrix is now in the Matrix Warehouse!',
+      view: 'View',
+      resourceName: '',
+      resourceIn: '',
+      modalBarcodeMatrix: 'Modal Barcode Matrix',
     }
   }
 }
