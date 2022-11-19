@@ -14,10 +14,11 @@ export class DieScanModalComponent implements OnInit {
   @Input() public dieItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
-  displayedColumns: string[] = ['diedId', 'resourceName', 'channels', 'profile', 'resourceIn', 'inUse',];
+  displayedColumns: string[] = ['diedId', 'resourceName', 'channels', 'profile', 'inUse',];
   public translateSnackBar: any;
   public loading: boolean;
-  public dieId: number;
+  public dieId: string = '';
+  public barCode: string = ''
   //for pagination
   public cPage: number = 1;
   public limit: number = 10;
@@ -51,10 +52,19 @@ export class DieScanModalComponent implements OnInit {
     this.limit = count;
     this.dieService.getBarCode(this.offset, this.limit, this.dieId).subscribe(data => {
       console.log("getBarCode", data);
-      this.rows = data;
+      this.rows = data.list;
       this.totalResult = data.total;
       this.loading = false;
     });
+  }
+
+  getBarCodesTable(barCode){
+    console.log("getBarCodesTable", this.barCode);
+    let length = this.barCode.toString().length;
+    console.log("length", length);
+    if(this.barCode.toString().length == 7){
+      this.getBarCode(10);
+    }
   }
 
   pageChanged(page: number, count) {

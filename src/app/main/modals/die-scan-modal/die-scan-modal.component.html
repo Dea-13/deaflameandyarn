@@ -21,16 +21,12 @@
             <ng-container matColumnDef="diedId">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
+                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm"
                     rippleEffect>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false">
-                      <!-- <ng-option *ngFor="let t of nameArr" [value]="t.name">{{ t.name }}
-                    </ng-option> -->
-                    </ng-select>
+                    <input appendTo="body" type="number" [(ngModel)]="barCode" (input)="getBarCodesTable(barCode)" class="form-control dt-uname" />
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.diedId }}</span>
@@ -53,7 +49,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.resourceName }}</span>
+                <span class="th-header">{{ translateSnackBar.currentResource }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.resourceName}}</td>
             </ng-container>
@@ -96,26 +92,6 @@
                 <span class="th-header">{{ translateSnackBar.profile }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.profile}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="resourceIn">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false">
-                      <!-- <ng-option *ngFor="let t of departmentArr" [value]="t.name">{{ t.name }}
-                    </ng-option> -->
-                    </ng-select>
-                  </mat-menu>
-                </div>
-                <span class="th-header">{{ translateSnackBar.currentResource }}</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.resourceIn}}</td>
             </ng-container>
 
             <ng-container matColumnDef="inUse">

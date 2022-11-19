@@ -29,7 +29,7 @@
       <div class="col-sm-12 flex">
         <div class="col-sm-2 justify-content-between align-items-center block padd-img">
           <label>{{ translateSnackBar.scanning }}</label>
-          <img *ngIf="image.name" class="center-img" src="{{'data:image/png;base64,' + image.name}}">
+          <img *ngIf="image.name !== ''" class="center-img" src="{{'data:image/png;base64,' + image.name}}">
         </div>
         <div class="full-width">
           <div class="flex boxes">
@@ -39,7 +39,7 @@
                 <ng-option></ng-option>
               </ng-select> -->
               <input type="number" [(ngModel)]="barCode" (input)="getBarCodesTable(barCode, $event)" class="form-control dt-uname" />
-              <button type="button" class="btn btn-primary btn-view" (click)="openBarCodeModal()" [disabled]="this.barCode.toString().length !== 7" rippleEffect>
+              <button type="button" class="btn btn-primary btn-view" (click)="openBarCodeModal()" rippleEffect>
                 {{ translateSnackBar.view }}
               </button>
             </div>

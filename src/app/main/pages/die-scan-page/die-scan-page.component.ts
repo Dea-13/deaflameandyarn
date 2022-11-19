@@ -60,8 +60,6 @@ export class DieScanPageComponent implements OnInit {
     let length = this.barCode.toString().length;
     console.log("length", length);
     if(this.barCode.toString().length == 7){
-      // this.diedId = this.barCode;
-      // this.getBarCode(10);
       this.openBarCodeModal();
     }
   }
