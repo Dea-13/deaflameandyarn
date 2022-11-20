@@ -19,7 +19,7 @@
 
         <div class="col-sm-12 flex margin-10">
           <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
-            <h4>{{ translateSnackBar.infoProfile }}</h4>
+            <h3 class="color-text">{{ translateSnackBar.infoProfile }}</h3>
             <img class="center-img" src="{{'data:image/png;base64,' + image.name}}">
           </div>
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
@@ -95,7 +95,7 @@
               <ng-container [ngbNavItem]="1">
                 <a ngbNavLink>{{ translateSnackBar.production }}</a>
                 <ng-template ngbNavContent>
-                  <table mat-table [dataSource]="extrusion" class="example-table">
+                  <table mat-table [dataSource]="extrusion" class="example-table fixed-width">
                     <!-- Position Column -->
 
                     <ng-container matColumnDef="pullerSpeed">
@@ -390,7 +390,7 @@
                     <tr mat-row (click)="getExtrusionData(row)" *matRowDef="let row; columns: displayedColumnsProduction;"></tr>
                   </table>
 
-                  <table mat-table [dataSource]="extrData" class="example-table">
+                  <table mat-table [dataSource]="extrData" class="example-table fixed-width">
                     <!-- Position Column -->
 
                     <ng-container matColumnDef="press">

@@ -290,6 +290,11 @@ table{
 .m-top-2{
   margin-top: 2%;
 }
-th{
+.fixed-width th{
   min-width: 200px;
+}
+
+.color-text{
+  color: #7367f0;
+  font-weight: bold;
 }
