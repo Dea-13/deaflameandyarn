@@ -78,7 +78,7 @@ export class DieScanPageComponent implements OnInit {
   }
 
   getBarCodesTable() {
-    if (this.barCode.toString().length == 7) {
+    if (this.barCode && this.barCode.toString().length == 7) {
       this.openBarCodeModal(this.barCode);
     }
   }

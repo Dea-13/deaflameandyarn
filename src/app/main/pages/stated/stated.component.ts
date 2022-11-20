@@ -149,7 +149,7 @@ export class StatedComponent implements OnInit {
       ];
     }
     this.urls = [
-      { id: 0, name: 'DieId/' + this.statusId },
+      { id: 0, name: 'DieId/' + 10 },
       { id: 1, name: 'ProfileId/' + this.statusId },
       { id: 2, name: 'PrimaryResourceName' },
       { id: 3, name: 'ProducerName' },

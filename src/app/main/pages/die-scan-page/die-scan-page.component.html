@@ -38,7 +38,7 @@
           <div class="flex boxes">
             <div class="col-sm-2 align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.barcodeMatrix }}</label>
-              <input type="number" [(ngModel)]="barCode" (input)="getBarCodesTable()" class="form-control dt-uname" />
+              <input type="text" [(ngModel)]="barCode" maxlength="7" (input)="getBarCodesTable()" class="form-control dt-uname" />
               <button type="button" class="btn btn-primary btn-view" (click)="openBarCodeModal('empty')" rippleEffect>
                 {{ translateSnackBar.view }}
               </button>
