@@ -96,7 +96,7 @@
               <td mat-cell *matCellDef="let element">{{element.partOfGroup}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="matrix">
+            <ng-container *ngIf="status === 1" matColumnDef="matrix">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"

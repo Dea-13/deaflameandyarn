@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-manufacturers-modal',
@@ -35,7 +36,7 @@ export class NewManufacturersModalComponent implements OnInit {
     this.submitted = false;
     this.manufacturer = this.manufacturerItem.data;
     this.createManufacturerForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required]],
       email: ['', Validators.required],
       defaultShipmentTerms: ['', Validators.required],
     });
@@ -62,10 +63,13 @@ export class NewManufacturersModalComponent implements OnInit {
     this.submitted = true;
     let obj;
     if (this.createManufacturerForm.controls.email.status == 'INVALID') {
-      return this.toastrService.error(this.translateSnackBar.emailMsg, '', {
-        toastClass: 'toast ngx-toastr',
-        closeButton: true,
-      });
+      return  Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.emailMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
     if (!this.createManufacturerForm.invalid) {
       this.loading = true;
@@ -86,10 +90,15 @@ export class NewManufacturersModalComponent implements OnInit {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
             this.loading = false;
-            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-              toastClass: 'toast ngx-toastr',
-              closeButton: true,
-            });
+          },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
           });
       } else {
         //create
@@ -98,21 +107,25 @@ export class NewManufacturersModalComponent implements OnInit {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
             this.loading = false;
-            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-              toastClass: 'toast ngx-toastr',
-              closeButton: true,
-            });
           },
           (error) => {
-            this.toastrService.error(error.error);
-          }
-        );
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          });
       }
     } else {
-      this.toastrService.error(this.translateSnackBar.fillMsg, '', {
-        toastClass: 'toast ngx-toastr',
-        closeButton: true,
-      });
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillMsg ,
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
   }
 

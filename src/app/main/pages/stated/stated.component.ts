@@ -16,7 +16,7 @@ export class StatedComponent implements OnInit {
   displayedColumns: string[] = [];
   public urls = [];
   public rows = [{}];
-  public diedArr: Array<any> = [];
+  public dieArr: Array<any> = [];
   public profileIdArr: Array<any> = [];
   public primeResourceNameArr: Array<any> = [];
   public producerNameArr: Array<any> = [];
@@ -39,7 +39,7 @@ export class StatedComponent implements OnInit {
   public dateScrappedArr: Array<any> = [];
   public channelsArr: Array<any> = [];
 
-  public selDied: string = '';
+  public seldie: string = '';
   public selProfileId: string = '';
   public selPrimeResourceName: string = '';
   public selProducerName: string = '';
@@ -191,7 +191,7 @@ export class StatedComponent implements OnInit {
         this.offset,
         this.limit,
         this.statusId,
-        this.selDied,
+        this.seldie,
         this.selProfileId,
         this.selPrimeResourceName,
         this.selProducerName,
@@ -230,7 +230,7 @@ export class StatedComponent implements OnInit {
         switch (this.urls[i].id) {
           case 0:
             {
-              this.diedArr = data;
+              this.dieArr = data;
             }
             break;
           case 1:

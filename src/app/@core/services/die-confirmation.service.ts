@@ -14,8 +14,8 @@ export class DieConfirmationService {
   }
 
   ////////////////// PAGE
-  getBarCode(offset: number, limit:number, diedId:string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies/confirmation?offset=${offset}&limit=${limit}&DiedId=${diedId}`);
+  getBarCode(offset: number, limit:number, dieId:string, primaryResourceName: string, channels: string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/confirmation?offset=${offset}&limit=${limit}&DieId=${dieId}&PrimaryResourceName=${primaryResourceName}&Channels=${channels}`);
   }
 
   getImage(id:number) {
@@ -32,6 +32,18 @@ export class DieConfirmationService {
 
   getEmployee() {
     return this._http.get<any>(`${environment.apiUrl}Employees/all/employee`);
+  }
+
+  getChannels() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/Channels/10`);
+  }
+
+  primaryResource() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/PrimaryResourceName`);
+  }
+
+  getDies() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/DieId/10`);
   }
 
 }

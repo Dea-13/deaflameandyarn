@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfilesService } from '../../../@core/services/profiles.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-profile-modal',
@@ -145,8 +146,7 @@ export class NewProfileModalComponent implements OnInit {
   submitForm() {
     console.log('submitForm', this.profile);
     let obj;
-    this.activeModal.dismiss();
-    this.passEntry.emit(true);
+    this.submitted = true;
     obj = {
       ProfileName: this.sectionProfiles.profileName,
       GroupCode: this.sectionProfiles.groupCode,
@@ -165,55 +165,49 @@ export class NewProfileModalComponent implements OnInit {
       NotesExtrusion: '',
       Important: '',
       Created: new Date(),
+      LastModified: new Date(),
+      ModifiedOn: new Date(),
       InUse: this.sectionProfiles.inUse,
+      Ts: ''
     }
-    // this.submitted = true;
-    // let obj;
-    // if (!this.createProfileForm.invalid) {
-    //   this.loading = true;
 
-    //   obj = {
-    //     // name: this.createProfileForm.controls.name.value,
-    //     // department: this.createProfileForm.controls.department.value,
-    //     // privilege: this.createProfileForm.controls.privilege.value,
-    //   };
-    //   console.log('obj', obj);
-
-      if (this.profile.id) {
-        //edit
-        obj.id = this.profile.id;
-        this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
+    if (this.profile.id) {
+      //edit
+      obj.id = this.profile.id;
+      this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
+        this.activeModal.dismiss();
+        this.passEntry.emit(true);
+        this.loading = false;
+      },
+        (error) => {
+          this.loading = false;
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Error',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        });
+    } else {
+      //create
+      this.profilesService.createProfile(obj).subscribe(
+        (profileService) => {
           this.activeModal.dismiss();
           this.passEntry.emit(true);
           this.loading = false;
-          this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-            toastClass: 'toast ngx-toastr',
-            closeButton: true,
-          });
-        });
-      } else {
-        //create
-        this.profilesService.createProfile(obj).subscribe(
-          (profileService) => {
-            this.activeModal.dismiss();
-            this.passEntry.emit(true);
-            this.loading = false;
-            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-              toastClass: 'toast ngx-toastr',
-              closeButton: true,
-            });
-          },
-          (error) => {
-            this.toastrService.error(error.error);
-          }
-        );
-      }
-    // } else {
-    //   this.toastrService.error(this.translateSnackBar.fillMsg, '', {
-    //     toastClass: 'toast ngx-toastr',
-    //     closeButton: true,
-    //   });
-    // }
+        },
+        (error) => {
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Error',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+      );
+    }
   }
 
   closeModal(): void {

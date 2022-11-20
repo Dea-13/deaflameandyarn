@@ -4,6 +4,7 @@ import { EmployeesService } from '../../../@core/services/employees.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewEmployeesModalComponent } from '../../modals/new-employees-modal/new-employees-modal.component';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employees',
@@ -27,8 +28,8 @@ export class EmployeesComponent implements OnInit {
   public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
   public maxSize = 10;
-  public itemsPerPage = 15;
-  public countRows: number = 15;
+  public itemsPerPage = 10;
+  public countRows: number = 10;
   public languageOptions: any;
   public searchMaterial: any = '';
   public loading: boolean = false;
@@ -50,7 +51,7 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.pageChanged(1, 15);
+    this.pageChanged(1, 10);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -111,6 +112,13 @@ export class EmployeesComponent implements OnInit {
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
         this.getRequest(10);
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg ,
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
     });
   }
@@ -119,17 +127,23 @@ export class EmployeesComponent implements OnInit {
     this.loading = true;
     this.employeesService.deleteEmployee(row.id).subscribe(employeesService => {
       this.getRequest(10);
-      this.toastrService.success(this.translateSnackBar.deleteMsg, '', {
-        toastClass: 'toast ngx-toastr',
-        closeButton: true,
-      });
       this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.deleteMsg ,
+        showConfirmButton: false,
+        timer: 2000
+      })
     },
       (error) => {
-        this.toastrService.success(this.translateSnackBar.deleteMsg, '', {
-          toastClass: 'toast ngx-toastr',
-          closeButton: true,
-        });
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.deleteMsg ,
+          showConfirmButton: false,
+          timer: 2000
+        })
         this.loading = false;
         this.getRequest(10);
       }

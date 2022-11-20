@@ -52,7 +52,7 @@ export class ProductivityComponent implements OnInit {
 
   makeTable() {
     this.columns = [
-      { name: this.translateSnackBar.diedId, prop: 'name' },
+      { name: this.translateSnackBar.dieId, prop: 'name' },
       { name: this.translateSnackBar.channels, prop: 'name' },
       { name: this.translateSnackBar.status, prop: 'name' },
       { name: this.translateSnackBar.currentResource, prop: 'name' },

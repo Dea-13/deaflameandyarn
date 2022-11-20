@@ -776,3 +776,9 @@ td{
   right: 7px!important;
   background: #7367f0;
 }
+input[type=radio], input[type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+  width: 77px;
+  height: 15px;
+}

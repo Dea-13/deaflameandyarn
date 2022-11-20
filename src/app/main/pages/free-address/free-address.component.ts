@@ -53,7 +53,7 @@ export class FreeAddressComponent implements OnInit {
   ) {
     this.router.url == '/api/occupied-matrices' ? this.status = 1 : this.status = 0;
     if(this.status == 0){
-      this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'matrix', 'diameter', 'thickness', 'size', 'freeCapacity'];
+      this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'diameter', 'thickness', 'size', 'freeCapacity'];
     } else {
       this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'matrix', 'diameter', 'countMatrix', 'capacity'];
     }

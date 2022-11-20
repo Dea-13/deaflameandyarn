@@ -36,7 +36,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.privilege}}</label>
-                <input type="text" formControlName="privilege" id="basic-icon-default-uname"
+                <input type="number" formControlName="privilege" id="basic-icon-default-uname"
                   class="form-control dt-uname" aria-label="jdoe1" maxlength="50"
                   aria-describedby="basic-icon-default-uname2" name="user-name"
                   [ngClass]="{ 'error': submitted && createEmployeeForm.get('privilege').invalid }" required />

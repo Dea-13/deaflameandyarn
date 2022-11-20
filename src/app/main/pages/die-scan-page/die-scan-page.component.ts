@@ -18,9 +18,10 @@ export class DieScanPageComponent implements OnInit {
   public rowsMovements: Array<any> = [];
   public rowsDie: Array<any> = [];
 
-  public diedId: string = '';
+  public dieId: string = '';
   public barCode: string = '';
   public image: any = { name: '' };
+  public imageLastMovement: any = { name: '' };
   public lastMovements: Array<any> = [];
   public resource: Array<any> = [];
   public employee: Array<any> = [];
@@ -71,6 +72,7 @@ export class DieScanPageComponent implements OnInit {
     this.dieService.getMovements(resourceIn).subscribe(data => {
       console.log("getMovements", data);
       this.rowsMovements = data;
+      this.imageLastMovement.name = '';
       this.loading = false;
     });
   }
@@ -96,6 +98,12 @@ export class DieScanPageComponent implements OnInit {
 
   lastMovementRow(row) {
     console.log('lastMovementRow', row);
+    this.loading = true;
+    this.dieService.getImage(row.profile).subscribe(data => {
+      console.log("lastMovementRow getImage", data);
+      this.imageLastMovement = data;
+      this.loading = false;
+    });
   }
 
 }

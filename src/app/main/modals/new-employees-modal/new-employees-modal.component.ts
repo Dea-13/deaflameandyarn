@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeesService } from '../../../@core/services/employees.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-employees-modal',
@@ -23,7 +23,6 @@ export class NewEmployeesModalComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeesService,
-    private toastrService: ToastrService,
     public translate: TranslateService,
     private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder
@@ -81,10 +80,16 @@ export class NewEmployeesModalComponent implements OnInit {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
             this.loading = false;
-            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-              toastClass: 'toast ngx-toastr',
-              closeButton: true,
-            });
+          },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.loading = false;
           });
       } else {
         //create
@@ -93,21 +98,27 @@ export class NewEmployeesModalComponent implements OnInit {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
             this.loading = false;
-            this.toastrService.success(this.translateSnackBar.succesMsg, '', {
-              toastClass: 'toast ngx-toastr',
-              closeButton: true,
-            });
           },
           (error) => {
-            this.toastrService.error(error.error);
+            this.loading = false;
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
           }
         );
       }
     } else {
-      this.toastrService.error(this.translateSnackBar.fillMsg, '', {
-        toastClass: 'toast ngx-toastr',
-        closeButton: true,
-      });
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillMsg ,
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
   }
 

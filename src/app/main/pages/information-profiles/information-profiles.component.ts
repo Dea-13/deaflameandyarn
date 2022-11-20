@@ -3,6 +3,7 @@ import { ProfilesService } from '../../../@core/services/profiles.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewProfileModalComponent } from '../../modals/new-profile-modal/new-profile-modal.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-information-profiles',
@@ -374,6 +375,13 @@ export class InformationProfilesComponent implements OnInit {
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
         this.getRequest(10);
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg ,
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
     });
   }

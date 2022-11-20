@@ -14,7 +14,7 @@ export class DieScanModalComponent implements OnInit {
   @Input() public dieItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
-  displayedColumns: string[] = ['diedId', 'resourceName', 'channels', 'profile', 'inUse',];
+  displayedColumns: string[] = ['dieId', 'resourceName', 'channels', 'profile', 'inUse',];
   public translateSnackBar: any;
   public loading: boolean;
   public dieId: string = '';
@@ -27,6 +27,11 @@ export class DieScanModalComponent implements OnInit {
   public maxSize = 10;
   public itemsPerPage = 10;
   public rows: Array<any> = [];
+  public primaryResourceName: string = '';
+  public channels: string = '';
+  public channelsArr: Array<any> = [];
+  public primaryResourceNameArr: Array<any> = [];
+  public dieArr: Array<any> = [];
 
   constructor(
     private toastrService: ToastrService,
@@ -42,12 +47,14 @@ export class DieScanModalComponent implements OnInit {
     });
 
     this.pageChanged(1, 10);
+    this.getDies();
+    this.getChannels();
+    this.primaryResource();
   }
 
-  getBarCode(count) {
+  getBarCode() {
     this.loading = true;
-    this.limit = count;
-    this.dieService.getBarCode(this.offset, this.limit, this.dieId).subscribe(data => {
+    this.dieService.getBarCode(this.offset, this.limit, this.dieId, this.primaryResourceName, this.channels).subscribe(data => {
       console.log("getBarCode", data);
       this.rows = data.list;
       this.totalResult = data.total;
@@ -55,13 +62,31 @@ export class DieScanModalComponent implements OnInit {
     });
   }
 
-  getBarCodesTable(dieId) {
-    console.log("getBarCodesTable", this.dieId);
-    let length = this.dieId.toString().length;
-    console.log("length", length);
-    if (this.dieId.toString().length == 7) {
-      this.getBarCode(10);
-    }
+  getDies() {
+    this.loading = true;
+    this.dieService.getDies().subscribe(data => {
+      console.log("getDies", data);
+      this.dieArr = data;
+      this.loading = false;
+    });
+  }
+
+  getChannels() {
+    this.loading = true;
+    this.dieService.getChannels().subscribe(data => {
+      console.log("getChannels", data);
+      this.channelsArr = data;
+      this.loading = false;
+    });
+  }
+
+  primaryResource() {
+    this.loading = true;
+    this.dieService.primaryResource().subscribe(data => {
+      console.log("primaryResource", data);
+      this.primaryResourceNameArr = data;
+      this.loading = false;
+    });
   }
 
   pageChanged(page: number, count) {
@@ -70,7 +95,7 @@ export class DieScanModalComponent implements OnInit {
     this.offset = 10 * (this.cPage - 1);
     this.leastDaysAgo = this.limit * this.cPage;
     this.itemsPerPage = count;
-    this.getBarCode(count);
+    this.getBarCode();
   }
 
   clickedRows(row) {
