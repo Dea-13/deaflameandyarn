@@ -14,7 +14,7 @@ export class DieScanModalComponent implements OnInit {
   @Input() public dieItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
-  displayedColumns: string[] = ['dieId', 'resourceName', 'channels', 'profile', 'inUse',];
+  displayedColumns: string[] = ['dieId', 'resourceName', 'channels', 'inUse',];
   public translateSnackBar: any;
   public loading: boolean;
   public dieId: string = '';

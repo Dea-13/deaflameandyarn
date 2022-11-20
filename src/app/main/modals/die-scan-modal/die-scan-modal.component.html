@@ -76,24 +76,6 @@
               <td mat-cell *matCellDef="let element">{{element.channels}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="profile">
-              <th mat-header-cell *matHeaderCellDef>
-                <!-- <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false">
-                    </ng-select>
-                  </mat-menu>
-                </div> -->
-                <span class="th-header">{{ translateSnackBar.profile }}</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.profile}}</td>
-            </ng-container>
-
             <ng-container matColumnDef="inUse">
               <th mat-header-cell *matHeaderCellDef>
                 <!-- <div class="filter-th" container="body">
