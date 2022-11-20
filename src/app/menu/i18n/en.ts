@@ -43,7 +43,7 @@ export const locale = {
       DIESCANMODULE: 'Die Scan Module',
     },
     translate: {
-      matrix: 'Matrix',
+      matrix: 'Die',
       profile: 'Profile',
       currentResource: 'Current Resource',
       plaseSklad: 'Warehouse Space',
