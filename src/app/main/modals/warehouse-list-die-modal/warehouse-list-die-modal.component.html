@@ -1,0 +1,26 @@
+<div class="slideout-content">
+  <div id="modals-slide-in">
+    <div class="modal-dialog material-dialog-center modal-content pt-0">
+      <div class="modal-body flex-grow-1">
+        <div class="row form-group">
+          <div class="col-md-12 col-12">
+            <div class="alert alert-primary flex" role="alert">
+              <div class="alert-body">
+                {{ translateSnackBar.dieList }}
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row die-view">
+          <div class="col-sm-12" *ngFor="let l of list">
+            <p class="hover">{{ translateSnackBar.dieId }} - {{l.dieId}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

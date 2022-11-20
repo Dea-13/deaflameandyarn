@@ -66,6 +66,7 @@ import { NewProfileModalComponent } from './main/modals/new-profile-modal/new-pr
 import { DieScanPageComponent } from './main/pages/die-scan-page/die-scan-page.component';
 import { DieScanModalComponent } from './main/modals/die-scan-modal/die-scan-modal.component';
 import { DetailsDieModalComponent } from './main/modals/details-die-modal/details-die-modal.component';
+import { WarehouseListDieModalComponent } from './main/modals/warehouse-list-die-modal/warehouse-list-die-modal.component';
 
 const appRoutes: Routes = [
   {
@@ -283,7 +284,8 @@ const appRoutes: Routes = [
     NewProfileModalComponent,
     DieScanPageComponent,
     DieScanModalComponent,
-    DetailsDieModalComponent
+    DetailsDieModalComponent,
+    WarehouseListDieModalComponent
 
   ],
 

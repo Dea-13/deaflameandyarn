@@ -7,6 +7,9 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { WarehouseService } from '../../../@core/services/warehouse.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { WarehouseListDieModalComponent } from '../../modals/warehouse-list-die-modal/warehouse-list-die-modal.component';
 
 @Component({
   selector: 'app-free-address',
@@ -45,7 +48,8 @@ export class FreeAddressComponent implements OnInit {
   constructor(
     private warehouseService: WarehouseService,
     public translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {
     this.router.url == '/api/occupied-matrices' ? this.status = 1 : this.status = 0;
     if(this.status == 0){
@@ -98,7 +102,6 @@ export class FreeAddressComponent implements OnInit {
     }
   }
 
-
   pageChanged(page: number, count) {
     console.log('event', page);
     this.cPage = page;
@@ -106,5 +109,13 @@ export class FreeAddressComponent implements OnInit {
     this.leastDaysAgo = this.limit * this.cPage;
     this.itemsPerPage = count;
     this.getRequest(count);
+  }
+
+  viewDiesList(list){
+    const modalRef = this.modalService.open(WarehouseListDieModalComponent, {});
+    modalRef.componentInstance.dieItem = { 'list': list };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry) {}
+    });
   }
 }

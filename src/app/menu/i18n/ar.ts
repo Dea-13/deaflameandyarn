@@ -318,6 +318,8 @@ export const locale = {
       color: '',
       incomingReport: '',
       outgoingReporting: '',
+      close: '',
+      dieList: '',
 
     }
   }

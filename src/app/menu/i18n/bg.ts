@@ -318,7 +318,8 @@ export const locale = {
       color: 'Цвят',
       incomingReport: 'Входящо отчитане',
       outgoingReporting: 'Изходящо отчитане',
-
+      close: 'Затвори',
+      dieList: 'Списък матрици',
     }
   }
 }
