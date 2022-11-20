@@ -93,6 +93,7 @@ export class DieScanPageComponent implements OnInit {
       if (receivedEntry) {
         this.getImage(receivedEntry);
         this.currentResource = receivedEntry.resourceIn;
+        this.barCode = receivedEntry.dieId;
       }
     });
   }
