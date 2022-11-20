@@ -3,15 +3,15 @@ import { CoreMenu } from "../@core/types";
 
 export const menu: CoreMenu[] = [
   {
-    id: 'matrix',
-    title: 'Matrix',
+    id: 'die',
+    title: 'Die',
     translate: 'MENU.MATRIX',
     type: 'collapsible',
     icon: 'grid',
     children: [
       {
         id: 'listmatrix',
-        title: 'List Matrix',
+        title: 'List Die',
         translate: 'MENU.LISTMATRIX',
         type: 'collapsible',
         icon: 'package',
@@ -96,75 +96,75 @@ export const menu: CoreMenu[] = [
                 icon: 'trash',
                 url: 'api/scrap'
               },
-              {
-                id: 'newmatrix',
-                title: 'New Matrix',
-                translate: 'MENU.NEWMATRIX',
-                type: 'item',
-                icon: 'codesandbox',
-                url: 'api/new-matrix'
-              },
+              // {
+              //   id: 'newmatrix',
+              //   title: 'New Matrix',
+              //   translate: 'MENU.NEWMATRIX',
+              //   type: 'item',
+              //   icon: 'codesandbox',
+              //   url: 'api/new-matrix'
+              // },
             ]
           },
-          {
-            id: 'inuse',
-            title: 'In use',
-            translate: 'MENU.INUSE',
-            type: 'collapsible',
-            icon: 'play',
-            children: [
-              {
-                id: 'using',
-                title: 'In Use',
-                translate: 'MENU.USINGMENU',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/in-use-matrix'
-              },
-              {
-                id: 'nomotion',
-                title: 'No Motion',
-                translate: 'MENU.NOMOTION',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/no-motion'
-              },
-              {
-                id: 'marked',
-                title: 'Marked',
-                translate: 'MENU.MARKED',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/marked'
-              },
-              {
-                id: 'test',
-                title: 'Test',
-                translate: 'MENU.TEST',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/test'
-              },
-            ]
-          },
+          // {
+          //   id: 'inuse',
+          //   title: 'In use',
+          //   translate: 'MENU.INUSE',
+          //   type: 'collapsible',
+          //   icon: 'play',
+          //   children: [
+          //     {
+          //       id: 'using',
+          //       title: 'In Use',
+          //       translate: 'MENU.USINGMENU',
+          //       type: 'item',
+          //       icon: 'circle',
+          //       url: 'api/in-use-matrix'
+          //     },
+          //     {
+          //       id: 'nomotion',
+          //       title: 'No Motion',
+          //       translate: 'MENU.NOMOTION',
+          //       type: 'item',
+          //       icon: 'circle',
+          //       url: 'api/no-motion'
+          //     },
+          //     {
+          //       id: 'marked',
+          //       title: 'Marked',
+          //       translate: 'MENU.MARKED',
+          //       type: 'item',
+          //       icon: 'circle',
+          //       url: 'api/marked'
+          //     },
+          //     {
+          //       id: 'test',
+          //       title: 'Test',
+          //       translate: 'MENU.TEST',
+          //       type: 'item',
+          //       icon: 'circle',
+          //       url: 'api/test'
+          //     },
+          //   ]
+          // },
         ]
       },
-      {
-        id: 'movement',
-        title: 'Movement matrix',
-        translate: 'MENU.MOVEMENTMATRIX',
-        type: 'item',
-        icon: 'move',
-        url: 'api/movement-matrix'
-      },
-      {
-        id: 'userview',
-        title: 'User view',
-        translate: 'MENU.USERVIEW',
-        type: 'item',
-        icon: 'eye',
-        url: 'api/user-view'
-      },
+      // {
+      //   id: 'movement',
+      //   title: 'Movement Die',
+      //   translate: 'MENU.MOVEMENTMATRIX',
+      //   type: 'item',
+      //   icon: 'move',
+      //   url: 'api/movement-matrix'
+      // },
+      // {
+      //   id: 'userview',
+      //   title: 'User view',
+      //   translate: 'MENU.USERVIEW',
+      //   type: 'item',
+      //   icon: 'eye',
+      //   url: 'api/user-view'
+      // },
     ]
   },
   {
@@ -234,7 +234,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'occupiedMatrix',
-        title: 'Occupied matrices',
+        title: 'Occupied dies',
         translate: 'MENU.OCCUPIEDMATRIX',
         type: 'item',
         icon: 'circle',
