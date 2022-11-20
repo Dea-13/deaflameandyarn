@@ -16,17 +16,19 @@
           </div>
         </div>
         <section class="example-container mat-elevation-z8">
-          <table mat-table [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }" class="example-table">
+          <table mat-table
+            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
+            class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="diedId">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm"
-                    rippleEffect>
+                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm" rippleEffect>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <input appendTo="body" type="number" [(ngModel)]="barCode" (input)="getBarCodesTable(barCode)" class="form-control dt-uname" />
+                    <input appendTo="body" type="number" [(ngModel)]="dieId" (click)="$event.stopPropagation()"
+                      (input)="getBarCodesTable(dieId)" class="form-control dt-uname" />
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.diedId }}</span>
@@ -122,9 +124,6 @@
         <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
           (pageChange)="pageChanged($event, limit)">
         </pagination-controls>
-        <div class="col-sm-12">
-          <!-- <button rippleEffect class="btn btn-primary save-center" (click)="submit()" [swal]="SweetAlertBottomEnd">{{ translateSnackBar.save }}</button> -->
-        </div>
       </div>
     </div>
   </div>

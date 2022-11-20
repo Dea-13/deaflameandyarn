@@ -316,6 +316,8 @@ export const locale = {
       computerName: 'Computer Name',
       remainingQty: 'Remaing Qty',
       color: 'Color',
+      incomingReport: 'Incoming Reporting',
+      outgoingReporting: 'Outcoming Reporting',
     }
   }
 }

@@ -316,6 +316,9 @@ export const locale = {
       computerName: 'Име на производител?',
       remainingQty: 'Оставащо количество',
       color: 'Цвят',
+      incomingReport: 'Входящо отчитане',
+      outgoingReporting: 'Изходящо отчитане',
+
     }
   }
 }

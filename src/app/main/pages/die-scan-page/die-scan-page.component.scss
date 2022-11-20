@@ -67,8 +67,14 @@ img{
   margin: 0 auto;
   display: block;
   font-size: 25px;
-  width: 70px;
-  height: 90px;
+  width: 100px;
+  height: 120px;
   position: relative;
   transform: translateY(20%);
+}
+
+label {
+  color: black;
+  font-size: 14px;
+  text-align: center;
 }

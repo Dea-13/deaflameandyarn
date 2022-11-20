@@ -62,11 +62,11 @@
   max-width: -webkit-fill-available;
 }
 
-.example-table{
+.example-table {
   width: -webkit-fill-available;
 }
 
-.save-center{
+.save-center {
   margin: 0 auto;
   display: block;
   margin-top: 15px;
@@ -75,4 +75,14 @@
 .mat-row:hover .mat-cell {
   background: #e6e6fa;
   cursor: pointer;
+}
+
+::ng-deep .mat-menu-content,
+::ng-deep .cdk-overlay-pane,
+::ng-deep .cdk-overlay-container,
+::ng-deep .mat-menu-panel,
+::ng-deep .cdk-overlay-connected-position-bounding-box,
+::ng-deep .mat-menu-panel,
+::ng-deep .width-select {
+  z-index: 9999 !important;
 }

@@ -20,7 +20,7 @@ export class DieScanPageComponent implements OnInit {
 
   public diedId: string = '';
   public barCode: string = '';
-  public image: any = { name: ''};
+  public image: any = { name: '' };
   public lastMovements: Array<any> = [];
   public resource: Array<any> = [];
   public employee: Array<any> = [];
@@ -37,12 +37,11 @@ export class DieScanPageComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-
     this.getResource();
     this.getEmployee();
   }
 
-  getResource(){
+  getResource() {
     this.dieService.getResource().subscribe(data => {
       console.log("getBarCode", data);
       this.resource = data;
@@ -50,7 +49,7 @@ export class DieScanPageComponent implements OnInit {
     });
   }
 
-  getEmployee(){
+  getEmployee() {
     this.dieService.getEmployee().subscribe(data => {
       console.log("getEmployee", data);
       this.employee = data;
@@ -76,19 +75,16 @@ export class DieScanPageComponent implements OnInit {
     });
   }
 
-  getBarCodesTable(barCode, event){
-    console.log("getBarCodesTable", this.barCode, event);
-    let length = this.barCode.toString().length;
-    console.log("length", length);
-    if(this.barCode.toString().length == 7){
-      this.openBarCodeModal();
+  getBarCodesTable() {
+    if (this.barCode.toString().length == 7) {
+      this.openBarCodeModal(this.barCode);
     }
   }
 
-  openBarCodeModal(){
-    console.log('new/edit profile');
+  openBarCodeModal(value) {
+    console.log('openBarCodeModal', value);
     const modalRef = this.modalService.open(DieScanModalComponent, {});
-    modalRef.componentInstance.dieItem = { 'die': this.barCode };
+    modalRef.componentInstance.dieItem = { 'die': value };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry) {
         this.getImage(receivedEntry);
@@ -98,8 +94,8 @@ export class DieScanPageComponent implements OnInit {
     });
   }
 
-  lastMovementRow(row){
-
+  lastMovementRow(row) {
+    console.log('lastMovementRow', row);
   }
 
 }

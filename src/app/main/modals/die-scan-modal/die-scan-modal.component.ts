@@ -18,7 +18,6 @@ export class DieScanModalComponent implements OnInit {
   public translateSnackBar: any;
   public loading: boolean;
   public dieId: string = '';
-  public barCode: string = ''
   //for pagination
   public cPage: number = 1;
   public limit: number = 10;
@@ -27,9 +26,7 @@ export class DieScanModalComponent implements OnInit {
   public totalResult: number = 0;
   public maxSize = 10;
   public itemsPerPage = 10;
-  public languageOptions: any;
   public rows: Array<any> = [];
-  public selectedRow: any;
 
   constructor(
     private toastrService: ToastrService,
@@ -39,7 +36,7 @@ export class DieScanModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dieId = this.dieItem.die;
+    this.dieId = this.dieItem.die == 'empty' ? '' : this.dieItem.die;
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
@@ -58,11 +55,11 @@ export class DieScanModalComponent implements OnInit {
     });
   }
 
-  getBarCodesTable(barCode){
-    console.log("getBarCodesTable", this.barCode);
-    let length = this.barCode.toString().length;
+  getBarCodesTable(dieId) {
+    console.log("getBarCodesTable", this.dieId);
+    let length = this.dieId.toString().length;
     console.log("length", length);
-    if(this.barCode.toString().length == 7){
+    if (this.dieId.toString().length == 7) {
       this.getBarCode(10);
     }
   }
@@ -76,16 +73,10 @@ export class DieScanModalComponent implements OnInit {
     this.getBarCode(count);
   }
 
-  clickedRows(row){
+  clickedRows(row) {
     console.log('clickedRows', row);
-    this.selectedRow = row;
     this.activeModal.dismiss();
     this.passEntry.emit(row);
-  }
-
-  submit(){
-    this.activeModal.dismiss();
-    this.passEntry.emit(this.selectedRow);
   }
 
   closeModal(): void {
