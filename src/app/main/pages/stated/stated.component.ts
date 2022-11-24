@@ -137,7 +137,7 @@ export class StatedComponent implements OnInit {
       this.statusId = 40;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
-        'thickness', 'clientName', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
+        'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
         'gr', 'kgSap', 'renewal'
       ];
     } else if (this.router.url == '/api/scrap') {

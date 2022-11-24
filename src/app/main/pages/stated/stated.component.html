@@ -502,7 +502,7 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.totalWeight }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.totalWeight}}</td>
+              <td mat-cell *matCellDef="let element">{{element.kg}}</td>
             </ng-container>
 
             <ng-container matColumnDef="countInUse">
@@ -523,7 +523,7 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.usedPieces }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.countInUse}}</td>
+              <td mat-cell *matCellDef="let element">{{element.countUsages}}</td>
             </ng-container>
 
             <ng-container matColumnDef="finalNitriding">
@@ -689,7 +689,7 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.gr }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.gr}}</td>
+              <td mat-cell *matCellDef="let element">{{element.grM}}</td>
             </ng-container>
 
             <ng-container *ngIf="statusId == 40" matColumnDef="kgSap">
