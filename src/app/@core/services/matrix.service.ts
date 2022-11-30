@@ -71,7 +71,73 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/${url}`);
   }
 
-  ///////////////// MODAL
+  ///////////////// MODAL NEW MATRIX
+
+  getStatus() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/GetDiesStatus`);
+  }
+
+  getProfile() {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/all/profilenameId/true`);
+  }
+
+  getMatrix(id:string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/die/name/${id}`);
+  }
+
+  getChannels(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/Channels/${id}`);
+  }
+
+  getOpora() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/opora`);
+  }
+
+  getType() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/type`);
+  }
+
+  getContainer() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/container`);
+  }
+
+  getBolster1() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/BolsterTooling1`);
+  }
+
+  getBolster2() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/BolsterTooling2`);
+  }
+
+  getClientName() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/clientname`);
+  }
+
+  getProducer() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/producernameid`);
+  }
+
+  getCorrector() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/producernameid`);
+  }
+
+  getMatricologist() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/correctornameid`);
+  }
+
+  getPress() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/press`);
+  }
+
+  getProfilesByPress(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProfilesByPress/${id}`);
+  }
+
+  getProfilesEnds(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
+  }
+
+  ///////////////// MODAL DETAILS
 
   getExtrusion(id: number) {
     return this._http.get<any>(`${environment.apiUrl}ExtrusionConfirmation/GetExtrusionConfirmation/${id}`);

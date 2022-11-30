@@ -266,8 +266,7 @@ export const locale = {
       modalBarcodeMatrix: '',
       modaldieetails: '',
       infoProfile: '',
-      id: 'ID',
-      dieId: 'Die ID',
+      id: '',
       altResource: '',
       dimensions: '',
       corrector: '',
@@ -320,6 +319,10 @@ export const locale = {
       outgoingReporting: '',
       close: '',
       dieList: '',
+      reasonForPurchase: '',
+      reasonForPurchaseOther: '',
+      successLogin: '',
+      errorLogin: '',
 
     }
   }

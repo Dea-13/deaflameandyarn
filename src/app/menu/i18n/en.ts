@@ -1,6 +1,7 @@
 export const locale = {
   lang: 'en',
   data: {
+    lang: 'en',
     MENU: {
       HOME: 'Home',
       SAMPLE: 'Sample',
@@ -319,6 +320,10 @@ export const locale = {
       outgoingReporting: 'Outcoming Reporting',
       close: 'Close',
       dieList: 'Die List',
+      reasonForPurchase: 'Order reason',
+      reasonForPurchaseOther: 'Reason order other',
+      successLogin: 'Welcome! You have successfully logged into your account!',
+      errorLogin: 'Wrong user or password.',
     }
   }
 }

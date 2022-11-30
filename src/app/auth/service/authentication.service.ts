@@ -7,11 +7,14 @@ import { environment } from '../../../environments/environment';
 
 import { ToastrService } from 'ngx-toastr';
 import { User, Role } from '../models';
+import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   //public
   public currentUser: Observable<User>;
+  public translateSnackBar: any;
 
   //private
   private currentUserSubject: BehaviorSubject<User>;
@@ -21,9 +24,12 @@ export class AuthenticationService {
    * @param {HttpClient} _http
    * @param {ToastrService} _toastrService
    */
-  constructor(private _http: HttpClient, private _toastrService: ToastrService) {
+  constructor(private _http: HttpClient, private _toastrService: ToastrService, public translate: TranslateService,) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+    this.translate.get('translate').subscribe((snackBar: string) => {
+      this.translateSnackBar = snackBar;
+    });
   }
 
   // getter: currentUserValue
@@ -54,7 +60,7 @@ export class AuthenticationService {
    */
   loginUser(userName: string, password: string) {
     return this._http
-      .post<any>(`${environment.apiUrl}Login`, { userName, password })
+      .post<any>(`${environment.planningUrl}login`, { userName, password })
       .pipe(
         map(user => {
           // login user successful if there's a jwt token in the response
@@ -63,10 +69,13 @@ export class AuthenticationService {
             localStorage.setItem('currentUser', JSON.stringify(user));
             // Display welcome toast!
             setTimeout(() => {
-              this._toastrService.success(
-                'Успешно влязохте в профила си!', '',
-                { toastClass: 'toast ngx-toastr', closeButton: true }
-              );
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'success',
+                title: this.translateSnackBar.successLogin ,
+                showConfirmButton: false,
+                timer: 2000
+              })
             }, 2500);
 
             // notify
@@ -86,7 +95,7 @@ export class AuthenticationService {
    */
   loginCard(cart: string) {
     return this._http
-      .get<any>(`${environment.apiUrl}Login/cart/${cart}`)
+      .get<any>(`${environment.planningUrl}Login/cart/${cart}`)
       .pipe(
         map(user => {
           // login card successful if there's a jwt token in the response
@@ -96,10 +105,13 @@ export class AuthenticationService {
 
             // Display welcome toast!
             setTimeout(() => {
-              this._toastrService.success(
-                'Успешно влязохте в профила си!', '',
-                { toastClass: 'toast ngx-toastr', closeButton: true }
-              );
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'success',
+                title: this.translateSnackBar.successLogin ,
+                showConfirmButton: false,
+                timer: 2000
+              })
             }, 2500);
 
             // notify

@@ -8,6 +8,8 @@ import { CoreConfigService } from '../../../../@core/services/config.service';
 import { AuthenticationService } from '../../../../auth/service';
 import { ToastrService } from 'ngx-toastr';
 import { ElectronService } from '../../../../core/services';
+import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-login-v2',
@@ -26,6 +28,7 @@ export class AuthLoginV2Component implements OnInit {
   public returnUrl: string;
   public error = '';
   public passwordTextType: boolean;
+  public translateSnackBar: any;
   myIntervalCloseApp: any;
 
   // Private
@@ -48,8 +51,12 @@ export class AuthLoginV2Component implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private toastrService: ToastrService,
+    public translate: TranslateService,
     public electronService: ElectronService
   ) {
+    this.translate.get('translate').subscribe((snackBar: string) => {
+      this.translateSnackBar = snackBar;
+    });
     this._unsubscribeAll = new Subject();
 
     // Configure the layout
@@ -109,46 +116,48 @@ export class AuthLoginV2Component implements OnInit {
 
   onSubmit() {
     let url;
-    this._router.navigate(['/api/stated']);
-    // // stop here if form is invalid
-    // if(!this.enableOtherForm){
-    //   this.submittedUser = true;
-    //   if (this.loginFormUser.invalid) {
-    //     return;
-    //   } else {
-    //     url = this.appLoginService.loginUser(this.loginFormUser.controls.email.value, this.loginFormUser.controls.password.value);
-    //   }
-    // } else {
-    //   this.submittedCard = true;
-    //   if (this.loginFormCard.invalid) {
-    //     return;
-    //   } else {
-    //     url = this.appLoginService.loginCard(this.loginFormCard.controls.card.value);
-    //   }
-    // }
+    // stop here if form is invalid
+    if(!this.enableOtherForm){
+      this.submittedUser = true;
+      if (this.loginFormUser.invalid) {
+        return;
+      } else {
+        url = this.appLoginService.loginUser(this.loginFormUser.controls.email.value, this.loginFormUser.controls.password.value);
+      }
+    } else {
+      this.submittedCard = true;
+      if (this.loginFormCard.invalid) {
+        return;
+      } else {
+        url = this.appLoginService.loginCard(this.loginFormCard.controls.card.value);
+      }
+    }
 
-    // url.subscribe(config => {
-    //   // console.log('++++++++', JSON.parse(config.permissionGroup.jsonData).calendar.read);
-    //   if (config) {
-    //     localStorage.setItem('currentUser', JSON.stringify(config));
-    //     //redirect to home page
-    //     setTimeout(() => {
-    //       this._router.navigate(['/api/machines']);
-    //     }, 100);
-    //     // Login
-    //     this.loading = true;
-    //   }
-    // }, error => {
-    //   console.log('error: ', error, error['status'], error['status'] == 401);
-    //   if(error['status'] == 401){
-    //     this.toastrService.error(
-    //       'Грешен потребител или парола', '',
-    //       { toastClass: 'toast ngx-toastr', closeButton: false }
-    //     );
-    //     // Login
-    //     this.loading = false;
-    //   }
-    // });
+    url.subscribe(config => {
+      // console.log('++++++++', JSON.parse(config.permissionGroup.jsonData).calendar.read);
+      if (config) {
+        localStorage.setItem('currentUser', JSON.stringify(config));
+        //redirect to home page
+        setTimeout(() => {
+          this._router.navigate(['/api/stated']);
+        }, 100);
+        // Login
+        this.loading = true;
+      }
+    }, error => {
+      console.log('error: ', error, error['status'], error['status'] == 401);
+      if(error['status'] == 401){
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.errorLogin ,
+          showConfirmButton: false,
+          timer: 2000
+        })
+        // Login
+        this.loading = false;
+      }
+    });
 
 
   }

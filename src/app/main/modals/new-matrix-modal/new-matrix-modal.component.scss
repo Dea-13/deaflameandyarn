@@ -87,14 +87,14 @@ input {
 }
 
 .row-first-column {
-  display: flex;
+  display: block;
   // margin: 8px 6px 0px 0px;
   // border: 1px solid #7367f0;
 }
 
 .row-second-column {
   display: block;
-  margin: 0px 0px 0px 30px;
+  margin: 0px 0px 0px 10px;
 }
 
 .ng-select {
@@ -124,7 +124,7 @@ input {
   padding-right: 0px;
 
   .border-field {
-    margin: 15px;
+    margin: 15px -3px 15px -1px;
     padding: 5px 5px 1px 5px
   }
 }
@@ -200,6 +200,20 @@ input {
   }
 }
 
-.section-right .col-sm-12{
+.section-right .col-sm-12 {
   margin-bottom: 15px;
+}
+
+.save-center {
+  margin: 20px auto;
+  display: block;
+}
+
+form {
+  width: -webkit-fill-available;
+}
+
+.fixed-height {
+  max-height: 500px;
+  overflow: auto;
 }

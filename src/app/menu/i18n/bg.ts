@@ -1,6 +1,7 @@
 export const locale = {
   lang: 'bg',
   data: {
+    lang: 'bg',
     MENU: {
       HOME: 'Home',
       SAMPLE: 'Sample',
@@ -319,6 +320,10 @@ export const locale = {
       outgoingReporting: 'Изходящо отчитане',
       close: 'Затвори',
       dieList: 'Списък матрици',
+      reasonForPurchase: 'Причина за поръчка',
+      reasonForPurchaseOther: 'Причина поръчка други',
+      successLogin: 'Добре дошли! Успешно влязохте в профила си!',
+      errorLogin: 'Грешен потребител или парола.',
     }
   }
 }
