@@ -137,6 +137,34 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
   }
 
+  deleteRowsPress(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesByPress/${id}`);
+  }
+
+  deleteRowsEnd(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
+  }
+
+  createRowsPress(press: any) {
+    const data = JSON.stringify(press);
+    return this._http.post<any>(`${environment.apiUrl}ProfilesByPress`, data);
+  }
+
+  updateRowsPress(press: any) {
+    const data = JSON.stringify(press);
+    return this._http.put(`${environment.apiUrl}ProfilesByPress`, data);
+  }
+
+  createRowsEnd(press: any) {
+    const data = JSON.stringify(press);
+    return this._http.post<any>(`${environment.apiUrl}ProfilesEnds`, data);
+  }
+
+  updateRowsEnd(press: any) {
+    const data = JSON.stringify(press);
+    return this._http.put(`${environment.apiUrl}ProfilesEnds`, data);
+  }
+
   ///////////////// MODAL DETAILS
 
   getExtrusion(id: number) {

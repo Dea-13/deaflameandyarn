@@ -63,7 +63,7 @@ export class NewMatrixModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal
   ) {
-    // this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
   }
 
   ngOnInit(): void {
@@ -314,7 +314,7 @@ export class NewMatrixModalComponent implements OnInit {
   addRowPress(rowsLength) {
     console.log("add row", rowsLength);
     let emptyRow = {
-      resourceName: "",
+      pressId: "",
       channels: "",
       alloyFamily: "",
       speed: "",
@@ -323,14 +323,117 @@ export class NewMatrixModalComponent implements OnInit {
     this.columnsFirstTable = [...this.columnsFirstTable];
   }
 
-  saveRowsPress(rowsLength, ind) {
-    console.log("save row", rowsLength, ind);
+  saveRowsPress(rowsLength, row, ind) {
+    console.log("save row", rowsLength, row, ind);
     this.isEditableRowsPress[ind] = false;
+    let flag = false;
+    let obj;
+    for(let i=0; i < this.columnsFirstTable.length; i++){
+      if(this.columnsFirstTable[i].profileId){
+        if(!row.profileId && (this.columnsFirstTable[i].pressId == row.pressId && this.columnsFirstTable[i].alloyFamily == row.alloyFamily)){
+          console.log('Duplicate row');
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
+      }
+    }
+
+    if(!flag){
+      obj = {
+        pressId: row.pressId,
+        priority: row.priority,
+        channels: row.channels,
+        speed: row.speed,
+        alloyFamily: row.alloyFamily,
+        created: this.userName, //?????????
+        lastModified: new Date(),
+        rowVersion: 1,
+        lastModifiedBy: this.userName,
+      }
+
+      if(row.profileId){
+        obj.profileId = row.profileId;
+        this.matrixService.updateRowsPress(obj).subscribe(matrixService => {
+          this.getProfilesByPress();
+          this.loading = false;
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: this.translateSnackBar.saveMsg ,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.loading = false;
+          }
+        );
+      } else {
+        this.matrixService.createRowsPress(obj).subscribe(matrixService => {
+          this.getProfilesByPress();
+          this.loading = false;
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: this.translateSnackBar.saveMsg ,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.loading = false;
+          }
+        );
+      }
+    }
   }
 
-  deleteRowsPress(rowsLength, ind) {
+  deleteRowsPress(rowsLength, row, ind) {
     console.log("delete row", rowsLength, ind);
     this.isEditableRowsPress[ind] = false;
+    this.matrixService.deleteRowsPress(row.profileId).subscribe(matrixService => {
+      this.getProfilesByPress();
+      this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.deleteMsg ,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    },
+      (error) => {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.deleteMsg ,
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.loading = false;
+      }
+    );
   }
 
   //////////////////////// TABLE PROFILE ENDS
@@ -356,14 +459,120 @@ export class NewMatrixModalComponent implements OnInit {
     this.columnsSecondTable = [...this.columnsSecondTable];
   }
 
-  saveRowsEnd(rowsLength, ind) {
-    console.log("save row", rowsLength, ind);
+  saveRowsEnd(rowsLength, row, ind) {
+    console.log("save row", rowsLength, row, ind);
     this.isEditableRowsEnd[ind] = false;
+    let flag = false;
+    let obj;
+    for(let i=0; i < this.columnsSecondTable.length; i++){
+      if(this.columnsSecondTable[i].profileId){
+        if(!row.profileId && (this.columnsSecondTable[i].alloyFamily == row.alloyFamily && this.columnsSecondTable[i].lengthEnd == row.lengthEnd)){
+          console.log('Duplicate row');
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
+      }
+    }
+
+
+
+    if(!flag){
+      obj = {
+        pressId: row.pressId,
+        channels: row.channels,
+        alloyFamily: row.alloyFamily,
+        lengthStart: row.lengthStart,
+        lengthEnd: row.lengthEnd,
+        created: this.userName, //?????????
+        lastModified: new Date(),
+        rowVersion: 1,
+        lastModifiedBy: this.userName,
+      }
+
+      if(row.profileId){
+        obj.profileId = row.profileId;
+        this.matrixService.updateRowsEnd(obj).subscribe(matrixService => {
+          this.getProfilesEnds();
+          this.loading = false;
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: this.translateSnackBar.saveMsg ,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.loading = false;
+          }
+        );
+      } else {
+        this.matrixService.createRowsEnd(obj).subscribe(matrixService => {
+          this.getProfilesEnds();
+          this.loading = false;
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: this.translateSnackBar.saveMsg ,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.loading = false;
+          }
+        );
+      }
+    }
   }
 
-  deleteRowsEnd(rowsLength, ind) {
+  deleteRowsEnd(rowsLength, row, ind) {
     console.log("delete row", rowsLength, ind);
     this.isEditableRowsEnd[ind] = false;
+    this.matrixService.deleteRowsEnd(row.profileId).subscribe(matrixService => {
+      this.getProfilesByPress();
+      this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.deleteMsg ,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    },
+      (error) => {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.deleteMsg ,
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.loading = false;
+        this.getProfilesByPress();
+      }
+    );
   }
 
 

@@ -323,6 +323,7 @@ export const locale = {
       reasonForPurchaseOther: '',
       successLogin: '',
       errorLogin: '',
+      dublicateMSg: '',
 
     }
   }

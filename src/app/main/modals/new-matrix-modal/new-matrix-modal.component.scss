@@ -217,3 +217,11 @@ form {
   max-height: 500px;
   overflow: auto;
 }
+
+.ng-dropdown-panel {
+  display: block !important;
+}
+
+.error{
+  border: 1px solid red;
+}

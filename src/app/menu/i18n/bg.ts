@@ -324,6 +324,7 @@ export const locale = {
       reasonForPurchaseOther: 'Причина поръчка други',
       successLogin: 'Добре дошли! Успешно влязохте в профила си!',
       errorLogin: 'Грешен потребител или парола.',
+      dublicateMSg: 'Имате дублиращи се записи!',
     }
   }
 }

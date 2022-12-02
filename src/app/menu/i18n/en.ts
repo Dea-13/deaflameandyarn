@@ -324,6 +324,7 @@ export const locale = {
       reasonForPurchaseOther: 'Reason order other',
       successLogin: 'Welcome! You have successfully logged into your account!',
       errorLogin: 'Wrong user or password.',
+      dublicateMSg: 'You have dublicating rows!',
     }
   }
 }

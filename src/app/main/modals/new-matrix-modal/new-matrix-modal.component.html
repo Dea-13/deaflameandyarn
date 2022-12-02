@@ -385,22 +385,22 @@
                         <tr *ngFor="let rowPress of columnsFirstTable; let i = index">
                           <td class="width-10">
                             <div class="flex">
-                              <span *ngIf="!this.isEditableRowsPress[i] && rowPress.id"
+                              <span *ngIf="!this.isEditableRowsPress[i] && rowPress.profileId"
                                 (click)="this.isEditableRowsPress[i]=!this.isEditableRowsPress[i];$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="edit" class="mr-25" title="Modify"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsPress[i] || !rowPress.id"
-                                (click)="saveRowsPress(columnsFirstTable, i);$event.preventDefault(); $event.stopPropagation();">
+                              <span *ngIf="this.isEditableRowsPress[i] || !rowPress.profileId"
+                                (click)="saveRowsPress(columnsFirstTable, rowPress, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="save" class="mr-25" title="Save"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsPress[i] && rowPress.id"
-                                (click)="deleteRowsPress(columnsFirstTable,i);$event.preventDefault(); $event.stopPropagation();">
+                              <span *ngIf="this.isEditableRowsPress[i] && rowPress.profileId"
+                                (click)="deleteRowsPress(columnsFirstTable, rowPress, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="delete" class="mr-25" title="Delete"></i>
                               </span>
                             </div>
                           </td>
                           <td>
-                              <ng-select class="select-table width-select" [(ngModel)]="rowPress.resourceName">
+                              <ng-select class="select-table width-select" [(ngModel)]="rowPress.pressId" appendTo="body">
                                 <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                               </ng-select>
                           </td>
@@ -429,16 +429,16 @@
                         <tr *ngFor="let rowEnd of columnsSecondTable; let i = index">
                           <td class="width-10">
                             <div class="flex">
-                              <span *ngIf="!this.isEditableRowsEnd[i] && rowEnd.id"
+                              <span *ngIf="!this.isEditableRowsEnd[i] && rowEnd.profileId"
                                 (click)="this.isEditableRowsEnd[i]=!this.isEditableRowsEnd[i];$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="edit" class="mr-25" title="Modify"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsEnd[i] || !rowEnd.id"
-                                (click)="saveRowsEnd(columnsSecondTable, i);$event.preventDefault(); $event.stopPropagation();">
+                              <span *ngIf="this.isEditableRowsEnd[i] || !rowEnd.profileId"
+                                (click)="saveRowsEnd(columnsSecondTable, rowEnd, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="save" class="mr-25" title="Save"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsEnd[i] && rowEnd.id"
-                                (click)="deleteRowsEnd(columnsSecondTable,i);$event.preventDefault(); $event.stopPropagation();">
+                              <span *ngIf="this.isEditableRowsEnd[i] && rowEnd.profileId"
+                                (click)="deleteRowsEnd(columnsSecondTable, rowEnd, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="delete" class="mr-25" title="Delete"></i>
                               </span>
                             </div>
