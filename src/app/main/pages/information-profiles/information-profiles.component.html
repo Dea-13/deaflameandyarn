@@ -619,6 +619,27 @@
               </td>
             </ng-container>
 
+            <ng-container matColumnDef="star" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+              <td mat-cell *matCellDef="let element">
+                <div ngbDropdown container="body">
+                  <button ngbDropdownToggle type="button" (click)="$event.stopPropagation()" class="btn icon-btn btn-sm hide-arrow" rippleEffect>
+                    <span [data-feather]="'more-vertical'" [class]="'cursor-pointer'"></span>
+                  </button>
+                  <div ngbDropdownMenu>
+                    <a (click)="modalProfile(element)" ngbDropdownItem>
+                      <span [data-feather]="'edit'" [size]="16" [class]="'mr-50'"></span>
+                      {{ translateSnackBar.edit }}
+                    </a>
+                    <a (click)="deleteProfile(element)" href="javascript:;" ngbDropdownItem>
+                      <span [data-feather]="'trash'" [size]="16" [class]="'mr-50'"></span>
+                      {{ translateSnackBar.delete }}
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row (click)="modalProfile(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>

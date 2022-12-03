@@ -51,7 +51,7 @@ export class NewProfileModalComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder
   ) {
-    // this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
   }
 
   ngOnInit(): void {
@@ -148,27 +148,54 @@ export class NewProfileModalComponent implements OnInit {
     let obj;
     this.submitted = true;
     obj = {
-      ProfileName: this.sectionProfiles.profileName,
-      GroupCode: this.sectionProfiles.groupCode,
-      Section: this.sectionProfiles.section,
-      Perimeter: this.sectionProfiles.perimeter,
-      Size1: this.sectionProfiles.size1,
-      Size2: this.sectionProfiles.size2,
-      Size3: this.sectionProfiles.size3,
-      Size4: this.sectionProfiles.size4,
-      Tbillet: '',
-      Texit: '',
-      Puller: '',
-      Cooling: '',
-      BasketOrdering: '',
-      AddOperations: '',
-      NotesExtrusion: '',
-      Important: '',
-      Created: new Date(),
-      LastModified: new Date(),
-      ModifiedOn: new Date(),
-      InUse: this.sectionProfiles.inUse,
-      Ts: ''
+      profileName: this.sectionProfiles.profileName,
+      groupCode: this.sectionProfiles.groupCode,
+      section: this.sectionProfiles.section,
+      perimeter: this.sectionProfiles.perimeter,
+      size1: this.sectionProfiles.size1,
+      size2: this.sectionProfiles.size2,
+      size3: this.sectionProfiles.size3,
+      size4: this.sectionProfiles.size4,
+      grM: null,
+      size1TolDown: null,
+      size1TolUp: null,
+      size2TolDown: null,
+      size2TolUp: null,
+      size3TolDown: null,
+      size3TolUp: null,
+      size4TolDown: null,
+      size4TolUp: null,
+      usage: "",
+      visSides: "",
+      extrusionSpeed: "",
+      opPerf: "",
+      extrusionSpeedSms: "",
+      opPerfSms: "",
+      tbillet: '',
+      texit: '',
+      puller: '',
+      scrapStart: "",
+      scrapStartSms: "",
+      scrapEnd: "",
+      tension: "",
+      cooling: '',
+      coolingSms: "",
+      coolingAdd: "",
+      rowVersion: null,
+      lastModifiedBy: this.userName,
+      basketOrdering: '',
+      addOperations: '',
+      notesExtrusion: '',
+      important: '',
+      created: new Date(),
+      lastModified: new Date(),
+      modifiedOn: new Date(),
+      inUse: this.sectionProfiles.inUse,
+      ts: '',
+      primaryPress: null,
+      alternativePress: null,
+      thickness: null,
+      sideWidth: null
     }
 
     if (this.profile.id) {

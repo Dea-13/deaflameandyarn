@@ -45,6 +45,7 @@ export class NewMatrixModalComponent implements OnInit {
   public inUseFrom: string = '';
   public isEditableRowsPress = {};
   public isEditableRowsEnd = {};
+  public validation: boolean;
 
   public orderDateOptions = {
     altInput: true,
@@ -54,6 +55,7 @@ export class NewMatrixModalComponent implements OnInit {
   };
   profilesByPress: Array<any> = [];
   profilesEnds: Array<any> = [];
+  alloyArr: Array<any> = [];
 
   constructor(
     private matrixService: MatrixService,
@@ -67,7 +69,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.submitted = false;
+    false;
     this.matrix = this.matrixItem.data;
     this.createMatrixForm = this.formBuilder.group({
       profile: ['', Validators.required],
@@ -170,6 +172,7 @@ export class NewMatrixModalComponent implements OnInit {
     // this.getCorrector();
     this.getMatricologist();
     this.getPress();
+    this.getAlloy();
   }
 
   getProfile() {
@@ -300,6 +303,14 @@ export class NewMatrixModalComponent implements OnInit {
       });
   }
 
+  getAlloy() {
+    this.loading = true;
+    this.matrixService.getAlloy().subscribe((data) => {
+        this.alloyArr = data;
+        this.loading = false;
+      });
+  }
+
   //////////////////////// TABLE PROFILE BY PRESS
 
 
@@ -315,7 +326,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log("add row", rowsLength);
     let emptyRow = {
       pressId: "",
-      channels: "",
+      channels: null,
       alloyFamily: "",
       speed: "",
     };
@@ -323,14 +334,36 @@ export class NewMatrixModalComponent implements OnInit {
     this.columnsFirstTable = [...this.columnsFirstTable];
   }
 
+  fillPressChannels(row) {
+    console.log("fillPressChannels:", row);
+    if(row.channels == null){
+      row.channels = 2;
+    }
+  }
+
+  pressValidation(row: any): boolean {
+    console.log("invalid++++++:", row);
+    if (row.pressId == "") {
+      return false;
+    } else if (row.channels == null) {
+      return false;
+    } else if (row.alloyFamily == "") {
+      return false;
+    } else if (row.speed == "") {
+      return false;
+    } else {
+      return true
+    }
+  }
+
   saveRowsPress(rowsLength, row, ind) {
-    console.log("save row", rowsLength, row, ind);
+    console.log("save row", rowsLength, row, ind, this.createMatrixForm.controls);
     this.isEditableRowsPress[ind] = false;
     let flag = false;
     let obj;
     for(let i=0; i < this.columnsFirstTable.length; i++){
-      if(this.columnsFirstTable[i].profileId){
-        if(!row.profileId && (this.columnsFirstTable[i].pressId == row.pressId && this.columnsFirstTable[i].alloyFamily == row.alloyFamily)){
+      if(this.columnsFirstTable[i].id){
+        if(!row.id && (this.columnsFirstTable[i].pressId == row.pressId && this.columnsFirstTable[i].alloyFamily == row.alloyFamily)){
           console.log('Duplicate row');
           Swal.fire({
             position: 'bottom-end',
@@ -346,65 +379,108 @@ export class NewMatrixModalComponent implements OnInit {
     }
 
     if(!flag){
-      obj = {
-        pressId: row.pressId,
-        priority: row.priority,
-        channels: row.channels,
-        speed: row.speed,
-        alloyFamily: row.alloyFamily,
-        created: this.userName, //?????????
-        lastModified: new Date(),
-        rowVersion: 1,
-        lastModifiedBy: this.userName,
-      }
+      this.validation = this.pressValidation(rowsLength[ind]);
+      if (this.validation) {
+        obj = {
+          profileId: this.createMatrixForm.controls.profile.value.id,
+          pressId: row.pressId,
+          priority: row.priority,
+          channels: row.channels,
+          speed: row.speed,
+          kgperHour: row.kgperHour == undefined ? "" : row.kgperHour,
+          alloyFamily: row.alloyFamily,
+          maxLengthPress: row.maxLengthPress == undefined ? null : row.maxLengthPress,
+          calculatedProductivity: row.calculatedProductivity == undefined ? true : row.calculatedProductivity,
+          firstBilletTemp: row.firstBilletTemp == undefined ? "" : row.firstBilletTemp,
+          billetTemp: row.billetTemp == undefined ? "" : row.billetTemp,
+          exitTemp: row.exitTemp == undefined ? "" : row.exitTemp,
+          pullerForce: row.pullerForce == undefined ? "" : row.pullerForce,
+          maxWaitAfterBd: row.maxWaitAfterBd == undefined ? "" : row.maxWaitAfterBd,
+          ovAl: row.ovAl == undefined ? "" : row.ovAl,
+          coolingExit: row.coolingExit == undefined ? "" : row.coolingExit,
+          coolingHotSaw: row.coolingHotSaw == undefined ? "" : row.coolingHotSaw,
+          coolingTable: row.coolingTable == undefined ? "" : row.coolingTable,
+          streching: row.streching == undefined ? "" : row.streching,
+          scrapStart: row.scrapStart == undefined ? null : row.scrapStart,
+          scrapEnd: row.scrapEnd == undefined ? null : row.scrapEnd,
+          coolingExit2: row.coolingExit2 == undefined ? "" : row.coolingExit2,
+          coolingExit3: row.coolingExit3 == undefined ? "" : row.coolingExit3,
+          coolingExit4: row.coolingExit4 == undefined ? "" : row.coolingExit4,
+          coolingHotSaw2: row.coolingHotSaw2 == undefined ? "" : row.coolingHotSaw2,
+          coolingTable2: row.coolingTable2 == undefined ? "" : row.coolingTable2,
+          coolingW11: row.coolingW11 == undefined ? "" : row.coolingW11,
+          coolingW12: row.coolingW12 == undefined ? "" : row.coolingW12,
+          coolingW21: row.coolingW21 == undefined ? "" : row.coolingW21,
+          coolingW22: row.coolingW22 == undefined ? "" : row.coolingW22,
+          coolingW31: row.coolingW31 == undefined ? "" : row.coolingW31,
+          coolingW32: row.coolingW32 == undefined ? "" : row.coolingW32,
+          coolingW41: row.coolingW41 == undefined ? "" : row.coolingW41,
+          coolingW42: row.coolingW42 == undefined ? "" : row.coolingW42,
+          coolingW51: row.coolingW51 == undefined ? "" : row.coolingW51,
+          coolingW52: row.coolingW52 == undefined ? "" : row.coolingW52,
+          taper: row.taper == undefined ? "" : row.taper,
+          created: this.userName, //?????????
+          lastModified: new Date(),//?????????
+          rowVersion: row.rowVersion == undefined ? ind : row.rowVersion,//?????????
+          lastModifiedBy: this.userName,//?????????
+        }
 
-      if(row.profileId){
-        obj.profileId = row.profileId;
-        this.matrixService.updateRowsPress(obj).subscribe(matrixService => {
-          this.getProfilesByPress();
-          this.loading = false;
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'success',
-            title: this.translateSnackBar.saveMsg ,
-            showConfirmButton: false,
-            timer: 2000
-          })
-        },
-          (error) => {
+        if(row.id){
+          obj.id = row.id;
+          this.matrixService.updateRowsPress(row).subscribe(matrixService => {
+            this.getProfilesByPress();
+            this.loading = false;
             Swal.fire({
               position: 'bottom-end',
-              icon: 'warning',
-              title: 'Error',
+              icon: 'success',
+              title: this.translateSnackBar.saveMsg ,
               showConfirmButton: false,
               timer: 2000
             })
+          },
+            (error) => {
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              this.loading = false;
+            }
+          );
+        } else {
+          this.matrixService.createRowsPress(obj).subscribe(matrixService => {
+            this.getProfilesByPress();
             this.loading = false;
-          }
-        );
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: this.translateSnackBar.saveMsg ,
+              showConfirmButton: false,
+              timer: 2000
+            })
+          },
+            (error) => {
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              this.loading = false;
+            }
+          );
+        }
       } else {
-        this.matrixService.createRowsPress(obj).subscribe(matrixService => {
-          this.getProfilesByPress();
-          this.loading = false;
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'success',
-            title: this.translateSnackBar.saveMsg ,
-            showConfirmButton: false,
-            timer: 2000
-          })
-        },
-          (error) => {
-            Swal.fire({
-              position: 'bottom-end',
-              icon: 'warning',
-              title: 'Error',
-              showConfirmButton: false,
-              timer: 2000
-            })
-            this.loading = false;
-          }
-        );
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.fillAllMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
     }
   }
@@ -412,7 +488,7 @@ export class NewMatrixModalComponent implements OnInit {
   deleteRowsPress(rowsLength, row, ind) {
     console.log("delete row", rowsLength, ind);
     this.isEditableRowsPress[ind] = false;
-    this.matrixService.deleteRowsPress(row.profileId).subscribe(matrixService => {
+    this.matrixService.deleteRowsPress(row.id).subscribe(matrixService => {
       this.getProfilesByPress();
       this.loading = false;
       Swal.fire({
@@ -451,12 +527,34 @@ export class NewMatrixModalComponent implements OnInit {
     console.log("add row", rowsLength);
     let emptyRow = {
       alloyFamily: "",
-      channels: "",
-      lengthEnd: "",
-      lengthStart: "",
+      channels: null,
+      lengthEnd: null,
+      lengthStart: null,
     };
     this.columnsSecondTable.push(emptyRow);
     this.columnsSecondTable = [...this.columnsSecondTable];
+  }
+
+  fillEndChannels(row) {
+    console.log("fillEndChannels:", row);
+    if(row.channels == null){
+      row.channels = 2;
+    }
+  }
+
+  pressEndValidation(row: any): boolean {
+    console.log("invalid++++++:", row);
+    if (row.alloyFamily == "") {
+      return false;
+    } else if (row.channels == null) {
+      return false;
+    } else if (row.lengthEnd == null) {
+      return false;
+    } else if (row.lengthStart == null) {
+      return false;
+    } else {
+      return true
+    }
   }
 
   saveRowsEnd(rowsLength, row, ind) {
@@ -464,14 +562,14 @@ export class NewMatrixModalComponent implements OnInit {
     this.isEditableRowsEnd[ind] = false;
     let flag = false;
     let obj;
-    for(let i=0; i < this.columnsSecondTable.length; i++){
-      if(this.columnsSecondTable[i].profileId){
-        if(!row.profileId && (this.columnsSecondTable[i].alloyFamily == row.alloyFamily && this.columnsSecondTable[i].lengthEnd == row.lengthEnd)){
+    for (let i = 0; i < this.columnsSecondTable.length; i++) {
+      if (this.columnsSecondTable[i].profileId) {
+        if (!row.profileId && this.columnsSecondTable[i].alloyFamily == row.alloyFamily) {
           console.log('Duplicate row');
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',
-            title: this.translateSnackBar.dublicateMSg,
+            title: this.translateSnackBar.dublicateAlloyMSg,
             showConfirmButton: false,
             timer: 2000
           })
@@ -481,68 +579,75 @@ export class NewMatrixModalComponent implements OnInit {
       }
     }
 
-
-
-    if(!flag){
-      obj = {
-        pressId: row.pressId,
-        channels: row.channels,
-        alloyFamily: row.alloyFamily,
-        lengthStart: row.lengthStart,
-        lengthEnd: row.lengthEnd,
-        created: this.userName, //?????????
-        lastModified: new Date(),
-        rowVersion: 1,
-        lastModifiedBy: this.userName,
-      }
-
-      if(row.profileId){
-        obj.profileId = row.profileId;
-        this.matrixService.updateRowsEnd(obj).subscribe(matrixService => {
-          this.getProfilesEnds();
-          this.loading = false;
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'success',
-            title: this.translateSnackBar.saveMsg ,
-            showConfirmButton: false,
-            timer: 2000
-          })
-        },
-          (error) => {
+    if (!flag) {
+      this.validation = this.pressEndValidation(rowsLength[ind]);
+      if (this.validation) {
+        obj = {
+          profileId: this.createMatrixForm.controls.profile.value.id,
+          channels: row.channels,
+          alloyFamily: row.alloyFamily,
+          lengthStart: row.lengthStart,
+          lengthEnd: row.lengthEnd,
+          lastModified: new Date(),
+          rowVersion: row.rowVersion == undefined ? ind : row.rowVersion,
+          lastModifiedBy: this.userName,
+        }
+        console.log('obj End', obj, row);
+        if (row.profileId) {
+          this.matrixService.updateRowsEnd(row).subscribe(matrixService => {
+            this.getProfilesEnds();
+            this.loading = false;
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
-              title: 'Error',
+              title: this.translateSnackBar.saveMsg,
               showConfirmButton: false,
               timer: 2000
             })
+          },
+            (error) => {
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              this.loading = false;
+            }
+          );
+        } else {
+          this.matrixService.createRowsEnd(obj).subscribe(matrixService => {
+            this.getProfilesEnds();
             this.loading = false;
-          }
-        );
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: this.translateSnackBar.saveMsg,
+              showConfirmButton: false,
+              timer: 2000
+            })
+          },
+            (error) => {
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              this.loading = false;
+            }
+          );
+        }
       } else {
-        this.matrixService.createRowsEnd(obj).subscribe(matrixService => {
-          this.getProfilesEnds();
-          this.loading = false;
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'success',
-            title: this.translateSnackBar.saveMsg ,
-            showConfirmButton: false,
-            timer: 2000
-          })
-        },
-          (error) => {
-            Swal.fire({
-              position: 'bottom-end',
-              icon: 'success',
-              title: 'Error',
-              showConfirmButton: false,
-              timer: 2000
-            })
-            this.loading = false;
-          }
-        );
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.fillAllMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
     }
   }
@@ -556,7 +661,7 @@ export class NewMatrixModalComponent implements OnInit {
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
-        title: this.translateSnackBar.deleteMsg ,
+        title: this.translateSnackBar.deleteMsg,
         showConfirmButton: false,
         timer: 2000
       })
@@ -564,8 +669,8 @@ export class NewMatrixModalComponent implements OnInit {
       (error) => {
         Swal.fire({
           position: 'bottom-end',
-          icon: 'success',
-          title: this.translateSnackBar.deleteMsg ,
+          icon: 'warning',
+          title: 'Error',
           showConfirmButton: false,
           timer: 2000
         })
@@ -574,7 +679,6 @@ export class NewMatrixModalComponent implements OnInit {
       }
     );
   }
-
 
   submitForm() {
     console.log(

@@ -372,7 +372,7 @@
                     <table class="clasic-table">
                       <thead>
                         <th>
-                          <button class="add-button" (click)="addRowPress(columnsFirstTable)">
+                          <button class="add-button" (click)="addRowPress(columnsFirstTable)" [disabled]="columnsFirstTable.length === 0">
                             <i class="fa fa-plus-circle"></i>
                           </button>
                         </th>
@@ -385,15 +385,15 @@
                         <tr *ngFor="let rowPress of columnsFirstTable; let i = index">
                           <td class="width-10">
                             <div class="flex">
-                              <span *ngIf="!this.isEditableRowsPress[i] && rowPress.profileId"
+                              <span *ngIf="!this.isEditableRowsPress[i] && rowPress.id"
                                 (click)="this.isEditableRowsPress[i]=!this.isEditableRowsPress[i];$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="edit" class="mr-25" title="Modify"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsPress[i] || !rowPress.profileId"
+                              <span *ngIf="this.isEditableRowsPress[i] || !rowPress.id"
                                 (click)="saveRowsPress(columnsFirstTable, rowPress, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="save" class="mr-25" title="Save"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsPress[i] && rowPress.profileId"
+                              <span *ngIf="this.isEditableRowsPress[i] && rowPress.id"
                                 (click)="deleteRowsPress(columnsFirstTable, rowPress, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="delete" class="mr-25" title="Delete"></i>
                               </span>
@@ -405,7 +405,11 @@
                               </ng-select>
                           </td>
                           <td><input class="form-control input" [(ngModel)]="rowPress.channels" type="text"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowPress.alloyFamily" type="text"></td>
+                          <td>
+                            <ng-select [(ngModel)]="rowPress.alloyFamily" (ngModelChange)="fillPressChannels(rowPress)" appendTo="body">
+                              <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
+                            </ng-select>
+                          </td>
                           <td><input class="form-control input" [(ngModel)]="rowPress.speed" type="text"></td>
                         </tr>
                       </tbody>
@@ -416,7 +420,7 @@
                     <table class="clasic-table">
                       <thead>
                         <th>
-                          <button class="add-button" (click)="addRowEnd(columnsSecondTable)">
+                          <button class="add-button" (click)="addRowEnd(columnsSecondTable)" [disabled]="columnsSecondTable.length === 0">
                             <i class="fa fa-plus-circle"></i>
                           </button>
                         </th>
@@ -443,9 +447,13 @@
                               </span>
                             </div>
                           </td>
-                          <td><input class="form-control input" [(ngModel)]="rowEnd.alloyFamily" type="text"></td>
+                          <td>
+                            <ng-select [(ngModel)]="rowEnd.alloyFamily" appendTo="body">
+                              <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
+                            </ng-select>
+                          </td>
                           <td><input class="form-control input" [(ngModel)]="rowEnd.channels" type="text"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowEnd.lengthEnd" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowEnd.lengthEnd" (input)="fillEndChannels(rowEnd)" type="text"></td>
                           <td><input class="form-control input" [(ngModel)]="rowEnd.lengthStart" type="text"></td>
                         </tr>
                       </tbody>

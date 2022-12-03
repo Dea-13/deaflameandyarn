@@ -41,6 +41,7 @@ export class InformationProfilesComponent implements OnInit {
     'notesExtrusion',
     'important',
     'inUse',
+    'star'
   ];
 
   public urls = [
@@ -384,5 +385,30 @@ export class InformationProfilesComponent implements OnInit {
         })
       }
     });
+  }
+
+  deleteProfile(row) {
+    this.profilesService.deleteProfile(row.id).subscribe(profilesService => {
+      this.getRequest(10);
+      this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.deleteMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    },
+      (error) => {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: 'Error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.loading = false;
+      }
+    );
   }
 }

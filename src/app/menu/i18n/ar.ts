@@ -324,6 +324,8 @@ export const locale = {
       successLogin: '',
       errorLogin: '',
       dublicateMSg: '',
+      dublicateAlloyMSg: '',
+      fillAllMsg: '',
 
     }
   }

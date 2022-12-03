@@ -129,6 +129,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/press`);
   }
 
+  getAlloy() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/Alloy/40`);
+  }
+
   getProfilesByPress(id:number) {
     return this._http.get<any>(`${environment.apiUrl}ProfilesByPress/${id}`);
   }

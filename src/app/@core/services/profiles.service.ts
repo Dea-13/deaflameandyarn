@@ -58,4 +58,8 @@ export class ProfilesService {
     const data = JSON.stringify(profile);
     return this._http.put(`${environment.apiUrl}Profiles`, data);
   }
+
+  deleteProfile(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}Profiles/${id}`);
+  }
 }

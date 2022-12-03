@@ -325,6 +325,8 @@ export const locale = {
       successLogin: 'Welcome! You have successfully logged into your account!',
       errorLogin: 'Wrong user or password.',
       dublicateMSg: 'You have dublicating rows!',
+      dublicateAlloyMSg: 'Row with this alloy already exists, please select another!',
+      fillAllMsg: 'Please fill all fields!',
     }
   }
 }
