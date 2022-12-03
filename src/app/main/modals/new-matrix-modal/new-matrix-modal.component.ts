@@ -502,8 +502,8 @@ export class NewMatrixModalComponent implements OnInit {
       (error) => {
         Swal.fire({
           position: 'bottom-end',
-          icon: 'success',
-          title: this.translateSnackBar.deleteMsg ,
+          icon: 'warning',
+          title: 'Error',
           showConfirmButton: false,
           timer: 2000
         })
