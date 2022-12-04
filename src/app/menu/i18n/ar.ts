@@ -326,7 +326,10 @@ export const locale = {
       dublicateMSg: '',
       dublicateAlloyMSg: '',
       fillAllMsg: '',
-
+      total: '',
+      times: '',
+      usedIn: '',
+      inUseFrom: '',
     }
   }
 }

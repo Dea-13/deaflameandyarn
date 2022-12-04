@@ -327,6 +327,10 @@ export const locale = {
       dublicateMSg: 'You have dublicating rows!',
       dublicateAlloyMSg: 'Row with this alloy already exists, please select another!',
       fillAllMsg: 'Please fill all fields!',
+      total: 'Total',
+      times: 'times',
+      usedIn: 'used in',
+      inUseFrom: 'In use since',
     }
   }
 }
