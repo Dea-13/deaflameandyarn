@@ -331,6 +331,7 @@ export const locale = {
       times: 'times',
       usedIn: 'used in',
       inUseFrom: 'In use since',
+      noDataHeader: 'No usage data',
     }
   }
 }

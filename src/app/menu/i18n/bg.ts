@@ -331,6 +331,7 @@ export const locale = {
       times: 'пъти',
       usedIn: 'използван в',
       inUseFrom: 'В употреба от',
+      noDataHeader: 'Няма данни за употреба',
     }
   }
 }

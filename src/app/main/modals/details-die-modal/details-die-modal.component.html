@@ -18,7 +18,7 @@
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
         <div class="col-sm-12 margin-10">
           <h3>{{ translateSnackBar.matrix }} {{dieRow.dieId}}</h3>
-          <p>
+          <p *ngIf="!emptyDataHeader">
             <i>
               {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
               {{ translateSnackBar.usedIn }} <b>{{resourceName}}</b> -
@@ -26,6 +26,7 @@
               {{ translateSnackBar.total }}: <b>{{sumTotalKg}}</b> {{ translateSnackBar.kg }}
             </i>
           </p>
+          <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
         </div>
         <div class="col-sm-12 flex margin-10">
           <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">

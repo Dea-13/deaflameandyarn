@@ -44,6 +44,7 @@ export class DetailsDieModalComponent implements OnInit {
   sumtotalUsed: number = 0;
   resourceName: string = '';
   inUseFrom: string = '';
+  emptyDataHeader: boolean = false;
 
   constructor(
     private toastrService: ToastrService,
@@ -95,12 +96,17 @@ export class DetailsDieModalComponent implements OnInit {
     this.loading = true;
     this.matrixService.getHeaderDetails(this.dieRow.id).subscribe(data => {
       console.log("getHeaderDetails", data);
-      for(let i=0; i < data.length; i++){
-        this.sumTotalKg = this.sumTotalKg + data[i].totalKg;
-        this.sumtotalUsed = this.sumtotalUsed + data[i].totalUsed;
-        this.resourceName = this.resourceName.concat(data[i].resourceName).concat("(").concat(data[i].totalUsed).concat(")").concat(", ");
-        this.inUseFrom = data[data.length-1].inUseFrom;
+      if(data.length > 0){
+        for(let i=0; i < data.length; i++){
+          this.sumTotalKg = this.sumTotalKg + data[i].totalKg;
+          this.sumtotalUsed = this.sumtotalUsed + data[i].totalUsed;
+          this.resourceName = this.resourceName.concat(data[i].resourceName).concat("(").concat(data[i].totalUsed).concat(")").concat(", ");
+          this.inUseFrom = data[data.length-1].inUseFrom;
+        }
+      } else {
+        this.emptyDataHeader = true;
       }
+
       console.log("this.headerDetails", this.sumTotalKg, this.sumtotalUsed, this.resourceName, this.inUseFrom);
       this.loading = false;
     });

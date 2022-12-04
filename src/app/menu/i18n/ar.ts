@@ -330,6 +330,7 @@ export const locale = {
       times: '',
       usedIn: '',
       inUseFrom: '',
+      noDataHeader: '',
     }
   }
 }
