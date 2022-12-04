@@ -188,7 +188,7 @@ export class MatrixService {
   }
 
   getHeaderDetails(id:number) {
-    return this._http.get<any>(`${environment.apiUrl}Dies/dieHistory/79116`);
+    return this._http.get<any>(`${environment.apiUrl}Dies/dieHistory/${id}`);
   }
 
   createMatrix(matrix: any) {
