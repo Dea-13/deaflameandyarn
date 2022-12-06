@@ -327,6 +327,11 @@ export const locale = {
       dublicateMSg: 'Имате дублиращи се записи!',
       dublicateAlloyMSg: 'Запис с тази сплав вече съществува, моля изберете друга!',
       fillAllMsg: 'Моля, попълнете всички полета!',
+      total: 'Общо',
+      times: 'пъти',
+      usedIn: 'използван в',
+      inUseFrom: 'В употреба от',
+      noDataHeader: 'Няма данни за употреба',
     }
   }
 }

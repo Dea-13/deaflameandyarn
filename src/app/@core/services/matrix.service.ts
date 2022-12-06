@@ -187,6 +187,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}ProductionData/GetExtrusionData/${id}`);
   }
 
+  getHeaderDetails(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/dieHistory/${id}`);
+  }
+
   createMatrix(matrix: any) {
     const data = JSON.stringify(matrix);
     return this._http.post<any>(`${environment.apiUrl}`, data);
