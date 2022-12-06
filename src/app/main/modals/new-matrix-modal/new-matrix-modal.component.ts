@@ -419,10 +419,14 @@ export class NewMatrixModalComponent implements OnInit {
           coolingW51: row.coolingW51 == undefined ? "" : row.coolingW51,
           coolingW52: row.coolingW52 == undefined ? "" : row.coolingW52,
           taper: row.taper == undefined ? "" : row.taper,
-          created: new Date(), //?????????
+          // created: new Date(), //?????????
           lastModified: new Date(),//?????????
           rowVersion: row.rowVersion == undefined ? ind : row.rowVersion,//?????????
           lastModifiedBy: this.userName,//?????????
+        }
+
+        if(!row.id){
+          obj.created = new Date();
         }
 
         if(row.id){
