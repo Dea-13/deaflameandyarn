@@ -96,75 +96,75 @@ export const menu: CoreMenu[] = [
                 icon: 'trash',
                 url: 'api/scrap'
               },
-              // {
-              //   id: 'newmatrix',
-              //   title: 'New Matrix',
-              //   translate: 'MENU.NEWMATRIX',
-              //   type: 'item',
-              //   icon: 'codesandbox',
-              //   url: 'api/new-matrix'
-              // },
+              {
+                id: 'newmatrix',
+                title: 'New Matrix--------',
+                translate: 'MENU.NEWMATRIX',
+                type: 'item',
+                icon: 'codesandbox',
+                url: 'api/new-matrix'
+              },
             ]
           },
-          // {
-          //   id: 'inuse',
-          //   title: 'In use',
-          //   translate: 'MENU.INUSE',
-          //   type: 'collapsible',
-          //   icon: 'play',
-          //   children: [
-          //     {
-          //       id: 'using',
-          //       title: 'In Use',
-          //       translate: 'MENU.USINGMENU',
-          //       type: 'item',
-          //       icon: 'circle',
-          //       url: 'api/in-use-matrix'
-          //     },
-          //     {
-          //       id: 'nomotion',
-          //       title: 'No Motion',
-          //       translate: 'MENU.NOMOTION',
-          //       type: 'item',
-          //       icon: 'circle',
-          //       url: 'api/no-motion'
-          //     },
-          //     {
-          //       id: 'marked',
-          //       title: 'Marked',
-          //       translate: 'MENU.MARKED',
-          //       type: 'item',
-          //       icon: 'circle',
-          //       url: 'api/marked'
-          //     },
-          //     {
-          //       id: 'test',
-          //       title: 'Test',
-          //       translate: 'MENU.TEST',
-          //       type: 'item',
-          //       icon: 'circle',
-          //       url: 'api/test'
-          //     },
-          //   ]
-          // },
+          {
+            id: 'inuse',
+            title: 'In use',
+            translate: 'MENU.INUSE--------',
+            type: 'collapsible',
+            icon: 'play',
+            children: [
+              {
+                id: 'using',
+                title: 'In Use--------',
+                translate: 'MENU.USINGMENU',
+                type: 'item',
+                icon: 'circle',
+                url: 'api/in-use-matrix'
+              },
+              {
+                id: 'nomotion',
+                title: 'No Motion--------',
+                translate: 'MENU.NOMOTION',
+                type: 'item',
+                icon: 'circle',
+                url: 'api/no-motion'
+              },
+              {
+                id: 'marked',
+                title: 'Marked--------',
+                translate: 'MENU.MARKED',
+                type: 'item',
+                icon: 'circle',
+                url: 'api/marked'
+              },
+              {
+                id: 'test',
+                title: 'Test--------',
+                translate: 'MENU.TEST',
+                type: 'item',
+                icon: 'circle',
+                url: 'api/test'
+              },
+            ]
+          },
         ]
       },
-      // {
-      //   id: 'movement',
-      //   title: 'Movement Die',
-      //   translate: 'MENU.MOVEMENTMATRIX',
-      //   type: 'item',
-      //   icon: 'move',
-      //   url: 'api/movement-matrix'
-      // },
-      // {
-      //   id: 'userview',
-      //   title: 'User view',
-      //   translate: 'MENU.USERVIEW',
-      //   type: 'item',
-      //   icon: 'eye',
-      //   url: 'api/user-view'
-      // },
+      {
+        id: 'movement',
+        title: 'Movement Die--------',
+        translate: 'MENU.MOVEMENTMATRIX',
+        type: 'item',
+        icon: 'move',
+        url: 'api/movement-matrix'
+      },
+      {
+        id: 'userview',
+        title: 'User view--------',
+        translate: 'MENU.USERVIEW',
+        type: 'item',
+        icon: 'eye',
+        url: 'api/user-view'
+      },
     ]
   },
   {
@@ -191,7 +191,7 @@ export const menu: CoreMenu[] = [
         children: [
           {
             id: 'products',
-            title: 'Products',
+            title: 'Products--------',
             translate: 'MENU.PRODUCTS',
             type: 'item',
             icon: 'circle',
@@ -201,7 +201,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'rawMaterial',
-        title: 'Raw material for production',
+        title: 'Raw material for production--------',
         translate: 'MENU.RAWMATERIAL',
         type: 'item',
         icon: 'circle',
@@ -267,7 +267,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'extrusionConfirmation',
-        title: 'Extrusion Confirmation',
+        title: 'Extrusion Confirmation--------',
         translate: 'MENU.EXTRUSION',
         type: 'item',
         icon: 'circle',
@@ -275,7 +275,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'sawConfirmation',
-        title: 'Saw Confirmation',
+        title: 'Saw Confirmation--------',
         translate: 'MENU.SAWCONFIRMATION',
         type: 'item',
         icon: 'circle',
@@ -283,7 +283,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'scrapDeclaration',
-        title: 'Scrap Declaration',
+        title: 'Scrap Declaration--------',
         translate: 'MENU.SCRAPDECLARATION',
         type: 'item',
         icon: 'circle',
@@ -301,7 +301,7 @@ export const menu: CoreMenu[] = [
   },
   {
     id: 'reports',
-    title: 'Reports',
+    title: 'Reports--------',
     translate: 'MENU.REPORTS',
     type: 'item',
     icon: 'file-text',
@@ -309,7 +309,7 @@ export const menu: CoreMenu[] = [
   },
   {
     id: 'settings',
-    title: 'Settings',
+    title: 'Settings--------',
     translate: 'MENU.SETTINGS',
     type: 'item',
     icon: 'settings',
