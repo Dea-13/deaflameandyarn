@@ -331,6 +331,9 @@ export const locale = {
       usedIn: '',
       inUseFrom: '',
       noDataHeader: '',
+      dieValidMsg: '',
+      brakMsg: '',
+      statedMsg: '',
     }
   }
 }

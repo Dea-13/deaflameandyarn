@@ -332,6 +332,9 @@ export const locale = {
       usedIn: 'used in',
       inUseFrom: 'In use since',
       noDataHeader: 'No usage data',
+      dieValidMsg: 'You muts have filled Profile, Die and Status.',
+      brakMsg: 'Are you sure you want to mark a matrix as scrapped? This action cannot be undone!',
+      statedMsg: 'The operation was completed successfully! Would you like to print a request to the manufacturer?',
     }
   }
 }
