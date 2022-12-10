@@ -387,7 +387,7 @@ export class NewMatrixModalComponent implements OnInit {
           priority: row.priority,
           channels: row.channels,
           speed: row.speed,
-          kgperHour: row.kgperHour == undefined ? "" : row.kgperHour,
+          kgperHour: row.kgperHour == undefined ? null : row.kgperHour,
           alloyFamily: row.alloyFamily,
           maxLengthPress: row.maxLengthPress == undefined ? null : row.maxLengthPress,
           calculatedProductivity: row.calculatedProductivity == undefined ? true : row.calculatedProductivity,
@@ -419,10 +419,14 @@ export class NewMatrixModalComponent implements OnInit {
           coolingW51: row.coolingW51 == undefined ? "" : row.coolingW51,
           coolingW52: row.coolingW52 == undefined ? "" : row.coolingW52,
           taper: row.taper == undefined ? "" : row.taper,
-          created: this.userName, //?????????
+          // created: new Date(), //?????????
           lastModified: new Date(),//?????????
           rowVersion: row.rowVersion == undefined ? ind : row.rowVersion,//?????????
           lastModifiedBy: this.userName,//?????????
+        }
+
+        if(!row.id){
+          obj.created = new Date();
         }
 
         if(row.id){
