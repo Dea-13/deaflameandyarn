@@ -56,6 +56,14 @@ export class NewMatrixModalComponent implements OnInit {
   profilesByPress: Array<any> = [];
   profilesEnds: Array<any> = [];
   alloyArr: Array<any> = [];
+  submitStated: boolean = false;
+  submitConfirm: boolean = false;
+  submitInUse: boolean = false;
+  submitBrak: boolean = false;
+  submitDispatched: boolean = false;
+  submitReclamation: boolean = false;
+  submitBlocked: boolean = false;
+  submitRepair: boolean = false;
 
   constructor(
     private matrixService: MatrixService,
@@ -72,44 +80,44 @@ export class NewMatrixModalComponent implements OnInit {
     false;
     this.matrix = this.matrixItem.data;
     this.createMatrixForm = this.formBuilder.group({
-      profile: ['', Validators.required],
-      matrix: ['', Validators.required],
-      status: ['', Validators.required],
-      channels: ['', Validators.required],
-      holder: ['', Validators.required],
-      oporenPrysten: ['', Validators.required],
-      support: ['', Validators.required],
-      pressWasher: ['', Validators.required],
-      type: ['', Validators.required],
-      anodizingQuality: ['', Validators.required],
-      container: ['', Validators.required],
-      matrixComplect: ['', Validators.required],
-      tulling1: ['', Validators.required],
-      tulling2: ['', Validators.required],
-      dataOrder: ['', Validators.required],
-      dataConfirmation: ['', Validators.required],
-      dataExpedition: ['', Validators.required],
-      inUseFrom: ['', Validators.required],
-      client: ['', Validators.required],
-      maker: ['', Validators.required],
-      applicant: ['', Validators.required],
-      matricologist: ['', Validators.required],
-      price: ['', Validators.required],
-      dieID: ['', Validators.required],
-      grM: ['', Validators.required],
-      requiredTest: ['', Validators.required],
-      price_Inv: ['', Validators.required],
-      primaryResource: ['', Validators.required],
-      altResource1: ['', Validators.required],
-      altResource2: ['', Validators.required],
-      storageGroup: ['', Validators.required],
-      storageFreePlace: ['', Validators.required],
-      remarks: ['', Validators.required],
-      usageType: ['', Validators.required],
-      notes: ['', Validators.required],
-      scrapReason: ['', Validators.required],
-      reasonForPurchase: ['', Validators.required],
-      reasonForPurchaseOther: ['', Validators.required],
+      profile: [''],
+      matrix: [''],
+      status: [''],
+      channels: [''],
+      holder: [''],
+      oporenPrysten: [''],
+      support: [''],
+      pressWasher: [''],
+      type: [''],
+      anodizingQuality: [''],
+      container: [''],
+      matrixComplect: [''],
+      tulling1: [''],
+      tulling2: [''],
+      dataOrder: [''],
+      dataConfirmation: [''],
+      dataExpedition: [''],
+      inUseFrom: [''],
+      client: [''],
+      maker: [''],
+      applicant: [''],
+      matricologist: [''],
+      price: [''],
+      dieID: [''],
+      grM: [''],
+      requiredTest: [''],
+      price_Inv: [''],
+      primaryResource: [''],
+      altResource1: [''],
+      altResource2: [''],
+      storageGroup: [''],
+      storageFreePlace: [''],
+      remarks: [''],
+      usageType: [''],
+      notes: [''],
+      scrapReason: [''],
+      reasonForPurchase: [''],
+      reasonForPurchaseOther: [''],
     });
 
     if (this.matrix.id) {
@@ -158,7 +166,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.translate.get('lang').subscribe((snackBar: string) => {this.language = snackBar;});
+    this.translate.get('lang').subscribe((snackBar: string) => { this.language = snackBar; });
     this.getStatus();
     this.getProfile();
     this.getChannels();
@@ -173,14 +181,38 @@ export class NewMatrixModalComponent implements OnInit {
     this.getMatricologist();
     this.getPress();
     this.getAlloy();
+
+    this.createMatrixForm.disable();
+    this.createMatrixForm.controls.profile.enable();
+    this.createMatrixForm.controls.status.enable();
+  }
+
+  fillFormValid(){
+    this.submitStated = false;
+    this.submitConfirm = false;
+    this.submitInUse = false;
+    this.submitBrak = false;
+    this.submitDispatched = false;
+    this.submitReclamation = false;
+    this.submitBlocked = false;
+    this.submitRepair = false;
+    console.log('fillFormValid', this.createMatrixForm.controls.profile.value, this.createMatrixForm.controls.matrix.value, this.createMatrixForm.controls.status.value)
+    if(this.createMatrixForm.controls.profile.value && this.createMatrixForm.controls.status.value){
+      this.createMatrixForm.enable();
+      this.createMatrixForm.controls.matrix.disable();
+    } else {
+      this.createMatrixForm.disable();
+      this.createMatrixForm.controls.profile.enable();
+      this.createMatrixForm.controls.status.enable();
+    }
   }
 
   getProfile() {
     this.loading = true;
     this.matrixService.getProfile().subscribe((data) => {
-        this.profileArr = data;
-        this.loading = false;
-      });
+      this.profileArr = data;
+      this.loading = false;
+    });
   }
 
   getMatrix() {
@@ -194,21 +226,21 @@ export class NewMatrixModalComponent implements OnInit {
   getStatus() {
     this.loading = true;
     this.matrixService.getStatus().subscribe((data) => {
-        this.statusArr = data;
-        this.loading = false;
-      });
-  }
-
-  redirectToProfiles(){
-    this.activeModal.dismiss();
-    const modalRef = this.modalService.open(NewProfileModalComponent, {});
-    modalRef.componentInstance.profileItem = { 'data': 'new-modal'};
-    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-      if (receivedEntry == true) {}
+      this.statusArr = data;
+      this.loading = false;
     });
   }
 
-  callFunctions(){
+  redirectToProfiles() {
+    this.activeModal.dismiss();
+    const modalRef = this.modalService.open(NewProfileModalComponent, {});
+    modalRef.componentInstance.profileItem = { 'data': 'new-modal' };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry == true) { }
+    });
+  }
+
+  callFunctions() {
     console.log('callFunctions', this.createMatrixForm);
     this.getMatrix();
     this.getProfilesEnds();
@@ -218,97 +250,97 @@ export class NewMatrixModalComponent implements OnInit {
   getChannels() {
     this.loading = true;
     this.matrixService.getChannels(40).subscribe((data) => {
-        this.channelsArr = data;
-        this.loading = false;
-      });
+      this.channelsArr = data;
+      this.loading = false;
+    });
   }
 
   getOpora() {
     this.loading = true;
     this.matrixService.getOpora().subscribe((data) => {
-        this.oporaArr = data;
-        this.loading = false;
-      });
+      this.oporaArr = data;
+      this.loading = false;
+    });
   }
 
   getType() {
     this.loading = true;
     this.matrixService.getType().subscribe((data) => {
-        this.typeArr = data;
-        this.loading = false;
-      });
+      this.typeArr = data;
+      this.loading = false;
+    });
   }
 
   getContainer() {
     this.loading = true;
     this.matrixService.getContainer().subscribe((data) => {
-        this.containerArr = data;
-        this.loading = false;
-      });
+      this.containerArr = data;
+      this.loading = false;
+    });
   }
 
   getBolster1() {
     this.loading = true;
     this.matrixService.getBolster1().subscribe((data) => {
-        this.bolster1 = data;
-        this.loading = false;
-      });
+      this.bolster1 = data;
+      this.loading = false;
+    });
   }
 
   getBolster2() {
     this.loading = true;
     this.matrixService.getBolster2().subscribe((data) => {
-        this.bolster2 = data;
-        this.loading = false;
-      });
+      this.bolster2 = data;
+      this.loading = false;
+    });
   }
 
   getClientName() {
     this.loading = true;
     this.matrixService.getClientName().subscribe((data) => {
-        this.clientNameArr = data;
-        this.loading = false;
-      });
+      this.clientNameArr = data;
+      this.loading = false;
+    });
   }
 
   getProducer() {
     this.loading = true;
     this.matrixService.getProducer().subscribe((data) => {
-        this.producerArr = data;
-        this.loading = false;
-      });
+      this.producerArr = data;
+      this.loading = false;
+    });
   }
 
   getCorrector() {
     this.loading = true;
     this.matrixService.getCorrector().subscribe((data) => {
-        this.correctorArr = data;
-        this.loading = false;
-      });
+      this.correctorArr = data;
+      this.loading = false;
+    });
   }
 
   getMatricologist() {
     this.loading = true;
     this.matrixService.getMatricologist().subscribe((data) => {
-        this.matrologistArr = data;
-        this.loading = false;
-      });
+      this.matrologistArr = data;
+      this.loading = false;
+    });
   }
 
   getPress() {
     this.loading = true;
     this.matrixService.getPress().subscribe((data) => {
-        this.pressArr = data;
-        this.loading = false;
-      });
+      this.pressArr = data;
+      this.loading = false;
+    });
   }
 
   getAlloy() {
     this.loading = true;
     this.matrixService.getAlloy().subscribe((data) => {
-        this.alloyArr = data;
-        this.loading = false;
-      });
+      this.alloyArr = data;
+      this.loading = false;
+    });
   }
 
   //////////////////////// TABLE PROFILE BY PRESS
@@ -336,7 +368,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   fillPressChannels(row) {
     console.log("fillPressChannels:", row);
-    if(row.channels == null){
+    if (row.channels == null) {
       row.channels = 2;
     }
   }
@@ -361,9 +393,9 @@ export class NewMatrixModalComponent implements OnInit {
     this.isEditableRowsPress[ind] = false;
     let flag = false;
     let obj;
-    for(let i=0; i < this.columnsFirstTable.length; i++){
-      if(this.columnsFirstTable[i].id){
-        if(!row.id && (this.columnsFirstTable[i].pressId == row.pressId && this.columnsFirstTable[i].alloyFamily == row.alloyFamily)){
+    for (let i = 0; i < this.columnsFirstTable.length; i++) {
+      if (this.columnsFirstTable[i].id) {
+        if (!row.id && (this.columnsFirstTable[i].pressId == row.pressId && this.columnsFirstTable[i].alloyFamily == row.alloyFamily)) {
           console.log('Duplicate row');
           Swal.fire({
             position: 'bottom-end',
@@ -378,7 +410,7 @@ export class NewMatrixModalComponent implements OnInit {
       }
     }
 
-    if(!flag){
+    if (!flag) {
       this.validation = this.pressValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
@@ -425,11 +457,11 @@ export class NewMatrixModalComponent implements OnInit {
           lastModifiedBy: this.userName,//?????????
         }
 
-        if(!row.id){
+        if (!row.id) {
           obj.created = new Date();
         }
 
-        if(row.id){
+        if (row.id) {
           obj.id = row.id;
           this.matrixService.updateRowsPress(row).subscribe(matrixService => {
             this.getProfilesByPress();
@@ -437,7 +469,7 @@ export class NewMatrixModalComponent implements OnInit {
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
-              title: this.translateSnackBar.saveMsg ,
+              title: this.translateSnackBar.saveMsg,
               showConfirmButton: false,
               timer: 2000
             })
@@ -460,7 +492,7 @@ export class NewMatrixModalComponent implements OnInit {
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
-              title: this.translateSnackBar.saveMsg ,
+              title: this.translateSnackBar.saveMsg,
               showConfirmButton: false,
               timer: 2000
             })
@@ -498,7 +530,7 @@ export class NewMatrixModalComponent implements OnInit {
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
-        title: this.translateSnackBar.deleteMsg ,
+        title: this.translateSnackBar.deleteMsg,
         showConfirmButton: false,
         timer: 2000
       })
@@ -541,7 +573,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   fillEndChannels(row) {
     console.log("fillEndChannels:", row);
-    if(row.channels == null){
+    if (row.channels == null) {
       row.channels = 2;
     }
   }
@@ -685,72 +717,232 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(
-      'submitForm',
-      !this.createMatrixForm.invalid,
-      this.matrix
-    );
-    this.submitted = true;
-    let obj;
-    if (!this.createMatrixForm.invalid) {
-      this.loading = true;
-
-      obj = {
-        // name: this.createMatrixForm.controls.name.value,
-        // department: this.createMatrixForm.controls.department.value,
-        // privilege: this.createMatrixForm.controls.privilege.value,
-      };
-      console.log('obj', obj);
-
-      if (this.matrixItem.id) {
-        //edit
-        obj.id = this.matrix.id;
-        this.matrixService
-          .updateMatrix(obj)
-          .subscribe((matrixService) => {
-            this.activeModal.dismiss();
-            this.passEntry.emit(true);
-            this.loading = false;
-          },
-          (error) => {
-            this.loading = false;
-            Swal.fire({
-              position: 'bottom-end',
-              icon: 'warning',
-              title: 'Error',
-              showConfirmButton: false,
-              timer: 2000
-            })
-          });
-      } else {
-        //create
-        this.matrixService.createMatrix(obj).subscribe(
-          (matrixService) => {
-            this.activeModal.dismiss();
-            this.passEntry.emit(true);
-            this.loading = false;
-          },
-          (error) => {
-            this.loading = false;
-            Swal.fire({
-              position: 'bottom-end',
-              icon: 'warning',
-              title: 'Error',
-              showConfirmButton: false,
-              timer: 2000
-            })
-          }
-        );
+    console.log('submitForm', this.createMatrixForm, this.createMatrixForm.controls.profile.value, this.createMatrixForm.controls.matrix.value, this.createMatrixForm.controls.status.value);
+    if(this.createMatrixForm.controls.profile.value && this.createMatrixForm.controls.matrix.value && this.createMatrixForm.controls.status.value){
+      switch (this.createMatrixForm.controls.status.value) {
+        case 10: { this.submitStatedDie(); } break;
+        case 20: { this.submitConfirmedDie(); } break;
+        case 40: { this.submitInUseDie(); } break;
+        case 35: { this.submitReclamationDie(); } break;
+        case 37: { this.submitRepairDie(); } break;
+        case 50: { this.submitBrakDie(); } break;
+        case 32: { this.submitBlockedDie(); } break;
+        case 30: { this.submitDispatchedDie(); } break;
       }
     } else {
       Swal.fire({
         position: 'bottom-end',
         icon: 'warning',
-        title: this.translateSnackBar.fillMsg ,
+        title: this.translateSnackBar.dieValidMsg,
+        showConfirmButton: false,
+        timer: 3000
+      })
+    }
+
+  }
+
+  submitStatedDie(){
+    this.submitStated = true;
+    if(this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.dataOrder.value){
+      Swal.fire({
+        title: this.translateSnackBar.statedMsg,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7367F0',
+        cancelButtonColor: '#E42728',
+        confirmButtonText: 'Yes!',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-danger ml-1'
+        }
+      }).then((result) => {
+        if (result.value) {
+          this.sendResponce();
+        }
+      });
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
         showConfirmButton: false,
         timer: 2000
       })
     }
+  }
+
+
+
+  submitBlockedDie(){
+    this.submitBlocked = true;
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dataOrder.value
+      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value){
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitRepairDie(){
+    this.submitRepair = true;
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dataOrder.value
+      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value){
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitReclamationDie(){
+    this.submitReclamation = true;
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dataOrder.value
+      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value){
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitConfirmedDie(){
+    this.submitConfirm = true;
+    if(this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value
+      && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value){
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitDispatchedDie(){
+    this.submitDispatched = true;
+    if(this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value
+      && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value
+      && this.createMatrixForm.controls.dataExpedition.value){
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitInUseDie(){
+    this.submitInUse = true;
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.primaryResource.value &&
+      this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value &&
+      this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.inUseFrom.value){
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitBrakDie(){
+    this.submitBrak = true;
+    if(this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value){
+      Swal.fire({
+        title: this.translateSnackBar.brakMsg,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7367F0',
+        cancelButtonColor: '#E42728',
+        confirmButtonText: 'Yes!',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-danger ml-1'
+        }
+      }).then((result) => {
+        if (result.value) {
+          this.sendResponce();
+        }
+      });
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  sendResponce(){
+    let obj = {
+      profile: this.createMatrixForm.controls.profile.value.id,
+      matrix: this.createMatrixForm.controls.matrix.value,
+      status: this.createMatrixForm.controls.status.value,
+      channels: this.createMatrixForm.controls.channels.value,
+      holder: this.createMatrixForm.controls.holder.value,
+      oporenPrysten: this.createMatrixForm.controls.oporenPrysten.value,
+      support: this.createMatrixForm.controls.support.value,
+      pressWasher: this.createMatrixForm.controls.pressWasher.value,
+      type: this.createMatrixForm.controls.type.value,
+      anodizingQuality: this.createMatrixForm.controls.anodizingQuality.value,
+      container: this.createMatrixForm.controls.container.value,
+      matrixComplect: this.createMatrixForm.controls.matrixComplect.value,
+      tulling1: this.createMatrixForm.controls.tulling1.value,
+      tulling2: this.createMatrixForm.controls.tulling2.value,
+      dataOrder: this.createMatrixForm.controls.dataOrder.value[0],
+      dataConfirmation: this.createMatrixForm.controls.dataConfirmation.value[0],
+      dataExpedition: this.createMatrixForm.controls.dataExpedition.value[0],
+      inUseFrom: this.createMatrixForm.controls.inUseFrom.value[0],
+      client: this.createMatrixForm.controls.client.value,
+      maker: this.createMatrixForm.controls.maker.value,
+      applicant: this.createMatrixForm.controls.applicant.value,
+      matricologist: this.createMatrixForm.controls.matricologist.value,
+      price: this.createMatrixForm.controls.price.value,
+      dieID: this.createMatrixForm.controls.dieID.value,
+      grM: this.createMatrixForm.controls.grM.value,
+      requiredTest: this.createMatrixForm.controls.requiredTest.value,
+      price_Inv: this.createMatrixForm.controls.price_Inv.value,
+      primaryResource: this.createMatrixForm.controls.primaryResource.value,
+      altResource1: this.createMatrixForm.controls.altResource1.value,
+      altResource2: this.createMatrixForm.controls.altResource2.value,
+      storageGroup: this.createMatrixForm.controls.storageGroup.value,
+      storageFreePlace: this.createMatrixForm.controls.storageFreePlace.value,
+      remarks: this.createMatrixForm.controls.remarks.value,
+      usageType: this.createMatrixForm.controls.usageType.value,
+      notes: this.createMatrixForm.controls.notes.value,
+      scrapReason: this.createMatrixForm.controls.scrapReason.value,
+      reasonForPurchase: this.createMatrixForm.controls.reasonForPurchase.value,
+      reasonForPurchaseOther: this.createMatrixForm.controls.reasonForPurchaseOther.value,
+    }
+    console.log('send', obj);
   }
 
   closeModal(): void {

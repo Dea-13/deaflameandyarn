@@ -17,7 +17,7 @@
         </div>
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
         <div class="col-sm-12 margin-10">
-          <h3>{{ translateSnackBar.matrix }} {{dieRow.dieId}}</h3>
+          <h3 *ngIf="!emptyDataHeader">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}} ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
           <p *ngIf="!emptyDataHeader">
             <i>
               {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
