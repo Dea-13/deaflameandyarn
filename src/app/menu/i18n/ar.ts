@@ -334,6 +334,8 @@ export const locale = {
       dieValidMsg: '',
       brakMsg: '',
       statedMsg: '',
+      azotirane: '',
+      norm: '',
     }
   }
 }

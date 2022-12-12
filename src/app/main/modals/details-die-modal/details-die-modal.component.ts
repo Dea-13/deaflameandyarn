@@ -46,6 +46,7 @@ export class DetailsDieModalComponent implements OnInit {
   inUseFrom: string = '';
   emptyDataHeader: boolean = false;
   headerInfo: any = {};
+  header: any;
 
   constructor(
     private toastrService: ToastrService,
@@ -97,6 +98,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.loading = true;
     this.matrixService.getHeaderDetails(this.dieRow.id).subscribe(data => {
       console.log("getHeaderDetails", data);
+      this.header = data;
       data.length > 0 ? this.headerInfo = data[0].headerInfo : this.headerInfo = {};
       if(data.length > 0){
         for(let i=0; i < data.length; i++){
