@@ -78,6 +78,14 @@ export const menu: CoreMenu[] = [
                     icon: 'circle',
                     url: 'api/productivity'
                   },
+                  {
+                    id: 'productivity-nitrification',
+                    title: 'Productivity Nitrification',
+                    translate: 'MENU.PRODUCTIVITYNITRIFICATION',
+                    type: 'item',
+                    icon: 'circle',
+                    url: 'api/productivity-nitrification'
+                  },
                   // {
                   //   id: 'stay',
                   //   title: 'Stay',

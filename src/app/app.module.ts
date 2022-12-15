@@ -67,6 +67,7 @@ import { DieScanPageComponent } from './main/pages/die-scan-page/die-scan-page.c
 import { DieScanModalComponent } from './main/modals/die-scan-modal/die-scan-modal.component';
 import { DetailsDieModalComponent } from './main/modals/details-die-modal/details-die-modal.component';
 import { WarehouseListDieModalComponent } from './main/modals/warehouse-list-die-modal/warehouse-list-die-modal.component';
+import { ProductivityNitrificationPageComponent } from './main/pages/productivity-nitrification-page/productivity-nitrification-page.component';
 
 const appRoutes: Routes = [
   {
@@ -133,6 +134,11 @@ const appRoutes: Routes = [
   {
     path: 'api/productivity',
     component: StatedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/productivity-nitrification',
+    component: ProductivityNitrificationPageComponent,
     pathMatch: 'full'
   },
   {
@@ -285,7 +291,8 @@ const appRoutes: Routes = [
     DieScanPageComponent,
     DieScanModalComponent,
     DetailsDieModalComponent,
-    WarehouseListDieModalComponent
+    WarehouseListDieModalComponent,
+    ProductivityNitrificationPageComponent
 
   ],
 

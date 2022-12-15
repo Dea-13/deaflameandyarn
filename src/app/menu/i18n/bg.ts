@@ -42,6 +42,7 @@ export const locale = {
       SAWCONFIRMATION: 'Видях потвърждение--------',
       SCRAPDECLARATION: 'Декларация за скрап--------',
       DIESCANMODULE: 'Модул за сканиране на матрицата',
+      PRODUCTIVITYNITRIFICATION: 'Продуктивност и азотиране',
     },
     translate: {
       matrix: 'Матрица',

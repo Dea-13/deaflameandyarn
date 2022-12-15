@@ -71,6 +71,26 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/${url}`);
   }
 
+  getNitrificationMatrix(offset: number, limit: number, DieId: string, PrimaryResourceName: string, Channels: string, substatus: string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=100&DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}`);
+  }
+
+  getDieID() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/DieId/40`);
+  }
+
+  getChannelsDie() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/Channels/40`);
+  }
+
+  getStatusDie() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/diestatus`);
+  }
+
+  getCurrentResource() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/PrimaryResourceName`);
+  }
+
   ///////////////// MODAL NEW MATRIX
 
   getStatus() {
