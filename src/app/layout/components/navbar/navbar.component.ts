@@ -14,13 +14,14 @@ import { TranslateService } from '@ngx-translate/core';
 // import { User } from 'app/auth/models';
 
 // import { coreConfig } from 'app/app-config';
+import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 import { User } from '../../../auth/models';
 import { AuthenticationService } from '../../../auth/service';
 import { CoreConfigService } from '../../../@core/services/config.service';
 import { CoreMediaService } from '../../../@core/services/media.service';
 import { CoreSidebarService } from '../../../@core/components/core-sidebar/core-sidebar.service';
-
+const { version: appVersion } = require('../../../../../package.json')
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -48,6 +49,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public windowScrolled = false;
   userName: any;
 
+  public appVersion;
+  public env: string;
   // Add .navbar-static-style-on-scroll on scroll using HostListener & HostBinding
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -176,10 +179,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
+    this.appVersion = appVersion;
+    if(environment.apiUrl.includes('192.168.8.84:91') == true || environment.apiUrl.includes('185.177.116.190') == true || environment.apiUrl.includes('localhost') == true){
+      this.env = "Dev";
+    } else if(environment.apiUrl.includes('192.168.8.240/webapi') == true) {
+      this.env = "Prod";
+    } else {
+      this.env = "none";
+    }
     // get the currentUser details from localStorage
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('this.currentUser', this.currentUser);
-    // this.userName = this.currentUser['userName'];
+    this.userName = this.currentUser['userName'];
     // Subscribe to the config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;

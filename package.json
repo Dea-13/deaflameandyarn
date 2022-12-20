@@ -35,7 +35,7 @@
     "electron": "electron",
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:serve": "wait-on tcp:4200 && npm run electron:serve-tsc && electron . --serve",
-    "electron:local": "npm run build:prod && electron .",    
+    "electron:local": "npm run build:prod && electron .",
     "electron:build": "npm run build:prod && electron-builder build",
     "electron:publish": "set GH_TOKEN=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 && electron-builder --win --publish always",
     "test": "ng test --watch=false",
