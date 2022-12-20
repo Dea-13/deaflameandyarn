@@ -1,6 +1,6 @@
 {
   "name": "dms",
-  "version": "11.1.0",
+  "version": "1.0.0",
   "description": "Angular 14 with Electron 19 (Typescript + SASS + Hot Reload)",
   "homepage": "https://github.com/maximegris/dms",
   "author": {
@@ -35,8 +35,9 @@
     "electron": "electron",
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:serve": "wait-on tcp:4200 && npm run electron:serve-tsc && electron . --serve",
-    "electron:local": "npm run build:prod && electron .",
-    "electron:build": "npm run build:prod && electron-builder build --publish=never",
+    "electron:local": "npm run build:prod && electron .",    
+    "electron:build": "npm run build:prod && electron-builder build",
+    "electron:publish": "set GH_TOKEN=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 && electron-builder --win --publish always",
     "test": "ng test --watch=false",
     "test:watch": "ng test",
     "e2e": "npm run build:prod && playwright test -c e2e/playwright.config.ts e2e/",
@@ -81,6 +82,7 @@
     "bs-stepper": "1.7.0",
     "chart.js": "2.9.4",
     "core-js": "3.14.0",
+    "electron-updater": "5.2.1",
     "feather-icons": "4.28.0",
     "file-saver": "2.0.5",
     "flatpickr": "4.6.9",
