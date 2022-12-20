@@ -41,6 +41,7 @@ export const locale = {
       SAWCONFIRMATION: '',
       SCRAPDECLARATION: '',
       DIESCANMODULE: '',
+      PRODUCTIVITYNITRIFICATION: '',
     },
     translate: {
       matrix: '',
@@ -334,6 +335,8 @@ export const locale = {
       dieValidMsg: '',
       brakMsg: '',
       statedMsg: '',
+      azotirane: '',
+      norm: '',
     }
   }
 }

@@ -785,3 +785,6 @@ input[type=radio], input[type=checkbox] {
 .error-date .ng2-flatpickr-input-container, .error-date div{
   border: 1px solid red;
 }
+.main-menu.menu-light .navigation > li > ul li.has-sub > ul > li {
+  margin: 0 3px;
+}

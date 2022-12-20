@@ -42,6 +42,7 @@ export const locale = {
       SAWCONFIRMATION: 'Saw Confirmation--------',
       SCRAPDECLARATION: 'Scrap Declaration--------',
       DIESCANMODULE: 'Die Scan Module',
+      PRODUCTIVITYNITRIFICATION: 'Productivity and nitrification',
     },
     translate: {
       matrix: 'Die',
@@ -335,6 +336,8 @@ export const locale = {
       dieValidMsg: 'You muts have filled Profile, Die and Status.',
       brakMsg: 'Are you sure you want to mark a matrix as scrapped? This action cannot be undone!',
       statedMsg: 'The operation was completed successfully! Would you like to print a request to the manufacturer?',
+      azotirane: 'Nitrogenated',
+      norm: 'Norm',
     }
   }
 }
