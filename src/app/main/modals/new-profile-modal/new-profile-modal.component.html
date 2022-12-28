@@ -537,8 +537,8 @@
         </div>
 
         <div class="col-sm-12 flex margin-10">
-          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
-
+          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">   
+                     
             <img class="center-img" src="{{'data:image/png;base64,' + sectionProfiles.fileData}}">
           </div>
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
@@ -554,9 +554,9 @@
                   <th>{{ translateSnackBar.file }}</th>
                   <!-- <th>{{ translateSnackBar.size }}</th> -->
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>{{sectionProfiles.fileName}}</td>
+                <tbody>                  
+                  <tr *ngFor="let f of sectionFiles">
+                    <td>{{f.fileName}}</td>
                     <!-- <td></td> -->
                   </tr>
                 </tbody>
