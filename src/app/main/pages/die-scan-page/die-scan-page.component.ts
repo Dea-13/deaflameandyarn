@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ElectronService } from '../../../core/services';
 import { constants } from '../../../../environments/constants';
+import Swal from 'sweetalert2';
 
 declare function pushSerial(scan:string, com:string, manufacturer:string):void;
 declare function getSerial():string;
@@ -35,6 +36,12 @@ export class DieScanPageComponent implements OnInit {
   public employee: Array<any> = [];
   public resourceIn: number;
   public currentResource: number;
+  public productionKg: number;
+  public notes: string;
+  public emplId: any;
+  directionReporting: number = 1;
+  public submitted: boolean;
+  
   DEVICE_NAME: string;
 
 
@@ -82,6 +89,7 @@ export class DieScanPageComponent implements OnInit {
   }
 
   ngOnInit(): void {    
+    this.submitted = false;
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
@@ -257,6 +265,56 @@ export class DieScanPageComponent implements OnInit {
       this.imageLastMovement = data;
       this.loading = false;
     });
+  }
+
+  sendConfirmation(){
+    this.submitted = true;
+    if(this.barCode && this.resourceIn && this.currentResource && this.emplId){
+      console.log("sendConfirmation: ", this.barCode, this.resourceIn, this.currentResource, this.productionKg, this.notes, this.emplId);
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let obj = {
+        die : null,
+        dieId: this.barCode,
+        resourceIn: this.resourceIn,
+        ResourceOut: this.currentResource,
+        storagePlaceIn: null,
+        kgProduced: this.directionReporting == 1 ? this.productionKg : null,
+        notes: this.notes,
+        emplId: this.emplId,
+        computerName: currentUser['userName']
+      }
+      
+      this.dieService.postDieMovemanetConf(obj).subscribe(data => {
+        this.submitted = false;
+        this.loading = false;
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg ,
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+        this.directionReporting = 1;
+        this.barCode = '';
+        this.resourceIn = undefined;
+        this.currentResource = undefined;
+        this.notes = undefined;
+        this.emplId = undefined;
+        this.productionKg = undefined;
+        this.rowsMovements = [];
+      });
+
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.confMassageInvalid,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+    
   }
 
   ngOnDestroy() {
