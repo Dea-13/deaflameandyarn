@@ -124,17 +124,17 @@
                     <div class="col-sm-4">
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.cooling }}</label>
-                        <input class="form-control input" [(ngModel)]="cooling" type="text">
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.cooling" type="text">
                       </div>
 
                       <div class="col-sm-12 flex">
                         <label class="line-fixed">{{ translateSnackBar.additionalOp }}</label>
-                        <input class="form-control input" [(ngModel)]="addOperations" type="text">
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.addOperations" type="text">
                       </div>
 
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.tMin }}</label>
-                        <input class="form-control input" [(ngModel)]="texit" type="text">
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.tbillet" type="number">
                       </div>
                     </div>
 
@@ -149,35 +149,35 @@
                       </div>
                       <div class="col-sm-12 flex bottom-fixed">
                         <label>{{ translateSnackBar.tMax }}</label>
-                        <input class="form-control input w-70" [(ngModel)]="tbillet " type="text">
+                        <input class="form-control input w-70" [(ngModel)]="sectionProfiles.texit" type="number">
                       </div>
                     </div>
 
                     <div class="col-sm-4">
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.stackBasket }}</label>
-                        <input class="form-control input" [(ngModel)]="basketOrdering" type="text">
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.basketOrdering" type="text">
                       </div>
 
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.use }}</label>
-                        <input class="form-control input" [(ngModel)]="inUse" type="text">
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.inUse" type="text">
                       </div>
 
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.puller }}</label>
-                        <input class="form-control input" [(ngModel)]="puller" type="text">
+                        <input class="form-control input" [(ngModel)]="sectionProfiles.puller" type="text">
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-12 block">
                     <div class="col-sm-12 flex">
                       <label class="width-fixed">{{ translateSnackBar.memo }}</label>
-                      <input type="text" [(ngModel)]="notesExtrusion" class="form-control dt-uname" />
+                      <input type="text" [(ngModel)]="sectionProfiles.notesExtrusion" class="form-control dt-uname" />
                     </div>
                     <div class="col-sm-12 flex">
                       <label class="width-fixed">{{ translateSnackBar.important }}</label>
-                      <textarea class="form-control" [(ngModel)]="important" name="important"></textarea>
+                      <textarea class="form-control" [(ngModel)]="sectionProfiles.important" name="important"></textarea>
                     </div>
                   </div>
                 </ng-template>
@@ -246,6 +246,7 @@
                           <tr>
                             <td>
                               <div class="flex">
+                                <!-- [(ngModel)]="sectionProfiles.inUse" -->
                                 <label class="line-fixed">{{ translateSnackBar.speedMin }}</label>
                                 <input class="form-control input" type="text">
                               </div>
