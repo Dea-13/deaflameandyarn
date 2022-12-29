@@ -42,6 +42,7 @@ export class NewProfileModalComponent implements OnInit {
   public isEditableRowsLength = {};
   public rowsLength: Array<any> = [];
   public groupCode: Array<any> = [];
+  alloyArr: Array<any> = [];
 
 
   constructor(
@@ -61,6 +62,7 @@ export class NewProfileModalComponent implements OnInit {
     if (this.profile.id) {
       this.getProfileDies(this.profile.id);
       this.getProfiles(this.profile.id);
+      this.getProfilesEnds(this.profile.id);
     }
     this.getGroupCode();
 
@@ -121,6 +123,29 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   //---------------------------------------------------------SECTION FRONT/BACK END LENGTHS----------------------------------------------
+  getProfilesEnds(id) {
+    this.loading = true;
+    this.profilesService.getProfilesEnds(id).subscribe((data) => {
+      this.rowsLength = data;
+      this.loading = false;
+    });
+  }
+
+  getAlloy() {
+    this.loading = true;
+    this.profilesService.getAlloy().subscribe((data) => {
+      this.alloyArr = data;
+      this.loading = false;
+    });
+  }
+
+  fillEndChannels(row) {
+    console.log("fillEndChannels:", row);
+    if (row.channels == null) {
+      row.channels = 2;
+    }
+  }
+
   addRowSpeedLength(rowsLength) {
     console.log("add row", rowsLength);
     let emptyRow = {

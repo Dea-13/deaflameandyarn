@@ -49,6 +49,14 @@ export class ProfilesService {
     return this._http.get<any>(`${environment.apiUrl}Profiles/all/groupcode/true`);
   }
 
+  getProfilesEnds(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
+  }
+
+  getAlloy() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/Alloy/40`);
+  }
+
   createProfile(profile: any) {
     const data = JSON.stringify(profile);
     return this._http.post<any>(`${environment.apiUrl}Profiles`, data);
