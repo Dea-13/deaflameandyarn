@@ -37,6 +37,7 @@ export class NewProfileModalComponent implements OnInit {
   public rowsDies: Array<any> = [];
   public sectionProfiles: any = {};
   public rowsSpeed: Array<any> = [];
+  public sectionFiles: Array<any> = [];
   public isEditableRowSpeed = {};
   public howSpeedTable: boolean;
   public isEditableRowsLength = {};
@@ -63,6 +64,7 @@ export class NewProfileModalComponent implements OnInit {
       this.getProfileDies(this.profile.id);
       this.getProfiles(this.profile.id);
       this.getProfilesEnds(this.profile.id);
+      this.getFiles(this.profile.id);
     }
     this.getGroupCode();
 
@@ -88,6 +90,15 @@ export class NewProfileModalComponent implements OnInit {
     this.profilesService.getProfiles(id).subscribe(data => {
       console.log("getProfiles", data);
       this.sectionProfiles = data;
+      this.loading = false;
+    });
+  }
+
+  getFiles(id) {
+    this.loading = true;
+    console.log('getFiles: ', id);
+    this.profilesService.getFiles(id).subscribe(data => {
+      this.sectionFiles = data;
       this.loading = false;
     });
   }

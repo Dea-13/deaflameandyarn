@@ -1,7 +1,10 @@
 {
+  "appId": "com.dms.a",
+  "productName": "dms-a",
   "asar": true,
   "directories": {
-    "output": "release/"
+    "output": "release/",
+    "buildResources": "build-assets/"
   },
   "files": [
     "**/*",
@@ -15,10 +18,18 @@
     }
   ],
   "win": {
-    "icon": "dist/assets/icons",
-    "target": [
-      "portable"
-    ]
+    "target": "nsis",
+    "icon": "dist/assets/icons"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "amddogy",
+    "repo": "dms-a",
+    "protocol": "https",
+  },     
+  "nsis": {
+    "oneClick": true,
+    "allowToChangeInstallationDirectory": false
   },
   "portable": {
     "splashImage": "dist/assets/icons/electron.bmp"

@@ -45,6 +45,11 @@ export class ProfilesService {
     return this._http.get<any>(`${environment.apiUrl}Profiles/${id}`);
   }
 
+  getFiles(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/files/${id}`);
+  }
+
+
   getGroupCode() {
     return this._http.get<any>(`${environment.apiUrl}Profiles/all/groupcode/true`);
   }

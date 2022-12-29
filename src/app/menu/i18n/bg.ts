@@ -338,6 +338,9 @@ export const locale = {
       statedMsg: 'Операцията е изпълнена успешно! Желаете ли да разпечатате заявка към производителя?',
       azotirane: 'Азотирания',
       norm: 'Норма',
+      confMassageInvalid: 'Mоля попълнете задължителните полета',
+      confMassageValid: 'Успешен запис',
+      totalUseWeight: 'Общо използвано'
     }
   }
 }

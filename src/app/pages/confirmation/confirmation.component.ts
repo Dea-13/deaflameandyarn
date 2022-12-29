@@ -24,8 +24,6 @@ declare function clearSerialScale():void;
   styleUrls: ['./confirmation.component.scss']
 })
 
-
-
 export class ConfirmationComponent implements OnInit {
 
   confirmation: any;

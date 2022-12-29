@@ -338,6 +338,9 @@ export const locale = {
       statedMsg: 'The operation was completed successfully! Would you like to print a request to the manufacturer?',
       azotirane: 'Nitrogenated',
       norm: 'Norm',
+      confMassageInvalid: 'Please fill in the required fields',
+      confMassageValid: 'Successful recording',
+      totalUseWeight: 'Total Used Weight'
     }
   }
 }
