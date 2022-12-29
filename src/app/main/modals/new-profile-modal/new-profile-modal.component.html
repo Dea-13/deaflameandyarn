@@ -556,7 +556,11 @@
                 </thead>
                 <tbody>                  
                   <tr *ngFor="let f of sectionFiles">
-                    <td>{{f.fileName}}</td>
+                    <td>
+                      <a href="{{'data:image/png;base64,' + f.fileData}}" download>
+                        {{f.fileName}}
+                      </a>
+                    </td>
                     <!-- <td></td> -->
                   </tr>
                 </tbody>
