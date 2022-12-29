@@ -339,7 +339,8 @@ export const locale = {
       azotirane: 'Азотирания',
       norm: 'Норма',
       confMassageInvalid: 'Mоля попълнете задължителните полета',
-      confMassageValid: 'Успешен запис'
+      confMassageValid: 'Успешен запис',
+      totalUseWeight: 'Общо използвано'
     }
   }
 }

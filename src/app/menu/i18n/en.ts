@@ -339,7 +339,8 @@ export const locale = {
       azotirane: 'Nitrogenated',
       norm: 'Norm',
       confMassageInvalid: 'Please fill in the required fields',
-      confMassageValid: 'Successful recording'
+      confMassageValid: 'Successful recording',
+      totalUseWeight: 'Total Used Weight'
     }
   }
 }
