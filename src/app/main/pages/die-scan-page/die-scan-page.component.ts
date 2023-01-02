@@ -21,7 +21,7 @@ declare function clearSerial():void;
 export class DieScanPageComponent implements OnInit {
 
   displayedColumns: string[] = ['dieId', 'resourceIn', 'resourceOut', 'movementDateTime', 'notes', 'computerName',];
-  displayedColumnsDie: string[] = ['matrix', 'skladPlace', 'lastTransaction',];
+  displayedColumnsDie: string[] = ['dieId','resourceName', 'skladPlace', 'lastTransaction',];
   public loading: boolean;
   public translateSnackBar: any;
   public rowsMovements: Array<any> = [];
@@ -39,26 +39,46 @@ export class DieScanPageComponent implements OnInit {
   public productionKg: number;
   public notes: string;
   public emplId: any;
-  directionReporting: number = 1;
+  public directionReporting: number = 1;
   public submitted: boolean;
-  
+
+  public cPage: number = 1;
+  public limit: number = 10;
+  public offset: number = 0;
+  public leastDaysAgo = this.limit * this.cPage;
+  public totalResult: number = 0;
+  public maxSize = 10;
+  public itemsPerPage = 10;
+
+  public urls = [
+    { id: 0, name: 'Resource/all/resourcename' },
+    { id: 1, name: 'Resource/all/DieId' },
+    { id: 2, name: 'Resource/all/storageplace' }
+  ];
+
   DEVICE_NAME: string;
 
 
-  myInterval: any;
-  comPorts: any = [];
-  zebraCom: string;
-  SCAN_PERIOD = 2000;
-  zebraPort: any;
+  public myInterval: any;
+  public comPorts: any = [];
+  public zebraCom: string;
+  public SCAN_PERIOD = 2000;
+  public zebraPort: any;
+  public storagePlaceArr: Array<any> = [];
+  public dieIdArr: Array<any> = [];
+  public resourceNameArr: Array<any> = [];
+  public die: string = '';
+  public storagePlace: string = '';
+  public resourceName: string = '';
 
   constructor(
     public translate: TranslateService,
     public dieService: DieConfirmationService,
-    private modalService: NgbModal,    
+    private modalService: NgbModal,
     public router: Router,
     public toastrService: ToastrService,
     public electronService: ElectronService
-  ) { 
+  ) {
 
     if (electronService.isElectron) {
       console.log(process.env);
@@ -69,8 +89,8 @@ export class DieScanPageComponent implements OnInit {
       console.log('constants.comport', constants.comport);
       if(constants.comport == 0){
         this.scanPorts()
-      } else {        
-        this.comPorts = JSON.parse(localStorage.getItem('ComPort'));        
+      } else {
+        this.comPorts = JSON.parse(localStorage.getItem('ComPort'));
       }
 
     } else {
@@ -78,7 +98,7 @@ export class DieScanPageComponent implements OnInit {
     }
 
     this.myInterval = setInterval(() => {
-      let scanner = getSerial();      
+      let scanner = getSerial();
       if(scanner){
         this.openedScanZebra(scanner['scan'], scanner['com'], scanner['manufacturer']);
         clearSerial();
@@ -88,13 +108,15 @@ export class DieScanPageComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.submitted = false;
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
     this.getResource();
     this.getEmployee();
+    this.pageChanged(1);
+    this.getFilters();
   }
 
   public scanPorts () {
@@ -111,15 +133,15 @@ export class DieScanPageComponent implements OnInit {
             return item.path == element.path
           })
 
-          if(checkedCom.length == 0){              
+          if(checkedCom.length == 0){
             this.comPorts.push(element);
           }
-          
+
         }
       });
 
-      this.comPorts = this.comPorts.sort((a, b) => a.path < b.path ? - 1 : Number(a.path > b.path));      
-      localStorage.setItem('ComPort', JSON.stringify(this.comPorts));        
+      this.comPorts = this.comPorts.sort((a, b) => a.path < b.path ? - 1 : Number(a.path > b.path));
+      localStorage.setItem('ComPort', JSON.stringify(this.comPorts));
     }).catch((err:any)=>{
       console.log("SerialPort -> err: ", err);
     });
@@ -134,7 +156,7 @@ export class DieScanPageComponent implements OnInit {
     }
   }
 
-  public initPort (comName: string, manufacturer: string) {    
+  public initPort (comName: string, manufacturer: string) {
     this.zebraPort = new this.electronService.serialPort.SerialPort({path: comName, baudRate:9600})
     this.zebraPort.on('error', error => this.onError(error, manufacturer))
     this.zebraPort.on('open', () => this.opened(manufacturer))
@@ -171,7 +193,7 @@ export class DieScanPageComponent implements OnInit {
   }
 
   openedScanZebra(scan, com, manufacturer){
-    if(scan.length > 0){    
+    if(scan.length > 0){
       console.log("openedScanZebra: ", scan, com, manufacturer);
       this.barCode = scan;
     }
@@ -200,7 +222,41 @@ export class DieScanPageComponent implements OnInit {
     this.getBarCodesTable();
   }
 
+  getPositionDie(){
+    this.dieService.getPositionDie(
+      this.offset,
+      this.limit,
+      this.resourceName,
+      this.storagePlace,
+      this.die,
+    ).subscribe(data => {
+      console.log("getPositionDie", data);
+      this.rowsDie = data['list'];
+      this.totalResult = data['total'];
+      this.loading = false;
+    });
+  }
 
+  getFilters() {
+    this.loading = true;
+    for (let i = 0; i < this.urls.length; i++) {
+      this.dieService.getFilters(this.urls[i].name).subscribe((data) => {
+        switch (this.urls[i].id) {
+          case 0: { this.resourceNameArr = data; } break;
+          case 1: { this.dieIdArr = data; } break;
+          case 2: { this.storagePlaceArr = data; } break;
+        }
+        this.loading = false;
+      });
+    }
+  }
+
+  pageChanged(page: number) {
+    console.log('event', page);
+    this.cPage = page;
+    this.offset = this.limit * (this.cPage - 1);
+    this.getPositionDie();
+  }
 
   getResource() {
     this.dieService.getResource().subscribe(data => {
@@ -283,7 +339,7 @@ export class DieScanPageComponent implements OnInit {
         emplId: this.emplId,
         computerName: currentUser['userName']
       }
-      
+
       this.dieService.postDieMovemanetConf(obj).subscribe(data => {
         this.submitted = false;
         this.loading = false;
@@ -314,12 +370,12 @@ export class DieScanPageComponent implements OnInit {
         timer: 2000
       })
     }
-    
+
   }
 
   ngOnDestroy() {
     console.log('ngOnDestroy');
-    clearInterval(this.myInterval);   
+    clearInterval(this.myInterval);
   }
 
 }
