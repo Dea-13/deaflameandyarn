@@ -199,7 +199,7 @@ export const menu: CoreMenu[] = [
         children: [
           {
             id: 'products',
-            title: 'Products--------',
+            title: 'Products',
             translate: 'MENU.PRODUCTS',
             type: 'item',
             icon: 'circle',

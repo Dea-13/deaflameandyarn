@@ -26,7 +26,7 @@ export const locale = {
       NEWMATRIX: 'New die by month-------',
       PRODUCTIVITY: 'Productivity',
       STAY: 'Stay',
-      PRODUCTS: 'Products--------',
+      PRODUCTS: 'Products',
       RAWMATERIAL: 'Raw material for production--------',
       FREEADDRESS: 'Free Addresses',
       OCCUPIEDMATRIX: 'Occupied dies',
@@ -340,7 +340,8 @@ export const locale = {
       norm: 'Norm',
       confMassageInvalid: 'Please fill in the required fields',
       confMassageValid: 'Successful recording',
-      totalUseWeight: 'Total Used Weight'
+      totalUseWeight: 'Total Used Weight',
+      modalProducts: 'Modal Products',
     }
   }
 }

@@ -1,0 +1,180 @@
+<div class="slideout-content">
+  <!-- Modal to add new user starts-->
+  <div id="modals-slide-in">
+    <div class="modal-dialog material-dialog-center modal-content pt-0">
+      <div class="modal-body flex-grow-1">
+        <form [formGroup]="createProductForm" class="add-new-user modal-content pt-0" #newUserForm="ngForm">
+          <div class="row form-group">
+            <div class="col-md-12 col-12">
+              <div class="alert alert-primary flex" role="alert">
+                <div class="alert-body">
+                  {{ translateSnackBar.modalProducts }}
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.erpItem }}</label>
+                <input type="text" formControlName="erpitem" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('erpitem').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.erpVariant }}</label>
+                <input type="text" formControlName="erpvariant" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('erpvariant').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.opNo }}</label>
+                <input type="text" formControlName="opNo" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('opNo').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.cnc1 }}</label>
+                <input type="text" formControlName="cnc1" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('cnc1').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.cnc2 }}</label>
+                <input type="text" formControlName="cnc2" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('cnc2').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.subContractor1 }}</label>
+                <input type="text" formControlName="subContractor1" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('subContractor1').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.punching1 }}</label>
+                <input type="text" formControlName="punching1" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('punching1').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.punching2 }}</label>
+                <input type="text" formControlName="punching2" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('punching2').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.garda3 }}</label>
+                <input type="text" formControlName="garda3" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('garda3').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.minutesPerPiece }}</label>
+                <input type="text" formControlName="minutesPerPiece" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('minutesPerPiece').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.weightPerPiece }}</label>
+                <input type="text" formControlName="weightPerPiece" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('weightPerPiece').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.lprkr }}</label>
+                <input type="text" formControlName="lprkr" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('lprkr').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.lobr }}</label>
+                <input type="text" formControlName="lobr" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('lobr').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.npr }}</label>
+                <input type="text" formControlName="npr" id="basic-icon-default-uname" class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('npr').invalid }" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.setupSameProfile
+                  }}</label>
+                <input type="text" formControlName="setupSameProfile" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('setupSameProfile').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.setupOtherProfile
+                  }}</label>
+                <input type="text" formControlName="setupOtherProfile" id="basic-icon-default-uname"
+                  class="form-control dt-uname"
+                  [ngClass]="{ 'error': submitted && createProductForm.get('setupOtherProfile').invalid }" required />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="modal-btn">
+          <button class="btn btn-primary" rippleEffect (click)="submitForm()">
+            <span class="d-none d-sm-inline-block">{{ translateSnackBar.submit }}</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading" class="loader-section">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

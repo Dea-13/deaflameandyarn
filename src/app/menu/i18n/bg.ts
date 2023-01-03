@@ -26,7 +26,7 @@ export const locale = {
       NEWMATRIX: 'Нова матрица по месец-------',
       PRODUCTIVITY: 'Продуктивност',
       STAY: 'Свръх престой',
-      PRODUCTS: 'Изделия--------',
+      PRODUCTS: 'Изделия',
       RAWMATERIAL: 'Суровина за производство--------',
       FREEADDRESS: 'Свободни адреси',
       OCCUPIEDMATRIX: 'Заети матрици в адрес',
@@ -340,7 +340,8 @@ export const locale = {
       norm: 'Норма',
       confMassageInvalid: 'Mоля попълнете задължителните полета',
       confMassageValid: 'Успешен запис',
-      totalUseWeight: 'Общо използвано'
+      totalUseWeight: 'Общо използвано',
+      modalProducts: 'Модал Изделия',
     }
   }
 }

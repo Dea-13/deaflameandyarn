@@ -337,6 +337,7 @@ export const locale = {
       statedMsg: '',
       azotirane: '',
       norm: '',
+      modalProducts: '',
     }
   }
 }

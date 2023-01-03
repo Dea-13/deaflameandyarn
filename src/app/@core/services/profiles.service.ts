@@ -35,6 +35,16 @@ export class ProfilesService {
     return this._http.get<any>(`${environment.apiUrl}Profiles/all/${url}`);
   }
 
+  getProfileProduct(
+    offset: number, limit:number,
+    eRPItem:string, eRPVariant:string, opNo:string, cNC1:string, cNC2:string, subContractor1:string, punching1:string, punching2:string, garda3:string, minutesPerPiece:string, weightPerPiece:string, lprkr:string, lobr:string, npr:string, setupSameProfile:string, setupOtherProfile:string) {
+    return this._http.get<any>(`${environment.apiUrl}ProfileProduct?offset=${offset}&limit=${limit}&eRPItem=${eRPItem}&eRPVariant=${eRPVariant}&opNo=${opNo}&cNC1=${cNC1}&cNC2=${cNC2}&subContractor1=${subContractor1}&punching1=${punching1}&punching2=${punching2}&garda3=${garda3}&minutesPerPiece=${minutesPerPiece}&weightPerPiece=${weightPerPiece}&lprkr=${lprkr}&lobr=${lobr}&npr=${npr}&setupSameProfile=${setupSameProfile}&setupOtherProfile=${setupOtherProfile}`);
+  }
+
+  getProductFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}ProfileProduct/all/${url}`);
+  }
+
   ///////////////// MODAL
 
   getProfileDies(id: number) {
@@ -74,5 +84,15 @@ export class ProfilesService {
 
   deleteProfile(id:number){
     return this._http.delete<any>(`${environment.apiUrl}Profiles/${id}`);
+  }
+
+  updateProductProfile(profile: any) {
+    const data = JSON.stringify(profile);
+    return this._http.put(`${environment.apiUrl}ProfileProduct`, data);
+  }
+
+  createProductProfile(profile: any) {
+    const data = JSON.stringify(profile);
+    return this._http.post<any>(`${environment.apiUrl}ProfileProduct`, data);
   }
 }
