@@ -13,13 +13,20 @@ export class InterceptorInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    
+
     console.log('Interceptor!');
     let tokenizedReq = request.clone({
       setHeaders: {
-        'Content-Type': 'application/json'        
+        'Content-Type': 'application/json'
       }
-    });  
+    });
+
+    if(request.url.includes('UploadFile')){
+      tokenizedReq = request.clone({
+        setHeaders: {
+        }
+      });
+    }
 
     return next.handle(tokenizedReq);
   }
