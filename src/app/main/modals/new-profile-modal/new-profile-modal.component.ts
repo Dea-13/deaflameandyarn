@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfilesService } from '../../../@core/services/profiles.service';
 import Swal from 'sweetalert2';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-new-profile-modal',
@@ -14,7 +15,10 @@ import Swal from 'sweetalert2';
 export class NewProfileModalComponent implements OnInit {
   @Input() public profileItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
-
+  public uploader: FileUploader = new FileUploader({
+    url: '',
+    isHTML5: true
+  });
   public createProfileForm: FormGroup;
   public submitted: boolean;
   public userName: string;
@@ -99,6 +103,7 @@ export class NewProfileModalComponent implements OnInit {
     console.log('getFiles: ', id);
     this.profilesService.getFiles(id).subscribe(data => {
       this.sectionFiles = data;
+      this.uploader.queue = data;
       this.loading = false;
     });
   }
@@ -271,6 +276,72 @@ export class NewProfileModalComponent implements OnInit {
         }
       );
     }
+  }
+
+  handleUpload(event) {
+    console.log('handleUpload', event, this.uploader);
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.uploader.queue[this.uploader.queue.length - 1].url = reader.result.toString().replace(/^data:image\/[a-z]+;base64,/, "");
+      console.log(this.uploader.queue);
+    };
+  }
+
+  uploadImage(row) {
+    console.log("uploadImage", row);
+    let obj = {
+      id: this.profile.id,
+      profileId: this.profile.id,
+      fileName: row.file ? row.file.name : row.fileName,
+      fileData: row.url ? row.url : row.fileData
+    }
+    console.log("obj", obj);
+    this.loading = true;
+    this.profilesService.uploadFile(this.profile.id, obj, row).subscribe((data) => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.saveMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.loading = false;
+    }, (error) => {
+      this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    });
+  }
+
+  deleteImage(row) {
+    console.log("deleteImage", row);
+    this.loading = true;
+    this.profilesService.deleteImage(row.id).subscribe((profileService) => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.saveMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.loading = false;
+    }, (error) => {
+      this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.saveMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    });
   }
 
   closeModal(): void {

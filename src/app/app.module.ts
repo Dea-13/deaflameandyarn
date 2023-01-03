@@ -69,6 +69,7 @@ import { DetailsDieModalComponent } from './main/modals/details-die-modal/detail
 import { WarehouseListDieModalComponent } from './main/modals/warehouse-list-die-modal/warehouse-list-die-modal.component';
 import { ProductivityNitrificationPageComponent } from './main/pages/productivity-nitrification-page/productivity-nitrification-page.component';
 import { ModalProfileProductsComponent } from './main/modals/modal-profile-products/modal-profile-products.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 const appRoutes: Routes = [
   {
@@ -308,6 +309,7 @@ const appRoutes: Routes = [
     MatTableModule,
     Ng2FlatpickrModule,
     SweetAlert2Module.forRoot(),
+    FileUploadModule,
 
 
     RouterModule.forRoot(appRoutes, {

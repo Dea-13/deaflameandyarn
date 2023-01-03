@@ -542,30 +542,61 @@
         </div>
 
         <div class="col-sm-12 flex margin-10">
-          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">                        
+          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
             <img class="center-img" src="{{'data:image/png;base64,' + sectionProfiles.fileData}}">
           </div>
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
             <div class="col-sm-12">
               <div class="flex">
-                <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">+ {{
-                  translateSnackBar.add }}</button>
-                <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 10px 5px;">- {{
-                  translateSnackBar.remove }}</button>
+                <fieldset class="form-group">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      accept="image/*"
+                      ng2FileSelect
+                      [uploader]="uploader"
+                      (input)="handleUpload($event)"
+                      id="file-upload-multiple"
+                    />
+                    <label class="custom-file-label"></label>
+                  </div>
+                </fieldset>
               </div>
+
               <table class="clasic-table">
                 <thead>
-                  <th>{{ translateSnackBar.file }}</th>
-                  <!-- <th>{{ translateSnackBar.size }}</th> -->
+                  <tr>
+                    <th width="50%">{{ translateSnackBar.file }}</th>
+                    <th>{{ translateSnackBar.size }}</th>
+                    <th></th>
+                  </tr>
                 </thead>
-                <tbody>                  
-                  <tr *ngFor="let f of sectionFiles">
+                <tbody>
+                  <tr *ngFor="let item of uploader.queue">
                     <td>
-                      <a href="{{'data:image/png;base64,' + f.fileData}}" download>
-                        {{f.fileName}}
-                      </a>
+                      <a href="{{'data:image/png;base64,' + (item.fileData ? item.fileData : item.url)}}" download> {{item.fileName ? item.fileName : item?.file?.name}}</a>
                     </td>
-                    <!-- <td></td> -->
+                    <td *ngIf="uploader.options.isHTML5" nowrap>
+                      {{ item?.file?.size / 1024 / 1024 | number: '.2' }} MB
+                    </td>
+                    <td nowrap>
+                      <button
+                        type="button"
+                        class="btn btn-raised btn-sm mr-50"
+                        (click)="uploadImage(item)"
+                        [disabled]="item.id"
+                        rippleEffect>
+                      <span [data-feather]="'upload'" [size]="16" [class]="'mr-50 upload-green'"></span>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-raised btn-sm"
+                        (click)="item.id ? deleteImage(item) : item.remove()"
+                        rippleEffect>
+                        <span [data-feather]="'trash'" [size]="16" [class]="'mr-50 red-bin'"></span>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

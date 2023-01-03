@@ -788,3 +788,14 @@ input[type=radio], input[type=checkbox] {
 .main-menu.menu-light .navigation > li > ul li.has-sub > ul > li {
   margin: 0 3px;
 }
+.red-bin{
+  color: red;
+  float: right;
+}
+.custom-file-label, .custom-file-input{
+  cursor: pointer;
+}
+.upload-green{
+  color: #28c76f;
+  cursor: pointer;
+}

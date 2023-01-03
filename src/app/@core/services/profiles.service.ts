@@ -86,6 +86,25 @@ export class ProfilesService {
     return this._http.delete<any>(`${environment.apiUrl}Profiles/${id}`);
   }
 
+  deleteImage(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}ProfileFileData/${id}`);
+  }
+
+  uploadFile(id: any, profile: any, row: any) {
+    // const data = JSON.stringify(profile);
+    const fb: FormData = new FormData()
+    // obj = {
+    //   id: this.profile.id,
+    //   profileId: this.profile.id,
+    //   fileName: row.file ? row.file.name : row.fileName,
+    //   fileData: row.url ? row.url : row.fileData
+    // }
+    fb.append('profileId', profile.id);
+    fb.append('fileName', row.file ? row.file.name : row.fileName);
+    fb.append('fileData', row.url ? row.url : row.fileData);
+    return this._http.post<any>(`${environment.apiUrl}ProfileFileData/uploadfile/${id}`, fb);
+  }
+
   updateProductProfile(profile: any) {
     const data = JSON.stringify(profile);
     return this._http.put(`${environment.apiUrl}ProfileProduct`, data);
