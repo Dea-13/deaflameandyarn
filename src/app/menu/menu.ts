@@ -57,14 +57,6 @@ export const menu: CoreMenu[] = [
         url: 'api/scrap'
       },
       {
-        id: 'newmatrix',
-        title: 'New Matrix----',
-        translate: 'MENU.NEWMATRIX',
-        type: 'item',
-        icon: 'codesandbox',
-        url: 'api/new-matrix'
-      },
-      {
         id: 'productivity-nitrification',
         title: 'Productivity Nitrification',
         translate: 'MENU.PRODUCTIVITYNITRIFICATION',

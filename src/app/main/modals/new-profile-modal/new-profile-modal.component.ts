@@ -70,8 +70,8 @@ export class NewProfileModalComponent implements OnInit {
       this.getProfiles(this.profile.id);
       this.getProfilesEnds(this.profile.id);
       this.getFiles(this.profile.id);
-      this.getAlloy();
     }
+    this.getAlloy();
     this.getGroupCode();
 
     this.translate.get('translate').subscribe((snackBar: string) => {

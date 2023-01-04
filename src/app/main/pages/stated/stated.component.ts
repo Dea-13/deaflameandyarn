@@ -320,7 +320,7 @@ export class StatedComponent implements OnInit {
   }
 
   modalDetailsDie(row) {
-    if(this.statusId == 40){
+    // if(this.statusId == 40){
       console.log('new/edit modalDetailsDie');
       const modalRef = this.modalService.open(DetailsDieModalComponent, {});
       modalRef.componentInstance.dieItem = { data: row };
@@ -329,6 +329,6 @@ export class StatedComponent implements OnInit {
           this.getRequest();
         }
       });
-    }
+    // }
   }
 }
