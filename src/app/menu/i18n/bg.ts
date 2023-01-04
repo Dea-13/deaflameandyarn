@@ -342,7 +342,8 @@ export const locale = {
       confMassageValid: 'Успешен запис',
       totalUseWeight: 'Общо използвано',
       modalProducts: 'Модал Изделия',
-      makeChange: "Моля, направете промяна"
+      makeChange: "Моля, направете промяна",
+      messageTabProfile: 'Трябва табовете Общи и Екструзия да бъдат попълнени, за да имате достъп до този таб!',
     }
   }
 }

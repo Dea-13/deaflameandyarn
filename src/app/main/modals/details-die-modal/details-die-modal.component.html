@@ -16,26 +16,36 @@
           </div>
         </div>
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
-        <div class="col-sm-12 margin-10">
-          <h3 *ngIf="!emptyDataHeader">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}} ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
-          <p *ngIf="!emptyDataHeader">
-            <i>
-              {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
-              {{ translateSnackBar.usedIn }} <b>{{resourceName}}</b> -
-              {{ translateSnackBar.total }} <b>{{sumtotalUsed}}</b> {{ translateSnackBar.times }}.
-              {{ translateSnackBar.total }}: <b>{{sumTotalKg}}</b> {{ translateSnackBar.kg }}
-            </i>
-          </p>
-          <p *ngIf="!emptyDataHeader">
-            <i>
-              {{ translateSnackBar.azotirane }}: <b>{{header[0].anodizingCount}}</b>.
-              {{ translateSnackBar.finalNitriding }} - <b>{{header[0].lastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b> (<b>{{header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
-              {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header[0].totalKgProduced - header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
-              ({{ translateSnackBar.norm }} - <b>{{header[0].manualKGtoNextNitriding === null ? 0 : header[0].manualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
-            </i>
-          </p>
-          <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
+        <div class="flex">
+          <div class="col-sm-10 margin-10">
+            <h3 *ngIf="!emptyDataHeader && header.length > 0">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}}
+              ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
+            <p *ngIf="!emptyDataHeader && header.length > 0">
+              <i>
+                {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
+                {{ translateSnackBar.usedIn }} <b>{{resourceName}}</b> -
+                {{ translateSnackBar.total }} <b>{{sumtotalUsed}}</b> {{ translateSnackBar.times }}.
+                {{ translateSnackBar.total }}: <b>{{sumTotalKg}}</b> {{ translateSnackBar.kg }}
+              </i>
+            </p>
+            <p *ngIf="!emptyDataHeader && header.length > 0">
+              <i>
+                {{ translateSnackBar.azotirane }}: <b>{{header[0].anodizingCount}}</b>.
+                {{ translateSnackBar.finalNitriding }} - <b>{{header[0].lastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b>
+                (<b>{{header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
+                {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header[0].totalKgProduced -
+                  header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
+                ({{ translateSnackBar.norm }} - <b>{{header[0].manualKGtoNextNitriding === null ? 0 :
+                  header[0].manualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
+              </i>
+            </p>
+            <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
+          </div>
+          <div class="col-sm-2 margin-10">
+            <button rippleEffect class="btn btn-primary save-center" (click)="editForm()">{{ translateSnackBar.edit }}</button>
+          </div>
         </div>
+
         <div class="col-sm-12 flex margin-10">
           <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
             <h3 class="color-text">{{ translateSnackBar.infoProfile }}</h3>

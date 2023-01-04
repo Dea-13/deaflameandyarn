@@ -49,6 +49,7 @@ export class NewProfileModalComponent implements OnInit {
   public groupCode: Array<any> = [];
   public alloyArr: Array<any> = [];
   public validation: boolean;
+  public disableTab: boolean = true;
 
 
   constructor(

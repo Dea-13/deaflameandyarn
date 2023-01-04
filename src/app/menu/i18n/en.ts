@@ -342,7 +342,8 @@ export const locale = {
       confMassageValid: 'Successful recording',
       totalUseWeight: 'Total Used Weight',
       modalProducts: 'Modal Products',
-      makeChange: "Please make a change"
+      makeChange: "Please make a change",
+      messageTabProfile: 'The General and Extrusion tabs must be populated to access this tab!',
     }
   }
 }

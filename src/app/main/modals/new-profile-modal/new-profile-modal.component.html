@@ -185,7 +185,8 @@
               <ng-container [ngbNavItem]="3">
                 <a ngbNavLink>{{ translateSnackBar.speeds }}</a>
                 <ng-template ngbNavContent>
-                  <div class="col-sm-12">
+                  <p *ngIf="disableTab"><span [data-feather]="'lock'" [class]="'lock-icon'"></span><b>{{ translateSnackBar.messageTabProfile }}</b></p>
+                  <div *ngIf="!disableTab" class="col-sm-12">
 
                     <div class="col-sm-12">
                       <table style="border: none;">
@@ -360,7 +361,8 @@
               <ng-container [ngbNavItem]="4">
                 <a ngbNavLink>{{ translateSnackBar.lengthFrontBack }}</a>
                 <ng-template ngbNavContent>
-                  <div class="col-sm-12 grid">
+                  <p *ngIf="disableTab"><span [data-feather]="'lock'" [class]="'lock-icon'"></span><b>{{ translateSnackBar.messageTabProfile }}</b></p>
+                  <div *ngIf="!disableTab" class="col-sm-12 grid">
                     <table class="clasic-table">
                       <thead>
                         <th>
@@ -368,8 +370,8 @@
                             <i class="fa fa-plus-circle"></i>
                           </button>
                         </th>
-                        <th>{{ translateSnackBar.channels }}</th>
                         <th>{{ translateSnackBar.alloy }}</th>
+                        <th>{{ translateSnackBar.channels }}</th>
                         <th>{{ translateSnackBar.lengthStart }}</th>
                         <th>{{ translateSnackBar.lengthEnd }}</th>
                       </thead>
@@ -408,69 +410,72 @@
               <ng-container [ngbNavItem]="5">
                 <a ngbNavLink>{{ translateSnackBar.additionalInfo }}</a>
                 <ng-template ngbNavContent>
-                  <div class="col-sm-12 block">
-                    <div class="col-sm-12 flex">
-                      <label>{{ translateSnackBar.infoMatrix }}</label>
-                      <ng-select appendTo="body">
-                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                      </ng-select>
-                    </div>
-                    <div class="col-sm-12 flex">
-                      <label>{{ translateSnackBar.followRecipee }}</label>
-                      <ng-select appendTo="body">
-                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                      </ng-select>
-                    </div>
-                    <div class="col-sm-12 flex">
-                      <label>{{ translateSnackBar.secondHandScrap }}</label>
-                      <ng-select appendTo="body">
-                        <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                      </ng-select>
-                    </div>
-                  </div>
-                  <div class="flex">
-                    <div class="col-sm-4">
-                      <div class="col-sm-12">
-                        <label>Breda {{ translateSnackBar.manufacturing }}</label>
+                <p *ngIf="disableTab"><span [data-feather]="'lock'" [class]="'lock-icon'"></span><b>{{ translateSnackBar.messageTabProfile }}</b></p>
+                  <div *ngIf="!disableTab">
+                    <div class="col-sm-12 block">
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.infoMatrix }}</label>
                         <ng-select appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
-                      <div class="col-sm-12">
-                        <label>Breda {{ translateSnackBar.scrap }}</label>
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.followRecipee }}</label>
+                        <ng-select appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
+                      </div>
+                      <div class="col-sm-12 flex">
+                        <label>{{ translateSnackBar.secondHandScrap }}</label>
                         <ng-select appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
                     </div>
+                    <div class="flex">
+                      <div class="col-sm-4">
+                        <div class="col-sm-12">
+                          <label>Breda {{ translateSnackBar.manufacturing }}</label>
+                          <ng-select appendTo="body">
+                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                          </ng-select>
+                        </div>
+                        <div class="col-sm-12">
+                          <label>Breda {{ translateSnackBar.scrap }}</label>
+                          <ng-select appendTo="body">
+                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                          </ng-select>
+                        </div>
+                      </div>
 
-                    <div class="col-sm-4">
-                      <div class="col-sm-12">
-                        <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
-                        <ng-select appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
+                      <div class="col-sm-4">
+                        <div class="col-sm-12">
+                          <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
+                          <ng-select appendTo="body">
+                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                          </ng-select>
+                        </div>
+                        <div class="col-sm-12">
+                          <label>SMS1 {{ translateSnackBar.scrap }}</label>
+                          <ng-select appendTo="body">
+                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                          </ng-select>
+                        </div>
                       </div>
-                      <div class="col-sm-12">
-                        <label>SMS1 {{ translateSnackBar.scrap }}</label>
-                        <ng-select appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
-                      </div>
-                    </div>
 
-                    <div class="col-sm-4">
-                      <div class="col-sm-12">
-                        <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
-                        <ng-select appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
-                      </div>
-                      <div class="col-sm-12">
-                        <label>SMS2 {{ translateSnackBar.scrap }}</label>
-                        <ng-select appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
+                      <div class="col-sm-4">
+                        <div class="col-sm-12">
+                          <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
+                          <ng-select appendTo="body">
+                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                          </ng-select>
+                        </div>
+                        <div class="col-sm-12">
+                          <label>SMS2 {{ translateSnackBar.scrap }}</label>
+                          <ng-select appendTo="body">
+                            <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                          </ng-select>
+                        </div>
                       </div>
                     </div>
                   </div>

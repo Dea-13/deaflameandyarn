@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { MatrixService } from '../../../@core/services/matrix.service';
+import { NewMatrixModalComponent } from '../new-matrix-modal/new-matrix-modal.component';
 
 @Component({
   selector: 'app-details-die-modal',
@@ -46,13 +47,14 @@ export class DetailsDieModalComponent implements OnInit {
   inUseFrom: string = '';
   emptyDataHeader: boolean = false;
   headerInfo: any = {};
-  header: any;
+  header: Array<any> = [];
 
   constructor(
     private toastrService: ToastrService,
     public translate: TranslateService,
     private activeModal: NgbActiveModal,
     private matrixService: MatrixService,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -125,6 +127,11 @@ export class DetailsDieModalComponent implements OnInit {
     }, error=>{
       this.extrData = [];
     });
+  }
+
+  editForm(){
+    const modalRef = this.modalService.open(NewMatrixModalComponent, {});
+    modalRef.componentInstance.matrixItem = { 'data': this.dieRow };
   }
 
   closeModal(): void {

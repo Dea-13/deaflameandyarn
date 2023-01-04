@@ -338,6 +338,7 @@ export const locale = {
       azotirane: '',
       norm: '',
       modalProducts: '',
+      messageTabProfile: '',
     }
   }
 }

@@ -320,15 +320,13 @@ export class StatedComponent implements OnInit {
   }
 
   modalDetailsDie(row) {
-    // if(this.statusId == 40){
-      console.log('new/edit modalDetailsDie');
-      const modalRef = this.modalService.open(DetailsDieModalComponent, {});
-      modalRef.componentInstance.dieItem = { data: row };
-      modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-        if (receivedEntry == true) {
-          this.getRequest();
-        }
-      });
-    // }
+    console.log('new/edit modalDetailsDie');
+    const modalRef = this.modalService.open(DetailsDieModalComponent, {});
+    modalRef.componentInstance.dieItem = { data: row };
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      if (receivedEntry == true) {
+        this.getRequest();
+      }
+    });
   }
 }
