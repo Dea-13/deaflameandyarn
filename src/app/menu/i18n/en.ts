@@ -342,6 +342,7 @@ export const locale = {
       confMassageValid: 'Successful recording',
       totalUseWeight: 'Total Used Weight',
       modalProducts: 'Modal Products',
+      makeChange: "Please make a change"
     }
   }
 }

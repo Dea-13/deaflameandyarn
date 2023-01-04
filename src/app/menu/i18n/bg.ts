@@ -342,6 +342,7 @@ export const locale = {
       confMassageValid: 'Успешен запис',
       totalUseWeight: 'Общо използвано',
       modalProducts: 'Модал Изделия',
+      makeChange: "Моля, направете промяна"
     }
   }
 }

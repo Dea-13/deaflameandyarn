@@ -642,10 +642,12 @@ export class NewMatrixModalComponent implements OnInit {
             })
           },
             (error) => {
+              console.log('ERROR: ', error.status);
+              
               Swal.fire({
                 position: 'bottom-end',
                 icon: 'warning',
-                title: 'Error',
+                title: error.status == 304 ? this.translateSnackBar.makeChange : 'Error',
                 showConfirmButton: false,
                 timer: 2000
               })
