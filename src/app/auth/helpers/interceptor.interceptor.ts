@@ -21,7 +21,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
       }
     });
 
-    if(request.url.includes('UploadFile')){
+    if(request.url.includes('uploadfile')){
       tokenizedReq = request.clone({
         setHeaders: {
         }

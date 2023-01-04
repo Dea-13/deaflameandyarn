@@ -462,6 +462,7 @@ export class NewProfileModalComponent implements OnInit {
         timer: 2000
       })
       this.loading = false;
+      this.getFiles(this.profile.id);
     }, (error) => {
       this.loading = false;
       Swal.fire({
@@ -471,6 +472,7 @@ export class NewProfileModalComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
+      this.getFiles(this.profile.id);
     });
   }
 
