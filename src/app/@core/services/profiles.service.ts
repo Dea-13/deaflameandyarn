@@ -115,4 +115,8 @@ export class ProfilesService {
     const data = JSON.stringify(profile);
     return this._http.post<any>(`${environment.apiUrl}ProfileProduct`, data);
   }
+
+  deleteRowsEnd(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
+  }
 }
