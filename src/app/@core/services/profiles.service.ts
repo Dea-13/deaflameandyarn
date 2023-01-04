@@ -90,18 +90,9 @@ export class ProfilesService {
     return this._http.delete<any>(`${environment.apiUrl}ProfileFileData/${id}`);
   }
 
-  uploadFile(id: any, profile: any, row: any) {
-    // const data = JSON.stringify(profile);
-    const fb: FormData = new FormData()
-    // obj = {
-    //   id: this.profile.id,
-    //   profileId: this.profile.id,
-    //   fileName: row.file ? row.file.name : row.fileName,
-    //   fileData: row.url ? row.url : row.fileData
-    // }
-    fb.append('profileId', profile.id);
-    fb.append('fileName', row.file ? row.file.name : row.fileName);
-    fb.append('fileData', row.url ? row.url : row.fileData);
+  uploadFile(id: any, profile: any, row: any) {    
+    const fb: FormData = new FormData()    
+    fb.append('files', row.file.rawFile);
     return this._http.post<any>(`${environment.apiUrl}ProfileFileData/uploadfile/${id}`, fb);
   }
 
