@@ -3,185 +3,141 @@ import { CoreMenu } from "../@core/types";
 
 export const menu: CoreMenu[] = [
   {
-    id: 'die',
+    id: 'apps',
+    type: 'section',
     title: 'Die',
     translate: 'MENU.MATRIX',
+    icon: 'package',
+  },
+  {
+    id: 'status',
+    title: 'Status',
+    translate: 'MENU.STATUS',
     type: 'collapsible',
-    icon: 'grid',
+    icon: 'check',
     children: [
       {
-        id: 'listmatrix',
-        title: 'List Die',
-        translate: 'MENU.LISTMATRIX',
-        type: 'collapsible',
-        icon: 'package',
-        children: [
-          // {
-          //   id: 'infoMatrix',
-          //   title: 'Information matrix',
-          //   translate: 'MENU.INFOMATRIX',
-          //   type: 'item',
-          //   icon: 'info',
-          //   url: 'api/information-matrix'
-          // },
-          {
-            id: 'status',
-            title: 'Status',
-            translate: 'MENU.STATUS',
-            type: 'collapsible',
-            icon: 'check',
-            children: [
-              {
-                id: 'stated',
-                title: 'Stated',
-                translate: 'MENU.STATED',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/stated'
-              },
-              {
-                id: 'confirmed',
-                title: 'Confirmed',
-                translate: 'MENU.CONFIRMED',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/confirmed'
-              },
-              {
-                id: 'dispatched',
-                title: 'Dispatched',
-                translate: 'MENU.DISPATCHED',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/dispatched'
-              },
-              {
-                id: 'using',
-                title: 'In Use',
-                translate: 'MENU.USING',
-                type: 'collapsible',
-                icon: 'navigantion',
-                children: [
-                  // {
-                  //   id: 'using',
-                  //   title: 'In Use',
-                  //   translate: 'MENU.USINGMENU',
-                  //   type: 'item',
-                  //   icon: 'circle',
-                  //   url: 'api/used-by-status'
-                  // },
-                  {
-                    id: 'productivity',
-                    title: 'Productivity',
-                    translate: 'MENU.PRODUCTIVITY',
-                    type: 'item',
-                    icon: 'circle',
-                    url: 'api/productivity'
-                  },
-                  {
-                    id: 'productivity-nitrification',
-                    title: 'Productivity Nitrification',
-                    translate: 'MENU.PRODUCTIVITYNITRIFICATION',
-                    type: 'item',
-                    icon: 'circle',
-                    url: 'api/productivity-nitrification'
-                  },
-                  // {
-                  //   id: 'stay',
-                  //   title: 'Stay',
-                  //   translate: 'MENU.STAY',
-                  //   type: 'item',
-                  //   icon: 'circle',
-                  //   url: 'api/stay'
-                  // },
-                ]
-              },
-              {
-                id: 'scrap',
-                title: 'Scrap',
-                translate: 'MENU.SCRAP',
-                type: 'item',
-                icon: 'trash',
-                url: 'api/scrap'
-              },
-              {
-                id: 'newmatrix',
-                title: 'New Matrix--------',
-                translate: 'MENU.NEWMATRIX',
-                type: 'item',
-                icon: 'codesandbox',
-                url: 'api/new-matrix'
-              },
-            ]
-          },
-          {
-            id: 'inuse',
-            title: 'In use',
-            translate: 'MENU.INUSE--------',
-            type: 'collapsible',
-            icon: 'play',
-            children: [
-              {
-                id: 'using',
-                title: 'In Use--------',
-                translate: 'MENU.USINGMENU',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/in-use-matrix'
-              },
-              {
-                id: 'nomotion',
-                title: 'No Motion--------',
-                translate: 'MENU.NOMOTION',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/no-motion'
-              },
-              {
-                id: 'marked',
-                title: 'Marked--------',
-                translate: 'MENU.MARKED',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/marked'
-              },
-              {
-                id: 'test',
-                title: 'Test--------',
-                translate: 'MENU.TEST',
-                type: 'item',
-                icon: 'circle',
-                url: 'api/test'
-              },
-            ]
-          },
-        ]
+        id: 'stated',
+        title: 'Stated',
+        translate: 'MENU.STATED',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/stated'
       },
       {
-        id: 'movement',
-        title: 'Movement Die--------',
-        translate: 'MENU.MOVEMENTMATRIX',
+        id: 'confirmed',
+        title: 'Confirmed',
+        translate: 'MENU.CONFIRMED',
         type: 'item',
-        icon: 'move',
-        url: 'api/movement-matrix'
+        icon: 'check-circle',
+        url: 'api/confirmed'
       },
       {
-        id: 'userview',
-        title: 'User view--------',
-        translate: 'MENU.USERVIEW',
+        id: 'dispatched',
+        title: 'Dispatched',
+        translate: 'MENU.DISPATCHED',
         type: 'item',
-        icon: 'eye',
-        url: 'api/user-view'
+        icon: 'check-circle',
+        url: 'api/dispatched'
+      },
+      {
+        id: 'productivity',
+        title: 'Productivity',
+        translate: 'MENU.PRODUCTIVITY',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/productivity'
+      },
+      {
+        id: 'scrap',
+        title: 'Scrap',
+        translate: 'MENU.SCRAP',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/scrap'
+      },
+      {
+        id: 'newmatrix',
+        title: 'New Matrix----',
+        translate: 'MENU.NEWMATRIX',
+        type: 'item',
+        icon: 'codesandbox',
+        url: 'api/new-matrix'
+      },
+      {
+        id: 'productivity-nitrification',
+        title: 'Productivity Nitrification',
+        translate: 'MENU.PRODUCTIVITYNITRIFICATION',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/productivity-nitrification'
       },
     ]
   },
   {
-    id: 'profiles',
+    id: 'inuse',
+    title: 'In use----',
+    translate: 'MENU.INUSE',
+    type: 'collapsible',
+    icon: 'file',
+    children: [
+      {
+        id: 'using',
+        title: 'In Use----',
+        translate: 'MENU.USINGMENU',
+        type: 'item',
+        icon: 'file-text',
+        url: 'api/in-use-matrix'
+      },
+      {
+        id: 'nomotion',
+        title: 'No Motion----',
+        translate: 'MENU.NOMOTION',
+        type: 'item',
+        icon: 'file-text',
+        url: 'api/no-motion'
+      },
+      {
+        id: 'marked',
+        title: 'Marked----',
+        translate: 'MENU.MARKED',
+        type: 'item',
+        icon: 'file-text',
+        url: 'api/marked'
+      },
+      {
+        id: 'test',
+        title: 'Test----',
+        translate: 'MENU.TEST',
+        type: 'item',
+        icon: 'file-text',
+        url: 'api/test'
+      },
+    ]
+  },
+  {
+    id: 'movement',
+    title: 'Movement Die----',
+    translate: 'MENU.MOVEMENTMATRIX',
+    type: 'item',
+    icon: 'move',
+    url: 'api/movement-matrix'
+  },
+  {
+    id: 'userview',
+    title: 'User view----',
+    translate: 'MENU.USERVIEW',
+    type: 'item',
+    icon: 'eye',
+    url: 'api/user-view'
+  },
+  {
+    id: 'apps',
+    type: 'section',
     title: 'Profiles',
     translate: 'MENU.PROFILES',
-    type: 'collapsible',
     icon: 'package',
-    children: [
+  },
       {
         id: 'infoProfiles',
         title: 'Information profiles',
@@ -193,70 +149,65 @@ export const menu: CoreMenu[] = [
       {
         id: 'products',
         title: 'Products',
-        translate: 'MENU.LISTPROFILES',
-        type: 'collapsible',
-        icon: 'circle',
-        children: [
-          {
-            id: 'products',
-            title: 'Products',
-            translate: 'MENU.PRODUCTS',
-            type: 'item',
-            icon: 'circle',
-            url: 'api/products'
-          },
-        ]
+        translate: 'MENU.PRODUCTS',
+        type: 'item',
+        icon: 'package',
+        url: 'api/products'
       },
       {
         id: 'rawMaterial',
-        title: 'Raw material for production--------',
+        title: 'Raw material for production----',
         translate: 'MENU.RAWMATERIAL',
         type: 'item',
-        icon: 'circle',
+        icon: 'package',
         url: 'api/raw-material-production'
       },
-    ]
-  },
   {
-    id: 'warehouse',
+    id: 'apps',
+    type: 'section',
     title: 'Warehouse',
     translate: 'MENU.SKLAD',
-    type: 'collapsible',
-    icon: 'box',
-    children: [
-      // {
-      //   id: 'infosklad',
-      //   title: 'Information Warehouse',
-      //   translate: 'MENU.INFOSKLAD',
-      //   type: 'item',
-      //   icon: 'info',
-      //   url: 'api/information-warehouse'
-      // },
-      {
-        id: 'freeAddress',
-        title: 'Free addresses',
-        translate: 'MENU.FREEADDRESS',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/free-addresses'
-      },
-      {
-        id: 'occupiedMatrix',
-        title: 'Occupied dies',
-        translate: 'MENU.OCCUPIEDMATRIX',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/occupied-matrices'
-      },
-    ]
+    icon: 'package',
   },
   {
-    id: 'manufacture',
+    id: 'freeAddress',
+    title: 'Free addresses',
+    translate: 'MENU.FREEADDRESS',
+    type: 'item',
+    icon: 'truck',
+    url: 'api/free-addresses'
+  },
+  {
+    id: 'occupiedMatrix',
+    title: 'Occupied dies',
+    translate: 'MENU.OCCUPIEDMATRIX',
+    type: 'item',
+    icon: 'truck',
+    url: 'api/occupied-matrices'
+  },
+
+  {
+    id: 'apps',
+    type: 'section',
+    title: 'Manufacturer',
+    translate: 'MENU.MANUFACTURER',
+    icon: 'package',
+  },
+  {
+    id: 'manufacturer',
     title: 'Manufacturer',
     translate: 'MENU.MANUFACTURER',
     type: 'item',
     icon: 'user-check',
     url: 'api/manufacturers'
+  },
+
+  {
+    id: 'apps',
+    type: 'section',
+    title: 'Employees',
+    translate: 'MENU.EMPLOYEES',
+    icon: 'package',
   },
   {
     id: 'employee',
@@ -266,58 +217,73 @@ export const menu: CoreMenu[] = [
     icon: 'users',
     url: 'api/employees'
   },
+
   {
-    id: 'confirmations',
+    id: 'apps',
+    type: 'section',
     title: 'Confirmations',
     translate: 'MENU.CONFIRMATION',
-    type: 'collapsible',
-    icon: 'check-circle',
-    children: [
-      {
-        id: 'extrusionConfirmation',
-        title: 'Extrusion Confirmation--------',
-        translate: 'MENU.EXTRUSION',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/extrusion-confirmation'
-      },
-      {
-        id: 'sawConfirmation',
-        title: 'Saw Confirmation--------',
-        translate: 'MENU.SAWCONFIRMATION',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/saw-confirmation'
-      },
-      {
-        id: 'scrapDeclaration',
-        title: 'Scrap Declaration--------',
-        translate: 'MENU.SCRAPDECLARATION',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/declaration-scrap'
-      },
-      {
-        id: 'dieScanModule',
-        title: 'Die Scan Module',
-        translate: 'MENU.DIESCANMODULE',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/die-scan-module'
-      },
-    ]
+    icon: 'package',
+  },
+  {
+    id: 'extrusionConfirmation',
+    title: 'Extrusion Confirmation----',
+    translate: 'MENU.EXTRUSION',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/extrusion-confirmation'
+  },
+  {
+    id: 'sawConfirmation',
+    title: 'Saw Confirmation----',
+    translate: 'MENU.SAWCONFIRMATION',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/saw-confirmation'
+  },
+  {
+    id: 'scrapDeclaration',
+    title: 'Scrap Declaration----',
+    translate: 'MENU.SCRAPDECLARATION',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/declaration-scrap'
+  },
+  {
+    id: 'dieScanModule',
+    title: 'Die Scan Module',
+    translate: 'MENU.DIESCANMODULE',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/die-scan-module'
+  },
+
+  {
+    id: 'apps',
+    type: 'section',
+    title: 'Reports',
+    translate: 'MENU.REPORTS',
+    icon: 'package',
   },
   {
     id: 'reports',
-    title: 'Reports--------',
+    title: 'Reports----',
     translate: 'MENU.REPORTS',
     type: 'item',
     icon: 'file-text',
     url: 'api/reports'
   },
+
+  {
+    id: 'apps',
+    type: 'section',
+    title: 'Settings',
+    translate: 'MENU.SETTINGS',
+    icon: 'package',
+  },
   {
     id: 'settings',
-    title: 'Settings--------',
+    title: 'Settings----',
     translate: 'MENU.SETTINGS',
     type: 'item',
     icon: 'settings',

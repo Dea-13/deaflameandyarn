@@ -28,7 +28,7 @@ export class FreeAddressComponent implements OnInit {
   public selectedOption = 10;
   //for pagination
   public cPage: number = 1;
-  public limit: number = 10;
+  public limit: number = 15;
   public offset: number = 0;
   public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
@@ -62,7 +62,7 @@ export class FreeAddressComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
 
-    this.pageChanged(1, 15);
+    this.pageChanged(1);
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
@@ -70,11 +70,9 @@ export class FreeAddressComponent implements OnInit {
     console.log('TRANSLATE', this.translateSnackBar);
   }
 
-  getRequest(count) {
-    this.limit = count;
+  getRequest() {
     this.warehouseService
-      .getInformationWarehouse(this.offset, this.limit, this.resourceName, this.storagePlace, this.status)
-      .subscribe((data) => {
+      .getInformationWarehouse(this.offset, this.limit, this.resourceName, this.storagePlace, this.status).subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
         this.loading = false;
@@ -102,13 +100,11 @@ export class FreeAddressComponent implements OnInit {
     }
   }
 
-  pageChanged(page: number, count) {
+  pageChanged(page: number) {
     console.log('event', page);
     this.cPage = page;
-    this.offset = 10 * (this.cPage - 1);
-    this.leastDaysAgo = this.limit * this.cPage;
-    this.itemsPerPage = count;
-    this.getRequest(count);
+    this.offset = this.limit * (this.cPage - 1);
+    this.getRequest();
   }
 
   viewDiesList(list){

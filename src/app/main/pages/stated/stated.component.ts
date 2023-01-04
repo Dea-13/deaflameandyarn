@@ -5,6 +5,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 import { NewMatrixModalComponent } from '../../modals/new-matrix-modal/new-matrix-modal.component';
 import { Router } from '@angular/router';
 import { DetailsDieModalComponent } from '../../modals/details-die-modal/details-die-modal.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-stated',
@@ -66,14 +67,10 @@ export class StatedComponent implements OnInit {
 
   //for pagination
   public cPage: number = 1;
-  public limit: number = 10;
+  public limit: number = 15;
   public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 10;
   public languageOptions: any;
-  public searchMaterial: any = '';
   public loading: boolean = false;
   public translateSnackBar: any;
   public statusId: number;
@@ -176,16 +173,15 @@ export class StatedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-      this.pageChanged(1, 10);
+      this.pageChanged(1);
       this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
   }
 
-  getRequest(count) {
+  getRequest() {
     this.loading = true;
-    this.limit = count;
     this.matrixService
       .getInformationMatrix(
         this.offset,
@@ -228,115 +224,49 @@ export class StatedComponent implements OnInit {
     for (let i = 0; i < this.urls.length; i++) {
       this.matrixService.getStatusFilters(this.urls[i].name).subscribe((data) => {
         switch (this.urls[i].id) {
-          case 0:
-            {
-              this.dieArr = data;
-            }
+          case 0: { this.dieArr = data; }
             break;
-          case 1:
-            {
-              this.profileIdArr = data;
-            }
+          case 1: { this.profileIdArr = data; }
             break;
-          case 2:
-            {
-              this.primeResourceNameArr = data;
-            }
+          case 2: { this.primeResourceNameArr = data; }
             break;
-          case 3:
-            {
-              this.producerNameArr = data;
-            }
+          case 3: { this.producerNameArr = data; }
             break;
-          case 4:
-            {
-              this.correctorArr = data;
-            }
+          case 4: { this.correctorArr = data; }
             break;
-          case 5:
-            {
-              this.diameterArr = data;
-            }
+          case 5: { this.diameterArr = data; }
             break;
-          case 6:
-            {
-              this.thicknessArr = data;
-            }
+          case 6: { this.thicknessArr = data; }
             break;
-          case 7:
-            {
-              this.alloyArr = data;
-            }
+          case 7: { this.alloyArr = data; }
             break;
-          case 8:
-            {
-              this.temperArr = data;
-            }
+          case 8: { this.temperArr = data; }
             break;
-          case 9:
-            {
-              this.bolster1Arr = data;
-            }
+          case 9:{ this.bolster1Arr = data; }
             break;
-          case 10:
-            {
-              this.bolster2Arr = data;
-            }
+          case 10: { this.bolster2Arr = data; }
             break;
-          case 11:
-            {
-              this.dieHolderArr = data;
-            }
+          case 11: { this.dieHolderArr = data; }
             break;
-          case 12:
-            {
-              this.containerArr = data;
-            }
+          case 12: { this.containerArr = data; }
             break;
-          case 13:
-            {
-              this.notesArr = data;
-            }
+          case 13: { this.notesArr = data; }
             break;
-          case 14:
-            {
-              this.clientNameArr = data;
-            }
+          case 14: { this.clientNameArr = data; }
             break;
-          case 15:
-            {
-              this.dateOrderArr = data;
-            }
+          case 15: { this.dateOrderArr = data; }
             break;
-          case 16:
-            {
-              this.priceArr = data;
-            }
+          case 16: { this.priceArr = data; }
             break;
-          case 17:
-            {
-              this.priceInvArr = data;
-            }
+          case 17: { this.priceInvArr = data; }
             break;
-          case 18:
-            {
-              this.dateConfirmArr = data;
-            }
+          case 18: { this.dateConfirmArr = data; }
             break;
-          case 19:
-            {
-              this.dateExpedArr = data;
-            }
+          case 19: { this.dateExpedArr = data; }
             break;
-          case 20:
-            {
-              this.dateScrappedArr = data;
-            }
+          case 20: { this.dateScrappedArr = data; }
             break;
-          case 21:
-            {
-              this.channelsArr = data;
-            }
+          case 21: { this.channelsArr = data; }
             break;
         }
         this.loading = false;
@@ -344,13 +274,11 @@ export class StatedComponent implements OnInit {
     }
   }
 
-  pageChanged(page: number, count) {
+  pageChanged(page: number) {
     console.log('event', page);
     this.cPage = page;
-    this.offset = 10 * (this.cPage - 1);
-    this.leastDaysAgo = this.limit * this.cPage;
-    this.itemsPerPage = count;
-    this.getRequest(count);
+    this.offset = this.limit * (this.cPage - 1);
+    this.getRequest();
   }
 
   modalMatrix(row) {
@@ -359,24 +287,16 @@ export class StatedComponent implements OnInit {
     modalRef.componentInstance.matrixItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest(10);
+        this.getRequest();
       }
     });
   }
 
   formatDate(date){
-    console.log("formatDate", date)
+    console.log("formatDate", date[0])
     if(date){
       let returnDate;
-      var d = date[0];
-      var mm = d.getMonth() + 1;
-      var dd = d.getDate();
-      var yy = d.getFullYear();
-      var hh = d.getHours() ? d.getHours() : '00';
-      var m = d.getMinutes() ? d.getMinutes() : '00';
-      var ss = d.getSeconds() ? d.getSeconds() : '00';
-
-      returnDate = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + m + ':' + ss; //(US)
+      returnDate = moment(date[0]).format("YYYY-MM-DD HH:mm:ss")
       return returnDate;
     } else {
       return '';
@@ -396,7 +316,7 @@ export class StatedComponent implements OnInit {
     if(type == 'scrap'){
       this.selDateScrapped = '';
     }
-    this.getRequest(10);
+    this.getRequest();
   }
 
   modalDetailsDie(row) {
@@ -406,7 +326,7 @@ export class StatedComponent implements OnInit {
       modalRef.componentInstance.dieItem = { data: row };
       modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
         if (receivedEntry == true) {
-          this.getRequest(10);
+          this.getRequest();
         }
       });
     }

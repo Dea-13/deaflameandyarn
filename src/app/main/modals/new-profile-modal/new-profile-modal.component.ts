@@ -47,7 +47,8 @@ export class NewProfileModalComponent implements OnInit {
   public isEditableRowsLength = {};
   public rowsLength: Array<any> = [];
   public groupCode: Array<any> = [];
-  alloyArr: Array<any> = [];
+  public alloyArr: Array<any> = [];
+  public validation: boolean;
 
 
   constructor(
@@ -69,6 +70,7 @@ export class NewProfileModalComponent implements OnInit {
       this.getProfiles(this.profile.id);
       this.getProfilesEnds(this.profile.id);
       this.getFiles(this.profile.id);
+      this.getAlloy();
     }
     this.getGroupCode();
 
@@ -174,14 +176,142 @@ export class NewProfileModalComponent implements OnInit {
     this.rowsLength = [...this.rowsLength];
   }
 
-  saveRowsLength(rowsLength, ind) {
-    console.log("save row", rowsLength, ind);
-    this.isEditableRowsLength[ind] = false;
+  pressEndValidation(row: any): boolean {
+    console.log("invalid++++++:", row);
+    if (row.alloyFamily == "") {
+      return false;
+    } else if (row.channels == null) {
+      return false;
+    } else if (row.lengthEnd == null) {
+      return false;
+    } else if (row.lengthStart == null) {
+      return false;
+    } else {
+      return true
+    }
   }
 
-  deleteRowsLength(rowsLength, ind) {
+  saveRowsLength(rowsLength, row, ind) {
+    console.log("save row", rowsLength, ind);
+    this.isEditableRowsLength[ind] = false;
+    let flag = false;
+    let obj;
+    for (let i = 0; i < this.rowsLength.length; i++) {
+      if (this.rowsLength[i].profileId) {
+        if (!row.profileId && this.rowsLength[i].alloyFamily == row.alloyFamily) {
+          console.log('Duplicate row');
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateAlloyMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
+      }
+    }
+
+    if (!flag) {
+      this.validation = this.pressEndValidation(rowsLength[ind]);
+      if (this.validation) {
+        obj = {
+          profileId: row.profileId,
+          channels: row.channels,
+          alloyFamily: row.alloyFamily,
+          lengthStart: row.lengthStart,
+          lengthEnd: row.lengthEnd,
+          lastModified: new Date(),
+          rowVersion: row.rowVersion == undefined ? ind : row.rowVersion,
+          lastModifiedBy: this.userName,
+        }
+        console.log('obj End', obj, row);
+        if (row.profileId) {
+          this.profilesService.updateRowsEnd(row).subscribe(matrixService => {
+            this.getProfilesEnds(row.profileId);
+            this.loading = false;
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: this.translateSnackBar.saveMsg,
+              showConfirmButton: false,
+              timer: 2000
+            })
+          },
+            (error) => {
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              this.loading = false;
+            }
+          );
+        } else {
+          this.profilesService.createRowsEnd(obj).subscribe(matrixService => {
+            this.getProfilesEnds(row.profileId);
+            this.loading = false;
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: this.translateSnackBar.saveMsg,
+              showConfirmButton: false,
+              timer: 2000
+            })
+          },
+            (error) => {
+              Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              this.loading = false;
+            }
+          );
+        }
+      } else {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.fillAllMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+    }
+  }
+
+  deleteRowsLength(rowsLength, row, ind) {
     console.log("delete row", rowsLength, ind);
     this.isEditableRowsLength[ind] = false;
+    this.profilesService.deleteRowsEnd(row.profileId).subscribe(matrixService => {
+      this.getProfilesEnds(row.profileId);
+      this.loading = false;
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.deleteMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    },
+      (error) => {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: 'Error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.loading = false;
+        this.getProfilesEnds(row.profileId);
+      }
+    );
   }
 
   submitForm() {

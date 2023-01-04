@@ -377,16 +377,16 @@
                         <tr *ngFor="let rowLength of rowsLength; let i = index">
                           <td class="width-10">
                             <div class="flex">
-                              <span *ngIf="!this.isEditableRowsLength[i] && rowLength.id"
+                              <span *ngIf="!this.isEditableRowsLength[i] && rowLength.profileId"
                                 (click)="this.isEditableRowsLength[i]=!this.isEditableRowsLength[i];$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="edit" class="mr-25" title="Modify"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsLength[i] || !rowLength.id"
-                                (click)="saveRowsLength(rowsLength, i);$event.preventDefault(); $event.stopPropagation();">
+                              <span *ngIf="this.isEditableRowsLength[i] || !rowLength.profileId"
+                                (click)="saveRowsLength(rowsLength, rowLength, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="save" class="mr-25" title="Save"></i>
                               </span>
-                              <span *ngIf="this.isEditableRowsLength[i] && rowLength.id"
-                                (click)="deleteRowsLength(rowsLength,i);$event.preventDefault(); $event.stopPropagation();">
+                              <span *ngIf="this.isEditableRowsLength[i] && rowLength.profileId"
+                                (click)="deleteRowsLength(rowsLength, rowLength, i);$event.preventDefault(); $event.stopPropagation();">
                                 <i data-feather="delete" class="mr-25" title="Delete"></i>
                               </span>
                             </div>

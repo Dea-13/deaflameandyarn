@@ -6,7 +6,7 @@
           <div class="col-md-6 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1, limit)">
+                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                   <ng-option [value]="10">10</ng-option>
                   <ng-option [value]="15">15</ng-option>
                   <ng-option [value]="20">20</ng-option>
@@ -20,11 +20,6 @@
           </div>
           <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
             <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
-              <!-- <label class="d-flex align-items-center ml-1 ml-md-0">
-                {{ translateSnackBar.search }}:
-                <input [(ngModel)]="searchValue" name="searchValue" type="search" class="form-control ml-25"
-                  (keyup)="getRequest(10)" />
-              </label> -->
               <button class="btn btn-primary ml-1" rippleEffect (click)="modalMatrix('new')">
                 <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
                 <span class="d-none d-sm-inline-block"> {{ translateSnackBar.modalMatrix }} </span>
@@ -34,7 +29,7 @@
         </div>
         <section class="example-container mat-elevation-z8">
           <table mat-table
-            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
+            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }"
             class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="dieId">
@@ -46,7 +41,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="seldie" (ngModelChange)="getRequest(10)">
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="seldie" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of dieArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -67,7 +62,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selProfileId"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of profileIdArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -88,7 +83,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPrimeResourceName"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of primeResourceNameArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -109,7 +104,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selProducerName"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of producerNameArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -119,26 +114,6 @@
               </th>
               <td mat-cell *matCellDef="let element">{{element.producerName}}</td>
             </ng-container>
-
-            <!-- <ng-container *ngIf="statusId == 10 || statusId == 40" matColumnDef="correctorName">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selCorrector" (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of correctorArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
-                <span class="th-header">{{ translateSnackBar.matricologist }}</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.correctorName}}</td>
-            </ng-container> -->
 
             <ng-container matColumnDef="diameter">
               <th mat-header-cell *matHeaderCellDef>
@@ -150,7 +125,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selDiameter"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of diameterArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -171,7 +146,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selThickness"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of thicknessArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -191,7 +166,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selAlloy" (ngModelChange)="getRequest(10)">
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selAlloy" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of alloyArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -212,7 +187,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selTemper"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of temperArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -233,7 +208,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selBolster1"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of bolster1Arr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -254,7 +229,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selBolster2"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of bolster2Arr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -275,7 +250,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selDieHolder"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of dieHolderArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -296,7 +271,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selContainer"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of containerArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -316,7 +291,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selNotes" (ngModelChange)="getRequest(10)">
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selNotes" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of notesArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -329,20 +304,7 @@
 
             <ng-container *ngIf="statusId == 10 || statusId == 30" matColumnDef="visibleSides">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selOpPerf"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of clientNameArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.visibleSide }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
@@ -361,7 +323,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selClientName"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of clientNameArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -381,7 +343,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng2-flatpickr [(ngModel)]="selDateOrder" [config]="orderDateOptions" name="selDateOrder"
-                      [setDate]="selDateOrder" (ngModelChange)="getRequest(10)" (click)="$event.stopPropagation()"
+                      [setDate]="selDateOrder" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
                       #startDateOptions>
                     </ng2-flatpickr>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('order')">
@@ -402,7 +364,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPrice" (ngModelChange)="getRequest(10)">
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPrice" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of priceInvArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -423,7 +385,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPriceInv"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of dateConfirmArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -443,7 +405,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng2-flatpickr [(ngModel)]="selDateConfirm" [config]="confirmDateOptions" name="selDateConfirm"
-                      [setDate]="selDateConfirm" (ngModelChange)="getRequest(10)" (click)="$event.stopPropagation()"
+                      [setDate]="selDateConfirm" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
                       #startDateOptions>
                     </ng2-flatpickr>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('confirm')">
@@ -464,14 +426,8 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <!-- <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selDateExped"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of dateScrappedArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select> -->
                     <ng2-flatpickr [(ngModel)]="selDateExped" [config]="expedDateOptions" name="selDateExped"
-                      [setDate]="selDateExped" (ngModelChange)="getRequest(10)" (click)="$event.stopPropagation()"
+                      [setDate]="selDateExped" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
                       #startDateOptions>
                     </ng2-flatpickr>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('expedition')">
@@ -486,20 +442,7 @@
 
             <ng-container *ngIf="statusId == 40" matColumnDef="totalWeight">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selCooling"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of channelsArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.totalWeight }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.kg}}</td>
@@ -507,20 +450,7 @@
 
             <ng-container matColumnDef="countInUse">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selCoolingSms"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of coolingsmsArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.usedPieces }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.countUsages}}</td>
@@ -528,20 +458,7 @@
 
             <ng-container matColumnDef="finalNitriding">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selCoolingAdd"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of coolingaddArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.finalNitriding }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.finalNitriding}}</td>
@@ -549,20 +466,7 @@
 
             <ng-container matColumnDef="kgToFianlNitriding">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selBasketOrdering"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of basketorderingArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.kgToFianlNitriding }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.kgToFianlNitriding}}</td>
@@ -570,20 +474,7 @@
 
             <ng-container matColumnDef="kgAfterFianlNitriding">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selNotesExtrusion"
-                      (ngModelChange)="getRequest(10)">
-                      <ng-option *ngFor="let t of notesextrusionArr" [value]="t.name">{{ t.name }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.kgAfterFianlNitriding }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.kgAfterFianlNitriding}}</td>
@@ -598,7 +489,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng2-flatpickr [(ngModel)]="selDateScrapped" [config]="scrappedDateOptions" name="selDateScrapped"
-                      [setDate]="selDateScrapped" (ngModelChange)="getRequest(10)" (click)="$event.stopPropagation()"
+                      [setDate]="selDateScrapped" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
                       #startDateOptions>
                     </ng2-flatpickr>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('scrap')">
@@ -621,7 +512,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selChannels"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of channelsArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -634,19 +525,7 @@
 
             <ng-container *ngIf="statusId == 40" matColumnDef="placeSklad">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selInUse" (ngModelChange)="getRequest(10)">
-                      <ng-option value="true">True</ng-option>
-                      <ng-option value="false">False</ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.plaseSklad }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.storegePlace}}</td>
@@ -654,19 +533,7 @@
 
             <ng-container *ngIf="statusId == 40" matColumnDef="lastTransaction">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selInUse" (ngModelChange)="getRequest(10)">
-                      <ng-option value="true">True</ng-option>
-                      <ng-option value="false">False</ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lastTransaction}}</td>
@@ -674,19 +541,7 @@
 
             <ng-container *ngIf="statusId == 40" matColumnDef="gr">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selInUse" (ngModelChange)="getRequest(10)">
-                      <ng-option value="true">True</ng-option>
-                      <ng-option value="false">False</ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.gr }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.grM}}</td>
@@ -694,19 +549,7 @@
 
             <ng-container *ngIf="statusId == 40" matColumnDef="kgSap">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selInUse" (ngModelChange)="getRequest(10)">
-                      <ng-option value="true">True</ng-option>
-                      <ng-option value="false">False</ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.kgSap }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.kgSap}}</td>
@@ -714,19 +557,7 @@
 
             <ng-container *ngIf="statusId == 40" matColumnDef="renewal">
               <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <!-- <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selInUse" (ngModelChange)="getRequest(10)">
-                      <ng-option value="true">True</ng-option>
-                      <ng-option value="false">False</ng-option>
-                    </ng-select>
-                  </mat-menu> -->
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.renewal }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.renewal}}</td>
@@ -739,7 +570,7 @@
 
 
         <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
-          (pageChange)="pageChanged($event, limit)">
+          (pageChange)="pageChanged($event)">
         </pagination-controls>
       </div>
     </section>

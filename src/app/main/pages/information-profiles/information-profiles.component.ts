@@ -136,10 +136,7 @@ export class InformationProfilesComponent implements OnInit {
   public cPage: number = 1;
   public limit: number = 10;
   public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 10;
   public languageOptions: any;
   public searchMaterial: any = '';
   public loading: boolean = false;
@@ -153,16 +150,15 @@ export class InformationProfilesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.pageChanged(1, 10);
+    this.pageChanged(1);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
   }
 
-  getRequest(count) {
+  getRequest() {
     this.loading = true;
-    this.limit = count;
     this.profilesService
       .getInformationProfiles(
         this.offset,
@@ -349,24 +345,11 @@ export class InformationProfilesComponent implements OnInit {
     }
   }
 
-  pageChanged(page: number, count) {
+  pageChanged(page: number) {
     console.log('event', page);
     this.cPage = page;
-    this.offset = 10 * (this.cPage - 1);
-    this.leastDaysAgo = this.limit * this.cPage;
-    this.itemsPerPage = count;
-    this.getRequest(count);
-  }
-
-  searchTable(count) {
-    this.loading = true;
-    this.getRequest(count);
-  }
-
-  clearTable(count, searchValue) {
-    this.loading = true;
-    searchValue = '';
-    this.getRequest(count);
+    this.offset = this.limit * (this.cPage - 1);
+    this.getRequest();
   }
 
   modalProfile(row) {
@@ -375,7 +358,7 @@ export class InformationProfilesComponent implements OnInit {
     modalRef.componentInstance.profileItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest(10);
+        this.getRequest();
         Swal.fire({
           position: 'bottom-end',
           icon: 'success',
@@ -389,7 +372,7 @@ export class InformationProfilesComponent implements OnInit {
 
   deleteProfile(row) {
     this.profilesService.deleteProfile(row.id).subscribe(profilesService => {
-      this.getRequest(10);
+      this.getRequest();
       this.loading = false;
       Swal.fire({
         position: 'bottom-end',

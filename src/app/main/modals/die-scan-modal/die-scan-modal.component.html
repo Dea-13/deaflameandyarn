@@ -17,7 +17,7 @@
         </div>
         <section class="example-container mat-elevation-z8">
           <table mat-table
-            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
+            [dataSource]="rows | paginate: { id: 'paginationDieId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }"
             class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="dieId">
@@ -28,7 +28,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation();" [(ngModel)]="dieId" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" (ngModelChange)="getBarCode()">
+                      [multiple]="true" [closeOnSelect]="false" (change)="pageDieChanged(1)">
                       <ng-option *ngFor="let d of dieArr" [value]="d.name">{{ d.name }}</ng-option>
                     </ng-select>
                   </mat-menu>
@@ -47,7 +47,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" [(ngModel)]="primaryResourceName" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" (ngModelChange)="getBarCode()">
+                      [multiple]="true" [closeOnSelect]="false" (change)="pageDieChanged(1)">
                       <ng-option *ngFor="let p of primaryResourceNameArr" [value]="p.name">{{ p.name }}</ng-option>
                     </ng-select>
                   </mat-menu>
@@ -66,7 +66,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" [(ngModel)]="channels" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" (ngModelChange)="getBarCode()">
+                      [multiple]="true" [closeOnSelect]="false" (change)="pageDieChanged(1)">
                       <ng-option *ngFor="let c of channelsArr" [value]="c.name">{{ c.name }}</ng-option>
                     </ng-select>
                   </mat-menu>
@@ -78,17 +78,6 @@
 
             <ng-container matColumnDef="inUse">
               <th mat-header-cell *matHeaderCellDef>
-                <!-- <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false">
-                    </ng-select>
-                  </mat-menu>
-                </div> -->
                 <span class="th-header">{{ translateSnackBar.inUse }}</span>
               </th>
               <td mat-cell *matCellDef="let element"><input class="input" (click)="$event.stopPropagation()" [(ngModel)]="element.inUse" type="checkbox"></td>
@@ -99,8 +88,8 @@
           </table>
         </section>
 
-        <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
-          (pageChange)="pageChanged($event, limit)">
+        <pagination-controls id="paginationDieId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
+          (pageChange)="pageDieChanged($event)">
         </pagination-controls>
       </div>
     </div>
@@ -112,6 +101,3 @@
     <span class="sr-only">Loading...</span>
   </div>
 </div>
-<swal #SweetAlertBottomEnd title="{{ translateSnackBar.saveMsg }}" icon="success" [showConfirmButton]="false"
-  [timer]="1500" [position]="'bottom-end'">
-</swal>

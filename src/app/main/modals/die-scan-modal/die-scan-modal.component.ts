@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -22,10 +22,7 @@ export class DieScanModalComponent implements OnInit {
   public cPage: number = 1;
   public limit: number = 10;
   public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 10;
   public rows: Array<any> = [];
   public primaryResourceName: string = '';
   public channels: string = '';
@@ -38,15 +35,17 @@ export class DieScanModalComponent implements OnInit {
     public translate: TranslateService,
     private activeModal: NgbActiveModal,
     public dieService: DieConfirmationService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    console.log('dieItem', this.dieItem);
     this.dieId = this.dieItem.die == 'empty' ? '' : this.dieItem.die;
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
 
-    this.pageChanged(1, 10);
+    this.getBarCode();
     this.getDies();
     this.getChannels();
     this.primaryResource();
@@ -56,8 +55,8 @@ export class DieScanModalComponent implements OnInit {
     this.loading = true;
     this.dieService.getBarCode(this.offset, this.limit, this.dieId, this.primaryResourceName, this.channels).subscribe(data => {
       console.log("getBarCode", data);
-      this.rows = data.list;
-      this.totalResult = data.total;
+      this.rows = data['list'];
+      this.totalResult = data['total'];
       this.loading = false;
     });
   }
@@ -89,12 +88,10 @@ export class DieScanModalComponent implements OnInit {
     });
   }
 
-  pageChanged(page: number, count) {
+  pageDieChanged(page: number) {
     console.log('event', page);
     this.cPage = page;
-    this.offset = 10 * (this.cPage - 1);
-    this.leastDaysAgo = this.limit * this.cPage;
-    this.itemsPerPage = count;
+    this.offset = this.limit * (this.cPage - 1);
     this.getBarCode();
   }
 
@@ -102,6 +99,11 @@ export class DieScanModalComponent implements OnInit {
     console.log('clickedRows', row);
     this.activeModal.dismiss();
     this.passEntry.emit(row);
+  }
+
+  ngAfterViewChecked() {
+    //your code to update the model
+    this.cdr.detectChanges();
   }
 
   closeModal(): void {
