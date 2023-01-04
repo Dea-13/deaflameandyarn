@@ -82,6 +82,16 @@ export class ProfilesService {
     return this._http.put(`${environment.apiUrl}Profiles`, data);
   }
 
+  createRowsEnd(press: any) {
+    const data = JSON.stringify(press);
+    return this._http.post<any>(`${environment.apiUrl}ProfilesEnds`, data);
+  }
+
+  updateRowsEnd(press: any) {
+    const data = JSON.stringify(press);
+    return this._http.put(`${environment.apiUrl}ProfilesEnds`, data);
+  }
+
   deleteProfile(id:number){
     return this._http.delete<any>(`${environment.apiUrl}Profiles/${id}`);
   }
@@ -90,8 +100,8 @@ export class ProfilesService {
     return this._http.delete<any>(`${environment.apiUrl}ProfileFileData/${id}`);
   }
 
-  uploadFile(id: any, profile: any, row: any) {    
-    const fb: FormData = new FormData()    
+  uploadFile(id: any, profile: any, row: any) {
+    const fb: FormData = new FormData()
     fb.append('files', row.file.rawFile);
     return this._http.post<any>(`${environment.apiUrl}ProfileFileData/uploadfile/${id}`, fb);
   }
@@ -104,5 +114,9 @@ export class ProfilesService {
   createProductProfile(profile: any) {
     const data = JSON.stringify(profile);
     return this._http.post<any>(`${environment.apiUrl}ProfileProduct`, data);
+  }
+
+  deleteRowsEnd(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
   }
 }

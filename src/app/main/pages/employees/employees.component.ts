@@ -20,16 +20,11 @@ export class EmployeesComponent implements OnInit {
     { id: 2, name: 'privilege' }
   ];
   public rows = [];
-  public selectedOption = 10;
   //for pagination
   public cPage: number = 1;
-  public limit: number = 10;
+  public limit: number = 15;
   public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 10;
-  public countRows: number = 10;
   public languageOptions: any;
   public searchMaterial: any = '';
   public loading: boolean = false;
@@ -51,7 +46,7 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.pageChanged(1, 10);
+    this.pageChanged(1);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -59,8 +54,7 @@ export class EmployeesComponent implements OnInit {
     console.log('TRANSLATE', this.translateSnackBar);
   }
 
-  getRequest(count) {
-    this.limit = count;
+  getRequest() {
     this.employeesService
     .getEmployees(this.offset, this.limit, this.selName, this.selDepartment, this.selPrevilege)
     .subscribe((data) => {
@@ -96,13 +90,11 @@ export class EmployeesComponent implements OnInit {
     }
   }
 
-  pageChanged(page: number, count) {
+  pageChanged(page: number) {
     console.log('event', page);
     this.cPage = page;
-    this.offset = 10 * (this.cPage - 1);
-    this.leastDaysAgo = this.limit * this.cPage;
-    this.itemsPerPage = count;
-    this.getRequest(count);
+    this.offset = this.limit * (this.cPage - 1);
+    this.getRequest();
   }
 
   modalEmployee(row) {
@@ -111,7 +103,7 @@ export class EmployeesComponent implements OnInit {
     modalRef.componentInstance.employeeItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest(10);
+        this.getRequest();
         Swal.fire({
           position: 'bottom-end',
           icon: 'success',
@@ -126,7 +118,7 @@ export class EmployeesComponent implements OnInit {
   deleteEmployee(row) {
     this.loading = true;
     this.employeesService.deleteEmployee(row.id).subscribe(employeesService => {
-      this.getRequest(10);
+      this.getRequest();
       this.loading = false;
       Swal.fire({
         position: 'bottom-end',
@@ -145,7 +137,7 @@ export class EmployeesComponent implements OnInit {
           timer: 2000
         })
         this.loading = false;
-        this.getRequest(10);
+        this.getRequest();
       }
     );
   }

@@ -12,7 +12,7 @@
                   <ng-option [value]="20">20</ng-option>
                   <ng-option [value]="25">25</ng-option>
                   <ng-option [value]="50">50</ng-option>
-                  <ng-option [value]="100">100</ng-option>
+                  <ng-option [value]="100">100----</ng-option>
                 </ng-select>
                 {{ translateSnackBar.result }}
               </label>
@@ -29,7 +29,7 @@
         </div>
         <section class="example-container mat-elevation-z8">
           <table mat-table
-            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
+            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }"
             class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="erpitem">

@@ -6,7 +6,7 @@
           <div class="col-md-6 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1, limit)">
+                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                   <ng-option [value]="10">10</ng-option>
                   <ng-option [value]="15">15</ng-option>
                   <ng-option [value]="20">20</ng-option>
@@ -34,7 +34,7 @@
         </div>
         <section class="example-container mat-elevation-z8">
           <table mat-table
-            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: itemsPerPage, currentPage: cPage, totalItems: totalResult }"
+            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }"
             class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="name">
@@ -46,7 +46,7 @@
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selName" (ngModelChange)="getRequest(10)">
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selName" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of nameArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -67,7 +67,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selDepartment"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of departmentArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -88,7 +88,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPrevilege"
-                      (ngModelChange)="getRequest(10)">
+                      (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of priviligeArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -126,7 +126,7 @@
         </section>
 
         <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
-          (pageChange)="pageChanged($event, limit)">
+          (pageChange)="pageChanged($event)">
         </pagination-controls>
       </div>
     </section>

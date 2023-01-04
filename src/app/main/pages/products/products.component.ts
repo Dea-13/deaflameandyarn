@@ -16,12 +16,9 @@ export class ProductsComponent implements OnInit {
   public rows = [];
   //for pagination
   public cPage: number = 1;
-  public limit: number = 10;
+  public limit: number = 15;
   public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
   public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 10;
   public languageOptions: any;
   public loading: boolean = false;
   public translateSnackBar: any;

@@ -103,10 +103,10 @@ export class ModalProfileProductsComponent implements OnInit {
         npr: this.createProductForm.controls.npr.value,
         setupSameProfile: this.createProductForm.controls.setupSameProfile.value,
         setupOtherProfile: this.createProductForm.controls.setupOtherProfile.value,
-        finalTreatment: true,//??
+        finalTreatment: false,
         created: new Date(),
         lastModified: new Date(),
-        rowVersion: 0, //??
+        rowVersion: 1,
         lastModifiedBy: this.userName,
       };
       console.log('obj', obj);
