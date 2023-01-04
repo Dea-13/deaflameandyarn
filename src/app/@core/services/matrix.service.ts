@@ -165,8 +165,8 @@ export class MatrixService {
     return this._http.delete<any>(`${environment.apiUrl}ProfilesByPress/${id}`);
   }
 
-  deleteRowsEnd(id:number){
-    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
+  deleteRowsEnd(id:number, alloy: string){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}/${alloy}`);
   }
 
   createRowsPress(press: any) {
