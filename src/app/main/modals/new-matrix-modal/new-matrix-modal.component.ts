@@ -689,10 +689,11 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   deleteRowsEnd(rowsLength, row, ind) {
-    console.log("delete row", rowsLength, ind);
+    console.log("delete row", rowsLength, ind, row);
     this.isEditableRowsEnd[ind] = false;
-    this.matrixService.deleteRowsEnd(row.profileId).subscribe(matrixService => {
+    this.matrixService.deleteRowsEnd(row.profileId, row.alloyFamily).subscribe(matrixService => {
       this.getProfilesByPress();
+      this.getProfilesEnds();
       this.loading = false;
       Swal.fire({
         position: 'bottom-end',
@@ -712,6 +713,7 @@ export class NewMatrixModalComponent implements OnInit {
         })
         this.loading = false;
         this.getProfilesByPress();
+        this.getProfilesEnds();
       }
     );
   }

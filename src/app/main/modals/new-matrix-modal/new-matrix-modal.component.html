@@ -429,7 +429,7 @@
                             <div class="flex">
                               <span *ngIf="!this.isEditableRowsEnd[i] && rowEnd.profileId"
                                 (click)="this.isEditableRowsEnd[i]=!this.isEditableRowsEnd[i];$event.preventDefault(); $event.stopPropagation();">
-                                <i data-feather="edit" class="mr-25" title="Modify"></i>
+                                <i data-feather="edit" class="mr-25" title="Modify"></i>                                
                               </span>
                               <span *ngIf="this.isEditableRowsEnd[i] || !rowEnd.profileId"
                                 (click)="saveRowsEnd(columnsSecondTable, rowEnd, i);$event.preventDefault(); $event.stopPropagation();">
@@ -442,11 +442,11 @@
                             </div>
                           </td>
                           <td>
-                            <ng-select [clearable]="false" [(ngModel)]="rowEnd.alloyFamily" appendTo="body">
+                            <ng-select [clearable]="false" [(ngModel)]="rowEnd.alloyFamily" appendTo="body" [disabled]="rowEnd.profileId">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
-                          <td><input class="form-control input" [(ngModel)]="rowEnd.channels" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowEnd.channels" type="text" [disabled]="rowEnd.profileId"></td>
                           <td><input class="form-control input" [(ngModel)]="rowEnd.lengthEnd" (input)="fillEndChannels(rowEnd)" type="text"></td>
                           <td><input class="form-control input" [(ngModel)]="rowEnd.lengthStart" type="text"></td>
                         </tr>
