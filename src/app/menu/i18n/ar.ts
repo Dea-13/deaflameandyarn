@@ -339,6 +339,7 @@ export const locale = {
       norm: '',
       modalProducts: '',
       messageTabProfile: '',
+      markedForTestDateTime: '',
     }
   }
 }

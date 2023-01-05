@@ -16,7 +16,7 @@ export const locale = {
       STATUS: 'Status',
       INUSE: 'In use',
       NOMOTION: 'No motion--------',
-      MARKED: 'Marked--------',
+      MARKED: 'Marked',
       TEST: 'Test--------',
       STATED: 'Stated',
       CONFIRMED: 'Confirmed',
@@ -344,6 +344,7 @@ export const locale = {
       modalProducts: 'Modal Products',
       makeChange: "Please make a change",
       messageTabProfile: 'The General and Extrusion tabs must be populated to access this tab!',
+      markedForTestDateTime: 'Marked for test',
     }
   }
 }

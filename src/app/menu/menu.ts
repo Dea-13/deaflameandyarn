@@ -74,14 +74,6 @@ export const menu: CoreMenu[] = [
     icon: 'file',
     children: [
       {
-        id: 'using',
-        title: 'In Use----',
-        translate: 'MENU.USINGMENU',
-        type: 'item',
-        icon: 'file-text',
-        url: 'api/in-use-matrix'
-      },
-      {
         id: 'nomotion',
         title: 'No Motion----',
         translate: 'MENU.NOMOTION',
@@ -91,7 +83,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'marked',
-        title: 'Marked----',
+        title: 'Marked',
         translate: 'MENU.MARKED',
         type: 'item',
         icon: 'file-text',

@@ -170,7 +170,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'api/marked',
-    component: MarkedComponent,
+    component: StatedComponent,
     pathMatch: 'full'
   },
   {

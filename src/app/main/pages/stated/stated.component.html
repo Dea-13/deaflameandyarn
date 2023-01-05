@@ -115,6 +115,14 @@
               <td mat-cell *matCellDef="let element">{{element.producerName}}</td>
             </ng-container>
 
+            <ng-container *ngIf="statusId === 60" matColumnDef="correctorName">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body"></div>
+                <span class="th-header">{{ translateSnackBar.matricologist }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.correctorName}}</td>
+            </ng-container>
+
             <ng-container matColumnDef="diameter">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
@@ -157,7 +165,7 @@
               <td mat-cell *matCellDef="let element">{{element.thickness}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 10 || statusId == 30" matColumnDef="alloy">
+            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="alloy">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -177,7 +185,7 @@
               <td mat-cell *matCellDef="let element">{{element.alloy}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 10 || statusId == 30" matColumnDef="temper">
+            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="temper">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -198,7 +206,7 @@
               <td mat-cell *matCellDef="let element">{{element.temper}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId != 40" matColumnDef="bolsterTooling1">
+            <ng-container *ngIf="statusId !== 40" matColumnDef="bolsterTooling1">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -219,7 +227,7 @@
               <td mat-cell *matCellDef="let element">{{element.bolsterTooling1}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId != 40" matColumnDef="bolsterTooling2">
+            <ng-container *ngIf="statusId !== 40" matColumnDef="bolsterTooling2">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -240,7 +248,7 @@
               <td mat-cell *matCellDef="let element">{{element.bolsterTooling2}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 10 || statusId == 30" matColumnDef="dieHolder">
+            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="dieHolder">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -261,7 +269,7 @@
               <td mat-cell *matCellDef="let element">{{element.dieHolder}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 10 || statusId == 20 || statusId == 30" matColumnDef="container">
+            <ng-container *ngIf="statusId === 10 || statusId === 20 || statusId === 30" matColumnDef="container">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -282,7 +290,7 @@
               <td mat-cell *matCellDef="let element">{{element.container}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId != 40" matColumnDef="notes">
+            <ng-container *ngIf="statusId !== 40" matColumnDef="notes">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -302,7 +310,7 @@
               <td mat-cell *matCellDef="let element">{{element.notes}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 10 || statusId == 30" matColumnDef="visibleSides">
+            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="visibleSides">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.visibleSide }}</span>
@@ -334,7 +342,7 @@
               <td mat-cell *matCellDef="let element">{{element.clientName}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 10 || statusId == 30" matColumnDef="dateOrder">
+            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="dateOrder">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -355,7 +363,7 @@
               </th>
               <td mat-cell *matCellDef="let element">{{element.dateOrder}}</td>
             </ng-container>
-            <ng-container *ngIf="statusId == 30" matColumnDef="price">
+            <ng-container *ngIf="statusId === 30" matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -375,7 +383,7 @@
               <td mat-cell *matCellDef="let element">{{element.price}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 30" matColumnDef="price_Inv">
+            <ng-container *ngIf="statusId === 30" matColumnDef="price_Inv">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -396,7 +404,7 @@
               <td mat-cell *matCellDef="let element">{{element.price_Inv}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 30" matColumnDef="dateConfirmation">
+            <ng-container *ngIf="statusId === 30" matColumnDef="dateConfirmation">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -418,7 +426,7 @@
               <td mat-cell *matCellDef="let element">{{element.dateConfirmation}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 30" matColumnDef="dateExpedition">
+            <ng-container *ngIf="statusId === 30" matColumnDef="dateExpedition">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -440,7 +448,7 @@
               <td mat-cell *matCellDef="let element">{{element.dateExpedition}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="totalWeight">
+            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="totalWeight">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.totalWeight }}</span>
@@ -480,7 +488,7 @@
               <td mat-cell *matCellDef="let element">{{element.kgAfterFianlNitriding}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 50" matColumnDef="dateScrapped">
+            <ng-container *ngIf="statusId === 50" matColumnDef="dateScrapped">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -502,7 +510,7 @@
               <td mat-cell *matCellDef="let element">{{element.dateScrapped}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="channels">
+            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="channels">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
@@ -523,7 +531,7 @@
               <td mat-cell *matCellDef="let element">{{element.channels}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="placeSklad">
+            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="placeSklad">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.plaseSklad }}</span>
@@ -531,7 +539,7 @@
               <td mat-cell *matCellDef="let element">{{element.storegePlace}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="lastTransaction">
+            <ng-container *ngIf="statusId === 40" matColumnDef="lastTransaction">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
@@ -539,7 +547,7 @@
               <td mat-cell *matCellDef="let element">{{element.lastTransaction}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="gr">
+            <ng-container *ngIf="statusId === 40" matColumnDef="gr">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.gr }}</span>
@@ -547,7 +555,7 @@
               <td mat-cell *matCellDef="let element">{{element.grM}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="kgSap">
+            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="kgSap">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.kgSap }}</span>
@@ -555,12 +563,20 @@
               <td mat-cell *matCellDef="let element">{{element.kgSap}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId == 40" matColumnDef="renewal">
+            <ng-container *ngIf="statusId === 40" matColumnDef="renewal">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.renewal }}</span>
               </th>
               <td mat-cell *matCellDef="let element">{{element.renewal}}</td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId === 60" matColumnDef="markedForTestDateTime">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body"></div>
+                <span class="th-header">{{ translateSnackBar.markedForTestDateTime }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.markedForTestDateTime | date:'dd/MM/yyyy H:mm:ss'}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

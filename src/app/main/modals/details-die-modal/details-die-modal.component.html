@@ -17,7 +17,7 @@
         </div>
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
         <div class="flex">
-          <div class="col-sm-10 margin-10">
+          <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 margin-10">
             <h3 *ngIf="!emptyDataHeader && header.length > 0">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}}
               ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
             <p *ngIf="!emptyDataHeader && header.length > 0">
@@ -41,8 +41,10 @@
             </p>
             <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
           </div>
-          <div class="col-sm-2 margin-10">
-            <button rippleEffect class="btn btn-primary save-center" (click)="editForm()">{{ translateSnackBar.edit }}</button>
+          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 margin-10">
+            <button rippleEffect class="col-sm-12 btn btn-primary edit-btn margin-10" (click)="editForm()">
+              <i data-feather="edit"  class="mr-25" title="Modify"></i> {{ translateSnackBar.edit }}
+            </button>
           </div>
         </div>
 
@@ -52,7 +54,6 @@
             <img class="center-img" src="{{'data:image/png;base64,' + image.name}}">
           </div>
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
-            <div class="col-sm-12">
               <table class="clasic-table">
                 <thead>
                   <th></th>
@@ -113,7 +114,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
           </div>
         </div>
 

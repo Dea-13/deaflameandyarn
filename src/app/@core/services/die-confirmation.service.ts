@@ -52,7 +52,7 @@ export class DieConfirmationService {
   }
 
   getDies() {
-    return this._http.get<any>(`${environment.apiUrl}Dies/all/DieId/10`);
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/DieId/40`);
   }
 
   postDieMovemanetConf(obj:any){

@@ -16,7 +16,7 @@ export const locale = {
       STATUS: 'По статус',
       INUSE: 'В употреба--------',
       NOMOTION: 'Без движение > 5дни--------',
-      MARKED: 'Маркирани за тестване--------',
+      MARKED: 'Маркирани за тестване',
       TEST: 'Тестове--------',
       STATED: 'Заявени',
       CONFIRMED: 'Потвърдени',
@@ -344,6 +344,7 @@ export const locale = {
       modalProducts: 'Модал Изделия',
       makeChange: "Моля, направете промяна",
       messageTabProfile: 'Трябва табовете Общи и Екструзия да бъдат попълнени, за да имате достъп до този таб!',
+      markedForTestDateTime: 'Марк. за тест',
     }
   }
 }

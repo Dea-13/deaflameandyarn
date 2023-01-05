@@ -144,6 +144,12 @@ export class StatedComponent implements OnInit {
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding', 'dateScrapped'
       ];
+    } else if (this.router.url == '/api/marked') {
+      this.statusId = 40;
+      this.displayedColumns = [
+        'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'correctorName', 'diameter',
+        'thickness', 'channels', 'clientName', 'totalWeight', 'kgSap', 'markedForTestDateTime',
+      ];
     }
     this.urls = [
       { id: 0, name: 'DieId/' + this.statusId },
@@ -182,8 +188,8 @@ export class StatedComponent implements OnInit {
 
   getRequest() {
     this.loading = true;
-    this.matrixService
-      .getInformationMatrix(
+    if (this.router.url == '/api/marked'){ this.statusId = 60 };
+    this.matrixService.getInformationMatrix(
         this.offset,
         this.limit,
         this.statusId,
