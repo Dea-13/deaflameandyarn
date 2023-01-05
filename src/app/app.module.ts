@@ -36,31 +36,16 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ComponentComponent } from './pages/component/component.component';
 import { PdfViewerModalComponent } from './pages/pdf-viewer-modal/pdf-viewer-modal.component';
-import { StayComponent } from '../app/main/pages/stay/stay.component';
-import { ConfirmedComponent } from '../app/main/pages/confirmed/confirmed.component';
-import { DispatchedComponent } from '../app/main/pages/dispatched/dispatched.component';
-import { ProductivityComponent } from '../app/main/pages/productivity/productivity.component';
-import { ScrapComponent } from '../app/main/pages/scrap/scrap.component';
-import { NewMatrixComponent } from '../app/main/pages/new-matrix/new-matrix.component';
-import { NoMotionComponent } from '../app/main/pages/no-motion/no-motion.component';
-import { MarkedComponent } from '../app/main/pages/marked/marked.component';
-import { TestComponent } from '../app/main/pages/test/test.component';
 import { MovementMatrixComponent } from '../app/main/pages/movement-matrix/movement-matrix.component';
 import { UserViewComponent } from '../app/main/pages/user-view/user-view.component';
 import { StatedComponent } from '../app/main/pages/stated/stated.component';
 import { ProductsComponent } from './main/pages/products/products.component';
-import { RawMaterialProductionComponent } from './main/pages/raw-material-production/raw-material-production.component';
 import { FreeAddressComponent } from './main/pages/free-address/free-address.component';
-import { OccupiedMatricesComponent } from './main/pages/occupied-matrices/occupied-matrices.component';
 import { EmployeesComponent } from './main/pages/employees/employees.component';
 import { ManufacturersComponent } from './main/pages/manufacturers/manufacturers.component';
 import { NewMatrixModalComponent } from './main/modals/new-matrix-modal/new-matrix-modal.component';
 import { NewManufacturersModalComponent } from './main/modals/new-manufacturers-modal/new-manufacturers-modal.component';
 import { NewEmployeesModalComponent } from './main/modals/new-employees-modal/new-employees-modal.component';
-import { InformationMatrixComponent } from './main/pages/information-matrix/information-matrix.component';
-import { InformationWarehouseComponent } from './main/pages/information-warehouse/information-warehouse.component';
-import { UsedMatrixComponent } from './main/pages/used-matrix/used-matrix.component';
-import { UsedStatusComponent } from './main/pages/used-status/used-status.component';
 import { InformationProfilesComponent } from './main/pages/information-profiles/information-profiles.component';
 import { NewProfileModalComponent } from './main/modals/new-profile-modal/new-profile-modal.component';
 import { DieScanPageComponent } from './main/pages/die-scan-page/die-scan-page.component';
@@ -70,6 +55,7 @@ import { WarehouseListDieModalComponent } from './main/modals/warehouse-list-die
 import { ProductivityNitrificationPageComponent } from './main/pages/productivity-nitrification-page/productivity-nitrification-page.component';
 import { ModalProfileProductsComponent } from './main/modals/modal-profile-products/modal-profile-products.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { SettingsComponent } from './main/pages/settings/settings.component';
 
 const appRoutes: Routes = [
   {
@@ -107,12 +93,6 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   // -----------
-
-  {
-    path: 'api/information-matrix',
-    component: InformationMatrixComponent,
-    pathMatch: 'full'
-  },
   {
     path: 'api/stated',
     component: StatedComponent,
@@ -129,11 +109,6 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'api/used-by-status',
-    component: UsedStatusComponent,
-    pathMatch: 'full'
-  },
-  {
     path: 'api/productivity',
     component: StatedComponent,
     pathMatch: 'full'
@@ -144,38 +119,13 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'api/stay',
-    component: StayComponent,
-    pathMatch: 'full'
-  },
-  {
     path: 'api/scrap',
     component: StatedComponent,
     pathMatch: 'full'
   },
   {
-    path: 'api/new-matrix',
-    component: NewMatrixComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'api/in-use-matrix',
-    component: UsedMatrixComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'api/no-motion',
-    component: NoMotionComponent,
-    pathMatch: 'full'
-  },
-  {
     path: 'api/marked',
     component: StatedComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'api/test',
-    component: TestComponent,
     pathMatch: 'full'
   },
   {
@@ -196,16 +146,6 @@ const appRoutes: Routes = [
   {
     path: 'api/products',
     component: ProductsComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'api/raw-material-production',
-    component: RawMaterialProductionComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'api/information-warehouse',
-    component: InformationWarehouseComponent,
     pathMatch: 'full'
   },
   {
@@ -249,6 +189,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/settings',
+    component: SettingsComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -264,30 +209,15 @@ const appRoutes: Routes = [
     ComponentComponent,
     PdfViewerModalComponent,
     StatedComponent,
-    ConfirmedComponent,
-    DispatchedComponent,
-    ProductivityComponent,
-    StayComponent,
-    ScrapComponent,
-    NewMatrixComponent,
-    NoMotionComponent,
-    MarkedComponent,
-    TestComponent,
     MovementMatrixComponent,
     UserViewComponent,
     ProductsComponent,
-    RawMaterialProductionComponent,
     FreeAddressComponent,
-    OccupiedMatricesComponent,
     ManufacturersComponent,
     EmployeesComponent,
     NewMatrixModalComponent,
     NewManufacturersModalComponent,
     NewEmployeesModalComponent,
-    InformationMatrixComponent,
-    InformationWarehouseComponent,
-    UsedMatrixComponent,
-    UsedStatusComponent,
     InformationProfilesComponent,
     NewProfileModalComponent,
     DieScanPageComponent,
