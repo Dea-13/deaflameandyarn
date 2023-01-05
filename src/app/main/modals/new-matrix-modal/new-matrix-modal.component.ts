@@ -206,6 +206,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.profile.enable();
       this.createMatrixForm.controls.status.enable();
     }
+    this.createMatrixForm.controls.status.value == 40 ? this.createMatrixForm.controls.requiredTest.enable() : this.createMatrixForm.controls.requiredTest.disable();
   }
 
   getProfile() {
@@ -644,7 +645,7 @@ export class NewMatrixModalComponent implements OnInit {
           },
             (error) => {
               console.log('ERROR: ', error.status);
-              
+
               Swal.fire({
                 position: 'bottom-end',
                 icon: 'warning',
@@ -864,7 +865,7 @@ export class NewMatrixModalComponent implements OnInit {
     if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.primaryResource.value &&
       this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value &&
       this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.inUseFrom.value){
-        
+
         if(this.createMatrixForm.controls.status.value == 40 && this.createMatrixForm.controls.requiredTest.value == true){
           this.markedForTestDateTime = new Date();
         }
