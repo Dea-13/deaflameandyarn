@@ -46,6 +46,7 @@ export class NewMatrixModalComponent implements OnInit {
   public isEditableRowsPress = {};
   public isEditableRowsEnd = {};
   public validation: boolean;
+  public markedForTestDateTime: any = null;
 
   public orderDateOptions = {
     altInput: true,
@@ -863,6 +864,11 @@ export class NewMatrixModalComponent implements OnInit {
     if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.primaryResource.value &&
       this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value &&
       this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.inUseFrom.value){
+        
+        if(this.createMatrixForm.controls.status.value == 40 && this.createMatrixForm.controls.requiredTest.value == true){
+          this.markedForTestDateTime = new Date();
+        }
+
       this.sendResponce();
     } else {
       Swal.fire({
@@ -945,6 +951,7 @@ export class NewMatrixModalComponent implements OnInit {
       scrapReason: this.createMatrixForm.controls.scrapReason.value,
       reasonForPurchase: this.createMatrixForm.controls.reasonForPurchase.value,
       reasonForPurchaseOther: this.createMatrixForm.controls.reasonForPurchaseOther.value,
+      markedForTestDateTime: this.markedForTestDateTime
     }
     console.log('send', obj);
   }
