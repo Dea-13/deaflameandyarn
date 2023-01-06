@@ -32,7 +32,7 @@ export const locale = {
       OCCUPIEDMATRIX: 'Заети матрици в адрес',
       CONFIRMATION: 'Потвърждения',
       REPORTS: 'Отчети--------',
-      SETTINGS: 'Настройки--------',
+      SETTINGS: 'Настройки',
       INFOMATRIX: 'Информация матрици',
       USINGMENU: 'Употребявани--------',
       INFOSKLAD: 'Информация склад',
@@ -345,6 +345,13 @@ export const locale = {
       makeChange: "Моля, направете промяна",
       messageTabProfile: 'Трябва табовете Общи и Екструзия да бъдат попълнени, за да имате достъп до този таб!',
       markedForTestDateTime: 'Марк. за тест',
+      settings: 'Настройки',
+      username: 'Потребител',
+      version: 'Версия',
+      env: 'Среда',
+      devices: 'Устройства',
+      deviceName: 'Име',
+      comPort: 'Com Port'
     }
   }
 }
