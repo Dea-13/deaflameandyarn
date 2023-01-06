@@ -75,7 +75,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'nomotion',
-        title: 'No Motion----',
+        title: 'No Motion',
         translate: 'MENU.NOMOTION',
         type: 'item',
         icon: 'file-text',

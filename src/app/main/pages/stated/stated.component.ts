@@ -150,6 +150,12 @@ export class StatedComponent implements OnInit {
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'correctorName', 'diameter',
         'thickness', 'channels', 'clientName', 'totalWeight', 'kgSap', 'markedForTestDateTime',
       ];
+    } else if (this.router.url == '/api/no-motion') {
+      this.statusId = 40;
+      this.displayedColumns = [
+        'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'lastTransaction', 'diameter',
+        'thickness', 'clientName', 'productivity', 'renewal'
+      ];
     }
     this.urls = [
       { id: 0, name: 'DieId/' + this.statusId },
@@ -189,6 +195,7 @@ export class StatedComponent implements OnInit {
   getRequest() {
     this.loading = true;
     if (this.router.url == '/api/marked'){ this.statusId = 60 };
+    if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
     this.matrixService.getInformationMatrix(
         this.offset,
         this.limit,

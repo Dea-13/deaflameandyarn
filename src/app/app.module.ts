@@ -124,6 +124,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/no-motion',
+    component: StatedComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/marked',
     component: StatedComponent,
     pathMatch: 'full'

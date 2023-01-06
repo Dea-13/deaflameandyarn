@@ -531,7 +531,7 @@
               <td mat-cell *matCellDef="let element">{{element.channels}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="placeSklad">
+            <ng-container *ngIf="statusId === 40 || statusId >= 60" matColumnDef="placeSklad">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.plaseSklad }}</span>
@@ -539,7 +539,7 @@
               <td mat-cell *matCellDef="let element">{{element.storegePlace}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40" matColumnDef="lastTransaction">
+            <ng-container *ngIf="statusId === 40 || statusId === 70" matColumnDef="lastTransaction">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
@@ -563,7 +563,15 @@
               <td mat-cell *matCellDef="let element">{{element.kgSap}}</td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40" matColumnDef="renewal">
+            <ng-container *ngIf="statusId === 70" matColumnDef="productivity">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body"></div>
+                <span class="th-header">{{ translateSnackBar.production }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.productivity}}</td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId === 40 || statusId === 70" matColumnDef="renewal">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.renewal }}</span>

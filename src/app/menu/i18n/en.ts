@@ -15,7 +15,7 @@ export const locale = {
       USERVIEW:'User View--------',
       STATUS: 'Status',
       INUSE: 'In use',
-      NOMOTION: 'No motion--------',
+      NOMOTION: 'No motion',
       MARKED: 'Marked',
       TEST: 'Test--------',
       STATED: 'Stated',
