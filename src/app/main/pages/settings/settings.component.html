@@ -1,1 +1,21 @@
-<p>settings works!</p>
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="card">
+            <div _ngcontent-gwi-c183="" class="card-header">
+                <h4 class="card-title">{{ translateSnackBar.settings }}</h4>
+                <i class="code-icon" aria-expanded="true"></i>
+            </div>
+            <div class="card-body">
+                
+                <ul class="list-group">
+                    <li class="list-group-item">{{ translateSnackBar.username }}: <span class="font-weight-bold">{{userName}}</span></li>
+                    <li class="list-group-item">{{ translateSnackBar.version }}: <span class="font-weight-bold">{{appVersion}}</span></li>
+                    <li class="list-group-item">{{ translateSnackBar.env }}: <span class="font-weight-bold">{{env}}</span></li>
+                    <li class="list-group-item">{{translateSnackBar.devices}}:</li>
+                    <li class="list-group-item" *ngFor="let item of allPorts">{{translateSnackBar.comPort}}: <span class="font-weight-bold">{{item.path}}</span>, {{translateSnackBar.deviceName}}: <span class="font-weight-bold">{{item.manufacturer}}</span></li>
+                </ul>                
+            </div>
+        </div>
+    </div>
+</div>
+    

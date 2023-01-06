@@ -267,7 +267,7 @@ export const menu: CoreMenu[] = [
   },
   {
     id: 'settings',
-    title: 'Settings----',
+    title: 'Settings',
     translate: 'MENU.SETTINGS',
     type: 'item',
     icon: 'settings',

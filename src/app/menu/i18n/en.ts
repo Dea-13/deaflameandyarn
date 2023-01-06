@@ -32,7 +32,7 @@ export const locale = {
       OCCUPIEDMATRIX: 'Occupied dies',
       CONFIRMATION: 'Confirmations',
       REPORTS: 'Reports--------',
-      SETTINGS: 'Settings--------',
+      SETTINGS: 'Settings',
       INFOMATRIX: 'Information Die',
       USINGMENU: 'Used--------',
       INFOSKLAD: 'Information Warehouse',
@@ -345,6 +345,13 @@ export const locale = {
       makeChange: "Please make a change",
       messageTabProfile: 'The General and Extrusion tabs must be populated to access this tab!',
       markedForTestDateTime: 'Marked for test',
+      settings: 'Settings',
+      username: 'Username',
+      version: 'Version',
+      env: 'Еnvironment',
+      devices: 'Devices',
+      deviceName: 'Devices Name',
+      comPort: 'Com Port'
     }
   }
 }

@@ -230,8 +230,8 @@ const appRoutes: Routes = [
     DetailsDieModalComponent,
     WarehouseListDieModalComponent,
     ProductivityNitrificationPageComponent,
-    ModalProfileProductsComponent
-
+    ModalProfileProductsComponent,
+    SettingsComponent
   ],
 
   imports: [
