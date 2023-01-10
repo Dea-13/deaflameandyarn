@@ -61,7 +61,7 @@
                             <label for="city-column">{{ translateSnackBar.channels }}</label>
                             <ng-select [clearable]="false" formControlName="channels" appendTo="body"
                             [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('channels').value }">
-                              <ng-option *ngFor="let s of channelsArr" [value]="s.id">{{ s.name }}</ng-option>
+                              <ng-option *ngFor="let s of channelsArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
                         </div>
@@ -243,9 +243,10 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.gr }}</label>
-                            <ng-select [clearable]="false" formControlName="grM" appendTo="body">
-                              <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="grM" type="text" class="form-control dt-uname" />
+                            <!-- <ng-select [clearable]="false" formControlName="grM" appendTo="body">
+                              <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option>
+                            </ng-select> -->
                           </div>
                         </div>
                         <div class="col-md-12 col-12">

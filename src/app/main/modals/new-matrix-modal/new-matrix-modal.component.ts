@@ -913,9 +913,13 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   sendResponce(){
+    
+    this.loading = true;
+
     let obj = {
       profile: this.createMatrixForm.controls.profile.value.id,
-      matrix: this.createMatrixForm.controls.matrix.value,
+      profileId: this.createMatrixForm.controls.profile.value.name,
+      dieId: this.createMatrixForm.controls.matrix.value,
       status: this.createMatrixForm.controls.status.value,
       channels: this.createMatrixForm.controls.channels.value,
       holder: this.createMatrixForm.controls.holder.value,
@@ -937,7 +941,7 @@ export class NewMatrixModalComponent implements OnInit {
       applicant: this.createMatrixForm.controls.applicant.value,
       matricologist: this.createMatrixForm.controls.matricologist.value,
       price: this.createMatrixForm.controls.price.value,
-      dieID: this.createMatrixForm.controls.dieID.value,
+      // dieID: this.createMatrixForm.controls.dieID.value,
       grM: this.createMatrixForm.controls.grM.value,
       requiredTest: this.createMatrixForm.controls.requiredTest.value,
       price_Inv: this.createMatrixForm.controls.price_Inv.value,
@@ -955,6 +959,58 @@ export class NewMatrixModalComponent implements OnInit {
       markedForTestDateTime: this.markedForTestDateTime
     }
     console.log('send', obj);
+
+    if(!this.matrix.id){
+      this.matrixService.createMatrix(obj).subscribe(matrixService => {
+        this.getProfilesEnds();
+        this.loading = false;
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg,
+          showConfirmButton: false,
+          timer: 2000
+        });
+        this.activeModal.dismiss();
+        this.passEntry.emit(true);
+      },
+        (error) => {
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Error',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.loading = false;
+        }
+      );
+    } else {
+      this.matrixService.updateMatrix(obj).subscribe(matrixService => {
+        // this.getProfilesEnds();
+        this.loading = false;
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.activeModal.dismiss();
+        this.passEntry.emit(true);
+      },
+        (error) => {
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Error',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.loading = false;
+        }
+      );
+    }    
   }
 
   closeModal(): void {

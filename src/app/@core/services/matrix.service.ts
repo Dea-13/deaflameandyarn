@@ -213,12 +213,12 @@ export class MatrixService {
 
   createMatrix(matrix: any) {
     const data = JSON.stringify(matrix);
-    return this._http.post<any>(`${environment.apiUrl}`, data);
+    return this._http.post<any>(`${environment.apiUrl}Dies`, data);
   }
 
   updateMatrix(matrix: any) {
     const data = JSON.stringify(matrix);
-    return this._http.put(`${environment.apiUrl}`, data);
+    return this._http.put(`${environment.apiUrl}Dies`, data);
   }
 
 }
