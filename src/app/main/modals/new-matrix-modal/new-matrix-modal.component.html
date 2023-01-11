@@ -16,7 +16,7 @@
             </div>
           </div>
           <!-- Nav tabs -->
-          <div class="col-sm-12 flex">
+          <div class="col-sm-12 flexed">
             <form [formGroup]="createMatrixForm" #newUserForm="ngForm">
               <div class="col-sm-12 flex">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -59,8 +59,10 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.channels }}</label>
-                            <ng-select [clearable]="false" formControlName="channels" appendTo="body"
-                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('channels').value }">
+                            <input *ngIf="channelsArr.length === 0" formControlName="channels" type="text" class="form-control dt-uname"
+                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair || submitBrak && !createMatrixForm.get('channels').value }" />
+                            <ng-select *ngIf="channelsArr.length > 0" [clearable]="false" formControlName="channels" appendTo="body"
+                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair || submitBrak && !createMatrixForm.get('channels').value }">
                               <ng-option *ngFor="let s of channelsArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -68,9 +70,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.holder }}</label>
-                            <ng-select [clearable]="false" formControlName="holder" appendTo="body">
-                              <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="holder" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -78,7 +78,8 @@
                             <label for="city-column">{{ translateSnackBar.support }}</label>
                             <div class="flex">
                               <input class="form-control input" formControlName="oporenPrysten" type="checkbox" style="width: 5%;margin-right: 5%;">
-                              <ng-select [clearable]="false" formControlName="support" appendTo="body">
+                              <input *ngIf="oporaArr.length === 0" formControlName="support" type="text" class="form-control dt-uname" />
+                              <ng-select *ngIf="oporaArr.length > 0" [clearable]="false" formControlName="support" appendTo="body">
                                 <ng-option *ngFor="let s of oporaArr" [value]="s.name">{{ s.name }}</ng-option>
                               </ng-select>
                             </div>
@@ -87,25 +88,25 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.pressWasher }}</label>
-                            <ng-select [clearable]="false" formControlName="pressWasher" appendTo="body">
-                              <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="pressWasher" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.type }}</label>
-                            <ng-select [clearable]="false" formControlName="type" appendTo="body">
+                            <input *ngIf="typeArr.length === 0" formControlName="type" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="typeArr.length > 0" [clearable]="false" formControlName="type" appendTo="body">
                               <ng-option *ngFor="let s of typeArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
                           <div class="form-group flex">
-                            <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization
-                              }}</label>
+                            <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }}
+                              <span *ngIf="submitStated && createMatrixForm.get('anodizingQuality').value === false" class="error-label">*</span>
+                            </label>
                             <input formControlName="anodizingQuality" class="form-control input" type="checkbox"
-                              style="width: 5%;">
+                             style="width: 5%;">
                           </div>
                         </div>
                       </div>
@@ -115,7 +116,8 @@
                         <div class="col-md-12 col-12">
                           <label for="city-column">{{ translateSnackBar.container }}</label>
                           <div class="form-group flex">
-                            <ng-select [clearable]="false" formControlName="container" appendTo="body">
+                            <input *ngIf="containerArr.length === 0" formControlName="container" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('container').value }" />
+                            <ng-select *ngIf="containerArr.length > 0" [clearable]="false" formControlName="container" appendTo="body"  [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('container').value }">
                               <ng-option *ngFor="let s of containerArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -123,15 +125,14 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.matrixComplect }}</label>
-                            <ng-select [clearable]="false" formControlName="matrixComplect" appendTo="body" [ngClass]="{ 'error': submitInUse && !createMatrixForm.get('matrixComplect').value }">
-                              <!-- <ng-option *ngFor="let s of bolster1" [value]="s.name">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="matrixComplect" type="text" class="form-control dt-uname"  [ngClass]="{ 'error': submitInUse || submitBrak && !createMatrixForm.get('matrixComplect').value }" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.tulling1 }}</label>
-                            <ng-select [clearable]="false" formControlName="tulling1" appendTo="body">
+                            <input *ngIf="bolster1.length === 0" formControlName="tulling1" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="bolster1.length > 0" [clearable]="false" formControlName="tulling1" appendTo="body">
                               <ng-option *ngFor="let s of bolster1" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -139,7 +140,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.tulling2 }}</label>
-                            <ng-select [clearable]="false" formControlName="tulling2" appendTo="body">
+                            <input *ngIf="bolster2.length === 0" formControlName="tulling2" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="bolster2.length > 0" [clearable]="false" formControlName="tulling2" appendTo="body">
                               <ng-option *ngFor="let s of bolster2" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -151,9 +153,9 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.dateStated }}</label>
-                            <ng2-flatpickr formControlName="dataOrder" [config]="orderDateOptions" name="dataOrder"
-                              [setDate]="dataOrder" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dataOrder').value }"
+                            <ng2-flatpickr formControlName="dateOrder" [config]="orderDateOptions" name="dateOrder"
+                              [setDate]="dateOrder" (click)="$event.stopPropagation()"
+                              [ngClass]="{ 'error-date': submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dateOrder').value }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -199,7 +201,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.client }}</label>
-                            <ng-select [clearable]="false" formControlName="client" appendTo="body">
+                            <input *ngIf="clientNameArr.length === 0" formControlName="client" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="clientNameArr.length > 0" [clearable]="false" formControlName="client" appendTo="body">
                               <ng-option *ngFor="let s of clientNameArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -207,7 +210,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.maker }}</label>
-                            <ng-select [clearable]="false" formControlName="maker" appendTo="body">
+                            <input *ngIf="producerArr.length === 0" formControlName="maker" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="producerArr.length > 0" [clearable]="false" formControlName="maker" appendTo="body">
                               <ng-option *ngFor="let s of producerArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -215,15 +219,14 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.applicant }}</label>
-                            <ng-select [clearable]="false" formControlName="applicant" appendTo="body">
-                              <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="applicant" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.matricologist }}</label>
-                            <ng-select [clearable]="false" formControlName="matricologist" appendTo="body">
+                            <input *ngIf="matrologistArr.length === 0" formControlName="matricologist" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="matrologistArr.length > 0" [clearable]="false" formControlName="matricologist" appendTo="body">
                               <ng-option *ngFor="let s of matrologistArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -231,7 +234,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.price }}</label>
-                            <input formControlName="price" type="text" class="form-control dt-uname" />
+                            <input formControlName="price" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('price').value }" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -243,10 +246,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.gr }}</label>
-                            <input formControlName="grM" type="text" class="form-control dt-uname" />
-                            <!-- <ng-select [clearable]="false" formControlName="grM" appendTo="body">
-                              <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option>
-                            </ng-select> -->
+                            <input formControlName="grM" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('grM').value }" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -254,7 +254,6 @@
                             <label for="city-column" class="label-checkbox">{{ translateSnackBar.requiredTest }}</label>
                             <input formControlName="requiredTest" class="form-control input" type="checkbox"
                               style="width: 5%;">
-                              <!-- {{createMatrixForm.get('status').value}}                            -->
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -270,8 +269,10 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.press }}</label>
-                            <ng-select [clearable]="false" formControlName="primaryResource" appendTo="body"
-                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('primaryResource').value }">
+                            <input *ngIf="pressArr.length === 0" formControlName="primaryResource" type="text" class="form-control dt-uname"
+                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak && !createMatrixForm.get('primaryResource').value }" />
+                            <ng-select *ngIf="pressArr.length > 0" [clearable]="false" formControlName="primaryResource" appendTo="body"
+                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak && !createMatrixForm.get('primaryResource').value }">
                               <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -279,7 +280,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.altPress1 }}</label>
-                            <ng-select [clearable]="false" formControlName="altResource1" appendTo="body">
+                            <input *ngIf="pressArr.length === 0" formControlName="altResource1" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('altResource1').value }" />
+                            <ng-select *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource1" appendTo="body" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('altResource1').value }">
                               <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -287,7 +289,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.altPress2 }}</label>
-                            <ng-select [clearable]="false" formControlName="altResource2" appendTo="body">
+                            <input *ngIf="pressArr.length === 0" formControlName="altResource2" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('altResource2').value }" />
+                            <ng-select *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource2" appendTo="body" [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak && !createMatrixForm.get('altResource2').value }">
                               <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -299,17 +302,13 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.storageGroup }}</label>
-                            <ng-select [clearable]="false" formControlName="storageGroup" appendTo="body">
-                              <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="storageGroup" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.storageFreePlace }}</label>
-                            <ng-select [clearable]="false" formControlName="storageFreePlace" appendTo="body" [ngClass]="{ 'error': submitInUse && !createMatrixForm.get('storageFreePlace').value }">
-                              <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                            </ng-select>
+                            <input formControlName="storageFreePlace" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitInUse && !createMatrixForm.get('storageFreePlace').value }" />
                           </div>
                         </div>
 

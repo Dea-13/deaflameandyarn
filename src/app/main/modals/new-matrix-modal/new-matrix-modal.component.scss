@@ -44,7 +44,14 @@ input {
 
 @media (max-width: 1240px) and (min-width: 1000px) {
   .modal-dialog {
-    max-width: 1000px !important;
+    max-width: -webkit-fill-available!important;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+      max-width: -webkit-fill-available!important;
+      margin: 0rem auto!important;
   }
 }
 
@@ -167,6 +174,10 @@ input {
   margin: 0px !important;
 }
 
+.flexed{
+  display: flex;
+}
+
 @media (max-width: 1199px) {
   .form-general {
     display: block;
@@ -177,6 +188,10 @@ input {
       width: 100%;
       display: block;
     }
+  }
+
+  .flexed{
+    display: block;
   }
 }
 
@@ -220,4 +235,9 @@ form {
 
 .ng-dropdown-panel {
   display: block !important;
+}
+
+.error-label{
+  color: red;
+  font-size: 16px;
 }

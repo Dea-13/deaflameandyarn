@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -39,7 +39,7 @@ export class NewMatrixModalComponent implements OnInit {
   public bolster1: Array<any> = [];
   public bolster2: Array<any> = [];
   public language: string;
-  public dataOrder: string = '';
+  public dateOrder: string = '';
   public dataConfirmation: string = '';
   public dataExpedition: string = '';
   public inUseFrom: string = '';
@@ -72,13 +72,14 @@ export class NewMatrixModalComponent implements OnInit {
     public translate: TranslateService,
     private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private cdr: ChangeDetectorRef
   ) {
     this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
   }
 
   ngOnInit(): void {
-    false;
+    console.log("this.matrixItem.data", this.matrixItem.data);
     this.matrix = this.matrixItem.data;
     this.createMatrixForm = this.formBuilder.group({
       profile: [''],
@@ -86,16 +87,16 @@ export class NewMatrixModalComponent implements OnInit {
       status: [''],
       channels: [''],
       holder: [''],
-      oporenPrysten: [''],
+      oporenPrysten: [false],
       support: [''],
       pressWasher: [''],
       type: [''],
-      anodizingQuality: [''],
+      anodizingQuality: [false],
       container: [''],
       matrixComplect: [''],
       tulling1: [''],
       tulling2: [''],
-      dataOrder: [''],
+      dateOrder: [''],
       dataConfirmation: [''],
       dataExpedition: [''],
       inUseFrom: [''],
@@ -122,8 +123,11 @@ export class NewMatrixModalComponent implements OnInit {
     });
 
     if (this.matrix.id) {
+      this.callFunctions();
+      this.fillFormValid();
+      this.dateOrder = this.matrixItem.data.dateOrder;
       this.createMatrixForm = this.formBuilder.group({
-        profile: this.matrix.profile,
+        profile: this.matrixItem.redirect ? this.matrixItem.data.profileId : this.matrix.profile,
         matrix: this.matrix.matrix,
         status: this.matrix.status,
         channels: this.matrix.channels,
@@ -137,20 +141,20 @@ export class NewMatrixModalComponent implements OnInit {
         matrixComplect: this.matrix.matrixComplect,
         tulling1: this.matrix.tulling1,
         tulling2: this.matrix.tulling2,
-        dataOrder: this.matrix.dataOrder,
+        dateOrder: this.matrix.dateOrder ? this.matrix.dateOrder : [this.dateOrder],
         dataConfirmation: this.matrix.dataConfirmation,
         dataExpedition: this.matrix.dataExpedition,
         inUseFrom: this.matrix.inUseFrom,
-        client: this.matrix.client,
-        maker: this.matrix.maker,
+        client: this.matrix.client ? this.matrix.client : this.matrixItem.data.clientName,
+        maker: this.matrix.maker ? this.matrix.maker : this.matrixItem.data.producerName,
         applicant: this.matrix.applicant,
         matricologist: this.matrix.matricologist,
         price: this.matrix.price,
-        dieID: this.matrix.dieID,
+        dieID: '',
         grM: this.matrix.grM,
         requiredTest: this.matrix.requiredTest,
         price_Inv: this.matrix.price_Inv,
-        primaryResource: this.matrix.primaryResource,
+        primaryResource: this.matrix.primaryResource ? this.matrix.primaryResource : this.matrixItem.data.primaryResourceName,
         altResource1: this.matrix.altResource1,
         altResource2: this.matrix.altResource2,
         storageGroup: this.matrix.storageGroup,
@@ -206,6 +210,11 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.profile.enable();
       this.createMatrixForm.controls.status.enable();
     }
+    setTimeout(() => {
+      this.createMatrixForm.controls.dieID.setValue(this.createMatrixForm.controls.matrix.value);
+    }, 1000);
+    this.createMatrixForm.controls.dieID.disable();
+    console.log('this.createMatrixForm+++++', this.createMatrixForm)
     this.createMatrixForm.controls.status.value == 40 ? this.createMatrixForm.controls.requiredTest.enable() : this.createMatrixForm.controls.requiredTest.disable();
   }
 
@@ -219,7 +228,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   getMatrix() {
     this.loading = true;
-    this.matrixService.getMatrix(this.createMatrixForm.controls.profile.value.name).subscribe((data) => {
+    this.matrixService.getMatrix(this.createMatrixForm.controls.profile.value.name ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profileId).subscribe((data) => {
       this.createMatrixForm.controls.matrix.setValue(data.name);
       this.loading = false;
     });
@@ -350,7 +359,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   getProfilesByPress() {
     this.loading = true;
-    this.matrixService.getProfilesByPress(this.createMatrixForm.controls.profile.value.id).subscribe((data) => {
+    this.matrixService.getProfilesByPress(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsFirstTable = data;
       this.loading = false;
     });
@@ -555,7 +564,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   getProfilesEnds() {
     this.loading = true;
-    this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id).subscribe((data) => {
+    this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsSecondTable = data;
       this.loading = false;
     });
@@ -749,7 +758,11 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitStatedDie(){
     this.submitStated = true;
-    if(this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.dataOrder.value){
+    if(this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value &&
+      this.createMatrixForm.controls.dateOrder.value && this.createMatrixForm.controls.anodizingQuality.value &&
+      this.createMatrixForm.controls.container.value && this.createMatrixForm.controls.price.value &&
+      this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value &&
+      this.createMatrixForm.controls.altResource2.value){
       Swal.fire({
         title: this.translateSnackBar.statedMsg,
         icon: 'warning',
@@ -781,8 +794,10 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBlockedDie(){
     this.submitBlocked = true;
-    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dataOrder.value
-      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value){
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dateOrder.value
+      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.container.value
+      && this.createMatrixForm.controls.price.value && this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value
+      && this.createMatrixForm.controls.altResource2.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -797,8 +812,11 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitRepairDie(){
     this.submitRepair = true;
-    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dataOrder.value
-      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value){
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dateOrder.value
+      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value&&
+      this.createMatrixForm.controls.container.value && this.createMatrixForm.controls.price.value &&
+      this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value &&
+      this.createMatrixForm.controls.altResource2.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -813,8 +831,11 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitReclamationDie(){
     this.submitReclamation = true;
-    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dataOrder.value
-      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value){
+    if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.dateOrder.value
+      && this.createMatrixForm.controls.dataConfirmation.value && this.createMatrixForm.controls.dataExpedition.value &&
+      this.createMatrixForm.controls.container.value && this.createMatrixForm.controls.price.value &&
+      this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value &&
+      this.createMatrixForm.controls.altResource2.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -829,8 +850,11 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitConfirmedDie(){
     this.submitConfirm = true;
-    if(this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value
-      && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value){
+    if(this.createMatrixForm.controls.dateOrder.value && this.createMatrixForm.controls.dataConfirmation.value
+      && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value &&
+      this.createMatrixForm.controls.container.value && this.createMatrixForm.controls.price.value &&
+      this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value &&
+      this.createMatrixForm.controls.altResource2.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -845,9 +869,11 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitDispatchedDie(){
     this.submitDispatched = true;
-    if(this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value
+    if(this.createMatrixForm.controls.dateOrder.value && this.createMatrixForm.controls.dataConfirmation.value
       && this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value
-      && this.createMatrixForm.controls.dataExpedition.value){
+      && this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.container.value &&
+      this.createMatrixForm.controls.price.value && this.createMatrixForm.controls.grM.value &&
+      this.createMatrixForm.controls.altResource1.value && this.createMatrixForm.controls.altResource2.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -863,8 +889,11 @@ export class NewMatrixModalComponent implements OnInit {
   submitInUseDie(){
     this.submitInUse = true;
     if(this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.primaryResource.value &&
-      this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.dataOrder.value && this.createMatrixForm.controls.dataConfirmation.value &&
-      this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.inUseFrom.value){
+      this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.dateOrder.value && this.createMatrixForm.controls.dataConfirmation.value &&
+      this.createMatrixForm.controls.dataExpedition.value && this.createMatrixForm.controls.inUseFrom.value &&
+      this.createMatrixForm.controls.container.value && this.createMatrixForm.controls.price.value &&
+      this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value &&
+      this.createMatrixForm.controls.altResource2.value){
 
         if(this.createMatrixForm.controls.status.value == 40 && this.createMatrixForm.controls.requiredTest.value == true){
           this.markedForTestDateTime = new Date();
@@ -884,7 +913,10 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBrakDie(){
     this.submitBrak = true;
-    if(this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value){
+    if(this.createMatrixForm.controls.primaryResource.value && this.createMatrixForm.controls.channels.value && this.createMatrixForm.controls.matrixComplect.value &&
+      this.createMatrixForm.controls.container.value && this.createMatrixForm.controls.price.value &&
+      this.createMatrixForm.controls.grM.value && this.createMatrixForm.controls.altResource1.value &&
+      this.createMatrixForm.controls.altResource2.value){
       Swal.fire({
         title: this.translateSnackBar.brakMsg,
         icon: 'warning',
@@ -913,7 +945,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   sendResponce(){
-    
+
     this.loading = true;
 
     let obj = {
@@ -932,7 +964,7 @@ export class NewMatrixModalComponent implements OnInit {
       matrixComplect: this.createMatrixForm.controls.matrixComplect.value,
       tulling1: this.createMatrixForm.controls.tulling1.value,
       tulling2: this.createMatrixForm.controls.tulling2.value,
-      dataOrder: this.createMatrixForm.controls.dataOrder.value[0],
+      dateOrder: this.createMatrixForm.controls.dateOrder.value[0],
       dataConfirmation: this.createMatrixForm.controls.dataConfirmation.value[0],
       dataExpedition: this.createMatrixForm.controls.dataExpedition.value[0],
       inUseFrom: this.createMatrixForm.controls.inUseFrom.value[0],
@@ -1010,7 +1042,11 @@ export class NewMatrixModalComponent implements OnInit {
           this.loading = false;
         }
       );
-    }    
+    }
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 
   closeModal(): void {

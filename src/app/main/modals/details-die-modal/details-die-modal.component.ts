@@ -131,7 +131,7 @@ export class DetailsDieModalComponent implements OnInit {
 
   editForm(){
     const modalRef = this.modalService.open(NewMatrixModalComponent, {});
-    modalRef.componentInstance.matrixItem = { 'data': this.dieRow };
+    modalRef.componentInstance.matrixItem = { 'data': this.dieRow, 'redirect': true };
   }
 
   closeModal(): void {
