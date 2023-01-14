@@ -359,7 +359,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   getProfilesByPress() {
     this.loading = true;
-    this.matrixService.getProfilesByPress(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profile).subscribe((data) => {
+    this.matrixService.getProfilesByPress(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsFirstTable = data;
       this.loading = false;
     });
@@ -563,8 +563,9 @@ export class NewMatrixModalComponent implements OnInit {
 
 
   getProfilesEnds() {
+    console.log('TEST', this.createMatrixForm.controls.profile.value.id, this.createMatrixForm.controls.profile.value.name, this.matrixItem.data.profile)
     this.loading = true;
-    this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profile).subscribe((data) => {
+    this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsSecondTable = data;
       this.loading = false;
     });
