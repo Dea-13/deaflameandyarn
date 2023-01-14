@@ -134,6 +134,10 @@ export class DetailsDieModalComponent implements OnInit {
     modalRef.componentInstance.matrixItem = { 'data': this.dieRow, 'redirect': true };
   }
 
+  generateTest(){
+
+  }
+
   closeModal(): void {
     this.activeModal.dismiss();
   }

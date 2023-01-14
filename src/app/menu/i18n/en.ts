@@ -351,7 +351,8 @@ export const locale = {
       env: 'Еnvironment',
       devices: 'Devices',
       deviceName: 'Devices Name',
-      comPort: 'Com Port'
+      comPort: 'Com Port',
+      generateTest: 'Generate Test',
     }
   }
 }

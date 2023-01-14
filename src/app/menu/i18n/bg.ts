@@ -351,7 +351,8 @@ export const locale = {
       env: 'Среда',
       devices: 'Устройства',
       deviceName: 'Име',
-      comPort: 'Com Port'
+      comPort: 'Com Port',
+      generateTest: 'Генериране на Тест',
     }
   }
 }

@@ -952,8 +952,8 @@ export class NewMatrixModalComponent implements OnInit {
   sendResponce(){
 
     this.loading = true;
-
-    let obj = {
+    let obj;
+    obj = {
       profile: this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile,
       profileId: this.createMatrixForm.controls.profile.value.name ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profileId,
       dieId: this.createMatrixForm.controls.matrix.value,
@@ -1024,6 +1024,7 @@ export class NewMatrixModalComponent implements OnInit {
         }
       );
     } else {
+      obj.id = this.matrixItem.data.id;
       this.matrixService.updateMatrix(obj).subscribe(matrixService => {
         // this.getProfilesEnds();
         this.loading = false;
