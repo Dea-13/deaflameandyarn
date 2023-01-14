@@ -189,7 +189,13 @@ export class NewMatrixModalComponent implements OnInit {
     this.getAlloy();
 
     this.createMatrixForm.disable();
-    this.createMatrixForm.controls.profile.enable();
+
+    if(this.matrix.id){
+      this.createMatrixForm.controls.profile.disable();
+    } else {
+      this.createMatrixForm.controls.profile.enable();
+    }
+
     this.createMatrixForm.controls.status.enable();
   }
 
@@ -209,7 +215,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.enableButton = false;
     } else {
       this.createMatrixForm.disable();
-      this.createMatrixForm.controls.profile.enable();
+      // this.createMatrixForm.controls.profile.enable();
       this.createMatrixForm.controls.status.enable();
       this.enableButton = true;
     }
