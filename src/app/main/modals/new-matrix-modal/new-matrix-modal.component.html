@@ -155,7 +155,7 @@
                             <label for="city-column">{{ translateSnackBar.dateStated }}</label>
                             <ng2-flatpickr formControlName="dateOrder" [config]="orderDateOptions" name="dateOrder"
                               [setDate]="dateOrder" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dateOrder').value }"
+                              [ngClass]="{ 'error-date': submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak && !createMatrixForm.get('dateOrder').value }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -184,7 +184,7 @@
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.inUseBy }}</label>
                             <ng2-flatpickr formControlName="inUseFrom" [config]="orderDateOptions" name="inUseFrom"
-                              [ngClass]="{ 'error-date': submitInUse && !createMatrixForm.get('inUseFrom').value }"
+                              [ngClass]="{ 'error-date': submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak && !createMatrixForm.get('inUseFrom').value }"
                               [setDate]="inUseFrom" (click)="$event.stopPropagation()"
                               #startDateOptions>
                             </ng2-flatpickr>
@@ -458,7 +458,7 @@
 
           </div>
         <div class="col-sm-12">
-          <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()">{{ translateSnackBar.save }}</button>
+          <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()" [disabled]="enableButton">{{ translateSnackBar.save }}</button>
         </div>
       </div>
     </div>
