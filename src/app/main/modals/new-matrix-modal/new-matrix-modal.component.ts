@@ -1008,10 +1008,11 @@ export class NewMatrixModalComponent implements OnInit {
         this.passEntry.emit(true);
       },
         (error) => {
+          console.log('error', error);
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',
-            title: 'Error',
+            title: error.error,
             showConfirmButton: false,
             timer: 2000
           })

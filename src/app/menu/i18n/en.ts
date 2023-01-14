@@ -144,7 +144,7 @@ export const locale = {
       dateStated: 'Request date',
       plannedDelivery: 'Planned delivery',
       realExpedition: 'Real delivery',
-      inUseBy: 'In use by--------',
+      inUseBy: 'In use by',
       additional: 'Additional',
       noteRequest: 'Note request',
       use: 'Usage',
