@@ -153,7 +153,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.dateStated }}</label>
-                            <ng2-flatpickr formControlName="dateOrder" [config]="orderDateOptions" name="dateOrder"
+                            <ng2-flatpickr [formControl]="createMatrixForm.controls['dateOrder']" [config]="orderDateOptions" name="dateOrder"
                               [setDate]="dateOrder" (click)="$event.stopPropagation()"
                               [ngClass]="{ 'error-date': submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak && !createMatrixForm.get('dateOrder').value }"
                               #startDateOptions>
@@ -163,9 +163,9 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.plannedDelivery }}</label>
-                            <ng2-flatpickr formControlName="dataConfirmation" [config]="orderDateOptions" name="dataConfirmation"
-                              [setDate]="dataConfirmation" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dataConfirmation').value }"
+                            <ng2-flatpickr [formControl]="createMatrixForm.controls['dateConfirmation']" [config]="orderDateOptions" name="dateConfirmation"
+                              [setDate]="dateConfirmation" (click)="$event.stopPropagation()"
+                              [ngClass]="{ 'error-date': submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dateConfirmation').value }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -173,9 +173,9 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.realExpedition }}</label>
-                            <ng2-flatpickr formControlName="dataExpedition" [config]="orderDateOptions" name="dataExpedition"
-                              [setDate]="dataExpedition" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dataExpedition').value }"
+                            <ng2-flatpickr [formControl]="createMatrixForm.controls['dateExpedition']" [config]="orderDateOptions" name="dateExpedition"
+                              [setDate]="dateExpedition" (click)="$event.stopPropagation()"
+                              [ngClass]="{ 'error-date': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair && !createMatrixForm.get('dateExpedition').value }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -183,7 +183,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.inUseBy }}</label>
-                            <ng2-flatpickr formControlName="inUseFrom" [config]="orderDateOptions" name="inUseFrom"
+                            <ng2-flatpickr [formControl]="createMatrixForm.controls['inUseFrom']" [config]="orderDateOptions" name="inUseFrom"
                               [ngClass]="{ 'error-date': submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak && !createMatrixForm.get('inUseFrom').value }"
                               [setDate]="inUseFrom" (click)="$event.stopPropagation()"
                               #startDateOptions>
@@ -458,7 +458,7 @@
 
           </div>
         <div class="col-sm-12">
-          <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()" [disabled]="enableButton">{{ translateSnackBar.save }}</button>
+          <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()">{{ translateSnackBar.save }}</button>
         </div>
       </div>
     </div>

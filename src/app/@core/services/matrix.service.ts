@@ -93,6 +93,10 @@ export class MatrixService {
 
   ///////////////// MODAL NEW MATRIX
 
+  getDieById(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/${id}`);
+  }
+
   getStatus() {
     return this._http.get<any>(`${environment.apiUrl}Dies/GetDiesStatus`);
   }
