@@ -141,8 +141,8 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/producernameid`);
   }
 
-  getCorrector() {
-    return this._http.get<any>(`${environment.apiUrl}Dies/all/producernameid`);
+  getPurchaser() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/purchaser`);
   }
 
   getMatricologist() {

@@ -70,7 +70,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.holder }}</label>
-                            <input formControlName="holder" type="text" class="form-control dt-uname" />
+                            <input formControlName="dieHolder" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -88,7 +88,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.pressWasher }}</label>
-                            <input formControlName="pressWasher" type="text" class="form-control dt-uname" />
+                            <input formControlName="Pressshaiba" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -131,8 +131,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.tulling1 }}</label>
-                            <input *ngIf="bolster1.length === 0" formControlName="tulling1" type="text" class="form-control dt-uname" />
-                            <ng-select *ngIf="bolster1.length > 0" [clearable]="false" formControlName="tulling1" appendTo="body">
+                            <input *ngIf="bolster1.length === 0" formControlName="bolsterTooling1" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="bolster1.length > 0" [clearable]="false" formControlName="bolsterTooling1" appendTo="body">
                               <ng-option *ngFor="let s of bolster1" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -140,8 +140,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.tulling2 }}</label>
-                            <input *ngIf="bolster2.length === 0" formControlName="tulling2" type="text" class="form-control dt-uname" />
-                            <ng-select *ngIf="bolster2.length > 0" [clearable]="false" formControlName="tulling2" appendTo="body">
+                            <input *ngIf="bolster2.length === 0" formControlName="bolsterTooling2" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="bolster2.length > 0" [clearable]="false" formControlName="bolsterTooling2" appendTo="body">
                               <ng-option *ngFor="let s of bolster2" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -155,7 +155,7 @@
                             <label for="city-column">{{ translateSnackBar.dateStated }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['dateOrder']" [config]="orderDateOptions" name="dateOrder"
                               [setDate]="dateOrder" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && !createMatrixForm.get('dateOrder').value }"
+                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && createMatrixForm.get('dateOrder').value.length === 0 }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -165,7 +165,7 @@
                             <label for="city-column">{{ translateSnackBar.plannedDelivery }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['dateConfirmation']" [config]="orderDateOptions" name="dateConfirmation"
                               [setDate]="dateConfirmation" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && !createMatrixForm.get('dateConfirmation').value }"
+                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && createMatrixForm.get('dateConfirmation').value.length === 0 }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -175,7 +175,7 @@
                             <label for="city-column">{{ translateSnackBar.realExpedition }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['dateExpedition']" [config]="orderDateOptions" name="dateExpedition"
                               [setDate]="dateExpedition" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && !createMatrixForm.get('dateExpedition').value }"
+                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && createMatrixForm.get('dateExpedition').value.length === 0 }"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -184,7 +184,7 @@
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.inUseBy }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['inUseFrom']" [config]="orderDateOptions" name="inUseFrom"
-                              [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && !createMatrixForm.get('inUseFrom').value }"
+                              [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && createMatrixForm.get('inUseFrom').value.length === 0 }"
                               [setDate]="inUseFrom" (click)="$event.stopPropagation()"
                               #startDateOptions>
                             </ng2-flatpickr>
@@ -201,8 +201,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.client }}</label>
-                            <input *ngIf="clientNameArr.length === 0" formControlName="client" type="text" class="form-control dt-uname" />
-                            <ng-select *ngIf="clientNameArr.length > 0" [clearable]="false" formControlName="client" appendTo="body">
+                            <input *ngIf="clientNameArr.length === 0" formControlName="clientName" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="clientNameArr.length > 0" [clearable]="false" formControlName="clientName" appendTo="body">
                               <ng-option *ngFor="let s of clientNameArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -219,14 +219,17 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.applicant }}</label>
-                            <input formControlName="applicant" type="text" class="form-control dt-uname" />
+                            <input *ngIf="purchaserArr.length === 0" formControlName="purchaser" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="purchaserArr.length > 0" [clearable]="false" formControlName="purchaser" appendTo="body">
+                              <ng-option *ngFor="let s of purchaserArr" [value]="s.id">{{ s.name }}</ng-option>
+                            </ng-select>
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.matricologist }}</label>
-                            <input *ngIf="matrologistArr.length === 0" formControlName="matricologist" type="text" class="form-control dt-uname" />
-                            <ng-select *ngIf="matrologistArr.length > 0" [clearable]="false" formControlName="matricologist" appendTo="body">
+                            <input *ngIf="matrologistArr.length === 0" formControlName="corrector" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="matrologistArr.length > 0" [clearable]="false" formControlName="corrector" appendTo="body">
                               <ng-option *ngFor="let s of matrologistArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -259,7 +262,7 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.productionKg }}</label>
-                            <input formControlName="price_Inv" type="text" class="form-control dt-uname" />
+                            <input formControlName="priceInv" type="text" class="form-control dt-uname" />
                           </div>
                         </div>
                       </div>
@@ -270,9 +273,9 @@
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.press }}</label>
                             <input *ngIf="pressArr.length === 0" formControlName="primaryResource" type="text" class="form-control dt-uname"
-                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak && !createMatrixForm.get('primaryResource').value }" />
+                            [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak) && !createMatrixForm.get('primaryResource').value }" />
                             <ng-select *ngIf="pressArr.length > 0" [clearable]="false" formControlName="primaryResource" appendTo="body"
-                            [ngClass]="{ 'error': submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak && !createMatrixForm.get('primaryResource').value }">
+                            [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak) && !createMatrixForm.get('primaryResource').value }">
                               <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
