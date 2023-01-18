@@ -1,0 +1,64 @@
+<div class="slideout-content">
+  <!-- Modal to add new user starts-->
+  <div id="modals-slide-in">
+    <div class="modal-dialog material-dialog-center modal-content pt-0">
+      <div class="modal-body flex-grow-1">
+        <form [formGroup]="createTestForm" class="add-new-user modal-content pt-0" #newUserForm="ngForm">
+          <div class="row form-group">
+            <div class="col-md-12 col-12">
+              <div class="alert alert-primary flex" role="alert">
+                <div class="alert-body">
+                  {{ translateSnackBar.generateTestModal }}
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.choosePress }}</label>
+                <ng-select class="select-table width-select" formControlName="choosePress"
+                  [ngClass]="{ 'error': submitted && createTestForm.get('choosePress').invalid }" required>
+                  <ng-option *ngFor="let t of pressArr" [value]="t.id">{{ t.name }}</ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.chooseKg }}</label>
+                <input type="number" formControlName="chooseKg" id="basic-icon-default-uname"
+                  class="form-control dt-uname" aria-label="jdoe1" maxlength="50"
+                  aria-describedby="basic-icon-default-uname2" name="user-name"
+                  [ngClass]="{ 'error': submitted && createTestForm.get('chooseKg').invalid }" required />
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.chooseAlloy}}</label>
+                <input type="number" formControlName="chooseAlloy" id="basic-icon-default-uname"
+                  class="form-control dt-uname" aria-label="jdoe1" maxlength="50"
+                  aria-describedby="basic-icon-default-uname2" name="user-name"
+                  [ngClass]="{ 'error': submitted && createTestForm.get('chooseAlloy').invalid }" required />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="modal-btn">
+          <button class="btn btn-primary" rippleEffect (click)="submitForm()">
+            <span class="d-none d-sm-inline-block">{{ translateSnackBar.submit }}</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading" class="loader-section">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

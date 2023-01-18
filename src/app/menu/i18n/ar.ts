@@ -341,6 +341,10 @@ export const locale = {
       messageTabProfile: '',
       markedForTestDateTime: '',
       generateTest: '',
+      generateTestModal: '',
+      choosePress: '',
+      chooseKg: '',
+      chooseAlloy: '',
     }
   }
 }

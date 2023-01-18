@@ -56,6 +56,7 @@ import { ProductivityNitrificationPageComponent } from './main/pages/productivit
 import { ModalProfileProductsComponent } from './main/modals/modal-profile-products/modal-profile-products.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SettingsComponent } from './main/pages/settings/settings.component';
+import { GenerateTestModalComponent } from './main/modals/generate-test-modal/generate-test-modal.component';
 
 const appRoutes: Routes = [
   {
@@ -231,7 +232,8 @@ const appRoutes: Routes = [
     WarehouseListDieModalComponent,
     ProductivityNitrificationPageComponent,
     ModalProfileProductsComponent,
-    SettingsComponent
+    SettingsComponent,
+    GenerateTestModalComponent
   ],
 
   imports: [

@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 import { MatrixService } from '../../../@core/services/matrix.service';
+import { GenerateTestModalComponent } from '../generate-test-modal/generate-test-modal.component';
 import { NewMatrixModalComponent } from '../new-matrix-modal/new-matrix-modal.component';
 
 @Component({
@@ -135,7 +137,9 @@ export class DetailsDieModalComponent implements OnInit {
   }
 
   generateTest(){
-
+    console.log('generateTest',this.dieRow );
+    const modalRef = this.modalService.open(GenerateTestModalComponent, {});
+    modalRef.componentInstance.testItem = { 'dieId': this.dieRow.dieId };
   }
 
   closeModal(): void {

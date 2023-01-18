@@ -353,6 +353,10 @@ export const locale = {
       deviceName: 'Име',
       comPort: 'Com Port',
       generateTest: 'Генериране на Тест',
+      generateTestModal: 'Поръчка за тест на матрица',
+      choosePress: 'Изберете преса',
+      chooseKg: 'Изберете количество (КГ)',
+      chooseAlloy: 'Изберете сплав',
     }
   }
 }

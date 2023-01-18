@@ -225,4 +225,9 @@ export class MatrixService {
     return this._http.put(`${environment.apiUrl}Dies`, data);
   }
 
+  generateTest(quantity: any, alloy: any, workCenterId: any, dieID: any) {
+    const data = JSON.stringify('');
+    return this._http.post(`${environment.apiUrl}Dies/CreateTestOrder/${quantity}/${alloy}/${workCenterId}/${dieID}`, data);
+  }
+
 }

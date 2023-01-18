@@ -353,6 +353,10 @@ export const locale = {
       deviceName: 'Devices Name',
       comPort: 'Com Port',
       generateTest: 'Generate Test',
+      generateTestModal: 'Matrix test order',
+      choosePress: 'Choose press',
+      chooseKg: 'Choose quantity (КГ)',
+      chooseAlloy: 'Choose Alloy',
     }
   }
 }
