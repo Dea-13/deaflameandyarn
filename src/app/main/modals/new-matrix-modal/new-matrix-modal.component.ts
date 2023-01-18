@@ -43,6 +43,7 @@ export class NewMatrixModalComponent implements OnInit {
   public dateConfirmation: Array<any> = [];
   public dateExpedition: Array<any> = [];
   public inUseFrom: Array<any> = [];
+  public matrixComplectArr: Array<any> = [];
   public isEditableRowsPress = {};
   public isEditableRowsEnd = {};
   public validation: boolean;
@@ -126,6 +127,8 @@ export class NewMatrixModalComponent implements OnInit {
       scrapReason: [''],
       reasonForPurchase: [''],
       reasonForPurchaseOther: [''],
+      diameter: ['', Validators.required],
+      thickness: ['', Validators.required]
     });
 
     this.getStatus();
@@ -142,12 +145,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.getMatricologist();
     this.getPress();
     this.getAlloy();
+    this.getMatricComplect();
 
 
     if(this.matrixItem.data.id){
       this.getDieById();
       this.callFunctions();
       this.fillFormValid();
+      setTimeout(() => {
+        this.getMatricComplectById();
+      }, 1000);
       this.createMatrixForm.enable();
       this.createMatrixForm.controls.profile.disable();
       this.createMatrixForm.controls.matrix.disable();
@@ -207,6 +214,8 @@ export class NewMatrixModalComponent implements OnInit {
         scrapReason: this.matrix.scrapReason,
         reasonForPurchase: this.matrix.reasonForPurchase,
         reasonForPurchaseOther: this.matrix.reasonForPurchaseOther,
+        diameter:  this.matrix.diameter,
+        thickness: this.matrix.thickness
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
       this.loading = false;
@@ -373,6 +382,36 @@ export class NewMatrixModalComponent implements OnInit {
     this.loading = true;
     this.matrixService.getAlloy().subscribe((data) => {
       this.alloyArr = data;
+      this.loading = false;
+    });
+  }
+
+  getMatricComplect(){
+    this.loading = true;
+    this.matrixService.getMatricComplect().subscribe((data) => {
+      this.matrixComplectArr = data;
+      this.loading = false;
+    });
+  }
+
+  getMatricComplectById(){
+    this.loading = true;
+    let diameter, thickness, resourceId = 0;
+    if(this.matrix == 'new'){
+      diameter = this.createMatrixForm.controls.matrixComplect.value.diameter;
+      thickness = this.createMatrixForm.controls.matrixComplect.value.thickness;
+      resourceId = this.createMatrixForm.controls.matrixComplect.value.resourceId;
+    } else {
+      diameter = this.createMatrixForm.controls.diameter.value;
+      thickness = this.createMatrixForm.controls.thickness.value;
+      resourceId = this.createMatrixForm.controls.primaryResource.value;
+    }
+    this.matrixService.getMatricComplectById(diameter, thickness, resourceId).subscribe((data) => {
+      console.log('getMatricComplectById', data);
+      this.createMatrixForm.controls.primaryResource.setValue(data.resourceId);
+      this.createMatrixForm.controls.diameter.setValue(data.diameter);
+      this.createMatrixForm.controls.thickness.setValue(data.thickness);
+      this.createMatrixForm.controls.matrixComplect.setValue(data.dimensions.concat(' - ').concat(data.resourceName));
       this.loading = false;
     });
   }
@@ -980,6 +1019,8 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrix.created = this.matrix ? this.matrix.created : new Date(),
     this.matrix.lastModified = new Date(),
     this.matrix.lastModifiedBy = this.userName,
+    this.matrix.diameter = this.createMatrixForm.controls.diameter.value;
+    this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {

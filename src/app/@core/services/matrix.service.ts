@@ -215,6 +215,14 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/dieHistory/${id}`);
   }
 
+  getMatricComplect() {
+    return this._http.get<any>(`${environment.apiUrl}DiesDefDimByRes`);
+  }
+
+  getMatricComplectById(diameter: number, thickness: number, resourceId: number) {
+    return this._http.get<any>(`${environment.apiUrl}DiesDefDimByRes/${diameter}/${thickness}/${resourceId}`);
+  }
+
   createMatrix(matrix: any) {
     const data = JSON.stringify(matrix);
     return this._http.post<any>(`${environment.apiUrl}Dies`, data);

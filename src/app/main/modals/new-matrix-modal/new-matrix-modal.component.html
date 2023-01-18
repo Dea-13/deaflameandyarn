@@ -125,7 +125,9 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.matrixComplect }}</label>
-                            <input formControlName="matrixComplect" type="text" class="form-control dt-uname"  [ngClass]="{ 'error': (submitInUse || submitBrak) && !createMatrixForm.get('matrixComplect').value }" />
+                            <ng-select [clearable]="false" formControlName="matrixComplect" appendTo="body" (change)="getMatricComplectById()" [ngClass]="{ 'error': (submitInUse || submitBrak) && !createMatrixForm.get('matrixComplect').value }">
+                              <ng-option *ngFor="let m of matrixComplectArr" [value]="m">{{ m.dimensions }} - {{ m.resourceName }}</ng-option>
+                            </ng-select>
                           </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -155,7 +157,7 @@
                             <label for="city-column">{{ translateSnackBar.dateStated }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['dateOrder']" [config]="orderDateOptions" name="dateOrder"
                               [setDate]="dateOrder" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && createMatrixForm.get('dateOrder').value.length === 0 }"
+                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)}"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -165,7 +167,7 @@
                             <label for="city-column">{{ translateSnackBar.plannedDelivery }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['dateConfirmation']" [config]="orderDateOptions" name="dateConfirmation"
                               [setDate]="dateConfirmation" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && createMatrixForm.get('dateConfirmation').value.length === 0 }"
+                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && (createMatrixForm.get('dateConfirmation').value && createMatrixForm.get('dateConfirmation').value.length === 0 || !createMatrixForm.get('dateConfirmation').value)}"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -175,7 +177,7 @@
                             <label for="city-column">{{ translateSnackBar.realExpedition }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['dateExpedition']" [config]="orderDateOptions" name="dateExpedition"
                               [setDate]="dateExpedition" (click)="$event.stopPropagation()"
-                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && createMatrixForm.get('dateExpedition').value.length === 0 }"
+                              [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitDispatched || submitInUse || submitReclamation || submitBlocked || submitRepair) && (createMatrixForm.get('dateExpedition').value && createMatrixForm.get('dateExpedition').value.length === 0 || !createMatrixForm.get('dateExpedition').value)}"
                               #startDateOptions>
                             </ng2-flatpickr>
                           </div>
@@ -184,7 +186,7 @@
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.inUseBy }}</label>
                             <ng2-flatpickr [formControl]="createMatrixForm.controls['inUseFrom']" [config]="orderDateOptions" name="inUseFrom"
-                              [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && createMatrixForm.get('inUseFrom').value.length === 0 }"
+                              [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)}"
                               [setDate]="inUseFrom" (click)="$event.stopPropagation()"
                               #startDateOptions>
                             </ng2-flatpickr>
