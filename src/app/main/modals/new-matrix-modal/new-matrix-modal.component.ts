@@ -393,10 +393,10 @@ export class NewMatrixModalComponent implements OnInit {
     });
   }
 
-  getMatricComplectById(){
+  getMatricComplectById() {
     this.loading = true;
     let diameter, thickness, resourceId = 0;
-    if(this.matrix == 'new'){
+    if (this.matrixItem.data == 'new') {
       diameter = this.createMatrixForm.controls.matrixComplect.value.diameter;
       thickness = this.createMatrixForm.controls.matrixComplect.value.thickness;
       resourceId = this.createMatrixForm.controls.matrixComplect.value.resourceId;
