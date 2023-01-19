@@ -65,6 +65,37 @@ export class NewProfileModalComponent implements OnInit {
   ngOnInit(): void {
     this.submitted = false;
     this.profile = this.profileItem.data;
+    this.createProfileForm = this.formBuilder.group({
+      profileName: ['', Validators.required],
+      groupCode: [''],
+      usage: ['', Validators.required],
+      visSides: ['', Validators.required],
+      size1: ['', Validators.required],
+      size2: ['', Validators.required],
+      size3: ['', Validators.required],
+      size4: ['', Validators.required],
+      size1TolDown: ['', Validators.required],
+      size1TolUp: ['', Validators.required],
+      size2TolDown: ['', Validators.required],
+      size2TolUp: ['', Validators.required],
+      size3TolDown: ['', Validators.required],
+      size3TolUp: ['', Validators.required],
+      size4TolDown: ['', Validators.required],
+      size4TolUp: ['', Validators.required],
+      grM: ['', Validators.required],
+      section: ['', Validators.required],
+      perimeter: ['', Validators.required],
+      cooling: [''],
+      addOperations: [''],
+      tbillet: [''],
+      texit: [''],
+      basketOrdering: [''],
+      inUse: ['', Validators.required],
+      puller: [''],
+      notesExtrusion: [''],
+      important: [''],
+    });
+
     console.log('this.profile: ', this.profile);
     if (this.profile.id) {
       this.getProfileDies(this.profile.id);
@@ -97,6 +128,36 @@ export class NewProfileModalComponent implements OnInit {
     this.profilesService.getProfiles(id).subscribe(data => {
       console.log("getProfiles", data);
       this.sectionProfiles = data;
+      this.createProfileForm = this.formBuilder.group({
+        profileName: this.sectionProfiles.profileName,
+        groupCode: this.sectionProfiles.groupCode,
+        inUse: this.sectionProfiles.inUse,
+        visSides: this.sectionProfiles.visSides,
+        size1: this.sectionProfiles.size1,
+        size2: this.sectionProfiles.size2,
+        size3: this.sectionProfiles.size3,
+        size4: this.sectionProfiles.size4,
+        size1TolDown: this.sectionProfiles.size1TolDown,
+        size1TolUp: this.sectionProfiles.size1TolUp,
+        size2TolDown: this.sectionProfiles.size2TolDown,
+        size2TolUp: this.sectionProfiles.size2TolUp,
+        size3TolDown: this.sectionProfiles.size3TolDown,
+        size3TolUp: this.sectionProfiles.size3TolUp,
+        size4TolDown: this.sectionProfiles.size4TolDown,
+        size4TolUp: this.sectionProfiles.size4TolUp,
+        grM: this.sectionProfiles.grM,
+        section: this.sectionProfiles.section,
+        perimeter: this.sectionProfiles.perimeter,
+        cooling: this.sectionProfiles.cooling,
+        addOperations: this.sectionProfiles.addOperations,
+        tbillet: this.sectionProfiles.tbillet,
+        texit: this.sectionProfiles.texit,
+        basketOrdering: this.sectionProfiles.basketOrdering,
+        usage: this.sectionProfiles.usage,
+        puller: this.sectionProfiles.puller,
+        notesExtrusion: this.sectionProfiles.notesExtrusion,
+        important: this.sectionProfiles.important
+      });
       this.loading = false;
     });
   }
@@ -320,93 +381,120 @@ export class NewProfileModalComponent implements OnInit {
     let obj;
     this.submitted = true;
     obj = {
-      profileName: this.sectionProfiles.profileName,
-      groupCode: this.sectionProfiles.groupCode,
-      section: this.sectionProfiles.section,
-      perimeter: this.sectionProfiles.perimeter,
-      size1: this.sectionProfiles.size1,
-      size2: this.sectionProfiles.size2,
-      size3: this.sectionProfiles.size3,
-      size4: this.sectionProfiles.size4,
-      grM: null,
-      size1TolDown: null,
-      size1TolUp: null,
-      size2TolDown: null,
-      size2TolUp: null,
-      size3TolDown: null,
-      size3TolUp: null,
-      size4TolDown: null,
-      size4TolUp: null,
-      usage: "",
-      visSides: null,
+      profileName: this.createProfileForm.controls.profileName.value,
+      groupCode: this.createProfileForm.controls.groupCode.value,
+      section: this.createProfileForm.controls.section.value,
+      perimeter: this.createProfileForm.controls.perimeter.value,
+      size1: this.createProfileForm.controls.size1.value,
+      size2: this.createProfileForm.controls.size2.value,
+      size3: this.createProfileForm.controls.size3.value,
+      size4: this.createProfileForm.controls.size4.value,
+      grM: this.createProfileForm.controls.grM.value,
+      size1TolDown: this.createProfileForm.controls.size1TolDown.value,
+      size1TolUp: this.createProfileForm.controls.size1TolUp.value,
+      size2TolDown: this.createProfileForm.controls.size2TolDown.value,
+      size2TolUp: this.createProfileForm.controls.size2TolUp.value,
+      size3TolDown: this.createProfileForm.controls.size3TolDown.value,
+      size3TolUp: this.createProfileForm.controls.size3TolUp.value,
+      size4TolDown: this.createProfileForm.controls.size4TolDown.value,
+      size4TolUp: this.createProfileForm.controls.size4TolUp.value,
+      usage: this.createProfileForm.controls.usage.value,
+      visSides: this.createProfileForm.controls.visSides.value,
       extrusionSpeed: "",
       opPerf: "",
       extrusionSpeedSms: "",
       opPerfSms: "",
-      tbillet: '',
-      texit: '',
-      puller: '',
+      tbillet: this.createProfileForm.controls.tbillet.value,
+      texit: this.createProfileForm.controls.texit.value,
+      puller: this.createProfileForm.controls.puller.value,
       scrapStart: "",
       scrapStartSms: "",
       scrapEnd: "",
       tension: "",
-      cooling: '',
+      cooling: this.createProfileForm.controls.cooling.value,
       coolingSms: "",
       coolingAdd: "",
       rowVersion: 1,
       lastModifiedBy: this.userName,
-      basketOrdering: '',
-      addOperations: '',
-      notesExtrusion: '',
-      important: '',
+      basketOrdering: this.createProfileForm.controls.basketOrdering.value,
+      addOperations: this.createProfileForm.controls.addOperations.value,
+      notesExtrusion: this.createProfileForm.controls.notesExtrusion.value,
+      important: this.createProfileForm.controls.important.value,
       created: new Date(),
       lastModified: new Date(),
       modifiedOn: new Date(),
-      inUse: this.sectionProfiles.inUse,
+      inUse: this.createProfileForm.controls.inUse.value,
       ts: '',
       primaryPress: null,
       alternativePress: null,
       thickness: null,
       sideWidth: null
     }
-
-    if (this.profile.id) {
-      //edit
-      obj.id = this.profile.id;
-      this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
-        this.activeModal.dismiss();
-        this.passEntry.emit(true);
-        this.loading = false;
-      },
-        (error) => {
-          this.loading = false;
+    console.log('obj', obj, this.createProfileForm);
+    if(!this.createProfileForm.invalid){
+      if (this.profile.id) {
+        //edit
+        obj.id = this.profile.id;
+        this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
+          // this.activeModal.dismiss();
+          // this.passEntry.emit(true);
+          this.disableTab = false;
           Swal.fire({
             position: 'bottom-end',
-            icon: 'warning',
-            title: 'Error',
+            icon: 'success',
+            title: this.translateSnackBar.saveMsg,
             showConfirmButton: false,
             timer: 2000
-          })
-        });
-    } else {
-      //create
-      this.profilesService.createProfile(obj).subscribe(
-        (profileService) => {
-          this.activeModal.dismiss();
-          this.passEntry.emit(true);
+          });
           this.loading = false;
         },
-        (error) => {
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'warning',
-            title: 'Error',
-            showConfirmButton: false,
-            timer: 2000
-          })
-        }
-      );
+          (error) => {
+            this.loading = false;
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          });
+      } else {
+        //create
+        this.profilesService.createProfile(obj).subscribe(
+          (profileService) => {
+            // this.activeModal.dismiss();
+            // this.passEntry.emit(true);
+            this.disableTab = false;
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'success',
+              title: this.translateSnackBar.saveMsg,
+              showConfirmButton: false,
+              timer: 2000
+            });
+            this.loading = false;
+          },
+          (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }
+        );
+      }
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillMsg ,
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
+
   }
 
   handleUpload(event) {

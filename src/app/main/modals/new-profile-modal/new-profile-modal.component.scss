@@ -270,7 +270,7 @@ input {
 }
 
 .label-checkbox{
-  width: 43%;
+  width: 47%;
 }
 
 table{
@@ -279,4 +279,13 @@ table{
 
 .width-10{
   width: 10%;
+}
+
+.error{
+  border: 1px solid red;
+}
+
+.error-label{
+  color: red;
+  font-size: 20px;
 }
