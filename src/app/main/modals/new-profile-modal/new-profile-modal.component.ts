@@ -124,7 +124,6 @@ export class NewProfileModalComponent implements OnInit {
 
   getProfiles(id) {
     this.loading = true;
-    console.log('getProfiles: ', id);
     this.profilesService.getProfiles(id).subscribe(data => {
       console.log("getProfiles", data);
       this.sectionProfiles = data;
@@ -159,6 +158,13 @@ export class NewProfileModalComponent implements OnInit {
         important: this.sectionProfiles.important
       });
       this.loading = false;
+
+      console.log('getProfiles: this.createProfileForm.invalid', this.createProfileForm.invalid);
+      if(!this.createProfileForm.invalid){
+        this.disableTab = true;
+      } else {
+        this.disableTab = false;
+      }
     });
   }
 
@@ -242,11 +248,11 @@ export class NewProfileModalComponent implements OnInit {
     console.log("invalid++++++:", row);
     if (row.alloyFamily == "") {
       return false;
-    } else if (row.channels == null) {
+    } else if (row.channels == "") {
       return false;
-    } else if (row.lengthEnd == null) {
+    } else if (row.lengthEnd == "") {
       return false;
-    } else if (row.lengthStart == null) {
+    } else if (row.lengthStart == "") {
       return false;
     } else {
       return true
