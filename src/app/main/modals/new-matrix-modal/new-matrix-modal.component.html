@@ -78,8 +78,8 @@
                             <label for="city-column">{{ translateSnackBar.support }}</label>
                             <div class="flex">
                               <input class="form-control input" formControlName="oporenPrysten" type="checkbox" style="width: 5%;margin-right: 5%;">
-                              <input *ngIf="oporaArr.length === 0" formControlName="support" type="text" class="form-control dt-uname" />
-                              <ng-select *ngIf="oporaArr.length > 0" [clearable]="false" formControlName="support" appendTo="body">
+                              <input *ngIf="oporaArr.length === 0" formControlName="opora" type="text" class="form-control dt-uname" />
+                              <ng-select *ngIf="oporaArr.length > 0" [clearable]="false" formControlName="opora" appendTo="body">
                                 <ng-option *ngFor="let s of oporaArr" [value]="s.name">{{ s.name }}</ng-option>
                               </ng-select>
                             </div>
@@ -212,8 +212,8 @@
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.maker }}</label>
-                            <input *ngIf="producerArr.length === 0" formControlName="maker" type="text" class="form-control dt-uname" />
-                            <ng-select *ngIf="producerArr.length > 0" [clearable]="false" formControlName="maker" appendTo="body">
+                            <input *ngIf="producerArr.length === 0" formControlName="producer" type="text" class="form-control dt-uname" />
+                            <ng-select *ngIf="producerArr.length > 0" [clearable]="false" formControlName="producer" appendTo="body">
                               <ng-option *ngFor="let s of producerArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </div>
