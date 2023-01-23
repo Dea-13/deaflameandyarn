@@ -238,7 +238,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.matrix.disable();
     } else {
       this.createMatrixForm.disable();
-      // this.createMatrixForm.controls.profile.enable();
+      this.createMatrixForm.controls.profile.enable();
       this.createMatrixForm.controls.status.enable();
     }
     setTimeout(() => {

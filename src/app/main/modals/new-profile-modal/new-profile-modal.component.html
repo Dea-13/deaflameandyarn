@@ -407,11 +407,11 @@
                             </div>
                           </td>
                           <td>
-                            <ng-select [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body">
+                            <ng-select [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text" [disabled]="rowLength.profileId"></td>
                           <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="text"></td>
                           <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="text"></td>
                         </tr>
@@ -562,7 +562,7 @@
 
         <div class="col-sm-12 flex margin-10">
           <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
-            <img class="center-img" src="{{'data:image/png;base64,' + sectionProfiles.fileData}}">
+            <img *ngIf="sectionProfiles" class="center-img" src="{{'data:image/png;base64,' + sectionProfiles.fileData}}">
           </div>
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
             <div class="col-sm-12">

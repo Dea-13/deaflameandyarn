@@ -39,7 +39,7 @@ export class NewProfileModalComponent implements OnInit {
   public scrapStart: string = '';
   public scrapEnd: string = '';
   public rowsDies: Array<any> = [];
-  public sectionProfiles: any = {};
+  public sectionProfiles: any;
   public rowsSpeed: Array<any> = [];
   public sectionFiles: Array<any> = [];
   public isEditableRowSpeed = {};
@@ -50,6 +50,7 @@ export class NewProfileModalComponent implements OnInit {
   public alloyArr: Array<any> = [];
   public validation: boolean;
   public disableTab: boolean = true;
+  public profileId: number;
 
 
   constructor(
@@ -126,7 +127,8 @@ export class NewProfileModalComponent implements OnInit {
     this.loading = true;
     this.profilesService.getProfiles(id).subscribe(data => {
       console.log("getProfiles", data);
-      this.sectionProfiles = data;
+      data == null ? this.sectionProfiles = {} : this.sectionProfiles = data;
+      this.profileId = data.id;
       this.createProfileForm = this.formBuilder.group({
         profileName: this.sectionProfiles.profileName,
         groupCode: this.sectionProfiles.groupCode,
@@ -160,11 +162,7 @@ export class NewProfileModalComponent implements OnInit {
       this.loading = false;
 
       console.log('getProfiles: this.createProfileForm.invalid', this.createProfileForm.invalid);
-      if(!this.createProfileForm.invalid){
-        this.disableTab = true;
-      } else {
-        this.disableTab = false;
-      }
+      this.disableTab = false;
     });
   }
 
@@ -285,18 +283,19 @@ export class NewProfileModalComponent implements OnInit {
       this.validation = this.pressEndValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
-          profileId: row.profileId,
           channels: row.channels,
           alloyFamily: row.alloyFamily,
-          lengthStart: row.lengthStart,
+          profileId: row.profileId ? row.profileId : this.profileId,
+          lengthStart: Number(row.lengthStart),
           lengthEnd: row.lengthEnd,
           lastModified: new Date(),
           rowVersion: row.rowVersion == undefined ? ind : row.rowVersion,
           lastModifiedBy: this.userName,
+          created: row.profileId ? row.created : new Date(),
         }
-        console.log('obj End', obj, row);
+        console.log('obj End', obj, row, this.profileId);
         if (row.profileId) {
-          this.profilesService.updateRowsEnd(row).subscribe(matrixService => {
+          this.profilesService.updateRowsEnd(obj).subscribe(matrixService => {
             this.getProfilesEnds(row.profileId);
             this.loading = false;
             Swal.fire({
@@ -311,7 +310,7 @@ export class NewProfileModalComponent implements OnInit {
               Swal.fire({
                 position: 'bottom-end',
                 icon: 'warning',
-                title: 'Error',
+                title: error.status == 304 ? this.translateSnackBar.makeChange : 'Error',
                 showConfirmButton: false,
                 timer: 2000
               })
@@ -319,8 +318,10 @@ export class NewProfileModalComponent implements OnInit {
             }
           );
         } else {
+          // obj.channels = row.channels;
+          // obj.alloyFamily = row.alloyFamily;
           this.profilesService.createRowsEnd(obj).subscribe(matrixService => {
-            this.getProfilesEnds(row.profileId);
+            this.getProfilesEnds(matrixService.profileId);
             this.loading = false;
             Swal.fire({
               position: 'bottom-end',
@@ -444,6 +445,8 @@ export class NewProfileModalComponent implements OnInit {
         this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
           // this.activeModal.dismiss();
           // this.passEntry.emit(true);
+          console.log('profileService', profileService);
+          this.profileId = profileService['id'];
           this.disableTab = false;
           Swal.fire({
             position: 'bottom-end',
@@ -470,6 +473,7 @@ export class NewProfileModalComponent implements OnInit {
           (profileService) => {
             // this.activeModal.dismiss();
             // this.passEntry.emit(true);
+            this.profileId = profileService['id'];
             this.disableTab = false;
             Swal.fire({
               position: 'bottom-end',

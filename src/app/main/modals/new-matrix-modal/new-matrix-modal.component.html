@@ -374,7 +374,7 @@
                     <table class="clasic-table">
                       <thead>
                         <th>
-                          <button class="add-button" (click)="addRowPress(columnsFirstTable)" [disabled]="createMatrixForm.get('profile').value === ''">
+                          <button class="add-button" (click)="addRowPress(columnsFirstTable)" [disabled]="createMatrixForm.get('profile').value.length === 0">
                             <i class="fa fa-plus-circle"></i>
                           </button>
                         </th>
@@ -422,7 +422,7 @@
                     <table class="clasic-table">
                       <thead>
                         <th>
-                          <button class="add-button" (click)="addRowEnd(columnsSecondTable)" [disabled]="createMatrixForm.get('profile').value === ''">
+                          <button class="add-button" (click)="addRowEnd(columnsSecondTable)" [disabled]="createMatrixForm.get('profile').value.length === 0">
                             <i class="fa fa-plus-circle"></i>
                           </button>
                         </th>
