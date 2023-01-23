@@ -68,6 +68,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitRepair: boolean = false;
   enableButton: boolean = true;
   redirectModal: any;
+  storagePlaceArr: Array<any> = [];
 
   constructor(
     private matrixService: MatrixService,
@@ -146,6 +147,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.getPress();
     this.getAlloy();
     this.getMatricComplect();
+    this.getStorage();
 
 
     if(this.matrixItem.data.id){
@@ -389,6 +391,14 @@ export class NewMatrixModalComponent implements OnInit {
     this.loading = true;
     this.matrixService.getMatricComplect().subscribe((data) => {
       this.matrixComplectArr = data;
+      this.loading = false;
+    });
+  }
+
+  getStorage(){
+    this.loading = true;
+    this.matrixService.getStorage().subscribe((data) => {
+      this.storagePlaceArr = data;
       this.loading = false;
     });
   }

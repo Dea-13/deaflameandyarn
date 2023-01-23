@@ -304,16 +304,18 @@
 
                       <div class="border-field" style="margin-bottom: 20px;">
                         <span class="label-section">{{ translateSnackBar.storage }}</span>
-                        <div class="col-md-12 col-12">
+                        <!-- <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.storageGroup }}</label>
                             <input formControlName="storageGroup" type="text" class="form-control dt-uname" />
                           </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">{{ translateSnackBar.storageFreePlace }}</label>
-                            <input formControlName="storageFreePlace" type="text" class="form-control dt-uname" [ngClass]="{ 'error': submitInUse && !createMatrixForm.get('storageFreePlace').value }" />
+                            <ng-select [clearable]="false" formControlName="storageFreePlace" appendTo="body" [ngClass]="{ 'error': submitInUse && !createMatrixForm.get('storageFreePlace').value }">
+                              <ng-option *ngFor="let s of storagePlaceArr" [value]="s.id">{{ s.name }}</ng-option>
+                            </ng-select>
                           </div>
                         </div>
 

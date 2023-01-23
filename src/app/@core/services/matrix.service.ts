@@ -219,6 +219,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}DiesDefDimByRes`);
   }
 
+  getStorage() {
+    return this._http.get<any>(`${environment.apiUrl}Resource/all/resourcestorageplaces`);
+  }
+
   getMatricComplectById(diameter: number, thickness: number, resourceId: number) {
     return this._http.get<any>(`${environment.apiUrl}DiesDefDimByRes/${diameter}/${thickness}/${resourceId}`);
   }
