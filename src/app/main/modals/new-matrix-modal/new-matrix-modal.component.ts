@@ -101,27 +101,27 @@ export class NewMatrixModalComponent implements OnInit {
       type: [''],
       anodizingQuality: [false],
       container: ['', Validators.required],
-      matrixComplect: [''],
+      matrixComplect: ['', Validators.required],
       bolsterTooling1: [''],
       bolsterTooling2: [''],
-      dateOrder: [[], Validators.required],
-      dateConfirmation: [[], Validators.required],
-      dateExpedition: [[], Validators.required],
-      inUseFrom: [[], Validators.required],
+      dateOrder: ['', Validators.required],
+      dateConfirmation: ['', Validators.required],
+      dateExpedition: ['', Validators.required],
+      inUseFrom: ['', Validators.required],
       clientName: [''],
-      producer: [''],
+      producer: ['', Validators.required],
       purchaser: [''],
-      corrector: [''],
+      corrector: ['', Validators.required],
       price: ['', Validators.required],
       dieID: [''],
       grM: ['', Validators.required],
       requiredTest: [''],
-      priceInv: [''],
+      priceInv: ['', Validators.required],
       primaryResource: [, Validators.required],
       altResource1: ['', Validators.required],
       altResource2: ['', Validators.required],
       storageGroup: [''],
-      storageFreePlace: [''],
+      storageFreePlace: ['', Validators.required],
       remarks: [''],
       usageType: [''],
       notes: [''],
@@ -936,7 +936,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitInUseDie(){
     this.submitInUse = true;
-    if( this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.storageFreePlace.value && !this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid){
       if(this.createMatrixForm.controls.status.value == 40 && this.createMatrixForm.controls.requiredTest.value == true){
         this.markedForTestDateTime = new Date();
       }
@@ -954,7 +954,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBrakDie(){
     this.submitBrak = true;
-    if( this.createMatrixForm.controls.matrixComplect.value){
+    if(!this.createMatrixForm.invalid){
       Swal.fire({
         title: this.translateSnackBar.brakMsg,
         icon: 'warning',
@@ -1000,10 +1000,10 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrix.matrixComplect = this.createMatrixForm.controls.matrixComplect.value,
     this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
     this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
-    this.matrix.dateOrder = this.createMatrixForm.controls.dateOrder.value.length == 1 ? this.createMatrixForm.controls.dateOrder.value[0] : this.createMatrixForm.controls.dateOrder.value,
-    this.matrix.dateConfirmation = this.createMatrixForm.controls.dateConfirmation.value.length == 1 ? this.createMatrixForm.controls.dateConfirmation.value[0] : this.createMatrixForm.controls.dateConfirmation.value,
-    this.matrix.dateExpedition = this.createMatrixForm.controls.dateExpedition.value.length == 1 ? this.createMatrixForm.controls.dateExpedition.value[0] : this.createMatrixForm.controls.dateExpedition.value,
-    this.matrix.inUseFrom = this.createMatrixForm.controls.inUseFrom.value.length == 1 ? this.createMatrixForm.controls.inUseFrom.value[0] : this.createMatrixForm.controls.inUseFrom.value,
+    this.matrix.dateOrder = this.createMatrixForm.controls.dateOrder.value && this.createMatrixForm.controls.dateOrder.value.length == 1 ? this.createMatrixForm.controls.dateOrder.value[0] : this.createMatrixForm.controls.dateOrder.value,
+    this.matrix.dateConfirmation = this.createMatrixForm.controls.dateConfirmation.value && this.createMatrixForm.controls.dateConfirmation.value.length == 1 ? this.createMatrixForm.controls.dateConfirmation.value[0] : this.createMatrixForm.controls.dateConfirmation.value,
+    this.matrix.dateExpedition = this.createMatrixForm.controls.dateExpedition.value && this.createMatrixForm.controls.dateExpedition.value.length == 1 ? this.createMatrixForm.controls.dateExpedition.value[0] : this.createMatrixForm.controls.dateExpedition.value,
+    this.matrix.inUseFrom = this.createMatrixForm.controls.inUseFrom.value && this.createMatrixForm.controls.inUseFrom.value.length == 1 ? this.createMatrixForm.controls.inUseFrom.value[0] : this.createMatrixForm.controls.inUseFrom.value,
     this.matrix.clientName = this.createMatrixForm.controls.clientName.value,
     this.matrix.producer = this.createMatrixForm.controls.producer.value,
     this.matrix.purchaser = this.createMatrixForm.controls.purchaser.value,
