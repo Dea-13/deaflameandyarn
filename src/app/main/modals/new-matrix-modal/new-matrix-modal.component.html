@@ -407,7 +407,7 @@
                             </div>
                           </td>
                           <td>
-                              <ng-select [clearable]="false" class="select-table width-select" [(ngModel)]="rowPress.pressId" appendTo="body">
+                              <ng-select [clearable]="false" class="select-table width-select" [(ngModel)]="rowPress.pressId" [disabled]="rowPress.profileId" appendTo="body">
                                 <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                               </ng-select>
                           </td>

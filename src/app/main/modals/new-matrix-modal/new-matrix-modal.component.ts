@@ -496,7 +496,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.validation = this.pressValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
-          profileId: this.createMatrixForm.controls.profile.value.id,
+          profileId: row.profileId ? row.profileId : this.createMatrixForm.controls.profile.value.id,
           pressId: row.pressId,
           priority: row.priority,
           channels: row.channels,
@@ -560,7 +560,7 @@ export class NewMatrixModalComponent implements OnInit {
               Swal.fire({
                 position: 'bottom-end',
                 icon: 'warning',
-                title: 'Error',
+                title: error.status == 304 ? this.translateSnackBar.makeChange : 'Error',
                 showConfirmButton: false,
                 timer: 2000
               })
@@ -676,7 +676,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   saveRowsEnd(rowsLength, row, ind) {
-    console.log("save row", rowsLength, row, ind);
+    console.log("save row", rowsLength, row, ind, this.createMatrixForm);
     this.isEditableRowsEnd[ind] = false;
     let flag = false;
     let obj;
@@ -701,7 +701,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.validation = this.pressEndValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
-          profileId: this.createMatrixForm.controls.profile.value.id,
+          profileId: row.profileId ? row.profileId : this.createMatrixForm.controls.profile.value.id,
           channels: row.channels,
           alloyFamily: row.alloyFamily,
           lengthStart: row.lengthStart,
