@@ -68,7 +68,7 @@ export const menu: CoreMenu[] = [
   },
   {
     id: 'inuse',
-    title: 'In use----',
+    title: 'In use',
     translate: 'MENU.INUSE',
     type: 'collapsible',
     icon: 'file',
@@ -89,14 +89,14 @@ export const menu: CoreMenu[] = [
         icon: 'file-text',
         url: 'api/marked'
       },
-      {
-        id: 'test',
-        title: 'Test----',
-        translate: 'MENU.TEST',
-        type: 'item',
-        icon: 'file-text',
-        url: 'api/test'
-      },
+      // {
+      //   id: 'test',
+      //   title: 'Test----',
+      //   translate: 'MENU.TEST',
+      //   type: 'item',
+      //   icon: 'file-text',
+      //   url: 'api/test'
+      // },
     ]
   },
   {
@@ -107,14 +107,14 @@ export const menu: CoreMenu[] = [
     icon: 'move',
     url: 'api/movement-matrix'
   },
-  {
-    id: 'userview',
-    title: 'User view----',
-    translate: 'MENU.USERVIEW',
-    type: 'item',
-    icon: 'eye',
-    url: 'api/user-view'
-  },
+  // {
+  //   id: 'userview',
+  //   title: 'User view----',
+  //   translate: 'MENU.USERVIEW',
+  //   type: 'item',
+  //   icon: 'eye',
+  //   url: 'api/user-view'
+  // },
   {
     id: 'apps',
     type: 'section',
