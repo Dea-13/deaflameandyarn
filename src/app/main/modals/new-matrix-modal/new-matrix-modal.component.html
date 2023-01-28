@@ -26,8 +26,8 @@
                       <ng-select formControlName="profile" appendTo="body" [clearable]="false" (change)="callFunctions();fillFormValid()">
                         <ng-option *ngFor="let p of profileArr" [value]="p">{{ p.name }}</ng-option>
                       </ng-select>
-                      <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">...</button>
-                      <button rippleEffect class="btn btn-primary mr-1" (click)="redirectToProfiles()" style="margin: 0px 0px 0px -10px;">+</button>
+                      <!-- <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">...</button> -->
+                      <button rippleEffect class="btn btn-primary mr-1" (click)="redirectToProfiles()" style="margin: 0px 0px 0px 10px;">+</button>
                     </div>
                   </div>
                 </div>
@@ -36,7 +36,7 @@
                     <label for="city-column">{{ translateSnackBar.matrix }}</label>
                     <div class="flex">
                       <input class="form-control input" formControlName="matrix" type="text">
-                      <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">...</button>
+                      <!-- <button rippleEffect class="btn btn-primary mr-1" style="margin: 0px 0px 0px 5px;">...</button> -->
                     </div>
                   </div>
                 </div>
