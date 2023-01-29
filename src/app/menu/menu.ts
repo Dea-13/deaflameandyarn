@@ -101,7 +101,7 @@ export const menu: CoreMenu[] = [
   },
   {
     id: 'movement',
-    title: 'Movement Die----',
+    title: 'Movement Die',
     translate: 'MENU.MOVEMENTMATRIX',
     type: 'item',
     icon: 'move',

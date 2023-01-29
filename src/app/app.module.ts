@@ -57,6 +57,7 @@ import { ModalProfileProductsComponent } from './main/modals/modal-profile-produ
 import { FileUploadModule } from 'ng2-file-upload';
 import { SettingsComponent } from './main/pages/settings/settings.component';
 import { GenerateTestModalComponent } from './main/modals/generate-test-modal/generate-test-modal.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const appRoutes: Routes = [
   {
@@ -247,6 +248,7 @@ const appRoutes: Routes = [
     Ng2FlatpickrModule,
     SweetAlert2Module.forRoot(),
     FileUploadModule,
+    NgApexchartsModule,
 
 
     RouterModule.forRoot(appRoutes, {

@@ -11,7 +11,7 @@ export const locale = {
       EMPLOYEES: 'Служители',
       SKLAD: 'Склад',
       LISTMATRIX: 'Списък матрици',
-      MOVEMENTMATRIX: 'Движение на матрици--------',
+      MOVEMENTMATRIX: 'Движение на матрици',
       // USERVIEW:'Потребителски изгледи--------',
       STATUS: 'По статус',
       INUSE: 'В употреба',

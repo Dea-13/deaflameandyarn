@@ -11,7 +11,7 @@ export const locale = {
       EMPLOYEES: 'Employees',
       SKLAD: 'Warehouse',
       LISTMATRIX: 'List Dies',
-      MOVEMENTMATRIX: 'Movement Dies--------',
+      MOVEMENTMATRIX: 'Movement Dies',
       // USERVIEW:'User View--------',
       STATUS: 'Status',
       INUSE: 'In use',

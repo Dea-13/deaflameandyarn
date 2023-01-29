@@ -12,6 +12,7 @@ import { CoreCommonModule } from '../../@core/common.module';
 import { ContentHeaderModule } from '../../layout/components/content-header/content-header.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SettingsComponent } from './settings/settings.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SettingsComponent } from './settings/settings.component';
     InfiniteScrollModule,
     PdfViewerModule,
     NgxDatatableModule,
+    NgApexchartsModule
   ],
 
   providers: [],

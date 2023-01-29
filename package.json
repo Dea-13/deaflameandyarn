@@ -77,7 +77,7 @@
     "angular-in-memory-web-api": "0.11.0",
     "angular-shepherd": "11.0.0",
     "animate.css": "4.1.1",
-    "apexcharts": "^3.35.5",
+    "apexcharts": "3.36.3",
     "bootstrap": "4.6.0",
     "bs-stepper": "1.7.0",
     "chart.js": "2.9.4",
