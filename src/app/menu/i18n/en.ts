@@ -357,6 +357,20 @@ export const locale = {
       choosePress: 'Choose press',
       chooseKg: 'Choose quantity (КГ)',
       chooseAlloy: 'Choose Alloy',
+      january: 'January',
+      february: 'February',
+      march: 'March',
+      april: 'April',
+      may: 'May',
+      june: 'June',
+      july: 'July',
+      august: 'August',
+      september: 'September',
+      octomber: 'October',
+      november: 'November',
+      december: 'December',
+      year: 'Year',
+      month: 'Month',
     }
   }
 }

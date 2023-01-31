@@ -193,6 +193,14 @@ export class MatrixService {
     return this._http.put(`${environment.apiUrl}ProfilesEnds`, data);
   }
 
+  getDieMovement(ComputerName:string, ResourceInName:string, ResourceOutName:string, year:string, month:string) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/statistic?ComputerName=${ComputerName}&ResourceInName=${ResourceInName}&ResourceOutName=${ResourceOutName}&year=${year}&month=${month}`);
+  }
+
+  getFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}${url}`);
+  }
+
   ///////////////// MODAL DETAILS
 
   getExtrusion(id: number) {

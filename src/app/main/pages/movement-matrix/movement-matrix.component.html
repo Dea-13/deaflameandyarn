@@ -3,19 +3,26 @@
     <section class="users-list-wrapper">
       <div class="card">
         <div class="row">
-          <div class="col-md-6 col-12">
+          <div class="col-md-3 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
-              <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
-                  <ng-option [value]="10">10</ng-option>
-                  <ng-option [value]="15">15</ng-option>
-                  <ng-option [value]="20">20</ng-option>
-                  <ng-option [value]="25">25</ng-option>
-                  <ng-option [value]="50">50</ng-option>
-                  <ng-option [value]="100">100</ng-option>
-                </ng-select>
-                {{ translateSnackBar.result }}
-              </label>
+              <label class="d-flex align-items-center">{{ translateSnackBar.year }}</label>
+              <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                [multiple]="false" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="year"
+                (ngModelChange)="getRequest()">
+                <ng-option *ngFor="let t of yearArr" [value]="t.year">{{ t.year }}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-md-3 col-12">
+            <div class="d-flex justify-content-between align-items-center m-1">
+              <label class="d-flex align-items-center">{{ translateSnackBar.month }}</label>
+              <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                [multiple]="false" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="month"
+                (ngModelChange)="getRequest()">
+                <ng-option *ngFor="let t of monthArr" [value]="t.id">{{ t.month }}
+                </ng-option>
+              </ng-select>
             </div>
           </div>
         </div>
@@ -29,129 +36,97 @@
             [legend]="apexRadialChart.legend"></apx-chart>
         </div>
         <section class="example-container mat-elevation-z8">
-          <table mat-table
-            [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }"
-            class="example-table">
+          <table mat-table [dataSource]="rows" class="example-table">
             <!-- Position Column -->
-            <ng-container matColumnDef="username">
+            <ng-container matColumnDef="computerName">
               <th mat-header-cell *matHeaderCellDef>
-                <!-- <div class="filter-th" container="body">
+                <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="resourceName"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of resourceNameArr" [value]="t.name">{{ t.name }}
+                      [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="computerName"
+                      (ngModelChange)="getRequest()">
+                      <ng-option *ngFor="let t of computerNameArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div> -->
-                <span class="th-header">{{ translateSnackBar.username }}</span>
+                </div>
+                <span class="th-header">{{ translateSnackBar.computerName }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.username}}</td>
+              <td mat-cell *matCellDef="let element">
+                {{element.computerName}}
+              </td>
             </ng-container>
 
-            <ng-container matColumnDef="resourceIn">
+            <ng-container matColumnDef="resourceInName">
               <th mat-header-cell *matHeaderCellDef>
-                <!-- <div class="filter-th" container="body">
+                <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="storagePlace"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of storagePlaceArr" [value]="t.name">{{ t.name }}
+                      [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceInName"
+                      (ngModelChange)="getRequest()">
+                      <ng-option *ngFor="let t of resourceInArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div> -->
+                </div>
                 <span class="th-header">{{ translateSnackBar.resourceIn }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.resourceIn}}</td>
+              <td mat-cell *matCellDef="let element">
+                <div *ngFor="let item of element.array.resourceInName" class="truncate">
+                  {{item}}
+                </div>
+              </td>
             </ng-container>
 
-            <ng-container matColumnDef="resourceOut">
+            <ng-container matColumnDef="resourceOutName">
               <th mat-header-cell *matHeaderCellDef>
-                <!-- <div class="filter-th" container="body">
+                <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="storagePlace"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of storagePlaceArr" [value]="t.name">{{ t.name }}
+                      [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceOutName"
+                      (ngModelChange)="getRequest()">
+                      <ng-option *ngFor="let t of resourceOutArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div> -->
+                </div>
                 <span class="th-header">{{ translateSnackBar.resourceOut }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.resourceOut}}</td>
+              <td mat-cell *matCellDef="let element">
+                <div *ngFor="let item of element.array.resourceOutName" class="truncate">
+                  {{item}}
+                </div>
+              </td>
             </ng-container>
 
-            <ng-container matColumnDef="2018">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body"></div>
-                <span class="th-header">2018</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.partOfGroup}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="2019">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body"></div>
-                <span class="th-header">2019</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.diameter}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="2020">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body"></div>
-                <span class="th-header">2020</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.thickness}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="2021">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body"></div>
-                <span class="th-header">2021</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.size}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="2022">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body"></div>
-                <span class="th-header">2022</span>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.freeCapacity}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="total">
+            <ng-container matColumnDef="count">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.total }}</span>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.total}}</td>
+              <td mat-cell *matCellDef="let element">
+                <div *ngFor="let item of element.array.count" class="truncate">
+                  {{item}}
+                </div>
+              </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
         </section>
-
-        <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
-          (pageChange)="pageChanged($event)">
-        </pagination-controls>
       </div>
     </section>
   </div>

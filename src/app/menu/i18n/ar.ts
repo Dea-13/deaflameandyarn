@@ -345,6 +345,20 @@ export const locale = {
       choosePress: '',
       chooseKg: '',
       chooseAlloy: '',
+      january: '',
+      february: '',
+      march: '',
+      april: '',
+      may: '',
+      june: '',
+      july: '',
+      august: '',
+      september: '',
+      octomber: '',
+      november: '',
+      december: '',
+      year: '',
+      month: '',
     }
   }
 }

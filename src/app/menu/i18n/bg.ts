@@ -357,6 +357,20 @@ export const locale = {
       choosePress: 'Изберете преса',
       chooseKg: 'Изберете количество (КГ)',
       chooseAlloy: 'Изберете сплав',
+      january: 'Януари',
+      february: 'Февруари',
+      march: 'Март',
+      april: 'Април',
+      may: 'Май',
+      june: 'Юни',
+      july: 'Юли',
+      august: 'Август',
+      september: 'Септември',
+      octomber: 'Октомври',
+      november: 'Ноември',
+      december: 'Декември',
+      year: 'Година',
+      month: 'Месец',
     }
   }
 }

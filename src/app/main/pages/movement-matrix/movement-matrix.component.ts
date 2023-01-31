@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { WarehouseService } from '../../../@core/services/warehouse.service';
 import Swal from 'sweetalert2';
 import {
   ApexAxisChartSeries,
@@ -41,6 +40,7 @@ export interface ChartOptions2 {
   states?: ApexStates;
 }
 import { colors } from '../../../colors.const';
+import { MatrixService } from '../../../@core/services/matrix.service';
 
 @Component({
   selector: 'app-movement-matrix',
@@ -51,32 +51,33 @@ export class MovementMatrixComponent implements OnInit {
   // Public
   @ViewChild('apexRadialChartRef') apexRadialChartRef: any;
   public apexRadialChart: Partial<ChartOptions2>;
-  displayedColumns: string[] = ['username', 'resourceIn', 'resourceOut', '2018', '2019', '2020', '2021', '2022', 'total'];
+  displayedColumns: string[] = ['computerName', 'resourceInName', 'resourceOutName', 'count'];
   public urls = [
-    { id: 0, name: 'resourcename' },
-    { id: 1, name: 'storageplace' },
+    { id: 0, name: 'DieMovement/all/computername' },
+    { id: 1, name: 'Resource/all/resourcename' },
   ];
-  public rows = [];
-  public searchValue = '';
-  public selectedOption = 10;
+  public rows: Array<any> = [];
   //for pagination
-  public cPage: number = 1;
-  public limit: number = 15;
-  public offset: number = 0;
-  public leastDaysAgo = this.limit * this.cPage;
-  public totalResult: number = 0;
-  public maxSize = 10;
-  public itemsPerPage = 15;
-  public countRows: number = 15;
   public languageOptions: any;
-  public searchMaterial: any = '';
   public loading: boolean = false;
   public translateSnackBar: any;
-  public resourceName: Array<any> = [];
-  public storagePlace: Array<any> = [];
-  public status: number;
-  public resourceNameArr: string = '';
-  public storagePlaceArr: string = '';
+  public computerNameArr: Array<any> = [];
+  public resourceInArr: Array<any> = [];
+  public resourceOutArr: Array<any> = [];
+  public computerName: string = '';
+  public resourceOutName: string = '';
+  public resourceInName: string = '';
+  public year: string = '2023';
+  public month: string = '';
+  public yearArr: Array<any> = [
+    { year: 2018 },
+    { year: 2019 },
+    { year: 2020 },
+    { year: 2021 },
+    { year: 2022 },
+    { year: 2023 },
+  ]
+  public monthArr: Array<any> = []
   // Color Variables
   chartColors = {
     column: {
@@ -103,12 +104,26 @@ export class MovementMatrixComponent implements OnInit {
   };
 
   constructor(
-    private warehouseService: WarehouseService,
+    private matrixService: MatrixService,
     public translate: TranslateService,
   ) {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+    this.monthArr = [
+      { id: 1, month: this.translateSnackBar.january },
+      { id: 2, month: this.translateSnackBar.february },
+      { id: 3, month: this.translateSnackBar.march },
+      { id: 4, month: this.translateSnackBar.april },
+      { id: 5, month: this.translateSnackBar.may },
+      { id: 6, month: this.translateSnackBar.june },
+      { id: 7, month: this.translateSnackBar.july },
+      { id: 8, month: this.translateSnackBar.august },
+      { id: 9, month: this.translateSnackBar.september },
+      { id: 10, month: this.translateSnackBar.octomber },
+      { id: 11, month: this.translateSnackBar.november },
+      { id: 12, month: this.translateSnackBar.december },
+    ]
     console.log('TRANSLATE', this.translateSnackBar);
     // Apex Radial Chart
     this.apexRadialChart = {
@@ -159,37 +174,80 @@ export class MovementMatrixComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //  this.pageChanged(1);
-    //  this.getFilters();
+    this.getRequest();
+    this.getFilters();
   }
 
   getRequest() {
     this.loading = true;
-    this.warehouseService.getInformationWarehouse(this.offset, this.limit, this.resourceName, this.storagePlace, this.status).subscribe((data) => {
-        this.rows = data.list;
-        this.totalResult = data.total;
-        this.loading = false;
-      });
+    this.matrixService.getDieMovement(this.computerName, this.resourceInName, this.resourceOutName, this.year, this.month).subscribe((data) => {
+      var rows = this.uniqueData(data, 'computerName');
+      for (let i = 0; i < rows.length; i++) {
+        var array = this.uniqueLineNo(rows[i].computerName, data);
+        rows[i].array = array;
+      }
+      this.rows = rows;
+      this.loading = false;
+      console.log("this.rows", this.rows)
+    });
+  }
+
+  uniqueLineNo(filteredName, data) {
+    let sortArr;
+    let name = [];
+    let resourceInName = [];
+    let resourceOutName = [];
+    let count = [];
+    for (let i = 0; i < data.length; i++) {
+      if (filteredName === data[i].computerName) {
+        name.push(filteredName);
+        data = data.sort((a1, a2) => {
+          if (a1.computerName > a2.computerName) {
+            return 1;
+          }
+          if (a1.computerName < a2.computerName) {
+            return -1;
+          }
+          return 0;
+        });
+        resourceInName.push(data[i].resourceInName);
+        resourceOutName.push(data[i].resourceOutName);
+        count.push(data[i].count);
+      }
+    }
+    sortArr = {
+      name: name[0],
+      resourceInName: resourceInName,
+      resourceOutName: resourceOutName,
+      count: count,
+    }
+    return sortArr;
+  }
+
+  uniqueData(array, key) {
+    var uniqueArray = [];
+    var map = new Map();
+
+    array.forEach((user, index) => {
+      if (!map.get(user[key])) {
+        console.log("user[key]", map.set(user[key], user[key])); // do not delete!!!
+        uniqueArray.push(user);
+      }
+    });
+    return uniqueArray;
   }
 
   getFilters() {
     this.loading = true;
     for (let i = 0; i < this.urls.length; i++) {
-      this.warehouseService.getFilters(this.urls[i].name).subscribe((data) => {
+      this.matrixService.getFilters(this.urls[i].name).subscribe((data) => {
         switch (this.urls[i].id) {
-          case 0: { this.resourceNameArr = data; } break;
-          case 1: { this.storagePlaceArr = data; } break;
+          case 0: { this.computerNameArr = data; } break;
+          case 1: { this.resourceInArr = data; this.resourceOutArr = data; } break;
         }
         this.loading = false;
       });
     }
-  }
-
-  pageChanged(page: number) {
-    console.log('event', page);
-    this.cPage = page;
-    this.offset = this.limit * (this.cPage - 1);
-    this.getRequest();
   }
 
 }

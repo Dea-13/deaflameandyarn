@@ -1,6 +1,6 @@
-
 @import '../../../@core/scss/base/plugins/charts/chart-apex';
 @import '../../../@core/scss/angular/libs/flatpickr.component.scss';
+
 .pager {
   display: inline-block;
   list-style: none;
@@ -38,6 +38,20 @@
 .mat-row:hover .mat-cell {
   background: #e6e6fa;
 }
-table.mat-table{
+
+table.mat-table {
   width: -webkit-fill-available;
+}
+
+label {
+  padding-right: 10px;
+}
+td div{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+tr.mat-row, tr.mat-footer-row {
+  height: 23px !important;
+}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+  padding-right: 0px;
 }
