@@ -201,6 +201,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}${url}`);
   }
 
+  getChartYear(year:string) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/statistic/${year}`);
+  }
+
   ///////////////// MODAL DETAILS
 
   getExtrusion(id: number) {

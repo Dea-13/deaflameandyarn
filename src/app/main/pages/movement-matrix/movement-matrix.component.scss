@@ -46,16 +46,51 @@ table.mat-table {
 label {
   padding-right: 10px;
 }
-td div{
+
+td div {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
-tr.mat-row, tr.mat-footer-row {
+
+tr.mat-row,
+tr.mat-footer-row {
   height: 23px !important;
 }
-th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
   padding-right: 0px;
 }
-#chart {
-  max-width: 650px;
-  margin: 35px auto;
+
+#chartWave,
+#chartInResource,
+#chartOutResource,
+#chartWave,
+#chartCircle {
+  max-width: -webkit-fill-available;
+  min-width: -webkit-fill-available;
+  width: -webkit-fill-available;
+  padding: 35px;
+}
+
+h3 {
+  margin: 2px 15px 16px;
+}
+
+.mat-menu-panel,
+.width-select {
+  min-width: -webkit-fill-available;
+}
+
+.flex {
+  display: flex;
+}
+
+.fa {
+  border-radius: 50%;
+  border: 1px solid #7367f0;
+  padding: 3px 8px 5px 7px;
+  height: -webkit-fill-available;
+  background: #7367f0;
+  color: white;
 }

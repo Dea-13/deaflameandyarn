@@ -58,6 +58,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { SettingsComponent } from './main/pages/settings/settings.component';
 import { GenerateTestModalComponent } from './main/modals/generate-test-modal/generate-test-modal.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 const appRoutes: Routes = [
   {
@@ -249,6 +251,7 @@ const appRoutes: Routes = [
     SweetAlert2Module.forRoot(),
     FileUploadModule,
     NgApexchartsModule,
+    MatTooltipModule,
 
 
     RouterModule.forRoot(appRoutes, {

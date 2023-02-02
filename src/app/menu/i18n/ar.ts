@@ -362,6 +362,12 @@ export const locale = {
       diagram: '',
       totalByYear: '',
       all: '',
+      totalByName: '',
+      monthCircle: '',
+      msgNoChart: '',
+      tooltipCircle: '',
+      tooltipWave: '',
+      tooltipName: '',
     }
   }
 }

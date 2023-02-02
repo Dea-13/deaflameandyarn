@@ -57,6 +57,7 @@ export type ChartOptionsWave = {
 export type ChartOptionsInResource = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  colors: string[];
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
   xaxis: ApexXAxis;
@@ -65,9 +66,22 @@ export type ChartOptionsInResource = {
 export type ChartOptionsOutResource = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  colors: string[];
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
   xaxis: ApexXAxis;
+};
+
+export type ChartOptionsCircle = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  colors: string[];
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  fill: ApexFill;
+  title: ApexTitleSubtitle;
 };
 
 @Component({
@@ -81,6 +95,8 @@ export class MovementMatrixComponent implements OnInit {
   @ViewChild("chartWave") chartWave: ChartComponent;
   @ViewChild("chartInResource") chartInResource: ChartComponent;
   @ViewChild("chartOutResource") chartOutResource: ChartComponent;
+  @ViewChild("chartCircle") chart: ChartComponent;
+  public ChartOptionsCircle: Partial<ChartOptionsCircle>;
   public ChartOptionsOutResource: Partial<ChartOptionsOutResource>;
   public ChartOptionsInResource: Partial<ChartOptionsInResource>;
 
@@ -143,6 +159,11 @@ export class MovementMatrixComponent implements OnInit {
   public showWave: boolean = false;
   public showResorceIn: boolean = false;
   public showResorceOut: boolean = false;
+  public totals: Array<any> = [];
+  public arrayChartName: Array<any> = [];
+  public arrayChartTotal: Array<any> = [];
+  public showCircle: boolean = false;
+  public monthTotal: Array<any> = [];
 
   constructor(
     private matrixService: MatrixService,
@@ -153,9 +174,10 @@ export class MovementMatrixComponent implements OnInit {
     });
     this.diagramArr = [
       { id: 0, name: this.translateSnackBar.all },
-      { id: 1, name: this.translateSnackBar.resourceIn },
-      { id: 2, name: this.translateSnackBar.resourceOut },
-      { id: 3, name: this.translateSnackBar.totalByYear },
+      { id: 4, name: this.translateSnackBar.monthCircle },
+      { id: 1, name: this.translateSnackBar.totalByYear },
+      { id: 2, name: this.translateSnackBar.totalByName },
+      // { id: 3, name: this.translateSnackBar.resourceOut },
     ]
     this.monthArr = [
       { id: 1, month: this.translateSnackBar.january },
@@ -173,85 +195,41 @@ export class MovementMatrixComponent implements OnInit {
     ]
     console.log('TRANSLATE', this.translateSnackBar);
     // Apex Radial Chart
-    // this.apexRadialChart = {
-    //   series: [80, 50, 35],
-    //   labels: [this.translateSnackBar.username, this.translateSnackBar.resourceIn, this.translateSnackBar.resourceOut],
-    //   chart: {
-    //     height: 400,
-    //     type: 'radialBar'
-    //   },
-    //   colors: [this.chartColors.donut.series1, this.chartColors.donut.series2, this.chartColors.donut.series4],
-    //   plotOptions: {
-    //     radialBar: {
-    //       // size: 185,
-    //       hollow: {
-    //         size: '25%'
-    //       },
-    //       track: {
-    //         margin: 15
-    //       },
-    //       dataLabels: {
-    //         name: {
-    //           fontSize: '2rem',
-    //           fontFamily: 'Montserrat'
-    //         },
-    //         value: {
-    //           fontSize: '1rem',
-    //           fontFamily: 'Montserrat'
-    //         },
-    //         total: {
-    //           show: true,
-    //           fontSize: '1rem',
-    //           label: this.translateSnackBar.total,
-    //           formatter: function (w) {
-    //             return '80%';
-    //           }
-    //         }
-    //       }
-    //     }
-    //   },
-    //   legend: {
-    //     show: true,
-    //     position: 'bottom'
-    //   },
-    //   stroke: {
-    //     lineCap: 'round'
-    //   }
-    // };
+    this.ChartOptionsCircle = {
+      series: [
+        {
+          name: "",
+          data: []
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      },
+      colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'],
+      dataLabels: {
+        enabled: true
+      },
+      stroke: {
+        curve: "straight"
+      },
+      title: {
+        text: "",
+        align: "left"
+      },
+      xaxis: {
+        categories: []
+      }
+    };
+
     this.ChartOptionsWave = {
       series: [
         {
-          name: "South",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 60
-            }
-          )
-        },
-        {
-          name: "North",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
-        },
-        {
-          name: "Central",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 15
-            }
-          )
+          name: "",
+          data: []
         }
       ],
       chart: {
@@ -259,12 +237,12 @@ export class MovementMatrixComponent implements OnInit {
         height: 350,
         stacked: true,
         events: {
-          selection: function(chart, e) {
+          selection: function (chart, e) {
             console.log(new Date(e.xaxis.min));
           }
         }
       },
-      colors: ["#008FFB", "#00E396", "#CED4DC"],
+      colors: ["#7367f0"],
       dataLabels: {
         enabled: false
       },
@@ -288,7 +266,7 @@ export class MovementMatrixComponent implements OnInit {
       series: [
         {
           name: "basic",
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+          data: []
         }
       ],
       chart: {
@@ -300,22 +278,12 @@ export class MovementMatrixComponent implements OnInit {
           horizontal: true
         }
       },
+      colors: ["#E0B0FF"],
       dataLabels: {
         enabled: false
       },
       xaxis: {
-        categories: [
-          "South Korea",
-          "Canada",
-          "United Kingdom",
-          "Netherlands",
-          "Italy",
-          "France",
-          "Japan",
-          "United States",
-          "China",
-          "Germany"
-        ]
+        categories: []
       }
     };
 
@@ -357,42 +325,31 @@ export class MovementMatrixComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRequest();
+    this.getTotals();
     this.getFilters();
   }
 
-  showDiagram(){
-    if(this.diagram == null){ this.showAll = false;}
-    if(this.diagram == 0){ this.showAll = true;} else { this.showAll = false;}
-    if(this.diagram == 1){ this.showWave = true;} else { this.showWave = false;}
-    if(this.diagram == 2){ this.showResorceIn = true;} else { this.showResorceIn = false;}
-    if(this.diagram == 3){ this.showResorceOut = true;} else { this.showResorceOut = false;}
+  showDiagram() {
+    console.log('showDiagram', this.diagram)
+    if (this.diagram == null) { this.showAll = false; }
+    if (this.diagram == 0) { this.showAll = true; } else { this.showAll = false; }
+    if (this.diagram == 1) { this.showWave = true; } else { this.showWave = false; }
+    if (this.diagram == 2) { this.showResorceIn = true; } else { this.showResorceIn = false; }
+    if (this.diagram == 3) { this.showResorceOut = true; } else { this.showResorceOut = false; }
+    if (this.diagram == 4) { this.showCircle = true; } else { this.showCircle = false; }
   }
-
-  generateDayWiseTimeSeries(baseval, count, yrange) {
-    var i = 0;
-    var series = [];
-    while (i < count) {
-      var x = baseval;
-      var y =
-        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-
-      series.push([x, y]);
-      baseval += 86400000;
-      i++;
-    }
-    return series;
-  };
 
   getRequest() {
     this.loading = true;
+    this.getChartCircle();
     this.matrixService.getDieMovement(this.computerName, this.resourceInName, this.resourceOutName, this.year, this.month).subscribe((data) => {
       var rows = this.uniqueData(data, 'computerName');
       for (let i = 0; i < rows.length; i++) {
-        var array = this.uniqueLineNo(rows[i].computerName, data);
-        rows[i].array = array;
+        rows[i] = this.uniqueLineNo(rows[i].computerName, data);
       }
       this.rows = rows;
       this.loading = false;
+      this.getChartResourceIn();
       console.log("this.rows", this.rows)
     });
   }
@@ -403,6 +360,7 @@ export class MovementMatrixComponent implements OnInit {
     let resourceInName = [];
     let resourceOutName = [];
     let count = [];
+    let total = 0;
     for (let i = 0; i < data.length; i++) {
       if (filteredName === data[i].computerName) {
         name.push(filteredName);
@@ -418,6 +376,7 @@ export class MovementMatrixComponent implements OnInit {
         resourceInName.push(data[i].resourceInName);
         resourceOutName.push(data[i].resourceOutName);
         count.push(data[i].count);
+        total += data[i].count;
       }
     }
     sortArr = {
@@ -425,6 +384,7 @@ export class MovementMatrixComponent implements OnInit {
       resourceInName: resourceInName,
       resourceOutName: resourceOutName,
       count: count,
+      total: total
     }
     return sortArr;
   }
@@ -455,4 +415,168 @@ export class MovementMatrixComponent implements OnInit {
     }
   }
 
+  // ************************************************************************CHARTS WAVE*****************************************************************
+
+  getTotals() {
+    let sumCount = 0;
+    let totals = [];
+    for (let i = 0; i < this.yearArr.length; i++) {
+      this.matrixService.getDieMovement('', '', '', this.yearArr[i].year, '').subscribe((data) => {
+        for (let j = 0; j < data.length; j++) {
+          sumCount += data[j].count
+        }
+        console.log("totals sumCount", sumCount)
+        this.totals.push(sumCount);
+      });
+    }
+    setTimeout(() => {
+      console.log("totals", this.totals)
+      this.getChartWave();
+    }, 4000);
+  }
+
+  getChartWave() {
+    this.ChartOptionsWave = {
+      series: [
+        {
+          name: this.translateSnackBar.total,
+          data: this.generateDayWiseTimeSeries()
+        }
+      ],
+      chart: {
+        type: "area",
+        height: 350,
+        stacked: true,
+        events: {
+          selection: function (chart, e) {
+            console.log(new Date(e.xaxis.min));
+          }
+        }
+      },
+      colors: ["#7367f0"],
+      dataLabels: {
+        enabled: true
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          opacityFrom: 0.6,
+          opacityTo: 0.8
+        }
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      },
+      xaxis: {
+        type: "datetime"
+      }
+    };
+  }
+
+  generateDayWiseTimeSeries() {
+    let yearArr = [{ year: 2018 }, { year: 2019 }, { year: 2020 }, { year: 2021 }, { year: 2022 }, { year: 2023 }, { year: 2024 }];
+    var series = [];
+
+    for (let i = 0; i < yearArr.length; i++) {
+      for (let j = 0; j < this.totals.length; j++) {
+        if (i == j) {
+          series.push([new Date('01 Jan' + yearArr[i].year).getTime(), this.totals[j]]);
+        }
+      }
+    }
+    console.log('generateDayWiseTimeSeries', series)
+    return series;
+  };
+
+  // ************************************************************************CHARTS TOTAL COMPUTER NAME*****************************************************************
+
+  getChartResourceIn() {
+    for (let i = 0; i < this.rows.length; i++) {
+      this.arrayChartName.push(this.rows[i].name == null ? '' : this.rows[i].name);
+      this.arrayChartTotal.push(this.rows[i].total);
+    }
+    console.log('getChartResourceIn', this.arrayChartName, this.arrayChartTotal)
+    this.ChartOptionsInResource = {
+      series: [
+        {
+          name: "",
+          data: this.arrayChartTotal
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 600
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      colors: ["#CBC3E3"],
+      dataLabels: {
+        enabled: true,
+        style: {
+          colors: ["#7367f0"]
+        }
+      },
+      xaxis: {
+        categories: this.arrayChartName
+      }
+    };
+  }
+
+  // ************************************************************************CHARTS CIRCLE*****************************************************************
+
+  getChartCircle() {
+    this.monthTotal = [];
+    this.matrixService.getChartYear(this.year).subscribe((data) => {
+      for (let i = 0; i < data.length; i++) {
+        this.monthTotal.push(data[i].total);
+      }
+    });
+    console.log('getChartCircle', this.monthTotal);
+
+    this.ChartOptionsCircle = {
+      series: [
+        {
+          name: "",
+          data: this.monthTotal
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      },
+      colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'],
+      dataLabels: {
+        enabled: true
+      },
+      fill: {
+        type: 'gradient'
+      },
+      stroke: {
+        curve: "smooth"
+      },
+      xaxis: {
+        categories: [
+          this.translateSnackBar.january,
+          this.translateSnackBar.february,
+          this.translateSnackBar.march,
+          this.translateSnackBar.april,
+          this.translateSnackBar.may,
+          this.translateSnackBar.june,
+          this.translateSnackBar.july,
+          this.translateSnackBar.august,
+          this.translateSnackBar.september,
+          this.translateSnackBar.octomber,
+          this.translateSnackBar.november,
+          this.translateSnackBar.december,
+        ]
+      }
+    };
+  }
 }

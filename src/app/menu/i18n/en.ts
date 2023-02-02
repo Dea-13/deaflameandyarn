@@ -374,6 +374,12 @@ export const locale = {
       diagram: 'Diagrams',
       totalByYear: 'Total by Year',
       all: 'All',
+      totalByName: 'Total by User Name',
+      monthCircle: 'Total by Month',
+      msgNoChart: 'There is no available data for this chart.',
+      tooltipCircle: 'Shows the total for each month. From the Year dropdown you can specify for which year the months totals should be displayed.',
+      tooltipWave: 'Shows the total for a given year. From the dropdown for year, you can specify for which year the totals should be displayed.',
+      tooltipName: 'Shows the annual total for a given user. From the drop-down for year, you can specify for which year the totals should be displayed.',
     }
   }
 }

@@ -806,3 +806,10 @@ input[type=radio], input[type=checkbox] {
   color: red;
   font-size: 14px;
 }
+.mat-tooltip{
+  background-color: #7367f0;
+  max-width: -webkit-fill-available!important;
+  min-width: -webkit-fill-available!important;
+  width: -webkit-fill-available!important;
+  font-size: 12px;
+}

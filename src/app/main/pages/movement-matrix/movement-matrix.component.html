@@ -29,36 +29,53 @@
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.diagram }}</label>
               <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                [multiple]="false" [closeOnSelect]="true" [(ngModel)]="diagram"
-                (ngModelChange)="showDiagram()">
+                [multiple]="false" [closeOnSelect]="true" [(ngModel)]="diagram" (ngModelChange)="showDiagram()">
                 <ng-option *ngFor="let d of diagramArr" [value]="d.id">{{ d.name }}
                 </ng-option>
               </ng-select>
             </div>
           </div>
         </div>
+        <div *ngIf="showAll || showCircle" id="chartCircle">
+          <div class="flex">
+            <h3>{{ translateSnackBar.monthCircle }}</h3>
+            <i class="fa fa-info" mat-raised-button #tooltip="matTooltip" [matTooltip]="translateSnackBar.tooltipCircle"
+              (click)="tooltip.toggle()" matTooltipPosition="right">
+            </i>
+          </div>
+          <p *ngIf="monthTotal.length === 0">{{ translateSnackBar.msgNoChart }}</p>
+          <apx-chart *ngIf="rows.length > 0" [series]="ChartOptionsCircle.series" [xaxis]="ChartOptionsCircle.xaxis"
+            [dataLabels]="ChartOptionsCircle.dataLabels" [chart]="ChartOptionsCircle.chart"
+            [grid]="ChartOptionsCircle.grid" [colors]="ChartOptionsWave.colors" [stroke]="ChartOptionsCircle.stroke"
+            [title]="ChartOptionsCircle.title"></apx-chart>
+        </div>
         <div *ngIf="showAll || showWave" id="chartWave">
-          <apx-chart
-            [series]="ChartOptionsWave.series"
-            [chart]="ChartOptionsWave.chart"
-            [xaxis]="ChartOptionsWave.xaxis"
-            [dataLabels]="ChartOptionsWave.dataLabels"
-            [yaxis]="ChartOptionsWave.yaxis"
-            [colors]="ChartOptionsWave.colors"
-            [legend]="ChartOptionsWave.legend"
-            [fill]="ChartOptionsWave.fill"
-          ></apx-chart>
+          <div class="flex">
+            <h3>{{ translateSnackBar.totalByYear }}</h3>
+            <i class="fa fa-info" mat-raised-button #tooltip="matTooltip" [matTooltip]="translateSnackBar.tooltipWave"
+              matTooltipPosition="right">
+            </i>
+          </div>
+          <apx-chart [series]="ChartOptionsWave.series" [chart]="ChartOptionsWave.chart"
+            [xaxis]="ChartOptionsWave.xaxis" [dataLabels]="ChartOptionsWave.dataLabels" [yaxis]="ChartOptionsWave.yaxis"
+            [colors]="ChartOptionsWave.colors" [legend]="ChartOptionsWave.legend"
+            [fill]="ChartOptionsWave.fill"></apx-chart>
         </div>
-        <div *ngIf="showAll || showResorceIn" id="chartInResource">
-          <apx-chart
-            [series]="ChartOptionsInResource.series"
-            [chart]="ChartOptionsInResource.chart"
-            [dataLabels]="ChartOptionsInResource.dataLabels"
-            [plotOptions]="ChartOptionsInResource.plotOptions"
-            [xaxis]="ChartOptionsInResource.xaxis"
-          ></apx-chart>
+        <div *ngIf="(showAll || showResorceIn)" id="chartInResource">
+          <div class="flex">
+            <h3>{{ translateSnackBar.totalByName }}</h3>
+            <i class="fa fa-info" mat-raised-button #tooltip="matTooltip" [matTooltip]="translateSnackBar.tooltipName"
+              matTooltipPosition="right">
+            </i>
+          </div>
+          <p *ngIf="rows.length === 0">{{ translateSnackBar.msgNoChart }}</p>
+          <apx-chart *ngIf="rows.length > 0" [series]="ChartOptionsInResource.series"
+            [chart]="ChartOptionsInResource.chart" [colors]="ChartOptionsInResource.colors"
+            [dataLabels]="ChartOptionsInResource.dataLabels" [plotOptions]="ChartOptionsInResource.plotOptions"
+            [xaxis]="ChartOptionsInResource.xaxis"></apx-chart>
         </div>
-        <div *ngIf="showAll || showResorceOut" id="chartOutResource">
+        <!-- <div *ngIf="showAll || showResorceOut" id="chartOutResource">
+          <h3>{{ translateSnackBar.resourceOut }}</h3>
           <apx-chart
             [series]="ChartOptionsOutResource.series"
             [chart]="ChartOptionsOutResource.chart"
@@ -66,15 +83,6 @@
             [plotOptions]="ChartOptionsOutResource.plotOptions"
             [xaxis]="ChartOptionsOutResource.xaxis"
           ></apx-chart>
-        </div>
-        <!-- <div id="radialbar-chart" #apexRadialChartRef>
-          <apx-chart [series]="apexRadialChart.series" [chart]="{
-              height: 400,
-              width: 400,
-              type: 'radialBar'
-            }" [plotOptions]="apexRadialChart.plotOptions" [labels]="apexRadialChart.labels"
-            [colors]="apexRadialChart.colors" [stroke]="apexRadialChart.stroke"
-            [legend]="apexRadialChart.legend"></apx-chart>
         </div> -->
         <section class="example-container mat-elevation-z8">
           <table mat-table [dataSource]="rows" class="example-table">
@@ -98,7 +106,7 @@
                 <span class="th-header">{{ translateSnackBar.computerName }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
-                {{element.computerName}}
+                {{element.name}}
               </td>
             </ng-container>
 
@@ -121,7 +129,7 @@
                 <span class="th-header">{{ translateSnackBar.resourceIn }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
-                <div *ngFor="let item of element.array.resourceInName" class="truncate">
+                <div *ngFor="let item of element.resourceInName" class="truncate">
                   {{item}}
                 </div>
               </td>
@@ -146,7 +154,7 @@
                 <span class="th-header">{{ translateSnackBar.resourceOut }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
-                <div *ngFor="let item of element.array.resourceOutName" class="truncate">
+                <div *ngFor="let item of element.resourceOutName" class="truncate">
                   {{item}}
                 </div>
               </td>
@@ -158,7 +166,7 @@
                 <span class="th-header">{{ translateSnackBar.total }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
-                <div *ngFor="let item of element.array.count" class="truncate">
+                <div *ngFor="let item of element.count" class="truncate">
                   {{item}}
                 </div>
               </td>
