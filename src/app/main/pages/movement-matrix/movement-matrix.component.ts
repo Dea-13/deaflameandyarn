@@ -18,10 +18,11 @@ import {
   ApexNonAxisChartSeries,
   ApexLegend,
   ApexResponsive,
-  ApexStates
+  ApexStates,
+  ChartComponent
 } from 'ng-apexcharts';
 
-export interface ChartOptions2 {
+export interface ChartOptions3 {
   // Apex-non-axis-chart-series
   series?: ApexNonAxisChartSeries;
   chart?: ApexChart;
@@ -42,6 +43,33 @@ export interface ChartOptions2 {
 import { colors } from '../../../colors.const';
 import { MatrixService } from '../../../@core/services/matrix.service';
 
+export type ChartOptionsWave = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  yaxis: ApexYAxis;
+  colors: string[];
+  legend: ApexLegend;
+  fill: ApexFill;
+};
+
+export type ChartOptionsInResource = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  xaxis: ApexXAxis;
+};
+
+export type ChartOptionsOutResource = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  xaxis: ApexXAxis;
+};
+
 @Component({
   selector: 'app-movement-matrix',
   templateUrl: './movement-matrix.component.html',
@@ -49,8 +77,15 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 })
 export class MovementMatrixComponent implements OnInit {
   // Public
-  @ViewChild('apexRadialChartRef') apexRadialChartRef: any;
-  public apexRadialChart: Partial<ChartOptions2>;
+  // @ViewChild('apexRadialChartRef') apexRadialChartRef: any;
+  @ViewChild("chartWave") chartWave: ChartComponent;
+  @ViewChild("chartInResource") chartInResource: ChartComponent;
+  @ViewChild("chartOutResource") chartOutResource: ChartComponent;
+  public ChartOptionsOutResource: Partial<ChartOptionsOutResource>;
+  public ChartOptionsInResource: Partial<ChartOptionsInResource>;
+
+  public ChartOptionsWave: Partial<ChartOptionsWave>;
+  // public apexRadialChart: Partial<ChartOptions2>;
   displayedColumns: string[] = ['computerName', 'resourceInName', 'resourceOutName', 'count'];
   public urls = [
     { id: 0, name: 'DieMovement/all/computername' },
@@ -69,6 +104,8 @@ export class MovementMatrixComponent implements OnInit {
   public resourceInName: string = '';
   public year: string = '2023';
   public month: string = '';
+  public diagram: number;
+  public diagramArr: Array<any> = []
   public yearArr: Array<any> = [
     { year: 2018 },
     { year: 2019 },
@@ -102,6 +139,10 @@ export class MovementMatrixComponent implements OnInit {
       series1: '#2bdac7'
     }
   };
+  public showAll: boolean = false;
+  public showWave: boolean = false;
+  public showResorceIn: boolean = false;
+  public showResorceOut: boolean = false;
 
   constructor(
     private matrixService: MatrixService,
@@ -110,6 +151,12 @@ export class MovementMatrixComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+    this.diagramArr = [
+      { id: 0, name: this.translateSnackBar.all },
+      { id: 1, name: this.translateSnackBar.resourceIn },
+      { id: 2, name: this.translateSnackBar.resourceOut },
+      { id: 3, name: this.translateSnackBar.totalByYear },
+    ]
     this.monthArr = [
       { id: 1, month: this.translateSnackBar.january },
       { id: 2, month: this.translateSnackBar.february },
@@ -126,49 +173,184 @@ export class MovementMatrixComponent implements OnInit {
     ]
     console.log('TRANSLATE', this.translateSnackBar);
     // Apex Radial Chart
-    this.apexRadialChart = {
-      series: [80, 50, 35],
-      labels: [this.translateSnackBar.username, this.translateSnackBar.resourceIn, this.translateSnackBar.resourceOut],
-      chart: {
-        height: 400,
-        type: 'radialBar'
-      },
-      colors: [this.chartColors.donut.series1, this.chartColors.donut.series2, this.chartColors.donut.series4],
-      plotOptions: {
-        radialBar: {
-          // size: 185,
-          hollow: {
-            size: '25%'
-          },
-          track: {
-            margin: 15
-          },
-          dataLabels: {
-            name: {
-              fontSize: '2rem',
-              fontFamily: 'Montserrat'
-            },
-            value: {
-              fontSize: '1rem',
-              fontFamily: 'Montserrat'
-            },
-            total: {
-              show: true,
-              fontSize: '1rem',
-              label: this.translateSnackBar.total,
-              formatter: function (w) {
-                return '80%';
-              }
+    // this.apexRadialChart = {
+    //   series: [80, 50, 35],
+    //   labels: [this.translateSnackBar.username, this.translateSnackBar.resourceIn, this.translateSnackBar.resourceOut],
+    //   chart: {
+    //     height: 400,
+    //     type: 'radialBar'
+    //   },
+    //   colors: [this.chartColors.donut.series1, this.chartColors.donut.series2, this.chartColors.donut.series4],
+    //   plotOptions: {
+    //     radialBar: {
+    //       // size: 185,
+    //       hollow: {
+    //         size: '25%'
+    //       },
+    //       track: {
+    //         margin: 15
+    //       },
+    //       dataLabels: {
+    //         name: {
+    //           fontSize: '2rem',
+    //           fontFamily: 'Montserrat'
+    //         },
+    //         value: {
+    //           fontSize: '1rem',
+    //           fontFamily: 'Montserrat'
+    //         },
+    //         total: {
+    //           show: true,
+    //           fontSize: '1rem',
+    //           label: this.translateSnackBar.total,
+    //           formatter: function (w) {
+    //             return '80%';
+    //           }
+    //         }
+    //       }
+    //     }
+    //   },
+    //   legend: {
+    //     show: true,
+    //     position: 'bottom'
+    //   },
+    //   stroke: {
+    //     lineCap: 'round'
+    //   }
+    // };
+    this.ChartOptionsWave = {
+      series: [
+        {
+          name: "South",
+          data: this.generateDayWiseTimeSeries(
+            new Date("11 Feb 2017 GMT").getTime(),
+            20,
+            {
+              min: 10,
+              max: 60
             }
+          )
+        },
+        {
+          name: "North",
+          data: this.generateDayWiseTimeSeries(
+            new Date("11 Feb 2017 GMT").getTime(),
+            20,
+            {
+              min: 10,
+              max: 20
+            }
+          )
+        },
+        {
+          name: "Central",
+          data: this.generateDayWiseTimeSeries(
+            new Date("11 Feb 2017 GMT").getTime(),
+            20,
+            {
+              min: 10,
+              max: 15
+            }
+          )
+        }
+      ],
+      chart: {
+        type: "area",
+        height: 350,
+        stacked: true,
+        events: {
+          selection: function(chart, e) {
+            console.log(new Date(e.xaxis.min));
           }
         }
       },
-      legend: {
-        show: true,
-        position: 'bottom'
+      colors: ["#008FFB", "#00E396", "#CED4DC"],
+      dataLabels: {
+        enabled: false
       },
-      stroke: {
-        lineCap: 'round'
+      fill: {
+        type: "gradient",
+        gradient: {
+          opacityFrom: 0.6,
+          opacityTo: 0.8
+        }
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      },
+      xaxis: {
+        type: "datetime"
+      }
+    };
+
+    this.ChartOptionsInResource = {
+      series: [
+        {
+          name: "basic",
+          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: [
+          "South Korea",
+          "Canada",
+          "United Kingdom",
+          "Netherlands",
+          "Italy",
+          "France",
+          "Japan",
+          "United States",
+          "China",
+          "Germany"
+        ]
+      }
+    };
+
+    this.ChartOptionsOutResource = {
+      series: [
+        {
+          name: "basic",
+          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: [
+          "South Korea",
+          "Canada",
+          "United Kingdom",
+          "Netherlands",
+          "Italy",
+          "France",
+          "Japan",
+          "United States",
+          "China",
+          "Germany"
+        ]
       }
     };
   }
@@ -177,6 +359,29 @@ export class MovementMatrixComponent implements OnInit {
     this.getRequest();
     this.getFilters();
   }
+
+  showDiagram(){
+    if(this.diagram == null){ this.showAll = false;}
+    if(this.diagram == 0){ this.showAll = true;} else { this.showAll = false;}
+    if(this.diagram == 1){ this.showWave = true;} else { this.showWave = false;}
+    if(this.diagram == 2){ this.showResorceIn = true;} else { this.showResorceIn = false;}
+    if(this.diagram == 3){ this.showResorceOut = true;} else { this.showResorceOut = false;}
+  }
+
+  generateDayWiseTimeSeries(baseval, count, yrange) {
+    var i = 0;
+    var series = [];
+    while (i < count) {
+      var x = baseval;
+      var y =
+        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+      series.push([x, y]);
+      baseval += 86400000;
+      i++;
+    }
+    return series;
+  };
 
   getRequest() {
     this.loading = true;

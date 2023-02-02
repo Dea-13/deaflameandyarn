@@ -359,6 +359,9 @@ export const locale = {
       december: '',
       year: '',
       month: '',
+      diagram: '',
+      totalByYear: '',
+      all: '',
     }
   }
 }

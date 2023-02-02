@@ -371,6 +371,9 @@ export const locale = {
       december: 'December',
       year: 'Year',
       month: 'Month',
+      diagram: 'Diagrams',
+      totalByYear: 'Total by Year',
+      all: 'All',
     }
   }
 }

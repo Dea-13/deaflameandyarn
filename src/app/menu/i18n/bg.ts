@@ -371,6 +371,9 @@ export const locale = {
       december: 'Декември',
       year: 'Година',
       month: 'Месец',
+      diagram: 'Диаграми',
+      totalByYear: 'Общо по години',
+      all: 'Всички',
     }
   }
 }

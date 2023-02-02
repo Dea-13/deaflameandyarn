@@ -25,8 +25,49 @@
               </ng-select>
             </div>
           </div>
+          <div class="col-md-3 col-12">
+            <div class="d-flex justify-content-between align-items-center m-1">
+              <label class="d-flex align-items-center">{{ translateSnackBar.diagram }}</label>
+              <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                [multiple]="false" [closeOnSelect]="true" [(ngModel)]="diagram"
+                (ngModelChange)="showDiagram()">
+                <ng-option *ngFor="let d of diagramArr" [value]="d.id">{{ d.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
         </div>
-        <div id="radialbar-chart" #apexRadialChartRef>
+        <div *ngIf="showAll || showWave" id="chartWave">
+          <apx-chart
+            [series]="ChartOptionsWave.series"
+            [chart]="ChartOptionsWave.chart"
+            [xaxis]="ChartOptionsWave.xaxis"
+            [dataLabels]="ChartOptionsWave.dataLabels"
+            [yaxis]="ChartOptionsWave.yaxis"
+            [colors]="ChartOptionsWave.colors"
+            [legend]="ChartOptionsWave.legend"
+            [fill]="ChartOptionsWave.fill"
+          ></apx-chart>
+        </div>
+        <div *ngIf="showAll || showResorceIn" id="chartInResource">
+          <apx-chart
+            [series]="ChartOptionsInResource.series"
+            [chart]="ChartOptionsInResource.chart"
+            [dataLabels]="ChartOptionsInResource.dataLabels"
+            [plotOptions]="ChartOptionsInResource.plotOptions"
+            [xaxis]="ChartOptionsInResource.xaxis"
+          ></apx-chart>
+        </div>
+        <div *ngIf="showAll || showResorceOut" id="chartOutResource">
+          <apx-chart
+            [series]="ChartOptionsOutResource.series"
+            [chart]="ChartOptionsOutResource.chart"
+            [dataLabels]="ChartOptionsOutResource.dataLabels"
+            [plotOptions]="ChartOptionsOutResource.plotOptions"
+            [xaxis]="ChartOptionsOutResource.xaxis"
+          ></apx-chart>
+        </div>
+        <!-- <div id="radialbar-chart" #apexRadialChartRef>
           <apx-chart [series]="apexRadialChart.series" [chart]="{
               height: 400,
               width: 400,
@@ -34,7 +75,7 @@
             }" [plotOptions]="apexRadialChart.plotOptions" [labels]="apexRadialChart.labels"
             [colors]="apexRadialChart.colors" [stroke]="apexRadialChart.stroke"
             [legend]="apexRadialChart.legend"></apx-chart>
-        </div>
+        </div> -->
         <section class="example-container mat-elevation-z8">
           <table mat-table [dataSource]="rows" class="example-table">
             <!-- Position Column -->
@@ -71,7 +112,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceInName"
-                      (ngModelChange)="getRequest()">
+                      (ngModelChange)="showDiagram()">
                       <ng-option *ngFor="let t of resourceInArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
