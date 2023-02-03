@@ -138,14 +138,14 @@ export const menu: CoreMenu[] = [
         icon: 'package',
         url: 'api/products'
       },
-      {
-        id: 'rawMaterial',
-        title: 'Raw material for production----',
-        translate: 'MENU.RAWMATERIAL',
-        type: 'item',
-        icon: 'package',
-        url: 'api/raw-material-production'
-      },
+      // {
+      //   id: 'rawMaterial',
+      //   title: 'Raw material for production----',
+      //   translate: 'MENU.RAWMATERIAL',
+      //   type: 'item',
+      //   icon: 'package',
+      //   url: 'api/raw-material-production'
+      // },
   {
     id: 'apps',
     type: 'section',
@@ -209,30 +209,30 @@ export const menu: CoreMenu[] = [
     translate: 'MENU.CONFIRMATION',
     icon: 'package',
   },
-  {
-    id: 'extrusionConfirmation',
-    title: 'Extrusion Confirmation----',
-    translate: 'MENU.EXTRUSION',
-    type: 'item',
-    icon: 'clipboard',
-    url: 'api/extrusion-confirmation'
-  },
-  {
-    id: 'sawConfirmation',
-    title: 'Saw Confirmation----',
-    translate: 'MENU.SAWCONFIRMATION',
-    type: 'item',
-    icon: 'clipboard',
-    url: 'api/saw-confirmation'
-  },
-  {
-    id: 'scrapDeclaration',
-    title: 'Scrap Declaration----',
-    translate: 'MENU.SCRAPDECLARATION',
-    type: 'item',
-    icon: 'clipboard',
-    url: 'api/declaration-scrap'
-  },
+  // {
+  //   id: 'extrusionConfirmation',
+  //   title: 'Extrusion Confirmation----',
+  //   translate: 'MENU.EXTRUSION',
+  //   type: 'item',
+  //   icon: 'clipboard',
+  //   url: 'api/extrusion-confirmation'
+  // },
+  // {
+  //   id: 'sawConfirmation',
+  //   title: 'Saw Confirmation----',
+  //   translate: 'MENU.SAWCONFIRMATION',
+  //   type: 'item',
+  //   icon: 'clipboard',
+  //   url: 'api/saw-confirmation'
+  // },
+  // {
+  //   id: 'scrapDeclaration',
+  //   title: 'Scrap Declaration----',
+  //   translate: 'MENU.SCRAPDECLARATION',
+  //   type: 'item',
+  //   icon: 'clipboard',
+  //   url: 'api/declaration-scrap'
+  // },
   {
     id: 'dieScanModule',
     title: 'Die Scan Module',
@@ -242,21 +242,21 @@ export const menu: CoreMenu[] = [
     url: 'api/die-scan-module'
   },
 
-  {
-    id: 'apps',
-    type: 'section',
-    title: 'Reports',
-    translate: 'MENU.REPORTS',
-    icon: 'package',
-  },
-  {
-    id: 'reports',
-    title: 'Reports----',
-    translate: 'MENU.REPORTS',
-    type: 'item',
-    icon: 'file-text',
-    url: 'api/reports'
-  },
+  // {
+  //   id: 'apps',
+  //   type: 'section',
+  //   title: 'Reports',
+  //   translate: 'MENU.REPORTS',
+  //   icon: 'package',
+  // },
+  // {
+  //   id: 'reports',
+  //   title: 'Reports----',
+  //   translate: 'MENU.REPORTS',
+  //   type: 'item',
+  //   icon: 'file-text',
+  //   url: 'api/reports'
+  // },
 
   {
     id: 'apps',
