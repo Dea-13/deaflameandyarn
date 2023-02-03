@@ -116,7 +116,7 @@ export class ProfilesService {
     return this._http.post<any>(`${environment.apiUrl}ProfileProduct`, data);
   }
 
-  deleteRowsEnd(id:number){
-    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}`);
+  deleteRowsEnd(id:number, alloy:any){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}/${alloy}`);
   }
 }

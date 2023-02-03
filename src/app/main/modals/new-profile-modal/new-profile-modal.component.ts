@@ -358,7 +358,7 @@ export class NewProfileModalComponent implements OnInit {
   deleteRowsLength(rowsLength, row, ind) {
     console.log("delete row", rowsLength, ind);
     this.isEditableRowsLength[ind] = false;
-    this.profilesService.deleteRowsEnd(row.profileId).subscribe(matrixService => {
+    this.profilesService.deleteRowsEnd(row.profileId, row.alloyFamily).subscribe(matrixService => {
       this.getProfilesEnds(row.profileId);
       this.loading = false;
       Swal.fire({
@@ -437,11 +437,11 @@ export class NewProfileModalComponent implements OnInit {
       thickness: null,
       sideWidth: null
     }
-    console.log('obj', obj, this.createProfileForm);
+    console.log('obj', obj, this.profile, this.profileId);
     if(!this.createProfileForm.invalid){
-      if (this.profile.id) {
+      if (this.profileId) {
         //edit
-        obj.id = this.profile.id;
+        obj.id = this.profile != 'new' ? this.profile.id : this.profileId;
         this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
           // this.activeModal.dismiss();
           // this.passEntry.emit(true);
@@ -474,7 +474,9 @@ export class NewProfileModalComponent implements OnInit {
             // this.activeModal.dismiss();
             // this.passEntry.emit(true);
             this.profileId = profileService['id'];
+            this.createProfileForm.controls.profileName.setValue(profileService['profileName']);
             this.disableTab = false;
+            console.log('TUK++', profileService, this.profile.id);
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
