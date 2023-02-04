@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ElectronService } from '../../../core/services';
 import { constants } from '../../../../environments/constants';
 import Swal from 'sweetalert2';
+import { timeout } from 'rxjs';
 
 declare function pushSerial(scan:string, com:string, manufacturer:string):void;
 declare function getSerial():string;
@@ -219,7 +220,10 @@ export class DieScanPageComponent implements OnInit {
 
   recordScanZebra(scan, com, manufacturer){
     pushSerial(scan, com, manufacturer);
-    this.getBarCodesTable();
+    // this.getBarCodesTable();
+    if (scan && scan.toString().length == 7) {
+      this.openBarCodeModal(scan);
+    }
   }
 
   getPositionDie(){
@@ -294,7 +298,6 @@ export class DieScanPageComponent implements OnInit {
   }
 
   getBarCodesTable() {
-    console.log('getBarCodesTable: ', this.barCode);
     if (this.barCode && this.barCode.toString().length == 7) {
       this.openBarCodeModal(this.barCode);
     }
@@ -304,11 +307,12 @@ export class DieScanPageComponent implements OnInit {
     console.log('openBarCodeModal', value);
     const modalRef = this.modalService.open(DieScanModalComponent, {});
     modalRef.componentInstance.dieItem = { 'die': value };
-    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {      
       if (receivedEntry) {
         this.getImage(receivedEntry);
         this.currentResource = receivedEntry.resourceIn;
         this.barCode = receivedEntry.dieId;
+        console.log('receivedEntry+++++ ', receivedEntry,this.currentResource, this.barCode);
       }
     });
   }
