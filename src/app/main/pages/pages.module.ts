@@ -16,7 +16,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
-    SettingsComponent
+    SettingsComponent,
   ],
   imports: [
     CommonModule,

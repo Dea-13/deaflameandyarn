@@ -42,6 +42,7 @@ export const locale = {
       SCRAPDECLARATION: '',
       DIESCANMODULE: '',
       PRODUCTIVITYNITRIFICATION: '',
+      CONFEXTRUSION: '',
     },
     translate: {
       matrix: '',

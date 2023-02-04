@@ -43,6 +43,7 @@ export const locale = {
       SCRAPDECLARATION: 'Декларация за скрап--------',
       DIESCANMODULE: 'Модул за сканиране на матрицата',
       PRODUCTIVITYNITRIFICATION: 'Продуктивност и азотиране',
+      CONFEXTRUSION: 'Потвърждения за екструдиране',
     },
     translate: {
       matrix: 'Матрица',

@@ -107,6 +107,14 @@ export const menu: CoreMenu[] = [
     icon: 'move',
     url: 'api/movement-matrix'
   },
+  {
+    id: 'dieScanModule',
+    title: 'Die Scan Module',
+    translate: 'MENU.DIESCANMODULE',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/die-scan-module'
+  },
   // {
   //   id: 'userview',
   //   title: 'User view----',
@@ -234,12 +242,12 @@ export const menu: CoreMenu[] = [
   //   url: 'api/declaration-scrap'
   // },
   {
-    id: 'dieScanModule',
-    title: 'Die Scan Module',
-    translate: 'MENU.DIESCANMODULE',
+    id: 'confExtrusion',
+    title: 'Extrusion Confirmations',
+    translate: 'MENU.CONFEXTRUSION',
     type: 'item',
     icon: 'clipboard',
-    url: 'api/die-scan-module'
+    url: 'api/extrusion-confirmations'
   },
 
   // {

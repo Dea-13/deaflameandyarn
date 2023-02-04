@@ -59,6 +59,8 @@ import { SettingsComponent } from './main/pages/settings/settings.component';
 import { GenerateTestModalComponent } from './main/modals/generate-test-modal/generate-test-modal.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationExtrusionComponent } from './main/pages/confirmation-extrusion/confirmation-extrusion.component';
+import { BilletRawMaterialsComponent } from './main/pages/billet-raw-materials/billet-raw-materials.component';
 
 
 const appRoutes: Routes = [
@@ -203,6 +205,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/extrusion-confirmations',
+    component: ConfirmationExtrusionComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -236,7 +243,9 @@ const appRoutes: Routes = [
     ProductivityNitrificationPageComponent,
     ModalProfileProductsComponent,
     SettingsComponent,
-    GenerateTestModalComponent
+    GenerateTestModalComponent,
+    ConfirmationExtrusionComponent,
+    BilletRawMaterialsComponent
   ],
 
   imports: [

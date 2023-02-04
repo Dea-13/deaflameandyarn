@@ -62,4 +62,8 @@ export class ConfirmationService {
     return this._http.get<any>(`${environment.apiUrl}ProductionOrderOperation/GetOrderOperationBilletLotNos/${id}`);
   }
 
+  getConfExtrusion(){
+    return this._http.get<any>(`${environment.apiUrl}ExtrusionConfirmation/GetExtrusionConfirmations`);
+  }
+
 }
