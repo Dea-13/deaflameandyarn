@@ -43,6 +43,7 @@ export const locale = {
       DIESCANMODULE: '',
       PRODUCTIVITYNITRIFICATION: '',
       CONFEXTRUSION: '',
+      BILLETMAT: '',
     },
     translate: {
       matrix: '',
@@ -369,6 +370,9 @@ export const locale = {
       tooltipCircle: '',
       tooltipWave: '',
       tooltipName: '',
+      variant: '',
+      stockQuantity: '',
+      uom: '',
     }
   }
 }

@@ -213,6 +213,22 @@ export const menu: CoreMenu[] = [
   {
     id: 'apps',
     type: 'section',
+    title: 'Billet Raw Materials',
+    translate: 'MENU.BILLETMAT',
+    icon: 'package',
+  },
+  {
+    id: 'employee',
+    title: 'Billet Raw Materials',
+    translate: 'MENU.BILLETMAT',
+    type: 'item',
+    icon: 'users',
+    url: 'api/billet-raw-materials'
+  },
+
+  {
+    id: 'apps',
+    type: 'section',
     title: 'Confirmations',
     translate: 'MENU.CONFIRMATION',
     icon: 'package',

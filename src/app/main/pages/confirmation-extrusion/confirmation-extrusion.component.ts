@@ -27,12 +27,6 @@ export class ConfirmationExtrusionComponent implements OnInit {
   ];
 
   public rows = [{}];
-
-  //for pagination
-  public cPage: number = 1;
-  public limit: number = 15;
-  public offset: number = 0;
-  public totalResult: number = 0;
   public languageOptions: any;
   public loading: boolean = false;
   public translateSnackBar: any;

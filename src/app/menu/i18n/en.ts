@@ -44,6 +44,7 @@ export const locale = {
       DIESCANMODULE: 'Die Scan Module',
       PRODUCTIVITYNITRIFICATION: 'Productivity and nitrification',
       CONFEXTRUSION: 'Extrusion Confirmations',
+      BILLETMAT: 'Billet Raw Materials',
     },
     translate: {
       matrix: 'Die',
@@ -381,6 +382,9 @@ export const locale = {
       tooltipCircle: 'Shows the total for each month. From the Year dropdown you can specify for which year the months totals should be displayed.',
       tooltipWave: 'Shows the total for each year',
       tooltipName: 'Shows the annual total for a given user. From the drop-down for year, you can specify for which year the totals should be displayed.',
+      variant: 'Variant',
+      stockQuantity: 'Stock Quantity',
+      uom: 'UOM',
     }
   }
 }
