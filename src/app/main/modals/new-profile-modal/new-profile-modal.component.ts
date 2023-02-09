@@ -438,8 +438,8 @@ export class NewProfileModalComponent implements OnInit {
       sideWidth: null
     }
     console.log('obj', obj, this.profile, this.profileId);
-    if(!this.createProfileForm.invalid){
-      if (this.profileId) {
+    if (this.profileId) {
+      if (this.createProfileForm.controls.profileName.value && this.createProfileForm.controls.grM.value && this.createProfileForm.controls.section.value) {
         //edit
         obj.id = this.profile != 'new' ? this.profile.id : this.profileId;
         this.profilesService.updateProfile(obj, this.profile.id).subscribe((profileService) => {
@@ -468,11 +468,19 @@ export class NewProfileModalComponent implements OnInit {
             })
           });
       } else {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.fillMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+    } else {
+      if (!this.createProfileForm.invalid) {
         //create
         this.profilesService.createProfile(obj).subscribe(
           (profileService) => {
-            // this.activeModal.dismiss();
-            // this.passEntry.emit(true);
             this.profileId = profileService['id'];
             this.createProfileForm.controls.profileName.setValue(profileService['profileName']);
             this.disableTab = false;
@@ -496,17 +504,16 @@ export class NewProfileModalComponent implements OnInit {
             })
           }
         );
+      } else {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.fillMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
-    } else {
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: this.translateSnackBar.fillMsg ,
-        showConfirmButton: false,
-        timer: 2000
-      })
     }
-
   }
 
   handleUpload(event) {
