@@ -61,6 +61,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationExtrusionComponent } from './main/pages/confirmation-extrusion/confirmation-extrusion.component';
 import { BilletRawMaterialsComponent } from './main/pages/billet-raw-materials/billet-raw-materials.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 const appRoutes: Routes = [
@@ -266,6 +267,7 @@ const appRoutes: Routes = [
     FileUploadModule,
     NgApexchartsModule,
     MatTooltipModule,
+    MatTabsModule,
 
 
     RouterModule.forRoot(appRoutes, {

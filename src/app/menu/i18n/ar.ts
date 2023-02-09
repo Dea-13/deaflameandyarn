@@ -373,6 +373,7 @@ export const locale = {
       variant: '',
       stockQuantity: '',
       uom: '',
+      fillAllTabsMsg: '',
     }
   }
 }

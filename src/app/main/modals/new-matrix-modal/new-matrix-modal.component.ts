@@ -1071,7 +1071,7 @@ export class NewMatrixModalComponent implements OnInit {
         Swal.fire({
           position: 'bottom-end',
           icon: 'warning',
-          title: this.translateSnackBar.fillAllMsg,
+          title: this.translateSnackBar.fillAllTabsMsg,
           showConfirmButton: false,
           timer: 2000
         })

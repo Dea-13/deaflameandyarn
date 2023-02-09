@@ -385,6 +385,7 @@ export const locale = {
       variant: 'Variant',
       stockQuantity: 'Stock Quantity',
       uom: 'UOM',
+      fillAllTabsMsg: 'Please fill all required fields in all tabs!',
     }
   }
 }
