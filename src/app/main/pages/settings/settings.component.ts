@@ -35,9 +35,10 @@ export class SettingsComponent implements OnInit {
   
         console.log('constants.comport', constants.comport);
         if(constants.comport == 0){
-          this.scanPorts()
+          // this.scanPorts()
         } else {
           this.comPorts = JSON.parse(localStorage.getItem('ComPort'));
+          this.allPorts = this.comPorts;
         }
   
       } else {
@@ -62,33 +63,33 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  public scanPorts () {
+  // public scanPorts () {
 
-    this.electronService.serialPort.SerialPort.list().then((ports:any)=>{
-      console.log("SerialPort -> ports: ", ports);
-      this.allPorts = ports;
-      ports.forEach(element => {
-        if(element.manufacturer == constants.zebraProductName){
-          constants.comport = 1;
-          this.zebraCom = element.path;
-          this.DEVICE_NAME = element.manufacturer;
-          let checkedCom = this.comPorts.filter((item) =>{
-            return item.path == element.path
-          })
+  //   this.electronService.serialPort.SerialPort.list().then((ports:any)=>{
+  //     console.log("SerialPort -> ports: ", ports);
+  //     this.allPorts = ports;
+  //     ports.forEach(element => {
+  //       if(element.manufacturer == constants.zebraProductName){
+  //         constants.comport = 1;
+  //         this.zebraCom = element.path;
+  //         this.DEVICE_NAME = element.manufacturer;
+  //         let checkedCom = this.comPorts.filter((item) =>{
+  //           return item.path == element.path
+  //         })
 
-          if(checkedCom.length == 0){
-            this.comPorts.push(element);
-          }
+  //         if(checkedCom.length == 0){
+  //           this.comPorts.push(element);
+  //         }
 
-        }
-      });
+  //       }
+  //     });
 
-      this.comPorts = this.comPorts.sort((a, b) => a.path < b.path ? - 1 : Number(a.path > b.path));
-      localStorage.setItem('ComPort', JSON.stringify(this.comPorts));
-    }).catch((err:any)=>{
-      console.log("SerialPort -> err: ", err);
-    });
-  }
+  //     this.comPorts = this.comPorts.sort((a, b) => a.path < b.path ? - 1 : Number(a.path > b.path));
+  //     localStorage.setItem('ComPort', JSON.stringify(this.comPorts));
+  //   }).catch((err:any)=>{
+  //     console.log("SerialPort -> err: ", err);
+  //   });
+  // }
 
 
 }
