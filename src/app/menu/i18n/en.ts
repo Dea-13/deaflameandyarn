@@ -168,7 +168,7 @@ export const locale = {
       speed: 'Speed',
       lengthBackEnd: 'Back end length',
       lengthStart: 'Home length',
-      visibleSide: 'Visible sides?',
+      visibleSide: 'Visible sides',
       tempering: 'Tempering',
       renewal: 'Renewal',
       lastTransaction: 'Last transaction',
