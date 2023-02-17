@@ -215,7 +215,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }}
-                        <span *ngIf="submitStated && createMatrixForm.get('anodizingQuality').value === false"
+                        <span *ngIf="!matrixItem.data.id && submitStated && createMatrixForm.get('anodizingQuality').value === false"
                           class="error-label">*</span>
                       </label>
                       <input formControlName="anodizingQuality" class="form-control input" type="checkbox"

@@ -833,7 +833,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitStatedDie(){
     console.log('000000++++', this.createMatrixForm);
     this.submitStated = true;
-    if(this.createMatrixForm.controls.anodizingQuality.value && !this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid){
       Swal.fire({
         title: this.translateSnackBar.statedMsg,
         icon: 'warning',
@@ -1041,7 +1041,7 @@ export class NewMatrixModalComponent implements OnInit {
 
       if (this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value &&
         this.createMatrixForm.controls.priceInv.value && this.createMatrixForm.controls.altResource1.value &&
-        this.createMatrixForm.controls.altResource2.value) {
+        this.createMatrixForm.controls.altResource2.value && this.createMatrixForm.controls.anodizingQuality.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.loading = false;
