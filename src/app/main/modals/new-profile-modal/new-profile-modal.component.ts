@@ -128,7 +128,7 @@ export class NewProfileModalComponent implements OnInit {
     this.profilesService.getProfiles(id).subscribe(data => {
       console.log("getProfiles", data);
       data == null ? this.sectionProfiles = {} : this.sectionProfiles = data;
-      this.profileId = data.id;
+      this.profileId = data == null ? null : data.id;
       this.createProfileForm = this.formBuilder.group({
         profileName: this.sectionProfiles.profileName,
         groupCode: this.sectionProfiles.groupCode,
