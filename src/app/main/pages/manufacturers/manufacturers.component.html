@@ -6,7 +6,7 @@
           <div class="col-md-6 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                   <ng-option [value]="10">10</ng-option>
                   <ng-option [value]="15">15</ng-option>
                   <ng-option [value]="20">20</ng-option>
@@ -40,7 +40,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selName" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of nameArr" [value]="t.name">{{ t.name }}
                       </ng-option>

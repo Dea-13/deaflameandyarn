@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
                           <label>Брак РЦ</label>
-                          <ng-select [(ngModel)]="workCenter" [disabled]="reasonInputs">
+                          <ng-select [virtualScroll]="true" [(ngModel)]="workCenter" [disabled]="reasonInputs">
                             <ng-option *ngFor="let item of brakArr" [value]="item.id">{{item.name}}</ng-option>
                           </ng-select>
                         </div>
@@ -35,11 +35,11 @@
                             <span *ngIf="dataServiceObj.workCenterId == 55">
                               <label class="form-label">Приключване опаковка
                                 <input class="form-control input" [(ngModel)]="finishPackage" type="checkbox" style="width: 10%;"></label>
-                            </span>                            
+                            </span>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
                           <label>Причина</label>
-                          <ng-select [(ngModel)]="reason" [disabled]="reasonInputs">
+                          <ng-select [virtualScroll]="true" [(ngModel)]="reason" [disabled]="reasonInputs">
                             <ng-option *ngFor="let item of reasonsArr" [value]="item.id">{{item.name}}</ng-option>
                           </ng-select>
                         </div>
@@ -67,39 +67,39 @@
                       <p>Бройки: <span class="bold">{{scaleData.totalCount}}</span></p>
                     </div>
 
-                    <div *ngIf="dataServiceObj.workType == 3 && dataServiceObj.workCenterId == 55" class="scale col-xs-12 col-sm-12 col-md-12">                      
+                    <div *ngIf="dataServiceObj.workType == 3 && dataServiceObj.workCenterId == 55" class="scale col-xs-12 col-sm-12 col-md-12">
                       <p>ДМС Код Лист:</p>
-                      <div class="row border" *ngFor="let dmc of dmCArray">                        
+                      <div class="row border" *ngFor="let dmc of dmCArray">
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
                           <p class="dms" style="padding-top: 7px">{{dmc}}</p>
                         </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">                          
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
                           <a (click)="deleteDms(dmc)" href="javascript:;" ngbDropdownItem class="red dms">
-                            <span [data-feather]="'trash'" [size]="16" [class]="'mr-50'"></span>                          
+                            <span [data-feather]="'trash'" [size]="16" [class]="'mr-50'"></span>
                           </a>
                         </div>
-                      </div>                      
+                      </div>
                     </div>
                   </div>
                 </div>
                 <!-- За операция 55 -->
                 <div class="grey-bg bottom-20"  *ngIf="dataServiceObj.workType == 1 && dataServiceObj.workCenterId == 55">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngFor="let row of orderOperation">                                                       
-                        <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>                        
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngFor="let row of orderOperation">
+                        <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>
                         <input class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType == false"><br>
                     </div>
                 </div>
                 <!-- за всички останали операции -->
                 <div *ngIf="dataServiceObj.workCenterId != 55" class="top-20 bottom-20">
                   <div class="grey-bg-handle" *ngFor="let row of orderOperation">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngIf="row.inputType == true">                                          
-                      <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>                        
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngIf="row.inputType == true">
+                      <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>
                       <input *ngIf="row.inputCodeType == false" class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType == false"><br>
-                      <ng-select *ngIf="row.inputCodeType == true" class="width-select" [(ngModel)]="row.value">
+                      <ng-select [virtualScroll]="true" *ngIf="row.inputCodeType == true" class="width-select" [(ngModel)]="row.value">
                         <ng-option *ngFor="let item of row.selectList" [value]="item.name">{{item.name}}</ng-option>
                       </ng-select>
                     </div>
-                  </div>   
+                  </div>
                 </div>
                 <div *ngIf="!hideRedSection" class="red-bg col-12 bottom-20" (click)="clickBoxs(0)">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -138,7 +138,7 @@
                             <!-- </div> -->
                             <div class="flex width-50">
                                 <label class="width-label">Ръчно избиране на палет</label>
-                                <ng-select class="width-select" [(ngModel)]="cassetPut" (ngModelChange)="getStock(cassetPut)">
+                                <ng-select [virtualScroll]="true" class="width-select" [(ngModel)]="cassetPut" (ngModelChange)="getStock(cassetPut)">
                                     <ng-option *ngFor="let item of palletsArr" [value]="item.name">{{item.name}}</ng-option>
                                 </ng-select>
                             </div>

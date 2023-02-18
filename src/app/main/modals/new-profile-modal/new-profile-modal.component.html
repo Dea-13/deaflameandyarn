@@ -31,7 +31,7 @@
                           </div>
                           <div class="col-sm-12 flex">
                             <label class="w-17-label">{{ translateSnackBar.group }}</label>
-                            <ng-select appendTo="body" formControlName="groupCode">
+                            <ng-select [virtualScroll]="true" appendTo="body" formControlName="groupCode">
                               <ng-option *ngFor="let g of groupCode" [value]="g.name">{{ g.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -407,7 +407,7 @@
                             </div>
                           </td>
                           <td>
-                            <ng-select [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
+                            <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
@@ -429,19 +429,19 @@
                     <div class="col-sm-12 block">
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.infoMatrix }}</label>
-                        <ng-select appendTo="body">
+                        <ng-select [virtualScroll]="true" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.followRecipee }}</label>
-                        <ng-select appendTo="body">
+                        <ng-select [virtualScroll]="true" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
                       <div class="col-sm-12 flex">
                         <label>{{ translateSnackBar.secondHandScrap }}</label>
-                        <ng-select appendTo="body">
+                        <ng-select [virtualScroll]="true" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
@@ -450,13 +450,13 @@
                       <div class="col-sm-4">
                         <div class="col-sm-12">
                           <label>Breda {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
                         <div class="col-sm-12">
                           <label>Breda {{ translateSnackBar.scrap }}</label>
-                          <ng-select appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
@@ -465,13 +465,13 @@
                       <div class="col-sm-4">
                         <div class="col-sm-12">
                           <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
                         <div class="col-sm-12">
                           <label>SMS1 {{ translateSnackBar.scrap }}</label>
-                          <ng-select appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
@@ -480,13 +480,13 @@
                       <div class="col-sm-4">
                         <div class="col-sm-12">
                           <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
                         <div class="col-sm-12">
                           <label>SMS2 {{ translateSnackBar.scrap }}</label>
-                          <ng-select appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>

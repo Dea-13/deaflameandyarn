@@ -3,7 +3,7 @@
         <section class="users-list-wrapper">
             <div class="card">
                 <!-- <div class="flex">
-                    <ng-select [(ngModel)]="locCode" class="mg-2" (ngModelChange)="getMaterialInventories()">
+                    <ng-select [virtualScroll]="true" [(ngModel)]="locCode" class="mg-2" (ngModelChange)="getMaterialInventories()">
                         <ng-option *ngFor="let item of locationCode" [value]="item.id">{{item.textValue}}</ng-option>
                     </ng-select>
                 </div> -->
@@ -52,8 +52,8 @@
                         <ng-template class="content" ngx-datatable-header-template>
                             <span>Партида</span>
                         </ng-template>
-                        <ng-template let-row="row" let-name="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>                            
-                            <ng-select [(ngModel)]="currentStockValue" appendTo="body" (ngModelChange)="getStockSn(currentStockValue, rowIndex)">
+                        <ng-template let-row="row" let-name="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                            <ng-select [virtualScroll]="true" [(ngModel)]="currentStockValue" appendTo="body" (ngModelChange)="getStockSn(currentStockValue, rowIndex)">
                                 <ng-option *ngFor="let item of currentStock" [value]="item.sn">{{item.sn}}</ng-option>
                             </ng-select>
                         </ng-template>
@@ -69,7 +69,7 @@
                     <p ><u>Наличности в НАВ на :</u></p>
                     <div *ngFor="let item of inventories">
                         <p>Вариант: {{item.variant}}, Партида:{{item.lotNo}}</p>
-                    </div>                                    
+                    </div>
                     <div *ngIf="!inventories">
                         <p>Вариант: , Партида:</p>
                     </div>

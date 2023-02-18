@@ -6,7 +6,7 @@
           <div class="col-md-6 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                   <ng-option [value]="10">10</ng-option>
                   <ng-option [value]="15">15</ng-option>
                   <ng-option [value]="20">20</ng-option>
@@ -40,7 +40,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="seldie" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of dieArr" [value]="t.name">{{ t.name }}
                       </ng-option>
@@ -60,7 +60,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selProfileId"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of profileIdArr" [value]="t.name">{{ t.name }}
@@ -81,7 +81,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPrimeResourceName"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of primeResourceNameArr" [value]="t.name">{{ t.name }}
@@ -102,7 +102,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selProducerName"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of producerNameArr" [value]="t.name">{{ t.name }}
@@ -131,7 +131,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selDiameter"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of diameterArr" [value]="t.name">{{ t.name }}
@@ -152,7 +152,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selThickness"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of thicknessArr" [value]="t.name">{{ t.name }}
@@ -173,7 +173,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selAlloy" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of alloyArr" [value]="t.name">{{ t.name }}
                       </ng-option>
@@ -193,7 +193,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selTemper"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of temperArr" [value]="t.name">{{ t.name }}
@@ -214,7 +214,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selBolster1"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of bolster1Arr" [value]="t.name">{{ t.name }}
@@ -235,7 +235,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selBolster2"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of bolster2Arr" [value]="t.name">{{ t.name }}
@@ -256,7 +256,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selDieHolder"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of dieHolderArr" [value]="t.name">{{ t.name }}
@@ -277,7 +277,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selContainer"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of containerArr" [value]="t.name">{{ t.name }}
@@ -298,7 +298,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selNotes" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of notesArr" [value]="t.name">{{ t.name }}
                       </ng-option>
@@ -329,7 +329,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selClientName"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of clientNameArr" [value]="t.name">{{ t.name }}
@@ -371,7 +371,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPrice" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of priceInvArr" [value]="t.name">{{ t.name }}
                       </ng-option>
@@ -391,7 +391,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selPriceInv"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of dateConfirmArr" [value]="t.name">{{ t.name }}
@@ -518,7 +518,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selChannels"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let t of channelsArr" [value]="t.name">{{ t.name }}
