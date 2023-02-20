@@ -143,6 +143,7 @@ export class DetailsDieModalComponent implements OnInit {
   }
 
   closeModal(): void {
+    this.passEntry.emit(false);
     this.activeModal.dismiss();
   }
 

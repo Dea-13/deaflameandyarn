@@ -386,6 +386,8 @@ export const locale = {
       stockQuantity: 'Stock Quantity',
       uom: 'UOM',
       fillAllTabsMsg: 'Please fill all required fields in all tabs!',
+      bmwinventorynumber: 'BMW inventory №',
+      dieLiveQty: 'Die life',
     }
   }
 }

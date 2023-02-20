@@ -123,6 +123,48 @@
               <td mat-cell *matCellDef="let element">{{element.correctorName}}</td>
             </ng-container>
 
+            <ng-container matColumnDef="bmwinventorynumber">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body">
+                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
+                    rippleEffect>
+                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
+                  </button>
+                  <mat-menu #menuFilter="matMenu">
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="bmwinventorynumber"
+                      (ngModelChange)="pageChanged(1)">
+                      <ng-option *ngFor="let t of bmwNumberArr" [value]="t.name">{{ t.name }}
+                      </ng-option>
+                    </ng-select>
+                  </mat-menu>
+                </div>
+                <span class="th-header">{{ translateSnackBar.bmwinventorynumber }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.bmwInventoryNumber}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="dieLiveQty">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body">
+                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
+                    rippleEffect>
+                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
+                  </button>
+                  <mat-menu #menuFilter="matMenu">
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="dieLiveQty"
+                      (ngModelChange)="pageChanged(1)">
+                      <ng-option *ngFor="let t of dieLifeArr" [value]="t.name">{{ t.name }}
+                      </ng-option>
+                    </ng-select>
+                  </mat-menu>
+                </div>
+                <span class="th-header">{{ translateSnackBar.dieLiveQty }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.dieLiveQty}}</td>
+            </ng-container>
+
             <ng-container matColumnDef="diameter">
               <th mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">

@@ -99,6 +99,10 @@ export class StatedComponent implements OnInit {
     altInputClass: 'form-control flat-picker flatpickr-input invoice-edit-input',
     enableTime: false
   };
+  public bmwinventorynumber: string = '';
+  public dieLiveQty: string = '';
+  public dieLifeArr: Array<any> = [];
+  public bmwNumberArr: Array<any> = [];
 
   constructor(
     private matrixService: MatrixService,
@@ -110,7 +114,7 @@ export class StatedComponent implements OnInit {
     if (this.router.url == '/api/stated') {
       this.statusId = 10;
       this.displayedColumns = [
-        'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
+        'dieId', 'profileId', 'primaryResourceName', 'producerName', 'bmwinventorynumber', 'dieLiveQty', 'diameter',
         'thickness', 'alloy', 'temper', 'bolsterTooling1', 'bolsterTooling2', 'dieHolder', 'container',
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'countInUse', 'finalNitriding',
         'kgToFianlNitriding', 'kgAfterFianlNitriding'
@@ -180,6 +184,8 @@ export class StatedComponent implements OnInit {
       { id: 19, name: 'DateExpedition/' + this.statusId },
       { id: 20, name: 'DateScrapped/' + this.statusId },
       { id: 21, name: 'Channels/' + this.statusId },
+      { id: 22, name: 'bmwinventorynumber' },
+      { id: 23, name: 'dieliveqty' },
     ];
   }
 
@@ -224,6 +230,8 @@ export class StatedComponent implements OnInit {
         this.selChannels,
         this.grM,
         this.lastModified,
+        this.bmwinventorynumber,
+        this.dieLiveQty
       )
       .subscribe((data) => {
         this.rows = data.list;
@@ -255,7 +263,7 @@ export class StatedComponent implements OnInit {
             break;
           case 8: { this.temperArr = data; }
             break;
-          case 9:{ this.bolster1Arr = data; }
+          case 9: { this.bolster1Arr = data; }
             break;
           case 10: { this.bolster2Arr = data; }
             break;
@@ -281,6 +289,10 @@ export class StatedComponent implements OnInit {
             break;
           case 21: { this.channelsArr = data; }
             break;
+          case 22: { this.bmwNumberArr = data; }
+            break;
+          case 23: { this.dieLifeArr = data; }
+            break;
         }
         this.loading = false;
       });
@@ -302,6 +314,7 @@ export class StatedComponent implements OnInit {
       if (receivedEntry == true) {
         this.getRequest();
       }
+      this.getFilters();
     });
   }
 
@@ -340,6 +353,7 @@ export class StatedComponent implements OnInit {
       if (receivedEntry == true) {
         this.getRequest();
       }
+      this.getFilters();
     });
   }
 }

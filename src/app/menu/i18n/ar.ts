@@ -374,6 +374,8 @@ export const locale = {
       stockQuantity: '',
       uom: '',
       fillAllTabsMsg: '',
+      bmwinventorynumber: '',
+      dieLiveQty: '',
     }
   }
 }

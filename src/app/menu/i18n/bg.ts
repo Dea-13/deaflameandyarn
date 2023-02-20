@@ -386,6 +386,8 @@ export const locale = {
       stockQuantity: 'Складово количество',
       uom: 'UOM',
       fillAllTabsMsg: 'Моля, попълнете всички полета в табовете!',
+      bmwinventorynumber: 'БМВ инвентарен №',
+      dieLiveQty: 'Живот на матрицата',
     }
   }
 }

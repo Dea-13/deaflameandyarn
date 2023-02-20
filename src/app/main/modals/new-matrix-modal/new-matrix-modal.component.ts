@@ -97,6 +97,8 @@ export class NewMatrixModalComponent implements OnInit {
       dieHolder: [''],
       oporenPrysten: [false],
       opora: [''],
+      bmwInventoryNumber: [''],
+      dieLiveQty: [''],
       Pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
@@ -189,6 +191,8 @@ export class NewMatrixModalComponent implements OnInit {
         Pressshaiba: this.matrix.Pressshaiba,
         type: this.matrix.type,
         anodizingQuality: this.matrix.anodizingQuality,
+        bmwInventoryNumber: this.matrix.bmwInventoryNumber,
+        dieLiveQty: this.matrix.dieLiveQty,
         container: this.matrix.container,
         matrixComplect: this.matrix.matrixComplect,
         bolsterTooling1: this.matrix.bolsterTooling1,
@@ -1000,7 +1004,9 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.opora = this.createMatrixForm.controls.opora.value,
       this.matrix.Pressshaiba = this.createMatrixForm.controls.Pressshaiba.value,
       this.matrix.type = this.createMatrixForm.controls.type.value,
+      this.matrix.dieLiveQty = this.createMatrixForm.controls.dieLiveQty.value,
       this.matrix.anodizingQuality = this.createMatrixForm.controls.anodizingQuality.value,
+      this.matrix.bmwInventoryNumber = this.createMatrixForm.controls.bmwInventoryNumber.value,
       this.matrix.container = this.createMatrixForm.controls.container.value,
       this.matrix.matrixComplect = this.createMatrixForm.controls.matrixComplect.value,
       this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
@@ -1111,6 +1117,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   closeModal(): void {
+    this.passEntry.emit(false);
     this.activeModal.dismiss();
   }
 }

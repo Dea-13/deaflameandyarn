@@ -214,6 +214,15 @@
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.dieLiveQty }}</label>
+                      <input formControlName="dieLiveQty" class="form-control input" type="number">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 flexed">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
                       <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }}
                         <span *ngIf="!matrixItem.data.id && submitStated && createMatrixForm.get('anodizingQuality').value === false"
                           class="error-label">*</span>
@@ -278,6 +287,15 @@
                         appendTo="body">
                         <ng-option *ngFor="let s of bolster2" [value]="s.name">{{ s.name }}</ng-option>
                       </ng-select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 flexed">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.bmwinventorynumber }}</label>
+                      <input formControlName="bmwInventoryNumber" type="text" class="form-control dt-uname" />
                     </div>
                   </div>
                 </div>
