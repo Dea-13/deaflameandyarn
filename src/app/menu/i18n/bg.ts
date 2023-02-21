@@ -388,6 +388,7 @@ export const locale = {
       fillAllTabsMsg: 'Моля, попълнете всички полета в табовете!',
       bmwinventorynumber: 'БМВ инвентарен №',
       dieLiveQty: 'Живот на матрицата',
+      maskProfile: 'Моля, попълнете правилно профила!',
     }
   }
 }

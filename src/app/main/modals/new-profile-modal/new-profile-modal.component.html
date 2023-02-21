@@ -27,7 +27,7 @@
                         <div class="col-sm-5">
                           <div class="col-sm-12 flex header-section-profile">
                             <h2>{{ translateSnackBar.profile }}</h2>
-                            <input type="text" formControlName="profileName" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('profileName').value}" required />
+                            <input type="text" formControlName="profileName" [textMask]="{mask: mask}" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('profileName').value}" required />
                           </div>
                           <div class="col-sm-12 flex">
                             <label class="w-17-label">{{ translateSnackBar.group }}</label>

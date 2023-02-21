@@ -366,7 +366,9 @@ export class InformationProfilesComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        this.pageChanged(1);
       }
+      this.getFilters();
     });
   }
 

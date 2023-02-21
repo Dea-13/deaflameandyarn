@@ -388,6 +388,7 @@ export const locale = {
       fillAllTabsMsg: 'Please fill all required fields in all tabs!',
       bmwinventorynumber: 'BMW inventory №',
       dieLiveQty: 'Die life',
+      maskProfile: 'Please fill out profile correctly!',
     }
   }
 }

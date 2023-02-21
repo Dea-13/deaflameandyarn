@@ -19,6 +19,7 @@ export class NewProfileModalComponent implements OnInit {
     url: '',
     isHTML5: true
   });
+  public mask = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   public createProfileForm: FormGroup;
   public submitted: boolean;
   public userName: string;
@@ -438,6 +439,16 @@ export class NewProfileModalComponent implements OnInit {
       sideWidth: null
     }
     console.log('obj', obj, this.profile, this.profileId);
+    if(this.createProfileForm.controls.profileName.value.match(/_/g)){
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.maskProfile,
+        showConfirmButton: false,
+        timer: 2000
+      })
+      return
+    }
     if (this.profileId) {
       if (this.createProfileForm.controls.profileName.value && this.createProfileForm.controls.grM.value && this.createProfileForm.controls.section.value) {
         //edit
@@ -586,6 +597,7 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   closeModal(): void {
+    this.passEntry.emit(false);
     this.activeModal.dismiss();
   }
 }

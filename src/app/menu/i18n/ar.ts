@@ -376,6 +376,7 @@ export const locale = {
       fillAllTabsMsg: '',
       bmwinventorynumber: '',
       dieLiveQty: '',
+      maskProfile: '',
     }
   }
 }
