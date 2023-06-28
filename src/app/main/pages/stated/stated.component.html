@@ -78,10 +78,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.profile }}</span>
                 <button type="button" class="order-btn" (click)="sortType('profileId', !orderType, 1)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 1 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 1 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -107,10 +107,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.press }}</span>
                 <button type="button" class="order-btn" (click)="sortType('primaryResourceName', !orderType, 3)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 3 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 3 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -136,10 +136,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.manufacturer }}</span>
                 <button type="button" class="order-btn" (click)="sortType('producerName', !orderType, 4)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 4 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 4 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -152,10 +152,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.matricologist }}</span>
                 <button type="button" class="order-btn" (click)="sortType('correctorName', !orderType, 76)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 76 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 76 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -181,10 +181,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.bmwinventorynumber }}</span>
                 <button type="button" class="order-btn" (click)="sortType('bmwinventorynumber', !orderType, 17)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 17 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 17 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -210,10 +210,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.dieLiveQty }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dieLiveQty', !orderType, 16)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 16 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 16 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -239,10 +239,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.diameter }}</span>
                 <button type="button" class="order-btn" (click)="sortType('diameter', !orderType, 5)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 5 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 5 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -268,10 +268,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.thickness }}</span>
                 <button type="button" class="order-btn" (click)="sortType('thickness', !orderType, 6)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 6 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 6 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -296,10 +296,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.alloy }}</span>
                 <button type="button" class="order-btn" (click)="sortType('alloy', !orderType, 7)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 7 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 7 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -325,10 +325,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.tempering }}</span>
                 <button type="button" class="order-btn" (click)="sortType('temper', !orderType, 8)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 8 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 8 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -354,10 +354,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.bolster1 }}</span>
                 <button type="button" class="order-btn" (click)="sortType('bolsterTooling1', !orderType, 9)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 9 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 9 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -383,10 +383,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.bolster2 }}</span>
                 <button type="button" class="order-btn" (click)="sortType('bolsterTooling2', !orderType, 10)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 10 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 10 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -412,10 +412,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.dieHolder }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dieHolder', !orderType, 11)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 11 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 11 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -441,10 +441,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.container }}</span>
                 <button type="button" class="order-btn" (click)="sortType('container', !orderType, 12)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 12 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 12 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -469,10 +469,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.noteRequest }}</span>
                 <button type="button" class="order-btn" (click)="sortType('notes', !orderType, 13)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 13 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 13 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -509,10 +509,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.client }}</span>
                 <button type="button" class="order-btn" (click)="sortType('clientName', !orderType, 14)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 14 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 14 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -539,10 +539,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.orderDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateOrder', !orderType, 15)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 15 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 15 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -567,10 +567,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.price }}</span>
                 <button type="button" class="order-btn" (click)="sortType('price', !orderType, 18)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 18 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 18 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -596,10 +596,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.invoicePrice }}</span>
                 <button type="button" class="order-btn" (click)="sortType('price_Inv', !orderType, 19)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 19 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 19 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -626,10 +626,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.confirmationDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateConfirmation', !orderType, 20)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 20 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 20 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -656,10 +656,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.dispatchedDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateExpedition', !orderType, 21)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 21 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 21 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -680,10 +680,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.usedPieces }}</span>
                 <button type="button" class="order-btn" (click)="sortType('countInUse', !orderType, 26)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 26 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 26 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -734,10 +734,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.scrapDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateScrapped', !orderType, 50)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 50 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 50 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -763,10 +763,10 @@
                 </div>
                 <span class="th-header">{{ translateSnackBar.channels }}</span>
                 <button type="button" class="order-btn" (click)="sortType('channels', !orderType, 22)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 22 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 22 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -779,10 +779,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.plaseSklad }}</span>
                 <button type="button" class="order-btn" (click)="sortType('placeSklad', !orderType, 80)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 80 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 80 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -795,10 +795,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
                 <button type="button" class="order-btn" (click)="sortType('lastTransaction', !orderType, 77)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 77 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 77 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -811,10 +811,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.gr }}</span>
                 <button type="button" class="order-btn" (click)="sortType('gr', !orderType, 38)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 38 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 38 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -835,10 +835,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.production }}</span>
                 <button type="button" class="order-btn" (click)="sortType('productivity', !orderType, 39)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 39 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 39 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -859,10 +859,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.markedForTestDateTime }}</span>
                 <button type="button" class="order-btn" (click)="sortType('markedForTestDateTime', !orderType, 60)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn == 60 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn == 60 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
