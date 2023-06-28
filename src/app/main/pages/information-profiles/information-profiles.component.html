@@ -54,6 +54,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.profileName }}</span>
+                <button type="button" class="order-btn" (click)="sortType('profileName', !orderType, 0)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.profileName}}</td>
             </ng-container>
@@ -75,6 +83,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.groupCode }}</span>
+                <button type="button" class="order-btn" (click)="sortType('groupCode', !orderType, 1)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.groupCode}}</td>
             </ng-container>
@@ -96,6 +112,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.section }}</span>
+                <button type="button" class="order-btn" (click)="sortType('section', !orderType, 2)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.section}}</td>
             </ng-container>
@@ -117,6 +141,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.perimeter }}</span>
+                <button type="button" class="order-btn" (click)="sortType('perimeter', !orderType, 3)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.perimeter}}</td>
             </ng-container>
@@ -137,6 +169,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.grM }}</span>
+                <button type="button" class="order-btn" (click)="sortType('grM', !orderType, 4)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.grM}}</td>
             </ng-container>
@@ -158,6 +198,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.primaryPress }}</span>
+                <button type="button" class="order-btn" (click)="sortType('primaryPress', !orderType, 5)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.primaryPress}}</td>
             </ng-container>
@@ -179,6 +227,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.alternativePress }}</span>
+                <button type="button" class="order-btn" (click)="sortType('alternativePress', !orderType, 6)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.alternativePress}}</td>
             </ng-container>
@@ -199,6 +255,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.size1 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('size1', !orderType, 7)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.size1}}</td>
             </ng-container>
@@ -219,6 +283,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.size2 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('size2', !orderType, 8)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.size2}}</td>
             </ng-container>
@@ -239,6 +311,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.size3 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('size3', !orderType, 9)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.size3}}</td>
             </ng-container>
@@ -259,6 +339,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.size4 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('size4', !orderType, 10)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.size4}}</td>
             </ng-container>
@@ -279,6 +367,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.usage }}</span>
+                <button type="button" class="order-btn" (click)="sortType('usage', !orderType, 11)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.usage}}</td>
             </ng-container>
@@ -300,6 +396,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.extrusionSpeed }}</span>
+                <button type="button" class="order-btn" (click)="sortType('extrusionSpeed', !orderType, 12)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.extrusionSpeed}}</td>
             </ng-container>
@@ -321,6 +425,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.extrusionSpeedSms }}</span>
+                <button type="button" class="order-btn" (click)="sortType('extrusionSpeedSms', !orderType, 13)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.extrusionSpeedSms}}</td>
             </ng-container>
@@ -342,6 +454,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.opPerf }}</span>
+                <button type="button" class="order-btn" (click)="sortType('opPerf', !orderType, 14)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.opPerf}}</td>
             </ng-container>
@@ -363,6 +483,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.tbillet }}</span>
+                <button type="button" class="order-btn" (click)="sortType('tbillet', !orderType, 15)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.tbillet}}</td>
             </ng-container>
@@ -383,6 +511,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.tExit }}</span>
+                <button type="button" class="order-btn" (click)="sortType('tExit', !orderType, 16)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.tExit}}</td>
             </ng-container>
@@ -404,6 +540,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.puller }}</span>
+                <button type="button" class="order-btn" (click)="sortType('puller', !orderType, 17)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.puller}}</td>
             </ng-container>
@@ -425,6 +569,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.scrapStart }}</span>
+                <button type="button" class="order-btn" (click)="sortType('scrapStart', !orderType, 18)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.scrapStart}}</td>
             </ng-container>
@@ -446,6 +598,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.scrapStartSms }}</span>
+                <button type="button" class="order-btn" (click)="sortType('scrapStartSms', !orderType, 19)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.scrapStartSms}}</td>
             </ng-container>
@@ -467,6 +627,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.scrapEnd }}</span>
+                <button type="button" class="order-btn" (click)="sortType('scrapEnd', !orderType, 20)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.scrapEnd}}</td>
             </ng-container>
@@ -488,6 +656,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.cooling }}</span>
+                <button type="button" class="order-btn" (click)="sortType('cooling', !orderType, 21)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.cooling}}</td>
             </ng-container>
@@ -509,6 +685,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.coolingSms }}</span>
+                <button type="button" class="order-btn" (click)="sortType('coolingSms', !orderType, 22)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.coolingSms}}</td>
             </ng-container>
@@ -530,6 +714,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.coolingAdd }}</span>
+                <button type="button" class="order-btn" (click)="sortType('coolingAdd', !orderType, 23)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.coolingAdd}}</td>
             </ng-container>
@@ -551,6 +743,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.basketOrdering }}</span>
+                <button type="button" class="order-btn" (click)="sortType('basketOrdering', !orderType, 24)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.basketOrdering}}</td>
             </ng-container>
@@ -572,6 +772,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.notesExtrusion }}</span>
+                <button type="button" class="order-btn" (click)="sortType('notesExtrusion', !orderType, 25)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.notesExtrusion}}</td>
             </ng-container>
@@ -593,6 +801,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.important }}</span>
+                <button type="button" class="order-btn" (click)="sortType('important', !orderType, 26)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.important}}</td>
             </ng-container>

@@ -15,8 +15,8 @@ export class MatrixService {
 
   ////////////////// PAGE
 
-  getInformationMatrix(offset:number, limit:any, status:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, CorrectorName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, DateOrder:string, Price:string, PriceInv:string, DateConfirmation:string, DateExpedition:string, DateScrapped:string, Channels:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${status}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&CorrectorName=${CorrectorName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&DateOrder=${DateOrder}&Price=${Price}&PriceInv=${PriceInv}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&Channels=${Channels}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}`);
+  getInformationMatrix(offset:number, limit:any, status:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, CorrectorName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, DateOrder:string, Price:string, PriceInv:string, DateConfirmation:string, DateExpedition:string, DateScrapped:string, Channels:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string, orderType: any, orderBy: any) {
+    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${status}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&CorrectorName=${CorrectorName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&DateOrder=${DateOrder}&Price=${Price}&PriceInv=${PriceInv}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&Channels=${Channels}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
   getStatedMatrix(offset:number, limt:any, search:any) {
@@ -67,8 +67,8 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
 
-  getStatusFilters(url: string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies/all/${url}`);
+  getStatusFilters(url: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, CorrectorName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, DateOrder:string, Price:string, PriceInv:string, DateConfirmation:string, DateExpedition:string, DateScrapped:string, Channels:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&CorrectorName=${CorrectorName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&DateOrder=${DateOrder}&Price=${Price}&PriceInv=${PriceInv}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&Channels=${Channels}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}`);        // TUKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkk
   }
 
   getNitrificationMatrix(offset: number, limit: number, DieId: string, PrimaryResourceName: string, Channels: string, substatus: string) {
@@ -197,8 +197,8 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}DieMovement/statistic?ComputerName=${ComputerName}&ResourceInName=${ResourceInName}&ResourceOutName=${ResourceOutName}&year=${year}&month=${month}`);
   }
 
-  getFilters(url: string) {
-    return this._http.get<any>(`${environment.apiUrl}${url}`);
+  getFilters(url: string, computerName:string, resourceInName:string, resourceOutName:string, year:string, month:string) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/all/params/${url}?ComputerName=${computerName}&ResourceInName=${resourceInName}&ResourceOutName=${resourceOutName}&year=${year}&month=${month}`);
   }
 
   getChartYear(year:string) {

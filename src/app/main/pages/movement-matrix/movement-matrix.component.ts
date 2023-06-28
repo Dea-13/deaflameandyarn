@@ -104,8 +104,12 @@ export class MovementMatrixComponent implements OnInit {
   // public apexRadialChart: Partial<ChartOptions2>;
   displayedColumns: string[] = ['computerName', 'resourceInName', 'resourceOutName', 'count'];
   public urls = [
-    { id: 0, name: 'DieMovement/all/computername' },
-    { id: 1, name: 'Resource/all/resourcename' },
+    { id: 0, name: 'computername' },
+    { id: 1, name: 'resourcename' },
+  ];
+  public urlsFilter = [
+    { id: 0, name: 'computerName' },
+    { id: 1, name: 'resourceOutName' }
   ];
   public rows: Array<any> = [];
   //for pagination
@@ -326,7 +330,7 @@ export class MovementMatrixComponent implements OnInit {
   ngOnInit(): void {
     this.getRequest();
     this.getTotals();
-    this.getFilters();
+    this.getFilters(2);
   }
 
   showDiagram() {
@@ -402,16 +406,25 @@ export class MovementMatrixComponent implements OnInit {
     return uniqueArray;
   }
 
-  getFilters() {
+  getFilters(ind) {    
     this.loading = true;
-    for (let i = 0; i < this.urls.length; i++) {
-      this.matrixService.getFilters(this.urls[i].name).subscribe((data) => {
-        switch (this.urls[i].id) {
-          case 0: { this.computerNameArr = data; } break;
-          case 1: { this.resourceInArr = data; this.resourceOutArr = data; } break;
-        }
-        this.loading = false;
-      });
+    let count = 0; 
+    
+    for (let i = 0; i < this.urlsFilter.length; i++) {
+      if(ind != this.urlsFilter[i].id){
+        this.matrixService.getFilters(this.urls[i].name, this.computerName, this.resourceInName, this.resourceOutName, this.year, this.month).subscribe((data) => {          
+          if(ind != this.urlsFilter[i].id){
+            switch (this.urlsFilter[i].id) {
+              case 0: { this.computerNameArr = data; } break;
+              case 1: { this.resourceInArr = data; this.resourceOutArr = data; } break;
+            }
+          }
+          count++;          
+        });
+      }
+    }    
+    if(count == 2){
+      this.loading = false;
     }
   }
 

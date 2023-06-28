@@ -97,7 +97,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="computerName"
-                      (ngModelChange)="getRequest()">
+                      (ngModelChange)="getFilters(0)">
                       <ng-option *ngFor="let t of computerNameArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
@@ -145,7 +145,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceOutName"
-                      (ngModelChange)="getRequest()">
+                      (ngModelChange)="getFilters(1)">
                       <ng-option *ngFor="let t of resourceOutArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>

@@ -48,6 +48,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.erpItem }}</span>
+                <button type="button" class="order-btn" (click)="sortType('erpitem', !orderType, 0)">
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.erpitem}}</td>
             </ng-container>
@@ -69,6 +77,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.erpVariant }}</span>
+                <button type="button" class="order-btn" (click)="sortType('erpvariant', !orderType, 1)">
+                  <div [ngStyle]="{'display': indColumn == 1 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 1 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.erpvariant}}</td>
             </ng-container>
@@ -90,6 +106,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.opNo }}</span>
+                <button type="button" class="order-btn" (click)="sortType('opNo', !orderType, 2)">
+                  <div [ngStyle]="{'display': indColumn == 2 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 2 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.opNo}}</td>
             </ng-container>
@@ -111,6 +135,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.cnc1 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('cnc1Id', !orderType, 3)">
+                  <div [ngStyle]="{'display': indColumn == 3 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 3 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.cnc1Id}}</td>
             </ng-container>
@@ -132,6 +164,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.cnc2 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('cnc2Id', !orderType, 4)">
+                  <div [ngStyle]="{'display': indColumn == 4 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 4 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.cnc2Id}}</td>
             </ng-container>
@@ -153,6 +193,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.subContractor1 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('subContractor1Id', !orderType, 5)">
+                  <div [ngStyle]="{'display': indColumn == 5 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 5 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.subContractor1Id}}</td>
             </ng-container>
@@ -173,6 +221,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.punching1 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('punching1', !orderType, 6)">
+                  <div [ngStyle]="{'display': indColumn == 6 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 6 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.punching1}}</td>
             </ng-container>
@@ -194,6 +250,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.punching2 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('punching2', !orderType, 7)">
+                  <div [ngStyle]="{'display': indColumn == 7 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 7 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.punching2}}</td>
             </ng-container>
@@ -215,6 +279,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.garda3 }}</span>
+                <button type="button" class="order-btn" (click)="sortType('garda3', !orderType, 8)">
+                  <div [ngStyle]="{'display': indColumn == 8 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 8 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.garda3}}</td>
             </ng-container>
@@ -236,6 +308,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.minutesPerPiece }}</span>
+                <button type="button" class="order-btn" (click)="sortType('minutesPerPiece', !orderType, 9)">
+                  <div [ngStyle]="{'display': indColumn == 9 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 9 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.minutesPerPiece}}</td>
             </ng-container>
@@ -257,6 +337,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.weightPerPiece }}</span>
+                <button type="button" class="order-btn" (click)="sortType('weightPerPiece', !orderType, 10)">
+                  <div [ngStyle]="{'display': indColumn == 10 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 10 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.weightPerPiece}}</td>
             </ng-container>
@@ -278,6 +366,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.lprkr }}</span>
+                <button type="button" class="order-btn" (click)="sortType('lprkr', !orderType, 11)">
+                  <div [ngStyle]="{'display': indColumn == 11 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 11 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lprkr}}</td>
             </ng-container>
@@ -298,6 +394,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.lobr }}</span>
+                <button type="button" class="order-btn" (click)="sortType('lobr', !orderType, 12)">
+                  <div [ngStyle]="{'display': indColumn == 12 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 12 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lobr}}</td>
             </ng-container>
@@ -319,6 +423,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.npr }}</span>
+                <button type="button" class="order-btn" (click)="sortType('npr', !orderType, 13)">
+                  <div [ngStyle]="{'display': indColumn == 13 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 13 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.npr}}</td>
             </ng-container>
@@ -340,6 +452,14 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.setupSameProfile }}</span>
+                <button type="button" class="order-btn" (click)="sortType('setupSameProfile', !orderType, 14)">
+                  <div [ngStyle]="{'display': indColumn == 14 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 14 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.setupSameProfile}}</td>
             </ng-container>
@@ -360,9 +480,45 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.setupOtherProfile }}</span>
+                <button type="button" class="order-btn" (click)="sortType('setupOtherProfile', !orderType, 15)">
+                  <div [ngStyle]="{'display': indColumn == 15 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 15 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.setupOtherProfile}}</td>
             </ng-container>
+
+            <!-- <ng-container matColumnDef="FinalTreatment">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body">
+                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
+                    rippleEffect>
+                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
+                  </button>
+                  <mat-menu #menuFilter="matMenu">
+                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="FinalTreatment" (ngModelChange)="pageChanged(1)">
+                      <ng-option *ngFor="let t of FinalTreatment" [value]="t.FinalTreatment">{{ t.FinalTreatment }}
+                      </ng-option>
+                    </ng-select>
+                  </mat-menu>
+                </div>
+                <span class="th-header">{{ translateSnackBar.FinalTreatment }}</span>
+                <button type="button" class="order-btn" (click)="sortType('FinalTreatment', !orderType, 16)">
+                  <div [ngStyle]="{'display': indColumn == 16 ? 'flex' : 'none' }">
+                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
+                  </div>
+                  <div [ngStyle]="{'display': indColumn == 16 ? 'none' : 'flex' }">
+                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
+                  </div>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.FinalTreatment}}</td>
+            </ng-container> -->
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row (click)="modalProducts(row)" *matRowDef="let row; columns: displayedColumns;"></tr>

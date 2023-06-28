@@ -74,6 +74,36 @@ export class InformationProfilesComponent implements OnInit {
     { id: 26, name: 'important/true' },
   ];
 
+  public urlsFilters = [
+    { id: 0, name: 'profilename' },
+    { id: 1, name: 'groupcode' },
+    { id: 2, name: 'section' },
+    { id: 3, name: 'perimeter' },
+    { id: 4, name: 'grm' },
+    { id: 5, name: 'primarypress' },
+    { id: 6, name: 'alternativepress' },
+    { id: 7, name: 'size1' },
+    { id: 8, name: 'size2' },
+    { id: 9, name: 'size3' },
+    { id: 10, name: 'size4' },
+    { id: 11, name: 'usage' },
+    { id: 12, name: 'extrusionspeed' },
+    { id: 13, name: 'extrusionspeedsms' },
+    { id: 14, name: 'opperf' },
+    { id: 15, name: 'tbillet' },
+    { id: 16, name: 'texit' },
+    { id: 17, name: 'puller' },
+    { id: 18, name: 'scrapstart' },
+    { id: 19, name: 'scrapstartsms' },
+    { id: 20, name: 'scrapend' },
+    { id: 21, name: 'cooling' },
+    { id: 22, name: 'coolingsms' },
+    { id: 23, name: 'coolingadd' },
+    { id: 24, name: 'basketordering' },
+    { id: 25, name: 'notesextrusion' },
+    { id: 26, name: 'important' },
+  ];
+
   public rows = [{}];
   public profileNameArr: Array<any> = [];
   public groupCodeArr: Array<any> = [];
@@ -131,6 +161,11 @@ export class InformationProfilesComponent implements OnInit {
   public selNotesExtrusion: string = '';
   public selImportant: string = '';
   public selInUse: string = '';
+
+  public indColumn: any;
+  public orderBy: number = 0;
+  public orderType: number = 1; 
+
 
   //for pagination
   public cPage: number = 1;
@@ -190,7 +225,9 @@ export class InformationProfilesComponent implements OnInit {
         this.selBasketOrdering,
         this.selNotesExtrusion,
         this.selImportant,
-        this.selInUse
+        this.selInUse,
+        this.orderType,
+        this.orderBy
       )
       .subscribe((data) => {
         this.rows = data.list;
@@ -201,9 +238,12 @@ export class InformationProfilesComponent implements OnInit {
 
   getFilters() {
     this.loading = true;
-    for (let i = 0; i < this.urls.length; i++) {
-      this.profilesService.getFilters(this.urls[i].name).subscribe((data) => {
-        switch (this.urls[i].id) {
+    for (let i = 0; i < this.urlsFilters.length; i++) {
+      this.profilesService.getFilters(this.urlsFilters[i].name, this.selProfileName, this.selGroupCode, this.selSection, this.selPerimeter, this.selGrM, this.selPrimaryPress, this.selAlternativePress, this.selSize1, this.selSize2, this.selSize3, 
+        this.selSize4, this.selUsage, this.selExtrusionSpeed, this.selExtrusionSpeedSms, this.selOpPerf, this.selTbillet, this.selTExit, this.selPuller, this.selScrapStart, this.selScrapStartSms,
+        this.selScrapEnd, this.selCooling, this.selCoolingSms, this.selCoolingAdd, this.selBasketOrdering, this.selNotesExtrusion, this.selImportant, this.selInUse
+        ).subscribe((data) => {
+        switch (this.urlsFilters[i].id) {
           case 0:
             {
               this.profileNameArr = data;
@@ -395,5 +435,18 @@ export class InformationProfilesComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  sortType(column, orderType, ind) {
+    console.log('sortType', column, orderType)
+    this.loading = true;
+    this.indColumn = ind;
+    this.orderBy = ind;
+    if (orderType == true) {
+      this.orderType = 1;
+    } else {
+      this.orderType = 0;
+    }
+    this.getRequest();
   }
 }

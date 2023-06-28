@@ -64,6 +64,10 @@ export class StatedComponent implements OnInit {
   public selChannels: string = '';
   public lastModified: string = '';
   public grM: string = '';
+  public indColumn: any;
+  public orderBy: number = 0;
+  public orderType: number = 1; 
+
 
   //for pagination
   public cPage: number = 1;
@@ -162,28 +166,28 @@ export class StatedComponent implements OnInit {
       ];
     }
     this.urls = [
-      { id: 0, name: 'DieId/' + this.statusId },
-      { id: 1, name: 'ProfileId/' + this.statusId },
-      { id: 2, name: 'PrimaryResourceName' },
-      { id: 3, name: 'ProducerName' },
-      { id: 4, name: 'CorrectorName' },
-      { id: 5, name: 'Diameter/' + this.statusId },
-      { id: 6, name: 'Thickness/' + this.statusId },
-      { id: 7, name: 'Alloy/' + this.statusId },
-      { id: 8, name: 'Temper/' + this.statusId },
-      { id: 9, name: 'BolsterTooling1/' + this.statusId },
-      { id: 10, name: 'BolsterTooling2/' + this.statusId },
-      { id: 11, name: 'DieHolder/' + this.statusId },
-      { id: 12, name: 'Container/' + this.statusId },
-      { id: 13, name: 'Notes/' + this.statusId },
-      { id: 14, name: 'ClientName/' + this.statusId },
-      { id: 15, name: 'DateOrder/' + this.statusId },
-      { id: 16, name: 'Price/' + this.statusId },
-      { id: 17, name: 'PriceInv/' + this.statusId },
+      { id: 0, name: 'DieId?' + this.statusId },
+      { id: 1, name: 'ProfileId?' + this.statusId },
+      { id: 2, name: 'PrimaryResourceName?' },
+      { id: 3, name: 'ProducerName?' },
+      { id: 4, name: 'CorrectorName?' },
+      { id: 5, name: 'Diameter?' + this.statusId },
+      { id: 6, name: 'Thickness?' + this.statusId },
+      { id: 7, name: 'Alloy?' + this.statusId },
+      { id: 8, name: 'Temper?' + this.statusId },
+      { id: 9, name: 'BolsterTooling1?' + this.statusId },
+      { id: 10, name: 'BolsterTooling2?' + this.statusId },
+      { id: 11, name: 'DieHolder?' + this.statusId },
+      { id: 12, name: 'Container?' + this.statusId },
+      { id: 13, name: 'Notes?' + this.statusId },
+      { id: 14, name: 'ClientName?' + this.statusId },
+      { id: 15, name: 'DateOrder?' + this.statusId },
+      { id: 16, name: 'Price?' + this.statusId },
+      { id: 17, name: 'PriceInv?' + this.statusId },
       { id: 18, name: 'DateConfirmation/' + this.statusId },
       { id: 19, name: 'DateExpedition/' + this.statusId },
       { id: 20, name: 'DateScrapped/' + this.statusId },
-      { id: 21, name: 'Channels/' + this.statusId },
+      { id: 21, name: 'Channels?' + this.statusId },
       { id: 22, name: 'bmwinventorynumber' },
       { id: 23, name: 'dieliveqty' },
     ];
@@ -231,7 +235,9 @@ export class StatedComponent implements OnInit {
         this.grM,
         this.lastModified,
         this.bmwinventorynumber,
-        this.dieLiveQty
+        this.dieLiveQty,
+        this.orderType,
+        this.orderType
       )
       .subscribe((data) => {
         this.rows = data.list;
@@ -243,7 +249,7 @@ export class StatedComponent implements OnInit {
   getFilters() {
     this.loading = true;
     for (let i = 0; i < this.urls.length; i++) {
-      this.matrixService.getStatusFilters(this.urls[i].name).subscribe((data) => {
+      this.matrixService.getStatusFilters(this.urls[i].name, this.statusId, this.seldie, this.selProfileId, this.selPrimeResourceName, this.selProducerName, this.selCorrector, this.selDiameter, this.selThickness, this.selAlloy, this.selTemper, this.selBolster1, this.selBolster2, this.selDieHolder, this.selContainer, this.selNotes, this.selClientName, this.selDateOrder, this.selPrice, this.selPriceInv, this.selDateConfirm, this.selDateExped, this.selDateScrapped, this.selChannels, this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty).subscribe((data) => {
         switch (this.urls[i].id) {
           case 0: { this.dieArr = data; }
             break;
@@ -355,5 +361,18 @@ export class StatedComponent implements OnInit {
       }
       this.getFilters();
     });
+  }
+
+  sortType(column, orderType, ind) {
+    console.log('sortType', column, orderType)
+    this.loading = true;
+    this.indColumn = ind;
+    this.orderBy = ind;
+    if (orderType == true) {
+      this.orderType = 1;
+    } else {
+      this.orderType = 0;
+    }
+    this.getRequest();
   }
 }

@@ -14,6 +14,9 @@ export class ProductsComponent implements OnInit {
   // Public
   displayedColumns: string[] = ['erpitem', 'erpvariant', 'opNo', 'cnc1Id', 'cnc2Id', 'subContractor1Id', 'punching1', 'punching2', 'garda3', 'minutesPerPiece', 'weightPerPiece', 'lprkr', 'lobr', 'npr', 'setupSameProfile', 'setupOtherProfile' ];
   public rows = [];
+  public indColumn: any;
+  public orderBy: number = 0;
+  public orderType: number = 1; 
   //for pagination
   public cPage: number = 1;
   public limit: number = 15;
@@ -118,6 +121,8 @@ export class ProductsComponent implements OnInit {
         this.npr,
         this.setupSameProfile,
         this.setupOtherProfile,
+        this.orderType,
+        this.orderType
       )
       .subscribe((data) => {
         this.rows = data.list;
@@ -129,7 +134,7 @@ export class ProductsComponent implements OnInit {
   getFilters() {
     this.loading = true;
     for (let i = 0; i < this.urls.length; i++) {
-      this.profileService.getProductFilters(this.urls[i].name).subscribe((data) => {
+      this.profileService.getProductFilters(this.urls[i].name, this.erpitem, this.erpvariant, this.opNo, this.cNC1, this.cNC2, this.subContractor1, this.punching1, this.punching2, this.garda3, this.minutesPerPiece, this.weightPerPiece, this.lprkr, this.lobr, this.npr, this.setupSameProfile, this.setupOtherProfile).subscribe((data) => {
         switch (this.urls[i].id) {
           case 0: { this.erpitemArr = data; }
             break;
@@ -185,5 +190,18 @@ export class ProductsComponent implements OnInit {
         this.getRequest();
       }
     });
+  }
+
+  sortType(column, orderType, ind) {
+    console.log('sortType', column, orderType, ind)
+    this.loading = true;
+    this.indColumn = ind;
+    this.orderBy = ind;
+    if (orderType == true) {
+      this.orderType = 1;
+    } else {
+      this.orderType = 0;
+    }
+    this.getRequest();
   }
 }
