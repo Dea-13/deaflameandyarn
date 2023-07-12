@@ -4,6 +4,14 @@
       <div class="card">
         <div class="row">
           <div class="col-md-3 col-12">
+                <div class="d-flex align-items-center m-1">
+                  <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
+                  <span class="pt-line-3">|</span>
+                  <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
+                  <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                </div>
+          </div>
+          <div class="col-md-3 col-12">
             <div class="d-flex justify-content-between align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.year }}</label>
               <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"

@@ -12,6 +12,7 @@ export class ProductivityNitrificationPageComponent implements OnInit {
   public displayedColumns: string[] = ['dieId', 'channels', 'status', 'currentResource', 'totalKgProduced', 'countUsages', 'lastAnodizingDate', 'kGtoNextAnodizing', 'kgAfterLastAnodizing'];
   public urls = [];
   public rows = [{}];
+  public size = 13;
 
   //for pagination
   public cPage: number = 1;
@@ -100,5 +101,14 @@ export class ProductivityNitrificationPageComponent implements OnInit {
     this.offset = this.limit * (this.cPage - 1);
     this.getRequest();
   }
-
+  
+  clarAll() {
+    this.offset = 0,
+    this.limit = 15, 
+    this.dieId = '';
+    this.primaryResourceName = '';
+    this.channels = '';
+    this.substatus = '';
+    this.getRequest();
+  }
 }

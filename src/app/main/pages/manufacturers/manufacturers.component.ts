@@ -15,6 +15,7 @@ export class ManufacturersComponent implements OnInit {
   // Public
   displayedColumns: string[] = ['name', 'email', 'defaultShipmentTerms', 'star'];
   public rows = [];
+  public size = 13;
   //for pagination
   public cPage: number = 1;
   public limit: number = 15;
@@ -115,5 +116,12 @@ export class ManufacturersComponent implements OnInit {
         this.getRequest();
       }
     );
+  }
+
+  clarAll() {
+    this.offset = 0,
+    this.limit = 15,
+    this.selName = '';
+    this.getRequest();
   }
 }

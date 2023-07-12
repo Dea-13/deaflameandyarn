@@ -389,6 +389,7 @@ export const locale = {
       bmwinventorynumber: 'BMW inventory №',
       dieLiveQty: 'Die life',
       maskProfile: 'Please fill out profile correctly!',
+      clearAll: 'Clear All Filters',
     }
   }
 }

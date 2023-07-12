@@ -52,6 +52,7 @@ export class NewProfileModalComponent implements OnInit {
   public validation: boolean;
   public disableTab: boolean = true;
   public profileId: number;
+  fullScr: boolean = false;
 
 
   constructor(
@@ -111,6 +112,11 @@ export class NewProfileModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   //---------------------------------------------------------SECTION PROFILES----------------------------------------------

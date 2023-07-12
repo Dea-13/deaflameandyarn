@@ -50,6 +50,7 @@ export class DetailsDieModalComponent implements OnInit {
   emptyDataHeader: boolean = false;
   headerInfo: any = {};
   header: Array<any> = [];
+  fullScr: boolean = false;
 
   constructor(
     private toastrService: ToastrService,
@@ -69,6 +70,11 @@ export class DetailsDieModalComponent implements OnInit {
     this.getImage();
     this.getMovements();
     this.getHeaderDetails();
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   getExtrusion() {

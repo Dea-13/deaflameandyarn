@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   // Public
   displayedColumns: string[] = ['erpitem', 'erpvariant', 'opNo', 'cnc1Id', 'cnc2Id', 'subContractor1Id', 'punching1', 'punching2', 'garda3', 'minutesPerPiece', 'weightPerPiece', 'lprkr', 'lobr', 'npr', 'setupSameProfile', 'setupOtherProfile' ];
   public rows = [];
+  public size = 13;
   public indColumn: any;
   public orderBy: number = 0;
   public orderType: number = 1; 
@@ -122,7 +123,7 @@ export class ProductsComponent implements OnInit {
         this.setupSameProfile,
         this.setupOtherProfile,
         this.orderType,
-        this.orderType
+        this.orderBy
       )
       .subscribe((data) => {
         this.rows = data.list;
@@ -202,6 +203,29 @@ export class ProductsComponent implements OnInit {
     } else {
       this.orderType = 0;
     }
+    this.getRequest();
+  }
+  clarAll() {
+    this.offset = 0,
+    this.limit = 15,
+    this.erpitem = '';
+    this.erpvariant = '';
+    this.opNo = '';
+    this.cNC1 = '';
+    this.cNC2 = '';
+    this.subContractor1 = '';
+    this.punching1 = '';
+    this.punching2 = '';
+    this.garda3 = '';
+    this.minutesPerPiece = '';
+    this.weightPerPiece = '';
+    this.lprkr = '';
+    this.lobr = '';
+    this.npr = '';
+    this.setupSameProfile = '';
+    this.setupOtherProfile = '';
+    this.orderType = 1;
+    this.orderBy = 0;
     this.getRequest();
   }
 }

@@ -4,7 +4,11 @@
       <div class="card">
         <div class="row">
           <div class="col-md-6 col-12">
-            <div class="d-flex justify-content-between align-items-center m-1">
+            <div class="d-flex align-items-center m-1">
+              <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
+              <span class="pt-line-3">|</span>
+              <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
+              <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
                 <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                   <ng-option [value]="10">10</ng-option>
@@ -53,7 +57,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.profileName }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.profileName }}</span>
                 <button type="button" class="order-btn" (click)="sortType('profileName', !orderType, 0)">
                   <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -63,7 +67,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.profileName}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.profileName}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="groupCode">
@@ -82,7 +86,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.groupCode }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.groupCode }}</span>
                 <button type="button" class="order-btn" (click)="sortType('groupCode', !orderType, 1)">
                   <div [ngStyle]="{'display': indColumn == 1 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -92,7 +96,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.groupCode}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.groupCode}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="section">
@@ -111,7 +115,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.section }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.section }}</span>
                 <button type="button" class="order-btn" (click)="sortType('section', !orderType, 2)">
                   <div [ngStyle]="{'display': indColumn == 2 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -121,7 +125,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.section}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.section}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="perimeter">
@@ -140,7 +144,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.perimeter }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.perimeter }}</span>
                 <button type="button" class="order-btn" (click)="sortType('perimeter', !orderType, 3)">
                   <div [ngStyle]="{'display': indColumn == 3 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -150,7 +154,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.perimeter}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.perimeter}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="grM">
@@ -168,7 +172,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.grM }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.grM }}</span>
                 <button type="button" class="order-btn" (click)="sortType('grM', !orderType, 4)">
                   <div [ngStyle]="{'display': indColumn == 4 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -178,7 +182,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.grM}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.grM}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="primaryPress">
@@ -197,7 +201,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.primaryPress }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.primaryPress }}</span>
                 <button type="button" class="order-btn" (click)="sortType('primaryPress', !orderType, 5)">
                   <div [ngStyle]="{'display': indColumn == 5 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -207,11 +211,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.primaryPress}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.primaryPress}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="alternativePress">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -226,7 +230,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.alternativePress }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.alternativePress }}</span>
                 <button type="button" class="order-btn" (click)="sortType('alternativePress', !orderType, 6)">
                   <div [ngStyle]="{'display': indColumn == 6 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -236,7 +240,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.alternativePress}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.alternativePress}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="size1">
@@ -254,7 +258,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.size1 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size1 }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size1', !orderType, 7)">
                   <div [ngStyle]="{'display': indColumn == 7 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -264,7 +268,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.size1}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.size1}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="size2">
@@ -282,7 +286,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.size2 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size2 }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size2', !orderType, 8)">
                   <div [ngStyle]="{'display': indColumn == 8 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -292,7 +296,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.size2}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.size2}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="size3">
@@ -310,7 +314,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.size3 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size3 }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size3', !orderType, 9)">
                   <div [ngStyle]="{'display': indColumn == 9 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -320,7 +324,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.size3}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.size3}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="size4">
@@ -338,7 +342,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.size4 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size4 }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size4', !orderType, 10)">
                   <div [ngStyle]="{'display': indColumn == 10 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -348,7 +352,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.size4}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.size4}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="usage">
@@ -366,7 +370,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.usage }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.usage }}</span>
                 <button type="button" class="order-btn" (click)="sortType('usage', !orderType, 11)">
                   <div [ngStyle]="{'display': indColumn == 11 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -376,11 +380,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.usage}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.usage}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="extrusionSpeed">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -395,7 +399,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.extrusionSpeed }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.extrusionSpeed }}</span>
                 <button type="button" class="order-btn" (click)="sortType('extrusionSpeed', !orderType, 12)">
                   <div [ngStyle]="{'display': indColumn == 12 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -405,11 +409,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.extrusionSpeed}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.extrusionSpeed}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="extrusionSpeedSms">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -424,7 +428,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.extrusionSpeedSms }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.extrusionSpeedSms }}</span>
                 <button type="button" class="order-btn" (click)="sortType('extrusionSpeedSms', !orderType, 13)">
                   <div [ngStyle]="{'display': indColumn == 13 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -434,7 +438,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.extrusionSpeedSms}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.extrusionSpeedSms}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="opPerf">
@@ -453,7 +457,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.opPerf }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.opPerf }}</span>
                 <button type="button" class="order-btn" (click)="sortType('opPerf', !orderType, 14)">
                   <div [ngStyle]="{'display': indColumn == 14 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -463,11 +467,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.opPerf}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.opPerf}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="tbillet">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -482,7 +486,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.tbillet }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tbillet }}</span>
                 <button type="button" class="order-btn" (click)="sortType('tbillet', !orderType, 15)">
                   <div [ngStyle]="{'display': indColumn == 15 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -492,7 +496,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.tbillet}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.tbillet}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="tExit">
@@ -510,7 +514,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.tExit }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tExit }}</span>
                 <button type="button" class="order-btn" (click)="sortType('tExit', !orderType, 16)">
                   <div [ngStyle]="{'display': indColumn == 16 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -520,7 +524,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.tExit}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.tExit}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="puller">
@@ -539,7 +543,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.puller }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.puller }}</span>
                 <button type="button" class="order-btn" (click)="sortType('puller', !orderType, 17)">
                   <div [ngStyle]="{'display': indColumn == 17 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -549,7 +553,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.puller}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.puller}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="scrapStart">
@@ -568,7 +572,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.scrapStart }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapStart }}</span>
                 <button type="button" class="order-btn" (click)="sortType('scrapStart', !orderType, 18)">
                   <div [ngStyle]="{'display': indColumn == 18 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -578,11 +582,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.scrapStart}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.scrapStart}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="scrapStartSms">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -597,7 +601,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.scrapStartSms }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapStartSms }}</span>
                 <button type="button" class="order-btn" (click)="sortType('scrapStartSms', !orderType, 19)">
                   <div [ngStyle]="{'display': indColumn == 19 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -607,7 +611,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.scrapStartSms}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.scrapStartSms}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="scrapEnd">
@@ -626,7 +630,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.scrapEnd }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapEnd }}</span>
                 <button type="button" class="order-btn" (click)="sortType('scrapEnd', !orderType, 20)">
                   <div [ngStyle]="{'display': indColumn == 20 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -636,7 +640,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.scrapEnd}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.scrapEnd}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="cooling">
@@ -655,7 +659,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.cooling }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.cooling }}</span>
                 <button type="button" class="order-btn" (click)="sortType('cooling', !orderType, 21)">
                   <div [ngStyle]="{'display': indColumn == 21 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -665,11 +669,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.cooling}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.cooling}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="coolingSms">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -684,7 +688,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.coolingSms }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingSms }}</span>
                 <button type="button" class="order-btn" (click)="sortType('coolingSms', !orderType, 22)">
                   <div [ngStyle]="{'display': indColumn == 22 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -694,11 +698,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.coolingSms}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.coolingSms}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="coolingAdd">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -713,7 +717,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.coolingAdd }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingAdd }}</span>
                 <button type="button" class="order-btn" (click)="sortType('coolingAdd', !orderType, 23)">
                   <div [ngStyle]="{'display': indColumn == 23 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -723,11 +727,11 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.coolingAdd}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.coolingAdd}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="basketOrdering">
-              <th mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -742,7 +746,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.basketOrdering }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.basketOrdering }}</span>
                 <button type="button" class="order-btn" (click)="sortType('basketOrdering', !orderType, 24)">
                   <div [ngStyle]="{'display': indColumn == 24 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -752,7 +756,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.basketOrdering}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.basketOrdering}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="notesExtrusion">
@@ -771,7 +775,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.notesExtrusion }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.notesExtrusion }}</span>
                 <button type="button" class="order-btn" (click)="sortType('notesExtrusion', !orderType, 25)">
                   <div [ngStyle]="{'display': indColumn == 25 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -781,7 +785,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.notesExtrusion}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.notesExtrusion}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="important">
@@ -800,7 +804,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.important }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.important }}</span>
                 <button type="button" class="order-btn" (click)="sortType('important', !orderType, 26)">
                   <div [ngStyle]="{'display': indColumn == 26 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -810,7 +814,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element">{{element.important}}</td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.important}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="inUse">
@@ -828,7 +832,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.inUse }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.inUse }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
                 <input class="form-control input" [(ngModel)]="element.inUse" type="checkbox">

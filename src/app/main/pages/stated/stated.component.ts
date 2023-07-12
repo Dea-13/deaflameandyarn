@@ -15,6 +15,7 @@ import * as moment from 'moment';
 export class StatedComponent implements OnInit {
   // Public
   displayedColumns: string[] = [];
+  public size = 13;
   public urls = [];
   public rows = [{}];
   public dieArr: Array<any> = [];
@@ -373,6 +374,40 @@ export class StatedComponent implements OnInit {
     } else {
       this.orderType = 0;
     }
+    this.getRequest();
+  }
+
+  clarAll() {
+    this.offset = 0,
+    this.limit = 15,
+    this.seldie = '';
+    this.selProfileId = '';
+    this.selPrimeResourceName = '';
+    this.selProducerName = '';
+    this.selCorrector = '';
+    this.selDiameter = '';
+    this.selThickness = '';
+    this.selAlloy = '';
+    this.selTemper = '';
+    this.selBolster1 = '';
+    this.selBolster2 = '';
+    this.selDieHolder = '';
+    this.selContainer = '';
+    this.selNotes = '';
+    this.selClientName = '';
+    this.selDateOrder = '';
+    this.selPrice = '';
+    this.selPriceInv = '';
+    this.selDateConfirm = '';
+    this.selDateExped = '';
+    this.selDateScrapped = '';
+    this.selChannels = '';
+    this.grM = '';
+    this.lastModified = '';
+    this.bmwinventorynumber = '';
+    this.dieLiveQty = '';
+    this.orderBy = 0,
+    this.orderType = 1;
     this.getRequest();
   }
 }

@@ -102,8 +102,8 @@ export const locale = {
       lprkr: 'Lprkr',
       lobr: 'Lobr',
       npr: 'Npr',
-      setupSameProfile: 'Настройка на същия профил',
-      setupOtherProfile: 'Настройка на друг профил',
+      setupSameProfile: 'Настр. на същия проф.',
+      setupOtherProfile: 'Настр. на друг проф.',
       finalTreatment: 'Окончателно третиране',
       material: 'Материал',
       description: 'Описание',
@@ -389,6 +389,7 @@ export const locale = {
       bmwinventorynumber: 'БМВ инвентарен №',
       dieLiveQty: 'Живот на матрицата',
       maskProfile: 'Моля, попълнете правилно профила!',
+      clearAll: 'Изчистване на всички филтри',
     }
   }
 }

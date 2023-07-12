@@ -82,3 +82,21 @@ input {
 ::ng-deep .modal-dialog {
   width: 500px!important;
 }
+
+.modal-full-screen, .modal-dialog-screen.modal-full-screen{
+  max-height: fit-content!important;
+  height: -webkit-fill-available!important;
+  width: 100%!important;
+  overflow: auto;
+}
+
+.modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
+  max-height: 850px;
+  height: fit-content!important;
+  width: 33rem!important;
+  overflow: auto;
+}
+
+.modal-dialog-screen {
+  width: 33rem!important;
+}

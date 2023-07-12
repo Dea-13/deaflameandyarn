@@ -112,6 +112,7 @@ export class MovementMatrixComponent implements OnInit {
     { id: 1, name: 'resourceOutName' }
   ];
   public rows: Array<any> = [];
+  public size = 13;
   //for pagination
   public languageOptions: any;
   public loading: boolean = false;
@@ -591,5 +592,14 @@ export class MovementMatrixComponent implements OnInit {
         ]
       }
     };
+  }
+
+  clarAll() {
+    this.diagram = 0;
+    this.computerName = ''; 
+    this.resourceInName = '';
+    this.year = '';
+    this.month = '';
+    this.getRequest();
   }
 }

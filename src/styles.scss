@@ -813,3 +813,51 @@ input[type=radio], input[type=checkbox] {
   width: -webkit-fill-available!important;
   font-size: 12px;
 }
+
+.modal-full-screen, .modal-dialog-screen.modal-full-screen{
+  max-height: fit-content!important;
+  height: -webkit-fill-available!important;
+  width: 100%!important;
+  overflow: auto;
+}
+
+.modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
+  max-height: 850px;
+  height: fit-content!important;
+  width: 130rem!important;
+  overflow: auto;
+}
+
+.modal-dialog-screen {
+  width: 130rem!important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  overflow: scroll;
+  max-height: 850px;
+  position: fixed;
+  z-index: 100;
+  max-width: calc(100% - 16px) !important;
+  margin: auto;
+}
+
+.modal.fade .modal-dialog-screen {
+  transition: transform 0.3s ease-out;
+  transform: translate(0, -50px);
+}
+
+.modal-icon-header{
+  margin-top: 3px!important;
+  padding-right: 10px!important;
+  color: #746aee!important;
+  background: transparent !important;
+  border: 0;
+  outline: none;
+}
+
+@media (max-width: 1240px) {
+  .modal-dialog-screen {
+      overflow: scroll !important;
+      overflow-x: hidden !important;
+  }
+}

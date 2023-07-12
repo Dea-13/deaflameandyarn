@@ -231,6 +231,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._router.navigate(['api/machines']);
   }
 
+  hideAdds(){
+    this._coreConfigService.config = {
+      layout: {
+        navbar: {
+          hidden: true
+        },
+        menu: {
+          hidden: true
+        },
+        footer: {
+          hidden: true
+        },
+        customizer: false,
+        enableLocalStorage: false
+      }
+    } 
+  }
+
   /**
    * On destroy
    */

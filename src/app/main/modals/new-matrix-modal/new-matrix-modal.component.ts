@@ -48,6 +48,7 @@ export class NewMatrixModalComponent implements OnInit {
   public isEditableRowsEnd = {};
   public validation: boolean;
   public markedForTestDateTime: any = null;
+  fullScr: boolean = false;
 
   public orderDateOptions = {
     altInput: true,
@@ -170,6 +171,11 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.profile.enable();
       this.createMatrixForm.controls.status.enable();
     }
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   getDieById(){

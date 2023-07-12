@@ -24,6 +24,7 @@ export class FreeAddressComponent implements OnInit {
     { id: 1, name: 'storageplace' },
   ];
   public rows = [];
+  public size = 13;
   public searchValue = '';
   public selectedOption = 10;
   //for pagination
@@ -113,5 +114,13 @@ export class FreeAddressComponent implements OnInit {
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry) {}
     });
+  }
+
+  clarAll() {
+    this.offset = 0,
+    this.limit = 15,
+    this.resourceName = [];
+    this.storagePlace = []; 
+    this.getRequest();
   }
 }

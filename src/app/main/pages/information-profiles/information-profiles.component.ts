@@ -105,6 +105,7 @@ export class InformationProfilesComponent implements OnInit {
   ];
 
   public rows = [{}];
+  public size = 13;
   public profileNameArr: Array<any> = [];
   public groupCodeArr: Array<any> = [];
   public sectionArr: Array<any> = [];
@@ -447,6 +448,42 @@ export class InformationProfilesComponent implements OnInit {
     } else {
       this.orderType = 0;
     }
+    this.getRequest();
+  }
+
+  clarAll() {
+    this.offset = 0,
+    this.limit = 10,
+    this.selProfileName = '';
+    this.selGroupCode = '';
+    this.selSection = '';
+    this.selPerimeter = '';
+    this.selGrM = '';
+    this.selPrimaryPress = '';
+    this.selAlternativePress = '';
+    this.selSize1 = '';
+    this.selSize2 = '';
+    this.selSize3 = '';
+    this.selSize4 = '';
+    this.selUsage = '';
+    this.selExtrusionSpeed = '';
+    this.selExtrusionSpeedSms = '';
+    this.selOpPerf = '';
+    this.selTbillet = '';
+    this.selTExit = '';
+    this.selPuller = '';
+    this.selScrapStart = '';
+    this.selScrapStartSms = '';
+    this.selScrapEnd = '';
+    this.selCooling = '';
+    this.selCoolingSms = '';
+    this.selCoolingAdd = '';
+    this.selBasketOrdering = '';
+    this.selNotesExtrusion = '';
+    this.selImportant = '';
+    this.selInUse = '';
+    this.orderType = 1;
+    this.orderBy = 0;
     this.getRequest();
   }
 }

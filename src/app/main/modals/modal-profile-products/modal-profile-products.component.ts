@@ -20,6 +20,7 @@ export class ModalProfileProductsComponent implements OnInit {
   public loading: boolean = false;
   public product: any;
   public translateSnackBar: any;
+  fullScr: boolean = false;
 
   constructor(
     private productService: ProfilesService,
@@ -77,6 +78,11 @@ export class ModalProfileProductsComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   submitForm() {

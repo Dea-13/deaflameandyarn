@@ -21,6 +21,7 @@ export class NewManufacturersModalComponent implements OnInit {
   public loading: boolean = false;
   public manufacturer: any;
   public translateSnackBar: any;
+  fullScr: boolean = false;
 
   constructor(
     private manufacturersService: ManufacturersService,
@@ -52,6 +53,11 @@ export class NewManufacturersModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   submitForm() {

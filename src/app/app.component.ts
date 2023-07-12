@@ -19,6 +19,7 @@ import { locale as menuEnglish } from './menu/i18n/en';
 import { locale as menuBulgarian } from './menu/i18n/bg';
 import { environment } from '../environments/environment';
 import { ElectronService } from './core/services';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,6 +30,7 @@ import { ElectronService } from './core/services';
 export class AppComponent implements OnInit, OnDestroy {
   coreConfig: any;
   menu: any;
+  hideBtn: boolean;
   defaultLanguage: 'en'; // This language will be used as a fallback when a translation isn't found in the current language
   appLanguage: 'en'; // Set application default language i.e fr
 
@@ -64,6 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   constructor(
     @Inject(DOCUMENT) private document: any,
+    private router: Router,
     private _title: Title,
     private _renderer: Renderer2,
     private _elementRef: ElementRef,
@@ -144,6 +147,15 @@ export class AppComponent implements OnInit, OnDestroy {
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
+      if(JSON.parse(localStorage.getItem('currentUser')) != null){
+        if(JSON.parse(localStorage.getItem('currentUser')) != 'diagram'){
+          this.hideBtn = true;
+        } else {
+          this.hideBtn = false;
+        }
+      } else {
+        this.hideBtn = false;
+      }
 
       // Set application default language.
 
@@ -287,6 +299,32 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Set the application page title
     this._title.setTitle(this.coreConfig.app.appTitle);
+  }
+
+  backToApp(){
+
+    console.log('backToApp: ', JSON.parse(localStorage.getItem('currentUser')));
+    if(JSON.parse(localStorage.getItem('currentUser')) != 'diagram' && JSON.parse(localStorage.getItem('currentUser')) != 'preactor'){
+      this._coreConfigService.config = {
+        layout: {
+          navbar: {
+            hidden: false
+          },
+          menu: {
+            hidden: false
+          },
+          footer: {
+            hidden: false
+          },
+          customizer: true,
+          enableLocalStorage: false
+        }
+      }; 
+    } else {
+      localStorage.clear();
+      this.router.navigate(['/api/login']);
+    }
+    
   }
 
   /**

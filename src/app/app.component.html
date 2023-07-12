@@ -1,3 +1,13 @@
+<ng-container>
+  <div class="backToApp m-1" [ngClass]="{'d-none': (this.coreConfig.layout.navbar.hidden && !hideBtn) || (!this.coreConfig.layout.navbar.hidden && hideBtn)}">
+    <a type="button" (click)="backToApp()">
+      <button class="btn btn-primary p-1" rippleEffect>
+        <span [data-feather]="'chevron-left'" [class]="'ficon'"></span>
+      </button>
+    </a>
+  </div>
+</ng-container>
+
 <!-- vertical-layout -->
 <ng-container *ngIf="coreConfig.layout.type === 'vertical'" style="display: block;">
   <vertical-layout></vertical-layout>
