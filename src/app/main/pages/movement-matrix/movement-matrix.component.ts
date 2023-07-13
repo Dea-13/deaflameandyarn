@@ -595,11 +595,9 @@ export class MovementMatrixComponent implements OnInit {
   }
 
   clarAll() {
-    this.diagram = 0;
     this.computerName = ''; 
     this.resourceInName = '';
-    this.year = '';
-    this.month = '';
+    this.resourceOutName = '';
     this.getRequest();
   }
 }

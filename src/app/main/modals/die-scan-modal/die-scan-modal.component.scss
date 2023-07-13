@@ -86,3 +86,17 @@
 ::ng-deep .width-select {
   z-index: 9999 !important;
 }
+
+.modal-full-screen, .modal-dialog-screen.modal-full-screen{
+  max-height: fit-content!important;
+  height: -webkit-fill-available!important;
+  width: 100%!important;
+  overflow: auto;
+}
+
+.modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
+  max-height: 850px;
+  height: fit-content!important;
+  width: 90rem!important;
+  overflow: auto;
+}

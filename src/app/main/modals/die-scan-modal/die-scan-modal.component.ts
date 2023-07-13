@@ -29,6 +29,7 @@ export class DieScanModalComponent implements OnInit {
   public channelsArr: Array<any> = [];
   public primaryResourceNameArr: Array<any> = [];
   public dieArr: Array<any> = [];
+  fullScr: boolean = false;
 
   constructor(
     private toastrService: ToastrService,
@@ -49,6 +50,11 @@ export class DieScanModalComponent implements OnInit {
     this.getDies();
     this.getChannels();
     this.primaryResource();
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   getBarCode() {
