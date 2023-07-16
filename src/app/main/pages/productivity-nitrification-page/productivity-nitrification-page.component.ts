@@ -70,28 +70,28 @@ export class ProductivityNitrificationPageComponent implements OnInit {
     this.matrixService.getDieID().subscribe((data) => {
       this.arrDies = data;
       console.log(' this.arrDies', this.arrDies);
-      this.loading = false;
+      // this.loading = false;
     });
   }
 
   getChannels() {
     this.matrixService.getChannelsDie().subscribe((data) => {
       this.arrChannels = data;
-      this.loading = false;
+      // this.loading = false;
     });
   }
 
   getStatusDie() {
     this.matrixService.getStatusDie().subscribe((data) => {
       this.arrStatus = data;
-      this.loading = false;
+      // this.loading = false;
     });
   }
 
   getCurrentResource() {
     this.matrixService.getCurrentResource().subscribe((data) => {
       this.arrResource = data;
-      this.loading = false;
+      // this.loading = false;
     });
   }
 
