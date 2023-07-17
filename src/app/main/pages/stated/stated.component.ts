@@ -248,7 +248,7 @@ export class StatedComponent implements OnInit {
   }
 
   getFilters() {
-    this.loading = true;
+    // this.loading = true;
     for (let i = 0; i < this.urls.length; i++) {
       this.matrixService.getStatusFilters(this.urls[i].name, this.statusId, this.seldie, this.selProfileId, this.selPrimeResourceName, this.selProducerName, this.selCorrector, this.selDiameter, this.selThickness, this.selAlloy, this.selTemper, this.selBolster1, this.selBolster2, this.selDieHolder, this.selContainer, this.selNotes, this.selClientName, this.selDateOrder, this.selPrice, this.selPriceInv, this.selDateConfirm, this.selDateExped, this.selDateScrapped, this.selChannels, this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty).subscribe((data) => {
         switch (this.urls[i].id) {
@@ -301,7 +301,7 @@ export class StatedComponent implements OnInit {
           case 23: { this.dieLifeArr = data; }
             break;
         }
-        this.loading = false;
+        // this.loading = false;
       });
     }
   }
