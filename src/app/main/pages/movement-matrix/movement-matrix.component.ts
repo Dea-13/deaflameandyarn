@@ -423,7 +423,8 @@ export class MovementMatrixComponent implements OnInit {
           count++;          
         });
       }
-    }    
+    }
+    this.getRequest();    
     if(count == 2){
       this.loading = false;
     }

@@ -251,6 +251,7 @@ export class StatedComponent implements OnInit {
     // this.loading = true;
     for (let i = 0; i < this.urls.length; i++) {
       this.matrixService.getStatusFilters(this.urls[i].name, this.statusId, this.seldie, this.selProfileId, this.selPrimeResourceName, this.selProducerName, this.selCorrector, this.selDiameter, this.selThickness, this.selAlloy, this.selTemper, this.selBolster1, this.selBolster2, this.selDieHolder, this.selContainer, this.selNotes, this.selClientName, this.selDateOrder, this.selPrice, this.selPriceInv, this.selDateConfirm, this.selDateExped, this.selDateScrapped, this.selChannels, this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty).subscribe((data) => {
+        console.log("neobraboteni danni", data);
         switch (this.urls[i].id) {
           case 0: { this.dieArr = data; }
             break;
@@ -307,6 +308,7 @@ export class StatedComponent implements OnInit {
   }
 
   pageChanged(page: number) {
+    console.log("tova tarsq", this.producerNameArr);
     console.log('event', page);
     this.cPage = page;
     this.offset = this.limit * (this.cPage - 1);
