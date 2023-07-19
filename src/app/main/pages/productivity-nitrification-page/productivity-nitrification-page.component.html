@@ -33,6 +33,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="dieId != ''">{{dieId.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -52,6 +53,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="channels != ''">{{channels.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -71,6 +73,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="substatus != ''">{{substatus.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -91,6 +94,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="primaryResourceName != ''">{{primaryResourceName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">

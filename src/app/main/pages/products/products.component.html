@@ -41,6 +41,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="erpitem != ''">{{erpitem.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -69,6 +70,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="erpvariant != ''">{{erpvariant.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -98,6 +100,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="opNo != ''">{{opNo.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -127,6 +130,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="cNC1 != ''">{{cNC1.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -156,6 +160,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="cNC2 != ''">{{cNC2.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -185,6 +190,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="subContractor1 != ''">{{subContractor1.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -214,6 +220,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="punching1 != ''">{{punching1.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -242,6 +249,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="punching2 != ''">{{punching2.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -271,6 +279,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="garda3 != ''">{{garda3.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -300,6 +309,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="minutesPerPiece != ''">{{minutesPerPiece.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -329,6 +339,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="weightPerPiece != ''">{{weightPerPiece.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -358,6 +369,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="lprkr != ''">{{lprkr.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -387,6 +399,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="lobr != ''">{{lobr.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -415,6 +428,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="npr != ''">{{npr.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -444,6 +458,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="setupSameProfile != ''">{{setupSameProfile.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -473,6 +488,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="setupOtherProfile != ''">{{setupOtherProfile.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">

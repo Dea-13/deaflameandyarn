@@ -855,6 +855,13 @@ input[type=radio], input[type=checkbox] {
   outline: none;
 }
 
+.btn .badge{
+  top: -5px!important;
+  background: #ff9f43;
+  font-size:11px; 
+  padding: 2px;
+}
+
 @media (max-width: 1240px) {
   .modal-dialog-screen {
       overflow: scroll !important;
