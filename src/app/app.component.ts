@@ -30,7 +30,6 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit, OnDestroy {
   coreConfig: any;
   menu: any;
-  hideBtn: boolean;
   defaultLanguage: 'en'; // This language will be used as a fallback when a translation isn't found in the current language
   appLanguage: 'en'; // Set application default language i.e fr
 
@@ -49,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // Private
   private _unsubscribeAll: Subject<any>;
+  url: string;
 
   /**
    * Constructor
@@ -143,19 +143,10 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Init wave effect (Ripple effect)
     Waves.init();
-
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
-      if(JSON.parse(localStorage.getItem('currentUser')) != null){
-        if(JSON.parse(localStorage.getItem('currentUser')) != 'diagram'){
-          this.hideBtn = true;
-        } else {
-          this.hideBtn = false;
-        }
-      } else {
-        this.hideBtn = false;
-      }
+      this.url = this.router.url;
 
       // Set application default language.
 
@@ -319,12 +310,12 @@ export class AppComponent implements OnInit, OnDestroy {
           customizer: true,
           enableLocalStorage: false
         }
-      }; 
+      };
     } else {
       localStorage.clear();
       this.router.navigate(['/api/login']);
     }
-    
+
   }
 
   /**
