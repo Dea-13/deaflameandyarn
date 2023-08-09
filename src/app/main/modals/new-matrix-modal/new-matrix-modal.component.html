@@ -315,7 +315,8 @@
                     <div class="form-group">
                       <mat-form-field (click)="dateOrder.open()">
                         <mat-label>{{ translateSnackBar.dateStated }}</mat-label>
-                        <input matInput formControlName="dateOrder" [matDatepicker]="dateOrder">
+                        <input matInput formControlName="dateOrder" [matDatepicker]="dateOrder" 
+                        [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)}">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateOrder"></mat-datepicker-toggle>
                         <mat-datepicker #dateOrder color="primary"></mat-datepicker>
                       </mat-form-field>
@@ -338,7 +339,8 @@
                     <div class="form-group">
                       <mat-form-field (click)="dateExpedition.open()">
                         <mat-label>{{ translateSnackBar.realExpedition }}</mat-label>
-                        <input matInput formControlName="dateExpedition" [matDatepicker]="dateExpedition">
+                        <input matInput formControlName="dateExpedition" [matDatepicker]="dateExpedition"
+                        [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateExpedition').value && createMatrixForm.get('dateExpedition').value.length === 0 || !createMatrixForm.get('dateExpedition').value)}">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateExpedition"></mat-datepicker-toggle>
                         <mat-datepicker #dateExpedition color="primary"></mat-datepicker>
                       </mat-form-field>
