@@ -862,6 +862,14 @@ input[type=radio], input[type=checkbox] {
   padding: 2px;
 }
 
+.cdk-global-overlay-wrapper, .cdk-overlay-container, .ng-dropdown-panel {
+  z-index: 99999 !important;
+}
+
+mat-label{
+  display: block;
+}
+
 @media (max-width: 1240px) {
   .modal-dialog-screen {
       overflow: scroll !important;

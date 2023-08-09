@@ -313,23 +313,22 @@
                 <div class="col-12 flexed">
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <label for="city-column">{{ translateSnackBar.dateStated }}</label>
-                      <ng2-flatpickr [formControl]="createMatrixForm.controls['dateOrder']" [config]="orderDateOptions"
-                        name="dateOrder" [setDate]="dateOrder" (click)="$event.stopPropagation()"
-                        [ngClass]="{ 'error-date': (submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)}"
-                        #startDateOptions required>
-                      </ng2-flatpickr>
+                      <mat-form-field (click)="dateOrder.open()">
+                        <mat-label>{{ translateSnackBar.dateStated }}</mat-label>
+                        <input matInput formControlName="dateOrder" [matDatepicker]="dateOrder">
+                        <mat-datepicker-toggle matIconSuffix  [for]="dateOrder"></mat-datepicker-toggle>
+                        <mat-datepicker #dateOrder color="primary"></mat-datepicker>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <label for="city-column">{{ translateSnackBar.plannedDelivery }}</label>
-                      <ng2-flatpickr [formControl]="createMatrixForm.controls['dateConfirmation']"
-                        [config]="orderDateOptions" name="dateConfirmation" [setDate]="dateConfirmation"
-                        (click)="$event.stopPropagation()"
-                        [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && (createMatrixForm.get('dateConfirmation').value && createMatrixForm.get('dateConfirmation').value.length === 0 || !createMatrixForm.get('dateConfirmation').value)}"
-                        #startDateOptions required>
-                      </ng2-flatpickr>
+                      <mat-form-field (click)="dateConfirmation.open()">
+                        <mat-label>{{ translateSnackBar.plannedDelivery }}</mat-label>
+                        <input matInput formControlName="dateConfirmation" [matDatepicker]="dateConfirmation">
+                        <mat-datepicker-toggle matIconSuffix  [for]="dateConfirmation"></mat-datepicker-toggle>
+                        <mat-datepicker #dateConfirmation color="primary"></mat-datepicker>
+                      </mat-form-field>
                     </div>
                   </div>
                 </div>
@@ -337,23 +336,22 @@
                 <div class="col-12 flexed">
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <label for="city-column">{{ translateSnackBar.realExpedition }}</label>
-                      <ng2-flatpickr [formControl]="createMatrixForm.controls['dateExpedition']"
-                        [config]="orderDateOptions" name="dateExpedition" [setDate]="dateExpedition"
-                        (click)="$event.stopPropagation()"
-                        [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && (createMatrixForm.get('dateExpedition').value && createMatrixForm.get('dateExpedition').value.length === 0 || !createMatrixForm.get('dateExpedition').value)}"
-                        #startDateOptions required>
-                      </ng2-flatpickr>
+                      <mat-form-field (click)="dateExpedition.open()">
+                        <mat-label>{{ translateSnackBar.realExpedition }}</mat-label>
+                        <input matInput formControlName="dateExpedition" [matDatepicker]="dateExpedition">
+                        <mat-datepicker-toggle matIconSuffix  [for]="dateExpedition"></mat-datepicker-toggle>
+                        <mat-datepicker #dateExpedition color="primary"></mat-datepicker>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <label for="city-column">{{ translateSnackBar.inUseBy }}</label>
-                      <ng2-flatpickr [formControl]="createMatrixForm.controls['inUseFrom']" [config]="orderDateOptions"
-                        name="inUseFrom"
-                        [ngClass]="{ 'error-date': (submitInUse || submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitBrak) && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)}"
-                        [setDate]="inUseFrom" (click)="$event.stopPropagation()" #startDateOptions required>
-                      </ng2-flatpickr>
+                      <mat-form-field (click)="inUseFrom.open()">
+                        <mat-label>{{ translateSnackBar.inUseBy }}</mat-label>
+                        <input matInput formControlName="inUseFrom" [matDatepicker]="inUseFrom">
+                        <mat-datepicker-toggle matIconSuffix  [for]="inUseFrom"></mat-datepicker-toggle>
+                        <mat-datepicker #inUseFrom color="primary"></mat-datepicker>
+                      </mat-form-field>
                     </div>
                   </div>
                 </div>

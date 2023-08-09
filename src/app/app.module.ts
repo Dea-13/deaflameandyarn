@@ -63,6 +63,8 @@ import { ConfirmationExtrusionComponent } from './main/pages/confirmation-extrus
 import { BilletRawMaterialsComponent } from './main/pages/billet-raw-materials/billet-raw-materials.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { TextMaskModule } from 'angular2-text-mask';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 const appRoutes: Routes = [
@@ -270,6 +272,8 @@ const appRoutes: Routes = [
     MatTooltipModule,
     MatTabsModule,
     TextMaskModule,
+    MatDatepickerModule,
+    MatNativeDateModule ,
 
 
     RouterModule.forRoot(appRoutes, {

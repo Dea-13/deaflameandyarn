@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatrixService } from '../../../@core/services/matrix.service';
 import { NewProfileModalComponent } from '../../modals/new-profile-modal/new-profile-modal.component';
 import Swal from 'sweetalert2';
@@ -39,10 +39,10 @@ export class NewMatrixModalComponent implements OnInit {
   public bolster1: Array<any> = [];
   public bolster2: Array<any> = [];
   public language: string;
-  public dateOrder: Array<any> = [];
-  public dateConfirmation: Array<any> = [];
-  public dateExpedition: Array<any> = [];
-  public inUseFrom: Array<any> = [];
+  public dateOrder: any = [];
+  public dateConfirmation: any = [];
+  public dateExpedition: any = [];
+  public inUseFrom: any = [];
   public matrixComplectArr: Array<any> = [];
   public isEditableRowsPress = {};
   public isEditableRowsEnd = {};
@@ -50,12 +50,7 @@ export class NewMatrixModalComponent implements OnInit {
   public markedForTestDateTime: any = null;
   fullScr: boolean = false;
 
-  public orderDateOptions = {
-    altInput: true,
-    mode: 'single',
-    altInputClass: 'form-control flat-picker flatpickr-input invoice-edit-input',
-    enableTime: false
-  };
+
   profilesByPress: Array<any> = [];
   profilesEnds: Array<any> = [];
   alloyArr: Array<any> = [];
@@ -182,10 +177,6 @@ export class NewMatrixModalComponent implements OnInit {
     this.loading = true;
     this.matrixService.getDieById(this.matrixItem.data.id).subscribe((data) => {
       this.matrix = data;
-      this.dateOrder = [this.matrix.dateOrder];
-      this.dateConfirmation =[ this.matrix.dateConfirmation];
-      this.dateExpedition = [this.matrix.dateExpedition];
-      this.inUseFrom = [this.matrix.inUseFrom];
       this.createMatrixForm = this.formBuilder.group({
         profile: this.matrix.profileId,
         matrix: this.matrix.dieId,
@@ -203,10 +194,10 @@ export class NewMatrixModalComponent implements OnInit {
         matrixComplect: this.matrix.matrixComplect,
         bolsterTooling1: this.matrix.bolsterTooling1,
         bolsterTooling2: this.matrix.bolsterTooling2,
-        dateOrder: this.dateOrder,
-        dateConfirmation: this.dateConfirmation,
-        dateExpedition: this.dateExpedition,
-        inUseFrom: this.inUseFrom,
+        dateOrder: this.matrix.dateOrder != null ? new FormControl (new Date(this.matrix.dateOrder)) : null,
+        dateConfirmation: this.matrix.dateConfirmation != null ? new FormControl (new Date(this.matrix.dateConfirmation)) : null,
+        dateExpedition: this.dateExpedition != null ? new FormControl (new Date(this.matrix.dateExpedition)) : null,
+        inUseFrom: this.inUseFrom != null ? new FormControl (new Date(this.matrix.dateExpedition)) : null,
         clientName: this.matrix.clientName,
         producer: this.matrix.producer,
         purchaser: this.matrix.purchaser,
