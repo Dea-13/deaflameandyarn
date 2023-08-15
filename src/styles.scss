@@ -785,6 +785,9 @@ input[type=radio], input[type=checkbox] {
 .error-date, .error-date div{
   border: 1px solid red;
 }
+.error-date-bottom{
+  border-bottom: 1px solid red;
+}
 .main-menu.menu-light .navigation > li > ul li.has-sub > ul > li {
   margin: 0 3px;
 }

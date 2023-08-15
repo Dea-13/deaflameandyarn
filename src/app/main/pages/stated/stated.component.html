@@ -549,10 +549,13 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng2-flatpickr [(ngModel)]="selDateOrder" [config]="orderDateOptions" name="selDateOrder"
-                      [setDate]="selDateOrder" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
-                      #startDateOptions>
-                    </ng2-flatpickr>
+                    <mat-form-field (click)="selDateOrder.open()">
+                      <form [formGroup]="selDateOrderForm">
+                        <input matInput formControlName="selDateOrder" [matDatepicker]="selDateOrder" class="calendar-input">
+                        <mat-datepicker-toggle matIconSuffix  [for]="selDateOrder"></mat-datepicker-toggle>
+                        <mat-datepicker #selDateOrder color="primary" (closed)="pageChanged(1)"></mat-datepicker>
+                      </form>
+                    </mat-form-field>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('order')">
                       <i class="fa fa-times"></i>
                     </button>
@@ -568,7 +571,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateOrder}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateOrder | date: 'dd-MM-yyyy'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 30" matColumnDef="price">
@@ -639,10 +642,13 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng2-flatpickr [(ngModel)]="selDateConfirm" [config]="confirmDateOptions" name="selDateConfirm"
-                      [setDate]="selDateConfirm" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
-                      #startDateOptions>
-                    </ng2-flatpickr>
+                    <mat-form-field (click)="selDateConfirm.open()">
+                      <form [formGroup]="selDateConfirmForm">
+                        <input matInput formControlName="selDateConfirm" [matDatepicker]="selDateConfirm" class="calendar-input">
+                        <mat-datepicker-toggle matIconSuffix  [for]="selDateConfirm"></mat-datepicker-toggle>
+                        <mat-datepicker #selDateConfirm color="primary" (closed)="pageChanged(1)"></mat-datepicker>
+                      </form>
+                    </mat-form-field>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('confirm')">
                       <i class="fa fa-times"></i>
                     </button>
@@ -658,7 +664,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateConfirmation}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateConfirmation | date: 'dd-MM-yyyy'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 30" matColumnDef="dateExpedition">
@@ -670,10 +676,13 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng2-flatpickr [(ngModel)]="selDateExped" [config]="expedDateOptions" name="selDateExped"
-                      [setDate]="selDateExped" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
-                      #startDateOptions>
-                    </ng2-flatpickr>
+                    <mat-form-field (click)="selDateExped.open()">
+                      <form [formGroup]="selDateExpedForm">
+                        <input matInput formControlName="selDateExped" [matDatepicker]="selDateExped" class="calendar-input">
+                        <mat-datepicker-toggle matIconSuffix  [for]="selDateExped"></mat-datepicker-toggle>
+                        <mat-datepicker #selDateExped color="primary" (closed)="pageChanged(1)"></mat-datepicker>
+                      </form>
+                    </mat-form-field>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('expedition')">
                       <i class="fa fa-times"></i>
                     </button>
@@ -689,7 +698,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition | date: 'dd-MM-yyyy'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="totalWeight">
@@ -749,10 +758,13 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng2-flatpickr [(ngModel)]="selDateScrapped" [config]="scrappedDateOptions" name="selDateScrapped"
-                      [setDate]="selDateScrapped" (ngModelChange)="pageChanged(1)" (click)="$event.stopPropagation()"
-                      #startDateOptions>
-                    </ng2-flatpickr>
+                    <mat-form-field (click)="selDateScrapped.open()">
+                      <form [formGroup]="selDateScrappedForm">
+                        <input matInput formControlName="selDateScrapped" [matDatepicker]="selDateScrapped" class="calendar-input">
+                        <mat-datepicker-toggle matIconSuffix  [for]="selDateScrapped"></mat-datepicker-toggle>
+                        <mat-datepicker #selDateScrapped color="primary" (closed)="pageChanged(1)"></mat-datepicker>
+                      </form>
+                    </mat-form-field>
                     <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('scrap')">
                       <i class="fa fa-times"></i>
                     </button>
@@ -768,7 +780,7 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateScrapped}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateScrapped | date: 'dd-MM-yyyy'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="channels">

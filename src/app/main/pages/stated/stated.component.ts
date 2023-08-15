@@ -5,6 +5,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 import { NewMatrixModalComponent } from '../../modals/new-matrix-modal/new-matrix-modal.component';
 import { Router } from '@angular/router';
 import { DetailsDieModalComponent } from '../../modals/details-die-modal/details-die-modal.component';
+import { FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 
 @Component({
@@ -56,7 +57,7 @@ export class StatedComponent implements OnInit {
   public selContainer: string = '';
   public selNotes: string = '';
   public selClientName: string = '';
-  public selDateOrder: any = '';
+  public selDateOrder: string = '';
   public selPrice: string = '';
   public selPriceInv: string = '';
   public selDateConfirm: any = '';
@@ -68,6 +69,22 @@ export class StatedComponent implements OnInit {
   public indColumn: any;
   public orderBy: number = 0;
   public orderType: number = 1; 
+
+  selDateOrderForm = new FormGroup({
+    selDateOrder: new FormControl(null),
+  });
+
+  selDateConfirmForm = new FormGroup({
+    selDateConfirm: new FormControl(null),
+  });
+
+  selDateExpedForm = new FormGroup({
+    selDateExped: new FormControl(null),
+  });
+
+  selDateScrappedForm = new FormGroup({
+    selDateScrapped: new FormControl(null),
+  });
 
 
   //for pagination
@@ -207,6 +224,7 @@ export class StatedComponent implements OnInit {
     this.loading = true;
     if (this.router.url == '/api/marked'){ this.statusId = 60 };
     if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
+    console.log("selDateOrder: ", this.selDateOrderForm);
     this.matrixService.getInformationMatrix(
         this.offset,
         this.limit,
@@ -226,12 +244,12 @@ export class StatedComponent implements OnInit {
         this.selContainer,
         this.selNotes,
         this.selClientName,
-        this.formatDate(this.selDateOrder), //this.selDateOrder,
+        this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), //this.selDateOrder,
         this.selPrice,
         this.selPriceInv,
-        this.formatDate(this.selDateConfirm),
-        this.formatDate(this.selDateExped),
-        this.formatDate(this.selDateScrapped),
+        this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value),
+        this.formatDate(this.selDateExpedForm.controls.selDateExped.value),
+        this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value),
         this.selChannels,
         this.grM,
         this.lastModified,
@@ -326,10 +344,10 @@ export class StatedComponent implements OnInit {
   }
 
   formatDate(date){
-    console.log("formatDate", date[0])
+    console.log("formatDate", date)
     if(date){
       let returnDate;
-      returnDate = moment(date[0]).format("YYYY-MM-DD HH:mm:ss")
+      returnDate = moment(date).format("YYYY-MM-DD HH:mm:ss")
       return returnDate;
     } else {
       return '';
@@ -338,16 +356,16 @@ export class StatedComponent implements OnInit {
 
   clearDate(type){
     if(type == 'order'){
-      this.selDateOrder = '';
+      this.selDateOrderForm.reset();
     }
     if(type == 'confirm'){
-      this.selDateConfirm = '';
+      this.selDateConfirmForm.reset();
     }
     if(type == 'expedition'){
-      this.selDateExped = '';
+      this.selDateExpedForm.reset();
     }
     if(type == 'scrap'){
-      this.selDateScrapped = '';
+      this.selDateScrappedForm.reset();
     }
     this.getRequest();
   }

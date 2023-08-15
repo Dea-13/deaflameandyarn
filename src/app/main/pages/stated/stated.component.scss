@@ -54,3 +54,12 @@ td.mat-footer-cell {
 .min-w-175{
   min-width: 175px!important;
 }
+
+.calendar-input{
+  border: none;
+}
+
+mat-form-field{
+  border-bottom: 1px solid;
+  color: #949494;
+}
