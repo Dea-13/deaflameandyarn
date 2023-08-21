@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatrixService } from '../../../@core/services/matrix.service';
 import { NewProfileModalComponent } from '../../modals/new-profile-modal/new-profile-modal.component';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-matrix-modal',
@@ -1008,10 +1009,10 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.matrixComplect = this.createMatrixForm.controls.matrixComplect.value,
       this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
       this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
-      this.matrix.dateOrder = this.createMatrixForm.controls.dateOrder.value && this.createMatrixForm.controls.dateOrder.value.length == 1 ? this.createMatrixForm.controls.dateOrder.value[0] : this.createMatrixForm.controls.dateOrder.value,
-      this.matrix.dateConfirmation = this.createMatrixForm.controls.dateConfirmation.value && this.createMatrixForm.controls.dateConfirmation.value.length == 1 ? this.createMatrixForm.controls.dateConfirmation.value[0] : this.createMatrixForm.controls.dateConfirmation.value,
-      this.matrix.dateExpedition = this.createMatrixForm.controls.dateExpedition.value && this.createMatrixForm.controls.dateExpedition.value.length == 1 ? this.createMatrixForm.controls.dateExpedition.value[0] : this.createMatrixForm.controls.dateExpedition.value,
-      this.matrix.inUseFrom = this.createMatrixForm.controls.inUseFrom.value && this.createMatrixForm.controls.inUseFrom.value.length == 1 ? this.createMatrixForm.controls.inUseFrom.value[0] : this.createMatrixForm.controls.inUseFrom.value,
+      this.matrix.dateOrder = moment(this.createMatrixForm.controls.dateOrder.value).format('YYYY-MM-DD'),
+      this.matrix.dateConfirmation = moment(this.createMatrixForm.controls.dateConfirmation.value).format('YYYY-MM-DD'),
+      this.matrix.dateExpedition = moment(this.createMatrixForm.controls.dateExpedition.value).format('YYYY-MM-DD'),
+      this.matrix.inUseFrom = moment(this.createMatrixForm.controls.inUseFrom.value).format('YYYY-MM-DD'),
       this.matrix.clientName = this.createMatrixForm.controls.clientName.value,
       this.matrix.producer = this.createMatrixForm.controls.producer.value,
       this.matrix.purchaser = this.createMatrixForm.controls.purchaser.value,

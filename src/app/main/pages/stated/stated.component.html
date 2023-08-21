@@ -549,9 +549,9 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <mat-form-field (click)="selDateOrder.open()">
+                    <mat-form-field>
                       <form [formGroup]="selDateOrderForm">
-                        <input matInput formControlName="selDateOrder" [matDatepicker]="selDateOrder" class="calendar-input">
+                        <input matInput formControlName="selDateOrder" placeholder="Date" [matDatepicker]="selDateOrder" class="calendar-input" (focus)="selDateOrder.open()" readonly="readonly">
                         <mat-datepicker-toggle matIconSuffix  [for]="selDateOrder"></mat-datepicker-toggle>
                         <mat-datepicker #selDateOrder color="primary" (closed)="pageChanged(1)"></mat-datepicker>
                       </form>
