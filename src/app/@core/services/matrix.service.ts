@@ -105,6 +105,11 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Profiles/all/profilenameId/true`);
   }
 
+
+  getDieLiveQty() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/dieliveqty`);
+  }
+
   getMatrix(id:string) {
     return this._http.get<any>(`${environment.apiUrl}Dies/die/name/${id}`);
   }

@@ -207,7 +207,7 @@ export class StatedComponent implements OnInit {
       { id: 20, name: 'DateScrapped/' + this.statusId },
       { id: 21, name: 'Channels?' + this.statusId },
       { id: 22, name: 'bmwinventorynumber' },
-      { id: 23, name: 'dieliveqty' },
+      // { id: 23, name: 'dieliveqty' },
     ];
   }
 
@@ -218,6 +218,8 @@ export class StatedComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+
+    this.getDieLiveQty();
   }
 
   getRequest() {
@@ -347,7 +349,7 @@ export class StatedComponent implements OnInit {
     console.log("formatDate", date)
     if(date){
       let returnDate;
-      returnDate = moment(date).format("YYYY-MM-DD HH:mm:ss")
+      returnDate = moment(date).format("YYYY-MM-DD")
       return returnDate;
     } else {
       return '';
@@ -428,4 +430,13 @@ export class StatedComponent implements OnInit {
     this.orderType = 1;
     this.getRequest();
   }
+  
+  getDieLiveQty() {
+    this.loading = true;
+    this.matrixService.getDieLiveQty().subscribe((data) => {
+      this.dieLifeArr = data;
+      this.loading = false;
+    });
+  }
+
 }
