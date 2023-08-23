@@ -110,6 +110,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/dieliveqty`);
   }
 
+  bmwNumber() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/bmwinventorynumber`);
+  }
+
   getMatrix(id:string) {
     return this._http.get<any>(`${environment.apiUrl}Dies/die/name/${id}`);
   }

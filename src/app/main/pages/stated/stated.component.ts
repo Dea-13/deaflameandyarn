@@ -206,7 +206,7 @@ export class StatedComponent implements OnInit {
       //{ id: 19, name: 'DateExpedition/' + this.statusId },
       //{ id: 20, name: 'DateScrapped/' + this.statusId },
       { id: 21, name: 'Channels?' + this.statusId },
-      { id: 22, name: 'bmwinventorynumber' },
+      // { id: 22, name: 'bmwinventorynumber' },
       // { id: 23, name: 'dieliveqty' },
     ];
   }
@@ -220,6 +220,7 @@ export class StatedComponent implements OnInit {
     });
 
     this.getDieLiveQty();
+    this.getBmwNumber();
   }
 
   getRequest() {
@@ -434,6 +435,14 @@ export class StatedComponent implements OnInit {
   getDieLiveQty() {
     this.loading = true;
     this.matrixService.getDieLiveQty().subscribe((data) => {
+      this.dieLifeArr = data;
+      this.loading = false;
+    });
+  }
+
+  getBmwNumber(){
+    this.loading = true;
+    this.matrixService.bmwNumber().subscribe((data) => {
       this.dieLifeArr = data;
       this.loading = false;
     });
