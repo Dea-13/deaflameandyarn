@@ -600,5 +600,6 @@ export class MovementMatrixComponent implements OnInit {
     this.resourceInName = '';
     this.resourceOutName = '';
     this.getRequest();
+    this.getFilters(2);
   }
 }
