@@ -130,7 +130,7 @@
                   <mat-menu #menuFilter="matMenu">
                     <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceInName"
-                      (ngModelChange)="showDiagram()">
+                      (ngModelChange)="getFilters(1)">
                       <ng-option *ngFor="let t of resourceInArr" [value]="t.name">{{ t.name }}
                       </ng-option>
                     </ng-select>
