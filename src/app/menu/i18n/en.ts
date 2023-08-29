@@ -390,6 +390,9 @@ export const locale = {
       dieLiveQty: 'Die life',
       maskProfile: 'Please fill out profile correctly!',
       clearAll: 'Clear All Filters',
+      selected: 'Select All',
+      noResult: 'No results found',
+      lastRefreshed: 'Last Refreshed',
     }
   }
 }

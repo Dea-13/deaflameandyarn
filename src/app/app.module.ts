@@ -65,6 +65,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { TextMaskModule } from 'angular2-text-mask';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 const appRoutes: Routes = [
@@ -274,6 +276,8 @@ const appRoutes: Routes = [
     TextMaskModule,
     MatDatepickerModule,
     MatNativeDateModule ,
+    MatExpansionModule,
+    MatCheckboxModule,
 
 
     RouterModule.forRoot(appRoutes, {

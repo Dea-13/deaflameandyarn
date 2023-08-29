@@ -3,32 +3,561 @@
     <section class="users-list-wrapper">
       <div class="card">
         <div class="row">
-          <div class="col-md-6 col-12">
-            <div class="d-flex align-items-center m-1">
-              <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
-              <span class="pt-line-3">|</span>
-              <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
-              <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
-              <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
-                  <ng-option [value]="10">10</ng-option>
-                  <ng-option [value]="15">15</ng-option>
-                  <ng-option [value]="20">20</ng-option>
-                  <ng-option [value]="25">25</ng-option>
-                  <ng-option [value]="50">50</ng-option>
-                  <ng-option [value]="100">100</ng-option>
-                </ng-select>
-                {{ translateSnackBar.result }}
-              </label>
-            </div>
-          </div>
-          <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
-            <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
-              <button class="btn btn-primary ml-1" rippleEffect (click)="modalMatrix('new')">
-                <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
-                <span class="d-none d-sm-inline-block"> {{ translateSnackBar.modalMatrix }} </span>
-              </button>
-            </div>
+          <div class="col-12">
+            <mat-accordion multi>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <div class="row col-12" (click)="$event.stopPropagation();">
+
+                    <div class="col-lg-5 col-12">
+                      <div class="d-flex align-items-center">
+                        <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
+                        <span class="pt-line-3">|</span>
+                        <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
+                        <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                        <label class="d-flex align-items-center">{{ translateSnackBar.show }}
+                          <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                            <ng-option [value]="10">10</ng-option>
+                            <ng-option [value]="15">15</ng-option>
+                            <ng-option [value]="20">20</ng-option>
+                            <ng-option [value]="25">25</ng-option>
+                            <ng-option [value]="50">50</ng-option>
+                            <ng-option [value]="100">100</ng-option>
+                          </ng-select>
+                          {{ translateSnackBar.result }}
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-7 col-12">
+                      <div class="row col-12 align-items-center  justify-content-start">
+                        <div class="col-12 col-lg-8">
+                          <div class="row">
+                            <div class="col-12 col-md-4 col-lg-6 text-end">{{ translateSnackBar.lastRefreshed }}: </div>
+                            <div class="col-12 col-md-4 col-lg-6">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                          <div class="d-flex align-items-center justify-content-lg-end pr-1 pb-1 pb-md-0">
+                            <button class="btn btn-primary ml-1" rippleEffect (click)="modalMatrix('new')">
+                              <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
+                              <span class="d-none d-sm-inline-block"> {{ translateSnackBar.modalMatrix }} </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </mat-expansion-panel-header>
+                <div class="row">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.matrix }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allMatrix, dieArr, tempDataDie, 0)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="dieArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="dieArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allMatrix" color="primary" [indeterminate]="someComplete(allMatrix, dieArr, 0)" (change)="setAll($event.checked, allMatrix, dieArr, 0)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of dieArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allMatrix, dieArr, 0)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.profile }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allProfile, profileIdArr, tempDataProfile, 1)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="profileIdArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="profileIdArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allProfile" color="primary" [indeterminate]="someComplete(allProfile, profileIdArr, 1)" (change)="setAll($event.checked, allProfile, profileIdArr, 1)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of profileIdArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allProfile, profileIdArr, 1)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.press }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allPress, primeResourceNameArr, tempDataPrimeRes, 2)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="primeResourceNameArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="primeResourceNameArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allPress" color="primary" [indeterminate]="someComplete(allPress, primeResourceNameArr, 2)" (change)="setAll($event.checked, allPress, primeResourceNameArr, 2)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of primeResourceNameArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allPress, primeResourceNameArr, 2)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2 xxl-2 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.manufacturer }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allManuf, producerNameArr, tempDataProducer, 3)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="producerNameArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="producerNameArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allManuf" color="primary" [indeterminate]="someComplete(allManuf, producerNameArr, 3)" (change)="setAll($event.checked, allManuf, producerNameArr, 3)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of producerNameArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allManuf, producerNameArr, 3)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 xxl-2 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.matricologist }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allMatr, correctorArr, tempDataCorrector, 4)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="correctorArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="correctorArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allMatr" color="primary" [indeterminate]="someComplete(allMatr, correctorArr, 4)" (change)="setAll($event.checked, allMatr, correctorArr, 4)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of correctorArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allMatr, correctorArr, 4)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.diameter }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, diameterArr, dieArr, tempDataDiameter, 5)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="diameterArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="diameterArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allDiameter" color="primary" [indeterminate]="someComplete(diameterArr, dieArr, 5)" (change)="setAll($event.checked, allDiameter, diameterArr, 5)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of diameterArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allDiameter, diameterArr, 5)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.thickness }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allThickness, thicknessArr, tempDataThickness, 6)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="thicknessArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="thicknessArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allThickness" color="primary" [indeterminate]="someComplete(allThickness, thicknessArr, 6)" (change)="setAll($event.checked, allThickness, thicknessArr, 6)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of thicknessArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allThickness, thicknessArr, 6)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.alloy }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allAlloy, alloyArr, tempDataAlloy, 7)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="alloyArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="alloyArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allAlloy" color="primary" [indeterminate]="someComplete(allAlloy, alloyArr, 7)" (change)="setAll($event.checked, allAlloy, alloyArr, 7)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of alloyArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allAlloy, alloyArr, 7)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.tempering }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allTemp, temperArr, tempDataTemper, 8)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="temperArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="temperArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allTemp" color="primary" [indeterminate]="someComplete(allTemp, temperArr, 8)" (change)="setAll($event.checked, allTemp, temperArr, 8)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of temperArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allTemp, temperArr, 8)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.bolster1 }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allBols1, bolster1Arr, tempDataBols1, 9)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="bolster1Arr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="bolster1Arr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allBols1" color="primary" [indeterminate]="someComplete(allBols1, bolster1Arr, 9)" (change)="setAll($event.checked, allBols1, bolster1Arr, 9)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of bolster1Arr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allBols1, bolster1Arr, 9)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.bolster2 }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allBols2, bolster2Arr, tempDataBols2, 10)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="bolster2Arr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="bolster2Arr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allBols2" color="primary" [indeterminate]="someComplete(allBols2, bolster2Arr, 10)" (change)="setAll($event.checked, allBols2, bolster2Arr, 10)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of bolster2Arr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allBols2, bolster2Arr, 10)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.dieHolder }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allHolder, dieHolderArr, tempDataHolder, 11)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="dieHolderArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="dieHolderArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allHolder" color="primary" [indeterminate]="someComplete(allHolder, dieHolderArr, 11)" (change)="setAll($event.checked, allHolder, dieHolderArr, 11)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of dieHolderArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allHolder, dieHolderArr, 11)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.container }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allCont, containerArr, tempDataCont, 12)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="containerArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="containerArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allCont" color="primary" [indeterminate]="someComplete(allCont, containerArr, 12)" (change)="setAll($event.checked, allCont, containerArr, 12)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of containerArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allCont, containerArr, 12)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.noteRequest }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allNote, notesArr, tempDataNotes, 13)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="notesArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="notesArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allNote" color="primary" [indeterminate]="someComplete(allNote, notesArr, 13)" (change)="setAll($event.checked, allNote, notesArr, 13)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of notesArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allNote, notesArr, 13)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.client }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allClient, clientNameArr, tempDataClient, 14)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="clientNameArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="clientNameArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allClient" color="primary" [indeterminate]="someComplete(allClient, clientNameArr, 14)" (change)="setAll($event.checked, allClient, clientNameArr, 14)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of clientNameArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allClient, clientNameArr, 14)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.price }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allPrice, priceInvArr, tempDataPrice, 15)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="priceInvArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="priceInvArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allPrice" color="primary" [indeterminate]="someComplete(allPrice, priceInvArr, 15)" (change)="setAll($event.checked, allPrice, priceInvArr, 15)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of priceInvArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allPrice, priceInvArr, 15)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.invoicePrice }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allInvPr, priceInvArr, tempDataPrInv, 16)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="priceInvArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="priceInvArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allInvPr" color="primary" [indeterminate]="someComplete(allInvPr, priceInvArr, 16)" (change)="setAll($event.checked, allInvPr, priceInvArr, 16)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of priceInvArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allInvPr, priceInvArr, 16)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.channels }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <input type="search" class="form-control dt-uname search-filter" (keyup)="searchFilter($event, allChannels, channelsArr, tempDataChennels, 17)" required />
+                    </div>
+                    <div class="row box-filter">
+                      <div class="col-12 text-center" *ngIf="priceInvArr.length === 0">{{ translateSnackBar.noResult }}</div>
+                      <section *ngIf="priceInvArr.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin" [checked]="allChannels" color="primary" [indeterminate]="someComplete(allChannels, channelsArr, 17)" (change)="setAll($event.checked, allChannels, channelsArr, 17)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                          <ul>
+                            <li *ngFor="let t of channelsArr">
+                              <mat-checkbox [(ngModel)]="t.checked" color="primary" (ngModelChange)="updateAllComplete(allChannels, channelsArr, 17)"> {{t.name}}</mat-checkbox>
+                            </li>
+                          </ul>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
         <section class="example-container mat-elevation-z8">
@@ -54,10 +583,10 @@
                 </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matrix }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dieId', !orderType, 0)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 0 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 0 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>

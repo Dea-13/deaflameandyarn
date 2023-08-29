@@ -390,6 +390,9 @@ export const locale = {
       dieLiveQty: 'Живот на матрицата',
       maskProfile: 'Моля, попълнете правилно профила!',
       clearAll: 'Изчистване на всички филтри',
+      selected: 'Избери всички',
+      noResult: 'Не са открити резултати',
+      lastRefreshed: 'Последно опресняване',
     }
   }
 }

@@ -377,6 +377,10 @@ export const locale = {
       bmwinventorynumber: '',
       dieLiveQty: '',
       maskProfile: '',
+      selected: '',
+      unselected: '',
+      noResult: '',
+      lastRefreshed: '',
     }
   }
 }
