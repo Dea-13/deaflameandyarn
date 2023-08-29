@@ -250,3 +250,10 @@ mat-tab-group{
 ::ng-deep.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
   display: none !important;
 }
+
+.calendar-input{
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #949494;
+  color: #6e6b7b;
+}

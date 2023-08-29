@@ -292,7 +292,7 @@ export class StatedComponent implements OnInit {
         this.bmwinventorynumber,
         this.dieLiveQty,
         this.orderType,
-        this.orderType
+        this.orderBy
       )
       .subscribe((data) => {
         this.rows = data.list;

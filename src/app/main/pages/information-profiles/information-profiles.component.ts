@@ -170,7 +170,7 @@ export class InformationProfilesComponent implements OnInit {
 
   //for pagination
   public cPage: number = 1;
-  public limit: number = 10;
+  public limit: number = 15;
   public offset: number = 0;
   public totalResult: number = 0;
   public languageOptions: any;
@@ -453,7 +453,7 @@ export class InformationProfilesComponent implements OnInit {
 
   clarAll() {
     this.offset = 0,
-    this.limit = 10,
+    this.limit = 15,
     this.selProfileName = '';
     this.selGroupCode = '';
     this.selSection = '';
