@@ -83,6 +83,8 @@ export const locale = {
       finalNitriding: 'Final Nitriding',
       kgToFianlNitriding: 'KG to final nitriding',
       kgAfterFianlNitriding: 'KG after final nitriding',
+      kgToFianlNitridingLite: 'KG to FN',
+      kgAfterFianlNitridingLite: 'KG after FN',
       scrapDate: 'Brak date',
       marked: 'Marked for test',
       dateArrival: 'Arrival date',

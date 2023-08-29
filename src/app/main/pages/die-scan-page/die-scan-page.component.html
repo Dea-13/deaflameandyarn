@@ -84,7 +84,7 @@
           <table mat-table [dataSource]="rowsMovements" class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="dieId">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef >
                 <div class="filter-th" container="body"></div>
                 <!-- <span class="th-header">{{ translateSnackBar.dieId }}</span> -->
               </th>
@@ -144,7 +144,7 @@
           <table mat-table [dataSource]="rowsDie | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }" class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="dieId">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dieId">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -165,7 +165,7 @@
             </ng-container>
 
             <ng-container matColumnDef="resourceName">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.matrix">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -186,7 +186,7 @@
             </ng-container>
 
             <ng-container matColumnDef="skladPlace">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.skladPlace">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -206,7 +206,7 @@
             </ng-container>
 
             <ng-container matColumnDef="lastTransaction">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastTransaction">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
               </th>

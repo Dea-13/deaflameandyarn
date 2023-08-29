@@ -29,7 +29,7 @@
             class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="resourceName">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.resource">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -51,7 +51,7 @@
             </ng-container>
 
             <ng-container matColumnDef="storagePlace">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.place">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -73,7 +73,7 @@
             </ng-container>
 
             <ng-container matColumnDef="partOfGroup">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.partOfGroup">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.partOfGroup }}</span>
               </th>
@@ -81,7 +81,7 @@
             </ng-container>
 
             <ng-container *ngIf="status === 1" matColumnDef="matrix">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.matrix">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matrix }}</span>
               </th>
@@ -94,7 +94,7 @@
             </ng-container>
 
             <ng-container matColumnDef="diameter">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.diameter">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.diameter }}</span>
               </th>
@@ -102,7 +102,7 @@
             </ng-container>
 
             <ng-container *ngIf="status === 0" matColumnDef="thickness">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.thickness">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.thickness }}</span>
               </th>
@@ -110,7 +110,7 @@
             </ng-container>
 
             <ng-container *ngIf="status === 0" matColumnDef="size">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.size">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size }}</span>
               </th>
@@ -118,7 +118,7 @@
             </ng-container>
 
             <ng-container *ngIf="status === 0" matColumnDef="freeCapacity">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.freeCapacity">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.freeCapacity }}</span>
               </th>
@@ -126,7 +126,7 @@
             </ng-container>
 
             <ng-container *ngIf="status === 1" matColumnDef="countMatrix">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.countMatrix">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.countMatrix }}</span>
               </th>
@@ -134,7 +134,7 @@
             </ng-container>
 
             <ng-container *ngIf="status === 1" matColumnDef="capacity">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.capacity">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.capacity }}</span>
               </th>

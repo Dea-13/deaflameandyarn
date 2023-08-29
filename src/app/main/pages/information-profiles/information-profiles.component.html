@@ -42,7 +42,7 @@
              class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="profileName">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.profileName">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -72,7 +72,7 @@
             </ng-container>
 
             <ng-container matColumnDef="groupCode">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.groupCode">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -102,7 +102,7 @@
             </ng-container>
 
             <ng-container matColumnDef="section">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.section">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -132,7 +132,7 @@
             </ng-container>
 
             <ng-container matColumnDef="perimeter">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.perimeter">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -162,7 +162,7 @@
             </ng-container>
 
             <ng-container matColumnDef="grM">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.grM">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -191,7 +191,7 @@
             </ng-container>
 
             <ng-container matColumnDef="primaryPress">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.primaryPress">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -221,7 +221,7 @@
             </ng-container>
 
             <ng-container matColumnDef="alternativePress">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.alternativePress">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -251,7 +251,7 @@
             </ng-container>
 
             <ng-container matColumnDef="size1">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.size1">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -280,7 +280,7 @@
             </ng-container>
 
             <ng-container matColumnDef="size2">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.size2">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -309,7 +309,7 @@
             </ng-container>
 
             <ng-container matColumnDef="size3">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.size3">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -338,7 +338,7 @@
             </ng-container>
 
             <ng-container matColumnDef="size4">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.size4">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -367,7 +367,7 @@
             </ng-container>
 
             <ng-container matColumnDef="usage">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.usage">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -396,7 +396,7 @@
             </ng-container>
 
             <ng-container matColumnDef="extrusionSpeed">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.extrusionSpeed">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -426,7 +426,7 @@
             </ng-container>
 
             <ng-container matColumnDef="extrusionSpeedSms">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.extrusionSpeedSms">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -456,7 +456,7 @@
             </ng-container>
 
             <ng-container matColumnDef="opPerf">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.opPerf">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -486,7 +486,7 @@
             </ng-container>
 
             <ng-container matColumnDef="tbillet">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.tbillet">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -516,7 +516,7 @@
             </ng-container>
 
             <ng-container matColumnDef="tExit">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.tExit">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -545,7 +545,7 @@
             </ng-container>
 
             <ng-container matColumnDef="puller">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.puller">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -575,7 +575,7 @@
             </ng-container>
 
             <ng-container matColumnDef="scrapStart">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapStart">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -605,7 +605,7 @@
             </ng-container>
 
             <ng-container matColumnDef="scrapStartSms">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapStartSms">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -635,7 +635,7 @@
             </ng-container>
 
             <ng-container matColumnDef="scrapEnd">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapEnd">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -665,7 +665,7 @@
             </ng-container>
 
             <ng-container matColumnDef="cooling">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.cooling">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -695,7 +695,7 @@
             </ng-container>
 
             <ng-container matColumnDef="coolingSms">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.coolingSms">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -725,7 +725,7 @@
             </ng-container>
 
             <ng-container matColumnDef="coolingAdd">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.coolingAdd">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -755,7 +755,7 @@
             </ng-container>
 
             <ng-container matColumnDef="basketOrdering">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef>
+              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.basketOrdering">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -785,7 +785,7 @@
             </ng-container>
 
             <ng-container matColumnDef="notesExtrusion">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.notesExtrusion">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -815,7 +815,7 @@
             </ng-container>
 
             <ng-container matColumnDef="important">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.important">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -845,7 +845,7 @@
             </ng-container>
 
             <ng-container matColumnDef="inUse">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.inUse">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>

@@ -96,7 +96,7 @@
           <table mat-table [dataSource]="rows" class="example-table">
             <!-- Position Column -->
             <ng-container matColumnDef="computerName">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.computerName">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -120,7 +120,7 @@
             </ng-container>
 
             <ng-container matColumnDef="resourceInName">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.resourceIn">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -146,7 +146,7 @@
             </ng-container>
 
             <ng-container matColumnDef="resourceOutName">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.resourceOut">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
@@ -172,7 +172,7 @@
             </ng-container>
 
             <ng-container matColumnDef="count">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.total">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.total }}</span>
               </th>
