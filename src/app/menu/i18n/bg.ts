@@ -83,6 +83,8 @@ export const locale = {
       finalNitriding: 'Последно азотиране',
       kgToFianlNitriding: 'КГ до последно азотиране',
       kgAfterFianlNitriding: 'КГ след последно азотиране',
+      kgToFianlNitridingLite: 'КГ до ПА',
+      kgAfterFianlNitridingLite: 'КГ след ПА',
       scrapDate: ' Дата бракуване',
       marked: 'Маркирани за тестване на',
       dateArrival: 'Дата на пристигане',
