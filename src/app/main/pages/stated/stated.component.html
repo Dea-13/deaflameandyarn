@@ -79,7 +79,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.profile }}
@@ -247,7 +247,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.alloy }}
@@ -275,7 +275,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.tempering }}
@@ -303,7 +303,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.bolster1 }}
@@ -331,7 +331,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.bolster2 }}
@@ -359,7 +359,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.dieHolder }}
@@ -387,7 +387,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 20 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.container }}
@@ -415,7 +415,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.noteRequest }}
@@ -471,7 +471,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.price }}
@@ -527,7 +527,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 40 || statusId === 60" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.channels }}
