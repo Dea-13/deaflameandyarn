@@ -879,3 +879,23 @@ mat-label{
       overflow-x: hidden !important;
   }
 }
+
+.dark-layout table.mat-table{
+  border-top: 1px solid #2f3548!important;
+}
+
+.dark-layout th {
+  background-color: #191f30!important;
+}
+
+.dark-layout tr {
+  background-color: #283046!important;
+}
+
+.dark-layout tr:hover td{
+  background: #3f4b6d!important;
+}
+
+.dark-layout td {
+  color: #b0b3ba!important;
+}
