@@ -39,7 +39,7 @@
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
-  min-width: 140px;
+  min-width: 74px;
 }
 
 .order-btn{
@@ -51,6 +51,10 @@ td.mat-footer-cell {
   position: relative;
 }
 
-.min-w-185{
-  min-width: 185px!important;
+.min-w-100 {
+  min-width: 100px!important;
+}
+
+.mat-table {
+  width: -webkit-fill-available;
 }

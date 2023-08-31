@@ -471,12 +471,12 @@ export class StatedComponent implements OnInit {
     this.filterColumn(column, array, ind);
   }
 
-  someComplete(column, array, ind): boolean {
+  someComplete(column, array, ind) {
     // console.log('someComplete', column, array, ind)
-    if (array.length == 0) {
-      return false;
-    }
-    return array.filter(t => t.checked).length > 0 && !column;
+    // if (array.length == 0) {
+    //   return false;
+    // }
+    // return array.filter(t => t.checked).length > 0 && !column;
   }
 
   searchFilter(event, column, array, tempData, ind) {
