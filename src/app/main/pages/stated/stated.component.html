@@ -33,8 +33,8 @@
                       <div class="row col-12 align-items-center  justify-content-start">
                         <div class="col-12 col-lg-8">
                           <div class="row">
-                            <div class="col-12 col-md-4 col-lg-6 text-end">{{ translateSnackBar.lastRefreshed }}: </div>
-                            <div class="col-12 col-md-4 col-lg-6">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
+                            <div class="col-12 col-md-4 col-lg-6 text-end filters-header">{{ translateSnackBar.lastRefreshed }}: </div>
+                            <div class="col-12 col-md-4 col-lg-6 filters-header">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
                           </div>
                         </div>
                         <div class="col-12 col-lg-4">
@@ -51,7 +51,7 @@
                   </div>
                 </mat-expansion-panel-header>
                 <div class="row">
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.matrix }}
@@ -79,7 +79,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.profile }}
@@ -107,7 +107,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.press }}
@@ -135,7 +135,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2 xxl-2 border">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2 xxl-2 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.manufacturer }}
@@ -163,7 +163,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 xxl-2 border">
+                  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 xxl-2 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.matricologist }}
@@ -191,7 +191,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.diameter }}
@@ -219,7 +219,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.thickness }}
@@ -247,7 +247,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.alloy }}
@@ -275,7 +275,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.tempering }}
@@ -303,7 +303,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.bolster1 }}
@@ -331,7 +331,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.bolster2 }}
@@ -359,7 +359,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.dieHolder }}
@@ -387,7 +387,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 20 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 20 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.container }}
@@ -415,7 +415,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.noteRequest }}
@@ -443,7 +443,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.client }}
@@ -471,7 +471,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.price }}
@@ -499,7 +499,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.invoicePrice }}
@@ -527,7 +527,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 40 || statusId === 60" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 40 || statusId === 60" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border-none">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.channels }}

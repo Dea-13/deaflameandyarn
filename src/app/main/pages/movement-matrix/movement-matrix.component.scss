@@ -94,3 +94,13 @@ h3 {
   background: #7367f0;
   color: white;
 }
+
+.example-container{
+  max-height: 655px;
+}
+
+@media (min-width: 1920px) {
+  .example-container{
+    max-height: 705px;
+  }
+}
