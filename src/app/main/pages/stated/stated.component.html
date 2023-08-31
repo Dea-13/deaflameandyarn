@@ -1071,25 +1071,7 @@
 
             <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="dateOrder">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.orderDate">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selDateOrder != ''">{{selDateOrder.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <mat-form-field>
-                      <form [formGroup]="selDateOrderForm">
-                        <input matInput formControlName="selDateOrder" placeholder="Date" [matDatepicker]="selDateOrder" class="calendar-input" (focus)="selDateOrder.open()" readonly="readonly">
-                        <mat-datepicker-toggle matIconSuffix  [for]="selDateOrder"></mat-datepicker-toggle>
-                        <mat-datepicker #selDateOrder color="primary" (closed)="pageChanged(1)"></mat-datepicker>
-                      </form>
-                    </mat-form-field>
-                    <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('order')">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </mat-menu>
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.orderDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateOrder', !orderType, 15)">
                   <div [ngStyle]="{'display': indColumn == 15 ? 'flex' : 'none' }">
@@ -1164,25 +1146,7 @@
 
             <ng-container *ngIf="statusId === 30" matColumnDef="dateConfirmation">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.confirmationDate">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selDateConfirm != ''">{{selDateConfirm.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <mat-form-field (click)="selDateConfirm.open()">
-                      <form [formGroup]="selDateConfirmForm">
-                        <input matInput formControlName="selDateConfirm" [matDatepicker]="selDateConfirm" class="calendar-input">
-                        <mat-datepicker-toggle matIconSuffix  [for]="selDateConfirm"></mat-datepicker-toggle>
-                        <mat-datepicker #selDateConfirm color="primary" (closed)="pageChanged(1)"></mat-datepicker>
-                      </form>
-                    </mat-form-field>
-                    <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('confirm')">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </mat-menu>
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.confirmationDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateConfirmation', !orderType, 20)">
                   <div [ngStyle]="{'display': indColumn == 20 ? 'flex' : 'none' }">
@@ -1198,25 +1162,7 @@
 
             <ng-container *ngIf="statusId === 30" matColumnDef="dateExpedition">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dispatchedDate">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selDateExped != ''">{{selDateExped.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <mat-form-field (click)="selDateExped.open()">
-                      <form [formGroup]="selDateExpedForm">
-                        <input matInput formControlName="selDateExped" [matDatepicker]="selDateExped" class="calendar-input">
-                        <mat-datepicker-toggle matIconSuffix  [for]="selDateExped"></mat-datepicker-toggle>
-                        <mat-datepicker #selDateExped color="primary" (closed)="pageChanged(1)"></mat-datepicker>
-                      </form>
-                    </mat-form-field>
-                    <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('expedition')">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </mat-menu>
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dispatchedDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateExpedition', !orderType, 21)">
                   <div [ngStyle]="{'display': indColumn == 21 ? 'flex' : 'none' }">
@@ -1280,25 +1226,7 @@
 
             <ng-container *ngIf="statusId === 50" matColumnDef="dateScrapped">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapDate">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selDateScrapped != ''">{{selDateScrapped.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <mat-form-field (click)="selDateScrapped.open()">
-                      <form [formGroup]="selDateScrappedForm">
-                        <input matInput formControlName="selDateScrapped" [matDatepicker]="selDateScrapped" class="calendar-input">
-                        <mat-datepicker-toggle matIconSuffix  [for]="selDateScrapped"></mat-datepicker-toggle>
-                        <mat-datepicker #selDateScrapped color="primary" (closed)="pageChanged(1)"></mat-datepicker>
-                      </form>
-                    </mat-form-field>
-                    <button class="btn search-btn filter-btn clear-btn" (click)="clearDate('scrap')">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </mat-menu>
-                </div>
+                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateScrapped', !orderType, 50)">
                   <div [ngStyle]="{'display': indColumn == 50 ? 'flex' : 'none' }">

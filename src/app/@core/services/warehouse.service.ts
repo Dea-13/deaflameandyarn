@@ -13,7 +13,7 @@ export class WarehouseService {
     this.onWarehouseListChanged = new BehaviorSubject({});
   }
 
-  getInformationWarehouse(offset:number, limit:number, resourceName:Array<any>, storagePlace:Array<any>, status:number) {
+  getInformationWarehouse(offset:number, limit:number, resourceName:any, storagePlace:any, status:number) {
     return this._http.get<any>(`${environment.apiUrl}Resource?offset=${offset}&limit=${limit}&resourceName=${resourceName}&storagePlace=${storagePlace}&status=${status}`);
   }
 

@@ -40,11 +40,11 @@ export class FreeAddressComponent implements OnInit {
   public searchMaterial: any = '';
   public loading: boolean = false;
   public translateSnackBar: any;
-  public resourceName: Array<any> = [];
-  public storagePlace: Array<any> = [];
+  public resourceName: string = ''
+  public storagePlace: string = '';
   public status: number;
-  public resourceNameArr: string = '';
-  public storagePlaceArr: string = '';
+  public resourceNameArr:Array<any> = [];
+  public storagePlaceArr: Array<any> = [];
 
   constructor(
     private warehouseService: WarehouseService,
@@ -119,8 +119,8 @@ export class FreeAddressComponent implements OnInit {
   clarAll() {
     this.offset = 0,
     this.limit = 15,
-    this.resourceName = [];
-    this.storagePlace = []; 
+    this.resourceName = '';
+    this.storagePlace = '';
     this.getRequest();
   }
 }
