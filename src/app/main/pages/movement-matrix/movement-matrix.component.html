@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
@@ -12,7 +12,7 @@
                 </div>
           </div>
           <div class="col-md-3 col-12">
-            <div class="d-flex justify-content-between align-items-center m-1">
+            <div class="d-flex align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.year }}</label>
               <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                 [multiple]="false" [closeOnSelect]="true" [clearable]="false" [(ngModel)]="year"
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="col-md-3 col-12">
-            <div class="d-flex justify-content-between align-items-center m-1">
+            <div class="d-flex align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.month }}</label>
               <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                 [multiple]="false" [closeOnSelect]="true" [clearable]="false" [(ngModel)]="month"
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="col-md-3 col-12">
-            <div class="d-flex justify-content-between align-items-center m-1">
+            <div class="d-flex align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.diagram }}</label>
               <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                 [multiple]="false" [closeOnSelect]="true" [(ngModel)]="diagram" (ngModelChange)="showDiagram()">
@@ -100,7 +100,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="computerName != ''">{{computerName.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="computerName !== ''">{{computerName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -124,7 +124,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="resourceInName != ''">{{resourceInName.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="resourceInName !== ''">{{resourceInName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -150,7 +150,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="resourceOutName != ''">{{resourceOutName.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="resourceOutName !== ''">{{resourceOutName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -189,10 +189,5 @@
         </section>
       </div>
     </section>
-  </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
   </div>
 </div>

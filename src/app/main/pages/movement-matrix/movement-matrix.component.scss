@@ -89,18 +89,26 @@ h3 {
 .fa {
   border-radius: 50%;
   border: 1px solid #7367f0;
-  padding: 3px 8px 5px 7px;
+  padding: 6px 8px 5px 8px;
   height: -webkit-fill-available;
   background: #7367f0;
   color: white;
 }
 
-.example-container{
-  max-height: 655px;
+@media (min-height: 929px) {
+  .example-container{
+    max-height: 770px;
+  }
 }
 
-@media (min-width: 1920px) {
+@media (max-height: 928px) and (min-height: 710px) {
   .example-container{
-    max-height: 705px;
+    max-height: 670px;
+  }
+}
+
+@media (max-height: 709px) {
+  .example-container{
+    max-height: 450px;
   }
 }

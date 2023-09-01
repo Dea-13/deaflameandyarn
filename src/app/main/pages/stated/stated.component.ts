@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DetailsDieModalComponent } from '../../modals/details-die-modal/details-die-modal.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-stated',
@@ -15,6 +16,7 @@ import * as moment from 'moment';
 })
 export class StatedComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = [];
   public size = 13;
   public urls = [];
@@ -93,7 +95,6 @@ export class StatedComponent implements OnInit {
   public offset: number = 0;
   public totalResult: number = 0;
   public languageOptions: any;
-  public loading: boolean = false;
   public translateSnackBar: any;
   public statusId: number;
 
@@ -275,7 +276,7 @@ export class StatedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.pageChanged(1);
     this.getFilters(18, 'init');
     this.getDieLiveQty();
@@ -283,7 +284,7 @@ export class StatedComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     if (this.router.url == '/api/marked'){ this.statusId = 60 };
     if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
     console.log("selDateOrder: ", this.selDateOrderForm);
@@ -323,18 +324,18 @@ export class StatedComponent implements OnInit {
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
-        this.loading = false;
+        this.blockUI.stop();
       });
   }
 
   getFilters(ind, action) {
-    // this.loading = true;
     console.log('getFilters', this.arrFilters);
     let count = 0;
     if(action == 'init') {this.arrFilters = []}
     for (let i = 0; i < this.urls.length; i++) {
       if(ind != this.urls[i].id) {
         count++;
+        this.blockUI.start('Loading...');
         this.matrixService.getStatusFilters(
           this.urls[i].name,
           this.statusId,
@@ -441,6 +442,7 @@ export class StatedComponent implements OnInit {
     setTimeout(() => {
       this.arrFilters.sort((a,b)=>a.ind - b.ind)
       console.log('arrFilters', this.arrFilters);
+      this.blockUI.stop();
     }, 1500);
 
   }
@@ -505,7 +507,7 @@ export class StatedComponent implements OnInit {
 
   sortType(column, orderType, ind) {
     console.log('sortType', column, orderType)
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.indColumn = ind;
     this.orderBy = ind;
     if (orderType == true) {
@@ -544,18 +546,18 @@ export class StatedComponent implements OnInit {
   }
 
   getDieLiveQty() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getDieLiveQty().subscribe((data) => {
       this.dieLifeArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getBmwNumber(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.bmwNumber().subscribe((data) => {
       this.dieLifeArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -689,7 +691,7 @@ export class StatedComponent implements OnInit {
 
   onScroll(column, array, ind) {
     console.log('onScroll', column, array, ind)
-    this.loading = true;
+    this.blockUI.start('Loading...');
     const length = 10;
     console.log('SCROLLLLLL', length+100);
     setTimeout(() => {

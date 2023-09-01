@@ -41,7 +41,7 @@ $vuexy-theme: mat.define-light-theme((color: (primary: $vuexy-primary,
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/themes/dark.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
-
+@import './app/@core/scss/angular/libs/blockui.component.scss';
 
 
 // ngx-toastr css
@@ -907,6 +907,13 @@ html .content.app-content {
 .header-navbar.floating-nav {
   width: calc(100vw - (100vw - 100%) - calc(1rem * 2) - 260px);
 }
+
+@media (max-width: 1199.98px) {
+  .header-navbar.floating-nav {
+    width: calc(100vw - (100vw - 100%) - calc(2rem * 1))!important;
+  }
+}
+
 .dark-layout .ngx-pagination a, .disabled{
   color: #b0b3ba!important;
 }
@@ -934,4 +941,14 @@ html .content.app-content {
   .example-container{
     max-height: 800px;
   }
+}
+
+.block-ui-wrapper.active {
+  opacity: 0.6;
+}
+
+.size-feather{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }

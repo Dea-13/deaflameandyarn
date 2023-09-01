@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ProfilesService } from '../../../@core/services/profiles.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-modal-profile-products',
@@ -13,11 +14,11 @@ import { ProfilesService } from '../../../@core/services/profiles.service';
 export class ModalProfileProductsComponent implements OnInit {
   @Input() public productItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
+  @BlockUI('block') blockUI: NgBlockUI;
 
   public createProductForm: FormGroup;
   public submitted: boolean;
   public userName: string;
-  public loading: boolean = false;
   public product: any;
   public translateSnackBar: any;
   fullScr: boolean = false;
@@ -90,7 +91,7 @@ export class ModalProfileProductsComponent implements OnInit {
     this.submitted = true;
     let obj;
     if (!this.createProductForm.invalid) {
-      this.loading = true;
+      this.blockUI.start('Loading...');
 
       obj = {
         erpitem: this.createProductForm.controls.erpitem.value,
@@ -122,31 +123,31 @@ export class ModalProfileProductsComponent implements OnInit {
         this.productService.updateProductProfile(obj).subscribe((employeeService) => {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
-              title: error.error,
+              title: 'Error',
               showConfirmButton: false,
               timer: 2000
             })
-            this.loading = false;
+            this.blockUI.stop();
           });
       } else {
         //create
         this.productService.createProductProfile(obj).subscribe((employeeService) => {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
-              title: error.error,
+              title: 'Error',
               showConfirmButton: false,
               timer: 2000
             })

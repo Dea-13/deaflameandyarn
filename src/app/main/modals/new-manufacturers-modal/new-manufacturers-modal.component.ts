@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-new-manufacturers-modal',
@@ -14,11 +15,11 @@ import Swal from 'sweetalert2';
 export class NewManufacturersModalComponent implements OnInit {
   @Input() public manufacturerItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
+  @BlockUI('block') blockUI: NgBlockUI;
 
   public createManufacturerForm: FormGroup;
   public submitted: boolean;
   public userName: string;
-  public loading: boolean = false;
   public manufacturer: any;
   public translateSnackBar: any;
   fullScr: boolean = false;
@@ -78,7 +79,7 @@ export class NewManufacturersModalComponent implements OnInit {
       })
     }
     if (!this.createManufacturerForm.invalid) {
-      this.loading = true;
+      this.blockUI.start('Loading...');
 
       obj = {
         name: this.createManufacturerForm.controls.name.value,
@@ -95,7 +96,7 @@ export class NewManufacturersModalComponent implements OnInit {
           .subscribe((manufacturersService) => {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
             Swal.fire({
@@ -112,7 +113,7 @@ export class NewManufacturersModalComponent implements OnInit {
           (manufacturersService) => {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
             Swal.fire({

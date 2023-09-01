@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -92,6 +93,7 @@ export type ChartOptionsCircle = {
 export class MovementMatrixComponent implements OnInit {
   // Public
   // @ViewChild('apexRadialChartRef') apexRadialChartRef: any;
+  @BlockUI('block') blockUI: NgBlockUI;
   @ViewChild("chartWave") chartWave: ChartComponent;
   @ViewChild("chartInResource") chartInResource: ChartComponent;
   @ViewChild("chartOutResource") chartOutResource: ChartComponent;
@@ -115,7 +117,6 @@ export class MovementMatrixComponent implements OnInit {
   public size = 13;
   //for pagination
   public languageOptions: any;
-  public loading: boolean = false;
   public translateSnackBar: any;
   public computerNameArr: Array<any> = [];
   public resourceInArr: Array<any> = [];
@@ -345,7 +346,7 @@ export class MovementMatrixComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.getChartCircle();
     this.matrixService.getDieMovement(this.computerName, this.resourceInName, this.resourceOutName, this.year, this.month).subscribe((data) => {
       var rows = this.uniqueData(data, 'computerName');
@@ -353,7 +354,7 @@ export class MovementMatrixComponent implements OnInit {
         rows[i] = this.uniqueLineNo(rows[i].computerName, data);
       }
       this.rows = rows;
-      this.loading = false;
+      this.blockUI.stop();
       this.getChartResourceIn();
       console.log("this.rows", this.rows)
     });
@@ -407,27 +408,27 @@ export class MovementMatrixComponent implements OnInit {
     return uniqueArray;
   }
 
-  getFilters(ind) {    
-    this.loading = true;
-    let count = 0; 
-    
+  getFilters(ind) {
+    this.blockUI.start('Loading...');
+    let count = 0;
+
     for (let i = 0; i < this.urlsFilter.length; i++) {
       if(ind != this.urlsFilter[i].id){
-        this.matrixService.getFilters(this.urls[i].name, this.computerName, this.resourceInName, this.resourceOutName, this.year, this.month).subscribe((data) => {          
+        this.matrixService.getFilters(this.urls[i].name, this.computerName, this.resourceInName, this.resourceOutName, this.year, this.month).subscribe((data) => {
           if(ind != this.urlsFilter[i].id){
             switch (this.urlsFilter[i].id) {
               case 0: { this.computerNameArr = data; } break;
               case 1: { this.resourceInArr = data; this.resourceOutArr = data; } break;
             }
           }
-          count++;          
+          count++;
         });
       }
     }
-    this.getRequest();    
-    if(count == 2){
-      this.loading = false;
-    }
+    this.getRequest();
+    // if(count == 3){
+      this.blockUI.stop();
+    // }
   }
 
   // ************************************************************************CHARTS WAVE*****************************************************************
@@ -596,7 +597,7 @@ export class MovementMatrixComponent implements OnInit {
   }
 
   clarAll() {
-    this.computerName = ''; 
+    this.computerName = '';
     this.resourceInName = '';
     this.resourceOutName = '';
     this.getRequest();

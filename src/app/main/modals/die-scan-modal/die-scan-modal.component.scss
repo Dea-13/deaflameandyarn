@@ -1,36 +1,3 @@
-.modal-dialog {
-  margin: auto;
-}
-
-@media (min-width: 1241px) {
-  ngx-datatable {
-    overflow: hidden !important;
-  }
-
-  .modal-dialog {
-    // max-width: 1200px!important;
-    max-width: calc(70% - 16px) !important;
-    overflow-x: hidden !important;
-  }
-
-  .datatable-body {
-    overflow-x: visible !important;
-  }
-}
-
-@media (max-width: 1240px) {
-  .modal-dialog {
-    overflow: auto !important;
-    overflow-x: hidden !important;
-  }
-}
-
-@media (max-width: 1240px) and (min-width: 1000px) {
-  .modal-dialog {
-    max-width: 1000px !important;
-  }
-}
-
 .form-control {
   display: block;
   width: 100%;

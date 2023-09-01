@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
@@ -41,7 +41,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selName != ''">{{selName.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selName !== ''">{{selName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">

@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { DieConfirmationService } from '../../../@core/services/die-confirmation.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-die-scan-modal',
@@ -13,10 +14,10 @@ export class DieScanModalComponent implements OnInit {
 
   @Input() public dieItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
+  @BlockUI('blockModal') blockUI: NgBlockUI;
 
   displayedColumns: string[] = ['dieId', 'resourceName', 'channels', 'inUse',];
   public translateSnackBar: any;
-  public loading: boolean;
   public dieId: string = '';
   //for pagination
   public cPage: number = 1;
@@ -58,39 +59,39 @@ export class DieScanModalComponent implements OnInit {
   }
 
   getBarCode() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.getBarCode(this.offset, this.limit, this.dieId, this.primaryResourceName, this.channels).subscribe(data => {
       console.log("getBarCode", data);
       this.rows = data['list'];
       this.totalResult = data['total'];
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getDies() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.getDies().subscribe(data => {
       console.log("getDies", data);
       this.dieArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getChannels() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.getChannels().subscribe(data => {
       console.log("getChannels", data);
       this.channelsArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   primaryResource() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.primaryResource().subscribe(data => {
       console.log("primaryResource", data);
       this.primaryResourceNameArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 

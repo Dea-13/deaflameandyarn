@@ -53,3 +53,21 @@ td.mat-footer-cell {
 .mat-table {
   width: -webkit-fill-available;
 }
+
+@media (min-height: 929px) {
+  .example-container{
+    max-height: 840px;
+  }
+}
+
+@media (max-height: 928px) and (min-height: 710px) {
+  .example-container{
+    max-height: 740px;
+  }
+}
+
+@media (max-height: 709px) {
+  .example-container{
+    max-height: 540px;
+  }
+}

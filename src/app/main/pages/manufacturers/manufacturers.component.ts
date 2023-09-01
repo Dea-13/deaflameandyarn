@@ -5,6 +5,7 @@ import { NewManufacturersModalComponent } from '../../modals/new-manufacturers-m
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-manufacturers',
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ManufacturersComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = ['name', 'email', 'defaultShipmentTerms', 'star'];
   public rows = [];
   public size = 13;
@@ -21,7 +23,6 @@ export class ManufacturersComponent implements OnInit {
   public limit: number = 15;
   public offset: number = 0;
   public totalResult: number = 0;
-  public loading: boolean = false;
   public translateSnackBar: any;
   public selName: string = '';
   public selDepartment: string = '';
@@ -39,7 +40,6 @@ export class ManufacturersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = true;
     this.pageChanged(1);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
@@ -49,20 +49,20 @@ export class ManufacturersComponent implements OnInit {
   }
 
   getRequest() {
-    this.manufacturerService
-      .getManufacturers(this.offset, this.limit, this.selName)
+    this.blockUI.start('Loading...');
+    this.manufacturerService .getManufacturers(this.offset, this.limit, this.selName)
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
-        this.loading = false;
+        this.blockUI.stop();
       });
   }
 
   getFilters() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.manufacturerService.getFilters().subscribe((data) => {
       this.nameArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -75,7 +75,7 @@ export class ManufacturersComponent implements OnInit {
 
   modalManufacturer(row) {
     console.log("new/edit manufacturer");
-    const modalRef = this.modalService.open(NewManufacturersModalComponent, {});
+    const modalRef = this.modalService.open(NewManufacturersModalComponent, {size : 'md'});
     modalRef.componentInstance.manufacturerItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
@@ -92,7 +92,7 @@ export class ManufacturersComponent implements OnInit {
   }
 
   deleteManufacturer(row) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.manufacturerService.deleteManufacturers(row.id).subscribe(manufacturerService => {
       this.getRequest();
       Swal.fire({
@@ -102,7 +102,7 @@ export class ManufacturersComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
-      this.loading = false;
+      this.blockUI.stop();
     },
       (error) => {
         Swal.fire({
@@ -112,7 +112,7 @@ export class ManufacturersComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.loading = false;
+        this.blockUI.stop();
         this.getRequest();
       }
     );
