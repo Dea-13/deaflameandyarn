@@ -41,7 +41,7 @@ $vuexy-theme: mat.define-light-theme((color: (primary: $vuexy-primary,
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/themes/dark.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
-
+@import './app/@core/scss/angular/libs/blockui.component.scss';
 
 
 // ngx-toastr css
@@ -243,7 +243,7 @@ select.form-control:not([multiple=multiple]) {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 740px) {
 
   .container-xxl,
   .container-xl,
@@ -861,7 +861,7 @@ input[type=radio], input[type=checkbox] {
 .btn .badge{
   top: -5px!important;
   background: #ff9f43;
-  font-size:11px; 
+  font-size:11px;
   padding: 2px;
 }
 
@@ -896,6 +896,59 @@ mat-label{
   background: #3f4b6d!important;
 }
 
-.dark-layout td {
+.dark-layout td, .filters-header, .mat-expansion-indicator::after{
   color: #b0b3ba!important;
+}
+
+html .content.app-content {
+  padding: calc(1rem + 4.45rem + 1.3rem) 1rem 0;
+}
+
+.header-navbar.floating-nav {
+  width: calc(100vw - (100vw - 100%) - calc(1rem * 2) - 260px);
+}
+
+@media (max-width: 1199.98px) {
+  .header-navbar.floating-nav {
+    width: calc(100vw - (100vw - 100%) - calc(2rem * 1))!important;
+  }
+}
+
+.dark-layout .ngx-pagination a, .disabled{
+  color: #b0b3ba!important;
+}
+
+.dark-layout .ngx-pagination a:hover{
+  background: #3f4b6d!important;
+}
+
+.dark-layout mat-expansion-panel{
+  background-color: #283046!important;
+}
+
+.dark-layout .filters-column{
+  background: #3f4b6d!important;
+  border: 1px solid #4d5a7e!important;
+  margin-right: 9px;
+  margin-bottom: 9px;
+}
+
+.example-container{
+  max-height: 720px;
+}
+
+@media (min-width: 1920px) {
+  .example-container{
+    max-height: 800px;
+  }
+}
+
+.block-ui-wrapper.active {
+  opacity: 0.6;
+}
+
+.size-feather{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }

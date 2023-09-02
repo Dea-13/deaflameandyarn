@@ -1,17 +1,17 @@
-<div class="slideout-content">
+<div *blockUI="'blockModal'" class="slideout-content">
   <!-- Modal to add new user starts-->
   <div id="modals-slide-in">
-    <div class="modal-dialog-screen material-dialog-center modal-content pt-0" [ngClass]="{ 'modal-full-screen': fullScr == true, 'modal-normal-screen': fullScr == false }">
+    <div class="modal-dialog-screen material-dialog-center modal-content pt-0" [ngClass]="{ 'modal-full-screen': fullScr === true, 'modal-normal-screen': fullScr === false }">
       <div class="modal-body flex-grow-1">
         <div class="row">
           <div class="col-md-12 col-12">
-            <div class="alert alert-primary flex" role="alert">
+            <div class="alert alert-primary d-block d-md-flex" role="alert">
               <div class="alert-body">
                 {{ translateSnackBar.modalProfile }}
               </div>
               <button type="button" class="modal-icon-header" data-dismiss="modal" aria-label="Close" (click)="fullScreen()">
-                <div [ngStyle]="{'display': fullScr == true ? 'flex' : 'none' }"><span [data-feather]="'minimize-2'" [class]="'ficon'"></span></div>
-                <div [ngStyle]="{'display': fullScr == true ? 'none' : 'flex' }"><span [data-feather]="'maximize-2'" [class]="'ficon'"></span></div>
+                <div [ngStyle]="{'display': fullScr === true ? 'flex' : 'none' }"><span [data-feather]="'minimize-2'" [class]="'ficon'"></span></div>
+                <div [ngStyle]="{'display': fullScr === true ? 'none' : 'flex' }"><span [data-feather]="'maximize-2'" [class]="'ficon'"></span></div>
               </button>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
                 ×
@@ -20,110 +20,110 @@
           </div>
         </div>
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
-        <div class="col-sm-12 flex">
-          <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
+        <div class="row">
+          <div class="section-left col-12 col-xl-7">
             <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-fill nav-pills">
                 <ng-container [ngbNavItem]="1">
                   <a ngbNavLink>{{ translateSnackBar.general }}</a>
                   <ng-template ngbNavContent>
                     <form [formGroup]="createProfileForm" #newUserForm="ngForm">
                       <div class="flex">
-                        <div class="col-sm-5">
-                          <div class="col-sm-12 flex header-section-profile">
+                        <div class="col-md-5">
+                          <div class="col-md-12 flex header-section-profile">
                             <h2>{{ translateSnackBar.profile }}</h2>
                             <input type="text" formControlName="profileName" [textMask]="{mask: mask}" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('profileName').value}" required />
                           </div>
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label class="w-17-label">{{ translateSnackBar.group }}</label>
                             <ng-select [virtualScroll]="true" appendTo="body" formControlName="groupCode">
                               <ng-option *ngFor="let g of groupCode" [value]="g.name">{{ g.name }}</ng-option>
                             </ng-select>
                           </div>
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label class="label-checkbox">{{ translateSnackBar.inUse }}<span class="error-label" *ngIf="submitted && !createProfileForm.get('inUse').value">*</span></label>
                             <input class="form-control input" formControlName="inUse" type="checkbox" required
                               style="width: 5%;margin-top: -1%;">
                           </div>
 
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label class="label-checkbox">{{ translateSnackBar.visibleSide }} <span class="error-label" *ngIf="submitted && !createProfileForm.get('visSides').value">*</span></label>
                             <input class="form-control input" formControlName="visSides" type="checkbox" required
                               style="width: 5%;margin-top: -1%;">
                           </div>
                         </div>
 
-                        <div class="col-sm-3">
-                          <div class="col-sm-12 flex" style="visibility: hidden;">
-                            <div class="col-sm-6">{{ translateSnackBar.min }}</div>
-                            <div class="col-sm-6">{{ translateSnackBar.max }}</div>
+                        <div class="col-md-3">
+                          <div class="col-md-12 flex" style="visibility: hidden;">
+                            <div class="col-md-6">{{ translateSnackBar.min }}</div>
+                            <div class="col-md-6">{{ translateSnackBar.max }}</div>
                           </div>
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 1</label>
                             <input type="number" formControlName="size1" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size1').value}" required />
                           </div>
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 2</label>
                             <input type="number" formControlName="size2" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size2').value}" required />
                           </div>
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 3</label>
                             <input type="number" formControlName="size3" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size3').value}" required />
                           </div>
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 4</label>
                             <input type="number" formControlName="size4" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size4').value}" required />
                           </div>
                         </div>
 
-                        <div class="col-sm-4">
-                          <div class="col-sm-12 flex">
-                            <div class="col-sm-6">{{ translateSnackBar.min }}</div>
-                            <div class="col-sm-6">{{ translateSnackBar.max }}</div>
+                        <div class="col-md-4">
+                          <div class="col-md-12 flex">
+                            <div class="col-md-6">{{ translateSnackBar.min }}</div>
+                            <div class="col-md-6">{{ translateSnackBar.max }}</div>
                           </div>
-                          <div class="col-sm-12 flex">
-                            <div class="col-sm-6">
+                          <div class="col-md-12 flex">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size1TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size1TolDown').value}" required />
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size1TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size1TolUp').value}" required />
                               </div>
                           </div>
-                          <div class="col-sm-12 flex">
-                            <div class="col-sm-6">
+                          <div class="col-md-12 flex">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size2TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size2TolDown').value}" required />
                               </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size2TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size2TolUp').value}" required />
                               </div>
                           </div>
-                          <div class="col-sm-12 flex">
-                            <div class="col-sm-6">
+                          <div class="col-md-12 flex">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size3TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size3TolDown').value}" required />
                               </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size3TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size3TolUp').value}" required />
                               </div>
                           </div>
-                          <div class="col-sm-12 flex">
-                            <div class="col-sm-6">
+                          <div class="col-md-12 flex">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size4TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size4TolDown').value}" required />
                               </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                               <input type="number" formControlName="size4TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size4TolUp').value}" required />
                               </div>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-12 block">
-                        <div class="col-sm-4 flex">
+                      <div class="col-md-12 block">
+                        <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.weight }}</label>
                           <input type="number" formControlName="grM" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('grM').value}" required />
                         </div>
-                        <div class="col-sm-4 flex">
+                        <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.cut }}</label>
                           <input type="number" formControlName="section" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('section').value}" required />
                         </div>
-                        <div class="col-sm-4 flex">
+                        <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.perimeter }}</label>
                           <input type="number" formControlName="perimeter" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('perimeter').value}" required />
                         </div>
@@ -136,61 +136,61 @@
                   <ng-template ngbNavContent>
                     <form [formGroup]="createProfileForm" #newUserForm="ngForm">
                       <div class="flex">
-                        <div class="col-sm-4">
-                          <div class="col-sm-12 flex">
+                        <div class="col-md-4">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.cooling }}</label>
                             <input class="form-control input" formControlName="cooling" type="text">
                           </div>
 
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label class="line-fixed">{{ translateSnackBar.additionalOp }}</label>
                             <input class="form-control input" formControlName="addOperations" type="text">
                           </div>
 
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.tMin }}</label>
                             <input class="form-control input" formControlName="tbillet" type="text">
                           </div>
                         </div>
 
-                        <div class="col-sm-4">
-                          <div class="col-sm-12 flex hidden">
+                        <div class="col-md-4">
+                          <div class="col-md-12 flex hidden">
                             <label></label>
                             <input class="form-control input w-70" type="text">
                           </div>
-                          <div class="col-sm-12 flex hidden">
+                          <div class="col-md-12 flex hidden">
                             <label></label>
                             <input class="form-control input w-70" type="text">
                           </div>
-                          <div class="col-sm-12 flex bottom-fixed">
+                          <div class="col-md-12 flex bottom-fixed">
                             <label>{{ translateSnackBar.tMax }}</label>
                             <input class="form-control input w-70" formControlName="texit" type="text">
                           </div>
                         </div>
 
-                        <div class="col-sm-4">
-                          <div class="col-sm-12 flex">
+                        <div class="col-md-4">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.stackBasket }}</label>
                             <input class="form-control input" formControlName="basketOrdering" type="text">
                           </div>
 
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.use }}</label>
                             <input class="form-control input" formControlName="usage" type="text" [ngClass]="{ 'error': submitted && !createProfileForm.get('usage').value}" required>
                           </div>
 
-                          <div class="col-sm-12 flex">
+                          <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.puller }}</label>
                             <input class="form-control input" formControlName="puller" type="text">
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-12 block">
-                        <div class="col-sm-12 flex">
+                      <div class="col-md-12 block">
+                        <div class="col-md-12 flex">
                           <label class="width-fixed">{{ translateSnackBar.memo }}</label>
                           <input type="text" formControlName="notesExtrusion" class="form-control dt-uname" />
                         </div>
-                        <div class="col-sm-12 flex">
+                        <div class="col-md-12 flex">
                           <label class="width-fixed">{{ translateSnackBar.important }}</label>
                           <textarea class="form-control" formControlName="important" name="important"></textarea>
                         </div>
@@ -202,9 +202,9 @@
                 <a ngbNavLink>{{ translateSnackBar.speeds }}</a>
                 <ng-template ngbNavContent>
                   <p *ngIf="disableTab"><span [data-feather]="'lock'" [class]="'lock-icon'"></span><b>{{ translateSnackBar.messageTabProfile }}</b></p>
-                  <div *ngIf="!disableTab" class="col-sm-12">
+                  <div *ngIf="!disableTab" class="col-md-12">
                     <!-- -->
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                       <table style="border: none;">
                         <tbody>
                           <tr>
@@ -370,7 +370,7 @@
                         </tbody>
                       </table>
                     </div>
-                    <div class="col-sm-12"></div>
+                    <div class="col-md-12"></div>
                   </div>
                 </ng-template>
               </ng-container>
@@ -378,7 +378,7 @@
                 <a ngbNavLink>{{ translateSnackBar.lengthFrontBack }}</a>
                 <ng-template ngbNavContent>
                   <p *ngIf="disableTab"><span [data-feather]="'lock'" [class]="'lock-icon'"></span><b>{{ translateSnackBar.messageTabProfile }}</b></p>
-                  <div *ngIf="!disableTab" class="col-sm-12 grid">
+                  <div *ngIf="!disableTab" class="col-md-12 grid">
                     <!-- -->
                     <table class="clasic-table">
                       <thead>
@@ -398,19 +398,19 @@
                             <div class="flex">
                               <span *ngIf="!this.isEditableRowsLength[i] && rowLength.profileId"
                                 (click)="this.isEditableRowsLength[i]=!this.isEditableRowsLength[i];$event.preventDefault(); $event.stopPropagation();">
-                                <i data-feather="edit" class="mr-25" title="Modify"></i>
+                                <span [data-feather]="'edit'" [class]="'mr-25 size-feather'"></span>
                               </span>
                               <span *ngIf="this.isEditableRowsLength[i] || !rowLength.profileId"
                                 (click)="saveRowsLength(rowsLength, rowLength, i);$event.preventDefault(); $event.stopPropagation();">
-                                <i data-feather="save" class="mr-25" title="Save"></i>
+                                <span [data-feather]="'save'" [class]="'mr-25 size-feather'"></span>
                               </span>
                               <span *ngIf="this.isEditableRowsLength[i] && rowLength.profileId"
                                 (click)="deleteRowsLength(rowsLength, rowLength, i);$event.preventDefault(); $event.stopPropagation();">
-                                <i data-feather="delete" class="mr-25" title="Delete"></i>
+                                <span [data-feather]="'delete'" [class]="'mr-25 size-feather'"></span>
                               </span>
                             </div>
                           </td>
-                          <td>
+                          <td class="w-25">
                             <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
@@ -430,35 +430,48 @@
                 <p *ngIf="disableTab"><span [data-feather]="'lock'" [class]="'lock-icon'"></span><b>{{ translateSnackBar.messageTabProfile }}</b></p>
                   <div *ngIf="!disableTab">
                     <!-- -->
-                    <div class="col-sm-12 block">
-                      <div class="col-sm-12 flex">
+                    <div class="row">
+                      <div class="col-4">
                         <label>{{ translateSnackBar.infoMatrix }}</label>
-                        <ng-select [virtualScroll]="true" appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
                       </div>
-                      <div class="col-sm-12 flex">
-                        <label>{{ translateSnackBar.followRecipee }}</label>
-                        <ng-select [virtualScroll]="true" appendTo="body">
-                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
-                        </ng-select>
-                      </div>
-                      <div class="col-sm-12 flex">
-                        <label>{{ translateSnackBar.secondHandScrap }}</label>
+                      <div class="col-8">
                         <ng-select [virtualScroll]="true" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <label>{{ translateSnackBar.followRecipee }}</label>
+                      </div>
+                      <div class="col-8">
+                        <ng-select [virtualScroll]="true" appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <label>{{ translateSnackBar.secondHandScrap }}</label>
+                      </div>
+                      <div class="col-8">
+                        <ng-select [virtualScroll]="true" appendTo="body">
+                          <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
+                        </ng-select>
+                      </div>
+                    </div>
+
                     <div class="flex">
-                      <div class="col-sm-4">
-                        <div class="col-sm-12">
+                      <div class="col-md-4">
+                        <div class="col-md-12">
                           <label>Breda {{ translateSnackBar.manufacturing }}</label>
                           <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                           <label>Breda {{ translateSnackBar.scrap }}</label>
                           <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
@@ -466,14 +479,14 @@
                         </div>
                       </div>
 
-                      <div class="col-sm-4">
-                        <div class="col-sm-12">
+                      <div class="col-md-4">
+                        <div class="col-md-12">
                           <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
                           <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                           <label>SMS1 {{ translateSnackBar.scrap }}</label>
                           <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
@@ -481,14 +494,14 @@
                         </div>
                       </div>
 
-                      <div class="col-sm-4">
-                        <div class="col-sm-12">
+                      <div class="col-md-4">
+                        <div class="col-md-12">
                           <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
                           <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                           <label>SMS2 {{ translateSnackBar.scrap }}</label>
                           <ng-select [virtualScroll]="true" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
@@ -502,7 +515,7 @@
             </nav>
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
           </div>
-          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
+          <div class="section-right col-12 col-xl-5">
             <table class="clasic-table">
               <thead>
                 <th></th>
@@ -564,41 +577,39 @@
           </div>
         </div>
 
-        <div class="col-sm-12 flex margin-10">
-          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
-            <img *ngIf="sectionProfiles" class="center-img" src="{{'data:image/png;base64,' + sectionProfiles.fileData}}">
+        <div class="row custom-m-1">
+          <div class="col-12 col-xl-9">
+            <div class="border-purple row mr-xl-1 h-100">
+              <img *ngIf="img" class="center-img" src="{{'data:image/png;base64,' + img}}">
+            </div>
           </div>
-          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
-            <div class="col-sm-12">
-              <div class="flex">
-                <fieldset class="form-group">
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      class="custom-file-input"
-                      accept="image/*"
-                      ng2FileSelect
-                      [uploader]="uploader"
-                      (input)="handleUpload($event)"
-                      id="file-upload-multiple"
-                    />
-                    <label class="custom-file-label"></label>
-                  </div>
-                </fieldset>
-              </div>
+          <div class="col-12 col-xl-3">
+            <div class="row">
+              <input
+                type="file"
+                class="custom-file-input"
+                accept="image/*"
+                ng2FileSelect
+                [uploader]="uploader"
+                (input)="handleUpload($event)"
+                id="file-upload-multiple"
+              />
+              <label class="custom-file-label"></label>
+            </div>
 
+            <div class="row">
               <table class="clasic-table">
                 <thead>
-                  <tr>
-                    <th width="50%">{{ translateSnackBar.file }}</th>
-                    <th>{{ translateSnackBar.size }}</th>
-                    <th></th>
-                  </tr>
+                  <th class="w-50">{{ translateSnackBar.file }}</th>
+                  <th>{{ translateSnackBar.size }}</th>
+                  <th></th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of uploader.queue">
-                    <td>
-                      <a href="{{'data:image/png;base64,' + (item.fileData ? item.fileData : item.url)}}" download> {{item.fileName ? item.fileName : item?.file?.name}}</a>
+                  <tr *ngFor="let item of uploader.queue;let i=index" class="img-row" (click)="setImage(i, item)">
+                    <td class="w-50">
+                      <a href="{{'data:image/png;base64,' + (item.fileData ? item.fileData : item.url)}}" download>
+                        {{item.fileName ? item.fileName : item?.file?.name}}
+                      </a>
                     </td>
                     <td *ngIf="uploader.options.isHTML5" nowrap>
                       {{ item?.file?.size / 1024 / 1024 | number: '.2' }} MB
@@ -627,19 +638,14 @@
           </div>
         </div>
         <!-- </form> -->
-        <div class="col-sm-12">
-          <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()">{{ translateSnackBar.save }}</button>
+        <div class="row">
+          <div class="col-12 p-2 text-center">
+            <button rippleEffect class="btn w-25 btn-primary" (click)="submitForm()">{{ translateSnackBar.save }}</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
   <!-- Modal to add new user Ends-->
 </div>
-<div *ngIf="loading" class="loader-section">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
-<!-- <swal #SweetAlertBottomEnd title="{{ translateSnackBar.saveMsg }}" icon="success" [showConfirmButton]="false"
-  [timer]="1500" [position]="'bottom-end'">
-</swal> -->

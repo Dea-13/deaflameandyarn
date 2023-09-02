@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WarehouseListDieModalComponent } from '../../modals/warehouse-list-die-modal/warehouse-list-die-modal.component';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
 
 @Component({
   selector: 'app-free-address',
@@ -18,6 +20,7 @@ import { WarehouseListDieModalComponent } from '../../modals/warehouse-list-die-
 })
 export class FreeAddressComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = [];
   public urls = [
     { id: 0, name: 'resourcename' },
@@ -38,7 +41,6 @@ export class FreeAddressComponent implements OnInit {
   public countRows: number = 15;
   public languageOptions: any;
   public searchMaterial: any = '';
-  public loading: boolean = false;
   public translateSnackBar: any;
   public resourceName: string = ''
   public storagePlace: string = '';
@@ -61,8 +63,6 @@ export class FreeAddressComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.loading = true;
-
     this.pageChanged(1);
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -72,16 +72,16 @@ export class FreeAddressComponent implements OnInit {
   }
 
   getRequest() {
-    this.warehouseService
-      .getInformationWarehouse(this.offset, this.limit, this.resourceName, this.storagePlace, this.status).subscribe((data) => {
-        this.rows = data.list;
-        this.totalResult = data.total;
-        this.loading = false;
-      });
+    this.blockUI.start('Loading...');
+    this.warehouseService.getInformationWarehouse(this.offset, this.limit, this.resourceName, this.storagePlace, this.status).subscribe((data) => {
+      this.rows = data.list;
+      this.totalResult = data.total;
+      this.blockUI.stop();
+    });
   }
 
   getFilters() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     for (let i = 0; i < this.urls.length; i++) {
       this.warehouseService.getFilters(this.urls[i].name).subscribe((data) => {
         switch (this.urls[i].id) {
@@ -96,7 +96,7 @@ export class FreeAddressComponent implements OnInit {
             }
             break;
         }
-        this.loading = false;
+        this.blockUI.stop();
       });
     }
   }
@@ -109,11 +109,29 @@ export class FreeAddressComponent implements OnInit {
   }
 
   viewDiesList(list){
-    const modalRef = this.modalService.open(WarehouseListDieModalComponent, {});
-    modalRef.componentInstance.dieItem = { 'list': list };
-    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-      if (receivedEntry) {}
-    });
+    if(list.length > 0) {
+      const modalRef = this.modalService.open(WarehouseListDieModalComponent, {size : 'md'});
+      modalRef.componentInstance.dieItem = { 'list': list };
+      modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+        if (receivedEntry) {}
+      });
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.msgEmpty ,
+        showConfirmButton: false,
+        timer: 2000
+      })
+      Swal.fire({
+        title: this.translateSnackBar.msgEmpty,
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-success'
+        }
+      });
+    }
+
   }
 
   clarAll() {

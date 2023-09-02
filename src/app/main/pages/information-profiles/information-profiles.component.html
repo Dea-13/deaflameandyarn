@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
@@ -46,7 +46,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selProfileName != ''">{{selProfileName.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selProfileName !== ''">{{selProfileName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -58,17 +58,17 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.profileName }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.profileTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('profileName', !orderType, 0)">
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 0 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 0 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 0 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.profileName}}</span></td>
+              <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.profileName}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="groupCode">
@@ -76,7 +76,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selGroupCode != ''">{{selGroupCode.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selGroupCode !== ''">{{selGroupCode.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -88,17 +88,17 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.groupCode }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.groupCodeTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('groupCode', !orderType, 1)">
-                  <div [ngStyle]="{'display': indColumn == 1 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 1 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 1 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 1 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.groupCode}}</span></td>
+              <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.groupCode}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="section">
@@ -106,7 +106,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSection != ''">{{selSection.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSection !== ''">{{selSection.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -118,12 +118,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.section }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.sectionTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('section', !orderType, 2)">
-                  <div [ngStyle]="{'display': indColumn == 2 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 2 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 2 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 2 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -136,7 +136,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPerimeter != ''">{{selPerimeter.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPerimeter !== ''">{{selPerimeter.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -148,12 +148,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.perimeter }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.perimeterTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('perimeter', !orderType, 3)">
-                  <div [ngStyle]="{'display': indColumn == 3 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 3 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 3 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 3 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -166,7 +166,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selGrM != ''">{{selGrM.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selGrM !== ''">{{selGrM.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -177,12 +177,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.grM }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.grMTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('grM', !orderType, 4)">
-                  <div [ngStyle]="{'display': indColumn == 4 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 4 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 4 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 4 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -195,7 +195,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPrimaryPress != ''">{{selPrimaryPress.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPrimaryPress !== ''">{{selPrimaryPress.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -207,12 +207,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.primaryPress }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.primaryPressTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('primaryPress', !orderType, 5)">
-                  <div [ngStyle]="{'display': indColumn == 5 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 5 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 5 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 5 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -221,11 +221,11 @@
             </ng-container>
 
             <ng-container matColumnDef="alternativePress">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.alternativePress">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.alternativePress">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selAlternativePress != ''">{{selAlternativePress.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selAlternativePress !== ''">{{selAlternativePress.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -237,12 +237,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.alternativePress }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.alternativePressTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('alternativePress', !orderType, 6)">
-                  <div [ngStyle]="{'display': indColumn == 6 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 6 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 6 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 6 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -255,7 +255,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize1 != ''">{{selSize1.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize1 !== ''">{{selSize1.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -266,12 +266,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size1 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size1Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size1', !orderType, 7)">
-                  <div [ngStyle]="{'display': indColumn == 7 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 7 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 7 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 7 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -284,7 +284,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize2 != ''">{{selSize2.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize2 !== ''">{{selSize2.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -295,12 +295,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size2 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size2Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size2', !orderType, 8)">
-                  <div [ngStyle]="{'display': indColumn == 8 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 8 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 8 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 8 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -313,7 +313,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize3 != ''">{{selSize3.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize3 !== ''">{{selSize3.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -324,12 +324,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size3 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size3Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size3', !orderType, 9)">
-                  <div [ngStyle]="{'display': indColumn == 9 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 9 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 9 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 9 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -342,7 +342,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize4 != ''">{{selSize4.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selSize4 !== ''">{{selSize4.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -353,12 +353,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size4 }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.size4Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('size4', !orderType, 10)">
-                  <div [ngStyle]="{'display': indColumn == 10 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 10 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 10 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 10 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -371,7 +371,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selUsage != ''">{{selUsage.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selUsage !== ''">{{selUsage.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -382,12 +382,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.usage }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.usageTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('usage', !orderType, 11)">
-                  <div [ngStyle]="{'display': indColumn == 11 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 11 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 11 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 11 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -396,11 +396,11 @@
             </ng-container>
 
             <ng-container matColumnDef="extrusionSpeed">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.extrusionSpeed">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.extrusionSpeed">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selExtrusionSpeed != ''">{{selExtrusionSpeed.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selExtrusionSpeed !== ''">{{selExtrusionSpeed.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -412,12 +412,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.extrusionSpeed }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.extrusionSpeedTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('extrusionSpeed', !orderType, 12)">
-                  <div [ngStyle]="{'display': indColumn == 12 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 12 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 12 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 12 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -426,11 +426,11 @@
             </ng-container>
 
             <ng-container matColumnDef="extrusionSpeedSms">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.extrusionSpeedSms">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.extrusionSpeedSms">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selExtrusionSpeedSms != ''">{{selExtrusionSpeedSms.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selExtrusionSpeedSms !== ''">{{selExtrusionSpeedSms.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -442,12 +442,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.extrusionSpeedSms }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.extrusionSpeedSmsTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('extrusionSpeedSms', !orderType, 13)">
-                  <div [ngStyle]="{'display': indColumn == 13 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 13 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 13 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 13 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -460,7 +460,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selOpPerf != ''">{{selOpPerf.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selOpPerf !== ''">{{selOpPerf.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -472,12 +472,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.opPerf }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.opPerfTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('opPerf', !orderType, 14)">
-                  <div [ngStyle]="{'display': indColumn == 14 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 14 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 14 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 14 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -486,11 +486,11 @@
             </ng-container>
 
             <ng-container matColumnDef="tbillet">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.tbillet">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.tbillet">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selTbillet != ''">{{selTbillet.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selTbillet !== ''">{{selTbillet.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -502,12 +502,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tbillet }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tbilletTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('tbillet', !orderType, 15)">
-                  <div [ngStyle]="{'display': indColumn == 15 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 15 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 15 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 15 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -520,7 +520,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selTExit != ''">{{selTExit.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selTExit !== ''">{{selTExit.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -531,12 +531,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tExit }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tExitTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('tExit', !orderType, 16)">
-                  <div [ngStyle]="{'display': indColumn == 16 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 16 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 16 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 16 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -549,7 +549,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPuller != ''">{{selPuller.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPuller !== ''">{{selPuller.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -561,12 +561,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.puller }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.pullerTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('puller', !orderType, 17)">
-                  <div [ngStyle]="{'display': indColumn == 17 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 17 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 17 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 17 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -579,7 +579,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selScrapStart != ''">{{selScrapStart.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selScrapStart !== ''">{{selScrapStart.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -591,12 +591,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapStart }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapStartTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('scrapStart', !orderType, 18)">
-                  <div [ngStyle]="{'display': indColumn == 18 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 18 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 18 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 18 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -605,11 +605,11 @@
             </ng-container>
 
             <ng-container matColumnDef="scrapStartSms">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapStartSms">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapStartSms">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selScrapStartSms != ''">{{selScrapStartSms.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selScrapStartSms !== ''">{{selScrapStartSms.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -621,12 +621,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapStartSms }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapStartSmsTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('scrapStartSms', !orderType, 19)">
-                  <div [ngStyle]="{'display': indColumn == 19 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 19 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 19 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 19 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -639,7 +639,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selScrapEnd != ''">{{selScrapEnd.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selScrapEnd !== ''">{{selScrapEnd.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -651,12 +651,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapEnd }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapEndTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('scrapEnd', !orderType, 20)">
-                  <div [ngStyle]="{'display': indColumn == 20 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 20 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 20 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 20 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -669,7 +669,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selCooling != ''">{{selCooling.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selCooling !== ''">{{selCooling.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -681,12 +681,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.cooling }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('cooling', !orderType, 21)">
-                  <div [ngStyle]="{'display': indColumn == 21 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 21 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 21 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 21 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -695,11 +695,11 @@
             </ng-container>
 
             <ng-container matColumnDef="coolingSms">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.coolingSms">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.coolingSms">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selCoolingSms != ''">{{selCoolingSms.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selCoolingSms !== ''">{{selCoolingSms.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -711,12 +711,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingSms }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingSmsTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('coolingSms', !orderType, 22)">
-                  <div [ngStyle]="{'display': indColumn == 22 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 22 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 22 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 22 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -725,11 +725,11 @@
             </ng-container>
 
             <ng-container matColumnDef="coolingAdd">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.coolingAdd">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.coolingAdd">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selCoolingAdd != ''">{{selCoolingAdd.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selCoolingAdd !== ''">{{selCoolingAdd.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -741,12 +741,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingAdd }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.coolingAddTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('coolingAdd', !orderType, 23)">
-                  <div [ngStyle]="{'display': indColumn == 23 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 23 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 23 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 23 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -755,11 +755,11 @@
             </ng-container>
 
             <ng-container matColumnDef="basketOrdering">
-              <th class="min-w-185" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.basketOrdering">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.basketOrdering">
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selBasketOrdering != ''">{{selBasketOrdering.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selBasketOrdering !== ''">{{selBasketOrdering.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -771,12 +771,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.basketOrdering }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.basketOrderingTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('basketOrdering', !orderType, 24)">
-                  <div [ngStyle]="{'display': indColumn == 24 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 24 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 24 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 24 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -789,7 +789,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selNotesExtrusion != ''">{{selNotesExtrusion.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selNotesExtrusion !== ''">{{selNotesExtrusion.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -801,12 +801,12 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.notesExtrusion }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.notesExtrusionTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('notesExtrusion', !orderType, 25)">
-                  <div [ngStyle]="{'display': indColumn == 25 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 25 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 25 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 25 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -819,7 +819,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selImportant != ''">{{selImportant.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selImportant !== ''">{{selImportant.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -831,17 +831,17 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.important }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.importantTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('important', !orderType, 26)">
-                  <div [ngStyle]="{'display': indColumn == 26 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 26 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 26 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 26 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.important}}</span></td>
+              <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.important}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="inUse">
@@ -849,7 +849,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selInUse != ''">{{selInUse.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selInUse !== ''">{{selInUse.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -860,7 +860,7 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.inUse }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.inUseTable }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
                 <input class="form-control input" [(ngModel)]="element.inUse" type="checkbox">

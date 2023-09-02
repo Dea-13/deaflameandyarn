@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { ProfilesService } from '../../../@core/services/profiles.service';
 import { ModalProfileProductsComponent } from '../../modals/modal-profile-products/modal-profile-products.component';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-products',
@@ -12,19 +13,19 @@ import { ModalProfileProductsComponent } from '../../modals/modal-profile-produc
 })
 export class ProductsComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = ['erpitem', 'erpvariant', 'opNo', 'cnc1Id', 'cnc2Id', 'subContractor1Id', 'punching1', 'punching2', 'garda3', 'minutesPerPiece', 'weightPerPiece', 'lprkr', 'lobr', 'npr', 'setupSameProfile', 'setupOtherProfile' ];
   public rows = [];
   public size = 13;
   public indColumn: any;
   public orderBy: number = 0;
-  public orderType: number = 1; 
+  public orderType: number = 1;
   //for pagination
   public cPage: number = 1;
   public limit: number = 15;
   public offset: number = 0;
   public totalResult: number = 0;
   public languageOptions: any;
-  public loading: boolean = false;
   public translateSnackBar: any;
 
   public urls = [
@@ -93,16 +94,15 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
-      this.pageChanged(1);
-      this.getFilters();
+    this.pageChanged(1);
+    this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profileService.getProfileProduct(
         this.offset,
         this.limit,
@@ -128,12 +128,12 @@ export class ProductsComponent implements OnInit {
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
-        this.loading = false;
+        this.blockUI.stop();
       });
   }
 
   getFilters() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     for (let i = 0; i < this.urls.length; i++) {
       this.profileService.getProductFilters(this.urls[i].name, this.erpitem, this.erpvariant, this.opNo, this.cNC1, this.cNC2, this.subContractor1, this.punching1, this.punching2, this.garda3, this.minutesPerPiece, this.weightPerPiece, this.lprkr, this.lobr, this.npr, this.setupSameProfile, this.setupOtherProfile).subscribe((data) => {
         switch (this.urls[i].id) {
@@ -170,7 +170,7 @@ export class ProductsComponent implements OnInit {
           case 15: { this.setupOtherProfileArr = data; }
             break;
         }
-        this.loading = false;
+        this.blockUI.stop();
       });
     }
   }
@@ -184,7 +184,7 @@ export class ProductsComponent implements OnInit {
 
   modalProducts(row) {
     console.log('new/edit modalProducts');
-    const modalRef = this.modalService.open(ModalProfileProductsComponent, {});
+    const modalRef = this.modalService.open(ModalProfileProductsComponent, {size : 'md'});
     modalRef.componentInstance.productItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
@@ -195,7 +195,7 @@ export class ProductsComponent implements OnInit {
 
   sortType(column, orderType, ind) {
     console.log('sortType', column, orderType, ind)
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.indColumn = ind;
     this.orderBy = ind;
     if (orderType == true) {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '../../../@core/services/confirmation.service';
-
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 @Component({
   selector: 'app-confirmation-extrusion',
   templateUrl: './confirmation-extrusion.component.html',
@@ -9,6 +9,7 @@ import { ConfirmationService } from '../../../@core/services/confirmation.servic
 })
 export class ConfirmationExtrusionComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumn: string[] = [
     'pullerSpeed', 'billetTemperature', 'exitTemperature',
     'dieStatus', 'lengthFinalPiece', 'kgnet',
@@ -28,7 +29,6 @@ export class ConfirmationExtrusionComponent implements OnInit {
 
   public rows = [{}];
   public languageOptions: any;
-  public loading: boolean = false;
   public translateSnackBar: any;
 
 
@@ -38,7 +38,6 @@ export class ConfirmationExtrusionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = true;
     this.getRequest();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -46,10 +45,10 @@ export class ConfirmationExtrusionComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confService.getConfExtrusion().subscribe((data) => {
       this.rows = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 

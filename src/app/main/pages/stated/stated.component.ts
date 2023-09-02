@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DetailsDieModalComponent } from '../../modals/details-die-modal/details-die-modal.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-stated',
@@ -15,6 +16,7 @@ import * as moment from 'moment';
 })
 export class StatedComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = [];
   public size = 13;
   public urls = [];
@@ -93,7 +95,6 @@ export class StatedComponent implements OnInit {
   public offset: number = 0;
   public totalResult: number = 0;
   public languageOptions: any;
-  public loading: boolean = false;
   public translateSnackBar: any;
   public statusId: number;
 
@@ -164,6 +165,11 @@ export class StatedComponent implements OnInit {
   public tempDataPrInv: any = [];
   public tempDataChennels: any = [];
   public tempData: any = [];
+  public arrFilters: any = [];
+
+  public nameFilters = [
+    {id: 0, name: ''}
+  ]
 
   constructor(
     private matrixService: MatrixService,
@@ -242,22 +248,43 @@ export class StatedComponent implements OnInit {
       { id: 16, name: 'PriceInv' },
       { id: 17, name: 'Channels' },
     ];
-  }
 
-  ngOnInit(): void {
-    this.loading = true;
-      this.pageChanged(1);
-      this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
 
+    this.nameFilters = [
+      {id: 0, name: this.translateSnackBar.matrix},
+      {id: 1, name: this.translateSnackBar.profile},
+      {id: 2, name: this.translateSnackBar.press},
+      {id: 3, name: this.translateSnackBar.manufacturer},
+      {id: 4, name: this.translateSnackBar.matricologist},
+      {id: 5, name: this.translateSnackBar.diameter},
+      {id: 6, name: this.translateSnackBar.thickness},
+      {id: 7, name: this.translateSnackBar.alloy},
+      {id: 8, name: this.translateSnackBar.tempering},
+      {id: 9, name: this.translateSnackBar.bolster1},
+      {id: 10, name: this.translateSnackBar.bolster2},
+      {id: 11, name: this.translateSnackBar.dieHolder},
+      {id: 12, name: this.translateSnackBar.container},
+      {id: 13, name: this.translateSnackBar.noteRequest},
+      {id: 14, name: this.translateSnackBar.client},
+      {id: 15, name: this.translateSnackBar.price},
+      {id: 16, name: this.translateSnackBar.invoicePrice},
+      {id: 17, name: this.translateSnackBar.channels},
+    ]
+  }
+
+  ngOnInit(): void {
+    this.blockUI.start('Loading...');
+    this.pageChanged(1);
+    this.getFilters(18, 'init');
     this.getDieLiveQty();
     this.getBmwNumber();
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     if (this.router.url == '/api/marked'){ this.statusId = 60 };
     if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
     console.log("selDateOrder: ", this.selDateOrderForm);
@@ -265,28 +292,28 @@ export class StatedComponent implements OnInit {
         this.offset,
         this.limit,
         this.statusId,
-        this.seldie,
-        this.selProfileId,
-        this.selPrimeResourceName,
-        this.selProducerName,
-        this.selCorrector,
-        this.selDiameter,
-        this.selThickness,
-        this.selAlloy,
-        this.selTemper,
-        this.selBolster1,
-        this.selBolster2,
-        this.selDieHolder,
-        this.selContainer,
-        this.selNotes,
-        this.selClientName,
+        this.arrFilters.length > 0 ? this.arrFilters[0].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[1].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[2].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[3].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[4].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[5].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[6].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[7].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[8].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[9].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[10].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[11].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[12].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[13].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[14].model : '',
         this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), //this.selDateOrder,
-        this.selPrice,
-        this.selPriceInv,
+        this.arrFilters.length > 0 ? this.arrFilters[15].model : '',
+        this.arrFilters.length > 0 ? this.arrFilters[16].model : '',
         this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value),
         this.formatDate(this.selDateExpedForm.controls.selDateExped.value),
         this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value),
-        this.selChannels,
+        this.arrFilters.length > 0 ? this.arrFilters[17].model : '',
         this.grM,
         this.lastModified,
         this.bmwinventorynumber,
@@ -297,58 +324,127 @@ export class StatedComponent implements OnInit {
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
-        this.loading = false;
+        this.blockUI.stop();
       });
   }
 
-  getFilters() {
-    // this.loading = true;
+  getFilters(ind, action) {
+    console.log('getFilters', this.arrFilters);
+    let count = 0;
+    if(action == 'init') {this.arrFilters = []}
     for (let i = 0; i < this.urls.length; i++) {
-      this.matrixService.getStatusFilters(this.urls[i].name, this.statusId, this.seldie, this.selProfileId, this.selPrimeResourceName, this.selProducerName, this.selCorrector, this.selDiameter, this.selThickness, this.selAlloy, this.selTemper, this.selBolster1, this.selBolster2, this.selDieHolder, this.selContainer, this.selNotes, this.selClientName, this.selPrice, this.selPriceInv, this.selChannels).subscribe((data) => {
-        for(let i=0; i < data.length; i++) {
-          data[i].checked = false;
-        }
-        switch (this.urls[i].id) {
-          case 0: { this.dieArr = data; this.tempDataDie = data; }
-            break;
-          case 1: { this.profileIdArr = data; this.tempDataProfile = data; }
-            break;
-          case 2: { this.primeResourceNameArr = data; this.tempDataPrimeRes = data; }
-            break;
-          case 3: { this.producerNameArr = data; this.tempDataProducer = data; }
-            break;
-          case 4: { this.correctorArr = data; this.tempDataCorrector = data; }
-            break;
-          case 5: { this.diameterArr = data; this.tempDataDiameter = data; }
-            break;
-          case 6: { this.thicknessArr = data; this.tempDataThickness = data; }
-            break;
-          case 7: { this.alloyArr = data; this.tempDataAlloy = data; }
-            break;
-          case 8: { this.temperArr = data; this.tempDataTemper = data; }
-            break;
-          case 9: { this.bolster1Arr = data; this.tempDataBols1 = data; }
-            break;
-          case 10: { this.bolster2Arr = data; this.tempDataBols2 = data; }
-            break;
-          case 11: { this.dieHolderArr = data; this.tempDataHolder = data; }
-            break;
-          case 12: { this.containerArr = data; this.tempDataCont = data; }
-            break;
-          case 13: { this.notesArr = data; this.tempDataNotes = data; }
-            break;
-          case 14: { this.clientNameArr = data; this.tempDataClient = data; }
-            break;
-          case 15: { this.priceArr = data; this.tempDataPrice = data; }
-            break;
-          case 16: { this.priceInvArr = data; this.tempDataPrInv = data; }
-            break;
-          case 17: { this.channelsArr = data; this.tempDataChennels = data; }
-            break;
-        }
-        // this.loading = false;
-      });
+      if(ind != this.urls[i].id) {
+        count++;
+        this.blockUI.start('Loading...');
+        this.matrixService.getStatusFilters(
+          this.urls[i].name,
+          this.statusId,
+          this.arrFilters.length > 0 ? this.arrFilters[0].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[1].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[2].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[3].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[4].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[5].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[6].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[7].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[8].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[9].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[10].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[11].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[12].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[13].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[14].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[15].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[16].model : '',
+          this.arrFilters.length > 0 ? this.arrFilters[17].model : ''
+        ).subscribe((data) => {
+          // switch (this.urls[i].id) {
+          //   case 0: { this.dieArr = data; this.tempDataDie = data; }
+          //     break;
+          //   case 1: { this.profileIdArr = data; this.tempDataProfile = data; }
+          //     break;
+          //   case 2: { this.primeResourceNameArr = data; this.tempDataPrimeRes = data; }
+          //     break;
+          //   case 3: { this.producerNameArr = data; this.tempDataProducer = data; }
+          //     break;
+          //   case 4: { this.correctorArr = data; this.tempDataCorrector = data; }
+          //     break;
+          //   case 5: { this.diameterArr = data; this.tempDataDiameter = data; }
+          //     break;
+          //   case 6: { this.thicknessArr = data; this.tempDataThickness = data; }
+          //     break;
+          //   case 7: { this.alloyArr = data; this.tempDataAlloy = data; }
+          //     break;
+          //   case 8: { this.temperArr = data; this.tempDataTemper = data; }
+          //     break;
+          //   case 9: { this.bolster1Arr = data; this.tempDataBols1 = data; }
+          //     break;
+          //   case 10: { this.bolster2Arr = data; this.tempDataBols2 = data; }
+          //     break;
+          //   case 11: { this.dieHolderArr = data; this.tempDataHolder = data; }
+          //     break;
+          //   case 12: { this.containerArr = data; this.tempDataCont = data; }
+          //     break;
+          //   case 13: { this.notesArr = data; this.tempDataNotes = data; }
+          //     break;
+          //   case 14: { this.clientNameArr = data; this.tempDataClient = data; }
+          //     break;
+          //   case 15: { this.priceArr = data; this.tempDataPrice = data; }
+          //     break;
+          //   case 16: { this.priceInvArr = data; this.tempDataPrInv = data; }
+          //     break;
+          //   case 17: { this.channelsArr = data; this.tempDataChennels = data; }
+          //     break;
+          // }
+          console.log('this.arrFilters.length', this.arrFilters.length)
+          if(action == 'init' && this.urls[i].id == i) {
+            for(let l=0; l < data.length; l++) {
+              data[l].checked = false;
+            }
+            this.arrFilters.push(
+              {
+                ind: i,
+                name: this.nameFilters[i].name,
+                filter: data,
+                temp: data,
+                selectAll: false,
+                model: ''
+              }
+            )
+          } else {
+            for (let j = 0; j < this.arrFilters.length; j++) {
+              // console.log('data 1=>', data, this.arrFilters, i);
+              if (this.arrFilters[j].ind == i) {
+                for (let l = 0; l < data.length; l++) {
+                  // data[l].checked = false;
+
+                  // console.log('data 2=>', data, this.arrFilters[j].filter, j);
+                   for (let k = 0; k < this.arrFilters[j].filter.length; k++){
+                    // console.log('data 3=>', data, this.arrFilters[j].filter[k], k, this.arrFilters[j].filter[k].name, data[l].name, this.arrFilters[j].filter[k].name == data[l].name);
+                    if (this.arrFilters[j].filter[k].checked == true && this.arrFilters[j].filter[k].name == data[l].name) {
+                      data[l].checked = true;
+                    } else {
+                      // data[i].checked = false;
+                    }
+                  }
+
+                }
+                this.arrFilters[j].filter = data;
+                this.arrFilters[j].temp = data;
+              }
+            }
+            console.log('data 4=>', data);
+          }
+
+        });
+      }
     }
+    setTimeout(() => {
+      this.arrFilters.sort((a,b)=>a.ind - b.ind)
+      console.log('arrFilters', this.arrFilters);
+      this.blockUI.stop();
+    }, 1500);
+
   }
 
   pageChanged(page: number) {
@@ -366,7 +462,7 @@ export class StatedComponent implements OnInit {
       if (receivedEntry == true) {
         this.getRequest();
       }
-      this.getFilters();
+      this.getFilters(18, 'init');
     });
   }
 
@@ -405,13 +501,13 @@ export class StatedComponent implements OnInit {
       if (receivedEntry == true) {
         this.getRequest();
       }
-      this.getFilters();
+      this.getFilters(18, 'init');
     });
   }
 
   sortType(column, orderType, ind) {
     console.log('sortType', column, orderType)
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.indColumn = ind;
     this.orderBy = ind;
     if (orderType == true) {
@@ -446,22 +542,22 @@ export class StatedComponent implements OnInit {
     this.orderBy = 0,
     this.orderType = 1;
     this.getRequest();
-    this.getFilters();
+    this.getFilters(18, 'init');
   }
 
   getDieLiveQty() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getDieLiveQty().subscribe((data) => {
       this.dieLifeArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getBmwNumber(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.bmwNumber().subscribe((data) => {
       this.dieLifeArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -471,58 +567,62 @@ export class StatedComponent implements OnInit {
     this.filterColumn(column, array, ind);
   }
 
-  someComplete(column, array, ind): boolean {
+  someComplete(column, array, ind) {
     // console.log('someComplete', column, array, ind)
-    if (array.length == 0) {
-      return false;
-    }
-    return array.filter(t => t.checked).length > 0 && !column;
+    // if (array.length == 0) {
+    //   return false;
+    // }
+    // return array.filter(t => t.checked).length > 0 && !column;
   }
 
   searchFilter(event, column, array, tempData, ind) {
+    console.log('searchFilter', event, column, array, tempData, ind);
     const val = event.target.value.toLowerCase();
     const temp = tempData.filter(function (d) {
       return (d.name).toString().toLowerCase().indexOf(val) !== -1 || !val;
     });
 
-    switch (ind) {
-      case 0: { this.dieArr = temp; }
-        break;
-      case 1: { this.profileIdArr = temp; }
-        break;
-      case 2: { this.primeResourceNameArr = temp; }
-        break;
-      case 3: { this.producerNameArr = temp; }
-        break;
-      case 4: { this.correctorArr = temp; }
-        break;
-      case 5: { this.diameterArr = temp; }
-        break;
-      case 6: { this.thicknessArr = temp; }
-        break;
-      case 7: { this.alloyArr = temp; }
-        break;
-      case 8: { this.temperArr = temp; }
-        break;
-      case 9: { this.bolster1Arr = temp; }
-        break;
-      case 10: { this.bolster2Arr = temp; }
-        break;
-      case 11: { this.dieHolderArr = temp; }
-        break;
-      case 12: { this.containerArr = temp; }
-        break;
-      case 13: { this.notesArr = temp; }
-        break;
-      case 14: { this.clientNameArr = temp;}
-        break;
-      case 15: { this.priceArr = temp; }
-        break;
-      case 16: { this.priceInvArr = temp; }
-        break;
-      case 17: { this.channelsArr = temp; }
-        break;
-    }
+    this.arrFilters[ind].filter = temp;
+
+
+    // switch (ind) {
+    //   case 0: { this.dieArr = temp; }
+    //     break;
+    //   case 1: { this.profileIdArr = temp; }
+    //     break;
+    //   case 2: { this.primeResourceNameArr = temp; }
+    //     break;
+    //   case 3: { this.producerNameArr = temp; }
+    //     break;
+    //   case 4: { this.correctorArr = temp; }
+    //     break;
+    //   case 5: { this.diameterArr = temp; }
+    //     break;
+    //   case 6: { this.thicknessArr = temp; }
+    //     break;
+    //   case 7: { this.alloyArr = temp; }
+    //     break;
+    //   case 8: { this.temperArr = temp; }
+    //     break;
+    //   case 9: { this.bolster1Arr = temp; }
+    //     break;
+    //   case 10: { this.bolster2Arr = temp; }
+    //     break;
+    //   case 11: { this.dieHolderArr = temp; }
+    //     break;
+    //   case 12: { this.containerArr = temp; }
+    //     break;
+    //   case 13: { this.notesArr = temp; }
+    //     break;
+    //   case 14: { this.clientNameArr = temp;}
+    //     break;
+    //   case 15: { this.priceArr = temp; }
+    //     break;
+    //   case 16: { this.priceInvArr = temp; }
+    //     break;
+    //   case 17: { this.channelsArr = temp; }
+    //     break;
+    // }
   }
 
   setAll(checked: boolean, column, array, ind) {
@@ -543,48 +643,63 @@ export class StatedComponent implements OnInit {
       if(array[i].checked == true) {
         selected.push(array[i].name);
       }
-    }
-    //
-    switch (ind) {
-      case 0: { this.seldie = selected; }
-        break;
-      case 1: { this.selProfileId = selected; }
-        break;
-      case 2: { this.selPrimeResourceName = selected; }
-        break;
-      case 3: { this.selProducerName = selected; }
-        break;
-      case 4: { this.selCorrector = selected; }
-        break;
-      case 5: { this.selDiameter = selected; }
-        break;
-      case 6: { this.selThickness = selected; }
-        break;
-      case 7: { this.selAlloy = selected; }
-        break;
-      case 8: { this.selTemper = selected; }
-        break;
-      case 9: { this.selBolster1 = selected; }
-        break;
-      case 10: { this.selBolster2 = selected; }
-        break;
-      case 11: { this.selDieHolder = selected; }
-        break;
-      case 12: { this.selContainer = selected; }
-        break;
-      case 13: { this.selNotes = selected; }
-        break;
-      case 14: { this.selClientName = selected; }
-        break;
-      case 15: { this.selPrice = selected; }
-        break;
-      case 16: { this.selPriceInv = selected; }
-        break;
-      case 17: { this.selChannels = selected; }
-        break;
+      this.arrFilters[ind].model = selected;
     }
 
+    //
+    // switch (ind) {
+    //   case 0: { this.seldie = selected; }
+    //     break;
+    //   case 1: { this.selProfileId = selected; }
+    //     break;
+    //   case 2: { this.selPrimeResourceName = selected; }
+    //     break;
+    //   case 3: { this.selProducerName = selected; }
+    //     break;
+    //   case 4: { this.selCorrector = selected; }
+    //     break;
+    //   case 5: { this.selDiameter = selected; }
+    //     break;
+    //   case 6: { this.selThickness = selected; }
+    //     break;
+    //   case 7: { this.selAlloy = selected; }
+    //     break;
+    //   case 8: { this.selTemper = selected; }
+    //     break;
+    //   case 9: { this.selBolster1 = selected; }
+    //     break;
+    //   case 10: { this.selBolster2 = selected; }
+    //     break;
+    //   case 11: { this.selDieHolder = selected; }
+    //     break;
+    //   case 12: { this.selContainer = selected; }
+    //     break;
+    //   case 13: { this.selNotes = selected; }
+    //     break;
+    //   case 14: { this.selClientName = selected; }
+    //     break;
+    //   case 15: { this.selPrice = selected; }
+    //     break;
+    //   case 16: { this.selPriceInv = selected; }
+    //     break;
+    //   case 17: { this.selChannels = selected; }
+    //     break;
+    // }
+    this.getFilters(ind, 'edit');
     this.pageChanged(1);
+  }
+
+  onScroll(column, array, ind) {
+    console.log('onScroll', column, array, ind)
+    this.blockUI.start('Loading...');
+    const length = 10;
+    console.log('SCROLLLLLL', length+100);
+    setTimeout(() => {
+      if(array.length !== 0){
+        array = length + 20;
+        this.getRequest();
+      }
+    }, 1000)
   }
 
 }

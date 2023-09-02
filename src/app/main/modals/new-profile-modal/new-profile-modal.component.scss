@@ -1,53 +1,3 @@
-::ng-deep.ngx-datatable .datatable-body .datatable-row-detail {
-  height: auto !important;
-}
-
-.modal-dialog {
-  margin: auto;
-}
-
-input {
-  border: none;
-  background: transparent;
-}
-
-.cell-line-height {
-  line-height: 1.25;
-}
-
-@media (min-width: 1241px) {
-  ngx-datatable {
-    overflow: hidden !important;
-  }
-
-  .modal-dialog {
-    // max-width: 1200px!important;
-    max-width: calc(100% - 16px) !important;
-    overflow-x: hidden !important;
-  }
-
-  .datatable-body {
-    overflow-x: visible !important;
-  }
-}
-
-@media (max-width: 1240px) {
-  .modal-dialog {
-    overflow: auto !important;
-    overflow-x: hidden !important;
-  }
-
-  ngx-datatable {
-    overflow: auto !important;
-  }
-}
-
-@media (max-width: 1240px) and (min-width: 1000px) {
-  .modal-dialog {
-    max-width: 1200px !important;
-  }
-}
-
 .form-control {
   display: block;
   width: 100%;
@@ -75,13 +25,6 @@ input {
   margin-top: 20px;
 }
 
-.form-general {
-  .row {
-    width: 50%;
-    display: block;
-  }
-}
-
 .row-first-column {
   display: flex;
   // margin: 8px 6px 0px 0px;
@@ -91,11 +34,6 @@ input {
 .row-second-column {
   display: block;
   margin: 0px 0px 0px 30px;
-}
-
-.ng-select {
-  width: -webkit-fill-available !important;
-  margin-bottom: 10px;
 }
 
 .border-field {
@@ -140,10 +78,6 @@ input {
   font-weight: 600;
 }
 
-::ng-deep .modal-dialog {
-  width: -webkit-fill-available !important;
-}
-
 .slideout-content {
   left: 1%;
   right: 1%;
@@ -153,15 +87,6 @@ input {
   top: 5%;
   bottom: 5%;
   max-width: -webkit-fill-available;
-}
-
-// .visible, .datatable-header {
-//   width: 100%!important;
-// }
-
-
-.ngx-datatable.bootstrap {
-  margin: 0px !important;
 }
 
 @media (max-width: 1199px) {
@@ -239,7 +164,6 @@ input {
 
 .border-purple{
   border: 2px solid #7367f0;
-  margin-left: 1%;
 }
 
 .margin-10{
@@ -289,4 +213,25 @@ table{
 .error-label{
   color: red;
   font-size: 20px;
+}
+
+.custom-m-1{
+  margin: 10px 1px 1px 1px;
+}
+
+td {
+  word-break: break-all;
+  white-space: normal;
+}
+
+.clasic-table th, .clasic-table td {
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.img-row {
+  cursor: pointer;
 }

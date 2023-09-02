@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfilesService } from '../../../@core/services/profiles.service';
 import Swal from 'sweetalert2';
 import { FileUploader } from 'ng2-file-upload';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-new-profile-modal',
@@ -15,6 +16,7 @@ import { FileUploader } from 'ng2-file-upload';
 export class NewProfileModalComponent implements OnInit {
   @Input() public profileItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
+  @BlockUI('blockModal') blockUI: NgBlockUI;
   public uploader: FileUploader = new FileUploader({
     url: '',
     isHTML5: true
@@ -23,7 +25,6 @@ export class NewProfileModalComponent implements OnInit {
   public createProfileForm: FormGroup;
   public submitted: boolean;
   public userName: string;
-  public loading: boolean = false;
   public profile: any;
   public translateSnackBar: any;
   public rows = [];
@@ -53,6 +54,7 @@ export class NewProfileModalComponent implements OnInit {
   public disableTab: boolean = true;
   public profileId: number;
   fullScr: boolean = false;
+  img: any;
 
 
   constructor(
@@ -121,17 +123,17 @@ export class NewProfileModalComponent implements OnInit {
 
   //---------------------------------------------------------SECTION PROFILES----------------------------------------------
   getProfileDies(id) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     console.log('getProfileDies: ', id);
     this.profilesService.getProfileDies(id).subscribe(data => {
       console.log("getProfileDies", data);
       this.rowsDies = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getProfiles(id) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService.getProfiles(id).subscribe(data => {
       console.log("getProfiles", data);
       data == null ? this.sectionProfiles = {} : this.sectionProfiles = data;
@@ -166,7 +168,7 @@ export class NewProfileModalComponent implements OnInit {
         notesExtrusion: this.sectionProfiles.notesExtrusion,
         important: this.sectionProfiles.important
       });
-      this.loading = false;
+      this.blockUI.stop();
 
       console.log('getProfiles: this.createProfileForm.invalid', this.createProfileForm.invalid);
       this.disableTab = false;
@@ -174,21 +176,23 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   getFiles(id) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     console.log('getFiles: ', id);
     this.profilesService.getFiles(id).subscribe(data => {
       this.sectionFiles = data;
       this.uploader.queue = data;
-      this.loading = false;
+      console.log('getFiles: data', data);
+      this.img = data.length > 0 ? data[0].fileData : ''
+      this.blockUI.stop();
     });
   }
 
   getGroupCode() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService.getGroupCode().subscribe(data => {
       console.log("getGroupCode", data);
       this.groupCode = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -215,18 +219,18 @@ export class NewProfileModalComponent implements OnInit {
 
   //---------------------------------------------------------SECTION FRONT/BACK END LENGTHS----------------------------------------------
   getProfilesEnds(id) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService.getProfilesEnds(id).subscribe((data) => {
       this.rowsLength = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getAlloy() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService.getAlloy().subscribe((data) => {
       this.alloyArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -304,7 +308,7 @@ export class NewProfileModalComponent implements OnInit {
         if (row.profileId) {
           this.profilesService.updateRowsEnd(obj).subscribe(matrixService => {
             this.getProfilesEnds(row.profileId);
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
@@ -321,7 +325,7 @@ export class NewProfileModalComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-              this.loading = false;
+              this.blockUI.stop();
             }
           );
         } else {
@@ -329,7 +333,7 @@ export class NewProfileModalComponent implements OnInit {
           // obj.alloyFamily = row.alloyFamily;
           this.profilesService.createRowsEnd(obj).subscribe(matrixService => {
             this.getProfilesEnds(matrixService.profileId);
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
@@ -346,7 +350,7 @@ export class NewProfileModalComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-              this.loading = false;
+              this.blockUI.stop();
             }
           );
         }
@@ -367,7 +371,7 @@ export class NewProfileModalComponent implements OnInit {
     this.isEditableRowsLength[ind] = false;
     this.profilesService.deleteRowsEnd(row.profileId, row.alloyFamily).subscribe(matrixService => {
       this.getProfilesEnds(row.profileId);
-      this.loading = false;
+      this.blockUI.stop();
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -384,7 +388,7 @@ export class NewProfileModalComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.loading = false;
+        this.blockUI.stop();
         this.getProfilesEnds(row.profileId);
       }
     );
@@ -444,8 +448,8 @@ export class NewProfileModalComponent implements OnInit {
       thickness: null,
       sideWidth: null
     }
-    console.log('obj', obj, this.profile, this.profileId);
-    if(this.createProfileForm.controls.profileName.value.match(/_/g)){
+    console.log('obj', obj, this.profile, this.profileId, this.createProfileForm.controls.profileName.value.match(/_/g), this.createProfileForm);
+    if(this.createProfileForm.controls.profileName.value.match(/_/g) != null){
       Swal.fire({
         position: 'bottom-end',
         icon: 'warning',
@@ -453,7 +457,7 @@ export class NewProfileModalComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
-      return
+      return;
     }
     if (this.profileId) {
       if (this.createProfileForm.controls.profileName.value && this.createProfileForm.controls.grM.value && this.createProfileForm.controls.section.value) {
@@ -472,10 +476,10 @@ export class NewProfileModalComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           });
-          this.loading = false;
+          this.blockUI.stop();
         },
           (error) => {
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
@@ -509,7 +513,7 @@ export class NewProfileModalComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             });
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
             Swal.fire({
@@ -541,7 +545,13 @@ export class NewProfileModalComponent implements OnInit {
     reader.onload = () => {
       this.uploader.queue[this.uploader.queue.length - 1].url = reader.result.toString().replace(/^data:image\/[a-z]+;base64,/, "");
       console.log(this.uploader.queue);
+      this.img = this.uploader.queue.length > 0 ? this.uploader.queue[this.uploader.queue.length - 1].url : ''
     };
+  }
+
+  setImage(ind, item) {
+    console.log("setImage", ind, item);
+    this.img = item.url ? item.url : item.fileData;
   }
 
   uploadImage(row) {
@@ -553,7 +563,7 @@ export class NewProfileModalComponent implements OnInit {
       fileData: row.url ? row.url : row.fileData
     }
     console.log("obj", obj);
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService.uploadFile(this.profile.id, obj, row).subscribe((data) => {
       Swal.fire({
         position: 'bottom-end',
@@ -563,9 +573,9 @@ export class NewProfileModalComponent implements OnInit {
         timer: 2000
       })
       this.getFiles(this.profile.id);
-      this.loading = false;
+      this.blockUI.stop();
     }, (error) => {
-      this.loading = false;
+      this.blockUI.stop();
       Swal.fire({
         position: 'bottom-end',
         icon: 'warning',
@@ -578,23 +588,23 @@ export class NewProfileModalComponent implements OnInit {
 
   deleteImage(row) {
     console.log("deleteImage", row);
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService.deleteImage(row.id).subscribe((profileService) => {
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
-        title: this.translateSnackBar.saveMsg,
+        title: this.translateSnackBar.deleteMsg,
         showConfirmButton: false,
         timer: 2000
       })
-      this.loading = false;
+      this.blockUI.stop();
       this.getFiles(this.profile.id);
     }, (error) => {
-      this.loading = false;
+      this.blockUI.stop();
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
-        title: this.translateSnackBar.saveMsg,
+        title: this.translateSnackBar.deleteMsg,
         showConfirmButton: false,
         timer: 2000
       })

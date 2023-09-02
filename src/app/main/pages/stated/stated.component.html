@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
@@ -33,8 +33,8 @@
                       <div class="row col-12 align-items-center  justify-content-start">
                         <div class="col-12 col-lg-8">
                           <div class="row">
-                            <div class="col-12 col-md-4 col-lg-6 text-end">{{ translateSnackBar.lastRefreshed }}: </div>
-                            <div class="col-12 col-md-4 col-lg-6">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
+                            <div class="col-12 col-md-4 col-lg-6 text-end filters-header">{{ translateSnackBar.lastRefreshed }}: </div>
+                            <div class="col-12 col-md-4 col-lg-6 filters-header">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
                           </div>
                         </div>
                         <div class="col-12 col-lg-4">
@@ -51,7 +51,52 @@
                   </div>
                 </mat-expansion-panel-header>
                 <div class="row">
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+
+                  <div class="filters-column border" *ngFor="let f of arrFilters">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ f.name }}
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <input type="search" class="form-control dt-uname search-filter"
+                      (keyup)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                    </div>
+                    <div class="col-12 box-filter">
+
+                      <div (scrolled)="onScroll(f.selectAll, f.filter, f.ind)" [infiniteScrollDistance]="0.1" [scrollWindow]="false" class="inf-scroll"
+                      infiniteScroll>
+                      <div class="col-12 text-center" *ngIf="f.filter.length === 0">
+                        {{ translateSnackBar.noResult }}
+                      </div>
+                      <section *ngIf="f.filter.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin"
+                            [checked]="f.selectAll"
+                            color="primary"
+                            (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                            <ul>
+                              <li *ngFor="let t of f.filter">
+                                <mat-checkbox [(ngModel)]="t.checked" color="primary"
+                                  (ngModelChange)="updateAllComplete(f.selectAll, f.filter, f.ind)">
+                                  {{t.name}}
+                                </mat-checkbox>
+                              </li>
+                            </ul>
+                          <!-- </div> -->
+
+                        </span>
+                      </section>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.matrix }}
@@ -64,7 +109,7 @@
                       <div class="col-12 text-center" *ngIf="dieArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="dieArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allMatrix" color="primary" [indeterminate]="someComplete(allMatrix, dieArr, 0)" (change)="setAll($event.checked, allMatrix, dieArr, 0)">
+                          <mat-checkbox class="example-margin" [checked]="allMatrix" color="primary" (change)="setAll($event.checked, allMatrix, dieArr, 0)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -79,7 +124,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.profile }}
@@ -92,7 +137,7 @@
                       <div class="col-12 text-center" *ngIf="profileIdArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="profileIdArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allProfile" color="primary" [indeterminate]="someComplete(allProfile, profileIdArr, 1)" (change)="setAll($event.checked, allProfile, profileIdArr, 1)">
+                          <mat-checkbox class="example-margin" [checked]="allProfile" color="primary" (change)="setAll($event.checked, allProfile, profileIdArr, 1)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -107,7 +152,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.press }}
@@ -120,7 +165,7 @@
                       <div class="col-12 text-center" *ngIf="primeResourceNameArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="primeResourceNameArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allPress" color="primary" [indeterminate]="someComplete(allPress, primeResourceNameArr, 2)" (change)="setAll($event.checked, allPress, primeResourceNameArr, 2)">
+                          <mat-checkbox class="example-margin" [checked]="allPress" color="primary" (change)="setAll($event.checked, allPress, primeResourceNameArr, 2)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -135,7 +180,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2 xxl-2 border">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2 xxl-2 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.manufacturer }}
@@ -148,7 +193,7 @@
                       <div class="col-12 text-center" *ngIf="producerNameArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="producerNameArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allManuf" color="primary" [indeterminate]="someComplete(allManuf, producerNameArr, 3)" (change)="setAll($event.checked, allManuf, producerNameArr, 3)">
+                          <mat-checkbox class="example-margin" [checked]="allManuf" color="primary" (change)="setAll($event.checked, allManuf, producerNameArr, 3)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -163,7 +208,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 xxl-2 border">
+                  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 xxl-2 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.matricologist }}
@@ -176,7 +221,7 @@
                       <div class="col-12 text-center" *ngIf="correctorArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="correctorArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allMatr" color="primary" [indeterminate]="someComplete(allMatr, correctorArr, 4)" (change)="setAll($event.checked, allMatr, correctorArr, 4)">
+                          <mat-checkbox class="example-margin" [checked]="allMatr" color="primary" (change)="setAll($event.checked, allMatr, correctorArr, 4)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -191,7 +236,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.diameter }}
@@ -204,7 +249,7 @@
                       <div class="col-12 text-center" *ngIf="diameterArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="diameterArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allDiameter" color="primary" [indeterminate]="someComplete(diameterArr, dieArr, 5)" (change)="setAll($event.checked, allDiameter, diameterArr, 5)">
+                          <mat-checkbox class="example-margin" [checked]="allDiameter" color="primary" (change)="setAll($event.checked, allDiameter, diameterArr, 5)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -219,7 +264,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.thickness }}
@@ -232,7 +277,7 @@
                       <div class="col-12 text-center" *ngIf="thicknessArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="thicknessArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allThickness" color="primary" [indeterminate]="someComplete(allThickness, thicknessArr, 6)" (change)="setAll($event.checked, allThickness, thicknessArr, 6)">
+                          <mat-checkbox class="example-margin" [checked]="allThickness" color="primary" (change)="setAll($event.checked, allThickness, thicknessArr, 6)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -247,7 +292,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.alloy }}
@@ -260,7 +305,7 @@
                       <div class="col-12 text-center" *ngIf="alloyArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="alloyArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allAlloy" color="primary" [indeterminate]="someComplete(allAlloy, alloyArr, 7)" (change)="setAll($event.checked, allAlloy, alloyArr, 7)">
+                          <mat-checkbox class="example-margin" [checked]="allAlloy" color="primary" (change)="setAll($event.checked, allAlloy, alloyArr, 7)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -275,7 +320,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.tempering }}
@@ -288,7 +333,7 @@
                       <div class="col-12 text-center" *ngIf="temperArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="temperArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allTemp" color="primary" [indeterminate]="someComplete(allTemp, temperArr, 8)" (change)="setAll($event.checked, allTemp, temperArr, 8)">
+                          <mat-checkbox class="example-margin" [checked]="allTemp" color="primary" (change)="setAll($event.checked, allTemp, temperArr, 8)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -303,7 +348,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.bolster1 }}
@@ -316,7 +361,7 @@
                       <div class="col-12 text-center" *ngIf="bolster1Arr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="bolster1Arr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allBols1" color="primary" [indeterminate]="someComplete(allBols1, bolster1Arr, 9)" (change)="setAll($event.checked, allBols1, bolster1Arr, 9)">
+                          <mat-checkbox class="example-margin" [checked]="allBols1" color="primary" (change)="setAll($event.checked, allBols1, bolster1Arr, 9)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -331,7 +376,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.bolster2 }}
@@ -344,7 +389,7 @@
                       <div class="col-12 text-center" *ngIf="bolster2Arr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="bolster2Arr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allBols2" color="primary" [indeterminate]="someComplete(allBols2, bolster2Arr, 10)" (change)="setAll($event.checked, allBols2, bolster2Arr, 10)">
+                          <mat-checkbox class="example-margin" [checked]="allBols2" color="primary" (change)="setAll($event.checked, allBols2, bolster2Arr, 10)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -359,7 +404,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.dieHolder }}
@@ -372,7 +417,7 @@
                       <div class="col-12 text-center" *ngIf="dieHolderArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="dieHolderArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allHolder" color="primary" [indeterminate]="someComplete(allHolder, dieHolderArr, 11)" (change)="setAll($event.checked, allHolder, dieHolderArr, 11)">
+                          <mat-checkbox class="example-margin" [checked]="allHolder" color="primary" (change)="setAll($event.checked, allHolder, dieHolderArr, 11)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -387,7 +432,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 10 || statusId === 20 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 10 || statusId === 20 || statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.container }}
@@ -400,7 +445,7 @@
                       <div class="col-12 text-center" *ngIf="containerArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="containerArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allCont" color="primary" [indeterminate]="someComplete(allCont, containerArr, 12)" (change)="setAll($event.checked, allCont, containerArr, 12)">
+                          <mat-checkbox class="example-margin" [checked]="allCont" color="primary" (change)="setAll($event.checked, allCont, containerArr, 12)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -415,7 +460,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId !== 40" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.noteRequest }}
@@ -428,7 +473,7 @@
                       <div class="col-12 text-center" *ngIf="notesArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="notesArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allNote" color="primary" [indeterminate]="someComplete(allNote, notesArr, 13)" (change)="setAll($event.checked, allNote, notesArr, 13)">
+                          <mat-checkbox class="example-margin" [checked]="allNote" color="primary" (change)="setAll($event.checked, allNote, notesArr, 13)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -443,7 +488,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.client }}
@@ -456,7 +501,7 @@
                       <div class="col-12 text-center" *ngIf="clientNameArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="clientNameArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allClient" color="primary" [indeterminate]="someComplete(allClient, clientNameArr, 14)" (change)="setAll($event.checked, allClient, clientNameArr, 14)">
+                          <mat-checkbox class="example-margin" [checked]="allClient" color="primary" (change)="setAll($event.checked, allClient, clientNameArr, 14)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -471,7 +516,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 30" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.price }}
@@ -484,7 +529,7 @@
                       <div class="col-12 text-center" *ngIf="priceInvArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="priceInvArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allPrice" color="primary" [indeterminate]="someComplete(allPrice, priceInvArr, 15)" (change)="setAll($event.checked, allPrice, priceInvArr, 15)">
+                          <mat-checkbox class="example-margin" [checked]="allPrice" color="primary" (change)="setAll($event.checked, allPrice, priceInvArr, 15)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -499,7 +544,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.invoicePrice }}
@@ -512,7 +557,7 @@
                       <div class="col-12 text-center" *ngIf="priceInvArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="priceInvArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allInvPr" color="primary" [indeterminate]="someComplete(allInvPr, priceInvArr, 16)" (change)="setAll($event.checked, allInvPr, priceInvArr, 16)">
+                          <mat-checkbox class="example-margin" [checked]="allInvPr" color="primary" (change)="setAll($event.checked, allInvPr, priceInvArr, 16)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -527,7 +572,7 @@
                     </div>
                   </div>
 
-                  <div *ngIf="statusId === 40 || statusId === 60" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 border">
+                  <div *ngIf="statusId === 40 || statusId === 60" class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1 xxl-1 filters-column border">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ translateSnackBar.channels }}
@@ -540,7 +585,7 @@
                       <div class="col-12 text-center" *ngIf="priceInvArr.length === 0">{{ translateSnackBar.noResult }}</div>
                       <section *ngIf="priceInvArr.length > 0" class="example-section">
                         <span class="example-list-section">
-                          <mat-checkbox class="example-margin" [checked]="allChannels" color="primary" [indeterminate]="someComplete(allChannels, channelsArr, 17)" (change)="setAll($event.checked, allChannels, channelsArr, 17)">
+                          <mat-checkbox class="example-margin" [checked]="allChannels" color="primary" (change)="setAll($event.checked, allChannels, channelsArr, 17)">
                             {{ translateSnackBar.selected }}
                           </mat-checkbox>
                         </span>
@@ -553,7 +598,7 @@
                         </span>
                       </section>
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
               </mat-expansion-panel>
@@ -567,7 +612,7 @@
             <!-- Position Column -->
             <ng-container matColumnDef="dieId">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.matrix">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="seldie != ''">{{seldie.length}}</span>
@@ -580,8 +625,8 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matrix }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matrixTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dieId', !orderType, 0)">
                   <div [ngStyle]="{'display': indColumn === 0 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
@@ -591,12 +636,12 @@
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dieId}}</span></td>
+              <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dieId}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId !== 30" matColumnDef="profileId">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.profile">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selProfileId != ''">{{selProfileId.length}}</span>
@@ -610,13 +655,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.profile }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.profileTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('profileId', !orderType, 1)">
-                  <div [ngStyle]="{'display': indColumn == 1 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 1 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 1 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 1 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -626,7 +671,7 @@
 
             <ng-container matColumnDef="primaryResourceName">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.press">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPrimeResourceName != ''">{{selPrimeResourceName.length}}</span>
@@ -640,23 +685,23 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.press }}</span>
                 <button type="button" class="order-btn" (click)="sortType('primaryResourceName', !orderType, 3)">
-                  <div [ngStyle]="{'display': indColumn == 3 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 3 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 3 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 3 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.primaryResourceName}}</span></td>
+              <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.primaryResourceName}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="producerName">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.manufacturer">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selProducerName != ''">{{selProducerName.length}}</span>
@@ -670,13 +715,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.manufacturer }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.manTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('producerName', !orderType, 4)">
-                  <div [ngStyle]="{'display': indColumn == 4 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 4 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 4 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 4 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -689,10 +734,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matricologist }}</span>
                 <button type="button" class="order-btn" (click)="sortType('correctorName', !orderType, 76)">
-                  <div [ngStyle]="{'display': indColumn == 76 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 76 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 76 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 76 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -702,7 +747,7 @@
 
             <ng-container matColumnDef="bmwinventorynumber">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bmwinventorynumber">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="bmwinventorynumber != ''">{{bmwinventorynumber.length}}</span>
@@ -716,13 +761,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bmwinventorynumber }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bmwTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('bmwinventorynumber', !orderType, 17)">
-                  <div [ngStyle]="{'display': indColumn == 17 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 17 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 17 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 17 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -732,7 +777,7 @@
 
             <ng-container matColumnDef="dieLiveQty">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dieLiveQty">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="dieLiveQty != ''">{{dieLiveQty.length}}</span>
@@ -746,13 +791,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dieLiveQty }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dieLiveQty', !orderType, 16)">
-                  <div [ngStyle]="{'display': indColumn == 16 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 16 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 16 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 16 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -762,7 +807,7 @@
 
             <ng-container matColumnDef="diameter">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.diameter">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selDiameter != ''">{{selDiameter.length}}</span>
@@ -776,13 +821,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.diameter }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.diamTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('diameter', !orderType, 5)">
-                  <div [ngStyle]="{'display': indColumn == 5 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 5 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 5 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 5 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -792,7 +837,7 @@
 
             <ng-container matColumnDef="thickness">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.thickness">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selThickness != ''">{{selThickness.length}}</span>
@@ -806,13 +851,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.thickness }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.thickTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('thickness', !orderType, 6)">
-                  <div [ngStyle]="{'display': indColumn == 6 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 6 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 6 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 6 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -822,7 +867,7 @@
 
             <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="alloy">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.alloy">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selAlloy != ''">{{selAlloy.length}}</span>
@@ -835,13 +880,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.alloy }}</span>
                 <button type="button" class="order-btn" (click)="sortType('alloy', !orderType, 7)">
-                  <div [ngStyle]="{'display': indColumn == 7 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 7 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 7 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 7 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -851,7 +896,7 @@
 
             <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="temper">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.tempering">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selTemper != ''">{{selTemper.length}}</span>
@@ -865,13 +910,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.tempering }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.temTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('temper', !orderType, 8)">
-                  <div [ngStyle]="{'display': indColumn == 8 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 8 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 8 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 8 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -881,7 +926,7 @@
 
             <ng-container *ngIf="statusId !== 40" matColumnDef="bolsterTooling1">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bolster1">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selBolster1 != ''">{{selBolster1.length}}</span>
@@ -895,13 +940,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bolster1 }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bols1Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('bolsterTooling1', !orderType, 9)">
-                  <div [ngStyle]="{'display': indColumn == 9 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 9 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 9 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 9 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -911,7 +956,7 @@
 
             <ng-container *ngIf="statusId !== 40" matColumnDef="bolsterTooling2">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bolster2">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selBolster2 != ''">{{selBolster2.length}}</span>
@@ -925,13 +970,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bolster2 }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bols2Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('bolsterTooling2', !orderType, 10)">
-                  <div [ngStyle]="{'display': indColumn == 10 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 10 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 10 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 10 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -941,7 +986,7 @@
 
             <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="dieHolder">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dieHolder">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selDieHolder != ''">{{selDieHolder.length}}</span>
@@ -955,13 +1000,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dieHolder }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dieHolder', !orderType, 11)">
-                  <div [ngStyle]="{'display': indColumn == 11 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 11 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 11 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 11 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -971,7 +1016,7 @@
 
             <ng-container *ngIf="statusId === 10 || statusId === 20 || statusId === 30" matColumnDef="container">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.container">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selContainer != ''">{{selContainer.length}}</span>
@@ -985,13 +1030,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.container }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.contTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('container', !orderType, 12)">
-                  <div [ngStyle]="{'display': indColumn == 12 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 12 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 12 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 12 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1001,7 +1046,7 @@
 
             <ng-container *ngIf="statusId !== 40" matColumnDef="notes">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.noteRequest">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selNotes != ''">{{selNotes.length}}</span>
@@ -1014,13 +1059,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.noteRequest }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.noteReqTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('notes', !orderType, 13)">
-                  <div [ngStyle]="{'display': indColumn == 13 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 13 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 13 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 13 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1031,7 +1076,7 @@
             <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="visibleSides">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.visibleSide">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.visibleSide }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.visibleSideTable }}</span>
               </th>
               <td mat-cell *matCellDef="let element">
                 <input type="checkbox" [(ngModel)]="element.visibleSides" id="visibleSide" name="visibleSide"
@@ -1041,7 +1086,7 @@
 
             <ng-container matColumnDef="clientName">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.client">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selClientName != ''">{{selClientName.length}}</span>
@@ -1055,39 +1100,39 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.client }}</span>
                 <button type="button" class="order-btn" (click)="sortType('clientName', !orderType, 14)">
-                  <div [ngStyle]="{'display': indColumn == 14 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 14 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 14 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 14 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.clientName}}</span></td>
+              <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.clientName}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="dateOrder">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.orderDate">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.orderDate }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.orderDateTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateOrder', !orderType, 15)">
-                  <div [ngStyle]="{'display': indColumn == 15 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 15 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 15 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 15 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateOrder | date: 'dd-MM-yyyy'}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateOrder | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 30" matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.price">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPrice != ''">{{selPrice.length}}</span>
@@ -1100,13 +1145,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.price }}</span>
                 <button type="button" class="order-btn" (click)="sortType('price', !orderType, 18)">
-                  <div [ngStyle]="{'display': indColumn == 18 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 18 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 18 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 18 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1116,7 +1161,7 @@
 
             <ng-container *ngIf="statusId === 30" matColumnDef="price_Inv">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.invoicePrice">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selPriceInv != ''">{{selPriceInv.length}}</span>
@@ -1130,13 +1175,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.invoicePrice }}</span>
+                </div> -->
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.invoicePriceTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('price_Inv', !orderType, 19)">
-                  <div [ngStyle]="{'display': indColumn == 19 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 19 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 19 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 19 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1147,33 +1192,33 @@
             <ng-container *ngIf="statusId === 30" matColumnDef="dateConfirmation">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.confirmationDate">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.confirmationDate }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.confirmationTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateConfirmation', !orderType, 20)">
-                  <div [ngStyle]="{'display': indColumn == 20 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 20 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 20 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 20 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateConfirmation | date: 'dd-MM-yyyy'}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateConfirmation | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 30" matColumnDef="dateExpedition">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dispatchedDate">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dispatchedDate }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dispatchedDateTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateExpedition', !orderType, 21)">
-                  <div [ngStyle]="{'display': indColumn == 21 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 21 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 21 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 21 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition | date: 'dd-MM-yyyy'}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="totalWeight">
@@ -1187,12 +1232,12 @@
             <ng-container matColumnDef="countInUse">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.usedPieces">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.usedPieces }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.usedPiecesTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('countInUse', !orderType, 26)">
-                  <div [ngStyle]="{'display': indColumn == 26 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 26 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 26 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 26 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1203,7 +1248,7 @@
             <ng-container matColumnDef="finalNitriding">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.finalNitriding">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.finalNitriding }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.finalNitTable }}</span>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.finalNitriding}}</span></td>
             </ng-container>
@@ -1219,7 +1264,7 @@
             <ng-container matColumnDef="kgAfterFianlNitriding">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.kgAfterFianlNitriding">
                 <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.kgAfterFianlNitridingLite }}</span>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.kgAfterFianlNitridingLiteTable }}</span>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kgAfterFianlNitriding}}</span></td>
             </ng-container>
@@ -1229,20 +1274,20 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapDate }}</span>
                 <button type="button" class="order-btn" (click)="sortType('dateScrapped', !orderType, 50)">
-                  <div [ngStyle]="{'display': indColumn == 50 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 50 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 50 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 50 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateScrapped | date: 'dd-MM-yyyy'}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateScrapped | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="channels">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.channels">
-                <div class="filter-th" container="body">
+                <!-- <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
                     <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="selChannels != ''">{{selChannels.length}}</span>
@@ -1256,13 +1301,13 @@
                       </ng-option>
                     </ng-select>
                   </mat-menu>
-                </div>
+                </div> -->
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.channels }}</span>
                 <button type="button" class="order-btn" (click)="sortType('channels', !orderType, 22)">
-                  <div [ngStyle]="{'display': indColumn == 22 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 22 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 22 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 22 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1275,10 +1320,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.plaseSklad }}</span>
                 <button type="button" class="order-btn" (click)="sortType('placeSklad', !orderType, 80)">
-                  <div [ngStyle]="{'display': indColumn == 80 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 80 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 80 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 80 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1291,15 +1336,15 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.lastTransaction }}</span>
                 <button type="button" class="order-btn" (click)="sortType('lastTransaction', !orderType, 77)">
-                  <div [ngStyle]="{'display': indColumn == 77 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 77 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 77 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 77 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.lastTransaction}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.lastTransaction | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 40" matColumnDef="gr">
@@ -1307,10 +1352,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.gr }}</span>
                 <button type="button" class="order-btn" (click)="sortType('gr', !orderType, 38)">
-                  <div [ngStyle]="{'display': indColumn == 38 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 38 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 38 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 38 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1331,10 +1376,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.production }}</span>
                 <button type="button" class="order-btn" (click)="sortType('productivity', !orderType, 39)">
-                  <div [ngStyle]="{'display': indColumn == 39 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 39 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 39 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 39 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1355,10 +1400,10 @@
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.markedForTestDateTime }}</span>
                 <button type="button" class="order-btn" (click)="sortType('markedForTestDateTime', !orderType, 60)">
-                  <div [ngStyle]="{'display': indColumn == 60 ? 'flex' : 'none' }">
+                  <div [ngStyle]="{'display': indColumn === 60 ? 'flex' : 'none' }">
                     <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
                   </div>
-                  <div [ngStyle]="{'display': indColumn == 60 ? 'none' : 'flex' }">
+                  <div [ngStyle]="{'display': indColumn === 60 ? 'none' : 'flex' }">
                     <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
                   </div>
                 </button>
@@ -1379,8 +1424,8 @@
     </section>
   </div>
 </div>
-<div *ngIf="loading" class="loader-section">
+<!-- <div *ngIf="loading" class="loader-section">
   <div class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
-</div>
+</div> -->

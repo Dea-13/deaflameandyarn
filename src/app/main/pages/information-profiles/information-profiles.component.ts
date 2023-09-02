@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewProfileModalComponent } from '../../modals/new-profile-modal/new-profile-modal.component';
 import Swal from 'sweetalert2';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
 
 @Component({
   selector: 'app-information-profiles',
@@ -12,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class InformationProfilesComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = [
     'profileName',
     'groupCode',
@@ -165,7 +168,7 @@ export class InformationProfilesComponent implements OnInit {
 
   public indColumn: any;
   public orderBy: number = 0;
-  public orderType: number = 1; 
+  public orderType: number = 1;
 
 
   //for pagination
@@ -175,7 +178,6 @@ export class InformationProfilesComponent implements OnInit {
   public totalResult: number = 0;
   public languageOptions: any;
   public searchMaterial: any = '';
-  public loading: boolean = false;
   public translateSnackBar: any;
 
   constructor(
@@ -185,7 +187,6 @@ export class InformationProfilesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = true;
     this.pageChanged(1);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
@@ -194,7 +195,7 @@ export class InformationProfilesComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.profilesService
       .getInformationProfiles(
         this.offset,
@@ -233,14 +234,14 @@ export class InformationProfilesComponent implements OnInit {
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
-        this.loading = false;
+        this.blockUI.stop();
       });
   }
 
   getFilters() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     for (let i = 0; i < this.urlsFilters.length; i++) {
-      this.profilesService.getFilters(this.urlsFilters[i].name, this.selProfileName, this.selGroupCode, this.selSection, this.selPerimeter, this.selGrM, this.selPrimaryPress, this.selAlternativePress, this.selSize1, this.selSize2, this.selSize3, 
+      this.profilesService.getFilters(this.urlsFilters[i].name, this.selProfileName, this.selGroupCode, this.selSection, this.selPerimeter, this.selGrM, this.selPrimaryPress, this.selAlternativePress, this.selSize1, this.selSize2, this.selSize3,
         this.selSize4, this.selUsage, this.selExtrusionSpeed, this.selExtrusionSpeedSms, this.selOpPerf, this.selTbillet, this.selTExit, this.selPuller, this.selScrapStart, this.selScrapStartSms,
         this.selScrapEnd, this.selCooling, this.selCoolingSms, this.selCoolingAdd, this.selBasketOrdering, this.selNotesExtrusion, this.selImportant, this.selInUse
         ).subscribe((data) => {
@@ -381,7 +382,7 @@ export class InformationProfilesComponent implements OnInit {
             }
             break;
         }
-        this.loading = false;
+        this.blockUI.stop();
       });
     }
   }
@@ -395,7 +396,7 @@ export class InformationProfilesComponent implements OnInit {
 
   modalProfile(row) {
     console.log('new/edit profile');
-    const modalRef = this.modalService.open(NewProfileModalComponent, {});
+    const modalRef = this.modalService.open(NewProfileModalComponent, {size : 'xl'});
     modalRef.componentInstance.profileItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
@@ -416,7 +417,7 @@ export class InformationProfilesComponent implements OnInit {
   deleteProfile(row) {
     this.profilesService.deleteProfile(row.id).subscribe(profilesService => {
       this.getRequest();
-      this.loading = false;
+      this.blockUI.stop();
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -433,14 +434,14 @@ export class InformationProfilesComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.loading = false;
+        this.blockUI.stop();
       }
     );
   }
 
   sortType(column, orderType, ind) {
     console.log('sortType', column, orderType)
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.indColumn = ind;
     this.orderBy = ind;
     if (orderType == true) {

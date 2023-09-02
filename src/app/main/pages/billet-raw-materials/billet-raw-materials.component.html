@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
@@ -57,7 +57,7 @@
               <td mat-cell *matCellDef="let element">{{element.diameter}}</td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumn; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
           </table>
 
