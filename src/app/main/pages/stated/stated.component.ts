@@ -334,8 +334,9 @@ export class StatedComponent implements OnInit {
     if(action == 'init') {this.arrFilters = []}
     for (let i = 0; i < this.urls.length; i++) {
       if(ind != this.urls[i].id) {
+        let array = [];
         count++;
-        this.blockUI.start('Loading...');
+        // this.blockUI.start('Loading...');
         this.matrixService.getStatusFilters(
           this.urls[i].name,
           this.statusId,
@@ -396,16 +397,19 @@ export class StatedComponent implements OnInit {
           //   case 17: { this.channelsArr = data; this.tempDataChennels = data; }
           //     break;
           // }
+
           console.log('this.arrFilters.length', this.arrFilters.length)
           if(action == 'init' && this.urls[i].id == i) {
             for(let l=0; l < data.length; l++) {
               data[l].checked = false;
+              if(l <= 20) { array.push(data[l]) }
             }
             this.arrFilters.push(
               {
                 ind: i,
                 name: this.nameFilters[i].name,
-                filter: data,
+                filter: array,
+                fullFilter: data,
                 temp: data,
                 selectAll: false,
                 model: ''
@@ -429,7 +433,11 @@ export class StatedComponent implements OnInit {
                   }
 
                 }
-                this.arrFilters[j].filter = data;
+                for(let l=0; l < data.length; l++) {
+                  if(l <= 20) { array.push(data[l]) }
+                }
+                this.arrFilters[j].filter = array;
+                this.arrFilters[j].fullFilter = data;
                 this.arrFilters[j].temp = data;
               }
             }
@@ -576,14 +584,21 @@ export class StatedComponent implements OnInit {
   }
 
   searchFilter(event, column, array, tempData, ind) {
-    console.log('searchFilter', event, column, array, tempData, ind);
+    console.log('searchFilter', event, event.code == 'Backspace', this.arrFilters[ind].filter);
+    this.blockUI.start('Loading...');
+    let fullArray = [];
     const val = event.target.value.toLowerCase();
     const temp = tempData.filter(function (d) {
       return (d.name).toString().toLowerCase().indexOf(val) !== -1 || !val;
     });
-
-    this.arrFilters[ind].filter = temp;
-
+    if(event.target.value == '') {
+      for(let l=0; l < this.arrFilters[ind].fullFilter.length; l++) {
+        if(l <= 20) { fullArray.push(this.arrFilters[ind].fullFilter[l]) }
+      }
+    }
+    console.log('searchFilter=====>',event.target.value == '', fullArray, temp);
+    this.arrFilters[ind].filter = event.target.value == '' ? fullArray : temp;
+    this.blockUI.stop();
 
     // switch (ind) {
     //   case 0: { this.dieArr = temp; }
@@ -689,17 +704,44 @@ export class StatedComponent implements OnInit {
     this.pageChanged(1);
   }
 
+  // onScroll(column, array, ind) {
+  //   console.log('onScroll', column, array, ind)
+  //   this.blockUI.start('Loading...');
+  //   const length = 10;
+  //   console.log('SCROLLLLLL', length+100);
+  //   // setTimeout(() => {
+  //     if(array.length !== 0){
+  //       array = length + 20;
+  //       this.getRequest();
+  //       this.blockUI.stop();
+  //     }
+  //   // }, 1000)
+  // }
+
   onScroll(column, array, ind) {
     console.log('onScroll', column, array, ind)
-    this.blockUI.start('Loading...');
-    const length = 10;
-    console.log('SCROLLLLLL', length+100);
-    setTimeout(() => {
-      if(array.length !== 0){
-        array = length + 20;
-        this.getRequest();
+   //  setTimeout(() => {
+    let length = this.arrFilters[ind].filter.length;
+      if(this.arrFilters[ind].filter.length !== this.arrFilters[ind].fullFilter.length){
+       console.log('SCROLLLLLL==>',length);
+       for(let i=length; i < length+20; i++) {
+        this.arrFilters[ind].filter.push(this.arrFilters[ind].fullFilter[i]);
+         console.log('SCROLLLLLL========>', length, this.arrFilters[ind].filter);
+       }
       }
-    }, 1000)
+   //  }, 1000)
   }
+
+  // onScroll() {
+  //   this.loading = true;
+  //   const length = this.rows.length
+  //   console.log('SCROLLLLLL', length+100);
+  //   setTimeout(() => {
+  //     if(this.rows.length !== 0){
+  //       this.limit = length + 100;
+  //       this.getRequest();
+  //     }
+  //   }, 1000)
+  // }
 
 }
