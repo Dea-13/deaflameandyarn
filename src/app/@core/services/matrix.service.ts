@@ -67,8 +67,8 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
 
-  getStatusFilters(url: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, CorrectorName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, Price:string, PriceInv:string, Channels:string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&CorrectorName=${CorrectorName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&Price=${Price}&PriceInv=${PriceInv}&Channels=${Channels}`);
+  getStatusFilters(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, CorrectorName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, Price:string, PriceInv:string, Channels:string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&CorrectorName=${CorrectorName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&Price=${Price}&PriceInv=${PriceInv}&Channels=${Channels}`);
   }
 
   getNitrificationMatrix(offset: number, limit: number, DieId: string, PrimaryResourceName: string, Channels: string, substatus: string) {

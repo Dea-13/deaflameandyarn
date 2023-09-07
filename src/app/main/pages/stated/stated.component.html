@@ -59,8 +59,15 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <input type="search" class="form-control dt-uname search-filter"
-                      (keyup)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                      <div class="row">
+                        <input type="search" class="form-control dt-uname search-filter"
+                          (keyup.enter)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                        <button (click)="clearFilter(f.fullFilter, f.ind)" rippleEffect class="btn p-0 size-btn">
+                          <span [data-feather]="'x-circle'" [class]="'cursor-pointer red-delete'"></span>
+                      </button>
+                      </div>
+
+
                     </div>
                     <div class="col-12 box-filter">
 

@@ -170,6 +170,7 @@ export class StatedComponent implements OnInit {
   public nameFilters = [
     {id: 0, name: ''}
   ]
+  public keyword: string = '';
 
   constructor(
     private matrixService: MatrixService,
@@ -186,12 +187,41 @@ export class StatedComponent implements OnInit {
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'countInUse', 'finalNitriding',
         'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'Alloy' },
+        { id: 7, name: 'Temper' },
+        { id: 8, name: 'BolsterTooling1' },
+        { id: 9, name: 'BolsterTooling2' },
+        { id: 10, name: 'DieHolder' },
+        { id: 11, name: 'Container' },
+        { id: 12, name: 'Notes' },
+        { id: 13, name: 'ClientName' },
+      ];
     } else if (this.router.url == '/api/confirmed') {
       this.statusId = 20;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'container',
         'notes', 'clientName', 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
+      ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'BolsterTooling1' },
+        { id: 7, name: 'BolsterTooling2' },
+        { id: 8, name: 'Container' },
+        { id: 9, name: 'Notes' },
+        { id: 10, name: 'ClientName' },
       ];
     } else if (this.router.url == '/api/dispatched') {
       this.statusId = 30;
@@ -201,12 +231,39 @@ export class StatedComponent implements OnInit {
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'PrimaryResourceName' },
+        { id: 2, name: 'ProducerName' },
+        { id: 3, name: 'Diameter' },
+        { id: 4, name: 'Thickness' },
+        { id: 5, name: 'Alloy' },
+        { id: 6, name: 'Temper' },
+        { id: 7, name: 'BolsterTooling1' },
+        { id: 8, name: 'BolsterTooling2' },
+        { id: 9, name: 'DieHolder' },
+        { id: 10, name: 'Container' },
+        { id: 11, name: 'Notes' },
+        { id: 12, name: 'ClientName' },
+        { id: 13, name: 'Price' },
+        { id: 14, name: 'PriceInv' },
+      ];
     } else if(this.router.url == '/api/productivity') {
       this.statusId = 40;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
         'gr', 'kgSap', 'renewal'
+      ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'ClientName' },
+        { id: 7, name: 'Channels' },
       ];
     } else if (this.router.url == '/api/scrap') {
       this.statusId = 50;
@@ -215,11 +272,36 @@ export class StatedComponent implements OnInit {
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding', 'dateScrapped'
       ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'BolsterTooling1' },
+        { id: 7, name: 'BolsterTooling2' },
+        { id: 8, name: 'Notes' },
+        { id: 9, name: 'ClientName' },
+      ];
     } else if (this.router.url == '/api/marked') {
-      this.statusId = 40;
+      this.statusId = 60;
       this.displayedColumns = [
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'correctorName', 'diameter',
         'thickness', 'channels', 'clientName', 'totalWeight', 'kgSap', 'markedForTestDateTime',
+      ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'CorrectorName' },
+        { id: 5, name: 'Diameter' },
+        { id: 6, name: 'Thickness' },
+        { id: 7, name: 'BolsterTooling1' },
+        { id: 8, name: 'BolsterTooling2' },
+        { id: 9, name: 'Notes' },
+        { id: 10, name: 'ClientName' },
       ];
     } else if (this.router.url == '/api/no-motion') {
       this.statusId = 40;
@@ -227,27 +309,17 @@ export class StatedComponent implements OnInit {
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'lastTransaction', 'diameter',
         'thickness', 'clientName', 'productivity', 'renewal'
       ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'ClientName' },
+        { id: 7, name: 'Channels' },
+      ];
     }
-    this.urls = [
-      { id: 0, name: 'DieId' },
-      { id: 1, name: 'ProfileId' },
-      { id: 2, name: 'PrimaryResourceName' },
-      { id: 3, name: 'ProducerName' },
-      { id: 4, name: 'CorrectorName' },
-      { id: 5, name: 'Diameter' },
-      { id: 6, name: 'Thickness' },
-      { id: 7, name: 'Alloy' },
-      { id: 8, name: 'Temper' },
-      { id: 9, name: 'BolsterTooling1' },
-      { id: 10, name: 'BolsterTooling2' },
-      { id: 11, name: 'DieHolder' },
-      { id: 12, name: 'Container' },
-      { id: 13, name: 'Notes' },
-      { id: 14, name: 'ClientName' },
-      { id: 15, name: 'Price' },
-      { id: 16, name: 'PriceInv' },
-      { id: 17, name: 'Channels' },
-    ];
 
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -278,7 +350,7 @@ export class StatedComponent implements OnInit {
   ngOnInit(): void {
     this.blockUI.start('Loading...');
     this.pageChanged(1);
-    this.getFilters(18, 'init');
+    this.getFilters(this.urls.length, 'init');
     this.getDieLiveQty();
     this.getBmwNumber();
   }
@@ -339,6 +411,7 @@ export class StatedComponent implements OnInit {
         // this.blockUI.start('Loading...');
         this.matrixService.getStatusFilters(
           this.urls[i].name,
+          this.keyword,
           this.statusId,
           this.arrFilters.length > 0 ? this.arrFilters[0].model : '',
           this.arrFilters.length > 0 ? this.arrFilters[1].model : '',
@@ -412,6 +485,7 @@ export class StatedComponent implements OnInit {
                 fullFilter: data,
                 temp: data,
                 selectAll: false,
+                disableScroll: false,
                 model: ''
               }
             )
@@ -439,6 +513,7 @@ export class StatedComponent implements OnInit {
                 this.arrFilters[j].filter = array;
                 this.arrFilters[j].fullFilter = data;
                 this.arrFilters[j].temp = data;
+                this.arrFilters[j].disableScroll = false;
               }
             }
             console.log('data 4=>', data);
@@ -448,10 +523,12 @@ export class StatedComponent implements OnInit {
       }
     }
     setTimeout(() => {
-      this.arrFilters.sort((a,b)=>a.ind - b.ind)
-      console.log('arrFilters', this.arrFilters);
-      this.blockUI.stop();
-    }, 1500);
+      if(this.urls.length == count) {
+        this.arrFilters.sort((a,b)=>a.ind - b.ind)
+        console.log('arrFilters', this.arrFilters);
+        this.blockUI.stop();
+      }
+    }, 1000);
 
   }
 
@@ -470,7 +547,7 @@ export class StatedComponent implements OnInit {
       if (receivedEntry == true) {
         this.getRequest();
       }
-      this.getFilters(18, 'init');
+      this.getFilters(this.urls.length, 'init');
     });
   }
 
@@ -509,7 +586,7 @@ export class StatedComponent implements OnInit {
       if (receivedEntry == true) {
         this.getRequest();
       }
-      this.getFilters(18, 'init');
+      this.getFilters(this.urls.length, 'init');
     });
   }
 
@@ -550,7 +627,7 @@ export class StatedComponent implements OnInit {
     this.orderBy = 0,
     this.orderType = 1;
     this.getRequest();
-    this.getFilters(18, 'init');
+    this.getFilters(this.urls.length, 'init');
   }
 
   getDieLiveQty() {
@@ -584,60 +661,35 @@ export class StatedComponent implements OnInit {
   }
 
   searchFilter(event, column, array, tempData, ind) {
-    console.log('searchFilter', event, event.code == 'Backspace', this.arrFilters[ind].filter);
-    this.blockUI.start('Loading...');
+    console.log('searchFilter', column, array, tempData, ind);
+    // this.blockUI.start('Loading...');
     let fullArray = [];
     const val = event.target.value.toLowerCase();
     const temp = tempData.filter(function (d) {
       return (d.name).toString().toLowerCase().indexOf(val) !== -1 || !val;
     });
+
     if(event.target.value == '') {
       for(let l=0; l < this.arrFilters[ind].fullFilter.length; l++) {
         if(l <= 20) { fullArray.push(this.arrFilters[ind].fullFilter[l]) }
       }
+      this.arrFilters[ind].disableScroll = false;
+    } else  {
+      this.arrFilters[ind].disableScroll = true;
     }
-    console.log('searchFilter=====>',event.target.value == '', fullArray, temp);
+    console.log('searchFilter=====>',event.target.value == '', fullArray, temp, this.arrFilters[ind].filter.length);
     this.arrFilters[ind].filter = event.target.value == '' ? fullArray : temp;
-    this.blockUI.stop();
+    // this.blockUI.stop();
+    return;
+  }
 
-    // switch (ind) {
-    //   case 0: { this.dieArr = temp; }
-    //     break;
-    //   case 1: { this.profileIdArr = temp; }
-    //     break;
-    //   case 2: { this.primeResourceNameArr = temp; }
-    //     break;
-    //   case 3: { this.producerNameArr = temp; }
-    //     break;
-    //   case 4: { this.correctorArr = temp; }
-    //     break;
-    //   case 5: { this.diameterArr = temp; }
-    //     break;
-    //   case 6: { this.thicknessArr = temp; }
-    //     break;
-    //   case 7: { this.alloyArr = temp; }
-    //     break;
-    //   case 8: { this.temperArr = temp; }
-    //     break;
-    //   case 9: { this.bolster1Arr = temp; }
-    //     break;
-    //   case 10: { this.bolster2Arr = temp; }
-    //     break;
-    //   case 11: { this.dieHolderArr = temp; }
-    //     break;
-    //   case 12: { this.containerArr = temp; }
-    //     break;
-    //   case 13: { this.notesArr = temp; }
-    //     break;
-    //   case 14: { this.clientNameArr = temp;}
-    //     break;
-    //   case 15: { this.priceArr = temp; }
-    //     break;
-    //   case 16: { this.priceInvArr = temp; }
-    //     break;
-    //   case 17: { this.channelsArr = temp; }
-    //     break;
-    // }
+  clearFilter(filter, ind) {
+    let fullArray = [];
+    for(let l=0; l < filter.length; l++) {
+      if(l <= 20) { fullArray.push(filter[l]) }
+    }
+    this.arrFilters[ind].filter = fullArray;
+    this.arrFilters[ind].disableScroll = false;
   }
 
   setAll(checked: boolean, column, array, ind) {
@@ -719,10 +771,10 @@ export class StatedComponent implements OnInit {
   // }
 
   onScroll(column, array, ind) {
-    console.log('onScroll', column, array, ind)
+    console.log('onScroll', column, array, ind, this.arrFilters[ind].filter.length, this.arrFilters[ind].fullFilter.length)
    //  setTimeout(() => {
     let length = this.arrFilters[ind].filter.length;
-      if(this.arrFilters[ind].filter.length !== this.arrFilters[ind].fullFilter.length){
+      if(this.arrFilters[ind].filter.length !== this.arrFilters[ind].fullFilter.length && !this.arrFilters[ind].disableScroll){
        console.log('SCROLLLLLL==>',length);
        for(let i=length; i < length+20; i++) {
         this.arrFilters[ind].filter.push(this.arrFilters[ind].fullFilter[i]);
