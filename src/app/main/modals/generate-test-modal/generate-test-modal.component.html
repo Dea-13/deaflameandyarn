@@ -1,4 +1,4 @@
-<div class="slideout-content">
+<div *blockUI="'block'" class="slideout-content">
   <!-- Modal to add new user starts-->
   <div id="modals-slide-in">
     <div class="modal-dialog material-dialog-center modal-content pt-0">
@@ -55,10 +55,5 @@
 
       </div>
     </div>
-  </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
   </div>
 </div>

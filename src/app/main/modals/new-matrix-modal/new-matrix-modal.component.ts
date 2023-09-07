@@ -7,6 +7,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 import { NewProfileModalComponent } from '../../modals/new-profile-modal/new-profile-modal.component';
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-new-matrix-modal',
@@ -14,13 +15,13 @@ import * as moment from 'moment';
   styleUrls: ['./new-matrix-modal.component.scss']
 })
 export class NewMatrixModalComponent implements OnInit {
+  @BlockUI('block-modal') blockUI: NgBlockUI;
   @Input() public matrixItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   public createMatrixForm: FormGroup;
   public submitted: boolean;
   public userName: string;
-  public loading: boolean = false;
   public matrix: any = {};
   public translateSnackBar: any;
   public columnsFirstTable: Array<any> = [];
@@ -175,7 +176,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   getDieById(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getDieById(this.matrixItem.data.id).subscribe((data) => {
       this.matrix = data;
       this.createMatrixForm = this.formBuilder.group({
@@ -223,7 +224,7 @@ export class NewMatrixModalComponent implements OnInit {
         thickness: this.matrix.thickness
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -254,26 +255,26 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   getProfile() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getProfile().subscribe((data) => {
       this.profileArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getMatrix() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getMatrix(this.createMatrixForm.controls.profile.value.name ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profileId).subscribe((data) => {
       this.createMatrixForm.controls.matrix.setValue(data.name);
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getStatus() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getStatus().subscribe((data) => {
       this.statusArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -296,120 +297,120 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   getChannels() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getChannels(40).subscribe((data) => {
       this.channelsArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getOpora() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getOpora().subscribe((data) => {
       this.oporaArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getType() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getType().subscribe((data) => {
       this.typeArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getContainer() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getContainer().subscribe((data) => {
       this.containerArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getBolster1() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getBolster1().subscribe((data) => {
       this.bolster1 = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getBolster2() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getBolster2().subscribe((data) => {
       this.bolster2 = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getClientName() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getClientName().subscribe((data) => {
       this.clientNameArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getProducer() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getProducer().subscribe((data) => {
       this.producerArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getPurchaser() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getPurchaser().subscribe((data) => {
       this.purchaserArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getMatricologist() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getMatricologist().subscribe((data) => {
       this.matrologistArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getPress() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getPress().subscribe((data) => {
       this.pressArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getAlloy() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getAlloy().subscribe((data) => {
       this.alloyArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getMatricComplect(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getMatricComplect().subscribe((data) => {
       this.matrixComplectArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getStorage(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getStorage().subscribe((data) => {
       this.storagePlaceArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getMatricComplectById() {
     console.log('getMatricComplectById', this.createMatrixForm.controls.matrixComplect)
-    this.loading = true;
+    this.blockUI.start('Loading...');
     let diameter, thickness, resourceId = 0;
     if (this.matrixItem.data == 'new') {
       diameter = this.createMatrixForm.controls.matrixComplect.value.diameter;
@@ -426,7 +427,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.diameter.setValue(data.diameter);
       this.createMatrixForm.controls.thickness.setValue(data.thickness);
       this.createMatrixForm.controls.matrixComplect.setValue(data.dimensions.concat(' - ').concat(data.resourceName));
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -434,10 +435,10 @@ export class NewMatrixModalComponent implements OnInit {
 
 
   getProfilesByPress() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getProfilesByPress(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsFirstTable = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -552,7 +553,7 @@ export class NewMatrixModalComponent implements OnInit {
           obj.id = row.id;
           this.matrixService.updateRowsPress(row).subscribe(matrixService => {
             this.getProfilesByPress();
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
@@ -569,13 +570,13 @@ export class NewMatrixModalComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-              this.loading = false;
+              this.blockUI.stop();
             }
           );
         } else {
           this.matrixService.createRowsPress(obj).subscribe(matrixService => {
             this.getProfilesByPress();
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
@@ -592,7 +593,7 @@ export class NewMatrixModalComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-              this.loading = false;
+              this.blockUI.stop();
             }
           );
         }
@@ -613,7 +614,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.isEditableRowsPress[ind] = false;
     this.matrixService.deleteRowsPress(row.id).subscribe(matrixService => {
       this.getProfilesByPress();
-      this.loading = false;
+      this.blockUI.stop();
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -630,7 +631,7 @@ export class NewMatrixModalComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.loading = false;
+        this.blockUI.stop();
       }
     );
   }
@@ -639,10 +640,10 @@ export class NewMatrixModalComponent implements OnInit {
 
 
   getProfilesEnds() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsSecondTable = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -719,7 +720,7 @@ export class NewMatrixModalComponent implements OnInit {
         if (row.profileId) {
           this.matrixService.updateRowsEnd(row).subscribe(matrixService => {
             this.getProfilesEnds();
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
@@ -738,13 +739,13 @@ export class NewMatrixModalComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-              this.loading = false;
+              this.blockUI.stop();
             }
           );
         } else {
           this.matrixService.createRowsEnd(obj).subscribe(matrixService => {
             this.getProfilesEnds();
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'success',
@@ -761,7 +762,7 @@ export class NewMatrixModalComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-              this.loading = false;
+              this.blockUI.stop();
             }
           );
         }
@@ -783,7 +784,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.deleteRowsEnd(row.profileId, row.alloyFamily).subscribe(matrixService => {
       this.getProfilesByPress();
       this.getProfilesEnds();
-      this.loading = false;
+      this.blockUI.stop();
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -800,7 +801,7 @@ export class NewMatrixModalComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.loading = false;
+        this.blockUI.stop();
         this.getProfilesByPress();
         this.getProfilesEnds();
       }
@@ -991,7 +992,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   sendResponce() {
     console.log('sendResponce', this.createMatrixForm);
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrix.profile = !this.redirectModal ? this.createMatrixForm.controls.profile.value.id : this.matrix.profile,
       this.matrix.profileId = !this.redirectModal ? this.createMatrixForm.controls.profile.value.name : this.matrix.profileId,
       this.matrix.dieId = this.createMatrixForm.controls.matrix.value,
@@ -1048,7 +1049,7 @@ export class NewMatrixModalComponent implements OnInit {
         this.createMatrixForm.controls.altResource2.value && this.createMatrixForm.controls.anodizingQuality.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
-          this.loading = false;
+          this.blockUI.stop();
           Swal.fire({
             position: 'bottom-end',
             icon: 'success',
@@ -1068,7 +1069,7 @@ export class NewMatrixModalComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             })
-            this.loading = false;
+            this.blockUI.stop();
           }
         );
       } else {
@@ -1084,7 +1085,7 @@ export class NewMatrixModalComponent implements OnInit {
     } else {
       this.matrixService.updateMatrix(this.matrix).subscribe(matrixService => {
         // this.getProfilesEnds();
-        this.loading = false;
+        this.blockUI.stop();
         Swal.fire({
           position: 'bottom-end',
           icon: 'success',
@@ -1103,7 +1104,7 @@ export class NewMatrixModalComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
-          this.loading = false;
+          this.blockUI.stop();
         }
       );
 

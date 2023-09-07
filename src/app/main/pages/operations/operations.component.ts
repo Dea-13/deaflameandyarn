@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { constants } from '../../../../environments/constants';
 import { ToastrService } from 'ngx-toastr';
 import { ElectronService } from '../../../core/services';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-operations',
@@ -15,6 +16,7 @@ import { ElectronService } from '../../../core/services';
   styleUrls: ['./operations.component.scss'],
 })
 export class OperationsComponent implements OnInit {
+  @BlockUI('block') blockUI: NgBlockUI;
   loading: boolean;
   rows: any = [];
   limit: number = 15;
@@ -57,7 +59,7 @@ export class OperationsComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.operationsService
       .getOperations(this.offset, this.limit, this.workCenterId)
       .subscribe((data) => {
@@ -69,7 +71,7 @@ export class OperationsComponent implements OnInit {
           );
         }
         console.log('DATA', this.rows);
-        this.loading = false;
+        this.blockUI.stop();
       });
   }
 
@@ -82,7 +84,7 @@ export class OperationsComponent implements OnInit {
   }
 
   onScroll() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     const length = this.rows.length;
     console.log('SCROLLLLLL', length + 15, this.searchValue);
     setTimeout(() => {
@@ -92,13 +94,13 @@ export class OperationsComponent implements OnInit {
       } else {
         this.getRequest();
       }
-      this.loading = false;
+      this.blockUI.stop();
     }, 1000);
   }
 
   searchTable(value) {
     console.log('searchTable', value);
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.rows = [];
     if (value) {
       this.operationsService
@@ -112,7 +114,7 @@ export class OperationsComponent implements OnInit {
             );
           }
           console.log('DATA', this.rows);
-          this.loading = false;
+          this.blockUI.stop();
         });
     } else {
       this.getRequest();
@@ -151,23 +153,23 @@ export class OperationsComponent implements OnInit {
         { toastClass: 'toast ngx-toastr', closeButton: true }
       );
     }
-   
+
   }
 
   backClicked() {
     this.location.back();
   }
 
-  closeTime() {        
+  closeTime() {
     if (this.electronService.isElectron) {
-      this.myIntervalCloseApp = setInterval(() => {      
+      this.myIntervalCloseApp = setInterval(() => {
         this.electronService.closeWindows()
       }, 600000);
-    }    
+    }
   }
 
   ngOnDestroy() {
     // this.subscription.unsubscribe();
-    clearInterval(this.myIntervalCloseApp);    
+    clearInterval(this.myIntervalCloseApp);
   }
 }

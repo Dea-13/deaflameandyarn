@@ -733,7 +733,6 @@ export class StatedComponent implements OnInit {
   }
 
   // onScroll() {
-  //   this.loading = true;
   //   const length = this.rows.length
   //   console.log('SCROLLLLLL', length+100);
   //   setTimeout(() => {

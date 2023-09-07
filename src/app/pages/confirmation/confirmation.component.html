@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block-modal'" class="content-wrapper container-xxl p-0">
     <div class="content-body">
         <section class="users-list-wrapper">
             <div class="card" [ngClass]="{'redAcviteBox': activeBox === 0 , 'greenAcviteBox': activeBox === 1}">
@@ -21,7 +21,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
                           <label>Произведено к-во</label>
                           <input class="form-control input" type="text" [(ngModel)]="countProduced"
-                            (input)="checkProducedBrak($event.target.value)" placeholder="0.00" [readonly]="dataServiceObj.workType == 2 || dataServiceObj.workType == 3">
+                            (input)="checkProducedBrak($event.target.value)" placeholder="0.00" [readonly]="dataServiceObj.workType === 2 || dataServiceObj.workType === 3">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
                           <label>Брак РЦ</label>
@@ -32,7 +32,7 @@
                       </div>
                       <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
-                            <span *ngIf="dataServiceObj.workCenterId == 55">
+                            <span *ngIf="dataServiceObj.workCenterId === 55">
                               <label class="form-label">Приключване опаковка
                                 <input class="form-control input" [(ngModel)]="finishPackage" type="checkbox" style="width: 10%;"></label>
                             </span>
@@ -61,13 +61,13 @@
                 </div>
                 <div>
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex">
-                    <div *ngIf="dataServiceObj.workType == 2" class="scale col-xs-12 col-sm-12 col-md-12">
+                    <div *ngIf="dataServiceObj.workType === 2" class="scale col-xs-12 col-sm-12 col-md-12">
                       <p>Тегло: <span class="bold">{{scaleData.weight}}</span> гр.</p>
-                      <p>Тегло брой: <span class="bold" [ngClass]="{'redTolerance': tolerance == 0, 'greenTolerance': tolerance == 1}">{{scaleData.unitWeight}}</span> гр./бр. (теоретично: {{grossWeight}})</p>
+                      <p>Тегло брой: <span class="bold" [ngClass]="{'redTolerance': tolerance === 0, 'greenTolerance': tolerance === 1}">{{scaleData.unitWeight}}</span> гр./бр. (теоретично: {{grossWeight}})</p>
                       <p>Бройки: <span class="bold">{{scaleData.totalCount}}</span></p>
                     </div>
 
-                    <div *ngIf="dataServiceObj.workType == 3 && dataServiceObj.workCenterId == 55" class="scale col-xs-12 col-sm-12 col-md-12">
+                    <div *ngIf="dataServiceObj.workType === 3 && dataServiceObj.workCenterId === 55" class="scale col-xs-12 col-sm-12 col-md-12">
                       <p>ДМС Код Лист:</p>
                       <div class="row border" *ngFor="let dmc of dmCArray">
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
@@ -83,19 +83,19 @@
                   </div>
                 </div>
                 <!-- За операция 55 -->
-                <div class="grey-bg bottom-20"  *ngIf="dataServiceObj.workType == 1 && dataServiceObj.workCenterId == 55">
+                <div class="grey-bg bottom-20"  *ngIf="dataServiceObj.workType === 1 && dataServiceObj.workCenterId === 55">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngFor="let row of orderOperation">
                         <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>
-                        <input class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType == false"><br>
+                        <input class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType === false"><br>
                     </div>
                 </div>
                 <!-- за всички останали операции -->
-                <div *ngIf="dataServiceObj.workCenterId != 55" class="top-20 bottom-20">
+                <div *ngIf="dataServiceObj.workCenterId !== 55" class="top-20 bottom-20">
                   <div class="grey-bg-handle" *ngFor="let row of orderOperation">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngIf="row.inputType == true">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngIf="row.inputType === true">
                       <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>
-                      <input *ngIf="row.inputCodeType == false" class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType == false"><br>
-                      <ng-select [virtualScroll]="true" *ngIf="row.inputCodeType == true" class="width-select" [(ngModel)]="row.value">
+                      <input *ngIf="row.inputCodeType === false" class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType === false"><br>
+                      <ng-select [virtualScroll]="true" *ngIf="row.inputCodeType === true" class="width-select" [(ngModel)]="row.value">
                         <ng-option *ngFor="let item of row.selectList" [value]="item.name">{{item.name}}</ng-option>
                       </ng-select>
                     </div>
@@ -175,10 +175,5 @@
                 </div>
             </div>
         </section>
-    </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
     </div>
 </div>

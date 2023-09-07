@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ElectronService } from '../../core/services';
 import { constants } from '../../../environments/constants';
 import { ItemsList } from '@ng-select/ng-select/lib/items-list';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import Swal from 'sweetalert2';
 
 declare function pushSerial(scan:string, com:string, manufacturer:string):void;
@@ -26,8 +27,8 @@ declare function clearSerialScale():void;
 
 export class ConfirmationComponent implements OnInit {
 
+  @BlockUI('block-modal') blockUI: NgBlockUI;
   confirmation: any;
-  loading: boolean = false;
   dataServiceObj: any;
   subscription: Subscription;
   orderOperation: any = [];
@@ -77,7 +78,7 @@ export class ConfirmationComponent implements OnInit {
   autoChoose: boolean = false;
   hideInput: boolean = true;
   reasonInputs: boolean = true;
-  grossWeight:number = 0;  
+  grossWeight:number = 0;
 
   @ViewChild('myDivRed') myDivRed: ElementRef<HTMLElement>;
   @ViewChild('myDivGreen') myDivGreen: ElementRef<HTMLElement>;
@@ -109,8 +110,8 @@ export class ConfirmationComponent implements OnInit {
 
       if(constants.comport == 0){
         this.scanPorts()
-      } else {        
-        this.comPorts = JSON.parse(localStorage.getItem('ComPort'));        
+      } else {
+        this.comPorts = JSON.parse(localStorage.getItem('ComPort'));
       }
 
       this.closeTime();
@@ -120,14 +121,14 @@ export class ConfirmationComponent implements OnInit {
     }
 
     this.myInterval = setInterval(() => {
-      let scanner = getSerial();      
+      let scanner = getSerial();
       if(scanner){
         this.openedScanZebra(scanner['scan'], scanner['com'], scanner['manufacturer']);
         clearSerial();
       }
 
       if(this.dataServiceObj.workType == 2){
-        let scale = getSerialScale();        
+        let scale = getSerialScale();
         this.openedScale(scale['scan']);
         clearSerialScale();
       }
@@ -160,8 +161,8 @@ export class ConfirmationComponent implements OnInit {
 
     if(this.dataServiceObj.operation.workCenterId == 55){
       this.getCurrentAutomotivePackingLotNo(this.dataServiceObj.operation.id);
-    }      
-    this.grossWeight = this.dataServiceObj.operation.grossWeight * 1000;      
+    }
+    this.grossWeight = this.dataServiceObj.operation.grossWeight * 1000;
   }
 
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
@@ -170,12 +171,12 @@ export class ConfirmationComponent implements OnInit {
     }
   }
 
-  closeTime(){        
+  closeTime(){
     if (this.electronService.isElectron) {
-      this.myIntervalCloseApp = setInterval(() => {      
+      this.myIntervalCloseApp = setInterval(() => {
         this.electronService.closeWindows()
       }, 600000);
-    }    
+    }
   }
 
    public scanPorts () {
@@ -197,10 +198,10 @@ export class ConfirmationComponent implements OnInit {
               return item.path == element.path
             })
 
-            if(checkedCom.length == 0){              
+            if(checkedCom.length == 0){
               this.comPorts.push(element);
             }
-            
+
           }
 
           if(element.manufacturer == constants.prolificProductName || element.manufacturer == constants.standardPortTypes){
@@ -210,14 +211,14 @@ export class ConfirmationComponent implements OnInit {
             let checkedCom = this.comPorts.filter((item) =>{
               return item.path == element.path
             })
-            if(checkedCom.length == 0){        
+            if(checkedCom.length == 0){
               this.comPorts.push(element);
-            }            
+            }
           }
         });
         this.comPorts = this.comPorts.sort((a, b) => a.path < b.path ? - 1 : Number(a.path > b.path));
         // console.log('KAKWO IMAME W COMPORT: ', this.comPorts);
-        localStorage.setItem('ComPort', JSON.stringify(this.comPorts));        
+        localStorage.setItem('ComPort', JSON.stringify(this.comPorts));
       }).catch((err:any)=>{
         console.log("SerialPort -> err: ", err);
       });
@@ -278,8 +279,8 @@ export class ConfirmationComponent implements OnInit {
   onData (data: Buffer, com: string, manufacturer: string) {
     // console.log('onData=================: ', data, com, manufacturer);
     if(manufacturer == constants.prolificProductName || manufacturer == constants.standardPortTypes){
-      let scaleResult = this.splt(this.scaleParse(data));      
-      this.recordScale(scaleResult, com, manufacturer);      
+      let scaleResult = this.splt(this.scaleParse(data));
+      this.recordScale(scaleResult, com, manufacturer);
     } else {
       let tamp = this.parse(data);
       let text = tamp.search(/\r\n/i) >= 0 ?  tamp.split('\r\n')[0] : tamp;
@@ -302,13 +303,13 @@ export class ConfirmationComponent implements OnInit {
   }
 
   getRequest(id) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getConfirmations(id).subscribe(data => {
       this.orderOperation = data;
       // if(this.dataServiceObj.workCenterId == 17){ //ръчна обработка 17
-        this.getOrderOperationBilletLotNos(this.dataServiceObj.operation.id);      
-        for(let i = 0; i < this.orderOperation.length; i++) {       
-          this.orderOperation[i].inputCodeType = false; 
+        this.getOrderOperationBilletLotNos(this.dataServiceObj.operation.id);
+        for(let i = 0; i < this.orderOperation.length; i++) {
+          this.orderOperation[i].inputCodeType = false;
           if(this.orderOperation[i].code == 'OutputBilletLotNo'){
             if(this.orderOperationBilletLotNos.length > 0){
               // console.log('this.orderOperation[i].OutputBilletLotNo: LIST ', this.orderOperation[i].code, this.orderOperationBilletLotNos);
@@ -320,82 +321,82 @@ export class ConfirmationComponent implements OnInit {
                 // [{"id":1,"name":"Склад 1"},
                 //   {"id":2,"name":"Склад 2"},
                 //   {"id":3,"name":"Склад 3"}];
-              }              
+              }
             } else {
               // console.log('this.orderOperation[i].OutputBilletLotNo: INPUT ', this.orderOperation[i].code, this.orderOperationBilletLotNos);
-              this.orderOperation[i].inputCodeType = false;               
-            }            
+              this.orderOperation[i].inputCodeType = false;
+            }
           }
         }
-      // }      
-      this.loading = false;
+      // }
+      this.blockUI.stop();
     });
   }
 
   getReason(id){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getReasons(id).subscribe(data => {
       this.reasonsArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getBrak(orderId, operationNo){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getBrak(orderId, operationNo).subscribe(data => {
       this.brakArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getPallet(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getPallet().subscribe(data => {
       this.palletsArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getPreviousOperation(){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getPreviousOperation(this.dataServiceObj.productId, this.dataServiceObj.operationNo).subscribe({ next: (data) => {
       this.prevOperationCassetList = data.map((obj) => {
         obj.checked = false;
         return obj;
       });
-      this.loading = false;
+      this.blockUI.stop();
     },
       error: (err) => {
         this.toastrService.error(
           err.error, '',
           { toastClass: 'toast ngx-toastr', closeButton: false }
         );
-        this.loading = false;
+        this.blockUI.stop();
       }
     })
   }
 
   getOrderConfirm(bomCode, salesOrderDescription){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getOrderConfirm(bomCode, salesOrderDescription).subscribe(data => {
       this.pcsInSinglePackage = data.pcsInSinglePackage;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   backClicked() {
     clearInterval(this.myInterval);
-    clearInterval(this.myIntervalCloseApp);    
+    clearInterval(this.myIntervalCloseApp);
     this.location.back();
   }
 
   getStock(cassetPut){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     let cassetArray = this.palletsArr.filter(p => p.name == cassetPut);
     this.cassetPut = cassetArray;
     this.confirmationService.getStock(cassetPut).subscribe(data => {
       this.putCassetList = data;
-      this.loading = false;
+      this.blockUI.stop();
       this.triggerGreenClick();
     });
   }
@@ -407,9 +408,9 @@ export class ConfirmationComponent implements OnInit {
 
   generateNewOrder(){
     if(this.generateOrder){
-      this.loading = true;
+      this.blockUI.start('Loading...');
       this.confirmationService.generateNewOrder(this.dataServiceObj.orderId, this.generateOrder).subscribe(data => {
-        this.loading = false;
+        this.blockUI.stop();
       });
     } else {
       this.toastrService.error(
@@ -440,7 +441,7 @@ export class ConfirmationComponent implements OnInit {
 
   checkIfApproved(row, event) {
     // console.log('checkIfApproved', row, event);
-    this.loading = true;
+    this.blockUI.start('Loading...');
     // 220805065428872 - sn за тест / row.sn
     this.confirmationService.checkIfApproved(row.sn).subscribe({
       next: (data) => {
@@ -467,10 +468,10 @@ export class ConfirmationComponent implements OnInit {
           this.batchData.NotConfirmBatchid = data[0].id;
           this.batchData.NotConfirmBatchNo = data[0].bachno;
         }
-        this.loading = false;
+        this.blockUI.stop();
       },
       error: (err) => {
-        this.loading = false;
+        this.blockUI.stop();
       },
       complete: () =>{
         console.log('complete');
@@ -478,13 +479,13 @@ export class ConfirmationComponent implements OnInit {
     });
   }
 
-  checkIfApprovedDms(dmc) {    
-    this.loading = true;        
+  checkIfApprovedDms(dmc) {
+    this.blockUI.start('Loading...');
     this.confirmationService.checkForDoubleDMCCode(dmc).subscribe({
-      next: (data) => {     
-        console.log('checkForDoubleDMCCode', data);   
-        if(data){                   
-          
+      next: (data) => {
+        console.log('checkForDoubleDMCCode', data);
+        if(data){
+
           let text = data.dmcName + ' код на ДМС се дублира!';
           Swal.fire({
             title: text.toString(),
@@ -496,14 +497,14 @@ export class ConfirmationComponent implements OnInit {
             }
           }).then((result) => {
             // return data;
-          });       
+          });
         }
-        this.loading = false;
+        this.blockUI.stop();
       },
       error: (err) => {
-        this.loading = false;        
+        this.blockUI.stop();
       }
-    });    
+    });
   }
 
   checkProducedBrak(event){
@@ -559,7 +560,7 @@ export class ConfirmationComponent implements OnInit {
   openedScale(scaleResult){
     if(scaleResult != undefined){
       this.scaleData = scaleResult;
-      this.countProduced = this.scaleData.totalCount;   
+      this.countProduced = this.scaleData.totalCount;
 
       if(this.countProduced == this.pcsInSinglePackage){
         this.finishPackage = true;
@@ -567,13 +568,13 @@ export class ConfirmationComponent implements OnInit {
         this.finishPackage = false;
       }
 
-      let procent = Number(this.scaleData.unitWeight) / Number(this.grossWeight);      
+      let procent = Number(this.scaleData.unitWeight) / Number(this.grossWeight);
       if(procent >= 0.95 && procent <= 1.05){
         this.tolerance = 1;
       } else{
         this.tolerance = 0;
       }
-      
+
     }
   }
 
@@ -586,7 +587,7 @@ export class ConfirmationComponent implements OnInit {
         if(this.dataServiceObj.workType == 3){
         // let filterCom =   this.comPorts.filter((item) => {
         //   return item. constants.zebraProductName;
-        // }); 
+        // });
         // console.log('scan: 1** ', this.comPorts);
         if(this.comPorts[0].path == com){
 
@@ -608,17 +609,17 @@ export class ConfirmationComponent implements OnInit {
             return item.includes(scan);
           });
           // console.log('scan: 3 V ELSE ', this.comPorts[1].path, com, scan, filterDMC);
-          if(filterDMC.length == 0 && scan.length > 0){            
+          if(filterDMC.length == 0 && scan.length > 0){
             // if(this.checkIfApprovedDms(scan)){
               // this.dmCArray.push(scan);
               // this.countProduced = this.dmCArray.length;
-            // }    
-            
+            // }
+
             this.confirmationService.checkForDoubleDMCCode(scan).subscribe({
-              next: (data) => {     
-                console.log('checkForDoubleDMCCode', data);   
-                if(data){                   
-                  
+              next: (data) => {
+                console.log('checkForDoubleDMCCode', data);
+                if(data){
+
                   let text = data.dmcName + ' код на ДМС се дублира!';
                   Swal.fire({
                     title: text.toString(),
@@ -630,16 +631,16 @@ export class ConfirmationComponent implements OnInit {
                     }
                   }).then((result) => {
                     // return data;
-                  });       
+                  });
                 }
-                this.loading = false;
+                this.blockUI.stop();
               },
               error: (err) => {
-                this.loading = false;    
+                this.blockUI.stop();
                 this.dmCArray.push(scan);
-                this.countProduced = this.dmCArray.length;    
+                this.countProduced = this.dmCArray.length;
               }
-            });   
+            });
           }
 
           if(this.countProduced == this.pcsInSinglePackage){
@@ -716,13 +717,13 @@ export class ConfirmationComponent implements OnInit {
   }
 
   loadComponent() {
-    
+
     let validInputScrap = this.validationInputs();
     let validRedSection = this.validationRedSection();
     if (this.countProduced) {
       if (validRedSection || (!validRedSection && this.autoChoose == true)) {
-        if (validInputScrap) {          
-          if(this.putCassetList.length > 0 || this.autoChoose == true || this.dataServiceObj.workCenterId == 55) {                       
+        if (validInputScrap) {
+          if(this.putCassetList.length > 0 || this.autoChoose == true || this.dataServiceObj.workCenterId == 55) {
               if((this.dataServiceObj.workType == 2 && this.dataServiceObj.workCenterId == 55 && this.countProduced == this.pcsInSinglePackage)
                   || (this.dataServiceObj.workType == 3 && this.dataServiceObj.workCenterId == 55 && this.countProduced == this.pcsInSinglePackage)){
                   this.toastrService.error(
@@ -731,34 +732,34 @@ export class ConfirmationComponent implements OnInit {
                   );
                   return;
               }
-              
+
             if((this.dataServiceObj.operation.workCenterId == 55 && this.dataServiceObj.workType == 1) || (this.dataServiceObj.operation.workCenterId != 55)){
               let validFlag = 0;
-              for(let i = 0; i < this.orderOperation.length; i++) {     
-                if(this.orderOperation[i].inputType == true && this.orderOperation[i].mandatory == true){        
-                  if(!this.orderOperation[i].value){          
+              for(let i = 0; i < this.orderOperation.length; i++) {
+                if(this.orderOperation[i].inputType == true && this.orderOperation[i].mandatory == true){
+                  if(!this.orderOperation[i].value){
                     validFlag++;
-                  }        
+                  }
                 }
               }
-              
+
               if(validFlag > 0){
                 this.toastrService.error(
                   'Моля, попълнете всички полета.', '',
                   { toastClass: 'toast ngx-toastr', closeButton: false }
                 );
-  
+
                 return;
               }
             }
-        
+
             if(this.dataServiceObj.operation.workCenterId == 55){
-              this.оutputLotNo = this.currentAutomotivePackingLotNo.currentLot;   
+              this.оutputLotNo = this.currentAutomotivePackingLotNo.currentLot;
             }
-            
+
             let checkPrevOperation = []
               this.dataServiceObj.image = '';
-              
+
               for(let i = 0; i < this.prevOperationCassetList.length; i++) {
                 if(this.prevOperationCassetList[i].checked == true){
                   checkPrevOperation.push(this.prevOperationCassetList[i]);
@@ -817,21 +818,21 @@ export class ConfirmationComponent implements OnInit {
     }
 
   }
-  
+
   getCurrentAutomotivePackingLotNo(operationId) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getCurrentAutomotivePackingLotNo(operationId).subscribe({ next: (data) => {
-      this.currentAutomotivePackingLotNo = data;   
+      this.currentAutomotivePackingLotNo = data;
       if(this.currentAutomotivePackingLotNo.usedCapacity != 0){
         this.pcsInSinglePackage -= this.currentAutomotivePackingLotNo.usedCapacity;
         this.pcsInSinglePackageNo = ', Опаковка №: ' + this.currentAutomotivePackingLotNo.currentLot;
         // това да се добави полето което якуб прато v: currentLot
       }
       console.log('this.pcsInSinglePackage: ', this.pcsInSinglePackage, this.currentAutomotivePackingLotNo)
-      this.loading = false;
+      this.blockUI.stop();
     },
     error: (err) => {
-      this.loading = false;
+      this.blockUI.stop();
     },
     complete: () => {}
     });
@@ -839,13 +840,13 @@ export class ConfirmationComponent implements OnInit {
   }
 
   getOrderOperationBilletLotNos(operationId){
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.confirmationService.getOrderOperationBilletLotNos(operationId).subscribe({ next: (data) => {
-      this.orderOperationBilletLotNos = data;      
-      this.loading = false;      
+      this.orderOperationBilletLotNos = data;
+      this.blockUI.stop();
     },
     error: (err) => {
-      this.loading = false;
+      this.blockUI.stop();
     },
     complete: () => {}
     });
@@ -855,7 +856,7 @@ export class ConfirmationComponent implements OnInit {
   ngOnDestroy() {
     console.log('ngOnDestroy');
     clearInterval(this.myInterval);
-    clearInterval(this.myIntervalCloseApp);    
+    clearInterval(this.myIntervalCloseApp);
   }
 
   triggerRedClick() {
