@@ -187,22 +187,22 @@ export class StatedComponent implements OnInit {
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'countInUse', 'finalNitriding',
         'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'ProfileId' },
-        { id: 2, name: 'PrimaryResourceName' },
-        { id: 3, name: 'ProducerName' },
-        { id: 4, name: 'Diameter' },
-        { id: 5, name: 'Thickness' },
-        { id: 6, name: 'Alloy' },
-        { id: 7, name: 'Temper' },
-        { id: 8, name: 'BolsterTooling1' },
-        { id: 9, name: 'BolsterTooling2' },
-        { id: 10, name: 'DieHolder' },
-        { id: 11, name: 'Container' },
-        { id: 12, name: 'Notes' },
-        { id: 13, name: 'ClientName' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'ProfileId' },
+      //   { id: 2, name: 'PrimaryResourceName' },
+      //   { id: 3, name: 'ProducerName' },
+      //   { id: 4, name: 'Diameter' },
+      //   { id: 5, name: 'Thickness' },
+      //   { id: 6, name: 'Alloy' },
+      //   { id: 7, name: 'Temper' },
+      //   { id: 8, name: 'BolsterTooling1' },
+      //   { id: 9, name: 'BolsterTooling2' },
+      //   { id: 10, name: 'DieHolder' },
+      //   { id: 11, name: 'Container' },
+      //   { id: 12, name: 'Notes' },
+      //   { id: 13, name: 'ClientName' },
+      // ];
     } else if (this.router.url == '/api/confirmed') {
       this.statusId = 20;
       this.displayedColumns = [
@@ -210,19 +210,19 @@ export class StatedComponent implements OnInit {
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'container',
         'notes', 'clientName', 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'ProfileId' },
-        { id: 2, name: 'PrimaryResourceName' },
-        { id: 3, name: 'ProducerName' },
-        { id: 4, name: 'Diameter' },
-        { id: 5, name: 'Thickness' },
-        { id: 6, name: 'BolsterTooling1' },
-        { id: 7, name: 'BolsterTooling2' },
-        { id: 8, name: 'Container' },
-        { id: 9, name: 'Notes' },
-        { id: 10, name: 'ClientName' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'ProfileId' },
+      //   { id: 2, name: 'PrimaryResourceName' },
+      //   { id: 3, name: 'ProducerName' },
+      //   { id: 4, name: 'Diameter' },
+      //   { id: 5, name: 'Thickness' },
+      //   { id: 6, name: 'BolsterTooling1' },
+      //   { id: 7, name: 'BolsterTooling2' },
+      //   { id: 8, name: 'Container' },
+      //   { id: 9, name: 'Notes' },
+      //   { id: 10, name: 'ClientName' },
+      // ];
     } else if (this.router.url == '/api/dispatched') {
       this.statusId = 30;
       this.displayedColumns = [
@@ -231,23 +231,23 @@ export class StatedComponent implements OnInit {
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'PrimaryResourceName' },
-        { id: 2, name: 'ProducerName' },
-        { id: 3, name: 'Diameter' },
-        { id: 4, name: 'Thickness' },
-        { id: 5, name: 'Alloy' },
-        { id: 6, name: 'Temper' },
-        { id: 7, name: 'BolsterTooling1' },
-        { id: 8, name: 'BolsterTooling2' },
-        { id: 9, name: 'DieHolder' },
-        { id: 10, name: 'Container' },
-        { id: 11, name: 'Notes' },
-        { id: 12, name: 'ClientName' },
-        { id: 13, name: 'Price' },
-        { id: 14, name: 'PriceInv' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'PrimaryResourceName' },
+      //   { id: 2, name: 'ProducerName' },
+      //   { id: 3, name: 'Diameter' },
+      //   { id: 4, name: 'Thickness' },
+      //   { id: 5, name: 'Alloy' },
+      //   { id: 6, name: 'Temper' },
+      //   { id: 7, name: 'BolsterTooling1' },
+      //   { id: 8, name: 'BolsterTooling2' },
+      //   { id: 9, name: 'DieHolder' },
+      //   { id: 10, name: 'Container' },
+      //   { id: 11, name: 'Notes' },
+      //   { id: 12, name: 'ClientName' },
+      //   { id: 13, name: 'Price' },
+      //   { id: 14, name: 'PriceInv' },
+      // ];
     } else if(this.router.url == '/api/productivity') {
       this.statusId = 40;
       this.displayedColumns = [
@@ -255,16 +255,16 @@ export class StatedComponent implements OnInit {
         'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
         'gr', 'kgSap', 'renewal'
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'ProfileId' },
-        { id: 2, name: 'PrimaryResourceName' },
-        { id: 3, name: 'ProducerName' },
-        { id: 4, name: 'Diameter' },
-        { id: 5, name: 'Thickness' },
-        { id: 6, name: 'ClientName' },
-        { id: 7, name: 'Channels' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'ProfileId' },
+      //   { id: 2, name: 'PrimaryResourceName' },
+      //   { id: 3, name: 'ProducerName' },
+      //   { id: 4, name: 'Diameter' },
+      //   { id: 5, name: 'Thickness' },
+      //   { id: 6, name: 'ClientName' },
+      //   { id: 7, name: 'Channels' },
+      // ];
     } else if (this.router.url == '/api/scrap') {
       this.statusId = 50;
       this.displayedColumns = [
@@ -272,54 +272,75 @@ export class StatedComponent implements OnInit {
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding', 'dateScrapped'
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'ProfileId' },
-        { id: 2, name: 'PrimaryResourceName' },
-        { id: 3, name: 'ProducerName' },
-        { id: 4, name: 'Diameter' },
-        { id: 5, name: 'Thickness' },
-        { id: 6, name: 'BolsterTooling1' },
-        { id: 7, name: 'BolsterTooling2' },
-        { id: 8, name: 'Notes' },
-        { id: 9, name: 'ClientName' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'ProfileId' },
+      //   { id: 2, name: 'PrimaryResourceName' },
+      //   { id: 3, name: 'ProducerName' },
+      //   { id: 4, name: 'Diameter' },
+      //   { id: 5, name: 'Thickness' },
+      //   { id: 6, name: 'BolsterTooling1' },
+      //   { id: 7, name: 'BolsterTooling2' },
+      //   { id: 8, name: 'Notes' },
+      //   { id: 9, name: 'ClientName' },
+      // ];
     } else if (this.router.url == '/api/marked') {
       this.statusId = 60;
       this.displayedColumns = [
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'correctorName', 'diameter',
         'thickness', 'channels', 'clientName', 'totalWeight', 'kgSap', 'markedForTestDateTime',
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'ProfileId' },
-        { id: 2, name: 'PrimaryResourceName' },
-        { id: 3, name: 'ProducerName' },
-        { id: 4, name: 'CorrectorName' },
-        { id: 5, name: 'Diameter' },
-        { id: 6, name: 'Thickness' },
-        { id: 7, name: 'BolsterTooling1' },
-        { id: 8, name: 'BolsterTooling2' },
-        { id: 9, name: 'Notes' },
-        { id: 10, name: 'ClientName' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'ProfileId' },
+      //   { id: 2, name: 'PrimaryResourceName' },
+      //   { id: 3, name: 'ProducerName' },
+      //   { id: 4, name: 'CorrectorName' },
+      //   { id: 5, name: 'Diameter' },
+      //   { id: 6, name: 'Thickness' },
+      //   { id: 7, name: 'BolsterTooling1' },
+      //   { id: 8, name: 'BolsterTooling2' },
+      //   { id: 9, name: 'Notes' },
+      //   { id: 10, name: 'ClientName' },
+      // ];
     } else if (this.router.url == '/api/no-motion') {
       this.statusId = 40;
       this.displayedColumns = [
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'lastTransaction', 'diameter',
         'thickness', 'clientName', 'productivity', 'renewal'
       ];
-      this.urls = [
-        { id: 0, name: 'DieId' },
-        { id: 1, name: 'ProfileId' },
-        { id: 2, name: 'PrimaryResourceName' },
-        { id: 3, name: 'ProducerName' },
-        { id: 4, name: 'Diameter' },
-        { id: 5, name: 'Thickness' },
-        { id: 6, name: 'ClientName' },
-        { id: 7, name: 'Channels' },
-      ];
+      // this.urls = [
+      //   { id: 0, name: 'DieId' },
+      //   { id: 1, name: 'ProfileId' },
+      //   { id: 2, name: 'PrimaryResourceName' },
+      //   { id: 3, name: 'ProducerName' },
+      //   { id: 4, name: 'Diameter' },
+      //   { id: 5, name: 'Thickness' },
+      //   { id: 6, name: 'ClientName' },
+      //   { id: 7, name: 'Channels' },
+      // ];
     }
+
+    this.urls = [
+      { id: 0, name: 'DieId' },
+      { id: 1, name: 'ProfileId' },
+      { id: 2, name: 'PrimaryResourceName' },
+      { id: 3, name: 'ProducerName' },
+      { id: 4, name: 'CorrectorName' },
+      { id: 5, name: 'Diameter' },
+      { id: 6, name: 'Thickness' },
+      { id: 7, name: 'Alloy' },
+      { id: 8, name: 'Temper' },
+      { id: 9, name: 'BolsterTooling1' },
+      { id: 10, name: 'BolsterTooling2' },
+      { id: 11, name: 'DieHolder' },
+      { id: 12, name: 'Container' },
+      { id: 13, name: 'Notes' },
+      { id: 14, name: 'ClientName' },
+      { id: 15, name: 'Price' },
+      { id: 16, name: 'PriceInv' },
+      { id: 17, name: 'Channels' },
+    ];
 
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
