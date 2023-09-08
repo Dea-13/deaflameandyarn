@@ -11,12 +11,6 @@
   height: 36px;
 }
 
-::ng-deep .datatable-body-cell-label {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-
 .content {
   width: 100%;
   white-space: nowrap;

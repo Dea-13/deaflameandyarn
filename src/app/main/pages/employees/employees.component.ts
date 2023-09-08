@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewEmployeesModalComponent } from '../../modals/new-employees-modal/new-employees-modal.component';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class EmployeesComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = ['name', 'department', 'privilege', 'star'];
   public urls = [
     { id: 0, name: 'name' },
@@ -28,7 +29,6 @@ export class EmployeesComponent implements OnInit {
   public totalResult: number = 0;
   public languageOptions: any;
   public searchMaterial: any = '';
-  public loading: boolean = false;
   public translateSnackBar: any;
   public selName: string = '';
   public selDepartment: string = '';
@@ -46,7 +46,6 @@ export class EmployeesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.pageChanged(1);
     this.getFilters();
     this.translate.get('translate').subscribe((snackBar: string) => {
@@ -56,37 +55,25 @@ export class EmployeesComponent implements OnInit {
   }
 
   getRequest() {
-    this.employeesService
-    .getEmployees(this.offset, this.limit, this.selName, this.selDepartment, this.selPrevilege)
+    this.blockUI.start('Loading...');
+    this.employeesService.getEmployees(this.offset, this.limit, this.selName, this.selDepartment, this.selPrevilege)
     .subscribe((data) => {
       this.rows = data.list;
       this.totalResult = data.total;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getFilters() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     for (let i = 0; i < this.urls.length; i++) {
       this.employeesService.getFilters(this.urls[i].name).subscribe((data) => {
         switch (this.urls[i].id) {
-          case 0:
-            {
-              this.nameArr = data;
-            }
-            break;
-          case 1:
-            {
-              this.departmentArr = data;
-            }
-            break;
-          case 2:
-            {
-              this.priviligeArr = data;
-            }
-            break;
+          case 0: { this.nameArr = data; } break;
+          case 1: { this.departmentArr = data; } break;
+          case 2: { this.priviligeArr = data; } break;
         }
-        this.loading = false;
+        this.blockUI.stop();
       });
     }
   }
@@ -100,7 +87,7 @@ export class EmployeesComponent implements OnInit {
 
   modalEmployee(row) {
     console.log("new/edit employee", row);
-    const modalRef = this.modalService.open(NewEmployeesModalComponent, {});
+    const modalRef = this.modalService.open(NewEmployeesModalComponent, {size : 'md'});
     modalRef.componentInstance.employeeItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
@@ -117,10 +104,9 @@ export class EmployeesComponent implements OnInit {
   }
 
   deleteEmployee(row) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.employeesService.deleteEmployee(row.id).subscribe(employeesService => {
       this.getRequest();
-      this.loading = false;
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -137,7 +123,7 @@ export class EmployeesComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.loading = false;
+        this.blockUI.stop();
         this.getRequest();
       }
     );
@@ -147,7 +133,7 @@ export class EmployeesComponent implements OnInit {
     this.offset = 0,
     this.limit = 15,
     this.selName = '';
-    this.selDepartment = ''; 
+    this.selDepartment = '';
     this.selPrevilege = '';
     this.getRequest();
   }

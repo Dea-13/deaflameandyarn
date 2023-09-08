@@ -9,6 +9,7 @@ import { ElectronService } from '../../../core/services';
 import { constants } from '../../../../environments/constants';
 import Swal from 'sweetalert2';
 import { timeout } from 'rxjs';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 declare function pushSerial(scan:string, com:string, manufacturer:string):void;
 declare function getSerial():string;
@@ -21,9 +22,9 @@ declare function clearSerial():void;
 })
 export class DieScanPageComponent implements OnInit {
 
+  @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = ['dieId', 'resourceIn', 'resourceOut', 'movementDateTime', 'notes', 'computerName',];
   displayedColumnsDie: string[] = ['dieId','resourceName', 'skladPlace', 'lastTransaction',];
-  public loading: boolean;
   public translateSnackBar: any;
   public rowsMovements: Array<any> = [];
   public rowsDie: Array<any> = [];
@@ -227,6 +228,7 @@ export class DieScanPageComponent implements OnInit {
   }
 
   getPositionDie(){
+    this.blockUI.start('Loading...');
     this.dieService.getPositionDie(
       this.offset,
       this.limit,
@@ -237,12 +239,12 @@ export class DieScanPageComponent implements OnInit {
       console.log("getPositionDie", data);
       this.rowsDie = data['list'];
       this.totalResult = data['total'];
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getFilters() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     for (let i = 0; i < this.urls.length; i++) {
       this.dieService.getFilters(this.urls[i].name).subscribe((data) => {
         switch (this.urls[i].id) {
@@ -250,7 +252,7 @@ export class DieScanPageComponent implements OnInit {
           case 1: { this.dieIdArr = data; } break;
           case 2: { this.storagePlaceArr = data; } break;
         }
-        this.loading = false;
+        this.blockUI.stop();
       });
     }
   }
@@ -266,7 +268,7 @@ export class DieScanPageComponent implements OnInit {
     this.dieService.getResource().subscribe(data => {
       console.log("getBarCode", data);
       this.resource = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -274,26 +276,26 @@ export class DieScanPageComponent implements OnInit {
     this.dieService.getEmployee().subscribe(data => {
       console.log("getEmployee", data);
       this.employee = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getImage(row) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.getImage(row.profile).subscribe(data => {
       console.log("getImage", data);
       this.image = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
   getMovements(resourceIn) {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.getMovements(resourceIn).subscribe(data => {
       console.log("getMovements", data);
       this.rowsMovements = data;
       this.imageLastMovement.name = '';
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -305,9 +307,9 @@ export class DieScanPageComponent implements OnInit {
 
   openBarCodeModal(value) {
     console.log('openBarCodeModal', value);
-    const modalRef = this.modalService.open(DieScanModalComponent, {});
+    const modalRef = this.modalService.open(DieScanModalComponent, {size : 'md'});
     modalRef.componentInstance.dieItem = { 'die': value };
-    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {      
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry) {
         this.getImage(receivedEntry);
         this.currentResource = receivedEntry.resourceIn;
@@ -319,11 +321,11 @@ export class DieScanPageComponent implements OnInit {
 
   lastMovementRow(row) {
     console.log('lastMovementRow', row);
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.dieService.getImage(row.profile).subscribe(data => {
       console.log("lastMovementRow getImage", data);
       this.imageLastMovement = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -346,7 +348,7 @@ export class DieScanPageComponent implements OnInit {
 
       this.dieService.postDieMovemanetConf(obj).subscribe(data => {
         this.submitted = false;
-        this.loading = false;
+        this.blockUI.stop();
         Swal.fire({
           position: 'bottom-end',
           icon: 'success',

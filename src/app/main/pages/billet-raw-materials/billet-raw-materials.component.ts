@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BilletRawMaterialsService } from '../../../@core/services/billet-materials.servise';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-billet-raw-materials',
@@ -9,6 +10,7 @@ import { BilletRawMaterialsService } from '../../../@core/services/billet-materi
 })
 export class BilletRawMaterialsComponent implements OnInit {
  // Public
+ @BlockUI('block') blockUI: NgBlockUI;
  displayedColumn: string[] = [
   'name', 'description', 'lotNo',
   'variant', 'stockQuantity', 'uom',
@@ -16,7 +18,6 @@ export class BilletRawMaterialsComponent implements OnInit {
 
 public rows = [{}];
 public languageOptions: any;
-public loading: boolean = false;
 public translateSnackBar: any;
 
 
@@ -26,7 +27,6 @@ constructor(
 ) { }
 
 ngOnInit(): void {
-  this.loading = true;
   this.getRequest();
   this.translate.get('translate').subscribe((snackBar: string) => {
     this.translateSnackBar = snackBar;
@@ -34,10 +34,10 @@ ngOnInit(): void {
 }
 
 getRequest() {
-  this.loading = true;
+  this.blockUI.start('Loading...');
   this.billteService.getBilletMaterial().subscribe((data) => {
     this.rows = data;
-    this.loading = false;
+    this.blockUI.stop();
   });
 }
 

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeesService } from '../../../@core/services/employees.service';
 import Swal from 'sweetalert2';
 import { MatrixService } from '../../../@core/services/matrix.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-generate-test-modal',
@@ -12,6 +13,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
   styleUrls: ['./generate-test-modal.component.scss']
 })
 export class GenerateTestModalComponent implements OnInit {
+  @BlockUI('block') blockUI: NgBlockUI;
   @Input() public testItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
@@ -46,10 +48,10 @@ export class GenerateTestModalComponent implements OnInit {
   }
 
   getPress() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getPress().subscribe((data) => {
       this.pressArr = data;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -57,11 +59,11 @@ export class GenerateTestModalComponent implements OnInit {
     console.log('submitForm', !this.createTestForm.invalid, this.testItem.dieId);
     this.submitted = true;
     if (!this.createTestForm.invalid) {
-      this.loading = true;
+      this.blockUI.start('Loading...');
       this.matrixService.generateTest(this.createTestForm.controls.chooseKg.value, this.createTestForm.controls.chooseAlloy.value, this.createTestForm.controls.choosePress.value, this.testItem.dieId).subscribe((matrixService) => {
         this.activeModal.dismiss();
         this.passEntry.emit(true);
-        this.loading = false;
+        this.blockUI.stop();
       },
         (error) => {
           Swal.fire({
@@ -73,7 +75,7 @@ export class GenerateTestModalComponent implements OnInit {
           })
           this.activeModal.dismiss();
           this.passEntry.emit(true);
-          this.loading = false;
+          this.blockUI.stop();
         });
     } else {
       Swal.fire({

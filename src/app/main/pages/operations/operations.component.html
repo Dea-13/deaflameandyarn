@@ -1,10 +1,10 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
     <div class="content-body">
         <section class="users-list-wrapper">
             <div class="card">
                 <div class="row">
                     <div class="d-flex align-items-center ml-3 ml-md-10"><h4 style="font-weight: bold;">{{name}}</h4></div>
-                    
+
                     <label class="d-flex align-items-center ml-1 ml-md-3">
                          <span class="width-search">Поръчка, Профил, Клиент</span>
                         <input [(ngModel)]="searchValue" name="searchValue" type="text"(keydown.enter)="searchTable(searchValue)" class="form-control ml-25 search-input" />
@@ -13,8 +13,8 @@
                         </button>
                         <button class="btn search-btn clear-btn" (click)="clearTable()" type="submit">
                             <i class="fa fa-times"></i>
-                        </button>                        
-                        <span class="length-show-rows">{{rows.length}} операции</span>                        
+                        </button>
+                        <span class="length-show-rows">{{rows.length}} операции</span>
                     </label>
                 </div>
                 <table>
@@ -27,7 +27,7 @@
                             <div class="glossy-row">
                                 <td class="img-section"><div><img src="{{'data:image/jpg;base64,' + row.image}}" /></div></td>
                                 <td style="width: 25%;">
-                                    <p><b>{{row.orderNo}}</b></p>                                    
+                                    <p><b>{{row.orderNo}}</b></p>
                                     <p><b>{{row.salesOrderDescription}}</b></p>
                                     <p><b>{{row.sourceDocumentClient}}</b></p>
                                     <p><b>{{row.profile}}/{{row.alloy}}, L={{row.length}}</b></p>
@@ -56,10 +56,5 @@
                 </div>
             </div>
         </section>
-    </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
     </div>
 </div>

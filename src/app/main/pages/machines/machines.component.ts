@@ -13,7 +13,6 @@ import { ElectronService } from '../../../core/services';
 })
 export class MachinesComponent implements OnInit {
   rows: any;
-  loading: boolean;
   searchValue = '';
   tempData = [];
   myIntervalCloseApp: any;
@@ -31,11 +30,9 @@ export class MachinesComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
-    this.machinesService.getMachines().subscribe(data => {      
+    this.machinesService.getMachines().subscribe(data => {
       this.rows = data;
       this.tempData = this.rows;
-      this.loading = false;
     });
   }
 
@@ -56,17 +53,17 @@ export class MachinesComponent implements OnInit {
     // this.table.offset = 0;
   }
 
-  closeTime() {        
+  closeTime() {
     if (this.electronService.isElectron) {
-      this.myIntervalCloseApp = setInterval(() => {      
+      this.myIntervalCloseApp = setInterval(() => {
         this.electronService.closeWindows()
       }, 600000);
-    }    
+    }
   }
 
   ngOnDestroy() {
-    console.log('ngOnDestroy');   
-    clearInterval(this.myIntervalCloseApp);    
+    console.log('ngOnDestroy');
+    clearInterval(this.myIntervalCloseApp);
   }
 
 }

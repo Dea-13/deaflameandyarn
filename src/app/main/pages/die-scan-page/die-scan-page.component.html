@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <div class="card">
 
@@ -36,11 +36,11 @@
           <img *ngIf="image.name !== ''" class="center-img" src="{{'data:image/png;base64,' + image.name}}">
         </div>
         <div class="full-width">
-          <div class="flex boxes">
+          <div class="d-flex boxes">
             <div class="col-sm-2 align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.barcodeMatrix }}</label>
               <input type="text" [(ngModel)]="barCode" maxlength="7" (input)="getBarCodesTable()" class="form-control dt-uname"
-              [ngClass]="{ 'error-input': submitted && barCode.length == 0 }" />
+              [ngClass]="{ 'error-input': submitted && barCode.length === 0 }" />
               <button type="button" class="btn btn-primary btn-view" (click)="openBarCodeModal('empty')" rippleEffect>
                 {{ translateSnackBar.view }}
               </button>
@@ -67,7 +67,7 @@
                 <ng-option *ngFor="let e of employee" [value]="e.id">{{e.name}}</ng-option>
               </ng-select>
             </div>
-            <div class="col-sm-2 align-items-center fixed-height" (click)="sendConfirmation()">
+            <div role="button" class="col-sm-2 align-items-center fixed-height" (click)="sendConfirmation()">
               <label class="d-flex align-items-center">{{ translateSnackBar.confirmation }}</label>
               <span [data-feather]="'check-circle'" [class]="'check-btn'"></span>
             </div>
@@ -148,7 +148,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="die != ''">{{die.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="die !== ''">{{die.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -169,7 +169,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="resourceName != ''">{{resourceName.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="resourceName !== ''">{{resourceName.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -190,7 +190,7 @@
                 <div class="filter-th" container="body">
                   <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
                     rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="storagePlace != ''">{{storagePlace.length}}</span>
+                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="storagePlace !== ''">{{storagePlace.length}}</span>
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
@@ -223,10 +223,5 @@
       </div>
 
     </div>
-  </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
   </div>
 </div>

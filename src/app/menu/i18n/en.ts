@@ -469,6 +469,7 @@ export const locale = {
       selected: 'Select All',
       noResult: 'No results found',
       lastRefreshed: 'Last Refreshed',
+      msgEmpty: 'No data for this die.',
     }
   }
 }

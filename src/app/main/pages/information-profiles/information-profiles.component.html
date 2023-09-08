@@ -1,4 +1,4 @@
-<div class="content-wrapper container-xxl p-0">
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
@@ -899,10 +899,5 @@
         </pagination-controls>
       </div>
     </section>
-  </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
   </div>
 </div>

@@ -1,5 +1,5 @@
 .colored {
-  background-color: #CBC3E3;
+  background-color: #E6E6FA;
   padding: 1%;
 }
 
@@ -15,6 +15,8 @@
 .example-table,
 .full-width {
   width: -webkit-fill-available !important;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .fixed-height {
@@ -93,4 +95,16 @@ label {
 
 .error-input {
   border: 1px solid #ea5455 !important;
+}
+
+@media (min-height: 929px) {
+  .fixed-height {
+    height: 260px;
+  }
+}
+
+@media (max-height: 928px) {
+  .fixed-height {
+    height: 230px;
+  }
 }

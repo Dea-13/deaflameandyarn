@@ -14,12 +14,7 @@
         <section class="users-list-wrapper col-xs-12 col-sm-12 col-md-4 col-lg-2 col-xl-2" *ngFor="let row of rows">
             <div class="card-machine">
                 <button class="btn btn-block btn-outline-primary waves-effect glossy-button" (click)="openOperation(row)">{{row.name}}</button>
-            </div> 
+            </div>
         </section>
-    </div>
-</div>
-<div *ngIf="loading" class="loader-section">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
     </div>
 </div>

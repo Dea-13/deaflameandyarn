@@ -89,7 +89,12 @@ ul {
 
 .box-filter{
   height: 200px;
-  overflow-y: auto;
+  // overflow: auto;
+}
+
+.inf-scroll{
+  overflow: auto;
+  height: 200px;
 }
 
 .mat-expansion-panel-header {
@@ -124,6 +129,9 @@ ul {
 
 .search-filter{
   margin: 10px 5px 1px 5px;
+  width: 120px;
+  display: block;
+  margin: 0 auto;
 }
 
 .min-w-100 {

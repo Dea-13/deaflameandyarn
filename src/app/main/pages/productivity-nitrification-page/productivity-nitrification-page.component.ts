@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatrixService } from '../../../@core/services/matrix.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-productivity-nitrification-page',
@@ -9,6 +10,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 })
 export class ProductivityNitrificationPageComponent implements OnInit {
   // Public
+  @BlockUI('block') blockUI: NgBlockUI;
   public displayedColumns: string[] = ['dieId', 'channels', 'status', 'currentResource', 'totalKgProduced', 'countUsages', 'lastAnodizingDate', 'kGtoNextAnodizing', 'kgAfterLastAnodizing'];
   public urls = [];
   public rows = [{}];
@@ -21,7 +23,6 @@ export class ProductivityNitrificationPageComponent implements OnInit {
   public totalResult: number = 0;
 
   public languageOptions: any;
-  public loading: boolean = false;
   public translateSnackBar: any;
   public statusId: number;
   public dieId: string = '';
@@ -39,7 +40,7 @@ export class ProductivityNitrificationPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.pageChanged(1);
     this.getDieID();
     this.getChannels();
@@ -51,7 +52,7 @@ export class ProductivityNitrificationPageComponent implements OnInit {
   }
 
   getRequest() {
-    this.loading = true;
+    this.blockUI.start('Loading...');
     this.matrixService.getNitrificationMatrix(
       this.offset,
       this.limit,
@@ -62,7 +63,7 @@ export class ProductivityNitrificationPageComponent implements OnInit {
     ).subscribe((data) => {
       this.rows = data.list;
       this.totalResult = data.total;
-      this.loading = false;
+      this.blockUI.stop();
     });
   }
 
@@ -70,28 +71,28 @@ export class ProductivityNitrificationPageComponent implements OnInit {
     this.matrixService.getDieID().subscribe((data) => {
       this.arrDies = data;
       console.log(' this.arrDies', this.arrDies);
-      // this.loading = false;
+      // this.blockUI.stop();
     });
   }
 
   getChannels() {
     this.matrixService.getChannelsDie().subscribe((data) => {
       this.arrChannels = data;
-      // this.loading = false;
+      // this.blockUI.stop();
     });
   }
 
   getStatusDie() {
     this.matrixService.getStatusDie().subscribe((data) => {
       this.arrStatus = data;
-      // this.loading = false;
+      // this.blockUI.stop();
     });
   }
 
   getCurrentResource() {
     this.matrixService.getCurrentResource().subscribe((data) => {
       this.arrResource = data;
-      // this.loading = false;
+      // this.blockUI.stop();
     });
   }
 
@@ -101,10 +102,10 @@ export class ProductivityNitrificationPageComponent implements OnInit {
     this.offset = this.limit * (this.cPage - 1);
     this.getRequest();
   }
-  
+
   clarAll() {
     this.offset = 0,
-    this.limit = 15, 
+    this.limit = 15,
     this.dieId = '';
     this.primaryResourceName = '';
     this.channels = '';

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeesService } from '../../../@core/services/employees.service';
 import Swal from 'sweetalert2';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-new-employees-modal',
@@ -13,11 +14,10 @@ import Swal from 'sweetalert2';
 export class NewEmployeesModalComponent implements OnInit {
   @Input() public employeeItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
-
+  @BlockUI('block') blockUI: NgBlockUI;
   public createEmployeeForm: FormGroup;
   public submitted: boolean;
   public userName: string;
-  public loading: boolean = false;
   public employee: any;
   public translateSnackBar: any;
 
@@ -61,7 +61,7 @@ export class NewEmployeesModalComponent implements OnInit {
     this.submitted = true;
     let obj;
     if (!this.createEmployeeForm.invalid) {
-      this.loading = true;
+      this.blockUI.start('Loading...');
 
       obj = {
         name: this.createEmployeeForm.controls.name.value,
@@ -79,7 +79,7 @@ export class NewEmployeesModalComponent implements OnInit {
           .subscribe((employeeService) => {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
             Swal.fire({
@@ -89,7 +89,7 @@ export class NewEmployeesModalComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             })
-            this.loading = false;
+            this.blockUI.stop();
           });
       } else {
         //create
@@ -97,10 +97,10 @@ export class NewEmployeesModalComponent implements OnInit {
           (employeeService) => {
             this.activeModal.dismiss();
             this.passEntry.emit(true);
-            this.loading = false;
+            this.blockUI.stop();
           },
           (error) => {
-            this.loading = false;
+            this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
