@@ -3,7 +3,7 @@ export const environment = {
   environment: 'PROD',
   hmr: false,
   // apiUrl: 'http://192.168.8.84:91/api/',
-  apiUrl: 'http://185.177.116.190:8002/api/',
-  planningUrl: 'http://185.177.116.190:8001/api/',
+  apiUrl: 'http://192.168.8.240:8001/api/',
+  planningUrl: 'http://192.168.8.240/webapi/api/',
   apiReportServer: 'http://192.168.8.240/ReportServer/'
 };
