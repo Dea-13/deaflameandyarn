@@ -1,6 +1,6 @@
 <div class="slideout-content">
   <div id="modals-slide-in">
-    <div class="modal-dialog material-dialog-center modal-content pt-0">
+    <div class="modal-dialog-screen material-dialog-center modal-content pt-0" [ngClass]="{ 'modal-full-screen': fullScr == true, 'modal-normal-screen': fullScr == false }">
       <div class="modal-body flex-grow-1">
         <div class="row form-group">
           <div class="col-md-12 col-12">
@@ -8,6 +8,10 @@
               <div class="alert-body">
                 {{ translateSnackBar.dieList }}
               </div>
+              <button type="button" class="modal-icon-header" data-dismiss="modal" aria-label="Close" (click)="fullScreen()">
+                <div [ngStyle]="{'display': fullScr == true ? 'flex' : 'none' }"><span [data-feather]="'minimize-2'" [class]="'ficon'"></span></div>
+                <div [ngStyle]="{'display': fullScr == true ? 'none' : 'flex' }"><span [data-feather]="'maximize-2'" [class]="'ficon'"></span></div>
+              </button>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
                 ×
               </button>

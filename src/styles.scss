@@ -832,7 +832,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .modal-dialog-screen {
-  width: 130rem!important;
+  width: 30rem!important;
   left: 50% !important;
   top: 50% !important;
   transform: translate(-50%, -50%) !important;
@@ -918,6 +918,14 @@ html .content.app-content {
   color: #b0b3ba!important;
 }
 
+.dark-layout .dark-theme-color label, .die-view p{
+  color: #b0b3ba!important;
+}
+
+.dark-layout .light-header-color label{
+  color: #393941!important;
+}
+
 .dark-layout .ngx-pagination a:hover{
   background: #3f4b6d!important;
 }
@@ -934,7 +942,7 @@ html .content.app-content {
 }
 
 .example-container{
-  max-height: 720px;
+  max-height: 620px;
 }
 
 @media (min-width: 1920px) {

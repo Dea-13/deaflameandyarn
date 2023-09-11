@@ -19,3 +19,9 @@
   display: block;
   width: max-content;
 }
+
+.modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
+  width: 30rem!important;
+  max-width: calc(100% - 16px) !important;
+  overflow: auto;
+}
