@@ -20,6 +20,7 @@ export class NewEmployeesModalComponent implements OnInit {
   public userName: string;
   public employee: any;
   public translateSnackBar: any;
+  fullScr: boolean = false;
 
   constructor(
     private employeeService: EmployeesService,
@@ -120,6 +121,11 @@ export class NewEmployeesModalComponent implements OnInit {
         timer: 2000
       })
     }
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   closeModal(): void {

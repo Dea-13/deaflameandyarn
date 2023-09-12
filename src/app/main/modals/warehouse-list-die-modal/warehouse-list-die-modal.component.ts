@@ -14,6 +14,7 @@ export class WarehouseListDieModalComponent implements OnInit {
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
   list: Array<any> = [];
   public translateSnackBar: any;
+  fullScr: boolean = false;
 
   constructor(
     private toastrService: ToastrService,
@@ -27,6 +28,11 @@ export class WarehouseListDieModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+  }
+
+  fullScreen(){
+    this.fullScr == false ? this.fullScr = true : this.fullScr = false;
+    console.log('this.fullScr', this.fullScr)
   }
 
   closeModal(): void {
