@@ -166,10 +166,6 @@ export class StatedComponent implements OnInit {
   public tempDataChennels: any = [];
   public tempData: any = [];
   public arrFilters: any = [];
-
-  public nameFilters = [
-    {id: 0, name: ''}
-  ]
   public keyword: string = '';
 
   constructor(
@@ -179,6 +175,11 @@ export class StatedComponent implements OnInit {
     private router: Router
   ) {
     console.log('this.router.url', this.router.url);
+
+    this.translate.get('translate').subscribe((snackBar: string) => {
+      this.translateSnackBar = snackBar;
+    });
+
     if (this.router.url == '/api/stated') {
       this.statusId = 10;
       this.displayedColumns = [
@@ -187,22 +188,40 @@ export class StatedComponent implements OnInit {
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'countInUse', 'finalNitriding',
         'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'ProfileId' },
-      //   { id: 2, name: 'PrimaryResourceName' },
-      //   { id: 3, name: 'ProducerName' },
-      //   { id: 4, name: 'Diameter' },
-      //   { id: 5, name: 'Thickness' },
-      //   { id: 6, name: 'Alloy' },
-      //   { id: 7, name: 'Temper' },
-      //   { id: 8, name: 'BolsterTooling1' },
-      //   { id: 9, name: 'BolsterTooling2' },
-      //   { id: 10, name: 'DieHolder' },
-      //   { id: 11, name: 'Container' },
-      //   { id: 12, name: 'Notes' },
-      //   { id: 13, name: 'ClientName' },
-      // ];
+
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'Alloy' },
+        { id: 7, name: 'Temper' },
+        { id: 8, name: 'BolsterTooling1' },
+        { id: 9, name: 'BolsterTooling2' },
+        { id: 10, name: 'DieHolder' },
+        { id: 11, name: 'Container' },
+        { id: 12, name: 'Notes' },
+        { id: 13, name: 'ClientName' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'Alloy', name: this.translateSnackBar.alloy, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'Temper', name: this.translateSnackBar.tempering, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 8, ind: 8, url: 'BolsterTooling1', name: this.translateSnackBar.bolster1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 9, ind: 9, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 10, ind: 10, url: 'DieHolder', name: this.translateSnackBar.dieHolder, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 11, ind: 11, url: 'Container', name: this.translateSnackBar.container, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 12, ind: 12, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 12, ind: 13, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     } else if (this.router.url == '/api/confirmed') {
       this.statusId = 20;
       this.displayedColumns = [
@@ -210,19 +229,33 @@ export class StatedComponent implements OnInit {
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'container',
         'notes', 'clientName', 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'ProfileId' },
-      //   { id: 2, name: 'PrimaryResourceName' },
-      //   { id: 3, name: 'ProducerName' },
-      //   { id: 4, name: 'Diameter' },
-      //   { id: 5, name: 'Thickness' },
-      //   { id: 6, name: 'BolsterTooling1' },
-      //   { id: 7, name: 'BolsterTooling2' },
-      //   { id: 8, name: 'Container' },
-      //   { id: 9, name: 'Notes' },
-      //   { id: 10, name: 'ClientName' },
-      // ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'BolsterTooling1' },
+        { id: 7, name: 'BolsterTooling2' },
+        { id: 8, name: 'Container' },
+        { id: 9, name: 'Notes' },
+        { id: 10, name: 'ClientName' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'BolsterTooling1', name: this.translateSnackBar.bolster1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 8, ind: 8, url: 'DieHolder', name: this.translateSnackBar.dieHolder, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 9, ind: 9, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 10, ind: 10, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     } else if (this.router.url == '/api/dispatched') {
       this.statusId = 30;
       this.displayedColumns = [
@@ -231,23 +264,41 @@ export class StatedComponent implements OnInit {
         'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'PrimaryResourceName' },
-      //   { id: 2, name: 'ProducerName' },
-      //   { id: 3, name: 'Diameter' },
-      //   { id: 4, name: 'Thickness' },
-      //   { id: 5, name: 'Alloy' },
-      //   { id: 6, name: 'Temper' },
-      //   { id: 7, name: 'BolsterTooling1' },
-      //   { id: 8, name: 'BolsterTooling2' },
-      //   { id: 9, name: 'DieHolder' },
-      //   { id: 10, name: 'Container' },
-      //   { id: 11, name: 'Notes' },
-      //   { id: 12, name: 'ClientName' },
-      //   { id: 13, name: 'Price' },
-      //   { id: 14, name: 'PriceInv' },
-      // ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'PrimaryResourceName' },
+        { id: 2, name: 'ProducerName' },
+        { id: 3, name: 'Diameter' },
+        { id: 4, name: 'Thickness' },
+        { id: 5, name: 'Alloy' },
+        { id: 6, name: 'Temper' },
+        { id: 7, name: 'BolsterTooling1' },
+        { id: 8, name: 'BolsterTooling2' },
+        { id: 9, name: 'DieHolder' },
+        { id: 10, name: 'Container' },
+        { id: 11, name: 'Notes' },
+        { id: 12, name: 'ClientName' },
+        { id: 13, name: 'Price' },
+        { id: 14, name: 'PriceInv' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Alloy', name: this.translateSnackBar.alloy, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'Temper', name: this.translateSnackBar.tempering, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'BolsterTooling1', name: this.translateSnackBar.bolster1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 8, ind: 8, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 9, ind: 9, url: 'DieHolder', name: this.translateSnackBar.dieHolder, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 10, ind: 10, url: 'Container', name: this.translateSnackBar.container, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 11, ind: 11, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 12, ind: 12, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 13, ind: 13, url: 'Price', name: this.translateSnackBar.price, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 14, ind: 14, url: 'PriceInv', name: this.translateSnackBar.invoicePrice, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     } else if(this.router.url == '/api/productivity') {
       this.statusId = 40;
       this.displayedColumns = [
@@ -255,16 +306,27 @@ export class StatedComponent implements OnInit {
         'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
         'gr', 'kgSap', 'renewal'
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'ProfileId' },
-      //   { id: 2, name: 'PrimaryResourceName' },
-      //   { id: 3, name: 'ProducerName' },
-      //   { id: 4, name: 'Diameter' },
-      //   { id: 5, name: 'Thickness' },
-      //   { id: 6, name: 'ClientName' },
-      //   { id: 7, name: 'Channels' },
-      // ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'ClientName' },
+        { id: 7, name: 'Channels' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     } else if (this.router.url == '/api/scrap') {
       this.statusId = 50;
       this.displayedColumns = [
@@ -272,100 +334,92 @@ export class StatedComponent implements OnInit {
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
         'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding', 'dateScrapped'
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'ProfileId' },
-      //   { id: 2, name: 'PrimaryResourceName' },
-      //   { id: 3, name: 'ProducerName' },
-      //   { id: 4, name: 'Diameter' },
-      //   { id: 5, name: 'Thickness' },
-      //   { id: 6, name: 'BolsterTooling1' },
-      //   { id: 7, name: 'BolsterTooling2' },
-      //   { id: 8, name: 'Notes' },
-      //   { id: 9, name: 'ClientName' },
-      // ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'BolsterTooling1' },
+        { id: 7, name: 'BolsterTooling2' },
+        { id: 8, name: 'Notes' },
+        { id: 9, name: 'ClientName' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'BolsterTooling1', name: this.translateSnackBar.bolster1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 8, ind: 8, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 9, ind: 9, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     } else if (this.router.url == '/api/marked') {
       this.statusId = 60;
       this.displayedColumns = [
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'correctorName', 'diameter',
         'thickness', 'channels', 'clientName', 'totalWeight', 'kgSap', 'markedForTestDateTime',
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'ProfileId' },
-      //   { id: 2, name: 'PrimaryResourceName' },
-      //   { id: 3, name: 'ProducerName' },
-      //   { id: 4, name: 'CorrectorName' },
-      //   { id: 5, name: 'Diameter' },
-      //   { id: 6, name: 'Thickness' },
-      //   { id: 7, name: 'BolsterTooling1' },
-      //   { id: 8, name: 'BolsterTooling2' },
-      //   { id: 9, name: 'Notes' },
-      //   { id: 10, name: 'ClientName' },
-      // ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'CorrectorName' },
+        { id: 5, name: 'Diameter' },
+        { id: 6, name: 'Thickness' },
+        { id: 7, name: 'BolsterTooling1' },
+        { id: 8, name: 'BolsterTooling2' },
+        { id: 9, name: 'Notes' },
+        { id: 10, name: 'ClientName' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'CorrectorName', name: this.translateSnackBar.matricologist, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'BolsterTooling1', name: this.translateSnackBar.bolster1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 8, ind: 8, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 9, ind: 9, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 10, ind: 10, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     } else if (this.router.url == '/api/no-motion') {
       this.statusId = 40;
       this.displayedColumns = [
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'lastTransaction', 'diameter',
         'thickness', 'clientName', 'productivity', 'renewal'
       ];
-      // this.urls = [
-      //   { id: 0, name: 'DieId' },
-      //   { id: 1, name: 'ProfileId' },
-      //   { id: 2, name: 'PrimaryResourceName' },
-      //   { id: 3, name: 'ProducerName' },
-      //   { id: 4, name: 'Diameter' },
-      //   { id: 5, name: 'Thickness' },
-      //   { id: 6, name: 'ClientName' },
-      //   { id: 7, name: 'Channels' },
-      // ];
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'ClientName' },
+        { id: 7, name: 'Channels' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
     }
-
-    this.urls = [
-      { id: 0, name: 'DieId' },
-      { id: 1, name: 'ProfileId' },
-      { id: 2, name: 'PrimaryResourceName' },
-      { id: 3, name: 'ProducerName' },
-      { id: 4, name: 'CorrectorName' },
-      { id: 5, name: 'Diameter' },
-      { id: 6, name: 'Thickness' },
-      { id: 7, name: 'Alloy' },
-      { id: 8, name: 'Temper' },
-      { id: 9, name: 'BolsterTooling1' },
-      { id: 10, name: 'BolsterTooling2' },
-      { id: 11, name: 'DieHolder' },
-      { id: 12, name: 'Container' },
-      { id: 13, name: 'Notes' },
-      { id: 14, name: 'ClientName' },
-      { id: 15, name: 'Price' },
-      { id: 16, name: 'PriceInv' },
-      { id: 17, name: 'Channels' },
-    ];
-
-    this.translate.get('translate').subscribe((snackBar: string) => {
-      this.translateSnackBar = snackBar;
-    });
-
-    this.nameFilters = [
-      {id: 0, name: this.translateSnackBar.matrix},
-      {id: 1, name: this.translateSnackBar.profile},
-      {id: 2, name: this.translateSnackBar.press},
-      {id: 3, name: this.translateSnackBar.manufacturer},
-      {id: 4, name: this.translateSnackBar.matricologist},
-      {id: 5, name: this.translateSnackBar.diameter},
-      {id: 6, name: this.translateSnackBar.thickness},
-      {id: 7, name: this.translateSnackBar.alloy},
-      {id: 8, name: this.translateSnackBar.tempering},
-      {id: 9, name: this.translateSnackBar.bolster1},
-      {id: 10, name: this.translateSnackBar.bolster2},
-      {id: 11, name: this.translateSnackBar.dieHolder},
-      {id: 12, name: this.translateSnackBar.container},
-      {id: 13, name: this.translateSnackBar.noteRequest},
-      {id: 14, name: this.translateSnackBar.client},
-      {id: 15, name: this.translateSnackBar.price},
-      {id: 16, name: this.translateSnackBar.invoicePrice},
-      {id: 17, name: this.translateSnackBar.channels},
-    ]
   }
 
   ngOnInit(): void {
@@ -377,156 +431,75 @@ export class StatedComponent implements OnInit {
   }
 
   getRequest() {
+    let url;
     this.blockUI.start('Loading...');
     if (this.router.url == '/api/marked'){ this.statusId = 60 };
     if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
     console.log("selDateOrder: ", this.selDateOrderForm);
-    this.matrixService.getInformationMatrix(
-        this.offset,
-        this.limit,
-        this.statusId,
-        this.arrFilters.length > 0 ? this.arrFilters[0].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[1].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[2].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[3].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[4].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[5].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[6].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[7].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[8].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[9].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[10].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[11].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[12].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[13].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[14].model : '',
-        this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), //this.selDateOrder,
-        this.arrFilters.length > 0 ? this.arrFilters[15].model : '',
-        this.arrFilters.length > 0 ? this.arrFilters[16].model : '',
-        this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value),
-        this.formatDate(this.selDateExpedForm.controls.selDateExped.value),
-        this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value),
-        this.arrFilters.length > 0 ? this.arrFilters[17].model : '',
-        this.grM,
-        this.lastModified,
-        this.bmwinventorynumber,
-        this.dieLiveQty,
-        this.orderType,
-        this.orderBy
-      )
-      .subscribe((data) => {
-        this.rows = data.list;
-        this.totalResult = data.total;
-        this.blockUI.stop();
-      });
+    switch (this.router.url) {
+      case '/api/stated': { url = this.matrixService.getRequestStated(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/confirmed': { url = this.matrixService.getRequestConfirmed(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/dispatched': { url = this.matrixService.getRequestDispatched(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.arrFilters[14].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/productivity': { url = this.matrixService.getRequestsProd(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/scrap': { url = this.matrixService.getRequestScrap(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/marked': { url = this.matrixService.getRequestMarked(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/no-motion': { url = this.matrixService.getRequestMotion(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+    }
+    url.subscribe((data) => {
+      this.rows = data.list;
+      this.totalResult = data.total;
+      this.blockUI.stop();
+    });
   }
 
   getFilters(ind, action) {
     console.log('getFilters', this.arrFilters);
     let count = 0;
-    if(action == 'init') {this.arrFilters = []}
+    let url;
     for (let i = 0; i < this.urls.length; i++) {
+    switch (this.router.url) {
+      case '/api/stated': { url = this.matrixService.getFiltersStated(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model); } break;
+      case '/api/confirmed': { url = this.matrixService.getFiltersConfirmed(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model); } break;
+      case '/api/dispatched': { url = this.matrixService.getFiltersDispatched(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.arrFilters[14].model); } break;
+      case '/api/productivity': { url = this.matrixService.getFiltersProd(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model); } break;
+      case '/api/scrap': { url = this.matrixService.getFiltersScrap(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model); } break;
+      case '/api/marked': { url = this.matrixService.getFiltersMarked(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model); } break;
+      case '/api/no-motion': { url = this.matrixService.getFiltersMotion(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model); } break;
+    }
       if(ind != this.urls[i].id) {
         let array = [];
         count++;
-        // this.blockUI.start('Loading...');
-        this.matrixService.getStatusFilters(
-          this.urls[i].name,
-          this.keyword,
-          this.statusId,
-          this.arrFilters.length > 0 ? this.arrFilters[0].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[1].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[2].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[3].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[4].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[5].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[6].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[7].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[8].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[9].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[10].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[11].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[12].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[13].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[14].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[15].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[16].model : '',
-          this.arrFilters.length > 0 ? this.arrFilters[17].model : ''
-        ).subscribe((data) => {
-          // switch (this.urls[i].id) {
-          //   case 0: { this.dieArr = data; this.tempDataDie = data; }
-          //     break;
-          //   case 1: { this.profileIdArr = data; this.tempDataProfile = data; }
-          //     break;
-          //   case 2: { this.primeResourceNameArr = data; this.tempDataPrimeRes = data; }
-          //     break;
-          //   case 3: { this.producerNameArr = data; this.tempDataProducer = data; }
-          //     break;
-          //   case 4: { this.correctorArr = data; this.tempDataCorrector = data; }
-          //     break;
-          //   case 5: { this.diameterArr = data; this.tempDataDiameter = data; }
-          //     break;
-          //   case 6: { this.thicknessArr = data; this.tempDataThickness = data; }
-          //     break;
-          //   case 7: { this.alloyArr = data; this.tempDataAlloy = data; }
-          //     break;
-          //   case 8: { this.temperArr = data; this.tempDataTemper = data; }
-          //     break;
-          //   case 9: { this.bolster1Arr = data; this.tempDataBols1 = data; }
-          //     break;
-          //   case 10: { this.bolster2Arr = data; this.tempDataBols2 = data; }
-          //     break;
-          //   case 11: { this.dieHolderArr = data; this.tempDataHolder = data; }
-          //     break;
-          //   case 12: { this.containerArr = data; this.tempDataCont = data; }
-          //     break;
-          //   case 13: { this.notesArr = data; this.tempDataNotes = data; }
-          //     break;
-          //   case 14: { this.clientNameArr = data; this.tempDataClient = data; }
-          //     break;
-          //   case 15: { this.priceArr = data; this.tempDataPrice = data; }
-          //     break;
-          //   case 16: { this.priceInvArr = data; this.tempDataPrInv = data; }
-          //     break;
-          //   case 17: { this.channelsArr = data; this.tempDataChennels = data; }
-          //     break;
-          // }
-
-          console.log('this.arrFilters.length', this.arrFilters.length)
+        url.subscribe((data) => {
           if(action == 'init' && this.urls[i].id == i) {
             for(let l=0; l < data.length; l++) {
               data[l].checked = false;
               if(l <= 20) { array.push(data[l]) }
             }
-            this.arrFilters.push(
-              {
-                ind: i,
-                name: this.nameFilters[i].name,
-                filter: array,
-                fullFilter: data,
-                temp: data,
-                selectAll: false,
-                disableScroll: false,
-                model: ''
+            // console.log('===============>>>>>>>>>>', this.arrFilters)
+            for(let j=0; j < this.arrFilters.length; j++) {
+              // console.log('===============>>>>>>>>>>', this.urls[i].name, this.arrFilters[j].url)
+              if(this.urls[i].name == this.arrFilters[j].url) {
+                this.arrFilters[j].filter = array;
+                this.arrFilters[j].fullFilter = data;
+                this.arrFilters[j].temp = data;
+                this.arrFilters[j].selectAll = false;
+                this.arrFilters[j].disableScroll = false;
+                this.arrFilters[j].searchFilterConf= '';
+                this.arrFilters[j].model= '';
               }
-            )
+            }
           } else {
             for (let j = 0; j < this.arrFilters.length; j++) {
               // console.log('data 1=>', data, this.arrFilters, i);
               if (this.arrFilters[j].ind == i) {
                 for (let l = 0; l < data.length; l++) {
-                  // data[l].checked = false;
-
                   // console.log('data 2=>', data, this.arrFilters[j].filter, j);
                    for (let k = 0; k < this.arrFilters[j].filter.length; k++){
-                    // console.log('data 3=>', data, this.arrFilters[j].filter[k], k, this.arrFilters[j].filter[k].name, data[l].name, this.arrFilters[j].filter[k].name == data[l].name);
+                    // console.log('data 3=>', data, this.arrFilters[j].filter[k], k,);
                     if (this.arrFilters[j].filter[k].checked == true && this.arrFilters[j].filter[k].name == data[l].name) {
                       data[l].checked = true;
-                    } else {
-                      // data[i].checked = false;
                     }
                   }
-
                 }
                 for(let l=0; l < data.length; l++) {
                   if(l <= 20) { array.push(data[l]) }
@@ -535,11 +508,26 @@ export class StatedComponent implements OnInit {
                 this.arrFilters[j].fullFilter = data;
                 this.arrFilters[j].temp = data;
                 this.arrFilters[j].disableScroll = false;
+                this.arrFilters[j].searchFilterConf= '';
               }
             }
-            console.log('data 4=>', data);
+            // console.log('data 4=>', data);
           }
-
+        }, error => {
+          for(let j=0; j < this.arrFilters.length; j++) {
+            // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
+            // console.log('===============>>>>>>>>>>', this.urls[i].name, this.arrFilters[j].url)
+            if(this.urls[i].name == this.arrFilters[j].url) {
+              this.arrFilters[j].filter = '';
+              this.arrFilters[j].fullFilter = '';
+              this.arrFilters[j].temp = '';
+              this.arrFilters[j].selectAll = false;
+              this.arrFilters[j].disableScroll = false;
+              this.arrFilters[j].searchFilterConf= '';
+              // this.arrFilters[j].model= '';
+            }
+          }
+          this.blockUI.stop();
         });
       }
     }
@@ -625,28 +613,13 @@ export class StatedComponent implements OnInit {
   }
 
   clarAll() {
-    this.offset = 0,
-    this.limit = 15,
-    this.seldie = [];
-    this.selProfileId = [];
-    this.selPrimeResourceName = [];
-    this.selProducerName = [];
-    this.selCorrector = [];
-    this.selDiameter = [];
-    this.selThickness = [];
-    this.selAlloy = [];
-    this.selTemper = [];
-    this.selBolster1 = [];
-    this.selBolster2 = [];
-    this.selDieHolder = [];
-    this.selContainer = [];
-    this.selNotes = [];
-    this.selClientName = [];
-    this.selPrice = [];
-    this.selPriceInv = [];
-    this.selChannels = [];
-    this.orderBy = 0,
+    this.offset = 0;
+    this.limit = 15;
+    this.orderBy = 0;
     this.orderType = 1;
+    for(let i=0; i < this.arrFilters.length; i++) {
+      this.arrFilters[i].model= '';
+    }
     this.getRequest();
     this.getFilters(this.urls.length, 'init');
   }
@@ -685,7 +658,7 @@ export class StatedComponent implements OnInit {
     console.log('searchFilter', column, array, tempData, ind);
     // this.blockUI.start('Loading...');
     let fullArray = [];
-    const val = event.target.value.toLowerCase();
+    const val = event.target.value.toLowerCase().trim();
     const temp = tempData.filter(function (d) {
       return (d.name).toString().toLowerCase().indexOf(val) !== -1 || !val;
     });
@@ -709,6 +682,7 @@ export class StatedComponent implements OnInit {
     for(let l=0; l < filter.length; l++) {
       if(l <= 20) { fullArray.push(filter[l]) }
     }
+    this.arrFilters[ind].searchFilterConf = '';
     this.arrFilters[ind].filter = fullArray;
     this.arrFilters[ind].disableScroll = false;
   }
@@ -734,86 +708,21 @@ export class StatedComponent implements OnInit {
       this.arrFilters[ind].model = selected;
     }
 
-    //
-    // switch (ind) {
-    //   case 0: { this.seldie = selected; }
-    //     break;
-    //   case 1: { this.selProfileId = selected; }
-    //     break;
-    //   case 2: { this.selPrimeResourceName = selected; }
-    //     break;
-    //   case 3: { this.selProducerName = selected; }
-    //     break;
-    //   case 4: { this.selCorrector = selected; }
-    //     break;
-    //   case 5: { this.selDiameter = selected; }
-    //     break;
-    //   case 6: { this.selThickness = selected; }
-    //     break;
-    //   case 7: { this.selAlloy = selected; }
-    //     break;
-    //   case 8: { this.selTemper = selected; }
-    //     break;
-    //   case 9: { this.selBolster1 = selected; }
-    //     break;
-    //   case 10: { this.selBolster2 = selected; }
-    //     break;
-    //   case 11: { this.selDieHolder = selected; }
-    //     break;
-    //   case 12: { this.selContainer = selected; }
-    //     break;
-    //   case 13: { this.selNotes = selected; }
-    //     break;
-    //   case 14: { this.selClientName = selected; }
-    //     break;
-    //   case 15: { this.selPrice = selected; }
-    //     break;
-    //   case 16: { this.selPriceInv = selected; }
-    //     break;
-    //   case 17: { this.selChannels = selected; }
-    //     break;
-    // }
     this.getFilters(ind, 'edit');
     this.pageChanged(1);
   }
 
-  // onScroll(column, array, ind) {
-  //   console.log('onScroll', column, array, ind)
-  //   this.blockUI.start('Loading...');
-  //   const length = 10;
-  //   console.log('SCROLLLLLL', length+100);
-  //   // setTimeout(() => {
-  //     if(array.length !== 0){
-  //       array = length + 20;
-  //       this.getRequest();
-  //       this.blockUI.stop();
-  //     }
-  //   // }, 1000)
-  // }
-
   onScroll(column, array, ind) {
     console.log('onScroll', column, array, ind, this.arrFilters[ind].filter.length, this.arrFilters[ind].fullFilter.length)
-   //  setTimeout(() => {
     let length = this.arrFilters[ind].filter.length;
-      if(this.arrFilters[ind].filter.length !== this.arrFilters[ind].fullFilter.length && !this.arrFilters[ind].disableScroll){
-       console.log('SCROLLLLLL==>',length);
-       for(let i=length; i < length+20; i++) {
-        this.arrFilters[ind].filter.push(this.arrFilters[ind].fullFilter[i]);
-         console.log('SCROLLLLLL========>', length, this.arrFilters[ind].filter);
-       }
+    if(this.arrFilters[ind].filter.length <= this.arrFilters[ind].fullFilter.length && !this.arrFilters[ind].disableScroll){
+      for(let i=length; i < length+20; i++) {
+        console.log('this.arrFilters[ind].fullFilter[i]', this.arrFilters[ind].fullFilter[i]);
+        if(this.arrFilters[ind].fullFilter[i] != undefined) {
+          this.arrFilters[ind].filter.push(this.arrFilters[ind].fullFilter[i]);
+        }
       }
-   //  }, 1000)
+    }
   }
-
-  // onScroll() {
-  //   const length = this.rows.length
-  //   console.log('SCROLLLLLL', length+100);
-  //   setTimeout(() => {
-  //     if(this.rows.length !== 0){
-  //       this.limit = length + 100;
-  //       this.getRequest();
-  //     }
-  //   }, 1000)
-  // }
 
 }
