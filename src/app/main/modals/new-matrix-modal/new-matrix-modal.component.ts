@@ -1080,6 +1080,7 @@ export class NewMatrixModalComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        this.blockUI.stop();
       }
 
     } else {
