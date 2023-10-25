@@ -96,7 +96,7 @@ export class NewMatrixModalComponent implements OnInit {
       oporenPrysten: [false],
       opora: [''],
       bmwInventoryNumber: [''],
-      dieLiveQty: [''],
+      dieLiveQty: [null],
       Pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
