@@ -498,6 +498,8 @@ export const locale = {
       noResult: 'Не са открити резултати',
       lastRefreshed: 'Последно опресняване',
       msgEmpty: 'Няма данни за тази матрица.',
+      checked: 'Селектирани',
+      unChecked: 'Неселектирани',
     }
   }
 }

@@ -70,3 +70,50 @@ td.mat-footer-cell {
     max-height: 430px;
   }
 }
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+  padding-left: 15px;
+}
+
+.border {
+  border: 1px solid #ebe9f1 !important;
+  background: #FBFBFA;
+  height: 270px;
+  margin: 5px;
+}
+
+.header-filter {
+  color: #7367f0 !important;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.box-filter{
+  height: 200px;
+  // overflow: auto;
+}
+
+.inf-scroll{
+  overflow: auto;
+  height: 200px;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 25px 0 0;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: -webkit-fill-available;
+  padding: 5px 24px 5px 0;
+}
+
+.text-center {
+  line-height: 1.625 !important;
+}

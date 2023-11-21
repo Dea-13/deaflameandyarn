@@ -31,14 +31,8 @@ export class ProfilesService {
     return this._http.get<any>(`${environment.apiUrl}`);
   }
 
-  getFilters(url: string,
-    profileName:string, groupCode:string, section:string, perimeter:string, grM:string, primaryPress:string, alternativePress:string, size1:string, size2:string, size3:string,
-    size4:string, usage:string, extrusionSpeed:string, extrusionSpeedSms:string, opPerf:string, tbillet:string, tExit:string, puller:string, scrapStart:string, scrapStartSms:string,
-    scrapEnd:string, cooling:string, coolingSms:string, coolingAdd:string, basketOrdering:string, notesExtrusion:string, selImportant:string, inUse:string
-    ) {
-    return this._http.get<any>(`${environment.apiUrl}Profiles/all/params/${url}?profileName=${profileName}&groupCode=${groupCode}&section=${section}&perimeter=${perimeter}&grM=${grM}&primaryPress=${primaryPress}&alternativePress=${alternativePress}&size1=${size1}&size2=${size2}&size3=${size3}&
-    size4=${size4}&usage=${usage}&extrusionSpeed=${extrusionSpeed}&extrusionSpeedSms=${extrusionSpeedSms}&opPerf=${opPerf}&tbillet=${tbillet}&tExit=${tExit}&puller=${puller}&scrapStart=${scrapStart}&scrapStartSms=${scrapStartSms}&
-    scrapEnd=${scrapEnd}&cooling=${cooling}&coolingSms=${coolingSms}&coolingAdd=${coolingAdd}&basketOrdering=${basketOrdering}&notesExtrusion=${notesExtrusion}&important=${selImportant}&inUse=${inUse}`);
+  getFilters(url: string, profileName:string, groupCode:string, section:string, perimeter:string, grM:string, primaryPress:string, alternativePress:string, size1:string, size2:string, size3:string,size4:string, usage:string, extrusionSpeed:string, extrusionSpeedSms:string, opPerf:string, tbillet:string, tExit:string, puller:string, scrapStart:string, scrapStartSms:string,scrapEnd:string, cooling:string, coolingSms:string, coolingAdd:string, basketOrdering:string, notesExtrusion:string, selImportant:string, inUse:string) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/all/params/${url}?profileName=${profileName}&groupCode=${groupCode}&section=${section}&perimeter=${perimeter}&grM=${grM}&primaryPress=${primaryPress}&alternativePress=${alternativePress}&size1=${size1}&size2=${size2}&size3=${size3}&size4=${size4}&usage=${usage}&extrusionSpeed=${extrusionSpeed}&extrusionSpeedSms=${extrusionSpeedSms}&opPerf=${opPerf}&tbillet=${tbillet}&tExit=${tExit}&puller=${puller}&scrapStart=${scrapStart}&scrapStartSms=${scrapStartSms}&scrapEnd=${scrapEnd}&cooling=${cooling}&coolingSms=${coolingSms}&coolingAdd=${coolingAdd}&basketOrdering=${basketOrdering}&notesExtrusion=${notesExtrusion}&important=${selImportant}&inUse=${inUse}`);
   }
 
   getProfileProduct(
