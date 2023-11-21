@@ -235,6 +235,8 @@ export class InformationProfilesComponent implements OnInit {
         this.rows = data.list;
         this.totalResult = data.total;
         this.blockUI.stop();
+      }, error =>{
+        this.blockUI.stop();
       });
   }
 
@@ -441,7 +443,7 @@ export class InformationProfilesComponent implements OnInit {
 
   sortType(column, orderType, ind) {
     console.log('sortType', column, orderType)
-    this.blockUI.start('Loading...');
+    // this.blockUI.start('Loading...');
     this.indColumn = ind;
     this.orderBy = ind;
     if (orderType == true) {
