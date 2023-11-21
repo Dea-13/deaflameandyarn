@@ -556,6 +556,17 @@ table {
   display: contents;
 }
 
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 1px!important;
+  vertical-align: middle;
+  border-left: 1px solid lightgrey;
+  text-align: center;
+}
+
+th.mat-header-cell {
+  text-align: center!important;
+}
+
 .th-header {
   top: 3px;
   position: relative;
@@ -587,6 +598,8 @@ th {
 
 td.mat-cell {
   font-size: 12px !important;
+  border-left: 1px solid lightgrey;
+  text-align: center;
 }
 
 tr.mat-row,
