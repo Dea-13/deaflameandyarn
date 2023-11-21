@@ -18,8 +18,8 @@ export class ManufacturersService {
     return this._http.get<any>(`${environment.apiUrl}Suppliers?offset=${offset}&limit=${limit}&name=${name}`);
   }
 
-  getFilters() {
-    return this._http.get<any>(`${environment.apiUrl}Suppliers/all/name`);
+  getFilters(url: string) {
+    return this._http.get<any>(`${environment.apiUrl}Suppliers/all/${url}`);
   }
 
   deleteManufacturers(id:number) {

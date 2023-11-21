@@ -10,7 +10,7 @@
               <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
               <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
               <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                   <ng-option [value]="10">10</ng-option>
                   <ng-option [value]="15">15</ng-option>
                   <ng-option [value]="20">20</ng-option>
@@ -37,7 +37,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="dieId" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let i of arrDies" [value]="i.name">{{ i.name }}</ng-option>
                     </ng-select>
@@ -57,7 +57,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="channels" (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let i of arrChannels" [value]="i.name">{{ i.name }}</ng-option>
                     </ng-select>
@@ -77,7 +77,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="substatus"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let i of arrStatus" [value]="i.id">{{ i.name }}</ng-option>
@@ -98,7 +98,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="primaryResourceName"
                       (ngModelChange)="pageChanged(1)">
                       <ng-option *ngFor="let i of arrResource" [value]="i.name">{{ i.name }}

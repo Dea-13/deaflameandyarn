@@ -16,7 +16,7 @@
                         <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
                         <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
                         <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                          <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                          <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                             <ng-option [value]="10">10</ng-option>
                             <ng-option [value]="15">15</ng-option>
                             <ng-option [value]="20">20</ng-option>
