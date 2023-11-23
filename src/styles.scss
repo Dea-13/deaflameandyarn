@@ -1019,8 +1019,13 @@ ul {
 .border {
   border: 1px solid #ebe9f1 !important;
   background: #FBFBFA;
-  height: 270px;
+  height: 290px;
   margin: 5px;
+  border-radius: 7%;
+}
+
+.card .card {
+  box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.1) !important;
 }
 
 .header-filter {
@@ -1028,6 +1033,7 @@ ul {
   text-align: center;
   text-transform: uppercase;
   font-weight: 500;
+  padding: 10px;
 }
 
 .box-filter{
@@ -1037,7 +1043,11 @@ ul {
 
 .inf-scroll{
   overflow: auto;
-  height: 200px;
+  height: 150px;
+}
+
+.input-group-prepend button, .input-group-append button {
+  padding: 1px 9px 1px 9px;
 }
 
 .mat-expansion-panel-header {
@@ -1055,4 +1065,18 @@ ul {
 
 .text-center {
   line-height: 1.625 !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 15px 15px 5px 5px!important;
+}
+
+.mat-expansion-panel-header {
+  min-height: 48px;
+  height: -webkit-fill-available;
+}
+
+.fa-sort:before, .fa-unsorted:before {
+  content: "\f0dc";
+  color: #7367f0;
 }

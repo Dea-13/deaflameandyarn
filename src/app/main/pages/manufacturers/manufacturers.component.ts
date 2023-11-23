@@ -33,10 +33,15 @@ export class ManufacturersComponent implements OnInit {
   public priviligeArr: Array<any> = [];
 
   public urls = [
-    { id: 0, name: 'name' }
+    { id: 0, name: 'name' },
+    { id: 1, name: 'email' },
+    { id: 2, name: 'shipment' },
   ];
   public arrFilters: any = [];
   public refreshed: Date;
+  public orderBy: number = 0;
+  public orderType: number = 1;
+  public indColumn: any;
 
   constructor(
     private manufacturerService: ManufacturersService,
@@ -51,6 +56,8 @@ export class ManufacturersComponent implements OnInit {
 
     this.arrFilters = [
       {id: 0, ind: 0, url: 'name', name: this.translateSnackBar.name, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 1, ind: 1, url: 'email', name: this.translateSnackBar.email, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 2, ind: 2, url: 'shipment', name: this.translateSnackBar.defaultShipmentTerms, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
     ];
   }
 
@@ -61,7 +68,15 @@ export class ManufacturersComponent implements OnInit {
 
   getRequest() {
     this.blockUI.start('Loading...');
-    this.manufacturerService .getManufacturers(this.offset, this.limit, this.arrFilters[0].model)
+    this.manufacturerService.getManufacturers(
+      this.offset,
+      this.limit,
+      this.arrFilters[0].model,
+      this.arrFilters[1].model,
+      this.arrFilters[2].model,
+      this.orderType,
+      this.orderBy
+    )
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
@@ -76,7 +91,7 @@ export class ManufacturersComponent implements OnInit {
       if(ind != this.urls[i].id) {
         let array = [];
         count++;
-        this.manufacturerService.getFilters(this.urls[i].name).subscribe((data) => {
+        this.manufacturerService.getFilters(this.urls[i].name, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model).subscribe((data) => {
           if(action == 'init' && this.urls[i].id == i) {
             for(let l=0; l < data.length; l++) {
               data[l].checked = false;
@@ -151,6 +166,19 @@ export class ManufacturersComponent implements OnInit {
     console.log('event', page);
     this.cPage = page;
     this.offset = this.limit * (this.cPage - 1);
+    this.getRequest();
+  }
+
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
+    // this.blockUI.start('Loading...');
+    this.indColumn = ind;
+    this.orderBy = ind;
+    if (orderType == true) {
+      this.orderType = 1;
+    } else {
+      this.orderType = 0;
+    }
     this.getRequest();
   }
 
@@ -271,7 +299,7 @@ export class ManufacturersComponent implements OnInit {
       this.arrFilters[ind].model = selected;
     }
 
-    // this.getFilters(ind, 'edit');
+    this.getFilters(ind, 'edit');
     this.pageChanged(1);
   }
 
@@ -291,6 +319,8 @@ export class ManufacturersComponent implements OnInit {
   clarAll() {
     this.offset = 0;
     this.limit = 15;
+    this.orderBy = 0;
+    this.orderType = 1;
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
     }

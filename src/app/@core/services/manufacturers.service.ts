@@ -14,12 +14,12 @@ export class ManufacturersService {
   }
 
   ////////////////// PAGE
-  getManufacturers(offset:number, limit:any, name:string) {
-    return this._http.get<any>(`${environment.apiUrl}Suppliers?offset=${offset}&limit=${limit}&name=${name}`);
+  getManufacturers(offset:number, limit:any, name:string, email:string, shipment:string, orderType:number, orderBy: number) {
+    return this._http.get<any>(`${environment.apiUrl}Suppliers?offset=${offset}&limit=${limit}&name=${name}&email=${email}&shipment=${shipment}&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
-  getFilters(url: string) {
-    return this._http.get<any>(`${environment.apiUrl}Suppliers/all/${url}`);
+  getFilters(url: string, name:string, email:string, shipment:string) {
+    return this._http.get<any>(`${environment.apiUrl}Suppliers/all/${url}?name=${name}&email=${email}&shipment=${shipment}`);
   }
 
   deleteManufacturers(id:number) {

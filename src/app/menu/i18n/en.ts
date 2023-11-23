@@ -68,7 +68,7 @@ export const locale = {
       kg: 'KG',
       kgSap: 'KG (SAP)',
       show: 'Show',
-      result: 'Result',
+      result: 'Results',
       search: 'Search',
       bolster1: 'Bolster1',
       bols1Table: 'B1',

@@ -3,32 +3,106 @@
     <section class="users-list-wrapper">
       <div class="card">
         <div class="row">
-          <div class="col-md-6 col-12">
-            <div class="d-flex align-items-center m-1">
-              <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
-              <span class="pt-line-3">|</span>
-              <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
-              <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
-              <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                <ng-select [virtualScroll]="true" class="mx-25" [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
-                  <ng-option [value]="10">10</ng-option>
-                  <ng-option [value]="15">15</ng-option>
-                  <ng-option [value]="20">20</ng-option>
-                  <ng-option [value]="25">25</ng-option>
-                  <ng-option [value]="50">50</ng-option>
-                  <ng-option [value]="100">100</ng-option>
-                </ng-select>
-                {{ translateSnackBar.result }}
-              </label>
-            </div>
-          </div>
-          <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
-            <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
-              <button class="btn btn-primary ml-1" rippleEffect (click)="modalProducts('new')">
-                <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
-                <span class="d-none d-sm-inline-block"> {{ translateSnackBar.modalProducts }} </span>
-              </button>
-            </div>
+          <div class="col-12">
+            <mat-accordion multi>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <div class="row col-12" (click)="$event.stopPropagation();">
+
+                    <div class="col-lg-5 col-12">
+                      <div class="d-flex align-items-center">
+                        <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
+                        <span class="pt-line-3">|</span>
+                        <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
+                        <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                        <label class="d-flex align-items-center">{{ translateSnackBar.show }}
+                          <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                            <ng-option [value]="10">10</ng-option>
+                            <ng-option [value]="15">15</ng-option>
+                            <ng-option [value]="20">20</ng-option>
+                            <ng-option [value]="25">25</ng-option>
+                            <ng-option [value]="50">50</ng-option>
+                            <ng-option [value]="100">100</ng-option>
+                          </ng-select>
+                          {{ translateSnackBar.result }}
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-7 col-12">
+                      <div class="row col-12 align-items-center  justify-content-start">
+                        <div class="col-12 col-lg-8">
+                          <div class="row">
+                            <div class="col-12 col-md-4 col-lg-6 text-end filters-header">{{ translateSnackBar.lastRefreshed }}: </div>
+                            <div class="col-12 col-md-4 col-lg-6 filters-header">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                          <div class="d-flex align-items-center justify-content-lg-end pr-1 pb-1 pb-md-0">
+                            <button class="btn btn-primary ml-1" rippleEffect (click)="modalProducts('new')">
+                              <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
+                              <span class="d-none d-sm-inline-block"> {{ translateSnackBar.modalProducts }} </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </mat-expansion-panel-header>
+                <div class="row">
+
+                  <div class="filters-column border" *ngFor="let f of arrFilters">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ f.name }}
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-10">
+                          <input type="search" class="form-control dt-uname search-filter" [(ngModel)]="f.searchFilterConf"
+                          (keyup.enter)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                        </div>
+                        <div class="col-2">
+                          <button (click)="clearFilter(f.fullFilter, f.ind)" rippleEffect class="mt-1 btn p-0 size-btn">
+                            <span [data-feather]="'x-circle'" [class]="'cursor-pointer red-delete'"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 box-filter">
+                      <div (scrolled)="onScroll(f.selectAll, f.filter, f.ind)" [infiniteScrollDistance]="0.1" [scrollWindow]="false" class="inf-scroll"
+                      infiniteScroll>
+                      <div class="col-12 text-center" *ngIf="f.filter.length === 0">
+                        {{ translateSnackBar.noResult }}
+                      </div>
+                      <section *ngIf="f.filter.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin"
+                            [checked]="f.selectAll"
+                            color="primary"
+                            (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                            <ul>
+                              <li *ngFor="let t of f.filter">
+                                <mat-checkbox [(ngModel)]="t.checked" color="primary"
+                                  (ngModelChange)="updateAllComplete(f.selectAll, f.filter, f.ind)">
+                                  {{t.name}}
+                                </mat-checkbox>
+                              </li>
+                            </ul>
+                        </span>
+                      </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
         <section class="example-container mat-elevation-z8">
@@ -38,20 +112,6 @@
             <!-- Position Column -->
             <ng-container matColumnDef="erpitem">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.erpItem">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="erpitem !== ''">{{erpitem.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="erpitem" (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of erpitemArr" [value]="t.erpitem">{{ t.erpitem }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.erpItem }}</span>
                 <button type="button" class="order-btn" (click)="sortType('erpitem', !orderType, 0)">
                   <div [ngStyle]="{'display': indColumn === 0 ? 'flex' : 'none' }">
@@ -67,21 +127,6 @@
 
             <ng-container matColumnDef="erpvariant">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.erpVariant">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="erpvariant !== ''">{{erpvariant.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="erpvariant"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of erpvariantArr" [value]="t.erpvariant">{{ t.erpvariant }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.erpVariant }}</span>
                 <button type="button" class="order-btn" (click)="sortType('erpvariant', !orderType, 1)">
                   <div [ngStyle]="{'display': indColumn === 1 ? 'flex' : 'none' }">
@@ -97,21 +142,6 @@
 
             <ng-container matColumnDef="opNo">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.opNo">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="opNo !== ''">{{opNo.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="opNo"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of opNoArr" [value]="t.opNo">{{ t.opNo }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.opNoTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('opNo', !orderType, 2)">
                   <div [ngStyle]="{'display': indColumn === 2 ? 'flex' : 'none' }">
@@ -127,21 +157,6 @@
 
             <ng-container matColumnDef="cnc1Id">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.cnc1">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="cNC1 !== ''">{{cNC1.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="cNC1"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of cNC1Arr" [value]="t.cnc1">{{ t.cnc1 }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.cnc1Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('cnc1Id', !orderType, 3)">
                   <div [ngStyle]="{'display': indColumn === 3 ? 'flex' : 'none' }">
@@ -157,21 +172,6 @@
 
             <ng-container matColumnDef="cnc2Id">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.cnc2">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="cNC2 !== ''">{{cNC2.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="cNC2"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of cNC2Arr" [value]="t.cnc2">{{ t.cnc2 }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.cnc2Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('cnc2Id', !orderType, 4)">
                   <div [ngStyle]="{'display': indColumn === 4 ? 'flex' : 'none' }">
@@ -187,21 +187,6 @@
 
             <ng-container matColumnDef="subContractor1Id">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.subContractor1">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="subContractor1 !== ''">{{subContractor1.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="subContractor1"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of subContractor1Arr" [value]="t.subContractor1">{{ t.subContractor1 }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.subContractor1Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('subContractor1Id', !orderType, 5)">
                   <div [ngStyle]="{'display': indColumn === 5 ? 'flex' : 'none' }">
@@ -217,20 +202,6 @@
 
             <ng-container matColumnDef="punching1">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.punching1">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="punching1 !== ''">{{punching1.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="punching1" (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of punching1Arr" [value]="t.punching1">{{ t.punching1 }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.punching1Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('punching1', !orderType, 6)">
                   <div [ngStyle]="{'display': indColumn === 6 ? 'flex' : 'none' }">
@@ -246,21 +217,6 @@
 
             <ng-container matColumnDef="punching2">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.punching2">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="punching2 !== ''">{{punching2.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="punching2"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of punching2Arr" [value]="t.punching2">{{ t.punching2 }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.punching2Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('punching2', !orderType, 7)">
                   <div [ngStyle]="{'display': indColumn === 7 ? 'flex' : 'none' }">
@@ -276,21 +232,6 @@
 
             <ng-container matColumnDef="garda3">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.garda3">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="garda3 !== ''">{{garda3.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="garda3"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of garda3Arr" [value]="t.garda3">{{ t.garda3 }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.garda3Table }}</span>
                 <button type="button" class="order-btn" (click)="sortType('garda3', !orderType, 8)">
                   <div [ngStyle]="{'display': indColumn === 8 ? 'flex' : 'none' }">
@@ -306,21 +247,6 @@
 
             <ng-container matColumnDef="minutesPerPiece">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.minutesPerPiece">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="minutesPerPiece !== ''">{{minutesPerPiece.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="minutesPerPiece"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of minutesPerPieceArr" [value]="t.minutesPerPiece">{{ t.minutesPerPiece }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.minutesPerPieceTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('minutesPerPiece', !orderType, 9)">
                   <div [ngStyle]="{'display': indColumn === 9 ? 'flex' : 'none' }">
@@ -336,21 +262,6 @@
 
             <ng-container matColumnDef="weightPerPiece">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.weightPerPiece">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="weightPerPiece !== ''">{{weightPerPiece.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="weightPerPiece"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of weightPerPieceArr" [value]="t.weightPerPiece">{{ t.weightPerPiece }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.weightPerPieceTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('weightPerPiece', !orderType, 10)">
                   <div [ngStyle]="{'display': indColumn === 10 ? 'flex' : 'none' }">
@@ -366,21 +277,6 @@
 
             <ng-container matColumnDef="lprkr">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lprkr">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="lprkr !== ''">{{lprkr.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="lprkr"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of lprkrArr" [value]="t.lprkr">{{ t.lprkr }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.lprkr }}</span>
                 <button type="button" class="order-btn" (click)="sortType('lprkr', !orderType, 11)">
                   <div [ngStyle]="{'display': indColumn === 11 ? 'flex' : 'none' }">
@@ -396,20 +292,6 @@
 
             <ng-container matColumnDef="lobr">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lobr">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="lobr !== ''">{{lobr.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="lobr" (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of lobrArr" [value]="t.lobr">{{ t.lobr }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.lobr }}</span>
                 <button type="button" class="order-btn" (click)="sortType('lobr', !orderType, 12)">
                   <div [ngStyle]="{'display': indColumn === 12 ? 'flex' : 'none' }">
@@ -425,21 +307,6 @@
 
             <ng-container matColumnDef="npr">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.npr">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="npr !== ''">{{npr.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="npr"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of nprArr" [value]="t.npr">{{ t.npr }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.npr }}</span>
                 <button type="button" class="order-btn" (click)="sortType('npr', !orderType, 13)">
                   <div [ngStyle]="{'display': indColumn === 13 ? 'flex' : 'none' }">
@@ -455,21 +322,6 @@
 
             <ng-container matColumnDef="setupSameProfile">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.setupSameProfile">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="setupSameProfile !== ''">{{setupSameProfile.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="setupSameProfile"
-                      (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of setupSameProfileArr" [value]="t.setupSameProfile">{{ t.setupSameProfile }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.setupSameProfileTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('setupSameProfile', !orderType, 14)">
                   <div [ngStyle]="{'display': indColumn === 14 ? 'flex' : 'none' }">
@@ -485,20 +337,6 @@
 
             <ng-container matColumnDef="setupOtherProfile">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.setupOtherProfile">
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span class="badge rounded-circle badge-danger ms-1 m-0" *ngIf="setupOtherProfile !== ''">{{setupOtherProfile.length}}</span>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="setupOtherProfile" (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of setupOtherProfileArr" [value]="t.setupOtherProfile">{{ t.setupOtherProfile }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.setupOtherProfileTable }}</span>
                 <button type="button" class="order-btn" (click)="sortType('setupOtherProfile', !orderType, 15)">
                   <div [ngStyle]="{'display': indColumn === 15 ? 'flex' : 'none' }">
@@ -511,34 +349,6 @@
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.setupOtherProfile}}</span></td>
             </ng-container>
-
-            <!-- <ng-container matColumnDef="FinalTreatment">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body">
-                  <button [matMenuTriggerFor]="menuFilter" type="button" class="btn icon-btn btn-sm hide-arrow"
-                    rippleEffect>
-                    <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
-                  </button>
-                  <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
-                      [multiple]="true" [closeOnSelect]="false" [(ngModel)]="FinalTreatment" (ngModelChange)="pageChanged(1)">
-                      <ng-option *ngFor="let t of FinalTreatment" [value]="t.FinalTreatment">{{ t.FinalTreatment }}
-                      </ng-option>
-                    </ng-select>
-                  </mat-menu>
-                </div>
-                <span class="th-header">{{ translateSnackBar.FinalTreatment }}</span>
-                <button type="button" class="order-btn" (click)="sortType('FinalTreatment', !orderType, 16)">
-                  <div [ngStyle]="{'display': indColumn === 16 ? 'flex' : 'none' }">
-                    <span [data-feather]="'arrow-up'" [class]="'ficon'"></span>
-                  </div>
-                  <div [ngStyle]="{'display': indColumn === 16 ? 'none' : 'flex' }">
-                    <span [data-feather]="'arrow-down'" [class]="'ficon'"></span>
-                  </div>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element">{{element.FinalTreatment}}</td>
-            </ng-container> -->
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row (click)="modalProducts(row)" *matRowDef="let row; columns: displayedColumns;"></tr>

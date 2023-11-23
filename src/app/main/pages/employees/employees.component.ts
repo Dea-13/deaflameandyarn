@@ -33,8 +33,9 @@ export class EmployeesComponent implements OnInit {
   public languageOptions: any;
   public searchMaterial: any = '';
   public translateSnackBar: any;
-
-
+  public orderBy: number = 0;
+  public orderType: number = 1;
+  public indColumn: any;
 
   constructor(
     private employeesService: EmployeesService,
@@ -61,7 +62,15 @@ export class EmployeesComponent implements OnInit {
 
   getRequest() {
     this.blockUI.start('Loading...');
-    this.employeesService.getEmployees(this.offset, this.limit, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model)
+    this.employeesService.getEmployees(
+      this.offset,
+      this.limit,
+      this.arrFilters[0].model,
+      this.arrFilters[1].model,
+      this.arrFilters[2].model,
+      this.orderType,
+      this.orderBy
+    )
     .subscribe((data) => {
       this.rows = data.list;
       this.totalResult = data.total;
@@ -287,9 +296,24 @@ export class EmployeesComponent implements OnInit {
     }
   }
 
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
+    // this.blockUI.start('Loading...');
+    this.indColumn = ind;
+    this.orderBy = ind;
+    if (orderType == true) {
+      this.orderType = 1;
+    } else {
+      this.orderType = 0;
+    }
+    this.getRequest();
+  }
+
   clarAll() {
     this.offset = 0;
     this.limit = 15;
+    this.orderBy = 0;
+    this.orderType = 1;
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
     }
