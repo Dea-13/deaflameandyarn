@@ -42,7 +42,7 @@ export class ProfilesService {
   }
 
   getProductFilters(url: string, erpitem:string, erpvariant:string, opNo:string, cNC1:string, cNC2:string, subContractor1:string, punching1:string, punching2:string, garda3:string, minutesPerPiece:string, weightPerPiece:string, lprkr:string, lobr:string, npr:string, setupSameProfile:string, setupOtherProfile:string) {
-    return this._http.get<any>(`${environment.apiUrl}ProfileProduct/all/params/${url}?eRPItem=${erpitem}&eRPVariant=${erpvariant}&opNo=${opNo}&cNC1=${cNC1}&cNC2=${cNC2}&subContractor1=${subContractor1}&punching1=${punching1}&punching2=${punching2}&garda3=${garda3}&minutesPerPiece=${minutesPerPiece}&weightPerPiece=${weightPerPiece}&lprkr=${lprkr}&lobr=${lobr}&npr=${npr}&setupSameProfile=${setupSameProfile}&setupOtherProfile=${setupOtherProfile}`);
+    return this._http.get<any>(`${environment.apiUrl}ProfileProduct/filter/${url}?eRPItem=${erpitem}&eRPVariant=${erpvariant}&opNo=${opNo}&cNC1=${cNC1}&cNC2=${cNC2}&subContractor1=${subContractor1}&punching1=${punching1}&punching2=${punching2}&garda3=${garda3}&minutesPerPiece=${minutesPerPiece}&weightPerPiece=${weightPerPiece}&lprkr=${lprkr}&lobr=${lobr}&npr=${npr}&setupSameProfile=${setupSameProfile}&setupOtherProfile=${setupOtherProfile}`);
   }
 
 

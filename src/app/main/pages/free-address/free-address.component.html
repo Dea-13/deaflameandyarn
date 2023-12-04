@@ -15,15 +15,15 @@
                         <span class="pt-line-3">|</span>
                         <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
                         <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
-                        <label class="d-flex align-items-center">{{ translateSnackBar.show }}
-                          <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
-                            <ng-option [value]="10">10</ng-option>
-                            <ng-option [value]="15">15</ng-option>
-                            <ng-option [value]="20">20</ng-option>
-                            <ng-option [value]="25">25</ng-option>
-                            <ng-option [value]="50">50</ng-option>
-                            <ng-option [value]="100">100</ng-option>
-                          </ng-select>
+                        <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                          <ng-option [value]="10">10</ng-option>
+                          <ng-option [value]="15">15</ng-option>
+                          <ng-option [value]="20">20</ng-option>
+                          <ng-option [value]="25">25</ng-option>
+                          <ng-option [value]="50">50</ng-option>
+                          <ng-option [value]="100">100</ng-option>
+                        </ng-select>
+                        <label class="d-flex align-items-center ml-1">
                           {{ translateSnackBar.result }}
                         </label>
                       </div>
@@ -43,29 +43,31 @@
                 </mat-expansion-panel-header>
                 <div class="row">
 
-                  <div class="filters-column border" *ngFor="let f of arrFilters">
+                  <div class="filters-column border card d-block" *ngFor="let f of arrFilters">
                     <div class="row">
                       <div class="col-12 header-filter">
                         {{ f.name }}
                       </div>
                     </div>
                     <div class="col-12">
-                      <div class="row">
-                        <div class="col-10">
-                          <input type="search" class="form-control dt-uname search-filter" [(ngModel)]="f.searchFilterConf"
-                          (keyup.enter)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary" type="button" rippleEffect>
+                            <i data-feather="search"></i>
+                          </button>
                         </div>
-                        <div class="col-2">
-                          <button (click)="clearFilter(f.fullFilter, f.ind)" rippleEffect class="mt-1 btn p-0 size-btn">
-                            <span [data-feather]="'x-circle'" [class]="'cursor-pointer red-delete'"></span>
+                        <input type="search" class="form-control dt-uname" [(ngModel)]="f.searchFilterConf" #search
+                              (keyup.enter)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary" type="button" (click)="clearFilter(f.fullFilter, f.ind)" placement="top" container="body" rippleEffect>
+                            <span [data-feather]="'x-circle'" [class]="'cursor-pointer'"></span>
                           </button>
                         </div>
                       </div>
                     </div>
                     <div class="col-12 box-filter">
 
-                      <div (scrolled)="onScroll(f.selectAll, f.filter, f.ind)" [infiniteScrollDistance]="0.1" [scrollWindow]="false" class="inf-scroll"
-                      infiniteScroll>
+                    <div >
                       <div class="col-12 text-center" *ngIf="f.filter.length === 0">
                         {{ translateSnackBar.noResult }}
                       </div>
@@ -79,7 +81,8 @@
                           </mat-checkbox>
                         </span>
                         <span class="example-list-section">
-                            <ul>
+                            <ul (scrolled)="onScroll(f.selectAll, f.filter, f.ind)" [infiniteScrollDistance]="0.1" [scrollWindow]="false" class="inf-scroll"
+                            infiniteScroll>
                               <li *ngFor="let t of f.filter">
                                 <mat-checkbox [(ngModel)]="t.checked" color="primary"
                                   (ngModelChange)="updateAllComplete(f.selectAll, f.filter, f.ind)">
@@ -105,6 +108,9 @@
             <ng-container matColumnDef="resourceName">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.resource">
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.resource }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 0)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.resourceName}}</span></td>
             </ng-container>
@@ -112,22 +118,29 @@
             <ng-container matColumnDef="storagePlace">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.place">
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.place }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 1)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.storagePlace}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="partOfGroup">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.partOfGroup">
-                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.partOfGroup }}</span>
+                <!-- <button type="button" class="btn order-btn" (click)="sortType(!orderType,2)">
+                  <i class="fa fa-sort"></i>
+                </button> -->
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.partOfGroup}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.parentId}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="status === 1" matColumnDef="matrix">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.matrix">
-                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matrix }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 9)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">
                 <a class="nav-link" tabindex="0" (click)="viewDiesList(element.diesList)" [ngStyle]="{'font-size': size + 'px'}">
@@ -139,7 +152,6 @@
 
             <ng-container matColumnDef="diameter">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.diameter">
-                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.diameter }}</span>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.diameter}}</span></td>
@@ -163,24 +175,30 @@
 
             <ng-container *ngIf="status === 0" matColumnDef="freeCapacity">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.freeCapacity">
-                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.freeCapacity }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 8)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.freeCapacity}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="status === 1" matColumnDef="countMatrix">
+            <ng-container *ngIf="status === 1" matColumnDef="countDie">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.countMatrix">
-                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.countMatrix }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 9)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.countMatrix}}</span></td>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.countDie}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="status === 1" matColumnDef="capacity">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.capacity">
-                <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.capacity }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 4)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.capacity}}</span></td>
             </ng-container>

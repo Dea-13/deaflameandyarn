@@ -58,6 +58,10 @@ export class DieScanPageComponent implements OnInit {
     { id: 2, name: 'Resource/all/storageplace' }
   ];
 
+  public orderBy: number = 0;
+  public orderType: number = 1;
+  public indColumn: any;
+
   DEVICE_NAME: string;
 
 
@@ -232,6 +236,8 @@ export class DieScanPageComponent implements OnInit {
     this.dieService.getPositionDie(
       this.offset,
       this.limit,
+      this.orderType,
+      this.orderBy,
       this.resourceName,
       this.storagePlace,
       this.die,
@@ -377,6 +383,14 @@ export class DieScanPageComponent implements OnInit {
       })
     }
 
+  }
+
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
+    this.indColumn = ind;
+    this.orderBy = ind;
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
+    this.getPositionDie();
   }
 
   ngOnDestroy() {

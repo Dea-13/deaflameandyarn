@@ -2,7 +2,145 @@
   <div class="content-body">
     <section class="users-list-wrapper">
       <div class="card">
-        <div class="row"></div>
+        <div class="row">
+          <div class="col-12">
+            <mat-accordion multi>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <div class="row col-12" (click)="$event.stopPropagation();">
+
+                    <div class="col-xl-5 col-12">
+                      <div class="d-flex align-items-center">
+                        <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
+                        <span class="pt-line-3">|</span>
+                        <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
+                        <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+
+                        <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
+                          <ng-option [value]="10">10</ng-option>
+                          <ng-option [value]="15">15</ng-option>
+                          <ng-option [value]="20">20</ng-option>
+                          <ng-option [value]="25">25</ng-option>
+                          <ng-option [value]="50">50</ng-option>
+                          <ng-option [value]="100">100</ng-option>
+                        </ng-select>
+                        <label class="d-flex align-items-center ml-1">
+                          {{ translateSnackBar.result }}
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-xl-7 col-12">
+                      <div class="row col-12 align-items-center  justify-content-start">
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-12 col-md-4 col-lg-6 text-end filters-header">{{ translateSnackBar.lastRefreshed }}: </div>
+                            <div class="col-12 col-md-4 col-lg-6 filters-header">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </mat-expansion-panel-header>
+                <div class="row">
+
+                  <!-- <div class="filters-column border card d-block" *ngFor="let f of arrFilters">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ f.name }}
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary" type="button" rippleEffect>
+                            <i data-feather="search"></i>
+                          </button>
+                        </div>
+                        <input type="search" class="form-control dt-uname" [(ngModel)]="f.searchFilterConf" #search
+                              (keyup.enter)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary" type="button" (click)="clearFilter(f.fullFilter, f.ind)" placement="top" container="body" rippleEffect>
+                            <span [data-feather]="'x-circle'" [class]="'cursor-pointer'"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 box-filter">
+
+                    <div >
+                      <div class="col-12 text-center" *ngIf="f.filter.length === 0">
+                        {{ translateSnackBar.noResult }}
+                      </div>
+                      <section *ngIf="f.filter.length > 0" class="example-section">
+                        <span class="example-list-section">
+                          <mat-checkbox class="example-margin"
+                            [checked]="f.selectAll"
+                            color="primary"
+                            (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
+                            {{ translateSnackBar.selected }}
+                          </mat-checkbox>
+                        </span>
+                        <span class="example-list-section">
+                            <ul (scrolled)="onScroll(f.selectAll, f.filter, f.ind)" [infiniteScrollDistance]="0.1" [scrollWindow]="false" class="inf-scroll"
+                            infiniteScroll>
+                              <li *ngFor="let t of f.filter">
+                                <mat-checkbox [(ngModel)]="t.checked" color="primary"
+                                  (ngModelChange)="updateAllComplete(f.selectAll, f.filter, f.ind)">
+                                  {{t.name}}
+                                </mat-checkbox>
+                              </li>
+                            </ul>
+                        </span>
+                      </section>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="filters-column border-date card d-block">
+                    <div class="row">
+                      <div class="col-12 header-filter">
+                        {{ translateSnackBar.modifiedOn }}
+                      </div>
+                    </div>
+                    <div class="col-12 box-filter">
+                      <section class="example-section">
+                        <div class="row">
+                            <div class="col-9">
+                              <div class="form-group">
+                                <mat-form-field class="example-form-field">
+                                  <mat-date-range-input class="date-range" [formGroup]="range" [rangePicker]="picker">
+                                    <input matStartDate formControlName="startDate" placeholder="Start date" (click)="$event.stopPropagation()">
+                                    <input matEndDate formControlName="endDate" placeholder="End date" (click)="$event.stopPropagation()">
+                                  </mat-date-range-input>
+                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" (click)="filterDate(8)" class="btn icon-btn btn-sm hide-arrow mt-1" rippleEffect>
+                                            <span [data-feather]="'filter'" [class]="'cursor-pointer filter-date'"></span>
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button rippleEffect class="btn icon-btn btn-sm hide-arrow mt-1" (click)="clearDate()" placement="top" container="body">
+                                            <span [data-feather]="'x-circle'" [class]="'cursor-pointer red-delete'"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div> -->
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
         <section class="example-container mat-elevation-z8">
           <table mat-table [dataSource]="rows" class="example-table fixed-width">
             <!-- Position Column -->
@@ -10,6 +148,9 @@
             <ng-container matColumnDef="pullerSpeed">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
                 <span class="th-header">{{ translateSnackBar.pullerSpeedTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 0)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.pullerSpeed}}</td>
             </ng-container>
@@ -17,6 +158,9 @@
             <ng-container matColumnDef="billetTemperature">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.billetTemperature">
                 <span class="th-header">{{ translateSnackBar.billetTemperatureTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 1)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.billetTemperature}}</td>
             </ng-container>
@@ -24,6 +168,9 @@
             <ng-container matColumnDef="exitTemperature">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.exitTemperature">
                 <span class="th-header">{{ translateSnackBar.exitTemperatureTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 2)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.exitTemperature}}
               </td>
@@ -32,6 +179,9 @@
             <ng-container matColumnDef="dieStatus">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dieStatus">
                 <span class="th-header">{{ translateSnackBar.dieStatusTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 3)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.dieStatus}}</td>
             </ng-container>
@@ -39,6 +189,9 @@
             <ng-container matColumnDef="lengthFinalPiece">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lengthFinalPiece">
                 <span class="th-header">{{ translateSnackBar.lengthFinalPieceTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 4)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lengthFinalPiece}}</td>
             </ng-container>
@@ -46,6 +199,9 @@
             <ng-container matColumnDef="kgnet">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.kgnet">
                 <span class="th-header">{{ translateSnackBar.kgnet }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 5)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.kgnet}}</td>
             </ng-container>
@@ -53,6 +209,9 @@
             <ng-container matColumnDef="kggross">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.kggross">
                 <span class="th-header">{{ translateSnackBar.kggross }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 6)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.kggross}}</td>
             </ng-container>
@@ -60,6 +219,9 @@
             <ng-container matColumnDef="modifiedOn">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.modifiedOn">
                 <span class="th-header">{{ translateSnackBar.modifiedOn }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 7)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.modifiedOn | date:'dd/MM/yyyy H:mm:ss'}}</td>
             </ng-container>
@@ -67,6 +229,9 @@
             <ng-container matColumnDef="batchId">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.batchId">
                 <span class="th-header">{{ translateSnackBar.batchId }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 8)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.batchId}}</td>
             </ng-container>
@@ -74,6 +239,9 @@
             <ng-container matColumnDef="firstBilletCounter">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.firstBilletCounter">
                 <span class="th-header">{{ translateSnackBar.firstBilletCounterTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 9)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.firstBilletCounter}}</td>
             </ng-container>
@@ -81,6 +249,9 @@
             <ng-container matColumnDef="lastBilletcounter">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastBilletcounter">
                 <span class="th-header">{{ translateSnackBar.lastBilletcounterTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 10)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lastBilletcounter}}</td>
             </ng-container>
@@ -88,6 +259,9 @@
             <ng-container matColumnDef="billetMaterial">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.billetMaterial">
                 <span class="th-header">{{ translateSnackBar.billetMaterialTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 11)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.billetMaterial}}</td>
             </ng-container>
@@ -95,6 +269,9 @@
             <ng-container matColumnDef="productionOrder">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.productionOrder">
                 <span class="th-header">{{ translateSnackBar.productionOrder }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 12)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.productionOrder}}</td>
             </ng-container>
@@ -102,6 +279,9 @@
             <ng-container matColumnDef="billetPcs">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.billetPcs">
                 <span class="th-header">{{ translateSnackBar.billetPcsTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 13)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.billetPcs}}</td>
             </ng-container>
@@ -116,6 +296,9 @@
             <ng-container matColumnDef="piecesExtrusion">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.piecesExtrusion">
                 <span class="th-header">{{ translateSnackBar.piecesExtrusionTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 15)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.piecesExtrusion}}</td>
             </ng-container>
@@ -130,6 +313,9 @@
             <ng-container matColumnDef="prodOrderQty">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.prodOrderQty">
                 <span class="th-header">{{ translateSnackBar.prodOrderQtyTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 16)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.prodOrderQty}}</td>
             </ng-container>
@@ -137,6 +323,9 @@
             <ng-container matColumnDef="remarks">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.remarks">
                 <span class="th-header">{{ translateSnackBar.remarks }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 17)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.remarks}}</td>
             </ng-container>
@@ -144,6 +333,9 @@
             <ng-container matColumnDef="remarksQc">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.remarksQc">
                 <span class="th-header">{{ translateSnackBar.remarksQc }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 18)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.remarksQc}}</td>
             </ng-container>
@@ -151,6 +343,9 @@
             <ng-container matColumnDef="startTime">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.startTime">
                 <span class="th-header">{{ translateSnackBar.startTime }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 19)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.startTime | date:'dd/MM/yyyy H:mm:ss'}}</td>
             </ng-container>
@@ -158,6 +353,9 @@
             <ng-container matColumnDef="postingDate">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.postingDate">
                 <span class="th-header">{{ translateSnackBar.postingDate }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 20)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.postingDate | date:'dd/MM/yyyy H:mm:ss'}}</td>
             </ng-container>
@@ -172,6 +370,9 @@
             <ng-container matColumnDef="alloy">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.alloy">
                 <span class="th-header">{{ translateSnackBar.alloy }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 21)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.alloy}}</td>
             </ng-container>
@@ -186,6 +387,9 @@
             <ng-container matColumnDef="numberOfEmployees">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.numberOfEmployees">
                 <span class="th-header">{{ translateSnackBar.numberOfEmployeesTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 22)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.numberOfEmployees}}</td>
             </ng-container>
@@ -214,6 +418,9 @@
             <ng-container matColumnDef="orderAlloy">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.orderAlloy">
                 <span class="th-header">{{ translateSnackBar.orderAlloy }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 23)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.orderAlloy}}</td>
             </ng-container>
@@ -228,6 +435,9 @@
             <ng-container matColumnDef="profile">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.profile">
                 <span class="th-header">{{ translateSnackBar.profile }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 24)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.profile}}</td>
             </ng-container>
@@ -235,6 +445,9 @@
             <ng-container matColumnDef="length">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.length">
                 <span class="th-header">{{ translateSnackBar.length }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 25)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.length}}</td>
             </ng-container>
@@ -242,6 +455,9 @@
             <ng-container matColumnDef="temper">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.temper">
                 <span class="th-header">{{ translateSnackBar.temper }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 26)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.temper}}</td>
             </ng-container>
@@ -249,6 +465,9 @@
             <ng-container matColumnDef="salesOrder">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.salesOrder">
                 <span class="th-header">{{ translateSnackBar.salesOrder }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 27)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.salesOrder}}</td>
             </ng-container>
@@ -256,6 +475,9 @@
             <ng-container matColumnDef="salesOrderItem">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.salesOrderItem">
                 <span class="th-header">{{ translateSnackBar.salesOrderItemTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 28)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.salesOrderItem}}</td>
             </ng-container>
@@ -284,6 +506,9 @@
             <ng-container matColumnDef="remainingQty">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.remainingQty">
                 <span class="th-header">{{ translateSnackBar.remainingQtyTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 29)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.remainingQty}}</td>
             </ng-container>
@@ -291,6 +516,9 @@
             <ng-container matColumnDef="color">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.color">
                 <span class="th-header">{{ translateSnackBar.color }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 30)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.color}}</td>
             </ng-container>

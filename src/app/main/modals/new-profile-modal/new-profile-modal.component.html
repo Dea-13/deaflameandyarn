@@ -35,7 +35,7 @@
                           </div>
                           <div class="col-md-12 flex">
                             <label class="w-17-label">{{ translateSnackBar.group }}</label>
-                            <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" formControlName="groupCode">
+                            <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" [clearable]="false" formControlName="groupCode">
                               <ng-option *ngFor="let g of groupCode" [value]="g.name">{{ g.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -46,7 +46,9 @@
                           </div>
 
                           <div class="col-md-12 flex">
-                            <label class="label-checkbox">{{ translateSnackBar.visibleSide }} <span class="error-label" *ngIf="submitted && !createProfileForm.get('visSides').value">*</span></label>
+                            <label class="label-checkbox">{{ translateSnackBar.visibleSide }}
+                              <!-- <span class="error-label" *ngIf="submitted && !createProfileForm.get('visSides').value">*</span> -->
+                            </label>
                             <input class="form-control input" formControlName="visSides" type="checkbox" required
                               style="width: 5%;margin-top: -1%;">
                           </div>

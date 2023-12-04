@@ -23,9 +23,18 @@ export class FreeAddressComponent implements OnInit {
   @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = [];
   public urls = [
-    { id: 0, name: 'resourcename' },
-    { id: 1, name: 'storageplace' },
+    { id: 0, name: 'ResourceName' },
+    { id: 1, name: 'StoragePlace' },
+    // { id: 2, name: 'ResourceID' },
+    // { id: 3, name: 'SingleDie' },
+    // { id: 4, name: 'Capacity' },
+    // { id: 5, name: 'CapacityUoM' },
+    // { id: 6, name: 'UsedCapacity' },
+    // { id: 7, name: 'ParentID' },
   ];
+  public orderBy: number = 0;
+  public orderType: number = 1;
+  public indColumn: any;
   public rows = [];
   public size = 13;
   public searchValue = '';
@@ -57,7 +66,7 @@ export class FreeAddressComponent implements OnInit {
     if(this.status == 0){
       this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'diameter', 'thickness', 'size', 'freeCapacity'];
     } else {
-      this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'matrix', 'diameter', 'countMatrix', 'capacity'];
+      this.displayedColumns = ['resourceName', 'storagePlace', 'partOfGroup', 'matrix', 'diameter', 'countDie', 'capacity'];
     }
 
     this.translate.get('translate').subscribe((snackBar: string) => {
@@ -65,8 +74,14 @@ export class FreeAddressComponent implements OnInit {
     });
 
     this.arrFilters = [
-      {id: 0, ind: 0, url: 'resourcename', name: this.translateSnackBar.resource, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 1, ind: 1, url: 'storageplace', name: this.translateSnackBar.place, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 0, ind: 0, url: 'ResourceName', name: this.translateSnackBar.resource, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 1, ind: 1, url: 'StoragePlace', name: this.translateSnackBar.place, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      // {id: 2, ind: 2, url: 'ResourceID', name: this.translateSnackBar.partOfGroup, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      // {id: 3, ind: 3, url: 'SingleDie', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      // {id: 4, ind: 4, url: 'Capacity', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      // {id: 5, ind: 5, url: 'CapacityUoM', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      // {id: 6, ind: 6, url: 'UsedCapacity', name: this.translateSnackBar.size, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      // {id: 7, ind: 7, url: 'ParentID', name: this.translateSnackBar.place, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
     ];
    }
 
@@ -77,7 +92,7 @@ export class FreeAddressComponent implements OnInit {
 
   getRequest() {
     this.blockUI.start('Loading...');
-    this.warehouseService.getInformationWarehouse(this.offset, this.limit, this.arrFilters[0].model, this.arrFilters[1].model, this.status).subscribe((data) => {
+    this.warehouseService.getInformationWarehouse(this.offset, this.limit, this.orderType, this.orderBy, this.arrFilters[0].model, this.arrFilters[1].model, this.status).subscribe((data) => {
       this.rows = data.list;
       this.totalResult = data.total;
       this.blockUI.stop();
@@ -282,6 +297,14 @@ export class FreeAddressComponent implements OnInit {
         }
       }
     }
+  }
+
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
+    this.indColumn = ind;
+    this.orderBy = ind;
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
+    this.getRequest();
   }
 
   clarAll() {

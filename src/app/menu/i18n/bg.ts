@@ -416,7 +416,7 @@ export const locale = {
       salesOrderItemTable: 'АПП',
       customerName: 'Име на клиент',
       customerNameTT: 'ИК',
-      computerName: 'Име на производител',
+      computerName: 'Потребител',
       computerNameTable: 'ИП',
       remainingQty: 'Оставащо количество',
       remainingQtyTable: 'ОК',

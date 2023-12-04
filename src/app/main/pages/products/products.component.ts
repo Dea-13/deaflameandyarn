@@ -29,22 +29,22 @@ export class ProductsComponent implements OnInit {
   public translateSnackBar: any;
 
   public urls = [
-    { id: 0, name: 'erpitem' },
-    { id: 1, name: 'erpvariant' },
-    { id: 2, name: 'opNo' },
-    { id: 3, name: 'cNC1' },
-    { id: 4, name: 'cNC2' },
-    { id: 5, name: 'subContractor1' },
-    { id: 6, name: 'punching1' },
-    { id: 7, name: 'punching2' },
-    { id: 8, name: 'garda3' },
-    { id: 9, name: 'minutesPerPiece' },
-    { id: 10, name: 'weightPerPiece' },
-    { id: 11, name: 'lprkr' },
-    { id: 12, name: 'lobr' },
-    { id: 13, name: 'npr' },
-    { id: 14, name: 'setupSameProfile' },
-    { id: 15, name: 'setupOtherProfile' },
+    { id: 0, name: 'Erpitem' },
+    { id: 1, name: 'Erpvariant' },
+    { id: 2, name: 'OpNo' },
+    { id: 3, name: 'Cnc1Id' },
+    { id: 4, name: 'Cnc2Id' },
+    { id: 5, name: 'SubContractor1Id' },
+    { id: 6, name: 'Punching1' },
+    { id: 7, name: 'Punching2' },
+    { id: 8, name: 'Garda3' },
+    { id: 9, name: 'MinutesPerPiece' },
+    { id: 10, name: 'WeightPerPiece' },
+    { id: 11, name: 'Lprkr' },
+    { id: 12, name: 'Lobr' },
+    { id: 13, name: 'Npr' },
+    { id: 14, name: 'SetupOtherProfile' },
+    { id: 15, name: 'SetupSameProfile' },
   ];
 
   public orderDateOptions = {
@@ -68,22 +68,22 @@ export class ProductsComponent implements OnInit {
     });
 
     this.arrFilters = [
-      {id: 0, ind: 0, url: 'erpitem', name: this.translateSnackBar.erpItem, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 1, ind: 1, url: 'erpvariant', name: this.translateSnackBar.erpVariant, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 2, ind: 2, url: 'opNo', name: this.translateSnackBar.opNo, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 3, ind: 3, url: 'cNC1', name: this.translateSnackBar.cnc1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 4, ind: 4, url: 'cNC2', name: this.translateSnackBar.cnc2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 5, ind: 5, url: 'subContractor1', name: this.translateSnackBar.subContractor1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 6, ind: 6, url: 'punching1', name: this.translateSnackBar.punching1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 7, ind: 7, url: 'punching2', name: this.translateSnackBar.punching2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 8, ind: 8, url: 'garda3', name: this.translateSnackBar.garda3, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 9, ind: 9, url: 'minutesPerPiece', name: this.translateSnackBar.minutesPerPiece, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 10, ind: 10, url: 'weightPerPiece', name: this.translateSnackBar.weightPerPiece, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 11, ind: 11, url: 'lprkr', name: this.translateSnackBar.lprkr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 12, ind: 12, url: 'lobr', name: this.translateSnackBar.lobr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 13, ind: 13, url: 'npr', name: this.translateSnackBar.npr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 14, ind: 14, url: 'setupSameProfile', name: this.translateSnackBar.setupSameProfile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 15, ind: 15, url: 'setupOtherProfile', name: this.translateSnackBar.setupOtherProfile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 0, ind: 0, url: 'Erpitem', name: this.translateSnackBar.erpItem, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 1, ind: 1, url: 'Erpvariant', name: this.translateSnackBar.erpVariant, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 2, ind: 2, url: 'OpNo', name: this.translateSnackBar.opNo, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 3, ind: 3, url: 'Cnc1Id', name: this.translateSnackBar.cnc1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 4, ind: 4, url: 'Cnc2Id', name: this.translateSnackBar.cnc2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 5, ind: 5, url: 'SubContractor1Id', name: this.translateSnackBar.subContractor1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 6, ind: 6, url: 'Punching1', name: this.translateSnackBar.punching1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 7, ind: 7, url: 'Punching2', name: this.translateSnackBar.punching2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 8, ind: 8, url: 'Garda3', name: this.translateSnackBar.garda3, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 9, ind: 9, url: 'MinutesPerPiece', name: this.translateSnackBar.minutesPerPiece, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 10, ind: 10, url: 'WeightPerPiece', name: this.translateSnackBar.weightPerPiece, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 11, ind: 11, url: 'Lprkr', name: this.translateSnackBar.lprkr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 12, ind: 12, url: 'Lobr', name: this.translateSnackBar.lobr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 13, ind: 13, url: 'Npr', name: this.translateSnackBar.npr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 14, ind: 14, url: 'SetupOtherProfile', name: this.translateSnackBar.setupSameProfile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 15, ind: 15, url: 'SetupSameProfile', name: this.translateSnackBar.setupOtherProfile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
     ];
   }
 
@@ -238,16 +238,11 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  sortType(column, orderType, ind) {
-    console.log('sortType', column, orderType, ind)
-    this.blockUI.start('Loading...');
+  sortType(orderType, ind) {
+    console.log('sortType', orderType, ind)
     this.indColumn = ind;
     this.orderBy = ind;
-    if (orderType == true) {
-      this.orderType = 1;
-    } else {
-      this.orderType = 0;
-    }
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
     this.getRequest();
   }
 

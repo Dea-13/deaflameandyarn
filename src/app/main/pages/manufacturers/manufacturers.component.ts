@@ -24,13 +24,6 @@ export class ManufacturersComponent implements OnInit {
   public offset: number = 0;
   public totalResult: number = 0;
   public translateSnackBar: any;
-  public selName: string = '';
-  public selDepartment: string = '';
-  public selPrevilege: string = '';
-
-  public nameArr: Array<any> = [];
-  public departmentArr: Array<any> = [];
-  public priviligeArr: Array<any> = [];
 
   public urls = [
     { id: 0, name: 'name' },
@@ -174,11 +167,7 @@ export class ManufacturersComponent implements OnInit {
     // this.blockUI.start('Loading...');
     this.indColumn = ind;
     this.orderBy = ind;
-    if (orderType == true) {
-      this.orderType = 1;
-    } else {
-      this.orderType = 0;
-    }
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
     this.getRequest();
   }
 

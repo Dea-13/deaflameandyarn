@@ -839,7 +839,6 @@ input[type=radio], input[type=checkbox] {
 
 .modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
   max-height: 850px;
-  height: fit-content!important;
   width: 130rem!important;
   overflow: auto;
 }
@@ -872,10 +871,12 @@ input[type=radio], input[type=checkbox] {
 }
 
 .btn .badge{
-  top: -5px!important;
-  background: #ff9f43;
-  font-size:11px;
-  padding: 2px;
+  top: -5px !important;
+    background: #ff9f43;
+    font-size: 9px;
+    top: -11px;
+    min-width: 1rem;
+    line-height: normal;
 }
 
 .cdk-global-overlay-wrapper, .cdk-overlay-container, .ng-dropdown-panel {
@@ -1008,8 +1009,6 @@ html .content.app-content {
   font-size: 24px;
 }
 
-
-
 ul {
   list-style-type: none;
   margin-top: 4px;
@@ -1018,7 +1017,13 @@ ul {
 
 .border {
   border: 1px solid #ebe9f1 !important;
-  background: #FBFBFA;
+  height: 290px;
+  margin: 5px;
+  border-radius: 7%;
+}
+
+.border-date {
+  border: 1px solid #ebe9f1 !important;
   height: 290px;
   margin: 5px;
   border-radius: 7%;
@@ -1080,3 +1085,24 @@ ul {
   content: "\f0dc";
   color: #7367f0;
 }
+
+th button {
+  padding: 5px!important;
+}
+
+.date-range .mat-date-range-input-container{
+  height: 40px;
+}
+
+@media (min-height: 910px) {
+  .modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
+    height: fit-content!important;
+  }
+}
+
+@media (max-height: 909px) {
+  .modal-normal-screen, .modal-dialog-screen.modal-normal-screen{
+    height: 610px!important;
+  }
+}
+

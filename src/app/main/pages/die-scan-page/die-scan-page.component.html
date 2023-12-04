@@ -160,6 +160,9 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.dieId }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 0)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.dieID}}</td>
             </ng-container>
@@ -180,7 +183,10 @@
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.matrix }}</span>
+                <span class="th-header">{{ translateSnackBar.resource }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 1)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.resourceName}}</td>
             </ng-container>
@@ -201,6 +207,9 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.skladPlace }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 2)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.storagePlace}}</td>
             </ng-container>
@@ -209,6 +218,9 @@
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastTransaction">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 3)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lastMovement | date:'dd/MM/yyyy H:mm:ss'}}</td>
             </ng-container>

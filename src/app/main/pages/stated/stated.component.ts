@@ -582,6 +582,7 @@ export class StatedComponent implements OnInit {
     this.getRequest();
   }
 
+
   modalDetailsDie(row) {
     console.log('new/edit modalDetailsDie');
     const modalRef = this.modalService.open(DetailsDieModalComponent, {});
@@ -594,16 +595,11 @@ export class StatedComponent implements OnInit {
     });
   }
 
-  sortType(column, orderType, ind) {
-    console.log('sortType', column, orderType)
-    this.blockUI.start('Loading...');
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
     this.indColumn = ind;
     this.orderBy = ind;
-    if (orderType == true) {
-      this.orderType = 1;
-    } else {
-      this.orderType = 0;
-    }
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
     this.getRequest();
   }
 

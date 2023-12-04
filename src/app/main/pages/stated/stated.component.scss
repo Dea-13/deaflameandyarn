@@ -33,7 +33,7 @@
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
-  min-width: 70px;
+  min-width: 60px;
 }
 
 .order-btn{
@@ -65,44 +65,6 @@ mat-form-field{
 
 .example-margin {
   margin: 0 12px;
-}
-
-ul {
-  list-style-type: none;
-  margin-top: 4px;
-  padding-left: 15px;
-}
-
-.border {
-  border: 1px solid #ebe9f1 !important;
-  background: #FBFBFA;
-  height: 270px;
-  margin: 5px;
-}
-
-.header-filter {
-  color: #7367f0 !important;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.box-filter{
-  height: 200px;
-  // overflow: auto;
-}
-
-.inf-scroll{
-  overflow: auto;
-  height: 200px;
-}
-
-.mat-expansion-panel-header {
-  padding: 0 25px 0 0;
-}
-
-.mat-expansion-panel:not([class*=mat-elevation-z]) {
-  box-shadow: none;
 }
 
 @media (min-width: 1200px) and (max-width: 1600px) {
