@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
+import { Location } from '@angular/common';
 
 import * as _ from 'lodash';
 import { Subject } from 'rxjs';
@@ -91,6 +92,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private _coreSidebarService: CoreSidebarService,
     private _mediaObserver: MediaObserver,
     public _translateService: TranslateService,
+    private _location: Location
   ) {
     this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
 
@@ -228,7 +230,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   redirect(){
-    this._router.navigate(['api/machines']);
+    this._router.navigate(['api/stated']);
+  }
+
+  backTo() {
+    this._location.back();
   }
 
   hideAdds(){
@@ -246,7 +252,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         customizer: false,
         enableLocalStorage: false
       }
-    } 
+    }
   }
 
   /**
