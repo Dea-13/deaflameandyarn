@@ -311,7 +311,7 @@ clarAll() {
   this.getFilters(this.urls.length, 'init');
 }
 
-clearDate(type){
+clearDate(){
   this.range.reset();
   this.getRequest();
   this.getFilters(this.urls.length, 'init');
