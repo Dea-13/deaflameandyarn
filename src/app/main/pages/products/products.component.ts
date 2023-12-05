@@ -56,6 +56,8 @@ export class ProductsComponent implements OnInit {
 
   public arrFilters: any = [];
   public refreshed: Date;
+  public count: number = 0;
+  public countTable: number = 0;;
 
   constructor(
     private profileService: ProfilesService,
@@ -93,6 +95,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getRequest() {
+    this.countTable = 0;
     this.blockUI.start('Loading...');
     this.profileService.getProfileProduct(
         this.offset,
@@ -119,18 +122,19 @@ export class ProductsComponent implements OnInit {
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
+        this.countTable++;
+        this.blockUI.stop();
+      }, error =>{
         this.blockUI.stop();
       });
   }
 
   getFilters(ind, action) {
     console.log('getFilters', this.arrFilters);
-    let count = 0;
-    let url;
+    this.count = 0;
     for (let i = 0; i < this.urls.length; i++) {
       if(ind != this.urls[i].id) {
         let array = [];
-        count++;
         this.profileService.getProductFilters(this.urls[i].name,
           this.arrFilters[0].model,
           this.arrFilters[1].model,
@@ -192,6 +196,7 @@ export class ProductsComponent implements OnInit {
             }
             // console.log('data 4=>', data);
           }
+          this.count++;
         }, error => {
           for(let j=0; j < this.arrFilters.length; j++) {
             // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
@@ -206,12 +211,12 @@ export class ProductsComponent implements OnInit {
               // this.arrFilters[j].model= '';
             }
           }
-          this.blockUI.stop();
+          this.count++;
         });
       }
     }
     setTimeout(() => {
-      if(this.urls.length == count) {
+      if(this.urls.length == this.count && this.countTable == 1) {
         this.arrFilters.sort((a,b)=>a.ind - b.ind)
         console.log('arrFilters', this.arrFilters);
         this.blockUI.stop();
@@ -233,7 +238,7 @@ export class ProductsComponent implements OnInit {
     modalRef.componentInstance.productItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest();
+        this.pageChanged(1);
       }
     });
   }
@@ -243,18 +248,19 @@ export class ProductsComponent implements OnInit {
     this.indColumn = ind;
     this.orderBy = ind;
     orderType == true ? this.orderType = 1 : this.orderType = 0;
-    this.getRequest();
+    this.pageChanged(1);
   }
 
-  clarAll() {
+  clearAll() {
     this.offset = 0;
     this.limit = 15;
     this.orderBy = 0;
     this.orderType = 1;
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
+      this.arrFilters[i].selectAll = false;
     }
-    this.getRequest();
+    this.pageChanged(1);
     this.getFilters(this.urls.length, 'init');
   }
 
@@ -291,7 +297,6 @@ export class ProductsComponent implements OnInit {
     }
     console.log('searchFilter=====>',event.target.value == '', fullArray, temp, this.arrFilters[ind].filter.length);
     this.arrFilters[ind].filter = event.target.value == '' ? fullArray : temp;
-    // this.blockUI.stop();
     return;
   }
 

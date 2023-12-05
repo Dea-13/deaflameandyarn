@@ -122,7 +122,7 @@
                     </table>
                 </div>
                 <div class="col-12 col-xl-4">
-                  <table class="clasic-table">
+                  <!-- <table class="clasic-table">
                     <tbody>
                       <tr>
                         <td><b>{{translateSnackBar.id}}</b></td>
@@ -177,7 +177,7 @@
                         <td>{{dieRow.producerName}}</td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table> -->
               </div>
               </div>
             </ng-template>
@@ -500,7 +500,7 @@
                                   <div class="row col-12" (click)="$event.stopPropagation();">
                                     <div class="col-xl-5 col-12">
                                       <div class="d-flex align-items-center">
-                                        <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                                        <button rippleEffect (click)="clearAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
                                       </div>
                                     </div>
                                     <div class="col-xl-7 col-12">
@@ -548,7 +548,7 @@
                                       <section *ngIf="f.filter.length > 0" class="example-section">
                                         <span class="example-list-section">
                                           <mat-checkbox class="example-margin"
-                                            [checked]="f.selectAll"
+                                            [(ngModel)]="f.selectAll" [checked]="f.selectAll"
                                             color="primary"
                                             (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
                                             {{ translateSnackBar.selected }}

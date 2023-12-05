@@ -14,7 +14,7 @@
                         <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
                         <span class="pt-line-3">|</span>
                         <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
-                        <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                        <button rippleEffect (click)="clearAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
 
                         <ng-select [virtualScroll]="true" appendTo="body"  [clearable]="false" [(ngModel)]="limit" (change)="pageChanged(1)">
                           <ng-option [value]="10">10</ng-option>
@@ -75,7 +75,7 @@
                       <section *ngIf="f.filter.length > 0" class="example-section">
                         <span class="example-list-section">
                           <mat-checkbox class="example-margin"
-                            [checked]="f.selectAll"
+                            [(ngModel)]="f.selectAll" [checked]="f.selectAll"
                             color="primary"
                             (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
                             {{ translateSnackBar.selected }}
@@ -142,7 +142,7 @@
           </div>
         </div>
         <section class="example-container mat-elevation-z8">
-          <table mat-table [dataSource]="rows" class="example-table fixed-width">
+          <table mat-table [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }" class="example-table fixed-width">
             <!-- Position Column -->
 
             <ng-container matColumnDef="pullerSpeed">
@@ -528,6 +528,10 @@
           </table>
 
         </section>
+
+        <pagination-controls id="paginationId" previousLabel="&lsaquo;" nextLabel="&rsaquo;"
+          (pageChange)="pageChanged($event)">
+        </pagination-controls>
       </div>
     </section>
   </div>

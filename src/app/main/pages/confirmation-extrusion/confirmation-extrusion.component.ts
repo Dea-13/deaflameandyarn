@@ -38,6 +38,8 @@ export class ConfirmationExtrusionComponent implements OnInit {
   public limit: number = 15;
   public offset: number = 0;
   public totalResult: number = 0;
+  public count: number = 0;
+  public countTable: number = 0;
 
   public urls = [
     { id: 0, name: 'PullerSpeed' },
@@ -132,6 +134,7 @@ export class ConfirmationExtrusionComponent implements OnInit {
   }
 
   getRequest() {
+    this.countTable = 0;
     this.blockUI.start('Loading...');
     this.confService.getConfExtrusion(
       this.offset,
@@ -173,18 +176,20 @@ export class ConfirmationExtrusionComponent implements OnInit {
       this.orderType,
       this.orderBy
     ).subscribe((data) => {
-      this.rows = data;
+      this.rows = data.list;
+      this.totalResult = data.total;
+      this.blockUI.stop();
+    }, error =>{
       this.blockUI.stop();
     });
   }
 
   getFilters(ind, action) {
     console.log('getFilters', this.arrFilters);
-    let count = 0;
+    this.count = 0;
     for (let i = 0; i < this.urls.length; i++) {
       if(ind != this.urls[i].id) {
         let array = [];
-        count++;
         this.confService.getFilters(
           this.urls[i].name,
           this.arrFilters[0].model,
@@ -264,6 +269,7 @@ export class ConfirmationExtrusionComponent implements OnInit {
               }
             }
           }
+          this.count++;
         }, error => {
           for(let j=0; j < this.arrFilters.length; j++) {
             // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
@@ -278,12 +284,12 @@ export class ConfirmationExtrusionComponent implements OnInit {
               // this.arrFilters[j].model= '';
             }
           }
-          this.blockUI.stop();
+          this.count++;
         });
       }
     }
     setTimeout(() => {
-      if(this.urls.length == count) {
+      if(this.urls.length == this.count && this.countTable == 1) {
         this.arrFilters.sort((a,b)=>a.ind - b.ind)
         console.log('arrFilters', this.arrFilters);
         this.blockUI.stop();
@@ -305,7 +311,7 @@ export class ConfirmationExtrusionComponent implements OnInit {
     this.indColumn = ind;
     this.orderBy = ind;
     orderType == true ? this.orderType = 1 : this.orderType = 0;
-    this.getRequest();
+    this.pageChanged(1);
   }
 
   updateAllComplete(column, array, ind) {
@@ -397,7 +403,7 @@ export class ConfirmationExtrusionComponent implements OnInit {
     }
   }
 
-  clarAll() {
+  clearAll() {
     this.offset = 0;
     this.limit = 15;
     this.orderBy = 0;
@@ -405,7 +411,7 @@ export class ConfirmationExtrusionComponent implements OnInit {
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
     }
-    this.getRequest();
+    this.pageChanged(1);
     // this.getFilters(this.urls.length, 'init');
   }
 
