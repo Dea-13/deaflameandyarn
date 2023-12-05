@@ -85,8 +85,8 @@ getRequest() {
     this.arrFilters[4].model,
     this.arrFilters[5].model,
     this.arrFilters[6].model,
-    this.range.controls['startDate'].value ? moment(this.range.controls['startDate'].value).format('YYYY-MM-DD') : '',
-    this.range.controls['endDate'].value ? moment(this.range.controls['endDate'].value).format('YYYY-MM-DD') : '',
+    this.range.controls['startDate'].value ? moment(this.range.controls['startDate'].value).format('YYYY-MM-DDT00:01:00') : '',
+    this.range.controls['endDate'].value ? moment(this.range.controls['endDate'].value).format('YYYY-MM-DDT23:59:00') : '',
     this.orderType,
     this.orderBy
   ).subscribe((data) => {
@@ -95,7 +95,6 @@ getRequest() {
     this.blockUI.stop();
   });
 }
-
 
 getFilters(ind, action) {
   console.log('getFilters', this.arrFilters);
