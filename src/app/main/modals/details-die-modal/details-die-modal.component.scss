@@ -292,3 +292,7 @@ b, strong {
   overflow: auto;
   display: block;
 }
+
+.mat-row .mat-cell {
+  white-space: nowrap;
+}
