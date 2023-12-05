@@ -42,8 +42,8 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'productivity',
-        title: 'Productivity',
-        translate: 'MENU.PRODUCTIVITY',
+        title: 'In Use',
+        translate: 'MENU.INUSE',
         type: 'item',
         icon: 'check-circle',
         url: 'api/productivity'

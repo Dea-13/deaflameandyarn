@@ -7,6 +7,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 import { GenerateTestModalComponent } from '../generate-test-modal/generate-test-modal.component';
 import { NewMatrixModalComponent } from '../new-matrix-modal/new-matrix-modal.component';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { ExtrusionModalComponent } from '../../pages/extrusion-modal/extrusion-modal.component';
 
 @Component({
   selector: 'app-details-die-modal',
@@ -36,7 +37,6 @@ export class DetailsDieModalComponent implements OnInit {
     'remainingQty', 'color'
   ];
   displayedColumnsMovements: string[] = ['resourceIn', 'resourceOut', 'movementDateTime', 'notes', 'empName', 'computerName'];
-  displayedColumnsEscData: string[] = ['press', 'id', 'batch', 'billetLength', 'blletButtLength', 'pullerSpeed', 'billetTemperature', 'exitTemperature', 'kggross', 'pressure', 'containerTemp', 'extrEndTime'];
 
   public urls = [
     { id: 0, name: 'ResourceIn' },
@@ -52,7 +52,6 @@ export class DetailsDieModalComponent implements OnInit {
   public dieRow: any;
   public extrusion: Array<any> = [];
   public movements: Array<any> = [];
-  public extrData: Array<any> = [];
   sumTotalKg: number = 0;
   sumtotalUsed: number = 0;
   resourceName: string = '';
@@ -169,10 +168,17 @@ export class DetailsDieModalComponent implements OnInit {
     console.log("getExtrusionData", row);
     this.matrixService.getExtrusionData(row.batchId).subscribe(data => {
       console.log("getExtrusionData", data);
-      this.extrData = data;
+      const modalRef = this.modalService.open(ExtrusionModalComponent, {});
+      modalRef.componentInstance.extrItem = { 'data': data };
       this.blockUI.stop();
     }, error=>{
-      this.extrData = [];
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.msgEmpty,
+        showConfirmButton: false,
+        timer: 2000
+      })
     });
   }
 

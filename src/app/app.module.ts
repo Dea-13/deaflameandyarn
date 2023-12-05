@@ -68,6 +68,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BlockUIModule } from 'ng-block-ui';
+import { ExtrusionModalComponent } from './main/pages/extrusion-modal/extrusion-modal.component';
 
 
 const appRoutes: Routes = [
@@ -257,7 +258,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     GenerateTestModalComponent,
     ConfirmationExtrusionComponent,
-    BilletRawMaterialsComponent
+    BilletRawMaterialsComponent,
+    ExtrusionModalComponent
   ],
 
   imports: [
