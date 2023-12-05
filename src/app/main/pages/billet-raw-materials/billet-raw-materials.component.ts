@@ -303,9 +303,16 @@ clarAll() {
   this.limit = 15;
   this.orderBy = 0;
   this.orderType = 1;
+  this.range.reset();
   for(let i=0; i < this.arrFilters.length; i++) {
     this.arrFilters[i].model= '';
   }
+  this.getRequest();
+  this.getFilters(this.urls.length, 'init');
+}
+
+clearDate(type){
+  this.range.reset();
   this.getRequest();
   this.getFilters(this.urls.length, 'init');
 }
