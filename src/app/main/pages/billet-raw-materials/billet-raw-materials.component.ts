@@ -112,8 +112,8 @@ getFilters(ind, action) {
         this.arrFilters[4].model,
         this.arrFilters[5].model,
         this.arrFilters[6].model,
-        this.range.controls['startDate'].value ? moment(this.range.controls['startDate'].value).format('YYYY-MM-DD') : '',
-        this.range.controls['endDate'].value ? moment(this.range.controls['endDate'].value).format('YYYY-MM-DD') : '',
+        this.range.controls['startDate'].value ? moment(this.range.controls['startDate'].value).format('YYYY-MM-DDT00:01:00') : '',
+        this.range.controls['endDate'].value ? moment(this.range.controls['endDate'].value).format('YYYY-MM-DDT23:59:00') : '',
       ).subscribe((data) => {
         if(action == 'init' && this.urls[i].id == i) {
           for(let l=0; l < data.length; l++) {
