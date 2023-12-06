@@ -77,7 +77,7 @@ export class NewMatrixModalComponent implements OnInit {
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef
   ) {
-    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });

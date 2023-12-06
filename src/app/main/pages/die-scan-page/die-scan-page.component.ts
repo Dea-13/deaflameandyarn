@@ -339,7 +339,7 @@ export class DieScanPageComponent implements OnInit {
     this.submitted = true;
     if(this.barCode && this.resourceIn && this.currentResource && this.emplId){
       console.log("sendConfirmation: ", this.barCode, this.resourceIn, this.currentResource, this.productionKg, this.notes, this.emplId);
-      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let _currentUser = JSON.parse(localStorage.getItem('_currentUser'));
       let obj = {
         die : null,
         dieId: this.barCode,
@@ -349,7 +349,7 @@ export class DieScanPageComponent implements OnInit {
         kgProduced: this.directionReporting == 1 ? this.productionKg : null,
         notes: this.notes,
         emplId: this.emplId,
-        computerName: currentUser['userName']
+        computerName: _currentUser['userName']
       }
 
       this.dieService.postDieMovemanetConf(obj).subscribe(data => {

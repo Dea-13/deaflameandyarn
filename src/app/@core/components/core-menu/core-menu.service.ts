@@ -10,7 +10,7 @@ import { AuthenticationService } from '../../../auth/service';
   providedIn: 'root'
 })
 export class CoreMenuService {
-  currentUser: User;
+  _currentUser: User;
   onItemCollapsed: Subject<any>;
   onItemCollapseToggled: Subject<any>;
 
@@ -28,7 +28,7 @@ export class CoreMenuService {
    * @param {AuthenticationService} _authenticationService
    */
   constructor(private _router: Router, private _authenticationService: AuthenticationService) {
-    this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+    this._authenticationService._currentUser.subscribe(x => (this._currentUser = x));
 
     // Set defaults
     this.onItemCollapsed = new Subject();

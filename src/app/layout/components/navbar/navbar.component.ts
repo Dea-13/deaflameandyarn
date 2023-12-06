@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public currentSkin: string;
   public prevSkin: string;
 
-  public currentUser: User;
+  public _currentUser: User;
 
   public languageOptions: any;
   public navigation: any;
@@ -94,7 +94,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     public _translateService: TranslateService,
     private _location: Location
   ) {
-    this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+    this._authenticationService._currentUser.subscribe(x => (this._currentUser = x));
 
     this.languageOptions = {
       en: {
@@ -189,10 +189,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     } else {
       this.env = "none";
     }
-    // get the currentUser details from localStorage
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('this.currentUser', this.currentUser);
-    this.userName = this.currentUser['userName'];
+    // get the _currentUser details from localStorage
+    this._currentUser = JSON.parse(localStorage.getItem('_currentUser'));
+    console.log('this._currentUser', this._currentUser);
+    this.userName = this._currentUser['userName'];
     // Subscribe to the config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;

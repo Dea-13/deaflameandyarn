@@ -136,7 +136,7 @@ export class AuthLoginV2Component implements OnInit {
     url.subscribe(config => {
       // console.log('++++++++', JSON.parse(config.permissionGroup.jsonData).calendar.read);
       if (config) {
-        localStorage.setItem('currentUser', JSON.stringify(config));
+        localStorage.setItem('_currentUser', JSON.stringify(config));
         //redirect to home page
         setTimeout(() => {
           this._router.navigate(['/api/stated']);

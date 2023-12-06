@@ -294,8 +294,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   backToApp(){
 
-    console.log('backToApp: ', JSON.parse(localStorage.getItem('currentUser')));
-    if(JSON.parse(localStorage.getItem('currentUser')) != 'diagram' && JSON.parse(localStorage.getItem('currentUser')) != 'preactor'){
+    console.log('backToApp: ', JSON.parse(localStorage.getItem('_currentUser')));
+    if(JSON.parse(localStorage.getItem('_currentUser')) != 'diagram' && JSON.parse(localStorage.getItem('_currentUser')) != 'preactor'){
       this._coreConfigService.config = {
         layout: {
           navbar: {

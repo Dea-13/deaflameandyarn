@@ -64,7 +64,7 @@ export class NewProfileModalComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder
   ) {
-    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
   }
 
   ngOnInit(): void {

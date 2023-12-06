@@ -78,7 +78,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
     this.arrFilters = [
       {id: 0, ind: 0, url: 'ResourceIn', name: this.translateSnackBar.dieId, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       {id: 1, ind: 1, url: 'ResourceOut', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},

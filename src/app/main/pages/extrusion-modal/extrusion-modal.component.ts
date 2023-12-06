@@ -30,7 +30,7 @@ export class ExtrusionModalComponent implements OnInit {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
    }
 
   ngOnInit(): void {
