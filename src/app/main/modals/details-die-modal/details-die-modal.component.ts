@@ -382,7 +382,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
-  clarAll() {
+  clearAll() {
     this.orderBy = 0;
     this.orderType = 1;
     for(let i=0; i < this.arrFilters.length; i++) {

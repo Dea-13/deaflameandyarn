@@ -60,7 +60,7 @@
             <a ngbNavLink>{{ translateSnackBar.infoProfile }}</a>
             <ng-template ngbNavContent>
               <div class="row">
-                <div class="col-12 col-xl-9">
+                <div class="col-12 col-xl-5">
                   <img class="center-img" src="{{'data:image/png;base64,' + image.name}}">
                 </div>
                 <div class="col-12 col-xl-3">
@@ -121,6 +121,64 @@
                       </tbody>
                     </table>
                 </div>
+                <div class="col-12 col-xl-4">
+                  <!-- <table class="clasic-table">
+                    <tbody>
+                      <tr>
+                        <td><b>{{translateSnackBar.id}}</b></td>
+                        <td>{{dieRow.id}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.dieId}}</b></td>
+                        <td>{{dieRow.dieId}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.channels}}</b></td>
+                        <td>{{dieRow.channels}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.grM}}</b></td>
+                        <td>{{dieRow.grM}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.press}}</b></td>
+                        <td>{{dieRow.primaryResourceName}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.altResource}} 1</b></td>
+                        <td>{{dieRow.altResource1}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.altResource}} 2</b></td>
+                        <td>{{dieRow.altResource2}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.dimensions}}</b></td>
+                        <td>{{dieRow.dimensions}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.bolster1}}</b></td>
+                        <td>{{dieRow.bolsterTooling1}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.bolster2}}</b></td>
+                        <td>{{dieRow.bolsterTooling2}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.corrector}}</b></td>
+                        <td>{{dieRow.corrector}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.client}}</b></td>
+                        <td>{{dieRow.clientName}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.producer}}</b></td>
+                        <td>{{dieRow.producerName}}</td>
+                      </tr>
+                    </tbody>
+                  </table> -->
+              </div>
               </div>
             </ng-template>
           </li>
@@ -442,7 +500,7 @@
                                   <div class="row col-12" (click)="$event.stopPropagation();">
                                     <div class="col-xl-5 col-12">
                                       <div class="d-flex align-items-center">
-                                        <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                                        <button rippleEffect (click)="clearAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
                                       </div>
                                     </div>
                                     <div class="col-xl-7 col-12">
@@ -490,7 +548,7 @@
                                       <section *ngIf="f.filter.length > 0" class="example-section">
                                         <span class="example-list-section">
                                           <mat-checkbox class="example-margin"
-                                            [checked]="f.selectAll"
+                                            [(ngModel)]="f.selectAll" [checked]="f.selectAll"
                                             color="primary"
                                             (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
                                             {{ translateSnackBar.selected }}

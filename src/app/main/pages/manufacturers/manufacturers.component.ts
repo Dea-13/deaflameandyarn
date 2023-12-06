@@ -35,6 +35,8 @@ export class ManufacturersComponent implements OnInit {
   public orderBy: number = 0;
   public orderType: number = 1;
   public indColumn: any;
+  public count: number = 0;
+  public countTable: number = 0;
 
   constructor(
     private manufacturerService: ManufacturersService,
@@ -60,6 +62,7 @@ export class ManufacturersComponent implements OnInit {
   }
 
   getRequest() {
+    this.countTable = 0;
     this.blockUI.start('Loading...');
     this.manufacturerService.getManufacturers(
       this.offset,
@@ -69,21 +72,21 @@ export class ManufacturersComponent implements OnInit {
       this.arrFilters[2].model,
       this.orderType,
       this.orderBy
-    )
-      .subscribe((data) => {
+    ).subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
         this.blockUI.stop();
-      });
+    }, error =>{
+      this.blockUI.stop();
+    });
   }
 
   getFilters(ind, action) {
     console.log('getFilters', this.arrFilters);
-    let count = 0;
+    this.count = 0;
     for (let i = 0; i < this.urls.length; i++) {
       if(ind != this.urls[i].id) {
         let array = [];
-        count++;
         this.manufacturerService.getFilters(this.urls[i].name, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model).subscribe((data) => {
           if(action == 'init' && this.urls[i].id == i) {
             for(let l=0; l < data.length; l++) {
@@ -127,6 +130,7 @@ export class ManufacturersComponent implements OnInit {
               }
             }
           }
+          this.count++;
         }, error => {
           for(let j=0; j < this.arrFilters.length; j++) {
             // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
@@ -141,12 +145,12 @@ export class ManufacturersComponent implements OnInit {
               // this.arrFilters[j].model= '';
             }
           }
-          this.blockUI.stop();
+          this.count++;
         });
       }
     }
     setTimeout(() => {
-      if(this.urls.length == count) {
+      if(this.urls.length == this.count && this.countTable == 1) {
         this.arrFilters.sort((a,b)=>a.ind - b.ind)
         console.log('arrFilters', this.arrFilters);
         this.blockUI.stop();
@@ -168,7 +172,7 @@ export class ManufacturersComponent implements OnInit {
     this.indColumn = ind;
     this.orderBy = ind;
     orderType == true ? this.orderType = 1 : this.orderType = 0;
-    this.getRequest();
+    this.pageChanged(1);
   }
 
   modalManufacturer(row) {
@@ -177,7 +181,7 @@ export class ManufacturersComponent implements OnInit {
     modalRef.componentInstance.manufacturerItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest();
+        this.pageChanged(1);
         Swal.fire({
           position: 'bottom-end',
           icon: 'success',
@@ -192,7 +196,7 @@ export class ManufacturersComponent implements OnInit {
   deleteManufacturer(row) {
     this.blockUI.start('Loading...');
     this.manufacturerService.deleteManufacturers(row.id).subscribe(manufacturerService => {
-      this.getRequest();
+      this.pageChanged(1);
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -211,7 +215,7 @@ export class ManufacturersComponent implements OnInit {
           timer: 2000
         })
         this.blockUI.stop();
-        this.getRequest();
+        this.pageChanged(1);
       }
     );
   }
@@ -305,7 +309,7 @@ export class ManufacturersComponent implements OnInit {
     }
   }
 
-  clarAll() {
+  clearAll() {
     this.offset = 0;
     this.limit = 15;
     this.orderBy = 0;
@@ -313,7 +317,7 @@ export class ManufacturersComponent implements OnInit {
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
     }
-    this.getRequest();
+    this.pageChanged(1);
     this.getFilters(this.urls.length, 'init');
   }
 }

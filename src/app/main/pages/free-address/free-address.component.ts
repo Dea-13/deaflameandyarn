@@ -55,6 +55,8 @@ export class FreeAddressComponent implements OnInit {
   public arrFilters: any = [];
   public arrInUse: any = [];
   public refreshed: Date;
+  public count: number = 0;
+  public countTable: number = 0;;
 
   constructor(
     private warehouseService: WarehouseService,
@@ -91,21 +93,23 @@ export class FreeAddressComponent implements OnInit {
   }
 
   getRequest() {
+    this.countTable = 0;
     this.blockUI.start('Loading...');
     this.warehouseService.getInformationWarehouse(this.offset, this.limit, this.orderType, this.orderBy, this.arrFilters[0].model, this.arrFilters[1].model, this.status).subscribe((data) => {
       this.rows = data.list;
       this.totalResult = data.total;
+      this.blockUI.stop();
+    }, error =>{
       this.blockUI.stop();
     });
   }
 
   getFilters(ind, action) {
     console.log('getFilters', this.arrFilters);
-    let count = 0;
+    this.count = 0;
     for (let i = 0; i < this.urls.length; i++) {
       if(ind != this.urls[i].id) {
         let array = [];
-        count++;
         this.warehouseService.getFilters(this.urls[i].name).subscribe((data) => {
           if(action == 'init' && this.urls[i].id == i) {
             for(let l=0; l < data.length; l++) {
@@ -149,6 +153,7 @@ export class FreeAddressComponent implements OnInit {
               }
             }
           }
+          this.count++;
         }, error => {
           for(let j=0; j < this.arrFilters.length; j++) {
             // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
@@ -163,12 +168,12 @@ export class FreeAddressComponent implements OnInit {
               // this.arrFilters[j].model= '';
             }
           }
-          this.blockUI.stop();
+          this.count++;
         });
       }
     }
     setTimeout(() => {
-      if(this.urls.length == count) {
+      if(this.urls.length == this.count && this.countTable == 1) {
         this.arrFilters.sort((a,b)=>a.ind - b.ind)
         console.log('arrFilters', this.arrFilters);
         this.blockUI.stop();
@@ -304,16 +309,16 @@ export class FreeAddressComponent implements OnInit {
     this.indColumn = ind;
     this.orderBy = ind;
     orderType == true ? this.orderType = 1 : this.orderType = 0;
-    this.getRequest();
+    this.pageChanged(1);
   }
 
-  clarAll() {
+  clearAll() {
     this.offset = 0;
     this.limit = 15;
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
     }
-    this.getRequest();
+    this.pageChanged(1);
     this.getFilters(this.urls.length, 'init');
   }
 }

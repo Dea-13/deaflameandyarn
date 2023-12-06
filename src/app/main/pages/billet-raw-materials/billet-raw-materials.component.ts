@@ -43,6 +43,8 @@ public refreshed: Date;
 public orderBy: number = 0;
 public orderType: number = 1;
 public indColumn: any;
+public count: number = 0;
+public countTable: number = 0;
 
 public range = new FormGroup({
   endDate: new FormControl(null),
@@ -74,6 +76,7 @@ ngOnInit(): void {
 }
 
 getRequest() {
+  this.countTable = 0;
   this.blockUI.start('Loading...');
   this.billteService.getBilletMaterial(
     this.offset,
@@ -93,16 +96,17 @@ getRequest() {
     this.rows = data.list;
     this.totalResult = data.total;
     this.blockUI.stop();
+  }, error =>{
+    this.blockUI.stop();
   });
 }
 
 getFilters(ind, action) {
   console.log('getFilters', this.arrFilters);
-  let count = 0;
+  this.count = 0;
   for (let i = 0; i < this.urls.length; i++) {
     if(ind != this.urls[i].id) {
       let array = [];
-      count++;
       this.billteService.getFilters(
         this.urls[i].name,
         this.arrFilters[0].model,
@@ -157,6 +161,7 @@ getFilters(ind, action) {
             }
           }
         }
+        this.count++;
       }, error => {
         for(let j=0; j < this.arrFilters.length; j++) {
           // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
@@ -171,12 +176,12 @@ getFilters(ind, action) {
             // this.arrFilters[j].model= '';
           }
         }
-        this.blockUI.stop();
+        this.count++;
       });
     }
   }
   setTimeout(() => {
-    if(this.urls.length == count) {
+    if(this.urls.length == this.count && this.countTable == 1) {
       this.arrFilters.sort((a,b)=>a.ind - b.ind)
       console.log('arrFilters', this.arrFilters);
       this.blockUI.stop();
@@ -201,7 +206,7 @@ sortType(orderType, ind) {
   } else {
     this.orderType = 0;
   }
-  this.getRequest();
+  this.pageChanged(1);
 }
 
 
@@ -298,7 +303,7 @@ filterDate(){
   this.pageChanged(1);
 }
 
-clarAll() {
+clearAll() {
   this.offset = 0;
   this.limit = 15;
   this.orderBy = 0;
@@ -307,13 +312,13 @@ clarAll() {
   for(let i=0; i < this.arrFilters.length; i++) {
     this.arrFilters[i].model= '';
   }
-  this.getRequest();
+  this.pageChanged(1);
   this.getFilters(this.urls.length, 'init');
 }
 
 clearDate(){
   this.range.reset();
-  this.getRequest();
+  this.pageChanged(1);
   this.getFilters(this.urls.length, 'init');
 }
 
