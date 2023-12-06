@@ -15,8 +15,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ExtrusionModalComponent } from './extrusion-modal/extrusion-modal.component';
 
 @NgModule({
-  declarations: [ 
-    ExtrusionModalComponent
+  declarations: [     
   ],
   imports: [
     CommonModule,
