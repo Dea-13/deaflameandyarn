@@ -18,7 +18,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'stated',
-        title: 'Stated',
+        title: 'Ordered',
         translate: 'MENU.STATED',
         type: 'item',
         icon: 'check-circle',
@@ -34,7 +34,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'dispatched',
-        title: 'Dispatched',
+        title: 'Expedited',
         translate: 'MENU.DISPATCHED',
         type: 'item',
         icon: 'check-circle',
@@ -45,34 +45,9 @@ export const menu: CoreMenu[] = [
         title: 'In Use',
         translate: 'MENU.INUSE',
         type: 'item',
-        icon: 'check-circle',
+        icon: 'file-text',
         url: 'api/productivity'
       },
-      {
-        id: 'scrap',
-        title: 'Scrap',
-        translate: 'MENU.SCRAP',
-        type: 'item',
-        icon: 'check-circle',
-        url: 'api/scrap'
-      },
-      {
-        id: 'productivity-nitrification',
-        title: 'Productivity Nitrification',
-        translate: 'MENU.PRODUCTIVITYNITRIFICATION',
-        type: 'item',
-        icon: 'circle',
-        url: 'api/productivity-nitrification'
-      },
-    ]
-  },
-  {
-    id: 'inuse',
-    title: 'In use',
-    translate: 'MENU.INUSE',
-    type: 'collapsible',
-    icon: 'file',
-    children: [
       {
         id: 'nomotion',
         title: 'No Motion',
@@ -89,14 +64,22 @@ export const menu: CoreMenu[] = [
         icon: 'file-text',
         url: 'api/marked'
       },
-      // {
-      //   id: 'test',
-      //   title: 'Test----',
-      //   translate: 'MENU.TEST',
-      //   type: 'item',
-      //   icon: 'file-text',
-      //   url: 'api/test'
-      // },
+      {
+        id: 'scrap',
+        title: 'Scrapped',
+        translate: 'MENU.SCRAP',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/scrap'
+      },
+      {
+        id: 'productivity-nitrification',
+        title: 'Productivity Nitrification',
+        translate: 'MENU.PRODUCTIVITYNITRIFICATION',
+        type: 'item',
+        icon: 'circle',
+        url: 'api/productivity-nitrification'
+      },
     ]
   },
   {
