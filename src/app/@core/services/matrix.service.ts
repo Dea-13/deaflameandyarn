@@ -300,6 +300,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/dieHistory/${id}`);
   }
 
+  getDieInfo(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/${id}`);
+  }
+
   getMatricComplect() {
     return this._http.get<any>(`${environment.apiUrl}DiesDefDimByRes`);
   }

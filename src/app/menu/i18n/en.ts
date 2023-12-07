@@ -501,6 +501,9 @@ export const locale = {
       msgEmpty: 'No data for this die.',
       checked: 'Checked',
       unChecked: 'Uncheked',
+      dateExpedition: 'Date Expedition',
+      created: 'Created Date',
+      lastModifiedBy: 'Modified By',
     }
   }
 }

@@ -63,121 +63,93 @@
                 <div class="col-12 col-xl-5">
                   <img class="center-img" src="{{'data:image/png;base64,' + image.name}}">
                 </div>
-                <div class="col-12 col-xl-3">
+                <div class="col-12 col-xl-4">
                     <table class="clasic-table">
                       <tbody>
                         <tr>
                           <td><b>{{translateSnackBar.id}}</b></td>
-                          <td>{{dieRow.id}}</td>
+                          <td>{{dieInfo.id}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.dieId}}</b></td>
-                          <td>{{dieRow.dieId}}</td>
+                          <td>{{dieInfo.dieId}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.channels}}</b></td>
-                          <td>{{dieRow.channels}}</td>
+                          <td>{{dieInfo.channels}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.grM}}</b></td>
-                          <td>{{dieRow.grM}}</td>
+                          <td>{{dieInfo.grM}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.press}}</b></td>
-                          <td>{{dieRow.primaryResourceName}}</td>
+                          <td>{{dieInfo.primaryResourceName}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.altResource}} 1</b></td>
-                          <td>{{dieRow.altResource1}}</td>
+                          <td>{{dieInfo.altResource1}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.altResource}} 2</b></td>
-                          <td>{{dieRow.altResource2}}</td>
+                          <td>{{dieInfo.altResource2}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.dimensions}}</b></td>
-                          <td>{{dieRow.dimensions}}</td>
+                          <td>{{dieInfo.dimensions}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.bolster1}}</b></td>
-                          <td>{{dieRow.bolsterTooling1}}</td>
+                          <td>{{dieInfo.bolsterTooling1}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.bolster2}}</b></td>
-                          <td>{{dieRow.bolsterTooling2}}</td>
+                          <td>{{dieInfo.bolsterTooling2}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.corrector}}</b></td>
-                          <td>{{dieRow.corrector}}</td>
+                          <td>{{dieInfo.corrector}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.client}}</b></td>
-                          <td>{{dieRow.clientName}}</td>
+                          <td>{{dieInfo.clientName}}</td>
                         </tr>
                         <tr>
                           <td><b>{{translateSnackBar.producer}}</b></td>
-                          <td>{{dieRow.producerName}}</td>
+                          <td>{{dieInfo.producerName}}</td>
                         </tr>
                       </tbody>
                     </table>
                 </div>
-                <div class="col-12 col-xl-4">
-                  <!-- <table class="clasic-table">
+                <div class="col-12 col-xl-3">
+                  <table class="clasic-table">
                     <tbody>
                       <tr>
-                        <td><b>{{translateSnackBar.id}}</b></td>
-                        <td>{{dieRow.id}}</td>
+                        <td><b>{{translateSnackBar.created}}</b></td>
+                        <td>{{dieInfo.created| date:'dd/MM/yyyy H:mm:ss'}}</td>
                       </tr>
                       <tr>
-                        <td><b>{{translateSnackBar.dieId}}</b></td>
-                        <td>{{dieRow.dieId}}</td>
+                        <td><b>{{translateSnackBar.confirmationDate}}</b></td>
+                        <td>{{dieInfo.dateConfirmation| date:'dd/MM/yyyy H:mm:ss'}}</td>
                       </tr>
                       <tr>
-                        <td><b>{{translateSnackBar.channels}}</b></td>
-                        <td>{{dieRow.channels}}</td>
+                        <td><b>{{translateSnackBar.inUseFrom}}</b></td>
+                        <td>{{dieInfo.inUseFrom| date:'dd/MM/yyyy H:mm:ss'}}</td>
                       </tr>
                       <tr>
-                        <td><b>{{translateSnackBar.grM}}</b></td>
-                        <td>{{dieRow.grM}}</td>
+                        <td><b>{{translateSnackBar.orderDate}}</b></td>
+                        <td>{{dieInfo.dateOrder| date:'dd/MM/yyyy H:mm:ss'}}</td>
                       </tr>
                       <tr>
-                        <td><b>{{translateSnackBar.press}}</b></td>
-                        <td>{{dieRow.primaryResourceName}}</td>
+                        <td><b>{{translateSnackBar.dateExpedition}}</b></td>
+                        <td>{{dieInfo.dateExpedition| date:'dd/MM/yyyy H:mm:ss'}}</td>
                       </tr>
                       <tr>
-                        <td><b>{{translateSnackBar.altResource}} 1</b></td>
-                        <td>{{dieRow.altResource1}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.altResource}} 2</b></td>
-                        <td>{{dieRow.altResource2}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.dimensions}}</b></td>
-                        <td>{{dieRow.dimensions}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.bolster1}}</b></td>
-                        <td>{{dieRow.bolsterTooling1}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.bolster2}}</b></td>
-                        <td>{{dieRow.bolsterTooling2}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.corrector}}</b></td>
-                        <td>{{dieRow.corrector}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.client}}</b></td>
-                        <td>{{dieRow.clientName}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>{{translateSnackBar.producer}}</b></td>
-                        <td>{{dieRow.producerName}}</td>
+                        <td><b>{{translateSnackBar.lastModifiedBy}}</b></td>
+                        <td>{{dieInfo.lastModifiedBy}}</td>
                       </tr>
                     </tbody>
-                  </table> -->
+                  </table>
               </div>
               </div>
             </ng-template>

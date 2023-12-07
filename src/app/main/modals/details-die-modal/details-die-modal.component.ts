@@ -67,6 +67,7 @@ export class DetailsDieModalComponent implements OnInit {
   public orderType: number = 1;
   public indColumn: any;
   userName: any;
+  dieInfo: Array<any> = [];
 
   constructor(
     private toastrService: ToastrService,
@@ -98,6 +99,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.getMovements();
     this.getHeaderDetails();
     this.getFilters(this.urls.length, 'init');
+    this.getDieInfo();
   }
 
   fullScreen(){
@@ -138,6 +140,15 @@ export class DetailsDieModalComponent implements OnInit {
     ).subscribe(data => {
       console.log("getMovements", data);
       this.movements = data;
+      this.blockUI.stop();
+    });
+  }
+
+  getDieInfo() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getDieInfo(this.dieRow.id).subscribe(data => {
+      console.log("getDieInfo", data);
+      this.dieInfo = data;
       this.blockUI.stop();
     });
   }

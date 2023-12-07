@@ -500,6 +500,9 @@ export const locale = {
       msgEmpty: 'Няма данни за тази матрица.',
       checked: 'Селектирани',
       unChecked: 'Неселектирани',
+      dateExpedition: 'Дата на експедиция',
+      created: 'Дата на създаване',
+      lastModifiedBy: 'Потребител',
     }
   }
 }
