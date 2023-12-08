@@ -332,7 +332,7 @@ export const locale = {
       resourceIn: 'Входящ ресурс',
       resourceInTT: 'ВР',
       modalBarcodeMatrix: 'Модал Баркод Матрица',
-      modaldieetails: 'Детайли матрица',
+      modaldiedetails: 'Детайли матрица',
       infoProfile: 'Информация за профил',
       id: 'ID',
       altResource: 'Алтернативен ресурс',
@@ -503,6 +503,8 @@ export const locale = {
       dateExpedition: 'Дата на експедиция',
       created: 'Дата на създаване',
       lastModifiedBy: 'Потребител',
+      date: 'Дата',
+      dies: 'Матрица',
     }
   }
 }

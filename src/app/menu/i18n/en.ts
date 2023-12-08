@@ -332,7 +332,7 @@ export const locale = {
       resourceIn: 'Resource In',
       resourceInTT: 'RI',
       modalBarcodeMatrix: 'Modal Barcode Die',
-      modaldieetails: 'Die Details',
+      modaldiedetails: 'Die Details',
       infoProfile: 'Information profile',
       id: 'ID',
       altResource: 'Alternative resource',
@@ -504,6 +504,8 @@ export const locale = {
       dateExpedition: 'Date Expedition',
       created: 'Created Date',
       lastModifiedBy: 'Modified By',
+      date: 'Date',
+      dies: 'Die',
     }
   }
 }

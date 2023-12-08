@@ -267,7 +267,7 @@ export const locale = {
       resourceName: '',
       resourceIn: '',
       modalBarcodeMatrix: '',
-      modaldieetails: '',
+      modaldiedetails: '',
       infoProfile: '',
       id: '',
       altResource: '',

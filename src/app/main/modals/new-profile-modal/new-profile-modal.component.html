@@ -520,14 +520,13 @@
           <div class="section-right col-12 col-xl-5">
             <table class="clasic-table">
               <thead>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>{{ translateSnackBar.dies }}</th>
+                <th>{{ translateSnackBar.resource }}</th>
+                <th>{{ translateSnackBar.altResource }}</th>
+                <th>{{ translateSnackBar.dimensions }}</th>
+                <th>{{ translateSnackBar.alloy }}</th>
+                <th>{{ translateSnackBar.producer }}</th>
+                <th>{{ translateSnackBar.date }}</th>
               </thead>
               <tbody>
                 <tr *ngFor="let row of rowsDies">
@@ -535,10 +534,9 @@
                   <td>{{row.currentResource}}</td>
                   <td>{{row.primaryResourceName}}</td>
                   <td>{{row.dimensions}}</td>
-                  <td>{{row.producerName}}</td>
-                  <td></td>
-                  <td>{{row.dateOrder | date:'MMM d, y, h:mm:ss a'}}</td>
                   <td>{{row.alloy}}</td>
+                  <td>{{row.producerName}}</td>
+                  <td>{{row.dateOrder | date:'MMM d, y, h:mm:ss a'}}</td>
                 </tr>
               </tbody>
             </table>
