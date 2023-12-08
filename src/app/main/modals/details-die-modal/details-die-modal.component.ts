@@ -67,7 +67,7 @@ export class DetailsDieModalComponent implements OnInit {
   public orderType: number = 1;
   public indColumn: any;
   userName: any;
-  dieInfo: Array<any> = [];
+  dieInfo: any;
 
   constructor(
     private toastrService: ToastrService,
