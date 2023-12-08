@@ -37,7 +37,7 @@
         </div>
         <div class="full-width">
           <div class="d-flex boxes">
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.barcodeMatrix }}</label>
               <input type="text" [(ngModel)]="barCode" maxlength="7" (input)="getBarCodesTable()" class="form-control dt-uname"
               [ngClass]="{ 'error-input': submitted && barCode.length === 0 }" />
@@ -45,32 +45,28 @@
                 {{ translateSnackBar.view }}
               </button>
             </div>
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.currentResource }}</label>
               <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" class="" [(ngModel)]="currentResource" [clearable]="false"
               [ngClass]="{ 'error': submitted && !currentResource }">
                 <ng-option *ngFor="let r of resource" [value]="r.resourceId">{{r.resourceName}}</ng-option>
               </ng-select>
             </div>
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.productionKg }}</label>
               <input class="form-control input" type="number" [(ngModel)]="productionKg">
             </div>
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.notes }}</label>
               <input class="form-control input" type="text" [(ngModel)]="notes">
-            </div>
-            <div class="col-sm-2 align-items-center fixed-height">
-              <label class="d-flex align-items-center">{{ translateSnackBar.employee }}</label>
-              <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" [(ngModel)]="emplId" class="" [clearable]="false"
-              [ngClass]="{ 'error': submitted && !emplId }">
-                <ng-option *ngFor="let e of employee" [value]="e.id">{{e.name}}</ng-option>
-              </ng-select>
             </div>
             <div role="button" class="col-sm-2 align-items-center fixed-height" (click)="sendConfirmation()">
               <label class="d-flex align-items-center">{{ translateSnackBar.confirmation }}</label>
               <span [data-feather]="'check-circle'" [class]="'check-btn'"></span>
             </div>
+          </div>
+          <div class="row m-0">
+            <div *ngFor="let r of resource" class="box-resource" (click)="setCurrentResource(r)" [ngClass]="{ 'selected-box': r.resourceId === currentResource }">{{r.resourceName}}</div>
           </div>
         </div>
       </div>

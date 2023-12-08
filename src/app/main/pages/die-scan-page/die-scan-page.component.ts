@@ -278,6 +278,11 @@ export class DieScanPageComponent implements OnInit {
     });
   }
 
+  setCurrentResource(row) {
+    console.log('setCurrentResource', row);
+    this.currentResource = row.resourceId;
+  }
+
   getEmployee() {
     this.dieService.getEmployee().subscribe(data => {
       console.log("getEmployee", data);
@@ -337,7 +342,7 @@ export class DieScanPageComponent implements OnInit {
 
   sendConfirmation(){
     this.submitted = true;
-    if(this.barCode && this.resourceIn && this.currentResource && this.emplId){
+    if(this.barCode && this.resourceIn && this.currentResource){
       console.log("sendConfirmation: ", this.barCode, this.resourceIn, this.currentResource, this.productionKg, this.notes, this.emplId);
       let _currentUser = JSON.parse(localStorage.getItem('_currentUser'));
       let obj = {
@@ -348,7 +353,7 @@ export class DieScanPageComponent implements OnInit {
         storagePlaceIn: null,
         kgProduced: this.directionReporting == 1 ? this.productionKg : null,
         notes: this.notes,
-        emplId: this.emplId,
+        emplId: null, // FOR CHANGE
         computerName: _currentUser['userName']
       }
 
@@ -368,7 +373,6 @@ export class DieScanPageComponent implements OnInit {
         this.resourceIn = undefined;
         this.currentResource = undefined;
         this.notes = undefined;
-        this.emplId = undefined;
         this.productionKg = undefined;
         this.rowsMovements = [];
       });
