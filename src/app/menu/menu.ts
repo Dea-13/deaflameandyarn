@@ -45,7 +45,7 @@ export const menu: CoreMenu[] = [
         title: 'In Use',
         translate: 'MENU.INUSE',
         type: 'item',
-        icon: 'file-text',
+        icon: 'check-circle',
         url: 'api/productivity'
       },
       {
@@ -53,7 +53,7 @@ export const menu: CoreMenu[] = [
         title: 'No Motion',
         translate: 'MENU.NOMOTION',
         type: 'item',
-        icon: 'file-text',
+        icon: 'check-circle',
         url: 'api/no-motion'
       },
       {
@@ -61,7 +61,7 @@ export const menu: CoreMenu[] = [
         title: 'Marked',
         translate: 'MENU.MARKED',
         type: 'item',
-        icon: 'file-text',
+        icon: 'check-circle',
         url: 'api/marked'
       },
       {

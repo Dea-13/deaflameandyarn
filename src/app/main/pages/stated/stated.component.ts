@@ -362,9 +362,9 @@ export class StatedComponent implements OnInit {
       this.rows = data.list;
       this.countTable++;
       this.totalResult = data.total;
-      if(this.urls.length == this.count) {
+      // if(this.urls.length == this.count) {
         this.blockUI.stop();
-      }
+      // }
     }, error =>{
       this.blockUI.stop();
     });
