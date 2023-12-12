@@ -91,9 +91,6 @@ export class DetailsDieModalComponent implements OnInit {
   ngOnInit(): void {
     this.dieRow = this.dieItem.data;
     console.log("this.dieRow", this.dieRow);
-    this.translate.get('translate').subscribe((snackBar: string) => {
-      this.translateSnackBar = snackBar;
-    });
     this.getExtrusion();
     this.getImage();
     this.getMovements();
@@ -177,10 +174,20 @@ export class DetailsDieModalComponent implements OnInit {
 
   getExtrusionData(row){
     console.log("getExtrusionData", row);
-    this.matrixService.getExtrusionData(row.batchId).subscribe(data => {
+    this.matrixService.getExtrusionData(row.batchId, row.resourceId).subscribe(data => {
       console.log("getExtrusionData", data);
-      const modalRef = this.modalService.open(ExtrusionModalComponent, {});
-      modalRef.componentInstance.extrItem = { 'data': data };
+      if(data != null) {
+        const modalRef = this.modalService.open(ExtrusionModalComponent, {});
+        modalRef.componentInstance.extrItem = { 'data': data };
+      } else {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.msgEmpty,
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
       this.blockUI.stop();
     }, error=>{
       Swal.fire({

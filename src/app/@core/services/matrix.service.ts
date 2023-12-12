@@ -292,8 +292,8 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}DieMovement/filter/${url}?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=${userName}`);
   }
 
-  getExtrusionData(id:number) {
-    return this._http.get<any>(`${environment.apiUrl}ProductionData/GetExtrusionData/${id}`);
+  getExtrusionData(id:number, resourceId:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProductionData/GetExtrusionData/${id}/${resourceId}`);
   }
 
   getHeaderDetails(id:number) {

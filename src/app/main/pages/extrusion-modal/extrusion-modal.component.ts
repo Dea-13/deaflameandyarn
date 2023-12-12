@@ -13,7 +13,7 @@ import { MatrixService } from '../../../@core/services/matrix.service';
 export class ExtrusionModalComponent implements OnInit {
   @Input() public extrItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
-  displayedColumnsEscData: string[] = ['press', 'id', 'batch', 'billetLength', 'blletButtLength', 'pullerSpeed', 'billetTemperature', 'exitTemperature', 'kggross', 'pressure', 'containerTemp', 'extrEndTime'];
+  displayedColumnsEscData: string[] = ['press', 'batch', 'billetLength', 'blletButtLength', 'pullerSpeed', 'billetTemperature', 'exitTemperature', 'kggross', 'pressure', 'containerTemp', 'extrEndTime'];
 
   public translateSnackBar: any;
   public fullScr: boolean = false;
