@@ -56,18 +56,18 @@ td.mat-footer-cell {
 
 @media (min-height: 929px) {
   .example-container{
-    max-height: 840px;
+    max-height: 700px;
   }
 }
 
-@media (max-height: 928px) and (min-height: 710px) {
+@media (max-height: 928px) and (min-height: 774px) {
   .example-container{
-    max-height: 740px;
+    max-height: 600px;
   }
 }
 
-@media (max-height: 709px) {
+@media (max-height: 773px) {
   .example-container{
-    max-height: 540px;
+    max-height: 410px;
   }
 }

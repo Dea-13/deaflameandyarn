@@ -332,7 +332,7 @@ export const locale = {
       resourceIn: 'Входящ ресурс',
       resourceInTT: 'ВР',
       modalBarcodeMatrix: 'Модал Баркод Матрица',
-      modaldieetails: 'Детайли матрица',
+      modaldiedetails: 'Детайли матрица',
       infoProfile: 'Информация за профил',
       id: 'ID',
       altResource: 'Алтернативен ресурс',
@@ -416,7 +416,7 @@ export const locale = {
       salesOrderItemTable: 'АПП',
       customerName: 'Име на клиент',
       customerNameTT: 'ИК',
-      computerName: 'Име на производител',
+      computerName: 'Потребител',
       computerNameTable: 'ИП',
       remainingQty: 'Оставащо количество',
       remainingQtyTable: 'ОК',
@@ -498,6 +498,14 @@ export const locale = {
       noResult: 'Не са открити резултати',
       lastRefreshed: 'Последно опресняване',
       msgEmpty: 'Няма данни за тази матрица.',
+      checked: 'Селектирани',
+      unChecked: 'Неселектирани',
+      dateExpedition: 'Дата на експедиция',
+      created: 'Дата на създаване',
+      lastModifiedBy: 'Потребител',
+      date: 'Дата',
+      dies: 'Матрица',
+      kgProduced: 'Произведени кг',
     }
   }
 }

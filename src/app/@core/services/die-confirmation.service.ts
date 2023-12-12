@@ -19,8 +19,8 @@ export class DieConfirmationService {
     return this._http.get<any>(`${environment.apiUrl}${url}`);
   }
 
-  getPositionDie(offset: number, limit:number, resourceName:string, storagePlace: string, die: string) {
-    return this._http.get<any>(`${environment.apiUrl}Resource/die/position?offset=${offset}&limit=${limit}&resourceName=${resourceName}&storagePlace=${storagePlace}&die=${die}`);
+  getPositionDie(offset: number, limit:number, orderType: number, orderBy:number, resourceName:string, storagePlace: string, die: string) {
+    return this._http.get<any>(`${environment.apiUrl}Resource/die/position?offset=${offset}&limit=${limit}&orderType=${orderType}&orderBy=${orderBy}&resourceName=${resourceName}&storagePlace=${storagePlace}&die=${die}`);
   }
 
   getBarCode(offset: number, limit:number, dieId:string, primaryResourceName: string, channels: string) {

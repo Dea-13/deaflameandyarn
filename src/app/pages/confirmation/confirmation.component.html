@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
                           <label>Брак РЦ</label>
-                          <ng-select [virtualScroll]="true" [(ngModel)]="workCenter" [disabled]="reasonInputs">
+                          <ng-select [virtualScroll]="true" appendTo="body" [(ngModel)]="workCenter" [disabled]="reasonInputs">
                             <ng-option *ngFor="let item of brakArr" [value]="item.id">{{item.name}}</ng-option>
                           </ng-select>
                         </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 bottom-10">
                           <label>Причина</label>
-                          <ng-select [virtualScroll]="true" [(ngModel)]="reason" [disabled]="reasonInputs">
+                          <ng-select [virtualScroll]="true" appendTo="body" [(ngModel)]="reason" [disabled]="reasonInputs">
                             <ng-option *ngFor="let item of reasonsArr" [value]="item.id">{{item.name}}</ng-option>
                           </ng-select>
                         </div>
@@ -95,7 +95,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flex" *ngIf="row.inputType === true">
                       <label class="form-label input-rows-label">{{row.name}} <span *ngIf="row.mandatory" class="redTolerance">*</span></label>
                       <input *ngIf="row.inputCodeType === false" class="form-control input" [(ngModel)]="row.value" (input)="checkInputRows($event.target.value, row)" type="text" [disabled]="row.inputType === false"><br>
-                      <ng-select [virtualScroll]="true" *ngIf="row.inputCodeType === true" class="width-select" [(ngModel)]="row.value">
+                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="row.inputCodeType === true" class="width-select" [(ngModel)]="row.value">
                         <ng-option *ngFor="let item of row.selectList" [value]="item.name">{{item.name}}</ng-option>
                       </ng-select>
                     </div>
@@ -138,7 +138,7 @@
                             <!-- </div> -->
                             <div class="flex width-50">
                                 <label class="width-label">Ръчно избиране на палет</label>
-                                <ng-select [virtualScroll]="true" class="width-select" [(ngModel)]="cassetPut" (ngModelChange)="getStock(cassetPut)">
+                                <ng-select [virtualScroll]="true" appendTo="body" class="width-select" [(ngModel)]="cassetPut" (ngModelChange)="getStock(cassetPut)">
                                     <ng-option *ngFor="let item of palletsArr" [value]="item.name">{{item.name}}</ng-option>
                                 </ng-select>
                             </div>

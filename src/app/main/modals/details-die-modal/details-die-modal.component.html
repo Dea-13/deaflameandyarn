@@ -1,17 +1,17 @@
 <div *blockUI="'block-die-modal'" class="slideout-content">
   <!-- Modal to add new user starts-->
   <div id="modals-slide-in">
-    <div class="modal-dialog-screen material-dialog-center modal-content pt-0" [ngClass]="{ 'modal-full-screen': fullScr == true, 'modal-normal-screen': fullScr == false }">
+    <div class="modal-dialog-screen material-dialog-center modal-content pt-0" [ngClass]="{ 'modal-full-screen': fullScr === true, 'modal-normal-screen': fullScr === false }">
       <div class="modal-body flex-grow-1">
         <div class="row">
           <div class="col-md-12 col-12">
             <div class="alert alert-primary flex" role="alert">
               <div class="alert-body">
-                {{ translateSnackBar.modaldieetails }}
+                {{ translateSnackBar.modaldiedetails }}
               </div>
               <button type="button" class="modal-icon-header" data-dismiss="modal" aria-label="Close" (click)="fullScreen()">
-                <div [ngStyle]="{'display': fullScr == true ? 'flex' : 'none' }"><span [data-feather]="'minimize-2'" [class]="'ficon'"></span></div>
-                <div [ngStyle]="{'display': fullScr == true ? 'none' : 'flex' }"><span [data-feather]="'maximize-2'" [class]="'ficon'"></span></div>
+                <div [ngStyle]="{'display': fullScr === true ? 'flex' : 'none' }"><span [data-feather]="'minimize-2'" [class]="'ficon'"></span></div>
+                <div [ngStyle]="{'display': fullScr === true ? 'none' : 'flex' }"><span [data-feather]="'maximize-2'" [class]="'ficon'"></span></div>
               </button>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
                 ×
@@ -46,561 +46,663 @@
             <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
           </div>
           <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 margin-10">
-            <button rippleEffect class="col-sm-12 btn btn-primary edit-btn margin-10" (click)="editForm()">
+            <button rippleEffect class="col-sm-12 btn btn-warning edit-btn margin-10" (click)="editForm()">
               <i data-feather="edit"  class="mr-25" title="Modify"></i> {{ translateSnackBar.edit }}
             </button>
-            <button rippleEffect class="col-sm-12 btn btn-primary edit-btn margin-10" (click)="generateTest()">
+            <button rippleEffect class="col-sm-12 btn btn-success edit-btn margin-10" (click)="generateTest()">
               <i data-feather="edit"  class="mr-25" title="Modify"></i> {{ translateSnackBar.generateTest }}
             </button>
           </div>
         </div>
 
-        <div class="col-sm-12 flex margin-10">
-          <div class="section-left border-purple col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
-            <h3 class="color-text">{{ translateSnackBar.infoProfile }}</h3>
-            <img class="center-img" src="{{'data:image/png;base64,' + image.name}}">
-          </div>
-          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
-              <table class="clasic-table">
-                <thead>
-                  <th></th>
-                  <th></th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{translateSnackBar.id}}</td>
-                    <td>{{dieRow.id}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.dieId}}</td>
-                    <td>{{dieRow.dieId}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.channels}}</td>
-                    <td>{{dieRow.channels}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.grM}}</td>
-                    <td>{{dieRow.grM}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.press}}</td>
-                    <td>{{dieRow.primaryResourceName}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.altResource}} 1</td>
-                    <td>{{dieRow.altResource1}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.altResource}} 2</td>
-                    <td>{{dieRow.altResource2}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.dimensions}}</td>
-                    <td>{{dieRow.dimensions}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.bolster1}}</td>
-                    <td>{{dieRow.bolsterTooling1}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.bolster2}}</td>
-                    <td>{{dieRow.bolsterTooling2}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.corrector}}</td>
-                    <td>{{dieRow.corrector}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.client}}</td>
-                    <td>{{dieRow.clientName}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{translateSnackBar.producer}}</td>
-                    <td>{{dieRow.producerName}}</td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-        </div>
-
-        <div class="col-sm-12 flex">
-          <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 m-top-2">
-            <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-fill nav-pills">
-
-              <ng-container [ngbNavItem]="1">
-                <a ngbNavLink>{{ translateSnackBar.production }}</a>
-                <ng-template ngbNavContent>
-                  <table mat-table [dataSource]="extrusion" class="example-table fixed-width">
-                    <!-- Position Column -->
-
-                    <ng-container matColumnDef="pullerSpeed">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
-                        <span class="th-header">{{ translateSnackBar.pullerSpeedTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.pullerSpeed}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="billetTemperature">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetTemperature">
-                        <span class="th-header">{{ translateSnackBar.billetTemperatureTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.billetTemperature}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="exitTemperature">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.exitTemperature">
-                        <span class="th-header">{{ translateSnackBar.exitTemperatureTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.exitTemperature}}
-                      </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="dieStatus">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.dieStatus">
-                        <span class="th-header">{{ translateSnackBar.dieStatusTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.dieStatus}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="lengthFinalPiece">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.lengthFinalPiece">
-                        <span class="th-header">{{ translateSnackBar.lengthFinalPieceTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.lengthFinalPiece}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="kgnet">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.kgnet">
-                        <span class="th-header">{{ translateSnackBar.kgnetTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.kgnet}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="kggross">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.kggross">
-                        <span class="th-header">{{ translateSnackBar.kggrossTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.kggross}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="modifiedOn">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.modifiedOn">
-                        <span class="th-header">{{ translateSnackBar.modifiedOnTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.modifiedOn | date:'dd/MM/yyyy H:mm:ss'}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="batchId">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.batchId">
-                        <span class="th-header">{{ translateSnackBar.batchIdTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.batchId}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="firstBilletCounter">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.firstBilletCounter">
-                        <span class="th-header">{{ translateSnackBar.firstBilletCounterTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.firstBilletCounter}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="lastBilletcounter">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.lastBilletcounter">
-                        <span class="th-header">{{ translateSnackBar.lastBilletcounterTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.lastBilletcounter}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="billetMaterial">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetMaterial">
-                        <span class="th-header">{{ translateSnackBar.billetMaterialTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.billetMaterial}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="productionOrder">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.productionOrder">
-                        <span class="th-header">{{ translateSnackBar.productionOrderTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.productionOrder}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="billetPcs">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetPcs">
-                        <span class="th-header">{{ translateSnackBar.billetPcsTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.billetPcs}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="extrusionLength">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.extrusionLength">
-                        <span class="th-header">{{ translateSnackBar.extrusionLengthTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.extrusionLength}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="piecesExtrusion">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.piecesExtrusion">
-                        <span class="th-header">{{ translateSnackBar.piecesExtrusionTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.piecesExtrusion}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="die">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.matrix">
-                        <span class="th-header">{{ translateSnackBar.matrixTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.die}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="prodOrderQty">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.prodOrderQty">
-                        <span class="th-header">{{ translateSnackBar.prodOrderQtyTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.prodOrderQty}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="remarks">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.remarks">
-                        <span class="th-header">{{ translateSnackBar.remarksTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.remarks}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="remarksQc">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.remarksQc">
-                        <span class="th-header">{{ translateSnackBar.remarksQcTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.remarksQc}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="startTime">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.startTime">
-                        <span class="th-header">{{ translateSnackBar.startTimeTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.startTime | date:'dd/MM/yyyy H:mm:ss'}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="postingDate">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.postingDate">
-                        <span class="th-header">{{ translateSnackBar.postingDateTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.postingDate | date:'dd/MM/yyyy H:mm:ss'}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="lengthSeconds">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.lengthSeconds">
-                        <span class="th-header">{{ translateSnackBar.lengthSecondsTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.lengthSeconds}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="alloy">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.alloy">
-                        <span class="th-header">{{ translateSnackBar.alloyTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.alloy}}</td>
-                    </ng-container>
-
-                    <!-- <ng-container matColumnDef="lengthFinalPiece">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
-                        <span class="th-header">{{ translateSnackBar.lengthFinalPiece }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.lengthFinalPiece}}</td>
-                    </ng-container> -->
-
-                    <ng-container matColumnDef="numberOfEmployees">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.numberOfEmployees">
-                        <span class="th-header">{{ translateSnackBar.numberOfEmployeesTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.numberOfEmployees}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="workstation">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.workstation">
-                        <span class="th-header">{{ translateSnackBar.workstationTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.workstation}}</td>
-                    </ng-container>
-
-                    <!-- <ng-container matColumnDef="remarks">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
-                        <span class="th-header">{{ translateSnackBar.remarks }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.remarks}}</td>
-                    </ng-container> -->
-
-                    <ng-container matColumnDef="resource">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.resource">
-                        <span class="th-header">{{ translateSnackBar.resourceTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.resource}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="orderAlloy">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.orderAlloy">
-                        <span class="th-header">{{ translateSnackBar.orderAlloyTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.orderAlloy}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="matrix">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.matrix">
-                        <span class="th-header">{{ translateSnackBar.matrixTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.matrix}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="profile">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.profile">
-                        <span class="th-header">{{ translateSnackBar.profileTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.profile}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="length">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.length">
-                        <span class="th-header">{{ translateSnackBar.lengthTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.length}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="temper">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.temper">
-                        <span class="th-header">{{ translateSnackBar.temperTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.temper}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="salesOrder">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.salesOrder">
-                        <span class="th-header">{{ translateSnackBar.salesOrderTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.salesOrder}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="salesOrderItem">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.salesOrderItem">
-                        <span class="th-header">{{ translateSnackBar.salesOrderItemTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.salesOrderItem}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="customerName">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.customerName">
-                        <span class="th-header">{{ translateSnackBar.customerNameTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.customerName}}</td>
-                    </ng-container>
-
-                    <!-- <ng-container matColumnDef="prodOrderQty">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
-                        <span class="th-header">{{ translateSnackBar.prodOrderQty }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.prodOrderQty}}</td>
-                    </ng-container> -->
-
-                    <ng-container matColumnDef="computerName">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.computerName">
-                        <span class="th-header">{{ translateSnackBar.computerNameTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.computerName}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="remainingQty">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.remainingQty">
-                        <span class="th-header">{{ translateSnackBar.remainingQtyTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.remainingQty}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="color">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.color">
-                        <span class="th-header">{{ translateSnackBar.colorTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.color}}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsProduction; sticky: true"></tr>
-                    <tr mat-row (click)="getExtrusionData(row)" *matRowDef="let row; columns: displayedColumnsProduction;"></tr>
+        <ul ngbNav #navMain="ngbNav" [(activeId)]="activeId" class="nav nav-fill nav-pills">
+          <li [ngbNavItem]="6">
+            <a ngbNavLink>{{ translateSnackBar.infoProfile }}</a>
+            <ng-template ngbNavContent>
+              <div class="row">
+                <div class="col-12 col-xl-5">
+                  <img class="center-img" src="{{'data:image/png;base64,' + image.name}}">
+                </div>
+                <div class="col-12 col-xl-4">
+                    <table class="clasic-table">
+                      <tbody>
+                        <tr>
+                          <td><b>{{translateSnackBar.id}}</b></td>
+                          <td>{{dieInfo.id}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.dieId}}</b></td>
+                          <td>{{dieInfo.dieId}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.channels}}</b></td>
+                          <td>{{dieInfo.channels}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.grM}}</b></td>
+                          <td>{{dieInfo.grM}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.press}}</b></td>
+                          <td>{{dieInfo.primaryResourceName}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.altResource}} 1</b></td>
+                          <td>{{dieInfo.altResource1}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.altResource}} 2</b></td>
+                          <td>{{dieInfo.altResource2}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.dimensions}}</b></td>
+                          <td>{{dieInfo.dimensions}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.bolster1}}</b></td>
+                          <td>{{dieInfo.bolsterTooling1}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.bolster2}}</b></td>
+                          <td>{{dieInfo.bolsterTooling2}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.corrector}}</b></td>
+                          <td>{{dieInfo.corrector}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.client}}</b></td>
+                          <td>{{dieInfo.clientName}}</td>
+                        </tr>
+                        <tr>
+                          <td><b>{{translateSnackBar.producer}}</b></td>
+                          <td>{{dieInfo.producerName}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="col-12 col-xl-3">
+                  <table class="clasic-table">
+                    <tbody>
+                      <tr>
+                        <td><b>{{translateSnackBar.created}}</b></td>
+                        <td>{{dieInfo.created| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.confirmationDate}}</b></td>
+                        <td>{{dieInfo.dateConfirmation| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.inUseFrom}}</b></td>
+                        <td>{{dieInfo.inUseFrom| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.orderDate}}</b></td>
+                        <td>{{dieInfo.dateOrder| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.dateExpedition}}</b></td>
+                        <td>{{dieInfo.dateExpedition| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.lastModifiedBy}}</b></td>
+                        <td>{{dieInfo.lastModifiedBy}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>{{translateSnackBar.dieLiveQty}}</b></td>
+                        <td>{{dieInfo.dieLiveQty}}</td>
+                      </tr>
+                    </tbody>
                   </table>
+              </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="7">
+            <a ngbNavLink>{{ translateSnackBar.production }}</a>
+            <ng-template ngbNavContent>
+              <div class="row">
+                <div class="col-12">
+                  <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-fill nav-pills">
+                    <ng-container [ngbNavItem]="1">
+                      <a ngbNavLink>{{ translateSnackBar.production }}</a>
+                      <ng-template ngbNavContent>
+                        <p *ngIf="extrusion.length === 0">{{ translateSnackBar.msgEmpty }}</p>
+                        <table *ngIf="extrusion.length > 0" mat-table [dataSource]="extrusion" class="example-table fixed-width prod-table">
+                          <!-- Position Column -->
 
-                  <table mat-table [dataSource]="extrData" class="example-table fixed-width">
-                    <!-- Position Column -->
+                          <ng-container matColumnDef="pullerSpeed">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
+                              <span class="th-header">{{ translateSnackBar.pullerSpeedTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.pullerSpeed}}</td>
+                          </ng-container>
 
-                    <ng-container matColumnDef="press">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.press">
-                        <span class="th-header">{{ translateSnackBar.pressTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.press}}</td>
+                          <ng-container matColumnDef="billetTemperature">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetTemperature">
+                              <span class="th-header">{{ translateSnackBar.billetTemperatureTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.billetTemperature}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="exitTemperature">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.exitTemperature">
+                              <span class="th-header">{{ translateSnackBar.exitTemperatureTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.exitTemperature}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="dieStatus">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.dieStatus">
+                              <span class="th-header">{{ translateSnackBar.dieStatusTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.dieStatus}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="lengthFinalPiece">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.lengthFinalPiece">
+                              <span class="th-header">{{ translateSnackBar.lengthFinalPieceTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.lengthFinalPiece}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="kgnet">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.kgnet">
+                              <span class="th-header">{{ translateSnackBar.kgnetTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.kgnet}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="kggross">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.kggross">
+                              <span class="th-header">{{ translateSnackBar.kggrossTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.kggross}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="modifiedOn">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.modifiedOn">
+                              <span class="th-header">{{ translateSnackBar.modifiedOnTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.modifiedOn | date:'dd/MM/yyyy H:mm:ss'}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="batchId">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.batchId">
+                              <span class="th-header">{{ translateSnackBar.batchIdTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.batchId}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="firstBilletCounter">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.firstBilletCounter">
+                              <span class="th-header">{{ translateSnackBar.firstBilletCounterTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.firstBilletCounter}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="lastBilletcounter">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.lastBilletcounter">
+                              <span class="th-header">{{ translateSnackBar.lastBilletcounterTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.lastBilletcounter}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="billetMaterial">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetMaterial">
+                              <span class="th-header">{{ translateSnackBar.billetMaterialTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.billetMaterial}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="productionOrder">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.productionOrder">
+                              <span class="th-header">{{ translateSnackBar.productionOrderTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.productionOrder}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="billetPcs">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetPcs">
+                              <span class="th-header">{{ translateSnackBar.billetPcsTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.billetPcs}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="extrusionLength">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.extrusionLength">
+                              <span class="th-header">{{ translateSnackBar.extrusionLengthTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.extrusionLength}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="piecesExtrusion">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.piecesExtrusion">
+                              <span class="th-header">{{ translateSnackBar.piecesExtrusionTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.piecesExtrusion}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="die">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.matrix">
+                              <span class="th-header">{{ translateSnackBar.matrixTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.die}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="prodOrderQty">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.prodOrderQty">
+                              <span class="th-header">{{ translateSnackBar.prodOrderQtyTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.prodOrderQty}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="remarks">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.remarks">
+                              <span class="th-header">{{ translateSnackBar.remarksTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.remarks}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="remarksQc">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.remarksQc">
+                              <span class="th-header">{{ translateSnackBar.remarksQcTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.remarksQc}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="startTime">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.startTime">
+                              <span class="th-header">{{ translateSnackBar.startTimeTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.startTime | date:'dd/MM/yyyy H:mm:ss'}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="postingDate">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.postingDate">
+                              <span class="th-header">{{ translateSnackBar.postingDateTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.postingDate | date:'dd/MM/yyyy H:mm:ss'}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="lengthSeconds">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.lengthSeconds">
+                              <span class="th-header">{{ translateSnackBar.lengthSecondsTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.lengthSeconds}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="alloy">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.alloy">
+                              <span class="th-header">{{ translateSnackBar.alloyTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.alloy}}</td>
+                          </ng-container>
+
+                          <!-- <ng-container matColumnDef="lengthFinalPiece">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
+                              <span class="th-header">{{ translateSnackBar.lengthFinalPiece }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.lengthFinalPiece}}</td>
+                          </ng-container> -->
+
+                          <ng-container matColumnDef="numberOfEmployees">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.numberOfEmployees">
+                              <span class="th-header">{{ translateSnackBar.numberOfEmployeesTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.numberOfEmployees}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="workstation">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.workstation">
+                              <span class="th-header">{{ translateSnackBar.workstationTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.workstation}}</td>
+                          </ng-container>
+
+                          <!-- <ng-container matColumnDef="remarks">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
+                              <span class="th-header">{{ translateSnackBar.remarks }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.remarks}}</td>
+                          </ng-container> -->
+
+                          <ng-container matColumnDef="resource">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.resource">
+                              <span class="th-header">{{ translateSnackBar.resourceTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.resource}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="orderAlloy">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.orderAlloy">
+                              <span class="th-header">{{ translateSnackBar.orderAlloyTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.orderAlloy}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="matrix">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.matrix">
+                              <span class="th-header">{{ translateSnackBar.matrixTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.matrix}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="profile">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.profile">
+                              <span class="th-header">{{ translateSnackBar.profileTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.profile}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="length">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.length">
+                              <span class="th-header">{{ translateSnackBar.lengthTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.length}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="temper">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.temper">
+                              <span class="th-header">{{ translateSnackBar.temperTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.temper}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="salesOrder">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.salesOrder">
+                              <span class="th-header">{{ translateSnackBar.salesOrderTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.salesOrder}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="salesOrderItem">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.salesOrderItem">
+                              <span class="th-header">{{ translateSnackBar.salesOrderItemTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.salesOrderItem}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="customerName">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.customerName">
+                              <span class="th-header">{{ translateSnackBar.customerNameTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.customerName}}</td>
+                          </ng-container>
+
+                          <!-- <ng-container matColumnDef="prodOrderQty">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
+                              <span class="th-header">{{ translateSnackBar.prodOrderQty }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.prodOrderQty}}</td>
+                          </ng-container> -->
+
+                          <ng-container matColumnDef="computerName">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.computerName">
+                              <span class="th-header">{{ translateSnackBar.computerNameTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.computerName}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="remainingQty">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.remainingQty">
+                              <span class="th-header">{{ translateSnackBar.remainingQtyTable }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.remainingQty}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="color">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.color">
+                              <span class="th-header">{{ translateSnackBar.colorTT }}</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.color}}</td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumnsProduction; sticky: true"></tr>
+                          <tr mat-row (click)="getExtrusionData(row)" *matRowDef="let row; columns: displayedColumnsProduction;"></tr>
+                        </table>
+                      </ng-template>
                     </ng-container>
 
-                    <ng-container matColumnDef="id">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.id">
-                        <span class="th-header">{{ translateSnackBar.id }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                    <ng-container [ngbNavItem]="2">
+                      <a ngbNavLink>{{ translateSnackBar.movements }}</a>
+                      <ng-template ngbNavContent>
+                        <div *ngIf="movements.length > 0" class="row">
+                          <div class="col-12">
+                            <mat-accordion multi>
+                              <mat-expansion-panel [expanded]="true">
+                                <mat-expansion-panel-header>
+                                  <div class="row col-12" (click)="$event.stopPropagation();">
+                                    <div class="col-xl-5 col-12">
+                                      <div class="d-flex align-items-center">
+                                        <button rippleEffect (click)="clearAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                                      </div>
+                                    </div>
+                                    <div class="col-xl-7 col-12">
+                                      <div class="row col-12 align-items-center  justify-content-start">
+                                        <div class="col-12">
+                                          <div class="row">
+                                            <div class="col-12 col-md-4 col-lg-6 text-end filters-header">{{ translateSnackBar.lastRefreshed }}: </div>
+                                            <div class="col-12 col-md-4 col-lg-6 filters-header">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </mat-expansion-panel-header>
+                                <div class="row">
+
+                                  <div class="filters-column border card d-block" *ngFor="let f of arrFilters">
+                                    <div class="row">
+                                      <div class="col-12 header-filter">
+                                        {{ f.name }}
+                                      </div>
+                                    </div>
+                                    <div class="col-12">
+                                      <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <button class="btn btn-outline-primary" type="button" rippleEffect>
+                                            <i data-feather="search"></i>
+                                          </button>
+                                        </div>
+                                        <input type="search" class="form-control dt-uname" [(ngModel)]="f.searchFilterConf" #search
+                                              (keyup.enter)="searchFilter($event, f.selectAll, f.filter, f.temp, f.ind)" required />
+                                        <div class="input-group-append">
+                                          <button class="btn btn-outline-primary" type="button" (click)="clearFilter(f.fullFilter, f.ind)" placement="top" container="body" rippleEffect>
+                                            <span [data-feather]="'x-circle'" [class]="'cursor-pointer'"></span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-12 box-filter">
+
+                                    <div >
+                                      <div class="col-12 text-center" *ngIf="f.filter.length === 0">
+                                        {{ translateSnackBar.noResult }}
+                                      </div>
+                                      <section *ngIf="f.filter.length > 0" class="example-section">
+                                        <span class="example-list-section">
+                                          <mat-checkbox class="example-margin"
+                                            [(ngModel)]="f.selectAll" [checked]="f.selectAll"
+                                            color="primary"
+                                            (change)="setAll($event.checked, f.selectAll, f.filter, f.ind)">
+                                            {{ translateSnackBar.selected }}
+                                          </mat-checkbox>
+                                        </span>
+                                        <span class="example-list-section">
+                                            <ul (scrolled)="onScroll(f.selectAll, f.filter, f.ind)" [infiniteScrollDistance]="0.1" [scrollWindow]="false" class="inf-scroll"
+                                            infiniteScroll>
+                                              <li *ngFor="let t of f.filter">
+                                                <mat-checkbox [(ngModel)]="t.checked" color="primary"
+                                                  (ngModelChange)="updateAllComplete(f.selectAll, f.filter, f.ind)">
+                                                  {{t.name}}
+                                                </mat-checkbox>
+                                              </li>
+                                            </ul>
+                                        </span>
+                                      </section>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </mat-expansion-panel>
+                            </mat-accordion>
+                          </div>
+                        </div>
+                        <p *ngIf="movements.length === 0">{{ translateSnackBar.msgEmpty }}</p>
+                        <table *ngIf="movements.length > 0" mat-table [dataSource]="movements" class="example-table">
+                          <!-- Position Column -->
+
+                          <ng-container matColumnDef="resourceIn">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.resourceIn">
+                              <span class="th-header">{{ translateSnackBar.resourceInTT }}</span>
+                              <button type="button" class="btn order-btn" (click)="sortType(!orderType, 1)">
+                                <i class="fa fa-sort"></i>
+                              </button>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.resourceIn}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="resourceOut">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.resourceOut">
+                              <span class="th-header">{{ translateSnackBar.resourceOutTT }}</span>
+                              <button type="button" class="btn order-btn" (click)="sortType(!orderType, 2)">
+                                <i class="fa fa-sort"></i>
+                              </button>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.resourceOut}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="movementDateTime">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.dates">
+                              <span class="th-header">{{ translateSnackBar.dates }}</span>
+                              <button type="button" class="btn order-btn" (click)="sortType(!orderType, 3)">
+                                <i class="fa fa-sort"></i>
+                              </button>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.movementDateTime | date:'dd/MM/yyyy H:mm:ss'}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="notes">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.notes">
+                              <span class="th-header">{{ translateSnackBar.notesTT }}</span>
+                              <button type="button" class="btn order-btn" (click)="sortType(!orderType, 6)">
+                                <i class="fa fa-sort"></i>
+                              </button>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.notes}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="empName">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.empName">
+                              <span class="th-header">{{ translateSnackBar.empNameTT }}</span>
+                              <button type="button" class="btn order-btn" (click)="sortType(!orderType, 7)">
+                                <i class="fa fa-sort"></i>
+                              </button>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.empName}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="computerName">
+                            <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.workstation">
+                              <span class="th-header">{{ translateSnackBar.workstationTT }}</span>
+                              <button type="button" class="btn order-btn" (click)="sortType(!orderType, 5)">
+                                <i class="fa fa-sort"></i>
+                              </button>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.computerName}}</td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumnsMovements; sticky: true"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumnsMovements;"></tr>
+                        </table>
+                      </ng-template>
                     </ng-container>
 
-                    <ng-container matColumnDef="batch">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.batch">
-                        <span class="th-header">{{ translateSnackBar.batchTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.batch}}
-                      </td>
+                    <ng-container [ngbNavItem]="3">
+                      <a ngbNavLink>{{ translateSnackBar.byResource }}</a>
+                      <ng-template ngbNavContent>
+                        <table mat-table [dataSource]="arrResource" multiTemplateDataRows class="mat-elevation-z8">
+                          <ng-container matColumnDef="resourceIn">
+                            <th mat-header-cell *matHeaderCellDef> {{ translateSnackBar.resourceIn }} </th>
+                            <td mat-cell *matCellDef="let element"> {{element.resourceIn}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="resourceName">
+                            <th mat-header-cell *matHeaderCellDef> {{ translateSnackBar.resource }} </th>
+                            <td mat-cell *matCellDef="let element"> {{element.resourceName}} </td>
+                          </ng-container>
+
+                          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                          <ng-container matColumnDef="expandedDetail">
+                            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                              <div class="example-element-detail" [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+                                <div class="example-element-description">
+                                  <table class="clasic-table">
+                                    <thead>
+                                      <th>{{ translateSnackBar.dieId }}</th>
+                                      <th>{{ translateSnackBar.date }}</th>
+                                      <th>{{ translateSnackBar.kgProduced }}</th>
+                                      <th>{{ translateSnackBar.computerName }}</th>
+                                      <th>{{ translateSnackBar.notes }}</th>
+                                      <th>{{ translateSnackBar.resourceIn }}</th>
+                                      <th>{{ translateSnackBar.resourceOut }}</th>
+                                      <th>{{ translateSnackBar.storage }}</th>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="embeded-row" *ngFor="let r of element.resources; let i = index">
+                                        <td>{{r.dieId}}</td>
+                                        <td>{{r.movementDateTime| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                                        <td>{{r.kgProduced}}</td>
+                                        <td>{{r.computerName}}</td>
+                                        <td>{{r.notes}}</td>
+                                        <td>{{r.resourceIn}}</td>
+                                        <td>{{r.resourceOut}}</td>
+                                        <td>{{r.storagePlaceIn}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                              class="example-element-row"
+                              [class.example-expanded-row]="expandedElement === element"
+                              (click)="expandedElement = expandedElement === element ? null : element">
+                          </tr>
+                          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                        </table>
+                      </ng-template>
                     </ng-container>
 
-                    <ng-container matColumnDef="billetLength">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetLength">
-                        <span class="th-header">{{ translateSnackBar.billetLengthTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.billetLength}}
-                      </td>
+                    <ng-container [ngbNavItem]="4">
+                      <a ngbNavLink>{{ translateSnackBar.talonCorector }}</a>
+                      <ng-template ngbNavContent>
+
+                      </ng-template>
                     </ng-container>
 
-                    <ng-container matColumnDef="blletButtLength">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.blletButtLength">
-                        <span class="th-header">{{ translateSnackBar.blletButtLengthTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.blletButtLength}}</td>
+                    <ng-container [ngbNavItem]="5">
+                      <a ngbNavLink>{{ translateSnackBar.productionMonth }}</a>
+                      <ng-template ngbNavContent>
+
+                      </ng-template>
                     </ng-container>
 
-                    <ng-container matColumnDef="pullerSpeed">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pullerSpeed">
-                        <span class="th-header">{{ translateSnackBar.pullerSpeedTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.pullerSpeed}}</td>
-                    </ng-container>
+                  </nav>
+                  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
 
-                    <ng-container matColumnDef="billetTemperature">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.billetTemperature">
-                        <span class="th-header">{{ translateSnackBar.billetTemperatureTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.billetTemperature}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="exitTemperature">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.exitTemperature">
-                        <span class="th-header">{{ translateSnackBar.exitTemperatureTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.exitTemperature}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="kggross">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.kggross">
-                        <span class="th-header">{{ translateSnackBar.kggrossTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.kggross}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="pressure">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.pressure">
-                        <span class="th-header">{{ translateSnackBar.pressure }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.pressure}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="containerTemp">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.containerTemp">
-                        <span class="th-header">{{ translateSnackBar.containerTempTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.containerTemp}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="extrEndTime">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.extrEndTime">
-                        <span class="th-header">{{ translateSnackBar.extrEndTimeTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.extrEndTime | date:'dd/MM/yyyy H:mm:ss'}}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsEscData; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsEscData;"></tr>
-                  </table>
-                </ng-template>
-              </ng-container>
-
-              <ng-container [ngbNavItem]="2">
-                <a ngbNavLink>{{ translateSnackBar.movements }}</a>
-                <ng-template ngbNavContent>
-                  <table mat-table [dataSource]="movements" class="example-table">
-                    <!-- Position Column -->
-
-                    <ng-container matColumnDef="resourceIn">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.resourceIn">
-                        <span class="th-header">{{ translateSnackBar.resourceInTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.resourceIn}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="resourceOut">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.resourceOut">
-                        <span class="th-header">{{ translateSnackBar.resourceOutTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.resourceOut}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="movementDateTime">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.dates">
-                        <span class="th-header">{{ translateSnackBar.dates }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.movementDateTime | date:'dd/MM/yyyy H:mm:ss'}}
-                      </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="notes">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.notes">
-                        <span class="th-header">{{ translateSnackBar.notesTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.notes}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="empName">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.empName">
-                        <span class="th-header">{{ translateSnackBar.empNameTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.empName}}</td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="computerName">
-                      <th mat-header-cell *matHeaderCellDef placement="top" container="body" [ngbTooltip]="translateSnackBar.workstation">
-                        <span class="th-header">{{ translateSnackBar.workstationTT }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element">{{element.computerName}}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsMovements; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsMovements;"></tr>
-                  </table>
-                </ng-template>
-              </ng-container>
-
-              <ng-container [ngbNavItem]="3">
-                <a ngbNavLink>{{ translateSnackBar.byResource }}</a>
-                <ng-template ngbNavContent>
-
-                </ng-template>
-              </ng-container>
-
-              <ng-container [ngbNavItem]="4">
-                <a ngbNavLink>{{ translateSnackBar.talonCorector }}</a>
-                <ng-template ngbNavContent>
-
-                </ng-template>
-              </ng-container>
-
-              <ng-container [ngbNavItem]="5">
-                <a ngbNavLink>{{ translateSnackBar.productionMonth }}</a>
-                <ng-template ngbNavContent>
-
-                </ng-template>
-              </ng-container>
-
-            </nav>
-            <div [ngbNavOutlet]="nav" class="mt-2"></div>
-          </div>
-        </div>
+        <div [ngbNavOutlet]="navMain" class="mt-2"></div>
         <!-- </form> -->
         <div class="col-sm-12">
           <!-- <button rippleEffect class="btn btn-primary save-center" (click)="submitForm()" [swal]="SweetAlertBottomEnd">{{ translateSnackBar.save }}</button> -->

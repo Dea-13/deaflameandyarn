@@ -18,21 +18,21 @@ export class SettingsComponent implements OnInit {
   public appVersion;
   public env: string;
   userName: any;
-  public currentUser: User;
+  public _currentUser: User;
   public comPorts: any = [];
   public zebraCom: string;
   DEVICE_NAME: string;
   public allPorts: any = [];
 
   constructor(public translate: TranslateService,
-              public electronService: ElectronService) { 
-      
+              public electronService: ElectronService) {
+
       if (electronService.isElectron) {
         console.log(process.env);
         console.log('Run in electron');
         console.log('Electron ipcRenderer', this.electronService.ipcRenderer);
         console.log('NodeJS childProcess', this.electronService.childProcess);
-  
+
         console.log('constants.comport', constants.comport);
         if(constants.comport == 0){
           // this.scanPorts()
@@ -40,7 +40,7 @@ export class SettingsComponent implements OnInit {
           this.comPorts = JSON.parse(localStorage.getItem('ComPort'));
           this.allPorts = this.comPorts;
         }
-  
+
       } else {
         console.log('Run in browser');
       }
@@ -48,11 +48,11 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.translate.get('translate').subscribe((snackBar: string) => {      
+    this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.userName = this.currentUser['userName'];
+    this._currentUser = JSON.parse(localStorage.getItem('_currentUser'));
+    this.userName = this._currentUser['userName'];
     this.appVersion = appVersion;
     if(environment.apiUrl.includes('192.168.8.84:91') == true || environment.apiUrl.includes('185.177.116.190') == true || environment.apiUrl.includes('localhost') == true){
       this.env = "Dev";

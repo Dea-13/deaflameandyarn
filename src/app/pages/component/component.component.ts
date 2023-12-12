@@ -142,7 +142,7 @@ export class ComponentComponent implements OnInit {
   }
 
   completeComponent() {
-    this.dataServiceObj.cuser = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.dataServiceObj.cuser = JSON.parse(localStorage.getItem('_currentUser')).userName;
     this.dataServiceObj.componentsList = this.rows;
     this.blockUI.start('Loading...');
     // console.log('this.dataServiceObj!!!!!!', this.dataServiceObj.prevOperationCassetList)

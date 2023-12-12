@@ -3,7 +3,7 @@
         <section class="users-list-wrapper">
             <div class="card">
                 <!-- <div class="flex">
-                    <ng-select [virtualScroll]="true" [(ngModel)]="locCode" class="mg-2" (ngModelChange)="getMaterialInventories()">
+                    <ng-select [virtualScroll]="true" appendTo="body" [(ngModel)]="locCode" class="mg-2" (ngModelChange)="getMaterialInventories()">
                         <ng-option *ngFor="let item of locationCode" [value]="item.id">{{item.textValue}}</ng-option>
                     </ng-select>
                 </div> -->
@@ -53,7 +53,7 @@
                             <span>Партида</span>
                         </ng-template>
                         <ng-template let-row="row" let-name="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                            <ng-select [virtualScroll]="true" [(ngModel)]="currentStockValue" appendTo="body" (ngModelChange)="getStockSn(currentStockValue, rowIndex)">
+                            <ng-select [virtualScroll]="true" appendTo="body" [(ngModel)]="currentStockValue" appendTo="body" (ngModelChange)="getStockSn(currentStockValue, rowIndex)">
                                 <ng-option *ngFor="let item of currentStock" [value]="item.sn">{{item.sn}}</ng-option>
                             </ng-select>
                         </ng-template>

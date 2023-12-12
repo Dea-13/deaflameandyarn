@@ -35,7 +35,7 @@
                           </div>
                           <div class="col-md-12 flex">
                             <label class="w-17-label">{{ translateSnackBar.group }}</label>
-                            <ng-select [virtualScroll]="true" appendTo="body" formControlName="groupCode">
+                            <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" [clearable]="false" formControlName="groupCode">
                               <ng-option *ngFor="let g of groupCode" [value]="g.name">{{ g.name }}</ng-option>
                             </ng-select>
                           </div>
@@ -46,7 +46,9 @@
                           </div>
 
                           <div class="col-md-12 flex">
-                            <label class="label-checkbox">{{ translateSnackBar.visibleSide }} <span class="error-label" *ngIf="submitted && !createProfileForm.get('visSides').value">*</span></label>
+                            <label class="label-checkbox">{{ translateSnackBar.visibleSide }}
+                              <!-- <span class="error-label" *ngIf="submitted && !createProfileForm.get('visSides').value">*</span> -->
+                            </label>
                             <input class="form-control input" formControlName="visSides" type="checkbox" required
                               style="width: 5%;margin-top: -1%;">
                           </div>
@@ -205,167 +207,52 @@
                   <div *ngIf="!disableTab" class="col-md-12">
                     <!-- -->
                     <div class="col-md-12">
-                      <table style="border: none;">
+                      <table class="clasic-table">
+                        <thead>
+                          <th>
+                            <button class="add-button" (click)="addPress()">
+                              <i class="fa fa-plus-circle"></i>
+                            </button>
+                          </th>
+                          <th>{{ translateSnackBar.press }}</th>
+                          <th>{{ translateSnackBar.channels }}</th>
+                          <th>{{ translateSnackBar.priority }}</th>
+                          <th>{{ translateSnackBar.alloy }}</th>
+                          <th>{{ translateSnackBar.speed }}</th>
+                        </thead>
                         <tbody>
-                          <tr>
+                          <tr *ngFor="let r of tabSpeed; let i = index">
                             <td>
                               <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.firstbilletTemp }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <div class="flex">
-                                <h4>{{ translateSnackBar.coolingAir }}</h4>
-                              </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.taper }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td>
-                              <div>
-                                <label class="line-fixed">{{ translateSnackBar.exit }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td>
-                              <div>
-                                <label class="line-fixed">{{ translateSnackBar.hotSaw }}</label>
-                                <input class="form-control input" type="text">
+                                <span *ngIf="!this.editPress[i] && r.id"
+                                  (click)="this.editPress[i]=!this.editPress[i];$event.preventDefault(); $event.stopPropagation();">
+                                  <i data-feather="edit" class="mr-25" title="Modify"></i>
+                                </span>
+                                <span *ngIf="this.editPress[i] || !r.id"
+                                  (click)="saveRowsPress(tabSpeed, r, i);$event.preventDefault(); $event.stopPropagation();">
+                                  <i data-feather="save" class="mr-25" title="Save"></i>
+                                </span>
+                                <span *ngIf="this.editPress[i] && r.id"
+                                  (click)="deleteRowsPress(tabSpeed, r, i);$event.preventDefault(); $event.stopPropagation();">
+                                  <i data-feather="delete" class="mr-25" title="Delete"></i>
+                                </span>
                               </div>
                             </td>
                             <td>
-                              <div>
-                                <label class="line-fixed">{{ translateSnackBar.table }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
+                              <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="r.pressId"
+                                [disabled]="r.profileId" appendTo="body">
+                                <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
+                              </ng-select>
                             </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <!-- [(ngModel)]="sectionProfiles.inUse" -->
-                                <label class="line-fixed">{{ translateSnackBar.speedMin }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
+                            <td><input class="form-control input" [(ngModel)]="r.channels" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.priority" type="text"></td>
+                            <td class="w-15">
+                              <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="r.alloyFamily"
+                                (ngModelChange)="fillPressChannels(r)" appendTo="body">
+                                <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
+                              </ng-select>
                             </td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td><input class="form-control input" type="text"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.pullerForce }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.exitTemp }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <h4>{{ translateSnackBar.coolingWater }}</h4>
-                            </td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.scrapStart }}</label>
-                                <input class="form-control input" [(ngModel)]="scrapStart" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.scrapEnd }}</label>
-                                <input class="form-control input" [(ngModel)]="scrapEnd" type="text">
-                              </div>
-                            </td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><input class="form-control input" type="text"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.streching }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><input class="form-control input" type="text"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.maxWaitBd }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td><input class="form-control input" type="text"></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="flex">
-                                <label class="line-fixed">{{ translateSnackBar.putOven }}</label>
-                                <input class="form-control input" type="text">
-                              </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><input class="form-control input" [(ngModel)]="r.speed" type="text"></td>
                           </tr>
                         </tbody>
                       </table>
@@ -411,7 +298,7 @@
                             </div>
                           </td>
                           <td class="w-25">
-                            <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
+                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
@@ -435,7 +322,7 @@
                         <label>{{ translateSnackBar.infoMatrix }}</label>
                       </div>
                       <div class="col-8">
-                        <ng-select [virtualScroll]="true" appendTo="body">
+                        <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
@@ -446,7 +333,7 @@
                         <label>{{ translateSnackBar.followRecipee }}</label>
                       </div>
                       <div class="col-8">
-                        <ng-select [virtualScroll]="true" appendTo="body">
+                        <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
@@ -457,7 +344,7 @@
                         <label>{{ translateSnackBar.secondHandScrap }}</label>
                       </div>
                       <div class="col-8">
-                        <ng-select [virtualScroll]="true" appendTo="body">
+                        <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                           <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                         </ng-select>
                       </div>
@@ -467,13 +354,13 @@
                       <div class="col-md-4">
                         <div class="col-md-12">
                           <label>Breda {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select [virtualScroll]="true" appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
                         <div class="col-md-12">
                           <label>Breda {{ translateSnackBar.scrap }}</label>
-                          <ng-select [virtualScroll]="true" appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
@@ -482,13 +369,13 @@
                       <div class="col-md-4">
                         <div class="col-md-12">
                           <label>SMS1 {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select [virtualScroll]="true" appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
                         <div class="col-md-12">
                           <label>SMS1 {{ translateSnackBar.scrap }}</label>
-                          <ng-select [virtualScroll]="true" appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
@@ -497,13 +384,13 @@
                       <div class="col-md-4">
                         <div class="col-md-12">
                           <label>SMS2 {{ translateSnackBar.manufacturing }}</label>
-                          <ng-select [virtualScroll]="true" appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
                         <div class="col-md-12">
                           <label>SMS2 {{ translateSnackBar.scrap }}</label>
-                          <ng-select [virtualScroll]="true" appendTo="body">
+                          <ng-select [virtualScroll]="true" appendTo="body" appendTo="body">
                             <!-- <ng-option *ngFor="let s of objectListSclad" [value]="s.id">{{ s.name }}</ng-option> -->
                           </ng-select>
                         </div>
@@ -518,14 +405,13 @@
           <div class="section-right col-12 col-xl-5">
             <table class="clasic-table">
               <thead>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>{{ translateSnackBar.dies }}</th>
+                <th>{{ translateSnackBar.resource }}</th>
+                <th>{{ translateSnackBar.altResource }}</th>
+                <th>{{ translateSnackBar.dimensions }}</th>
+                <th>{{ translateSnackBar.alloy }}</th>
+                <th>{{ translateSnackBar.producer }}</th>
+                <th>{{ translateSnackBar.date }}</th>
               </thead>
               <tbody>
                 <tr *ngFor="let row of rowsDies">
@@ -533,10 +419,9 @@
                   <td>{{row.currentResource}}</td>
                   <td>{{row.primaryResourceName}}</td>
                   <td>{{row.dimensions}}</td>
-                  <td>{{row.producerName}}</td>
-                  <td></td>
-                  <td>{{row.dateOrder | date:'MMM d, y, h:mm:ss a'}}</td>
                   <td>{{row.alloy}}</td>
+                  <td>{{row.producerName}}</td>
+                  <td>{{row.dateOrder | date:'MMM d, y, h:mm:ss a'}}</td>
                 </tr>
               </tbody>
             </table>

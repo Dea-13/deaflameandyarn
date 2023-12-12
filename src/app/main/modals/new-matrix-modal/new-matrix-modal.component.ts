@@ -77,7 +77,7 @@ export class NewMatrixModalComponent implements OnInit {
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef
   ) {
-    this.userName = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
@@ -561,8 +561,7 @@ export class NewMatrixModalComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             })
-          },
-            (error) => {
+          }, (error) => {
               Swal.fire({
                 position: 'bottom-end',
                 icon: 'warning',
@@ -1065,7 +1064,7 @@ export class NewMatrixModalComponent implements OnInit {
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
-              title: error.error,
+              title: 'Error',
               showConfirmButton: false,
               timer: 2000
             })
@@ -1100,7 +1099,7 @@ export class NewMatrixModalComponent implements OnInit {
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',
-            title: error.error,
+            title: 'Error',
             showConfirmButton: false,
             timer: 2000
           })

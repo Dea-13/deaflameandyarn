@@ -68,6 +68,9 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BlockUIModule } from 'ng-block-ui';
+import { ExtrusionModalComponent } from './main/pages/extrusion-modal/extrusion-modal.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 const appRoutes: Routes = [
@@ -257,7 +260,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     GenerateTestModalComponent,
     ConfirmationExtrusionComponent,
-    BilletRawMaterialsComponent
+    BilletRawMaterialsComponent,
+    ExtrusionModalComponent
   ],
 
   imports: [
@@ -280,7 +284,8 @@ const appRoutes: Routes = [
     MatExpansionModule,
     MatCheckboxModule,
     BlockUIModule.forRoot(), // Import BlockUIModule
-
+    MatButtonModule,
+    MatIconModule,
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled', // Add options right here
       relativeLinkResolution: 'legacy',

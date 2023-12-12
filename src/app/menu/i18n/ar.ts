@@ -267,7 +267,7 @@ export const locale = {
       resourceName: '',
       resourceIn: '',
       modalBarcodeMatrix: '',
-      modaldieetails: '',
+      modaldiedetails: '',
       infoProfile: '',
       id: '',
       altResource: '',
@@ -381,6 +381,14 @@ export const locale = {
       unselected: '',
       noResult: '',
       lastRefreshed: '',
+      msgEmpty: '',
+      checked: '',
+      unChecked: '',
+      dateExpedition: '',
+      created: '',
+      lastModifiedBy: '',
+      date: '',
+      dies: '',
     }
   }
 }

@@ -8,13 +8,13 @@
                   <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0" [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
                   <span class="pt-line-3">|</span>
                   <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0" [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
-                  <button rippleEffect (click)="clarAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
+                  <button rippleEffect (click)="clearAll()" class="btn size-btn m-0 mx-2 text-primary p-0">{{ translateSnackBar.clearAll }}</button>
                 </div>
           </div>
           <div class="col-md-3 col-12">
             <div class="d-flex align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.year }}</label>
-              <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+              <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                 [multiple]="false" [closeOnSelect]="true" [clearable]="false" [(ngModel)]="year"
                 (ngModelChange)="getRequest()">
                 <ng-option *ngFor="let t of yearArr" [value]="t.year">{{ t.year }}
@@ -25,7 +25,7 @@
           <div class="col-md-3 col-12">
             <div class="d-flex align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.month }}</label>
-              <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+              <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                 [multiple]="false" [closeOnSelect]="true" [clearable]="false" [(ngModel)]="month"
                 (ngModelChange)="getRequest()">
                 <ng-option *ngFor="let t of monthArr" [value]="t.id">{{ t.month }}
@@ -36,7 +36,7 @@
           <div class="col-md-3 col-12">
             <div class="d-flex align-items-center m-1">
               <label class="d-flex align-items-center">{{ translateSnackBar.diagram }}</label>
-              <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+              <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                 [multiple]="false" [closeOnSelect]="true" [(ngModel)]="diagram" (ngModelChange)="showDiagram()">
                 <ng-option *ngFor="let d of diagramArr" [value]="d.id">{{ d.name }}
                 </ng-option>
@@ -104,7 +104,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="computerName"
                       (ngModelChange)="getFilters(0)">
                       <ng-option *ngFor="let t of computerNameArr" [value]="t.name">{{ t.name }}
@@ -128,7 +128,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceInName"
                       (ngModelChange)="getFilters(1)">
                       <ng-option *ngFor="let t of resourceInArr" [value]="t.name">{{ t.name }}
@@ -154,7 +154,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [clearable]="false" [(ngModel)]="resourceOutName"
                       (ngModelChange)="getFilters(1)">
                       <ng-option *ngFor="let t of resourceOutArr" [value]="t.name">{{ t.name }}

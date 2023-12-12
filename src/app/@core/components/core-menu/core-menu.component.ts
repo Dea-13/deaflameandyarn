@@ -14,7 +14,7 @@ import { CoreMenuService } from './core-menu.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoreMenuComponent implements OnInit {
-  currentUser: any;
+  _currentUser: any;
 
   @Input()
   layout = 'vertical';
@@ -47,7 +47,7 @@ export class CoreMenuComponent implements OnInit {
 
     // Subscribe to the current menu changes
     this._coreMenuService.onMenuChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-      this.currentUser = this._coreMenuService.currentUser;
+      this._currentUser = this._coreMenuService._currentUser;
 
       // Load menu
       this.menu = this._coreMenuService.getCurrentMenu();

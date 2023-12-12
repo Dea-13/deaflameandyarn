@@ -123,8 +123,16 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}`);
   }
 
-  getNitrificationMatrix(offset: number, limit: number, DieId: string, PrimaryResourceName: string, Channels: string, substatus: string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=100&DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}`);
+  getNitrificationMatrix(offset: number, limit: number, DieId: string, Channels: string, substatus: string, PrimaryResourceName: string, TotalKgProduced: string, KgAfterLastAnodizing: string, KGtoNextAnodizing: string, orderType: number, orderBy: number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=100&DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}&orderType=${orderType}&orderBy=${orderBy}&TotalKgProduced=${TotalKgProduced}&KgAfterLastAnodizing=${KgAfterLastAnodizing}&KGtoNextAnodizing=${KGtoNextAnodizing}`);
+  }
+
+  // getFilterNitrificationMatrix(url: string, DieId: string, Channels: string, substatus: string, PrimaryResourceName: string, TotalKgProduced: string, KgAfterLastAnodizing: string, KGtoNextAnodizing: string) {
+  //   return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}&TotalKgProduced=${TotalKgProduced}&KgAfterLastAnodizing=${KgAfterLastAnodizing}&KGtoNextAnodizing=${KGtoNextAnodizing}`);
+  // }
+
+  getFilterNitrificationMatrix(url: string, DieId: string, Channels: string, substatus: string, PrimaryResourceName: string, TotalKgProduced: string, KgAfterLastAnodizing: string, KGtoNextAnodizing: string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/filter/${url}?DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}&TotalKgProduced=${TotalKgProduced}&KgAfterLastAnodizing=${KgAfterLastAnodizing}&KGtoNextAnodizing=${KGtoNextAnodizing}`);
   }
 
   getDieID() {
@@ -272,20 +280,32 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}ExtrusionConfirmation/GetExtrusionConfirmation/${id}`);
   }
 
+  getResourceTable(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/getDieMovementByMachine?dieId=${id}`);
+  }
+
   getImage(id:number) {
     return this._http.get<any>(`${environment.apiUrl}Profiles/image/${id}`);
   }
 
-  getMovements(id:number) {
-    return this._http.get<any>(`${environment.apiUrl}DieMovement/getLastDieMovementByDieId?dieID=${id}`);
+  getMovements(id:number, orderType:number, orderBy:number, die:string, resourceIn:string, resourceOut:string, kgProduced:string, computerName:string, userName:string) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/getLastDieMovementByDieId?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=${userName}&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
-  getExtrusionData(id:number) {
-    return this._http.get<any>(`${environment.apiUrl}ProductionData/GetExtrusionData/${id}`);
+  getMovementsMatrix(url: string, id:number, die:string, resourceIn:string, resourceOut:string, kgProduced:string, computerName:string, userName:string) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/filter/${url}?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=${userName}`);
+  }
+
+  getExtrusionData(id:number, resourceId:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProductionData/GetExtrusionData/${id}/${resourceId}`);
   }
 
   getHeaderDetails(id:number) {
     return this._http.get<any>(`${environment.apiUrl}Dies/dieHistory/${id}`);
+  }
+
+  getDieInfo(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/${id}`);
   }
 
   getMatricComplect() {

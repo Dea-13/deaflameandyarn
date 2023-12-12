@@ -29,22 +29,22 @@ export class ProductsComponent implements OnInit {
   public translateSnackBar: any;
 
   public urls = [
-    { id: 0, name: 'erpitem' },
-    { id: 1, name: 'erpvariant' },
-    { id: 2, name: 'opNo' },
-    { id: 3, name: 'cNC1' },
-    { id: 4, name: 'cNC2' },
-    { id: 5, name: 'subContractor1' },
-    { id: 6, name: 'punching1' },
-    { id: 7, name: 'punching2' },
-    { id: 8, name: 'garda3' },
-    { id: 9, name: 'minutesPerPiece' },
-    { id: 10, name: 'weightPerPiece' },
-    { id: 11, name: 'lprkr' },
-    { id: 12, name: 'lobr' },
-    { id: 13, name: 'npr' },
-    { id: 14, name: 'setupSameProfile' },
-    { id: 15, name: 'setupOtherProfile' },
+    { id: 0, name: 'Erpitem' },
+    { id: 1, name: 'Erpvariant' },
+    { id: 2, name: 'OpNo' },
+    { id: 3, name: 'Cnc1Id' },
+    { id: 4, name: 'Cnc2Id' },
+    { id: 5, name: 'SubContractor1Id' },
+    { id: 6, name: 'Punching1' },
+    { id: 7, name: 'Punching2' },
+    { id: 8, name: 'Garda3' },
+    { id: 9, name: 'MinutesPerPiece' },
+    { id: 10, name: 'WeightPerPiece' },
+    { id: 11, name: 'Lprkr' },
+    { id: 12, name: 'Lobr' },
+    { id: 13, name: 'Npr' },
+    { id: 14, name: 'SetupOtherProfile' },
+    { id: 15, name: 'SetupSameProfile' },
   ];
 
   public orderDateOptions = {
@@ -53,126 +53,176 @@ export class ProductsComponent implements OnInit {
     altInputClass: 'form-control flat-picker flatpickr-input invoice-edit-input',
     enableTime: false
   };
-  public erpitem: string = '';
-  public erpvariant: string = '';
-  public opNo: string = '';
-  public cNC1: string = '';
-  public cNC2: string = '';
-  public subContractor1: string = '';
-  public punching1: string = '';
-  public punching2: string = '';
-  public garda3: string = '';
-  public minutesPerPiece: string = '';
-  public weightPerPiece: string = '';
-  public lprkr: string = '';
-  public lobr: string = '';
-  public npr: string = '';
-  public setupSameProfile: string = '';
-  public setupOtherProfile: string = '';
-  public erpitemArr: Array<any> = [];
-  public erpvariantArr: Array<any> = [];
-  public opNoArr: Array<any> = [];
-  public cNC1Arr: Array<any> = [];
-  public cNC2Arr: Array<any> = [];
-  public subContractor1Arr: Array<any> = [];
-  public punching1Arr: Array<any> = [];
-  public punching2Arr: Array<any> = [];
-  public garda3Arr: Array<any> = [];
-  public minutesPerPieceArr: Array<any> = [];
-  public weightPerPieceArr: Array<any> = [];
-  public lprkrArr: Array<any> = [];
-  public lobrArr: Array<any> = [];
-  public nprArr: Array<any> = [];
-  public setupSameProfileArr: Array<any> = [];
-  public setupOtherProfileArr: Array<any> = [];
+
+  public arrFilters: any = [];
+  public refreshed: Date;
+  public count: number = 0;
+  public countTable: number = 0;;
 
   constructor(
     private profileService: ProfilesService,
     public translate: TranslateService,
     private modalService: NgbModal,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.pageChanged(1);
-    this.getFilters();
+  ) {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
+
+    this.arrFilters = [
+      {id: 0, ind: 0, url: 'Erpitem', name: this.translateSnackBar.erpItem, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 1, ind: 1, url: 'Erpvariant', name: this.translateSnackBar.erpVariant, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 2, ind: 2, url: 'OpNo', name: this.translateSnackBar.opNo, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 3, ind: 3, url: 'Cnc1Id', name: this.translateSnackBar.cnc1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 4, ind: 4, url: 'Cnc2Id', name: this.translateSnackBar.cnc2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 5, ind: 5, url: 'SubContractor1Id', name: this.translateSnackBar.subContractor1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 6, ind: 6, url: 'Punching1', name: this.translateSnackBar.punching1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 7, ind: 7, url: 'Punching2', name: this.translateSnackBar.punching2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 8, ind: 8, url: 'Garda3', name: this.translateSnackBar.garda3, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 9, ind: 9, url: 'MinutesPerPiece', name: this.translateSnackBar.minutesPerPiece, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 10, ind: 10, url: 'WeightPerPiece', name: this.translateSnackBar.weightPerPiece, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 11, ind: 11, url: 'Lprkr', name: this.translateSnackBar.lprkr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 12, ind: 12, url: 'Lobr', name: this.translateSnackBar.lobr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 13, ind: 13, url: 'Npr', name: this.translateSnackBar.npr, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 14, ind: 14, url: 'SetupOtherProfile', name: this.translateSnackBar.setupSameProfile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 15, ind: 15, url: 'SetupSameProfile', name: this.translateSnackBar.setupOtherProfile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+    ];
+  }
+
+  ngOnInit(): void {
+    this.pageChanged(1);
+    this.getFilters(this.urls.length, 'init');
   }
 
   getRequest() {
+    this.countTable = 0;
     this.blockUI.start('Loading...');
     this.profileService.getProfileProduct(
         this.offset,
         this.limit,
-        this.erpitem,
-        this.erpvariant,
-        this.opNo,
-        this.cNC1,
-        this.cNC2,
-        this.subContractor1,
-        this.punching1,
-        this.punching2,
-        this.garda3,
-        this.minutesPerPiece,
-        this.weightPerPiece,
-        this.lprkr,
-        this.lobr,
-        this.npr,
-        this.setupSameProfile,
-        this.setupOtherProfile,
+        this.arrFilters[0].model,
+        this.arrFilters[1].model,
+        this.arrFilters[2].model,
+        this.arrFilters[3].model,
+        this.arrFilters[4].model,
+        this.arrFilters[5].model,
+        this.arrFilters[6].model,
+        this.arrFilters[7].model,
+        this.arrFilters[8].model,
+        this.arrFilters[9].model,
+        this.arrFilters[10].model,
+        this.arrFilters[11].model,
+        this.arrFilters[12].model,
+        this.arrFilters[13].model,
+        this.arrFilters[14].model,
+        this.arrFilters[15].model,
         this.orderType,
         this.orderBy
       )
       .subscribe((data) => {
         this.rows = data.list;
         this.totalResult = data.total;
+        this.countTable++;
+        this.blockUI.stop();
+      }, error =>{
         this.blockUI.stop();
       });
   }
 
-  getFilters() {
-    this.blockUI.start('Loading...');
+  getFilters(ind, action) {
+    console.log('getFilters', this.arrFilters);
+    this.count = 0;
     for (let i = 0; i < this.urls.length; i++) {
-      this.profileService.getProductFilters(this.urls[i].name, this.erpitem, this.erpvariant, this.opNo, this.cNC1, this.cNC2, this.subContractor1, this.punching1, this.punching2, this.garda3, this.minutesPerPiece, this.weightPerPiece, this.lprkr, this.lobr, this.npr, this.setupSameProfile, this.setupOtherProfile).subscribe((data) => {
-        switch (this.urls[i].id) {
-          case 0: { this.erpitemArr = data; }
-            break;
-          case 1: { this.erpvariantArr = data; }
-            break;
-          case 2: { this.opNoArr = data; }
-            break;
-          case 3: { this.cNC1Arr = data; }
-            break;
-          case 4: { this.cNC2Arr = data; }
-            break;
-          case 5: { this.subContractor1Arr = data; }
-            break;
-          case 6: { this.punching1Arr = data; }
-            break;
-          case 7: { this.punching2Arr = data; }
-            break;
-          case 8: { this.garda3Arr = data; }
-            break;
-          case 9: { this.minutesPerPieceArr = data; }
-            break;
-          case 10: {this.weightPerPieceArr = data; }
-            break;
-          case 11: { this.lprkrArr = data; }
-            break;
-          case 12: { this.lobrArr = data; }
-            break;
-          case 13: { this.nprArr = data; }
-            break;
-          case 14:{ this.setupSameProfileArr = data;}
-            break;
-          case 15: { this.setupOtherProfileArr = data; }
-            break;
-        }
-        this.blockUI.stop();
-      });
+      if(ind != this.urls[i].id) {
+        let array = [];
+        this.profileService.getProductFilters(this.urls[i].name,
+          this.arrFilters[0].model,
+          this.arrFilters[1].model,
+          this.arrFilters[2].model,
+          this.arrFilters[3].model,
+          this.arrFilters[4].model,
+          this.arrFilters[5].model,
+          this.arrFilters[6].model,
+          this.arrFilters[7].model,
+          this.arrFilters[8].model,
+          this.arrFilters[9].model,
+          this.arrFilters[10].model,
+          this.arrFilters[11].model,
+          this.arrFilters[12].model,
+          this.arrFilters[13].model,
+          this.arrFilters[14].model,
+          this.arrFilters[15].model
+        ).subscribe((data) => {
+          if(action == 'init' && this.urls[i].id == i) {
+            for(let l=0; l < data.length; l++) {
+              data[l].checked = false;
+              if(l <= 20) { array.push(data[l]) }
+            }
+            // console.log('===============>>>>>>>>>>', this.arrFilters)
+            for(let j=0; j < this.arrFilters.length; j++) {
+              // console.log('===============>>>>>>>>>>', this.urls[i].name, this.arrFilters[j].url)
+              if(this.urls[i].name == this.arrFilters[j].url) {
+                this.arrFilters[j].filter = array;
+                this.arrFilters[j].fullFilter = data;
+                this.arrFilters[j].temp = data;
+                this.arrFilters[j].selectAll = false;
+                this.arrFilters[j].disableScroll = false;
+                this.arrFilters[j].searchFilterConf= '';
+                this.arrFilters[j].model= '';
+              }
+            }
+          } else {
+            for (let j = 0; j < this.arrFilters.length; j++) {
+              // console.log('data 1=>', data, this.arrFilters, i);
+              if (this.arrFilters[j].ind == i) {
+                for (let l = 0; l < data.length; l++) {
+                  // console.log('data 2=>', data, this.arrFilters[j].filter, j);
+                   for (let k = 0; k < this.arrFilters[j].filter.length; k++){
+                    // console.log('data 3=>', data, this.arrFilters[j].filter[k], k,);
+                    if (this.arrFilters[j].filter[k].checked == true && this.arrFilters[j].filter[k].name == data[l].name) {
+                      data[l].checked = true;
+                    }
+                  }
+                }
+                for(let l=0; l < data.length; l++) {
+                  if(l <= 20) { array.push(data[l]) }
+                }
+                this.arrFilters[j].filter = array;
+                this.arrFilters[j].fullFilter = data;
+                this.arrFilters[j].temp = data;
+                this.arrFilters[j].disableScroll = false;
+                this.arrFilters[j].searchFilterConf= '';
+              }
+            }
+            // console.log('data 4=>', data);
+          }
+          this.count++;
+        }, error => {
+          for(let j=0; j < this.arrFilters.length; j++) {
+            // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
+            // console.log('===============>>>>>>>>>>', this.urls[i].name, this.arrFilters[j].url)
+            if(this.urls[i].name == this.arrFilters[j].url) {
+              this.arrFilters[j].filter = '';
+              this.arrFilters[j].fullFilter = '';
+              this.arrFilters[j].temp = '';
+              this.arrFilters[j].selectAll = false;
+              this.arrFilters[j].disableScroll = false;
+              this.arrFilters[j].searchFilterConf= '';
+              // this.arrFilters[j].model= '';
+            }
+          }
+          this.count++;
+        });
+      }
     }
+    setTimeout(() => {
+      if(this.urls.length == this.count && this.countTable == 1) {
+        this.arrFilters.sort((a,b)=>a.ind - b.ind)
+        console.log('arrFilters', this.arrFilters);
+        this.blockUI.stop();
+      }
+    }, 1000);
+
   }
 
   pageChanged(page: number) {
@@ -188,44 +238,113 @@ export class ProductsComponent implements OnInit {
     modalRef.componentInstance.productItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest();
+        this.pageChanged(1);
       }
     });
   }
 
-  sortType(column, orderType, ind) {
-    console.log('sortType', column, orderType, ind)
-    this.blockUI.start('Loading...');
+  sortType(orderType, ind) {
+    console.log('sortType', orderType, ind)
     this.indColumn = ind;
     this.orderBy = ind;
-    if (orderType == true) {
-      this.orderType = 1;
-    } else {
-      this.orderType = 0;
-    }
-    this.getRequest();
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
+    this.pageChanged(1);
   }
-  clarAll() {
-    this.offset = 0,
-    this.limit = 15,
-    this.erpitem = '';
-    this.erpvariant = '';
-    this.opNo = '';
-    this.cNC1 = '';
-    this.cNC2 = '';
-    this.subContractor1 = '';
-    this.punching1 = '';
-    this.punching2 = '';
-    this.garda3 = '';
-    this.minutesPerPiece = '';
-    this.weightPerPiece = '';
-    this.lprkr = '';
-    this.lobr = '';
-    this.npr = '';
-    this.setupSameProfile = '';
-    this.setupOtherProfile = '';
-    this.orderType = 1;
+
+  clearAll() {
+    this.offset = 0;
+    this.limit = 15;
     this.orderBy = 0;
-    this.getRequest();
+    this.orderType = 1;
+    for(let i=0; i < this.arrFilters.length; i++) {
+      this.arrFilters[i].model= '';
+      this.arrFilters[i].selectAll = false;
+    }
+    this.pageChanged(1);
+    this.getFilters(this.urls.length, 'init');
+  }
+
+  updateAllComplete(column, array, ind) {
+    console.log('updateAllComplete', column, array, ind)
+    column = array != null && array.every(t => t.checked);
+    this.filterColumn(column, array, ind);
+  }
+
+  someComplete(column, array, ind) {
+    // console.log('someComplete', column, array, ind)
+    // if (array.length == 0) {
+    //   return false;
+    // }
+    // return array.filter(t => t.checked).length > 0 && !column;
+  }
+
+  searchFilter(event, column, array, tempData, ind) {
+    console.log('searchFilter', column, array, tempData, ind);
+    // this.blockUI.start('Loading...');
+    let fullArray = [];
+    const val = event.target.value.toLowerCase().trim();
+    const temp = tempData.filter(function (d) {
+      return (d.name).toString().toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    if(event.target.value == '') {
+      for(let l=0; l < this.arrFilters[ind].fullFilter.length; l++) {
+        if(l <= 20) { fullArray.push(this.arrFilters[ind].fullFilter[l]) }
+      }
+      this.arrFilters[ind].disableScroll = false;
+    } else  {
+      this.arrFilters[ind].disableScroll = true;
+    }
+    console.log('searchFilter=====>',event.target.value == '', fullArray, temp, this.arrFilters[ind].filter.length);
+    this.arrFilters[ind].filter = event.target.value == '' ? fullArray : temp;
+    return;
+  }
+
+  clearFilter(filter, ind) {
+    let fullArray = [];
+    for(let l=0; l < filter.length; l++) {
+      if(l <= 20) { fullArray.push(filter[l]) }
+    }
+    this.arrFilters[ind].searchFilterConf = '';
+    this.arrFilters[ind].filter = fullArray;
+    this.arrFilters[ind].disableScroll = false;
+  }
+
+  setAll(checked: boolean, column, array, ind) {
+    console.log('setAll', checked, column, array, ind);
+    column = checked;
+    if (array.length == 0) {
+      return;
+    }
+    array.forEach(t => (t.checked = checked));
+    this.filterColumn(column, array, ind);
+  }
+
+  filterColumn(column, array, ind) {
+    console.log('filterColumn', column, array)
+    let selected = [];
+    this.refreshed = new Date();
+    for(let i=0; i < array.length; i++) {
+      if(array[i].checked == true) {
+        selected.push(array[i].name);
+      }
+      this.arrFilters[ind].model = selected;
+    }
+
+    this.getFilters(ind, 'edit');
+    this.pageChanged(1);
+  }
+
+  onScroll(column, array, ind) {
+    console.log('onScroll', column, array, ind, this.arrFilters[ind].filter.length, this.arrFilters[ind].fullFilter.length)
+    let length = this.arrFilters[ind].filter.length;
+    if(this.arrFilters[ind].filter.length <= this.arrFilters[ind].fullFilter.length && !this.arrFilters[ind].disableScroll){
+      for(let i=length; i < length+20; i++) {
+        console.log('this.arrFilters[ind].fullFilter[i]', this.arrFilters[ind].fullFilter[i]);
+        if(this.arrFilters[ind].fullFilter[i] != undefined) {
+          this.arrFilters[ind].filter.push(this.arrFilters[ind].fullFilter[i]);
+        }
+      }
+    }
   }
 }
