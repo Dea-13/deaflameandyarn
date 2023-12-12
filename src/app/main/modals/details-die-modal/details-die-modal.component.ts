@@ -67,7 +67,7 @@ export class DetailsDieModalComponent implements OnInit {
   public orderType: number = 1;
   public indColumn: any;
   userName: any;
-  dieInfo: any;
+  dieInfo: any = {};
 
   constructor(
     private toastrService: ToastrService,
@@ -77,6 +77,7 @@ export class DetailsDieModalComponent implements OnInit {
     private modalService: NgbModal,
   ) {
     this.translate.get('translate').subscribe((snackBar: string) => {
+      console.log('snackBar', snackBar);
       this.translateSnackBar = snackBar;
     });
     this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
