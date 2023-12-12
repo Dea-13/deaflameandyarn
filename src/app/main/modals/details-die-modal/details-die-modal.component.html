@@ -624,7 +624,59 @@
                     <ng-container [ngbNavItem]="3">
                       <a ngbNavLink>{{ translateSnackBar.byResource }}</a>
                       <ng-template ngbNavContent>
+                        <table mat-table [dataSource]="arrResource" multiTemplateDataRows class="mat-elevation-z8">
+                          <ng-container matColumnDef="resourceIn">
+                            <th mat-header-cell *matHeaderCellDef> {{ translateSnackBar.resourceIn }} </th>
+                            <td mat-cell *matCellDef="let element"> {{element.resourceIn}} </td>
+                          </ng-container>
 
+                          <ng-container matColumnDef="resourceName">
+                            <th mat-header-cell *matHeaderCellDef> {{ translateSnackBar.resource }} </th>
+                            <td mat-cell *matCellDef="let element"> {{element.resourceName}} </td>
+                          </ng-container>
+
+                          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                          <ng-container matColumnDef="expandedDetail">
+                            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                              <div class="example-element-detail" [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+                                <div class="example-element-description">
+                                  <table class="clasic-table">
+                                    <thead>
+                                      <th>{{ translateSnackBar.dieId }}</th>
+                                      <th>{{ translateSnackBar.date }}</th>
+                                      <th>{{ translateSnackBar.kgProduced }}</th>
+                                      <th>{{ translateSnackBar.computerName }}</th>
+                                      <th>{{ translateSnackBar.notes }}</th>
+                                      <th>{{ translateSnackBar.resourceIn }}</th>
+                                      <th>{{ translateSnackBar.resourceOut }}</th>
+                                      <th>{{ translateSnackBar.storage }}</th>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="embeded-row" *ngFor="let r of element.resources; let i = index">
+                                        <td>{{r.dieId}}</td>
+                                        <td>{{r.movementDateTime| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                                        <td>{{r.kgProduced}}</td>
+                                        <td>{{r.computerName}}</td>
+                                        <td>{{r.notes}}</td>
+                                        <td>{{r.resourceIn}}</td>
+                                        <td>{{r.resourceOut}}</td>
+                                        <td>{{r.storagePlaceIn}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                              class="example-element-row"
+                              [class.example-expanded-row]="expandedElement === element"
+                              (click)="expandedElement = expandedElement === element ? null : element">
+                          </tr>
+                          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                        </table>
                       </ng-template>
                     </ng-container>
 

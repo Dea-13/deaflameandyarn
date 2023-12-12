@@ -8,11 +8,19 @@ import { GenerateTestModalComponent } from '../generate-test-modal/generate-test
 import { NewMatrixModalComponent } from '../new-matrix-modal/new-matrix-modal.component';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ExtrusionModalComponent } from '../../pages/extrusion-modal/extrusion-modal.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-details-die-modal',
   templateUrl: './details-die-modal.component.html',
-  styleUrls: ['./details-die-modal.component.scss']
+  styleUrls: ['./details-die-modal.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class DetailsDieModalComponent implements OnInit {
 
@@ -37,6 +45,8 @@ export class DetailsDieModalComponent implements OnInit {
     'remainingQty', 'color'
   ];
   displayedColumnsMovements: string[] = ['resourceIn', 'resourceOut', 'movementDateTime', 'notes', 'empName', 'computerName'];
+  columnsToDisplay: string[] = ['resourceIn', 'resourceName'];
+  expandedElement: [] | null;
 
   public urls = [
     { id: 0, name: 'ResourceIn' },
@@ -52,22 +62,23 @@ export class DetailsDieModalComponent implements OnInit {
   public dieRow: any;
   public extrusion: Array<any> = [];
   public movements: Array<any> = [];
-  sumTotalKg: number = 0;
-  sumtotalUsed: number = 0;
-  resourceName: string = '';
-  inUseFrom: string = '';
-  emptyDataHeader: boolean = false;
-  headerInfo: any = {};
-  header: Array<any> = [];
-  fullScr: boolean = false;
+  public sumTotalKg: number = 0;
+  public sumtotalUsed: number = 0;
+  public resourceName: string = '';
+  public inUseFrom: string = '';
+  public emptyDataHeader: boolean = false;
+  public headerInfo: any = {};
+  public header: Array<any> = [];
+  public fullScr: boolean = false;
 
   public arrFilters: any = [];
   public refreshed: Date;
   public orderBy: number = 0;
   public orderType: number = 1;
   public indColumn: any;
-  userName: any;
-  dieInfo: any = {};
+  public userName: any;
+  public dieInfo: any = {};
+  public arrResource: Array<any> = [];
 
   constructor(
     private toastrService: ToastrService,
@@ -98,6 +109,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.getHeaderDetails();
     this.getFilters(this.urls.length, 'init');
     this.getDieInfo();
+    this.getResourceTable();
   }
 
   fullScreen(){
@@ -111,6 +123,33 @@ export class DetailsDieModalComponent implements OnInit {
       console.log("getExtrusion", data);
       this.extrusion = data;
       this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    });
+  }
+
+  getResourceTable() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getResourceTable(this.dieRow.id).subscribe(data => {
+      console.log("getResourceTable", data);
+      this.arrResource = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -119,6 +158,15 @@ export class DetailsDieModalComponent implements OnInit {
     this.matrixService.getImage(this.dieRow.profile).subscribe(data => {
       console.log("getImage", data);
       this.image = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -139,7 +187,16 @@ export class DetailsDieModalComponent implements OnInit {
       console.log("getMovements", data);
       this.movements = data;
       this.blockUI.stop();
-    });
+    }), error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    };
   }
 
   getDieInfo() {
@@ -147,6 +204,15 @@ export class DetailsDieModalComponent implements OnInit {
     this.matrixService.getDieInfo(this.dieRow.id).subscribe(data => {
       console.log("getDieInfo", data);
       this.dieInfo = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -169,6 +235,15 @@ export class DetailsDieModalComponent implements OnInit {
       }
 
       console.log("this.headerDetails", this.sumTotalKg, this.sumtotalUsed, this.resourceName, this.inUseFrom);
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }

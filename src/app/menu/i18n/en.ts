@@ -506,6 +506,7 @@ export const locale = {
       lastModifiedBy: 'Modified By',
       date: 'Date',
       dies: 'Die',
+      kgProduced: 'KG Produced',
     }
   }
 }

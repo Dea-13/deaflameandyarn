@@ -280,6 +280,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}ExtrusionConfirmation/GetExtrusionConfirmation/${id}`);
   }
 
+  getResourceTable(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/getDieMovementByMachine?dieId=${id}`);
+  }
+
   getImage(id:number) {
     return this._http.get<any>(`${environment.apiUrl}Profiles/image/${id}`);
   }
