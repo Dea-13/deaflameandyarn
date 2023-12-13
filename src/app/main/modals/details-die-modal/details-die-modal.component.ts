@@ -45,7 +45,7 @@ export class DetailsDieModalComponent implements OnInit {
     'remainingQty', 'color'
   ];
   displayedColumnsMovements: string[] = ['resourceIn', 'resourceOut', 'movementDateTime', 'notes', 'empName', 'computerName'];
-  columnsToDisplay: string[] = ['resourceIn', 'resourceName'];
+  columnsToDisplay: string[] = ['resourceName'];
   expandedElement: [] | null;
 
   public urls = [
