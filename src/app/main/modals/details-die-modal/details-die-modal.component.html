@@ -625,10 +625,6 @@
                       <a ngbNavLink>{{ translateSnackBar.byResource }}</a>
                       <ng-template ngbNavContent>
                         <table mat-table [dataSource]="arrResource" multiTemplateDataRows class="mat-elevation-z8">
-                          <ng-container matColumnDef="resourceIn">
-                            <th mat-header-cell *matHeaderCellDef> {{ translateSnackBar.resourceIn }} </th>
-                            <td mat-cell *matCellDef="let element"> {{element.resourceIn}} </td>
-                          </ng-container>
 
                           <ng-container matColumnDef="resourceName">
                             <th mat-header-cell *matHeaderCellDef> {{ translateSnackBar.resource }} </th>

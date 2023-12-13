@@ -289,11 +289,11 @@ export class MatrixService {
   }
 
   getMovements(id:number, orderType:number, orderBy:number, die:string, resourceIn:string, resourceOut:string, kgProduced:string, computerName:string, userName:string) {
-    return this._http.get<any>(`${environment.apiUrl}DieMovement/getLastDieMovementByDieId?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=${userName}&orderType=${orderType}&orderBy=${orderBy}`);
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/getLastDieMovementByDieId?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
   getMovementsMatrix(url: string, id:number, die:string, resourceIn:string, resourceOut:string, kgProduced:string, computerName:string, userName:string) {
-    return this._http.get<any>(`${environment.apiUrl}DieMovement/filter/${url}?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=${userName}`);
+    return this._http.get<any>(`${environment.apiUrl}DieMovement/filter/${url}?dieID=${id}&die=${die}&resourceIn=${resourceIn}&resourceOut=${resourceOut}&kgProduced=${kgProduced}&computerName=${computerName}&userName=`);
   }
 
   getExtrusionData(id:number, resourceId:number) {
