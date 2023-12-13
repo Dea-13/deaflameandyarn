@@ -29,6 +29,7 @@ export class CoreConfigService {
     if (_config.layout.enableLocalStorage) {
       this.localConfig = JSON.parse(localStorage.getItem('config'));
     } else {
+      console.log('CoreConfigService: TUKAAAAA')
       localStorage.removeItem('config');
     }
 
