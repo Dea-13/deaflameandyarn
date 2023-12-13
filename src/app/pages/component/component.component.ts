@@ -134,6 +134,7 @@ export class ComponentComponent implements OnInit {
     modalRef.componentInstance.pdfItem = { 'pdf': this.pdf};
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
+        console.log('CoreConfigService: TUKAAAAA 3')
         localStorage.removeItem('dataRedirect');
         localStorage.removeItem('dataRedirectConfirmation');
         this.router.navigate(['api/operation/' + JSON.parse(localStorage.getItem('dataRedirectOperation')).id]);
@@ -161,6 +162,7 @@ export class ComponentComponent implements OnInit {
           if(Number(this.dataServiceObj.operation.workCenterId) == 17 || Number(this.dataServiceObj.operation.workCenterId) == 55){
             this.getPdfPreviewer(comformationId, Number(this.dataServiceObj.operation.workCenterId));
           } else {
+            console.log('CoreConfigService: TUKAAAAA 6')
             localStorage.removeItem('dataRedirect');
             localStorage.removeItem('dataRedirectConfirmation');
             this.router.navigate(['api/operation/' + JSON.parse(localStorage.getItem('dataRedirectOperation')).id]);

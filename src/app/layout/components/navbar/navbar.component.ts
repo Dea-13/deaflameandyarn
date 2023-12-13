@@ -170,6 +170,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
    */
   logout() {
     this._authenticationService.logout();
+    console.log('CoreConfigService: TUKAAAAA 2')
     localStorage.removeItem('comport');
     this._router.navigate(['/pages/authentication/login-v2']);
   }
