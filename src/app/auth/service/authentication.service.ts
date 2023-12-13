@@ -129,6 +129,7 @@ export class AuthenticationService {
    */
   logout() {
     // remove user from local storage to log user out
+    console.log('CoreConfigService: TUKAAAAA 1')
     localStorage.removeItem('_currentUser');
     // notify
     this._currentUserSubject.next(null);
