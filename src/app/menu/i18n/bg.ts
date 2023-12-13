@@ -507,6 +507,7 @@ export const locale = {
       dies: 'Матрица',
       kgProduced: 'Произведени кг',
       validDate: 'Изисква се валидна дата.',
+      fillAllRowsMsg: 'Моля, попълнете всички полета в реда!',
     }
   }
 }

@@ -739,7 +739,7 @@ export class NewProfileModalComponent implements OnInit {
         Swal.fire({
           position: 'bottom-end',
           icon: 'warning',
-          title: this.translateSnackBar.fillAllMsg,
+          title: this.translateSnackBar.fillAllRowsMsg,
           showConfirmButton: false,
           timer: 2000
         })
