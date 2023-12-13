@@ -507,6 +507,7 @@ export const locale = {
       date: 'Date',
       dies: 'Die',
       kgProduced: 'KG Produced',
+      validDate: 'Valid date required.',
     }
   }
 }

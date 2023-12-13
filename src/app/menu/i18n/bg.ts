@@ -506,6 +506,7 @@ export const locale = {
       date: 'Дата',
       dies: 'Матрица',
       kgProduced: 'Произведени кг',
+      validDate: 'Изисква се валидна дата.',
     }
   }
 }
