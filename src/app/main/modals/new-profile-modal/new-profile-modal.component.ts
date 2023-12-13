@@ -53,8 +53,11 @@ export class NewProfileModalComponent implements OnInit {
   public validation: boolean;
   public disableTab: boolean = true;
   public profileId: number;
-  fullScr: boolean = false;
-  img: any;
+  public fullScr: boolean = false;
+  public img: any;
+  public tabSpeed: Array<any> = [];
+  public pressArr: Array<any> = [];
+  public editPress = {};
 
 
   constructor(
@@ -107,7 +110,9 @@ export class NewProfileModalComponent implements OnInit {
       this.getProfiles(this.profile.id);
       this.getProfilesEnds(this.profile.id);
       this.getFiles(this.profile.id);
+      this.getProfilesByPress();
     }
+    this.getPress();
     this.getAlloy();
     this.getGroupCode();
 
@@ -306,7 +311,7 @@ export class NewProfileModalComponent implements OnInit {
         }
         console.log('obj End', obj, row, this.profileId);
         if (row.profileId) {
-          this.profilesService.updateRowsEnd(obj).subscribe(matrixService => {
+          this.profilesService.updateRowsEnd(obj).subscribe(profilesService => {
             this.getProfilesEnds(row.profileId);
             this.blockUI.stop();
             Swal.fire({
@@ -331,8 +336,8 @@ export class NewProfileModalComponent implements OnInit {
         } else {
           // obj.channels = row.channels;
           // obj.alloyFamily = row.alloyFamily;
-          this.profilesService.createRowsEnd(obj).subscribe(matrixService => {
-            this.getProfilesEnds(matrixService.profileId);
+          this.profilesService.createRowsEnd(obj).subscribe(profilesService => {
+            this.getProfilesEnds(profilesService.profileId);
             this.blockUI.stop();
             Swal.fire({
               position: 'bottom-end',
@@ -369,7 +374,7 @@ export class NewProfileModalComponent implements OnInit {
   deleteRowsLength(rowsLength, row, ind) {
     console.log("delete row", rowsLength, ind);
     this.isEditableRowsLength[ind] = false;
-    this.profilesService.deleteRowsEnd(row.profileId, row.alloyFamily).subscribe(matrixService => {
+    this.profilesService.deleteRowsEnd(row.profileId, row.alloyFamily).subscribe(profilesService => {
       this.getProfilesEnds(row.profileId);
       this.blockUI.stop();
       Swal.fire({
@@ -610,6 +615,163 @@ export class NewProfileModalComponent implements OnInit {
       })
       this.getFiles(this.profile.id);
     });
+  }
+  //////////////////////// TABLE PROFILE BY PRESS
+
+  getProfilesByPress() {
+    this.blockUI.start('Loading...');
+    this.profilesService.getProfilesByPress(this.profile.id).subscribe((data) => {
+      this.tabSpeed = data;
+      this.blockUI.stop();
+    });
+  }
+
+  getPress() {
+    this.blockUI.start('Loading...');
+    this.profilesService.getPress().subscribe((data) => {
+      this.pressArr = data;
+      this.blockUI.stop();
+    });
+  }
+
+  addPress() {
+    console.log("addPress");
+    let emptyRow = {
+      pressId: "",
+      channels: null,
+      priority: null,
+      alloyFamily: "",
+      speed: "",
+    };
+    this.tabSpeed.push(emptyRow);
+    this.tabSpeed = [...this.tabSpeed];
+  }
+
+  fillPressChannels(row) {
+    console.log("fillPressChannels:", row);
+    if (row.channels == null) {
+      row.channels = 2;
+    }
+  }
+
+  pressValidation(row: any): boolean {
+    console.log("invalid++++++:", row);
+    if (row.pressId == "") {
+      return false;
+    } else if (row.channels == null) {
+      return false;
+    } else if (row.alloyFamily == "") {
+      return false;
+    } else if (row.speed == "") {
+      return false;
+    } else if (row.priority == null) {
+      return false;
+    } else {
+      return true
+    }
+  }
+
+  saveRowsPress(rowsLength, row, ind) {
+    console.log("saveRowsPress", rowsLength, row, ind);
+    this.editPress[ind] = false;
+    let flag = false;
+    let obj;
+    let url;
+    for (let i = 0; i < this.tabSpeed.length; i++) {
+      if (this.tabSpeed[i].id) {
+        if (!row.id && (this.tabSpeed[i].pressId == row.pressId && this.tabSpeed[i].alloyFamily == row.alloyFamily)) {
+          console.log('Duplicate row');
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
+      }
+    }
+
+    if (!flag) {
+      this.validation = this.pressValidation(rowsLength[ind]);
+      if (this.validation) {
+        obj = {
+          profileId: this.profile.id,
+          pressId: row.pressId,
+          priority: row.priority,
+          channels: row.channels,
+          speed: row.speed,
+          alloyFamily: row.alloyFamily,
+        }
+
+        if(row.id) {
+          obj.id = row.id;
+          url = this.profilesService.updatePress(row);
+        } else {
+          url = this.profilesService.createPress(obj);
+        }
+
+        url.subscribe(data => {
+          this.getProfilesByPress();
+          this.blockUI.stop();
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: this.translateSnackBar.saveMsg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, (error) => {
+            Swal.fire({
+              position: 'bottom-end',
+              icon: 'warning',
+              title: error.status == 304 ? this.translateSnackBar.makeChange : 'Error',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.blockUI.stop();
+          }
+        );
+
+      } else {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.fillAllRowsMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+    }
+  }
+
+  deleteRowsPress(rowsLength, row, ind) {
+    console.log("delete row", rowsLength, ind);
+    this.editPress[ind] = false;
+    this.profilesService.deletePress(row.id).subscribe(data => {
+      this.getProfilesByPress();
+      this.blockUI.stop();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.deleteMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    },
+      (error) => {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: 'Error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.blockUI.stop();
+      }
+    );
   }
 
   closeModal(): void {

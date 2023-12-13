@@ -96,7 +96,7 @@ export class NewMatrixModalComponent implements OnInit {
       oporenPrysten: [false],
       opora: [''],
       bmwInventoryNumber: [''],
-      dieLiveQty: [''],
+      dieLiveQty: ['', Validators.required],
       Pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
@@ -225,6 +225,16 @@ export class NewMatrixModalComponent implements OnInit {
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -259,6 +269,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getProfile().subscribe((data) => {
       this.profileArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -267,6 +287,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getMatrix(this.createMatrixForm.controls.profile.value.name ? this.createMatrixForm.controls.profile.value.name : this.matrixItem.data.profileId).subscribe((data) => {
       this.createMatrixForm.controls.matrix.setValue(data.name);
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -274,6 +304,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getStatus().subscribe((data) => {
       this.statusArr = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -301,6 +341,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getChannels(40).subscribe((data) => {
       this.channelsArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -309,6 +359,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getOpora().subscribe((data) => {
       this.oporaArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -316,6 +376,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getType().subscribe((data) => {
       this.typeArr = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -333,6 +403,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getBolster1().subscribe((data) => {
       this.bolster1 = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -340,6 +420,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getBolster2().subscribe((data) => {
       this.bolster2 = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -349,6 +439,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getClientName().subscribe((data) => {
       this.clientNameArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -356,6 +456,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getProducer().subscribe((data) => {
       this.producerArr = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -373,6 +483,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getMatricologist().subscribe((data) => {
       this.matrologistArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -380,6 +500,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getPress().subscribe((data) => {
       this.pressArr = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -389,6 +519,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getAlloy().subscribe((data) => {
       this.alloyArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -397,6 +537,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrixService.getMatricComplect().subscribe((data) => {
       this.matrixComplectArr = data;
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -404,6 +554,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getStorage().subscribe((data) => {
       this.storagePlaceArr = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -428,6 +588,16 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.thickness.setValue(data.thickness);
       this.createMatrixForm.controls.matrixComplect.setValue(data.dimensions.concat(' - ').concat(data.resourceName));
       this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
     });
   }
 
@@ -438,6 +608,16 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getProfilesByPress(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsFirstTable = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -639,9 +819,19 @@ export class NewMatrixModalComponent implements OnInit {
 
 
   getProfilesEnds() {
-    this.blockUI.start('Loading...');
+    // this.blockUI.start('Loading...');
     this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
       this.columnsSecondTable = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
       this.blockUI.stop();
     });
   }
@@ -1042,10 +1232,9 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-
       if (this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value &&
         this.createMatrixForm.controls.priceInv.value && this.createMatrixForm.controls.altResource1.value &&
-        this.createMatrixForm.controls.altResource2.value && this.createMatrixForm.controls.anodizingQuality.value) {
+        this.createMatrixForm.controls.altResource2.value && this.createMatrixForm.controls.dieLiveQty.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();
@@ -1058,8 +1247,7 @@ export class NewMatrixModalComponent implements OnInit {
           });
           this.activeModal.dismiss();
           this.passEntry.emit(true);
-        },
-          (error) => {
+        },error => {
             console.log('error', error);
             Swal.fire({
               position: 'bottom-end',
@@ -1079,6 +1267,7 @@ export class NewMatrixModalComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        this.blockUI.stop();
       }
 
     } else {

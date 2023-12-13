@@ -505,6 +505,9 @@ export const locale = {
       lastModifiedBy: 'Потребител',
       date: 'Дата',
       dies: 'Матрица',
+      kgProduced: 'Произведени кг',
+      validDate: 'Изисква се валидна дата.',
+      fillAllRowsMsg: 'Моля, попълнете всички полета в реда!',
     }
   }
 }

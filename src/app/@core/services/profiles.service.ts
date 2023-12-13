@@ -120,4 +120,26 @@ export class ProfilesService {
   deleteRowsEnd(id:number, alloy:any){
     return this._http.delete<any>(`${environment.apiUrl}ProfilesEnds/${id}/${alloy}`);
   }
+
+  getProfilesByPress(id:number) {
+    return this._http.get<any>(`${environment.apiUrl}ProfilesByPress/${id}`);
+  }
+
+  updatePress(profile: any) {
+    const data = JSON.stringify(profile);
+    return this._http.put(`${environment.apiUrl}ProfilesByPress`, data);
+  }
+
+  createPress(profile: any) {
+    const data = JSON.stringify(profile);
+    return this._http.post<any>(`${environment.apiUrl}ProfilesByPress`, data);
+  }
+
+  deletePress(id:number){
+    return this._http.delete<any>(`${environment.apiUrl}ProfilesByPress/${id}`);
+  }
+
+  getPress() {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/press`);
+  }
 }

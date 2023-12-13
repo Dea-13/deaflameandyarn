@@ -506,6 +506,9 @@ export const locale = {
       lastModifiedBy: 'Modified By',
       date: 'Date',
       dies: 'Die',
+      kgProduced: 'KG Produced',
+      validDate: 'Valid date required.',
+      fillAllRowsMsg: 'Please fill all fields in the row!',
     }
   }
 }
