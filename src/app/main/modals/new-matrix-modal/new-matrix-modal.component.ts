@@ -96,7 +96,7 @@ export class NewMatrixModalComponent implements OnInit {
       oporenPrysten: [false],
       opora: [''],
       bmwInventoryNumber: [''],
-      dieLiveQty: [''],
+      dieLiveQty: ['', Validators.required],
       Pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
@@ -1232,10 +1232,9 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-
       if (this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value &&
         this.createMatrixForm.controls.priceInv.value && this.createMatrixForm.controls.altResource1.value &&
-        this.createMatrixForm.controls.altResource2.value && this.createMatrixForm.controls.anodizingQuality.value) {
+        this.createMatrixForm.controls.altResource2.value && this.createMatrixForm.controls.dieLiveQty.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();
@@ -1268,6 +1267,7 @@ export class NewMatrixModalComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        this.blockUI.stop();
       }
 
     } else {

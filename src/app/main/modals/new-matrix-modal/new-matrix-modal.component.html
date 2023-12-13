@@ -219,7 +219,8 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.dieLiveQty }}</label>
-                      <input formControlName="dieLiveQty" class="form-control input" type="number">
+                      <input formControlName="dieLiveQty" class="form-control input" type="number"required
+                      [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('dieLiveQty').value }">
                     </div>
                   </div>
                 </div>
