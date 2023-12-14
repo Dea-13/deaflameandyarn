@@ -8,6 +8,7 @@ logger.transports.file.resolvePath = () => path.join('./app', 'logs/main.log');
 logger.log("Application version: " + app.getVersion());
 let win: BrowserWindow = null;
 let flagUpdateAvailable = false;
+let myInterval;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
@@ -75,9 +76,9 @@ try {
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
   app.on('ready', () => setTimeout(createWindow, 1000));
-  // setInterval(() => {
+  myInterval = setInterval(() => {
     autoUpdater.checkForUpdates();
-  // }, 1000 * 30);
+  }, 1000 * 30);
   // 1000 * 60 * 10
 
   // Quit when all windows are closed.
@@ -104,6 +105,7 @@ try {
 
 autoUpdater.on('update-available', () => {
   logger.info('update-available; downloading...');  
+  clearInterval(myInterval);
   if(!flagUpdateAvailable){
     flagUpdateAvailable = true;
     autoUpdater.downloadUpdate();

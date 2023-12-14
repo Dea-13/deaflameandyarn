@@ -1,25 +1,14 @@
 {
   "name": "dms",
   "version": "1.0.2",
-  "description": "Angular 14 with Electron 19 (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/dms",
+  "description": "DMS",
+  "homepage": "http://amdy.pro",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "AMD JOBS CONSULT",
+    "email": "ahmed.musa.isa@gmail.com"
   },
   "keywords": [
-    "angular",
-    "angular 14",
-    "electron",
-    "electron 19",
-    "nodejs",
-    "typescript",
-    "playwright",
-    "eslint",
-    "sass",
-    "windows",
-    "mac",
-    "linux"
+    "DMS"
   ],
   "main": "app/main.js",
   "private": true,
