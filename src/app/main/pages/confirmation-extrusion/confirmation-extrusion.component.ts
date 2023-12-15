@@ -21,8 +21,7 @@ export class ConfirmationExtrusionComponent implements OnInit {
     'remarks', 'remarksQc', 'startTime',
     'postingDate', 'lengthSeconds', 'alloy',
     'numberOfEmployees', 'workstation',
-    'resource', 'orderAlloy',
-    'matrix', 'profile', 'length',
+    'resource', 'orderAlloy', 'profile', 'length',
     'temper', 'salesOrder', 'salesOrderItem',
     'customerName', 'computerName',
     'remainingQty', 'color'
