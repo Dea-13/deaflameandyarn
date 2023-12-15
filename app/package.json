@@ -1,11 +1,11 @@
 {
   "name": "dms",
-  "description": "Angular Electron sample",
+  "description": "DMS",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "AMD JOBS CONSULT",
+    "email": "ahmed.musa.isa@gmail.com"
   },
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "main.js",
   "private": false,
   "dependencies": {
