@@ -132,7 +132,8 @@ export class MatrixService {
   // }
 
   getFilterNitrificationMatrix(url: string, DieId: string, Channels: string, substatus: string, PrimaryResourceName: string, TotalKgProduced: string, KgAfterLastAnodizing: string, KGtoNextAnodizing: string) {
-    return this._http.get<any>(`${environment.apiUrl}Dies/filter/${url}?DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}&TotalKgProduced=${TotalKgProduced}&KgAfterLastAnodizing=${KgAfterLastAnodizing}&KGtoNextAnodizing=${KGtoNextAnodizing}`);
+    return this._http.get<any>(`${environment.apiUrl}Dies/filter/nitrification/${url}?DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&status=${substatus}&totalKgProduced=${TotalKgProduced}&kgAfterLastAnodizing=${KgAfterLastAnodizing}&kgToNextAnodizing=${KGtoNextAnodizing}`);    
+    // return this._http.get<any>(`${environment.apiUrl}Dies/filter/${url}?DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Channels=${Channels}&substatus=${substatus}&TotalKgProduced=${TotalKgProduced}&KgAfterLastAnodizing=${KgAfterLastAnodizing}&KGtoNextAnodizing=${KGtoNextAnodizing}`);
   }
 
   getDieID() {
