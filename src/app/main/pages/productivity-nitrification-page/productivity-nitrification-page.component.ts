@@ -252,13 +252,13 @@ export class ProductivityNitrificationPageComponent implements OnInit {
   }
 
   filterColumn(column, array, ind) {
-    console.log('filterColumn', column, array)
+    console.log('filterColumn', column, array, ind)
     let selected = [];
     this.refreshed = new Date();
     for(let i=0; i < array.length; i++) {
       if(array[i].checked == true) {
         if(array[i].id != 27) {
-          selected.push(array[i].name);
+          selected.push(ind != 2 ? array[i].name : array[i].id);
         } else {
           selected.push(array[i].model);
         }
