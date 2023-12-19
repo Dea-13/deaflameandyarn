@@ -93,10 +93,10 @@ export class DetailsDieModalComponent implements OnInit {
     });
     this.userName = JSON.parse(localStorage.getItem('_currentUser')).userName;
     this.arrFilters = [
-      {id: 0, ind: 0, url: 'ResourceIn', name: this.translateSnackBar.dieId, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 1, ind: 1, url: 'ResourceOut', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 2, ind: 2, url: 'KgProduced', name: this.translateSnackBar.status, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-      {id: 3, ind: 3, url: 'ComputerName', name: this.translateSnackBar.currentResource, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 0, ind: 0, url: 'ResourceIn', name: this.translateSnackBar.resourceIn, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 1, ind: 1, url: 'ResourceOut', name: this.translateSnackBar.resourceOut, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 2, ind: 2, url: 'KgProduced', name: this.translateSnackBar.kgProduced, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      {id: 3, ind: 3, url: 'ComputerName', name: this.translateSnackBar.workstation, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
     ];
    }
 
