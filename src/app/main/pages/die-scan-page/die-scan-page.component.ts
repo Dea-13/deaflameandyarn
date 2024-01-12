@@ -357,6 +357,7 @@ export class DieScanPageComponent implements OnInit {
         computerName: _currentUser['userName']
       }
 
+      this.blockUI.start('Loading...');
       this.dieService.postDieMovemanetConf(obj).subscribe(data => {
         this.submitted = false;
         this.blockUI.stop();
