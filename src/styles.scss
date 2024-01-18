@@ -1017,16 +1017,17 @@ ul {
 
 .border {
   border: 1px solid #ebe9f1 !important;
-  height: 290px;
+  height: 250px;
   margin: 2px;
   border-radius: 7%;
+  width: 160px;
 }
 
 .border-date {
   border: 1px solid #ebe9f1 !important;
-  height: 290px;
+  height: 90px;
   margin: 2px;
-  border-radius: 7%;
+  border-radius: 4%;
 }
 
 .card .card {
@@ -1117,4 +1118,19 @@ input[type="search"] {
 
 .red-text{
   color: red;
+}
+
+.mat-checkbox .mat-checkbox-layout {
+  display: inline-block;
+  margin-bottom: -0.7143rem;
+}
+
+.example-list-section ul {
+  list-style-type: none;
+  margin-top: 4px;
+  padding-left: 9px;
+}
+
+.example-list-section .example-margin {
+  margin: 0px 3px;
 }
