@@ -315,7 +315,10 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <mat-form-field (click)="dateOrder.open()">
-                        <mat-label>{{ translateSnackBar.dateStated }}</mat-label>
+                        <mat-label>
+                          <span class="text-danger h4" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)">*</span>
+                          {{ translateSnackBar.dateStated }}
+                        </mat-label>
                         <input matInput formControlName="dateOrder" [matDatepicker]="dateOrder" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateOrder"></mat-datepicker-toggle>
                         <mat-datepicker #dateOrder color="primary"></mat-datepicker>
@@ -328,7 +331,10 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <mat-form-field (click)="dateConfirmation.open()">
-                        <mat-label>{{ translateSnackBar.plannedDelivery }}</mat-label>
+                        <mat-label>
+                          <span class="text-danger h4" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateConfirmation').value && createMatrixForm.get('dateConfirmation').value.length === 0 || !createMatrixForm.get('dateConfirmation').value)">*</span>
+                          {{ translateSnackBar.plannedDelivery }}
+                        </mat-label>
                         <input matInput formControlName="dateConfirmation" [matDatepicker]="dateConfirmation" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateConfirmation"></mat-datepicker-toggle>
                         <mat-datepicker #dateConfirmation color="primary"></mat-datepicker>
@@ -344,7 +350,10 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <mat-form-field (click)="dateExpedition.open()">
-                        <mat-label>{{ translateSnackBar.realExpedition }}</mat-label>
+                        <mat-label>
+                          <span class="text-danger h4" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateExpedition').value && createMatrixForm.get('dateExpedition').value.length === 0 || !createMatrixForm.get('dateExpedition').value)">*</span>
+                          {{ translateSnackBar.realExpedition }}
+                        </mat-label>
                         <input matInput formControlName="dateExpedition" [matDatepicker]="dateExpedition" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateExpedition"></mat-datepicker-toggle>
                         <mat-datepicker #dateExpedition color="primary"></mat-datepicker>
@@ -357,7 +366,10 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <mat-form-field (click)="inUseFrom.open()">
-                        <mat-label>{{ translateSnackBar.inUseBy }}</mat-label>
+                        <mat-label>
+                          <span class="text-danger h4" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)">*</span>
+                          {{ translateSnackBar.inUseBy }}
+                        </mat-label>
                         <input matInput formControlName="inUseFrom" [matDatepicker]="inUseFrom" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="inUseFrom"></mat-datepicker-toggle>
                         <mat-datepicker #inUseFrom color="primary"></mat-datepicker>
