@@ -504,7 +504,7 @@
                         type="button"
                         class="btn btn-raised btn-sm mr-50"
                         (click)="uploadImage(item)"
-                        [disabled]="item.id"
+                        [disabled]="!item.id || !profile.id"
                         rippleEffect>
                       <span [data-feather]="'upload'" [size]="16" [class]="'mr-50 upload-green'"></span>
                       </button>

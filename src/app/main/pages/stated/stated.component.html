@@ -352,6 +352,9 @@
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.totalWeight">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.totalWeight }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 21)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kg}}</span></td>
             </ng-container>
@@ -371,6 +374,9 @@
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.finalNitriding">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.finalNitTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 82)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.finalNitriding}}</span></td>
             </ng-container>
@@ -379,6 +385,9 @@
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.kgToFianlNitriding">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.kgToFianlNitridingLite }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 83)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kgToFianlNitriding}}</span></td>
             </ng-container>
@@ -387,6 +396,9 @@
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.kgAfterFianlNitriding">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.kgAfterFianlNitridingLiteTable }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 84)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kgAfterFianlNitriding}}</span></td>
             </ng-container>
@@ -443,14 +455,6 @@
                 </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.grM}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="kgSap">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.kgSap">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.kgSap }}</span>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kgSap}}</span></td>
             </ng-container>
 
             <ng-container *ngIf="statusId === 70" matColumnDef="productivity">

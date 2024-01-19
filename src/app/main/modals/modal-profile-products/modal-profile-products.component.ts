@@ -129,7 +129,7 @@ export class ModalProfileProductsComponent implements OnInit {
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
-              title: 'Error',
+              title: error.error,
               showConfirmButton: false,
               timer: 2000
             })
@@ -147,7 +147,7 @@ export class ModalProfileProductsComponent implements OnInit {
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
-              title: 'Error',
+              title: error.error,
               showConfirmButton: false,
               timer: 2000
             })

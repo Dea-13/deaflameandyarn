@@ -167,7 +167,7 @@ export class StatedComponent implements OnInit {
         {id: 4, ind: 4, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 5, ind: 5, url: 'BolsterTooling1', name: this.translateSnackBar.bolster1, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 6, ind: 6, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
-        {id: 7, ind: 7, url: 'DieHolder', name: this.translateSnackBar.dieHolder, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'DieHolder', name: this.translateSnackBar.container, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 8, ind: 8, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 9, ind: 9, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
@@ -217,7 +217,7 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
-        'gr', 'kgSap', 'renewal'
+        'gr', 'renewal'
       ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -276,7 +276,7 @@ export class StatedComponent implements OnInit {
       this.statusId = 60;
       this.displayedColumns = [
         'dieId', 'profileId', 'placeSklad', 'primaryResourceName', 'producerName', 'correctorName', 'diameter',
-        'thickness', 'channels', 'clientName', 'totalWeight', 'kgSap', 'markedForTestDateTime',
+        'thickness', 'channels', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName', 'totalWeight', 'markedForTestDateTime',
       ];
       this.urls = [
         { id: 0, name: 'DieId' },
