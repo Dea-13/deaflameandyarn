@@ -33,12 +33,12 @@ export const menu: CoreMenu[] = [
         url: 'api/confirmed'
       },
       {
-        id: 'dispatched',
-        title: 'Expedited',
+        id: 'shipped',
+        title: 'Shipped',
         translate: 'MENU.DISPATCHED',
         type: 'item',
         icon: 'check-circle',
-        url: 'api/dispatched'
+        url: 'api/shipped'
       },
       {
         id: 'productivity',

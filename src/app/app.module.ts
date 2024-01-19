@@ -120,7 +120,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'api/dispatched',
+    path: 'api/shipped',
     component: StatedComponent,
     pathMatch: 'full'
   },

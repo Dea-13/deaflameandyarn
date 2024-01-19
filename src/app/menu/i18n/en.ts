@@ -20,7 +20,7 @@ export const locale = {
       // TEST: 'Test--------',
       STATED: 'Ordered',
       CONFIRMED: 'Confirmed',
-      DISPATCHED: 'Expedited',
+      DISPATCHED: 'Shipped',
       USING: 'Using',
       SCRAP: 'Scrapped',
       NEWMATRIX: 'New die by month-------',
