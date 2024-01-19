@@ -21,51 +21,6 @@ export class StatedComponent implements OnInit {
   public size = 13;
   public urls = [];
   public rows = [{}];
-  public dieArr: Array<any> = [];
-  public profileIdArr: Array<any> = [];
-  public primeResourceNameArr: Array<any> = [];
-  public producerNameArr: Array<any> = [];
-  public correctorArr: Array<any> = [];
-  public diameterArr: Array<any> = [];
-  public thicknessArr: Array<any> = [];
-  public alloyArr: Array<any> = [];
-  public temperArr: Array<any> = [];
-  public bolster1Arr: Array<any> = [];
-  public bolster2Arr: Array<any> = [];
-  public dieHolderArr: Array<any> = [];
-  public containerArr: Array<any> = [];
-  public notesArr: Array<any> = [];
-  public clientNameArr: Array<any> = [];
-  public dateOrderArr: Array<any> = [];
-  public priceArr: Array<any> = [];
-  public priceInvArr: Array<any> = [];
-  public dateConfirmArr: Array<any> = [];
-  public dateExpedArr: Array<any> = [];
-  public dateScrappedArr: Array<any> = [];
-  public channelsArr: Array<any> = [];
-
-  public seldie: any = [];
-  public selProfileId: any = [];
-  public selPrimeResourceName: any = [];
-  public selProducerName: any = [];
-  public selCorrector: any = [];
-  public selDiameter: any = [];
-  public selThickness: any = [];
-  public selAlloy: any = [];
-  public selTemper: any = [];
-  public selBolster1: any = [];
-  public selBolster2: any = [];
-  public selDieHolder: any = [];
-  public selContainer: any = [];
-  public selNotes: any = [];
-  public selClientName: any = [];
-  public selDateOrder: any = [];
-  public selPrice: any = [];
-  public selPriceInv: any = [];
-  public selDateConfirm: any = [];
-  public selDateExped: any = [];
-  public selDateScrapped: any = [];
-  public selChannels: any = [];
   public lastModified: string = '';
   public grM: string = '';
   public indColumn: any;
@@ -124,49 +79,13 @@ export class StatedComponent implements OnInit {
   };
   public bmwinventorynumber: string = '';
   public dieLiveQty: string = '';
-  public dieLifeArr: Array<any> = [];
-  public bmwNumberArr: Array<any> = [];
 
-  public allMatrix: boolean = false;
-  public allProfile: boolean = false;
-  public allPress: boolean = false;
-  public allManuf: boolean = false;
-  public allMatr: boolean = false;
-  public allDiameter: boolean = false;
-  public allThickness: boolean = false;
-  public allAlloy: boolean = false;
-  public allTemp: boolean = false;
-  public allBols1: boolean = false;
-  public allBols2: boolean = false;
-  public allHolder: boolean = false;
-  public allCont: boolean = false;
-  public allNote: boolean = false;
-  public allClient: boolean = false;
-  public allPrice: boolean = false;
-  public allInvPr: boolean = false;
-  public allChannels: boolean = false;
   public refreshed: Date;
-  public tempDataDie: any = [];
-  public tempDataProfile: any = [];
-  public tempDataPrimeRes: any = [];
-  public tempDataProducer: any = [];
-  public tempDataCorrector: any = [];
-  public tempDataDiameter: any = [];
-  public tempDataThickness: any = [];
-  public tempDataAlloy: any = [];
-  public tempDataTemper: any = [];
-  public tempDataBols1: any = [];
-  public tempDataBols2: any = [];
-  public tempDataHolder: any = [];
-  public tempDataCont: any = [];
-  public tempDataNotes: any = [];
-  public tempDataClient: any = [];
-  public tempDataPrice: any = [];
-  public tempDataPrInv: any = [];
-  public tempDataChennels: any = [];
   public tempData: any = [];
   public arrFilters: any = [];
   public keyword: string = '';
+  public count: number = 0;
+  public countTable: number = 0;;
 
   constructor(
     private matrixService: MatrixService,
@@ -263,19 +182,18 @@ export class StatedComponent implements OnInit {
       this.urls = [
         { id: 0, name: 'DieId' },
         { id: 1, name: 'PrimaryResourceName' },
-        { id: 2, name: 'ProducerName' },
-        { id: 3, name: 'Diameter' },
-        { id: 4, name: 'Thickness' },
-        { id: 5, name: 'Alloy' },
-        { id: 6, name: 'Temper' },
-        { id: 7, name: 'BolsterTooling1' },
-        { id: 8, name: 'BolsterTooling2' },
-        { id: 9, name: 'DieHolder' },
-        { id: 10, name: 'Container' },
-        { id: 11, name: 'Notes' },
-        { id: 12, name: 'ClientName' },
-        { id: 13, name: 'Price' },
-        { id: 14, name: 'PriceInv' },
+        { id: 2, name: 'Diameter' },
+        { id: 3, name: 'Thickness' },
+        { id: 4, name: 'Alloy' },
+        { id: 5, name: 'Temper' },
+        { id: 6, name: 'BolsterTooling1' },
+        { id: 7, name: 'BolsterTooling2' },
+        { id: 8, name: 'DieHolder' },
+        { id: 9, name: 'Container' },
+        { id: 10, name: 'Notes' },
+        { id: 11, name: 'ClientName' },
+        { id: 12, name: 'Price' },
+        { id: 13, name: 'PriceInv' },
       ];
 
       this.arrFilters = [
@@ -419,14 +337,13 @@ export class StatedComponent implements OnInit {
 
   ngOnInit(): void {
     this.blockUI.start('Loading...');
-    this.pageChanged(1);
     this.getFilters(this.urls.length, 'init');
-    this.getDieLiveQty();
-    this.getBmwNumber();
+    this.pageChanged(1);
   }
 
   getRequest() {
     let url;
+    this.countTable = 0;
     this.blockUI.start('Loading...');
     if (this.router.url == '/api/marked'){ this.statusId = 60 };
     if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
@@ -442,14 +359,19 @@ export class StatedComponent implements OnInit {
     }
     url.subscribe((data) => {
       this.rows = data.list;
+      this.countTable++;
       this.totalResult = data.total;
+      // if(this.urls.length == this.count) {
+        this.blockUI.stop();
+      // }
+    }, error =>{
       this.blockUI.stop();
     });
   }
 
   getFilters(ind, action) {
     console.log('getFilters', this.arrFilters);
-    let count = 0;
+    this.count = 0;
     let url;
     for (let i = 0; i < this.urls.length; i++) {
     switch (this.router.url) {
@@ -463,7 +385,6 @@ export class StatedComponent implements OnInit {
     }
       if(ind != this.urls[i].id) {
         let array = [];
-        count++;
         url.subscribe((data) => {
           if(action == 'init' && this.urls[i].id == i) {
             for(let l=0; l < data.length; l++) {
@@ -508,6 +429,7 @@ export class StatedComponent implements OnInit {
             }
             // console.log('data 4=>', data);
           }
+          this.count++;
         }, error => {
           for(let j=0; j < this.arrFilters.length; j++) {
             // console.log('error===>', error, this.urls[i].name, this.arrFilters[j].url);
@@ -522,12 +444,12 @@ export class StatedComponent implements OnInit {
               // this.arrFilters[j].model= '';
             }
           }
-          this.blockUI.stop();
+          this.count++;
         });
       }
     }
     setTimeout(() => {
-      if(this.urls.length == count) {
+      if(this.urls.length == this.count && this.countTable == 1) {
         this.arrFilters.sort((a,b)=>a.ind - b.ind)
         console.log('arrFilters', this.arrFilters);
         this.blockUI.stop();
@@ -549,7 +471,7 @@ export class StatedComponent implements OnInit {
     modalRef.componentInstance.matrixItem = { 'data': row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest();
+        this.pageChanged(1);
       }
       this.getFilters(this.urls.length, 'init');
     });
@@ -579,8 +501,9 @@ export class StatedComponent implements OnInit {
     if(type == 'scrap'){
       this.selDateScrappedForm.reset();
     }
-    this.getRequest();
+    this.pageChanged(1);
   }
+
 
   modalDetailsDie(row) {
     console.log('new/edit modalDetailsDie');
@@ -588,51 +511,31 @@ export class StatedComponent implements OnInit {
     modalRef.componentInstance.dieItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.getRequest();
+        this.pageChanged(1);
       }
       this.getFilters(this.urls.length, 'init');
     });
   }
 
-  sortType(column, orderType, ind) {
-    console.log('sortType', column, orderType)
-    this.blockUI.start('Loading...');
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
     this.indColumn = ind;
     this.orderBy = ind;
-    if (orderType == true) {
-      this.orderType = 1;
-    } else {
-      this.orderType = 0;
-    }
-    this.getRequest();
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
+    this.pageChanged(1);
   }
 
-  clarAll() {
+  clearAll() {
     this.offset = 0;
     this.limit = 15;
     this.orderBy = 0;
     this.orderType = 1;
     for(let i=0; i < this.arrFilters.length; i++) {
       this.arrFilters[i].model= '';
+      this.arrFilters[i].selectAll = false;
     }
-    this.getRequest();
+    this.pageChanged(1);
     this.getFilters(this.urls.length, 'init');
-  }
-
-  getDieLiveQty() {
-    this.blockUI.start('Loading...');
-    this.matrixService.getDieLiveQty().subscribe((data) => {
-      this.dieLifeArr = data;
-      this.blockUI.stop();
-    });
-  }
-
-  getBmwNumber(){
-    this.blockUI.start('Loading...');
-    this.matrixService.bmwNumber().subscribe((data) => {
-      this.dieLifeArr = data;
-      this.blockUI.stop();
-    });
   }
 
   updateAllComplete(column, array, ind) {
@@ -668,7 +571,6 @@ export class StatedComponent implements OnInit {
     }
     console.log('searchFilter=====>',event.target.value == '', fullArray, temp, this.arrFilters[ind].filter.length);
     this.arrFilters[ind].filter = event.target.value == '' ? fullArray : temp;
-    // this.blockUI.stop();
     return;
   }
 

@@ -17,7 +17,7 @@ import { CoreMenuService } from '../../core-menu.service';
   templateUrl: './collapsible.component.html'
 })
 export class CoreMenuVerticalCollapsibleComponent implements OnInit, OnDestroy {
-  currentUser: User;
+  _currentUser: User;
 
   @Input()
   item: CoreMenuItem;
@@ -68,7 +68,7 @@ export class CoreMenuVerticalCollapsibleComponent implements OnInit, OnDestroy {
 
     // Subscribe to the current menu changes
     this._coreMenuService.onMenuChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-      this.currentUser = this._coreMenuService.currentUser;
+      this._currentUser = this._coreMenuService._currentUser;
     });
 
     // Listen for collapsing of any menu item

@@ -20,7 +20,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label class="form-label" for="basic-icon-default-uname">{{ translateSnackBar.choosePress }}</label>
-                <ng-select [virtualScroll]="true" class="select-table width-select" formControlName="choosePress"
+                <ng-select [virtualScroll]="true" appendTo="body" class="select-table width-select" formControlName="choosePress"
                   [ngClass]="{ 'error': submitted && createTestForm.get('choosePress').invalid }" required>
                   <ng-option *ngFor="let t of pressArr" [value]="t.id">{{ t.name }}</ng-option>
                 </ng-select>

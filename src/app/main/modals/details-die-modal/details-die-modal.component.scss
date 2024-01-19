@@ -6,11 +6,6 @@
   margin: auto;
 }
 
-input {
-  border: none;
-  background: transparent;
-}
-
 .cell-line-height {
   line-height: 1.25;
 }
@@ -40,22 +35,6 @@ input {
   ngx-datatable {
     overflow: auto !important;
   }
-}
-
-.form-control {
-  display: block;
-  width: 100%;
-  height: 2.714rem;
-  padding: 0.438rem 1rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.45;
-  color: #6e6b7b;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #d8d6de;
-  border-radius: 0.357rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .modal-btn {
@@ -196,17 +175,10 @@ label, h2{
   width: -webkit-fill-available;
   line-height: 35px;
 }
-
-input {
-  margin: 5px 0 5px 0;
-}
-
 .tab-content{
   padding: 5px;
   border: 2px solid #7367f0;
   margin-top: -1rem!important;
-  height: 300px;
-  overflow: auto;
 }
 
 .nav-pills .nav-link {
@@ -243,9 +215,9 @@ input {
 }
 
 .center-img, .save-center{
-  margin: 0 auto;
+  margin: 15px auto;
   display: block;
-  width: 600px;
+  width: 450px;
 }
 
 .save-center{
@@ -286,7 +258,7 @@ table{
   margin-top: 2%;
 }
 .fixed-width th{
-  min-width: 200px;
+  // min-width: 200px;
 }
 
 .color-text{
@@ -304,4 +276,95 @@ table{
       max-width: -webkit-fill-available!important;
       margin: 0rem auto!important;
   }
+}
+
+b, strong {
+  font-weight: 500;
+}
+
+.clasic-table tbody tr {
+  box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.1);
+}
+
+.mat-table.prod-table {
+  width: -webkit-fill-available;
+  height: 350px;
+  overflow: auto;
+  display: block;
+}
+
+.mat-row .mat-cell {
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  width: -webkit-fill-available;
+  height: 300px;
+  overflow: auto;
+  margin-bottom: 12px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+tr.mat-row, tr.mat-footer-row {
+  height: auto!important;
+}
+
+th {
+  text-align: center;
+}
+
+.embeded-row {
+  box-shadow: none;
+}
+
+th {
+  position: sticky;
+  top: 0;
+}
+.no-image{
+  text-align: center;
+  margin-top: 200px;
 }

@@ -58,6 +58,10 @@ export class DieScanPageComponent implements OnInit {
     { id: 2, name: 'Resource/all/storageplace' }
   ];
 
+  public orderBy: number = 0;
+  public orderType: number = 1;
+  public indColumn: any;
+
   DEVICE_NAME: string;
 
 
@@ -232,6 +236,8 @@ export class DieScanPageComponent implements OnInit {
     this.dieService.getPositionDie(
       this.offset,
       this.limit,
+      this.orderType,
+      this.orderBy,
       this.resourceName,
       this.storagePlace,
       this.die,
@@ -270,6 +276,11 @@ export class DieScanPageComponent implements OnInit {
       this.resource = data;
       this.blockUI.stop();
     });
+  }
+
+  setCurrentResource(row) {
+    console.log('setCurrentResource', row);
+    this.currentResource = row.resourceId;
   }
 
   getEmployee() {
@@ -331,9 +342,9 @@ export class DieScanPageComponent implements OnInit {
 
   sendConfirmation(){
     this.submitted = true;
-    if(this.barCode && this.resourceIn && this.currentResource && this.emplId){
+    if(this.barCode && this.resourceIn && this.currentResource){
       console.log("sendConfirmation: ", this.barCode, this.resourceIn, this.currentResource, this.productionKg, this.notes, this.emplId);
-      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let _currentUser = JSON.parse(localStorage.getItem('_currentUser'));
       let obj = {
         die : null,
         dieId: this.barCode,
@@ -342,10 +353,11 @@ export class DieScanPageComponent implements OnInit {
         storagePlaceIn: null,
         kgProduced: this.directionReporting == 1 ? this.productionKg : null,
         notes: this.notes,
-        emplId: this.emplId,
-        computerName: currentUser['userName']
+        emplId: null, // FOR CHANGE
+        computerName: _currentUser['userName']
       }
 
+      this.blockUI.start('Loading...');
       this.dieService.postDieMovemanetConf(obj).subscribe(data => {
         this.submitted = false;
         this.blockUI.stop();
@@ -362,7 +374,6 @@ export class DieScanPageComponent implements OnInit {
         this.resourceIn = undefined;
         this.currentResource = undefined;
         this.notes = undefined;
-        this.emplId = undefined;
         this.productionKg = undefined;
         this.rowsMovements = [];
       });
@@ -377,6 +388,14 @@ export class DieScanPageComponent implements OnInit {
       })
     }
 
+  }
+
+  sortType(orderType, ind) {
+    console.log('sortType', orderType)
+    this.indColumn = ind;
+    this.orderBy = ind;
+    orderType == true ? this.orderType = 1 : this.orderType = 0;
+    this.getPositionDie();
   }
 
   ngOnDestroy() {

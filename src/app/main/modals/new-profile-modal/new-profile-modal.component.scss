@@ -173,7 +173,8 @@ input {
 .center-img, .save-center{
   margin: 0 auto;
   display: block;
-  width: -webkit-fill-available;
+  max-width: 1000px;
+  max-height: 1000px;
 }
 
 .save-center{
@@ -236,6 +237,10 @@ a:hover {
   cursor: pointer;
 }
 
-ng-select{
-  width: 100%!important;
+ng-select {
+  width: -webkit-fill-available;
+}
+
+.w-15 {
+  width: 15%;
 }

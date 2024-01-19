@@ -14,8 +14,8 @@ export class EmployeesService {
   }
 
   ////////////////// PAGE
-  getEmployees(offset:number, limit:any, name:string, department: string, privilege: string) {
-    return this._http.get<any>(`${environment.apiUrl}Employees?offset=${offset}&limit=${limit}&name=${name}&department=${department}&privilege=${privilege}`);
+  getEmployees(offset:number, limit:any, name:string, department: string, privilege: string, orderType:number, orderBy: number) {
+    return this._http.get<any>(`${environment.apiUrl}Employees?offset=${offset}&limit=${limit}&name=${name}&department=${department}&privilege=${privilege}&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
   getFilters(url: string) {

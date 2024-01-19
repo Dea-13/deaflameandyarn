@@ -596,7 +596,7 @@ export class MovementMatrixComponent implements OnInit {
     };
   }
 
-  clarAll() {
+  clearAll() {
     this.computerName = '';
     this.resourceInName = '';
     this.resourceOutName = '';

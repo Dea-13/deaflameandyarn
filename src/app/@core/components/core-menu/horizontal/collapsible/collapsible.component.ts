@@ -18,7 +18,7 @@ import { CoreMenuService } from '../../core-menu.service';
 })
 export class CoreMenuHorizontalCollapsibleComponent implements OnInit, OnDestroy {
   coreConfig: any;
-  currentUser: User;
+  _currentUser: User;
   isShow = false;
 
   // Conditionally add the active classes if UrlInChildren
@@ -64,7 +64,7 @@ export class CoreMenuHorizontalCollapsibleComponent implements OnInit, OnDestroy
 
     // Subscribe to the current menu changes
     this._coreMenuService.onMenuChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-      this.currentUser = this._coreMenuService.currentUser;
+      this._currentUser = this._coreMenuService._currentUser;
     });
 
     // Listen for router events and expand

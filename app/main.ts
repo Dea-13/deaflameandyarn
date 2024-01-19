@@ -8,6 +8,7 @@ logger.transports.file.resolvePath = () => path.join('./app', 'logs/main.log');
 logger.log("Application version: " + app.getVersion());
 let win: BrowserWindow = null;
 let flagUpdateAvailable = false;
+let myInterval;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
@@ -74,8 +75,8 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  app.on('ready', () => setTimeout(createWindow, 400));
-  setInterval(() => {
+  app.on('ready', () => setTimeout(createWindow, 1000));
+  myInterval = setInterval(() => {
     autoUpdater.checkForUpdates();
   }, 1000 * 30);
   // 1000 * 60 * 10
@@ -104,18 +105,24 @@ try {
 
 autoUpdater.on('update-available', () => {
   logger.info('update-available; downloading...');  
+  clearInterval(myInterval);
   if(!flagUpdateAvailable){
-    dialog.showMessageBox({
-      type: 'info',
-      buttons: ['Ок'],
-      title: 'Налична актуализация',
-      message: 'Налична актуализация',
-      detail: 'Започна изтегляне на нова версия. Приложението ще се рестартира, за да се инсталира актуализацията.',
-    }).then((val) => {     
-      autoUpdater.downloadUpdate();
-      flagUpdateAvailable = true;
-    });
-  }    
+    flagUpdateAvailable = true;
+    autoUpdater.downloadUpdate();
+  }
+  
+  // if(!flagUpdateAvailable){
+  //   dialog.showMessageBox({
+  //     type: 'info',
+  //     buttons: ['Ок'],
+  //     title: 'Налична актуализация',
+  //     message: 'Налична актуализация',
+  //     detail: 'Започна изтегляне на нова версия. Приложението ще се рестартира, за да се инсталира актуализацията.',
+  //   }).then((val) => {     
+  //     autoUpdater.downloadUpdate();
+  //     flagUpdateAvailable = true;
+  //   });
+  // }    
 });
 
 autoUpdater.on('checking-for-update', () => {

@@ -134,6 +134,7 @@ export class ComponentComponent implements OnInit {
     modalRef.componentInstance.pdfItem = { 'pdf': this.pdf};
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
+        console.log('CoreConfigService: TUKAAAAA 3')
         localStorage.removeItem('dataRedirect');
         localStorage.removeItem('dataRedirectConfirmation');
         this.router.navigate(['api/operation/' + JSON.parse(localStorage.getItem('dataRedirectOperation')).id]);
@@ -142,7 +143,7 @@ export class ComponentComponent implements OnInit {
   }
 
   completeComponent() {
-    this.dataServiceObj.cuser = JSON.parse(localStorage.getItem('currentUser')).userName;
+    this.dataServiceObj.cuser = JSON.parse(localStorage.getItem('_currentUser')).userName;
     this.dataServiceObj.componentsList = this.rows;
     this.blockUI.start('Loading...');
     // console.log('this.dataServiceObj!!!!!!', this.dataServiceObj.prevOperationCassetList)
@@ -161,6 +162,7 @@ export class ComponentComponent implements OnInit {
           if(Number(this.dataServiceObj.operation.workCenterId) == 17 || Number(this.dataServiceObj.operation.workCenterId) == 55){
             this.getPdfPreviewer(comformationId, Number(this.dataServiceObj.operation.workCenterId));
           } else {
+            console.log('CoreConfigService: TUKAAAAA 6')
             localStorage.removeItem('dataRedirect');
             localStorage.removeItem('dataRedirectConfirmation');
             this.router.navigate(['api/operation/' + JSON.parse(localStorage.getItem('dataRedirectOperation')).id]);

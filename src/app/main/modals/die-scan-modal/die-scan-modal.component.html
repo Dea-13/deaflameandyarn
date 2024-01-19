@@ -31,7 +31,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation();" [(ngModel)]="dieId" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation();" [(ngModel)]="dieId" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" (change)="pageDieChanged(1)">
                       <ng-option *ngFor="let d of dieArr" [value]="d.name">{{ d.name }}</ng-option>
                     </ng-select>
@@ -50,7 +50,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" [(ngModel)]="primaryResourceName" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" [(ngModel)]="primaryResourceName" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" (change)="pageDieChanged(1)">
                       <ng-option *ngFor="let p of primaryResourceNameArr" [value]="p.name">{{ p.name }}</ng-option>
                     </ng-select>
@@ -69,7 +69,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" [(ngModel)]="channels" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" [(ngModel)]="channels" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" (change)="pageDieChanged(1)">
                       <ng-option *ngFor="let c of channelsArr" [value]="c.name">{{ c.name }}</ng-option>
                     </ng-select>

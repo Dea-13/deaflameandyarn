@@ -13,7 +13,7 @@
             <span [data-feather]="'refresh-cw'" [class]="'refresh-btn'"></span>
             <div class="col-sm-4 d-flex align-items-center">
               <label class="d-flex align-items-center">{{ translateSnackBar.resourceReporting }}</label>
-              <ng-select [virtualScroll]="true" appendTo="body" class="w-50-select"
+              <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" class="w-50-select"
                 [(ngModel)]="resourceIn" [clearable]="false" (change)="getMovements(resourceIn)"
                 [ngClass]="{ 'error': submitted && !resourceIn }">
                 <ng-option *ngFor="let r of resource" [value]="r.resourceId">{{r.resourceName}}</ng-option>
@@ -21,7 +21,7 @@
             </div>
             <div class="col-sm-5 d-flex align-items-center">
               <label class="d-flex align-items-center">{{ translateSnackBar.directionReporting }}</label>
-              <ng-select [virtualScroll]="true" appendTo="body" class="w-50-select" [clearable]="false" [(ngModel)]="directionReporting">
+              <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" class="w-50-select" [clearable]="false" [(ngModel)]="directionReporting">
                 <ng-option [value]="1">{{ translateSnackBar.incomingReport }}</ng-option>
                 <ng-option [value]="2">{{ translateSnackBar.outgoingReporting }}</ng-option>
               </ng-select>
@@ -37,7 +37,7 @@
         </div>
         <div class="full-width">
           <div class="d-flex boxes">
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.barcodeMatrix }}</label>
               <input type="text" [(ngModel)]="barCode" maxlength="7" (input)="getBarCodesTable()" class="form-control dt-uname"
               [ngClass]="{ 'error-input': submitted && barCode.length === 0 }" />
@@ -45,32 +45,28 @@
                 {{ translateSnackBar.view }}
               </button>
             </div>
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.currentResource }}</label>
-              <ng-select [virtualScroll]="true" appendTo="body" class="" [(ngModel)]="currentResource" [clearable]="false"
+              <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" class="" [(ngModel)]="currentResource" [clearable]="false"
               [ngClass]="{ 'error': submitted && !currentResource }">
                 <ng-option *ngFor="let r of resource" [value]="r.resourceId">{{r.resourceName}}</ng-option>
               </ng-select>
             </div>
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.productionKg }}</label>
               <input class="form-control input" type="number" [(ngModel)]="productionKg">
             </div>
-            <div class="col-sm-2 align-items-center fixed-height">
+            <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.notes }}</label>
               <input class="form-control input" type="text" [(ngModel)]="notes">
-            </div>
-            <div class="col-sm-2 align-items-center fixed-height">
-              <label class="d-flex align-items-center">{{ translateSnackBar.employee }}</label>
-              <ng-select [virtualScroll]="true" appendTo="body" [(ngModel)]="emplId" class="" [clearable]="false"
-              [ngClass]="{ 'error': submitted && !emplId }">
-                <ng-option *ngFor="let e of employee" [value]="e.id">{{e.name}}</ng-option>
-              </ng-select>
             </div>
             <div role="button" class="col-sm-2 align-items-center fixed-height" (click)="sendConfirmation()">
               <label class="d-flex align-items-center">{{ translateSnackBar.confirmation }}</label>
               <span [data-feather]="'check-circle'" [class]="'check-btn'"></span>
             </div>
+          </div>
+          <div class="row m-0">
+            <div *ngFor="let r of resource" class="box-resource" (click)="setCurrentResource(r)" [ngClass]="{ 'selected-box': r.resourceId === currentResource }">{{r.resourceName}}</div>
           </div>
         </div>
       </div>
@@ -152,7 +148,7 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="die" (change)="pageChanged(1)">
                       <ng-option *ngFor="let d of dieIdArr" [value]="d.dieId">{{ d.dieId }}
                     </ng-option>
@@ -160,6 +156,9 @@
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.dieId }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 0)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.dieID}}</td>
             </ng-container>
@@ -173,14 +172,17 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="resourceName" (change)="pageChanged(1)">
                       <ng-option *ngFor="let t of resourceNameArr" [value]="t.name">{{ t.name }}
                     </ng-option>
                     </ng-select>
                   </mat-menu>
                 </div>
-                <span class="th-header">{{ translateSnackBar.matrix }}</span>
+                <span class="th-header">{{ translateSnackBar.resource }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 1)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.resourceName}}</td>
             </ng-container>
@@ -194,13 +196,16 @@
                     <span [data-feather]="'filter'" [class]="'cursor-pointer'"></span>
                   </button>
                   <mat-menu #menuFilter="matMenu">
-                    <ng-select [virtualScroll]="true" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
+                    <ng-select [virtualScroll]="true" appendTo="body" (click)="$event.stopPropagation()" appendTo="body" class="select-table width-select"
                       [multiple]="true" [closeOnSelect]="false" [(ngModel)]="storagePlace" (change)="pageChanged(1)">
                       <ng-option *ngFor="let s of storagePlaceArr" [value]="s.name">{{ s.name }}</ng-option>
                     </ng-select>
                   </mat-menu>
                 </div>
                 <span class="th-header">{{ translateSnackBar.skladPlace }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 2)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.storagePlace}}</td>
             </ng-container>
@@ -209,6 +214,9 @@
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastTransaction">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header">{{ translateSnackBar.lastTransaction }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 3)">
+                  <i class="fa fa-sort"></i>
+                </button>
               </th>
               <td mat-cell *matCellDef="let element">{{element.lastMovement | date:'dd/MM/yyyy H:mm:ss'}}</td>
             </ng-container>

@@ -18,7 +18,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'stated',
-        title: 'Stated',
+        title: 'Ordered',
         translate: 'MENU.STATED',
         type: 'item',
         icon: 'check-circle',
@@ -34,7 +34,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'dispatched',
-        title: 'Dispatched',
+        title: 'Expedited',
         translate: 'MENU.DISPATCHED',
         type: 'item',
         icon: 'check-circle',
@@ -42,15 +42,31 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'productivity',
-        title: 'Productivity',
-        translate: 'MENU.PRODUCTIVITY',
+        title: 'In Use',
+        translate: 'MENU.INUSE',
         type: 'item',
         icon: 'check-circle',
         url: 'api/productivity'
       },
       {
+        id: 'nomotion',
+        title: 'No Motion',
+        translate: 'MENU.NOMOTION',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/no-motion'
+      },
+      {
+        id: 'marked',
+        title: 'Marked',
+        translate: 'MENU.MARKED',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/marked'
+      },
+      {
         id: 'scrap',
-        title: 'Scrap',
+        title: 'Scrapped',
         translate: 'MENU.SCRAP',
         type: 'item',
         icon: 'check-circle',
@@ -64,39 +80,6 @@ export const menu: CoreMenu[] = [
         icon: 'circle',
         url: 'api/productivity-nitrification'
       },
-    ]
-  },
-  {
-    id: 'inuse',
-    title: 'In use',
-    translate: 'MENU.INUSE',
-    type: 'collapsible',
-    icon: 'file',
-    children: [
-      {
-        id: 'nomotion',
-        title: 'No Motion',
-        translate: 'MENU.NOMOTION',
-        type: 'item',
-        icon: 'file-text',
-        url: 'api/no-motion'
-      },
-      {
-        id: 'marked',
-        title: 'Marked',
-        translate: 'MENU.MARKED',
-        type: 'item',
-        icon: 'file-text',
-        url: 'api/marked'
-      },
-      // {
-      //   id: 'test',
-      //   title: 'Test----',
-      //   translate: 'MENU.TEST',
-      //   type: 'item',
-      //   icon: 'file-text',
-      //   url: 'api/test'
-      // },
     ]
   },
   {

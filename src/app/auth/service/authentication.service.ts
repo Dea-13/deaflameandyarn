@@ -13,11 +13,11 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   //public
-  public currentUser: Observable<User>;
+  public _currentUser: Observable<User>;
   public translateSnackBar: any;
 
   //private
-  private currentUserSubject: BehaviorSubject<User>;
+  private _currentUserSubject: BehaviorSubject<User>;
 
   /**
    *
@@ -25,30 +25,30 @@ export class AuthenticationService {
    * @param {ToastrService} _toastrService
    */
   constructor(private _http: HttpClient, private _toastrService: ToastrService, public translate: TranslateService,) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this._currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('_currentUser')));
+    this._currentUser = this._currentUserSubject.asObservable();
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
     });
   }
 
-  // getter: currentUserValue
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+  // getter: _currentUserValue
+  public get _currentUserValue(): User {
+    return this._currentUserSubject.value;
   }
 
   /**
    *  Confirms if user is admin
    */
   get isAdmin() {
-    return this.currentUser && this.currentUserSubject.value.role === Role.Admin;
+    return this._currentUser && this._currentUserSubject.value.role === Role.Admin;
   }
 
   /**
    *  Confirms if user is client
    */
   get isClient() {
-    return this.currentUser && this.currentUserSubject.value.role === Role.Client;
+    return this._currentUser && this._currentUserSubject.value.role === Role.Client;
   }
 
   /**
@@ -66,7 +66,7 @@ export class AuthenticationService {
           // login user successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('_currentUser', JSON.stringify(user));
             // Display welcome toast!
             setTimeout(() => {
               Swal.fire({
@@ -79,7 +79,7 @@ export class AuthenticationService {
             }, 2500);
 
             // notify
-            this.currentUserSubject.next(user);
+            this._currentUserSubject.next(user);
           }
 
           return user;
@@ -101,7 +101,7 @@ export class AuthenticationService {
           // login card successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('_currentUser', JSON.stringify(user));
 
             // Display welcome toast!
             setTimeout(() => {
@@ -115,7 +115,7 @@ export class AuthenticationService {
             }, 2500);
 
             // notify
-            this.currentUserSubject.next(user);
+            this._currentUserSubject.next(user);
           }
 
           return user;
@@ -129,8 +129,9 @@ export class AuthenticationService {
    */
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    console.log('CoreConfigService: TUKAAAAA 1')
+    localStorage.removeItem('_currentUser');
     // notify
-    this.currentUserSubject.next(null);
+    this._currentUserSubject.next(null);
   }
 }
