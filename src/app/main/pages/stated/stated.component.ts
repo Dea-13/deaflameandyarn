@@ -104,10 +104,9 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'bmwinventorynumber', 'dieLiveQty', 'diameter',
         'thickness', 'alloy', 'temper', 'bolsterTooling1', 'bolsterTooling2', 'dieHolder', 'container',
-        'notes', 'visibleSides', 'clientName', 'dateOrder', 'countInUse', 'finalNitriding',
-        'kgToFianlNitriding', 'kgAfterFianlNitriding'
+        'notes', 'visibleSides', 'clientName', 'dateOrder'
       ];
-
+      // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
         { id: 0, name: 'DieId' },
         { id: 1, name: 'ProfileId' },
@@ -144,8 +143,9 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'container',
-        'notes', 'clientName', 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
+        'notes', 'clientName', 'countInUse'
       ];
+      // , 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
         { id: 0, name: 'DieId' },
         { id: 1, name: 'ProfileId' },
@@ -174,9 +174,9 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'alloy', 'temper', 'bolsterTooling1', 'bolsterTooling2', 'dieHolder', 'container',
-        'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition',
-        'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
+        'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition'
       ];
+      // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
         { id: 0, name: 'DieId' },
         { id: 1, name: 'PrimaryResourceName' },
@@ -243,8 +243,9 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
-        'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding', 'dateScrapped'
+        'countInUse', 'dateScrapped'
       ];
+      // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
         { id: 0, name: 'DieId' },
         { id: 1, name: 'ProfileId' },
