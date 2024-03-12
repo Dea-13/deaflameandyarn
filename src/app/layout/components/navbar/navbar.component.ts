@@ -193,7 +193,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // get the _currentUser details from localStorage
     this._currentUser = JSON.parse(localStorage.getItem('_currentUser'));
     console.log('this._currentUser', this._currentUser);
-    this.userName = this._currentUser['userName'];
+    this.userName = this._currentUser ? this._currentUser['fistname'] : '';
     // Subscribe to the config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
