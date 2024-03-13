@@ -1031,6 +1031,7 @@ export class NewMatrixModalComponent implements OnInit {
         case 50: { this.submitBrakDie(); } break;
         case 32: { this.submitBlockedDie(); } break;
         case 30: { this.submitDispatchedDie(); } break;
+        case 60: { this.submitSettingsDie(); } break;
       }
     } else {
       Swal.fire({
@@ -1142,6 +1143,21 @@ export class NewMatrixModalComponent implements OnInit {
     this.submitDispatched = true;
     if(!this.createMatrixForm.invalid){
       console.log('DISPATCHED', this.createMatrixForm)
+      this.sendResponce();
+    } else {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }
+
+  submitSettingsDie(){
+    this.submitDispatched = true;
+    if(!this.createMatrixForm.invalid){
       this.sendResponce();
     } else {
       Swal.fire({
