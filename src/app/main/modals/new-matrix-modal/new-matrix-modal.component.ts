@@ -61,6 +61,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitInUse: boolean = false;
   submitBrak: boolean = false;
   submitDispatched: boolean = false;
+  submitSettings: boolean = false;
   submitReclamation: boolean = false;
   submitBlocked: boolean = false;
   submitRepair: boolean = false;
@@ -248,6 +249,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.submitInUse = false;
     this.submitBrak = false;
     this.submitDispatched = false;
+    this.submitSettings = false;
     this.submitReclamation = false;
     this.submitBlocked = false;
     this.submitRepair = false;
@@ -1156,7 +1158,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   submitSettingsDie(){
-    this.submitDispatched = true;
+    this.submitSettings = true;
     if(!this.createMatrixForm.invalid){
       this.sendResponce();
     } else {
