@@ -14,7 +14,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    console.log('Interceptor!');
+    // console.log('Interceptor!');
     let tokenizedReq = request.clone({
       setHeaders: {
         'Content-Type': 'application/json'

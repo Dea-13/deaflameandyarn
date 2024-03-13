@@ -303,6 +303,14 @@
                       <input formControlName="bmwInventoryNumber" type="text" class="form-control dt-uname" />
                     </div>
                   </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.recipeName }}</label>
+                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="recipeName" appendTo="body">
+                        <ng-option *ngFor="let s of recipeArr" [value]="s.id">{{ s.recipeName }}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
                 </div>
 
               </div>

@@ -45,6 +45,7 @@ export const locale = {
       PRODUCTIVITYNITRIFICATION: 'Productivity and nitrification',
       CONFEXTRUSION: 'Extrusion Confirmations',
       BILLETMAT: 'Billet Raw Materials',
+      RECIPE: 'Recipe',
     },
     translate: {
       matrix: 'Die',
@@ -315,7 +316,7 @@ export const locale = {
       manufacturing: 'manufacturing',
       scrap: 'scrap',
       save: 'Save',
-      saveMsg: 'Your work has been saved.',
+      saveMsg: 'Successfully saved.',
       workPlace: 'WorkPlace',
       resourceReporting: 'Reporting resource',
       directionReporting: 'Counting direction',
@@ -509,6 +510,12 @@ export const locale = {
       kgProduced: 'KG Produced',
       validDate: 'Valid date required.',
       fillAllRowsMsg: 'Please fill all fields in the row!',
+      recipeName: 'Recipe',
+      errorMsg: 'Error! Please try again.',
+      editMsg: 'Successfullt edited.',
+      step: 'Step',
+      kilograms: 'Kilograms',
+      noData: 'No Data',
     }
   }
 }

@@ -274,7 +274,7 @@ export class InformationProfilesComponent implements OnInit {
               }
             }
           }
-          console.log('data 4=>', this.arrFilters, this.arrFilters.length+1);
+          // console.log('data 4=>', this.arrFilters, this.arrFilters.length+1);
           this.arrFilters[27].filter = this.arrInUse;
           this.arrFilters[27].fullFilter = this.arrInUse;
           this.arrFilters[27].temp = this.arrInUse;

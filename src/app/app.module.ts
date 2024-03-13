@@ -71,6 +71,7 @@ import { BlockUIModule } from 'ng-block-ui';
 import { ExtrusionModalComponent } from './main/pages/extrusion-modal/extrusion-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { RecipeComponent } from './main/pages/recipe/recipe.component';
 
 
 const appRoutes: Routes = [
@@ -225,6 +226,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/recipe',
+    component: RecipeComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -261,7 +267,8 @@ const appRoutes: Routes = [
     GenerateTestModalComponent,
     ConfirmationExtrusionComponent,
     BilletRawMaterialsComponent,
-    ExtrusionModalComponent
+    ExtrusionModalComponent,
+    RecipeComponent
   ],
 
   imports: [

@@ -1134,3 +1134,9 @@ input[type="search"] {
 .example-list-section .example-margin {
   margin: 0px 3px;
 }
+
+.vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+  top: 20px !important;
+  z-index: 99999;
+  position: relative;
+}

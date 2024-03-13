@@ -67,6 +67,7 @@ export class NewMatrixModalComponent implements OnInit {
   enableButton: boolean = true;
   redirectModal: any;
   storagePlaceArr: Array<any> = [];
+  recipeArr: Array<any> = [];
 
   constructor(
     private matrixService: MatrixService,
@@ -104,6 +105,7 @@ export class NewMatrixModalComponent implements OnInit {
       matrixComplect: [''],
       bolsterTooling1: [''],
       bolsterTooling2: [''],
+      recipeName: [null],
       dateOrder: ['', Validators.required],
       dateConfirmation: ['', Validators.required],
       dateExpedition: ['', Validators.required],
@@ -148,6 +150,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.getAlloy();
     this.getMatricComplect();
     this.getStorage();
+    this.getRecipee();
 
 
     if(this.matrixItem.data.id){
@@ -196,6 +199,7 @@ export class NewMatrixModalComponent implements OnInit {
         matrixComplect: this.matrix.matrixComplect,
         bolsterTooling1: this.matrix.bolsterTooling1,
         bolsterTooling2: this.matrix.bolsterTooling2,
+        recipeName: this.matrix.recipeId,
         dateOrder: this.matrix.dateOrder != null ? new FormControl (new Date(this.matrix.dateOrder)) : null,
         dateConfirmation: this.matrix.dateConfirmation != null ? new FormControl (new Date(this.matrix.dateConfirmation)) : null,
         dateExpedition: this.matrix.dateExpedition != null ? new FormControl (new Date(this.matrix.dateExpedition)) : null,
@@ -568,6 +572,24 @@ export class NewMatrixModalComponent implements OnInit {
     });
   }
 
+  getRecipee(){
+    this.blockUI.start('Loading...');
+    this.matrixService.getRecipee().subscribe((data) => {
+      this.recipeArr = data;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    });
+  }
+
   getMatricComplectById() {
     console.log('getMatricComplectById', this.createMatrixForm.controls.matrixComplect)
     this.blockUI.start('Loading...');
@@ -825,13 +847,13 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
+      // Swal.fire({
+      //   position: 'bottom-end',
+      //   icon: 'warning',
+      //   title: 'Error',
+      //   showConfirmButton: false,
+      //   timer: 2000
+      // })
       this.blockUI.stop();
     });
   }
@@ -1119,6 +1141,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitDispatchedDie(){
     this.submitDispatched = true;
     if(!this.createMatrixForm.invalid){
+      console.log('DISPATCHED', this.createMatrixForm)
       this.sendResponce();
     } else {
       Swal.fire({
@@ -1199,6 +1222,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.matrixComplect = this.createMatrixForm.controls.matrixComplect.value,
       this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
       this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
+      this.matrix.recipeId = this.createMatrixForm.controls.recipeName.value,
       this.matrix.dateOrder = moment(this.createMatrixForm.controls.dateOrder.value).format('YYYY-MM-DD'),
       this.matrix.dateConfirmation = moment(this.createMatrixForm.controls.dateConfirmation.value).format('YYYY-MM-DD'),
       this.matrix.dateExpedition = moment(this.createMatrixForm.controls.dateExpedition.value).format('YYYY-MM-DD'),

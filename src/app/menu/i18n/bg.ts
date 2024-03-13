@@ -45,6 +45,7 @@ export const locale = {
       PRODUCTIVITYNITRIFICATION: 'Производство и азотиране',
       CONFEXTRUSION: 'Потвърждения за екструдиране',
       BILLETMAT: 'Суровини за заготовки',
+      RECIPE: 'Рецепта',
     },
     translate: {
       matrix: 'Матрица',
@@ -315,7 +316,7 @@ export const locale = {
       manufacturing: 'производителност',
       scrap: 'скрап',
       save: 'Запази',
-      saveMsg: 'Вашата работа е запазена.',
+      saveMsg: 'Успешно запазено.',
       workPlace: 'Работно място',
       resourceReporting: 'Ресурс за отчитане',
       directionReporting: 'Посока на отчитане',
@@ -508,6 +509,12 @@ export const locale = {
       kgProduced: 'Произведени кг',
       validDate: 'Изисква се валидна дата.',
       fillAllRowsMsg: 'Моля, попълнете всички полета в реда!',
+      recipeName: 'Рецепта',
+      errorMsg: 'Грешка! Моля, опитайте отново.',
+      editMsg: 'Редактирано успешно.',
+      step: 'Стъпка',
+      kilograms: 'Килограми',
+      noData: 'Няма данни',
     }
   }
 }

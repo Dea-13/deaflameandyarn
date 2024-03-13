@@ -129,6 +129,14 @@ export const menu: CoreMenu[] = [
         icon: 'package',
         url: 'api/products'
       },
+      {
+        id: 'recipe',
+        title: 'Recipe',
+        translate: 'MENU.RECIPE',
+        type: 'item',
+        icon: 'clipboard',
+        url: 'api/recipe'
+      },
       // {
       //   id: 'rawMaterial',
       //   title: 'Raw material for production----',

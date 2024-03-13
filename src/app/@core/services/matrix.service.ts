@@ -317,6 +317,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Resource/all/resourcestorageplaces`);
   }
 
+  getRecipee() {
+    return this._http.get<any>(`${environment.apiUrl}RecipeHeader/getAllRecipeHeaders`);
+  }
+
   getMatricComplectById(diameter: number, thickness: number, resourceId: number) {
     return this._http.get<any>(`${environment.apiUrl}DiesDefDimByRes/${diameter}/${thickness}/${resourceId}`);
   }
