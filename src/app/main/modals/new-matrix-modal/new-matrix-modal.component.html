@@ -219,8 +219,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.dieLiveQty }}</label>
-                      <input formControlName="dieLiveQty" class="form-control input" type="number"required
-                      [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('dieLiveQty').value }">
+                      <input formControlName="dieLiveQty" class="form-control input" type="number">
                     </div>
                   </div>
                 </div>
@@ -452,8 +451,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.price }}</label>
-                      <input formControlName="price" type="text" class="form-control dt-uname" required
-                        [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('price').value }" />
+                      <input formControlName="price" type="text" class="form-control dt-uname" />
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -468,8 +466,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.productionKg }}</label>
-                      <input formControlName="priceInv" type="text" class="form-control dt-uname"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('priceInv').value }" />
+                      <input formControlName="priceInv" type="text" class="form-control dt-uname" />
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
