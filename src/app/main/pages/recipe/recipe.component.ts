@@ -23,6 +23,7 @@ export class RecipeComponent implements OnInit {
   // Public
   @BlockUI('block') blockUI: NgBlockUI;
   displayedColumns: string[] = ['star', 'recipeName'];
+  public expanded: boolean = false;
   public expandedElement: [] | null;
   public rows: any = [];
   public size = 13;
@@ -60,8 +61,8 @@ export class RecipeComponent implements OnInit {
     });
   }
 
-  createRecipe(row) {
-    console.log('createRecipe', row);
+  createRecipe() {
+    console.log('createRecipe');
     let recipeName;
     Swal.fire({
       title: this.translateSnackBar.recipeName,
