@@ -232,13 +232,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -277,13 +270,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -295,13 +281,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -313,13 +292,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -349,13 +321,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -367,13 +332,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -385,13 +343,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -411,13 +362,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -429,13 +373,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -447,13 +384,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -465,13 +395,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -491,13 +414,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -509,13 +425,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -527,13 +436,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -545,13 +447,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -563,13 +458,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -581,13 +469,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -614,13 +495,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -635,13 +509,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
       this.blockUI.stop();
     });
   }
@@ -789,13 +656,6 @@ export class NewMatrixModalComponent implements OnInit {
             })
           },
             (error) => {
-              Swal.fire({
-                position: 'bottom-end',
-                icon: 'warning',
-                title: 'Error',
-                showConfirmButton: false,
-                timer: 2000
-              })
               this.blockUI.stop();
             }
           );
@@ -827,13 +687,6 @@ export class NewMatrixModalComponent implements OnInit {
       })
     },
       (error) => {
-        Swal.fire({
-          position: 'bottom-end',
-          icon: 'warning',
-          title: 'Error',
-          showConfirmButton: false,
-          timer: 2000
-        })
         this.blockUI.stop();
       }
     );
@@ -849,13 +702,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.blockUI.stop();
     },error => {
       console.log('error', error);
-      // Swal.fire({
-      //   position: 'bottom-end',
-      //   icon: 'warning',
-      //   title: 'Error',
-      //   showConfirmButton: false,
-      //   timer: 2000
-      // })
       this.blockUI.stop();
     });
   }
@@ -1007,13 +853,6 @@ export class NewMatrixModalComponent implements OnInit {
       })
     },
       (error) => {
-        Swal.fire({
-          position: 'bottom-end',
-          icon: 'warning',
-          title: 'Error',
-          showConfirmButton: false,
-          timer: 2000
-        })
         this.blockUI.stop();
         this.getProfilesByPress();
         this.getProfilesEnds();
@@ -1289,13 +1128,6 @@ export class NewMatrixModalComponent implements OnInit {
           this.passEntry.emit(true);
         },error => {
             console.log('error', error);
-            Swal.fire({
-              position: 'bottom-end',
-              icon: 'warning',
-              title: 'Error',
-              showConfirmButton: false,
-              timer: 2000
-            })
             this.blockUI.stop();
           }
         );
@@ -1325,13 +1157,6 @@ export class NewMatrixModalComponent implements OnInit {
         this.passEntry.emit(true);
       },
         (error) => {
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'warning',
-            title: 'Error',
-            showConfirmButton: false,
-            timer: 2000
-          })
           this.blockUI.stop();
         }
       );
