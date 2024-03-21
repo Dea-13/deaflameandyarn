@@ -124,7 +124,7 @@ export class NewMatrixModalComponent implements OnInit {
       altResource1: [''],
       altResource2: [''],
       storageGroup: [''],
-      storageFreePlace: ['', Validators.required],
+      storageFreePlace: [''],
       remarks: [''],
       usageType: [''],
       notes: [''],
@@ -1113,7 +1113,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-      if (this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value && this.createMatrixForm.controls.altResource1.value && this.createMatrixForm.controls.altResource2.value) {
+      if (this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value && this.createMatrixForm.controls.altResource1.value && this.createMatrixForm.controls.altResource2.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();
