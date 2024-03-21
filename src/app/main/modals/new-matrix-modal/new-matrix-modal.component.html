@@ -547,7 +547,7 @@
                 <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="city-column">{{ translateSnackBar.storageFreePlace }}</label>
-                    <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="storageFreePlace" appendTo="body" required
+                    <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="storageFreePlace" appendTo="body"
                       [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('storageFreePlace').value }">
                       <ng-option *ngFor="let s of storagePlaceArr" [value]="s.id">{{ s.name }}</ng-option>
                     </ng-select>
