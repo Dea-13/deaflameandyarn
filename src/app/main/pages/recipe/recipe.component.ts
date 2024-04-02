@@ -22,7 +22,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class RecipeComponent implements OnInit {
   // Public
   @BlockUI('block') blockUI: NgBlockUI;
-  displayedColumns: string[] = ['star', 'recipeName'];
+  displayedColumns: string[] = ['star', 'recipeName', 'dieLiveQty'];
   public expanded: boolean = false;
   public expandedElement: [] | null;
   public rows: any = [];
@@ -64,9 +64,15 @@ export class RecipeComponent implements OnInit {
   createRecipe() {
     console.log('createRecipe');
     let recipeName;
+    let dieLiveQty;
     Swal.fire({
-      title: this.translateSnackBar.recipeName,
-      input: 'text',
+      // title: this.translateSnackBar.recipeName,
+      html:
+          this.translateSnackBar.recipeName +
+          '<input id="swal-upd-recipe" class="swal2-input">' +
+          this.translateSnackBar.dieLiveQty + '<br>' +
+          '<input id="swal-upd-die" type="number" class="swal2-input">',
+      focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: this.translateSnackBar.save,
       cancelButtonText: this.translateSnackBar.close,
@@ -77,35 +83,43 @@ export class RecipeComponent implements OnInit {
       },
       preConfirm: function (recipe) {
         console.log('preConfirm', recipe);
-        if(!recipe) {
+        if(!document.getElementById('swal-recipe')['value'] || !document.getElementById('swal-die')['value']) {
           Swal.showValidationMessage('No data!');
         } else {
-          return recipeName = recipe;
+          return recipeName = document.getElementById('swal-recipe')['value'],
+                 dieLiveQty = document.getElementById('swal-die')['value'];
         }
       },
       allowOutsideClick: function () {
         return !Swal.isLoading();
       }
-    }).then( ()=> {
-      this.blockUI.start('Loading...');
-      let obj = {'recipeName' : recipeName}
-      this.recipeService.createRecipe(obj).subscribe(recipeService => {
-        this.getRecipe();
-        Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
-        this.blockUI.stop();
-      },(error) => {
-          Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+    }).then( (result)=> {
+      if (result.isConfirmed) {
+        this.blockUI.start('Loading...');
+        let obj = {'recipeName' : recipeName, 'dieLiveQty' : dieLiveQty}
+        this.recipeService.createRecipe(obj).subscribe(recipeService => {
+          this.getRecipe();
+          Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
           this.blockUI.stop();
-        }
-      );
+        },(error) => {
+            Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+            this.blockUI.stop();
+          }
+        );
+      }
     });
   }
 
   updateRecipe(row) {
     console.log('updateRecipe', row, this.translateSnackBar.fillMsg);
     Swal.fire({
-      title: this.translateSnackBar.recipeName + ': ' + row.recipeName,
-      input: 'text',
+      // title: this.translateSnackBar.recipeName,
+      html:
+          this.translateSnackBar.recipeName +
+          '<input id="swal-upd-recipe" class="swal2-input">' +
+          this.translateSnackBar.dieLiveQty + '<br>' +
+          '<input id="swal-upd-die" type="number" class="swal2-input">',
+      focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: this.translateSnackBar.save,
       cancelButtonText: this.translateSnackBar.close,
@@ -115,26 +129,30 @@ export class RecipeComponent implements OnInit {
         cancelButton: 'btn btn-danger ml-1'
       },
       preConfirm: function (recipe) {
-        console.log('preConfirm', recipe);
-        if(!recipe) {
+        if(!document.getElementById('swal-upd-recipe')['value'] || !document.getElementById('swal-upd-die')['value']) {
           Swal.showValidationMessage('No data!');
         } else {
-          return row.recipeName = recipe;
+          return row.recipeName = document.getElementById('swal-upd-recipe')['value'],
+                 row.dieLiveQty = document.getElementById('swal-upd-die')['value'];
         }
       },
       allowOutsideClick: function () {
         return !Swal.isLoading();
       }
-    }).then( ()=> {
-      this.blockUI.start('Loading...');
-      this.recipeService.updateRecipe(row).subscribe(recipeService => {
-        this.getRecipe();
-        Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
-        this.blockUI.stop();
-      },(error) => {
-        Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
-        this.blockUI.stop();
-      });
+    }).then( (result)=> {
+      if (result.isConfirmed) {
+        this.blockUI.start('Loading...');
+        console.log('=====', )
+        this.recipeService.updateRecipe(row).subscribe(recipeService => {
+          this.getRecipe();
+          Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
+          this.blockUI.stop();
+        },(error) => {
+          Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+          this.blockUI.stop();
+        });
+      }
+
     });
   }
 
@@ -152,6 +170,7 @@ export class RecipeComponent implements OnInit {
       recipeId: this.currentRowSelected.id,
       step: null,
       kilograms: null,
+      dieLiveQty: '',
       status: false
     };
     this.subRecipees.push(emptyResourceRow);

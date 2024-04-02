@@ -1164,6 +1164,14 @@ export class NewMatrixModalComponent implements OnInit {
     }
   }
 
+  updDieLiveQty() {
+    for(let i=0; i < this.recipeArr.length; i++) {
+      if(this.createMatrixForm.controls.recipeName.value == this.recipeArr[i].id) {
+        this.createMatrixForm.controls.dieLiveQty.setValue(this.recipeArr[i].dieLiveQty);
+      }
+    }
+  }
+
   ngAfterViewInit() {
     this.cdr.detectChanges();
   }

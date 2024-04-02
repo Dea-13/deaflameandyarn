@@ -219,7 +219,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.dieLiveQty }}</label>
-                      <input formControlName="dieLiveQty" class="form-control input" type="number">
+                      <input formControlName="dieLiveQty" class="form-control input" type="number" disabled>
                     </div>
                   </div>
                 </div>
@@ -305,7 +305,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.recipeName }}</label>
-                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="recipeName" appendTo="body">
+                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="recipeName" (change)="updDieLiveQty()" appendTo="body">
                         <ng-option *ngFor="let s of recipeArr" [value]="s.id">{{ s.recipeName }}</ng-option>
                       </ng-select>
                     </div>

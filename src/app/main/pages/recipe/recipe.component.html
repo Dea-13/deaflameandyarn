@@ -37,6 +37,13 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.recipeName}}</span></td>
             </ng-container>
 
+            <ng-container matColumnDef="dieLiveQty">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dieLiveQty }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dieLiveQty}}</span></td>
+            </ng-container>
+
             <ng-container matColumnDef="expandedDetail">
               <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
                 <div *ngIf="element === expandedElement" class="example-element-detail"
