@@ -515,6 +515,7 @@ export const locale = {
       step: 'Стъпка',
       kilograms: 'Килограми',
       noData: 'Няма данни',
+      refNo: 'Ref №',
     }
   }
 }

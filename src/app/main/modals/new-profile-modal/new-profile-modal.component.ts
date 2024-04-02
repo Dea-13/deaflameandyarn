@@ -75,6 +75,7 @@ export class NewProfileModalComponent implements OnInit {
     this.profile = this.profileItem.data;
     this.createProfileForm = this.formBuilder.group({
       profileName: ['', Validators.required],
+      refNumber: [''],
       groupCode: [''],
       usage: ['', Validators.required],
       visSides: ['', Validators.required],
@@ -145,6 +146,7 @@ export class NewProfileModalComponent implements OnInit {
       this.profileId = data == null ? null : data.id;
       this.createProfileForm = this.formBuilder.group({
         profileName: this.sectionProfiles.profileName,
+        refNumber: this.sectionProfiles.refNumber,
         groupCode: this.sectionProfiles.groupCode,
         inUse: this.sectionProfiles.inUse,
         visSides: this.sectionProfiles.visSides,
@@ -405,6 +407,7 @@ export class NewProfileModalComponent implements OnInit {
     this.submitted = true;
     obj = {
       profileName: this.createProfileForm.controls.profileName.value,
+      refNumber: this.createProfileForm.controls.refNumber.value,
       groupCode: this.createProfileForm.controls.groupCode.value,
       section: this.createProfileForm.controls.section.value,
       perimeter: this.createProfileForm.controls.perimeter.value,
