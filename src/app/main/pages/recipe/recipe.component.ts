@@ -114,11 +114,10 @@ export class RecipeComponent implements OnInit {
     console.log('updateRecipe', row, this.translateSnackBar.fillMsg);
     Swal.fire({
       // title: this.translateSnackBar.recipeName,
-      html:
-          this.translateSnackBar.recipeName +
-          '<input id="swal-upd-recipe" class="swal2-input">' +
-          this.translateSnackBar.dieLiveQty + '<br>' +
-          '<input id="swal-upd-die" type="number" class="swal2-input">',
+      html: this.translateSnackBar.recipeName +
+      '<input id="swal-upd-recipe" class="swal2-input" value="'+ row.recipeName +'">' +
+      this.translateSnackBar.dieLiveQty + '<br>' +
+      '<input id="swal-upd-die" type="number" class="swal2-input" value="'+ row.dieLiveQty +'">',
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: this.translateSnackBar.save,
