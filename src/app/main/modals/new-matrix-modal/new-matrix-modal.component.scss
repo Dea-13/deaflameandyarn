@@ -148,7 +148,7 @@ input {
 
 .label-section {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 ::ng-deep .modal-dialog {
@@ -221,7 +221,7 @@ input {
 }
 
 .save-center {
-  margin: 40px auto;
+  margin: 0px auto;
   display: block;
 }
 
@@ -230,7 +230,7 @@ form {
 }
 
 .fixed-height {
-  max-height: 500px;
+  max-height: 300px;
   overflow: auto;
 }
 
@@ -254,6 +254,28 @@ mat-tab-group{
 .calendar-input{
   outline: none;
   border: none;
-  border-bottom: 1px solid #949494;
   color: #6e6b7b;
+}
+
+.label-checkbox {
+  width: -webkit-fill-available;
+  line-height: 30px;
+}
+
+.mat-form-field {
+  display: block;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.alert-primary .close {
+  padding: 5px 10px 0 10px;
+}
+
+.mat-form-field-infix {
+  border-top: none!important;
 }

@@ -5,7 +5,7 @@
       <div class="modal-body flex-grow-1">
         <div class="row">
           <div class="col-md-12 col-12">
-            <div class="alert alert-primary flex" role="alert">
+            <div class="alert alert-primary d-flex" role="alert">
               <div class="alert-body">
                 {{ translateSnackBar.modaldiedetails }}
               </div>
@@ -20,32 +20,35 @@
           </div>
         </div>
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
-        <div class="flex">
-          <div class="section-left col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 margin-10">
-            <h3 *ngIf="!emptyDataHeader && header.length > 0">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}}
-              ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
-            <p *ngIf="!emptyDataHeader && header.length > 0">
-              <i>
-                {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
-                {{ translateSnackBar.usedIn }} <b>{{resourceName}}</b> -
-                {{ translateSnackBar.total }} <b>{{sumtotalUsed}}</b> {{ translateSnackBar.times }}.
-                {{ translateSnackBar.total }}: <b>{{sumTotalKg}}</b> {{ translateSnackBar.kg }}
-              </i>
-            </p>
-            <p *ngIf="!emptyDataHeader && header.length > 0">
-              <i>
-                {{ translateSnackBar.azotirane }}: <b>{{header[0].anodizingCount}}</b>.
-                {{ translateSnackBar.finalNitriding }} - <b>{{header[0].lastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b>
-                (<b>{{header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
-                {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header[0].totalKgProduced -
-                  header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
-                ({{ translateSnackBar.norm }} - <b>{{header[0].manualKGtoNextNitriding === null ? 0 :
-                  header[0].manualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
-              </i>
-            </p>
-            <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
+        <div class="row m-1">
+          <div class="col-12 col-md-9">
+            <div class="row">
+              <h3 *ngIf="!emptyDataHeader && header.length > 0">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}}
+                ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
+              <p *ngIf="!emptyDataHeader && header.length > 0">
+                <i>
+                  {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
+                  {{ translateSnackBar.usedIn }} <b>{{resourceName}}</b> -
+                  {{ translateSnackBar.total }} <b>{{sumtotalUsed}}</b> {{ translateSnackBar.times }}.
+                  {{ translateSnackBar.total }}: <b>{{sumTotalKg}}</b> {{ translateSnackBar.kg }}
+                </i>
+              </p>
+              <p *ngIf="!emptyDataHeader && header.length > 0">
+                <i>
+                  {{ translateSnackBar.azotirane }}: <b>{{header[0].anodizingCount}}</b>.
+                  {{ translateSnackBar.finalNitriding }} - <b>{{header[0].lastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b>
+                  (<b>{{header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
+                  {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header[0].totalKgProduced -
+                    header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
+                  ({{ translateSnackBar.norm }} - <b>{{header[0].manualKGtoNextNitriding === null ? 0 :
+                    header[0].manualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
+                </i>
+              </p>
+              <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
+            </div>
           </div>
-          <div class="section-right col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 margin-10">
+
+          <div class="col-12 col-md-3">
             <button rippleEffect class="col-sm-12 btn btn-warning edit-btn margin-10" (click)="editForm()">
               <i data-feather="edit"  class="mr-25" title="Modify"></i> {{ translateSnackBar.edit }}
             </button>

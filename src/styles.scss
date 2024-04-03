@@ -1143,3 +1143,15 @@ input[type="search"] {
 .swal2-input[type=number] {
   max-width: 100%!important;
 }
+
+.mat-form-field-infix {
+  display: flex !important;
+}
+
+.mat-form-field-required-marker {
+  color: red;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0.25em!important;
+}

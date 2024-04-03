@@ -25,6 +25,7 @@ import { NgbNavItem } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 import { MachinesComponent } from './main/pages/machines/machines.component';
 import { OperationsComponent } from './main/pages/operations/operations.component';
@@ -72,6 +73,7 @@ import { ExtrusionModalComponent } from './main/pages/extrusion-modal/extrusion-
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { RecipeComponent } from './main/pages/recipe/recipe.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 const appRoutes: Routes = [
@@ -292,6 +294,8 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     BlockUIModule.forRoot(), // Import BlockUIModule
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatIconModule,
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled', // Add options right here

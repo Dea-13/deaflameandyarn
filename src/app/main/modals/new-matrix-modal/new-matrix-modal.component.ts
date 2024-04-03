@@ -230,6 +230,7 @@ export class NewMatrixModalComponent implements OnInit {
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
       this.blockUI.stop();
+      this.getProfilesEnds();
     },error => {
       console.log('error', error);
       this.blockUI.stop();
@@ -310,7 +311,6 @@ export class NewMatrixModalComponent implements OnInit {
     if(this.matrixItem.data == 'new'){
       this.getMatrix();
     }
-    this.getProfilesEnds();
     this.getProfilesByPress();
   }
 
@@ -573,7 +573,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.validation = this.pressValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
-          profileId: row.profileId ? row.profileId : this.createMatrixForm.controls.profile.value.id,
+          profileId: Number(this.matrixItem.data.id ? this.matrix.profile : this.createMatrixForm.controls.profile.value.id),
           pressId: row.pressId,
           priority: row.priority,
           channels: row.channels,
@@ -697,7 +697,8 @@ export class NewMatrixModalComponent implements OnInit {
 
   getProfilesEnds() {
     // this.blockUI.start('Loading...');
-    this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrixItem.data.profile).subscribe((data) => {
+    console.log('ends=>', this.createMatrixForm.controls.profile.value.id, this.matrix)
+    this.matrixService.getProfilesEnds(this.createMatrixForm.controls.profile.value.id ? this.createMatrixForm.controls.profile.value.id : this.matrix.profile).subscribe((data) => {
       this.columnsSecondTable = data;
       this.blockUI.stop();
     },error => {
@@ -747,14 +748,14 @@ export class NewMatrixModalComponent implements OnInit {
     let obj;
     for (let i = 0; i < this.columnsSecondTable.length; i++) {
       if (this.columnsSecondTable[i].profileId) {
-        if (!row.profileId && this.columnsSecondTable[i].alloyFamily == row.alloyFamily) {
+        if (!row.profileId && this.columnsSecondTable[i].alloyFamily == row.alloyFamily && this.columnsSecondTable[i].channels == row.channels) {
           console.log('Duplicate row');
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',
             title: this.translateSnackBar.dublicateAlloyMSg,
             showConfirmButton: false,
-            timer: 2000
+            timer: 4000
           })
           flag = true;
           break;
@@ -766,7 +767,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.validation = this.pressEndValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
-          profileId: row.profileId ? row.profileId : this.createMatrixForm.controls.profile.value.id,
+          profileId: Number(this.matrixItem.data.id ? this.matrix.profile : this.createMatrixForm.controls.profile.value.id),
           channels: row.channels,
           alloyFamily: row.alloyFamily,
           lengthStart: row.lengthStart,
