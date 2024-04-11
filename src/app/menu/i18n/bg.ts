@@ -46,6 +46,7 @@ export const locale = {
       CONFEXTRUSION: 'Потвърждения за екструдиране',
       BILLETMAT: 'Суровини за заготовки',
       RECIPE: 'Рецепта',
+      SETDIE: 'Настройка',
     },
     translate: {
       matrix: 'Матрица',

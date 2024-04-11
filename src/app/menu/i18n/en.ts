@@ -46,6 +46,7 @@ export const locale = {
       CONFEXTRUSION: 'Extrusion Confirmations',
       BILLETMAT: 'Billet Raw Materials',
       RECIPE: 'Recipe',
+      SETDIE: 'Settings Die',
     },
     translate: {
       matrix: 'Die',

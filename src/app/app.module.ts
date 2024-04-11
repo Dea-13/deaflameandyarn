@@ -153,6 +153,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/settings-die',
+    component: StatedComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/movement-matrix',
     component: MovementMatrixComponent,
     pathMatch: 'full'
