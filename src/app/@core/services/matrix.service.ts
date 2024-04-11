@@ -348,4 +348,18 @@ export class MatrixService {
     return this._http.post(`${environment.apiUrl}Dies/CreateTestOrder/${quantity}/${alloy}/${workCenterId}/${dieID}`, data);
   }
 
+  getComments(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}DieComments/${id}`);
+  }
+
+  createComment(obj: any) {
+    const data = JSON.stringify(obj);
+    return this._http.post(`${environment.apiUrl}DieComments`, data);
+  }
+
+  updateComment(obj: any) {
+    const data = JSON.stringify(obj);
+    return this._http.put(`${environment.apiUrl}DieComments`, data);
+  }
+
 }

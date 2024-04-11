@@ -654,7 +654,7 @@
                                     <tbody>
                                       <tr class="embeded-row" *ngFor="let r of element.resources; let i = index">
                                         <td>{{r.dieId}}</td>
-                                        <td>{{r.movementDateTime| date:'dd/MM/yyyy H:mm:ss'}}</td>
+                                        <td>{{r.movementDateTime | date:'dd/MM/yyyy H:mm:ss'}}</td>
                                         <td>{{r.kgProduced}}</td>
                                         <td>{{r.computerName}}</td>
                                         <td>{{r.notes}}</td>
@@ -698,6 +698,51 @@
                   <div [ngbNavOutlet]="nav" class="mt-2"></div>
                 </div>
               </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="8">
+            <a ngbNavLink>{{ translateSnackBar.comments }}</a>
+            <ng-template ngbNavContent>
+              <div class="col-12 text-right">
+                <button class="add-button" (click)="createRecipe()">
+                  <i class="fa fa-plus-circle"></i>
+                </button>
+              </div>
+              <table mat-table [dataSource]="commentsArr" class="example-table fixed-width">
+                <ng-container matColumnDef="star" stickyEnd>
+                  <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+                  <td mat-cell *matCellDef="let element">
+                      <button type="button" (click)="updateComments(element)" class="btn icon-btn btn-sm hide-arrow">
+                        <span [data-feather]="'edit'" [size]="16" [class]="'mr-50'" [class]="'cursor-pointer'"></span>
+                      </button>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="comment">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <span class="th-header">{{ translateSnackBar.comment }}</span>
+                  </th>
+                  <td mat-cell *matCellDef="let element">{{element.comment}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="cuser">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <span class="th-header">{{ translateSnackBar.username }}</span>
+                  </th>
+                  <td mat-cell *matCellDef="let element">{{element.cuser}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ctime">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <span class="th-header">{{ translateSnackBar.created }}</span>
+                  </th>
+                  <td mat-cell *matCellDef="let element">{{element.ctime | date:'dd/MM/yyyy H:mm:ss'}}
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsComments; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsComments;"></tr>
+              </table>
             </ng-template>
           </li>
         </ul>

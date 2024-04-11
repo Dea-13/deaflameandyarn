@@ -28,6 +28,7 @@ export class DetailsDieModalComponent implements OnInit {
   @Input() public dieItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
+  displayedColumnsComments: string[] = ['star', 'comment', 'cuser', 'ctime'];
   displayedColumnsProduction: string[] = [
     'pullerSpeed', 'billetTemperature', 'exitTemperature',
     'dieStatus', 'lengthFinalPiece', 'kgnet',
@@ -79,6 +80,7 @@ export class DetailsDieModalComponent implements OnInit {
   public userName: any;
   public dieInfo: any = {};
   public arrResource: Array<any> = [];
+  public commentsArr: Array<any> = [];
 
   constructor(
     private toastrService: ToastrService,
@@ -110,6 +112,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.getFilters(this.urls.length, 'init');
     this.getDieInfo();
     this.getResourceTable();
+    this.getComments();
   }
 
   fullScreen(){
@@ -140,6 +143,24 @@ export class DetailsDieModalComponent implements OnInit {
     this.matrixService.getResourceTable(this.dieRow.id).subscribe(data => {
       console.log("getResourceTable", data);
       this.arrResource = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    });
+  }
+
+  getComments() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getComments(this.dieRow.id).subscribe(data => {
+      console.log("getComments", data);
+      this.commentsArr = data;
       this.blockUI.stop();
     }, error => {
       Swal.fire({
@@ -484,6 +505,93 @@ export class DetailsDieModalComponent implements OnInit {
     }
     this.getMovements();
     this.getFilters(this.urls.length, 'init');
+  }
+
+  createRecipe() {
+    console.log('createRecipe');
+    let comment;
+    Swal.fire({
+      title: this.translateSnackBar.comment,
+      html:'<input id="swal-new-comment" class="swal2-input">',
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: this.translateSnackBar.save,
+      cancelButtonText: this.translateSnackBar.close,
+      showLoaderOnConfirm: true,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      },
+      preConfirm: function (recipe) {
+        console.log('preConfirm', recipe);
+        if(!document.getElementById('swal-new-comment')['value']) {
+          Swal.showValidationMessage('No data!');
+        } else {
+          return comment = document.getElementById('swal-new-comment')['value'];
+        }
+      },
+      allowOutsideClick: function () {
+        return !Swal.isLoading();
+      }
+    }).then( (result)=> {
+      if (result.isConfirmed) {
+        this.blockUI.start('Loading...');
+        let obj = {
+          'dieId' : this.dieRow.id,
+          'comment' : comment,
+          'cuser' : this.userName,
+          'ctime' : new Date()
+        }
+        this.matrixService.createComment(obj).subscribe(recipeService => {
+          this.getComments();
+          Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
+          this.blockUI.stop();
+        },(error) => {
+            Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+            this.blockUI.stop();
+          }
+        );
+      }
+    });
+  }
+
+  updateComments(row) {
+    console.log('updateRecipe', row, this.translateSnackBar.fillMsg);
+    Swal.fire({
+      title: this.translateSnackBar.comment,
+      html: '<input id="swal-upd-comment" class="swal2-input" value="'+ row.comment +'">',
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: this.translateSnackBar.save,
+      cancelButtonText: this.translateSnackBar.close,
+      showLoaderOnConfirm: true,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      },
+      preConfirm: function (recipe) {
+        if(!document.getElementById('swal-upd-comment')['value']) {
+          Swal.showValidationMessage('No data!');
+        } else {
+          return row.comment = document.getElementById('swal-upd-comment')['value'];
+        }
+      },
+      allowOutsideClick: function () {
+        return !Swal.isLoading();
+      }
+    }).then( (result)=> {
+      if (result.isConfirmed) {
+        this.blockUI.start('Loading...');
+        this.matrixService.updateComment(row).subscribe(recipeService => {
+          this.getComments();
+          Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
+          this.blockUI.stop();
+        },(error) => {
+          Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+          this.blockUI.stop();
+        });
+      }
+    });
   }
 
 }

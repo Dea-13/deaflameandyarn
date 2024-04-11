@@ -518,6 +518,8 @@ export const locale = {
       kilograms: 'Kilograms',
       noData: 'No Data',
       refNo: 'Ref №',
+      comments: 'Comments',
+      comment: 'Comment',
     }
   }
 }

@@ -517,6 +517,8 @@ export const locale = {
       kilograms: 'Килограми',
       noData: 'Няма данни',
       refNo: 'Ref №',
+      comments: 'Коментари',
+      comment: 'Коментар',
     }
   }
 }
