@@ -383,4 +383,8 @@ export class MatrixService {
     return this._http.delete<any>(`${environment.apiUrl}DieDocumentFiles/${id}`);
   }
 
+  downloadFile(id, dieId){
+    return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/DownloadFile/${id}/${dieId}`, { observe: 'response', responseType: 'blob' as 'json' });
+  }
+
 }

@@ -10,6 +10,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ExtrusionModalComponent } from '../../pages/extrusion-modal/extrusion-modal.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { UploadModalComponent } from '../upload-modal/upload-modal.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-details-die-modal',
@@ -620,23 +621,25 @@ export class DetailsDieModalComponent implements OnInit {
 
   openFile(file){
     this.matrixService.getFileId(file.id, file.dieId).subscribe(data => {
-      let type = data.contentType.split('/');
-      if(type[0] == 'image'){
-        var image = new Image();
-        image.src = "data:"+ data.contentType +";base64," + encodeURI(data.fileContents)
-        var w = window.open("");
-        w.document.write(image.outerHTML);
-      } else{
-        let pdfWindow = window.open("")
-        pdfWindow.document.write(
-        "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
-        encodeURI(data.fileContents) + "'></iframe>"
-        );
-      }
+      this.matrixService.downloadFile(file.id, file.dieId).subscribe(response => {
+        let blob: Blob = response.body as Blob;
+        let a = document.createElement('a');
+        a.download = file.files;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      }, error=> {
+        console.log('error', error);
+        let blob: Blob = error.text as Blob;
+        let a = document.createElement('a');
+        a.download = file.files;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      });
     }, err =>{
       console.log('Error: ', err);
     });
   }
+
 
   uploadFile() {
     console.log('uploadFile: ', this.dieRow);
@@ -660,3 +663,4 @@ export class DetailsDieModalComponent implements OnInit {
   }
 
 }
+
