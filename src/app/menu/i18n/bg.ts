@@ -519,6 +519,18 @@ export const locale = {
       refNo: 'Ref №',
       comments: 'Коментари',
       comment: 'Коментар',
+      files: 'Файлове',
+      titleFile: 'Прекачи Файл',
+      nameFile: 'Име на файл',
+      btnFile: 'Запис',
+      btnCancelFile: 'Отказ',
+      upload: 'Качи Файл',
+      deleteSuccess: 'Успешно изтрихте Файл.',
+      recordSuccess: 'Успешно записан Файл.',
+      fileRequired: 'Файлът е задължителен.',
+      longMgs: " името е твърде дълго",
+      recordFile: 'Запис на Файл',
+      removeFile: 'Изтриване на Файл',
     }
   }
 }

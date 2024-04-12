@@ -362,4 +362,25 @@ export class MatrixService {
     return this._http.put(`${environment.apiUrl}DieComments`, data);
   }
 
+  getFiles(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/${id}`);
+  }
+
+  getFileId(id, dieId){
+    return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/getFile/${id}/${dieId}`);
+  }
+
+  uploadFile(bachId: number, productionOrderId: number, file: any){
+    const fb: FormData = new FormData()
+      for ( let i = 0; i < file.length; i++) {
+        fb.append('files', file[i]);
+      }
+    // fb.append("files", file);
+    return this._http.post(`${environment.apiUrl}DieDocumentFiles/UploadFile/${bachId}/${productionOrderId}`, fb);
+  }
+
+  deleteFile(id: number){
+    return this._http.delete<any>(`${environment.apiUrl}DieDocumentFiles/${id}`);
+  }
+
 }

@@ -520,6 +520,18 @@ export const locale = {
       refNo: 'Ref №',
       comments: 'Comments',
       comment: 'Comment',
+      files: 'Files',
+      titleFile: 'Upload File',
+      nameFile: 'File Name',
+      btnFile: 'Record',
+      btnCancelFile: 'Cancel',
+      upload: 'Upload',
+      deleteSuccess: 'Successfully deleted.',
+      recordSuccess: 'Successfully record File.',
+      fileRequired: 'Тhe file is required.',
+      longMgs: " the name is too long",
+      recordFile: 'Record File',
+      removeFile: 'Remove File',
     }
   }
 }

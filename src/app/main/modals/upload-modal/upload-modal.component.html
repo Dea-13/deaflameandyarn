@@ -1,0 +1,50 @@
+<div class="slideout-content">
+  <div class="modalsd modal-slide-in sdfade new-user-modal" id="modals-slide-in">
+    <div class="modal-dialog">
+      <form [formGroup]="uploadForm" class="add-new-user modal-content pt-1" (ngSubmit)="(newConfForm.form.valid)" #newConfForm="ngForm">
+        <div class="col-md-12 col-12">
+          <div class="alert alert-primary d-flex" role="alert">
+            <div class="alert-body">
+              {{ translateSnackBar.titleFile }}
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+              ×
+            </button>
+          </div>
+        </div>
+        <div class="modal-body flex-grow-1">
+          <div class="form-group">
+            <label class="btn btn-success mr-75 mb-0" for="change-picture">
+              <span class="d-none d-sm-block">{{ translateSnackBar.upload }}</span>
+              <input class="form-control" type="file" id="change-picture" hidden accept=".pdf,.doc" (change)="uploadFile($event)" multiple="multiple"/>
+              <span class="d-block d-sm-none">
+                <i class="mr-0" data-feather="edit"></i>
+              </span>
+            </label>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let item of filesUpload">
+                  <td><i data-feather="file-text" class="mr-25"></i></td>
+                  <td>{{item.name}}</td>
+                  <td><a (click)="removeCurrentFile(item)"><span [data-feather]="'trash'" [size]="16" [class]="'mr-50 text-danger'"></span></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div *ngIf="filesUpload.length > 0" class="form-group mb-2">
+            <button class="btn btn-primary mr-1" (click)="submitForm(newConfForm)" rippleEffect>
+              {{ translateSnackBar.btnFile }}
+            </button>
+            <button type="reset" class="btn btn-outline-secondary" (click)="closeModal()" rippleEffect>
+              {{ translateSnackBar.btnCancelFile }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

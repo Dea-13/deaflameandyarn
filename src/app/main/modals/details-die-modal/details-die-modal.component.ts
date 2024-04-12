@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import { NewMatrixModalComponent } from '../new-matrix-modal/new-matrix-modal.co
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ExtrusionModalComponent } from '../../pages/extrusion-modal/extrusion-modal.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { UploadModalComponent } from '../upload-modal/upload-modal.component';
 
 @Component({
   selector: 'app-details-die-modal',
@@ -29,6 +30,7 @@ export class DetailsDieModalComponent implements OnInit {
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   displayedColumnsComments: string[] = ['star', 'comment', 'cuser', 'ctime'];
+  displayedColumnsFiles: string[] = ['cuser', 'ctime', 'files', 'star'];
   displayedColumnsProduction: string[] = [
     'pullerSpeed', 'billetTemperature', 'exitTemperature',
     'dieStatus', 'lengthFinalPiece', 'kgnet',
@@ -81,6 +83,9 @@ export class DetailsDieModalComponent implements OnInit {
   public dieInfo: any = {};
   public arrResource: Array<any> = [];
   public commentsArr: Array<any> = [];
+  public filesArr: Array<any> = [];
+  public filesUpload: Array<any> = [];
+  public modalOption: NgbModalOptions = {};
 
   constructor(
     private toastrService: ToastrService,
@@ -113,6 +118,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.getDieInfo();
     this.getResourceTable();
     this.getComments();
+    this.getFiles();
   }
 
   fullScreen(){
@@ -161,6 +167,24 @@ export class DetailsDieModalComponent implements OnInit {
     this.matrixService.getComments(this.dieRow.id).subscribe(data => {
       console.log("getComments", data);
       this.commentsArr = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    });
+  }
+
+  getFiles() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getFiles(this.dieRow.id).subscribe(data => {
+      console.log("getFiles", data);
+      this.filesArr = data;
       this.blockUI.stop();
     }, error => {
       Swal.fire({
@@ -591,6 +615,47 @@ export class DetailsDieModalComponent implements OnInit {
           this.blockUI.stop();
         });
       }
+    });
+  }
+
+  openFile(file){
+    this.matrixService.getFileId(file.id, file.dieId).subscribe(data => {
+      let type = data.contentType.split('/');
+      if(type[0] == 'image'){
+        var image = new Image();
+        image.src = "data:"+ data.contentType +";base64," + encodeURI(data.fileContents)
+        var w = window.open("");
+        w.document.write(image.outerHTML);
+      } else{
+        let pdfWindow = window.open("")
+        pdfWindow.document.write(
+        "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+        encodeURI(data.fileContents) + "'></iframe>"
+        );
+      }
+    }, err =>{
+      console.log('Error: ', err);
+    });
+  }
+
+  uploadFile() {
+    console.log('uploadFile: ', this.dieRow);
+    const modalRef = this.modalService.open(UploadModalComponent, this.modalOption);
+    modalRef.componentInstance.uploadItem = { 'dieId': this.dieRow.id};
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      // if (receivedEntry == true) {
+        this.getFiles()
+      // }
+    });
+  }
+
+  deleteFile(row){
+    console.log('uploadFile: ', row);
+    this.matrixService.deleteFile(row.id).subscribe(data => {
+      this.toastrService.success(
+        this.translateSnackBar.deleteSuccess,
+      );
+      this.getFiles();
     });
   }
 
