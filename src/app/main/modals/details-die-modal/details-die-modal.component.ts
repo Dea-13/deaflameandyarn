@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
@@ -9,6 +9,8 @@ import { NewMatrixModalComponent } from '../new-matrix-modal/new-matrix-modal.co
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ExtrusionModalComponent } from '../../pages/extrusion-modal/extrusion-modal.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { UploadModalComponent } from '../upload-modal/upload-modal.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-details-die-modal',
@@ -28,6 +30,8 @@ export class DetailsDieModalComponent implements OnInit {
   @Input() public dieItem;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
+  displayedColumnsComments: string[] = ['star', 'comment', 'cuser', 'ctime'];
+  displayedColumnsFiles: string[] = ['cuser', 'ctime', 'files', 'star'];
   displayedColumnsProduction: string[] = [
     'pullerSpeed', 'billetTemperature', 'exitTemperature',
     'dieStatus', 'lengthFinalPiece', 'kgnet',
@@ -79,6 +83,10 @@ export class DetailsDieModalComponent implements OnInit {
   public userName: any;
   public dieInfo: any = {};
   public arrResource: Array<any> = [];
+  public commentsArr: Array<any> = [];
+  public filesArr: Array<any> = [];
+  public filesUpload: Array<any> = [];
+  public modalOption: NgbModalOptions = {};
 
   constructor(
     private toastrService: ToastrService,
@@ -110,6 +118,8 @@ export class DetailsDieModalComponent implements OnInit {
     this.getFilters(this.urls.length, 'init');
     this.getDieInfo();
     this.getResourceTable();
+    this.getComments();
+    this.getFiles();
   }
 
   fullScreen(){
@@ -140,6 +150,42 @@ export class DetailsDieModalComponent implements OnInit {
     this.matrixService.getResourceTable(this.dieRow.id).subscribe(data => {
       console.log("getResourceTable", data);
       this.arrResource = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    });
+  }
+
+  getComments() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getComments(this.dieRow.id).subscribe(data => {
+      console.log("getComments", data);
+      this.commentsArr = data;
+      this.blockUI.stop();
+    }, error => {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.blockUI.stop();
+    });
+  }
+
+  getFiles() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getFiles(this.dieRow.id).subscribe(data => {
+      console.log("getFiles", data);
+      this.filesArr = data;
       this.blockUI.stop();
     }, error => {
       Swal.fire({
@@ -486,4 +532,135 @@ export class DetailsDieModalComponent implements OnInit {
     this.getFilters(this.urls.length, 'init');
   }
 
+  createRecipe() {
+    console.log('createRecipe');
+    let comment;
+    Swal.fire({
+      title: this.translateSnackBar.comment,
+      html:'<input id="swal-new-comment" class="swal2-input">',
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: this.translateSnackBar.save,
+      cancelButtonText: this.translateSnackBar.close,
+      showLoaderOnConfirm: true,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      },
+      preConfirm: function (recipe) {
+        console.log('preConfirm', recipe);
+        if(!document.getElementById('swal-new-comment')['value']) {
+          Swal.showValidationMessage('No data!');
+        } else {
+          return comment = document.getElementById('swal-new-comment')['value'];
+        }
+      },
+      allowOutsideClick: function () {
+        return !Swal.isLoading();
+      }
+    }).then( (result)=> {
+      if (result.isConfirmed) {
+        this.blockUI.start('Loading...');
+        let obj = {
+          'dieId' : this.dieRow.id,
+          'comment' : comment,
+          'cuser' : this.userName,
+          'ctime' : new Date()
+        }
+        this.matrixService.createComment(obj).subscribe(recipeService => {
+          this.getComments();
+          Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
+          this.blockUI.stop();
+        },(error) => {
+            Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+            this.blockUI.stop();
+          }
+        );
+      }
+    });
+  }
+
+  updateComments(row) {
+    console.log('updateRecipe', row, this.translateSnackBar.fillMsg);
+    Swal.fire({
+      title: this.translateSnackBar.comment,
+      html: '<input id="swal-upd-comment" class="swal2-input" value="'+ row.comment +'">',
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: this.translateSnackBar.save,
+      cancelButtonText: this.translateSnackBar.close,
+      showLoaderOnConfirm: true,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      },
+      preConfirm: function (recipe) {
+        if(!document.getElementById('swal-upd-comment')['value']) {
+          Swal.showValidationMessage('No data!');
+        } else {
+          return row.comment = document.getElementById('swal-upd-comment')['value'];
+        }
+      },
+      allowOutsideClick: function () {
+        return !Swal.isLoading();
+      }
+    }).then( (result)=> {
+      if (result.isConfirmed) {
+        this.blockUI.start('Loading...');
+        this.matrixService.updateComment(row).subscribe(recipeService => {
+          this.getComments();
+          Swal.fire({ position: 'bottom-end', icon: 'success', title: this.translateSnackBar.saveMsg, showConfirmButton: false, timer: 2000 })
+          this.blockUI.stop();
+        },(error) => {
+          Swal.fire({ position: 'bottom-end', icon: 'warning', title: this.translateSnackBar.errorMsg, showConfirmButton: false, timer: 2000})
+          this.blockUI.stop();
+        });
+      }
+    });
+  }
+
+  openFile(file){
+    this.matrixService.getFileId(file.id, file.dieId).subscribe(data => {
+      this.matrixService.downloadFile(file.id, file.dieId).subscribe(response => {
+        let blob: Blob = response.body as Blob;
+        let a = document.createElement('a');
+        a.download = file.files;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      }, error=> {
+        console.log('error', error);
+        let blob: Blob = error.text as Blob;
+        let a = document.createElement('a');
+        a.download = file.files;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      });
+    }, err =>{
+      console.log('Error: ', err);
+    });
+  }
+
+
+  uploadFile() {
+    console.log('uploadFile: ', this.dieRow);
+    const modalRef = this.modalService.open(UploadModalComponent, this.modalOption);
+    modalRef.componentInstance.uploadItem = { 'dieId': this.dieRow.id};
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+      // if (receivedEntry == true) {
+        this.getFiles()
+      // }
+    });
+  }
+
+  deleteFile(row){
+    console.log('uploadFile: ', row);
+    this.matrixService.deleteFile(row.id).subscribe(data => {
+      this.toastrService.success(
+        this.translateSnackBar.deleteSuccess,
+      );
+      this.getFiles();
+    });
+  }
+
 }
+

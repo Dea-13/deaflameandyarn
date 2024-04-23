@@ -46,6 +46,7 @@ export const locale = {
       CONFEXTRUSION: 'Потвърждения за екструдиране',
       BILLETMAT: 'Суровини за заготовки',
       RECIPE: 'Рецепта',
+      SETDIE: 'Настройка',
     },
     translate: {
       matrix: 'Матрица',
@@ -516,6 +517,20 @@ export const locale = {
       kilograms: 'Килограми',
       noData: 'Няма данни',
       refNo: 'Ref №',
+      comments: 'Коментари',
+      comment: 'Коментар',
+      files: 'Файлове',
+      titleFile: 'Прекачи Файл',
+      nameFile: 'Име на файл',
+      btnFile: 'Запис',
+      btnCancelFile: 'Отказ',
+      upload: 'Качи Файл',
+      deleteSuccess: 'Успешно изтрихте Файл.',
+      recordSuccess: 'Успешно записан Файл.',
+      fileRequired: 'Файлът е задължителен.',
+      longMgs: " името е твърде дълго",
+      recordFile: 'Запис на Файл',
+      removeFile: 'Изтриване на Файл',
     }
   }
 }

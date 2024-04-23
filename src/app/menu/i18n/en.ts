@@ -46,6 +46,7 @@ export const locale = {
       CONFEXTRUSION: 'Extrusion Confirmations',
       BILLETMAT: 'Billet Raw Materials',
       RECIPE: 'Recipe',
+      SETDIE: 'Settings Die',
     },
     translate: {
       matrix: 'Die',
@@ -517,6 +518,20 @@ export const locale = {
       kilograms: 'Kilograms',
       noData: 'No Data',
       refNo: 'Ref №',
+      comments: 'Comments',
+      comment: 'Comment',
+      files: 'Files',
+      titleFile: 'Upload File',
+      nameFile: 'File Name',
+      btnFile: 'Record',
+      btnCancelFile: 'Cancel',
+      upload: 'Upload',
+      deleteSuccess: 'Successfully deleted.',
+      recordSuccess: 'Successfully record File.',
+      fileRequired: 'Тhe file is required.',
+      longMgs: " the name is too long",
+      recordFile: 'Record File',
+      removeFile: 'Remove File',
     }
   }
 }

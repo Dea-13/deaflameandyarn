@@ -35,6 +35,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
+  getRequestsSettings(offset:number, limit:any, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string, DateOrder:any, DateConfirmation:string, DateExpedition:string, DateScrapped:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string, orderType: any, orderBy: any) {
+    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
+  }
+
   getRequestScrap(offset:number, limit:any, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, BolsterTooling1:string, BolsterTooling2:string, Notes:string, ClientName:string, DateOrder:any, DateConfirmation:string, DateExpedition:string, DateScrapped:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string, orderType: any, orderBy: any) {
     return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&Notes=${Notes}&ClientName=${ClientName}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
   }
@@ -109,6 +113,10 @@ export class MatrixService {
 
   getFiltersProd(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string) {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}`);
+  }
+
+  getFiltersSettings(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/filter/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}`);
   }
 
   getFiltersScrap(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, BolsterTooling1:string, BolsterTooling2:string, Notes:string, ClientName:string) {
@@ -338,6 +346,45 @@ export class MatrixService {
   generateTest(quantity: any, alloy: any, workCenterId: any, dieID: any) {
     const data = JSON.stringify('');
     return this._http.post(`${environment.apiUrl}Dies/CreateTestOrder/${quantity}/${alloy}/${workCenterId}/${dieID}`, data);
+  }
+
+  getComments(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}DieComments/${id}`);
+  }
+
+  createComment(obj: any) {
+    const data = JSON.stringify(obj);
+    return this._http.post(`${environment.apiUrl}DieComments`, data);
+  }
+
+  updateComment(obj: any) {
+    const data = JSON.stringify(obj);
+    return this._http.put(`${environment.apiUrl}DieComments`, data);
+  }
+
+  getFiles(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/${id}`);
+  }
+
+  getFileId(id, dieId){
+    return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/getFile/${id}/${dieId}`);
+  }
+
+  uploadFile(bachId: number, productionOrderId: number, file: any){
+    const fb: FormData = new FormData()
+      for ( let i = 0; i < file.length; i++) {
+        fb.append('files', file[i]);
+      }
+    // fb.append("files", file);
+    return this._http.post(`${environment.apiUrl}DieDocumentFiles/UploadFile/${bachId}/${productionOrderId}`, fb);
+  }
+
+  deleteFile(id: number){
+    return this._http.delete<any>(`${environment.apiUrl}DieDocumentFiles/${id}`);
+  }
+
+  downloadFile(id, dieId){
+    return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/DownloadFile/${id}/${dieId}`, { observe: 'response', responseType: 'blob' as 'json' });
   }
 
 }

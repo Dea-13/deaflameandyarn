@@ -73,6 +73,14 @@ export const menu: CoreMenu[] = [
         url: 'api/scrap'
       },
       {
+        id: 'settings-die',
+        title: 'Settings Die',
+        translate: 'MENU.SETDIE',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/settings-die'
+      },
+      {
         id: 'productivity-nitrification',
         title: 'Productivity Nitrification',
         translate: 'MENU.PRODUCTIVITYNITRIFICATION',

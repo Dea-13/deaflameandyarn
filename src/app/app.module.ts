@@ -74,6 +74,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { RecipeComponent } from './main/pages/recipe/recipe.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { UploadModalComponent } from './main/modals/upload-modal/upload-modal.component';
 
 
 const appRoutes: Routes = [
@@ -149,6 +150,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'api/marked',
+    component: StatedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/settings-die',
     component: StatedComponent,
     pathMatch: 'full'
   },
@@ -270,7 +276,8 @@ const appRoutes: Routes = [
     ConfirmationExtrusionComponent,
     BilletRawMaterialsComponent,
     ExtrusionModalComponent,
-    RecipeComponent
+    RecipeComponent,
+    UploadModalComponent
   ],
 
   imports: [
