@@ -113,7 +113,7 @@ export class NewMatrixModalComponent implements OnInit {
       inUseFrom: ['', Validators.required],
       clientName: [''],
       producer: ['', Validators.required],
-      purchaser: [null],
+      purchaser: [null, Validators.required],
       corrector: [''],
       price: [null],
       dieID: [''],
