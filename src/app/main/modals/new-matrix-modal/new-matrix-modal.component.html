@@ -488,7 +488,7 @@
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="purchaserArr.length > 0" [clearable]="false" formControlName="purchaser" required
                         [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('purchaser').value }"
                         appendTo="body">
-                        <ng-option *ngFor="let s of purchaserArr" [value]="s.id">{{ s.name }}</ng-option>
+                        <ng-option *ngFor="let s of purchaserArr" [value]="s.name">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>
                   </div>
