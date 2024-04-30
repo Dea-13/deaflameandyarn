@@ -24,7 +24,7 @@ autoUpdater.setFeedURL({
 autoUpdater.autoDownload = false;
 
 function createWindow(): BrowserWindow {
-  const size = screen.getPrimaryDisplay().workAreaSize;  
+  const size = screen.getPrimaryDisplay().workAreaSize;
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
@@ -35,7 +35,7 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve),
       contextIsolation: false,  // false if you want to run e2e test with Spectron
-      // webSecurity: false      
+      // webSecurity: false
     },
   });
   logger.log('createWindow');
@@ -104,13 +104,13 @@ try {
 }
 
 autoUpdater.on('update-available', () => {
-  logger.info('update-available; downloading...');  
+  logger.info('update-available; downloading...');
   clearInterval(myInterval);
   if(!flagUpdateAvailable){
     flagUpdateAvailable = true;
     autoUpdater.downloadUpdate();
   }
-  
+
   // if(!flagUpdateAvailable){
   //   dialog.showMessageBox({
   //     type: 'info',
@@ -118,11 +118,11 @@ autoUpdater.on('update-available', () => {
   //     title: 'Налична актуализация',
   //     message: 'Налична актуализация',
   //     detail: 'Започна изтегляне на нова версия. Приложението ще се рестартира, за да се инсталира актуализацията.',
-  //   }).then((val) => {     
+  //   }).then((val) => {
   //     autoUpdater.downloadUpdate();
   //     flagUpdateAvailable = true;
   //   });
-  // }    
+  // }
 });
 
 autoUpdater.on('checking-for-update', () => {
@@ -150,7 +150,7 @@ autoUpdater.on('update-downloaded', () => {
     title: 'Актуализациите са изтеглени',
     message: 'Актуализациите са изтеглени',
     detail: 'Изтеглена е нова версия. Рестартирайте приложението, за да приложите актуализациите.',
-  }).then((val) => {    
+  }).then((val) => {
      autoUpdater.quitAndInstall()
   });
 });

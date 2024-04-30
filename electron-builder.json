@@ -19,20 +19,20 @@
   ],
   "win": {
     "target": "nsis",
-    "icon": "dist/assets/icons"
+    "icon": "dist/assets/icons/favicon.png"
   },
   "publish": {
     "provider": "github",
     "owner": "amddogy",
     "repo": "dms-a",
-    "protocol": "https",
-  },     
+    "protocol": "https"
+  },
   "nsis": {
     "oneClick": true,
     "allowToChangeInstallationDirectory": false
   },
   "portable": {
-    "splashImage": "dist/assets/icons/electron.bmp"
+    "splashImage": "dist/assets/icons/favicon.png"
   },
   "mac": {
     "icon": "dist/assets/icons",

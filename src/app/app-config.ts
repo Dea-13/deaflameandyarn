@@ -20,7 +20,7 @@ export const coreConfig: CoreConfig = {
   app: {
     appName     : 'DMS',                                        // App Name
     appTitle    : 'DMS', // App Title
-    appLogoImage: 'assets/images/logo/logo.svg',                  // App Logo
+    appLogoImage: 'assets/images/ico/logo.webp',                  // App Logo
     appLanguage : 'en',                                           // App Default Language (en, fr, de, pt etc..)
   },
   layout: {
