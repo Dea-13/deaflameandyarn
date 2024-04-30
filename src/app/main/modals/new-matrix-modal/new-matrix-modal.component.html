@@ -256,11 +256,11 @@
                     <div class="form-group form-dates">
                       <mat-form-field (click)="dateOrder.open()">
                         <mat-label>{{ translateSnackBar.dateStated }}</mat-label>
-                        <input matInput formControlName="dateOrder" [matDatepicker]="dateOrder" class="calendar-input" required>
+                        <input matInput formControlName="dateOrder" [matDatepicker]="dateOrder" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateOrder"></mat-datepicker-toggle>
                         <mat-datepicker #dateOrder color="primary"></mat-datepicker>
                       </mat-form-field>
-                      <mat-error class="red-text d-block" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitSettings || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)">
+                      <mat-error class="red-text d-block" *ngIf="submitInUse && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)">
                         {{ translateSnackBar.validDate }}
                      </mat-error>
                     </div>
@@ -269,11 +269,11 @@
                     <div class="form-group form-dates">
                       <mat-form-field (click)="dateConfirmation.open()">
                         <mat-label>{{ translateSnackBar.plannedDelivery }} </mat-label>
-                        <input matInput formControlName="dateConfirmation" [matDatepicker]="dateConfirmation" class="calendar-input" required>
+                        <input matInput formControlName="dateConfirmation" [matDatepicker]="dateConfirmation" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateConfirmation"></mat-datepicker-toggle>
                         <mat-datepicker #dateConfirmation color="primary"></mat-datepicker>
                       </mat-form-field>
-                      <mat-error class="red-text d-block" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitSettings || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateConfirmation').value && createMatrixForm.get('dateConfirmation').value.length === 0 || !createMatrixForm.get('dateConfirmation').value)">
+                      <mat-error class="red-text d-block" *ngIf="submitConfirm && (createMatrixForm.get('dateConfirmation').value && createMatrixForm.get('dateConfirmation').value.length === 0 || !createMatrixForm.get('dateConfirmation').value)">
                         {{ translateSnackBar.validDate }}
                      </mat-error>
                     </div>
@@ -284,11 +284,11 @@
                     <div class="form-group form-dates">
                       <mat-form-field (click)="dateExpedition.open()">
                         <mat-label>{{ translateSnackBar.realExpedition }}</mat-label>
-                        <input matInput formControlName="dateExpedition" [matDatepicker]="dateExpedition" class="calendar-input" required>
+                        <input matInput formControlName="dateExpedition" [matDatepicker]="dateExpedition" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="dateExpedition"></mat-datepicker-toggle>
                         <mat-datepicker #dateExpedition color="primary"></mat-datepicker>
                       </mat-form-field>
-                      <mat-error class="red-text d-block" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitSettings || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('dateExpedition').value && createMatrixForm.get('dateExpedition').value.length === 0 || !createMatrixForm.get('dateExpedition').value)">
+                      <mat-error class="red-text d-block" *ngIf="submitDispatched && (createMatrixForm.get('dateExpedition').value && createMatrixForm.get('dateExpedition').value.length === 0 || !createMatrixForm.get('dateExpedition').value)">
                         {{ translateSnackBar.validDate }}
                      </mat-error>
                     </div>
@@ -297,11 +297,11 @@
                     <div class="form-group form-dates">
                       <mat-form-field (click)="inUseFrom.open()">
                         <mat-label>{{ translateSnackBar.inUseBy }}</mat-label>
-                        <input matInput formControlName="inUseFrom" [matDatepicker]="inUseFrom" class="calendar-input" required>
+                        <input matInput formControlName="inUseFrom" [matDatepicker]="inUseFrom" class="calendar-input">
                         <mat-datepicker-toggle matIconSuffix  [for]="inUseFrom"></mat-datepicker-toggle>
                         <mat-datepicker #inUseFrom color="primary"></mat-datepicker>
                       </mat-form-field>
-                      <mat-error class="red-text d-block" *ngIf="(submitStated || submitConfirm || submitInUse || submitDispatched || submitSettings || submitReclamation || submitBlocked || submitRepair || submitBrak) && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)">
+                      <mat-error class="red-text d-block" *ngIf="submitStated && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)">
                         {{ translateSnackBar.validDate }}
                      </mat-error>
                     </div>
@@ -411,12 +411,8 @@
                   <div class="col-lg-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.altPress1 }}</label>
-                      <input *ngIf="pressArr.length === 0" formControlName="altResource1" type="text"
-                        class="form-control dt-uname"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('altResource1').value }" />
-                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource1"
-                        appendTo="body"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('altResource1').value }">
+                      <input *ngIf="pressArr.length === 0" formControlName="altResource1" type="text" class="form-control dt-uname" />
+                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource1" appendTo="body">
                         <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>
@@ -426,12 +422,8 @@
                   <div class="col-lg-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.altPress2 }}</label>
-                      <input *ngIf="pressArr.length === 0" formControlName="altResource2" type="text"
-                        class="form-control dt-uname"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('altResource2').value }" />
-                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource2"
-                        appendTo="body"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('altResource2').value }">
+                      <input *ngIf="pressArr.length === 0" formControlName="altResource2" type="text" class="form-control dt-uname" />
+                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource2" appendTo="body">
                         <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>
@@ -471,11 +463,8 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.maker }}</label>
-                      <input *ngIf="producerArr.length === 0" formControlName="producer" type="text"
-                        class="form-control dt-uname" />
-                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="producerArr.length > 0" [clearable]="false" formControlName="producer"
-                        appendTo="body" required
-                        [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('producer').value }">
+                      <input *ngIf="producerArr.length === 0" formControlName="producer" type="text" class="form-control dt-uname" />
+                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="producerArr.length > 0" [clearable]="false" formControlName="producer" appendTo="body">
                         <ng-option *ngFor="let s of producerArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>

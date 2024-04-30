@@ -107,12 +107,12 @@ export class NewMatrixModalComponent implements OnInit {
       bolsterTooling1: [''],
       bolsterTooling2: [''],
       recipeName: [null],
-      dateOrder: ['', Validators.required],
-      dateConfirmation: ['', Validators.required],
-      dateExpedition: ['', Validators.required],
-      inUseFrom: ['', Validators.required],
+      dateOrder: [''],
+      dateConfirmation: [''],
+      dateExpedition: [''],
+      inUseFrom: [''],
       clientName: [''],
-      producer: ['', Validators.required],
+      producer: [null],
       purchaser: [null, Validators.required],
       corrector: [''],
       price: [null],
@@ -121,8 +121,8 @@ export class NewMatrixModalComponent implements OnInit {
       requiredTest: [''],
       priceInv: [null],
       primaryResource: [, Validators.required],
-      altResource1: [''],
-      altResource2: [''],
+      altResource1: [null],
+      altResource2: [null],
       storageGroup: [''],
       storageFreePlace: [''],
       remarks: [''],
@@ -890,7 +890,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitStatedDie(){
     console.log('000000++++', this.createMatrixForm);
     this.submitStated = true;
-    if(!this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.inUseFrom.value){
       Swal.fire({
         title: this.translateSnackBar.statedMsg,
         icon: 'warning',
@@ -968,7 +968,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitConfirmedDie(){
     this.submitConfirm = true;
-    if(!this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.dateConfirmation.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -983,7 +983,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitDispatchedDie(){
     this.submitDispatched = true;
-    if(!this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.dateExpedition.value){
       console.log('DISPATCHED', this.createMatrixForm)
       this.sendResponce();
     } else {
@@ -1014,7 +1014,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitInUseDie(){
     this.submitInUse = true;
-    if(!this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.dateOrder.value){
       if(this.createMatrixForm.controls.status.value == 40 && this.createMatrixForm.controls.requiredTest.value == true){
         this.markedForTestDateTime = new Date();
       }
@@ -1081,10 +1081,10 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
       this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
       this.matrix.recipeId = this.createMatrixForm.controls.recipeName.value,
-      this.matrix.dateOrder = moment(this.createMatrixForm.controls.dateOrder.value).format('YYYY-MM-DD'),
-      this.matrix.dateConfirmation = moment(this.createMatrixForm.controls.dateConfirmation.value).format('YYYY-MM-DD'),
-      this.matrix.dateExpedition = moment(this.createMatrixForm.controls.dateExpedition.value).format('YYYY-MM-DD'),
-      this.matrix.inUseFrom = moment(this.createMatrixForm.controls.inUseFrom.value).format('YYYY-MM-DD'),
+      this.matrix.dateOrder = this.createMatrixForm.controls.dateOrder.value ? moment(this.createMatrixForm.controls.dateOrder.value).format('YYYY-MM-DD') : null,
+      this.matrix.dateConfirmation = this.createMatrixForm.controls.dateConfirmation.value ? moment(this.createMatrixForm.controls.dateConfirmation.value).format('YYYY-MM-DD') : null,
+      this.matrix.dateExpedition = this.createMatrixForm.controls.dateExpedition.value ? moment(this.createMatrixForm.controls.dateExpedition.value).format('YYYY-MM-DD') : null,
+      this.matrix.inUseFrom = this.createMatrixForm.controls.inUseFrom.value ? moment(this.createMatrixForm.controls.inUseFrom.value).format('YYYY-MM-DD') : null,
       this.matrix.clientName = this.createMatrixForm.controls.clientName.value,
       this.matrix.producer = this.createMatrixForm.controls.producer.value,
       this.matrix.purchaser = this.createMatrixForm.controls.purchaser.value,
@@ -1114,7 +1114,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-      if (this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value && this.createMatrixForm.controls.altResource1.value && this.createMatrixForm.controls.altResource2.value) {
+      if (this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();
