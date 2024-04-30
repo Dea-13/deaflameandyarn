@@ -39,7 +39,7 @@
           <div class="d-flex boxes">
             <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.barcodeMatrix }}</label>
-              <input type="text" [(ngModel)]="barCode" maxlength="7" (input)="getBarCodesTable()" class="form-control dt-uname"
+              <input type="text" [(ngModel)]="barCode" maxlength="7" (keyup.enter)="getBarCodesTable()" class="form-control dt-uname"
               [ngClass]="{ 'error-input': submitted && barCode.length === 0 }" />
               <button type="button" class="btn btn-primary btn-view" (click)="openBarCodeModal('empty')" rippleEffect>
                 {{ translateSnackBar.view }}
@@ -51,6 +51,9 @@
               [ngClass]="{ 'error': submitted && !currentResource }">
                 <ng-option *ngFor="let r of resource" [value]="r.resourceId">{{r.resourceName}}</ng-option>
               </ng-select>
+              <div *ngIf="sPlace" style="margin-top: 20px;">
+                <label>{{ translateSnackBar.placeInWarehouse }}</label><span>{{ sPlace }}</span>
+                </div>              
             </div>
             <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.productionKg }}</label>

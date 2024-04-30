@@ -76,6 +76,7 @@ export class DieScanPageComponent implements OnInit {
   public die: string = '';
   public storagePlace: string = '';
   public resourceName: string = '';
+  public sPlace: string = '';  
 
   constructor(
     public translate: TranslateService,
@@ -311,7 +312,7 @@ export class DieScanPageComponent implements OnInit {
   }
 
   getBarCodesTable() {
-    if (this.barCode && this.barCode.toString().length == 7) {
+    if (this.barCode && this.barCode.toString().length >= 4) {
       this.openBarCodeModal(this.barCode);
     }
   }
@@ -324,6 +325,7 @@ export class DieScanPageComponent implements OnInit {
       if (receivedEntry) {
         this.getImage(receivedEntry);
         this.currentResource = receivedEntry.resourceIn;
+        this.sPlace = receivedEntry.storagePlace;
         this.barCode = receivedEntry.dieId;
         console.log('receivedEntry+++++ ', receivedEntry,this.currentResource, this.barCode);
       }

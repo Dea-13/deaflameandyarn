@@ -54,6 +54,7 @@ export const locale = {
       profile: 'Профил',
       profileTable: 'П',
       currentResource: 'Текущ ресурс',
+      placeInWarehouse: 'Място в склад:',
       plaseSklad: 'Място в Склад',
       press: 'Преса',
       pressTT: 'Пс',
