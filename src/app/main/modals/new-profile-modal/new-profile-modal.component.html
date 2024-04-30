@@ -44,17 +44,14 @@
                             </ng-select>
                           </div>
                           <div class="col-md-12 flex">
-                            <label class="label-checkbox">{{ translateSnackBar.inUse }}<span class="error-label" *ngIf="submitted && !createProfileForm.get('inUse').value">*</span></label>
-                            <input class="form-control input" formControlName="inUse" type="checkbox" required
+                            <label class="label-checkbox">{{ translateSnackBar.inUse }}</label>
+                            <input class="form-control input" formControlName="inUse" type="checkbox"
                               style="width: 5%;margin-top: -1%;">
                           </div>
 
                           <div class="col-md-12 flex">
-                            <label class="label-checkbox">{{ translateSnackBar.visibleSide }}
-                              <span class="error-label" *ngIf="submitted && !createProfileForm.get('visSides').value">*</span>
-                            </label>
-                            <input class="form-control input" formControlName="visSides" type="checkbox" required
-                              style="width: 5%;margin-top: -1%;">
+                            <label class="label-checkbox">{{ translateSnackBar.visibleSide }}</label>
+                            <input class="form-control input" formControlName="visSides" type="checkbox" style="width: 5%;margin-top: -1%;">
                           </div>
                         </div>
 
@@ -65,19 +62,19 @@
                           </div>
                           <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 1</label>
-                            <input type="number" formControlName="size1" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size1').value}" required />
+                            <input type="number" formControlName="size1" class="form-control dt-uname" />
                           </div>
                           <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 2</label>
-                            <input type="number" formControlName="size2" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size2').value}" required />
+                            <input type="number" formControlName="size2" class="form-control dt-uname" />
                           </div>
                           <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 3</label>
-                            <input type="number" formControlName="size3" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size3').value}" required />
+                            <input type="number" formControlName="size3" class="form-control dt-uname" />
                           </div>
                           <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.size }} 4</label>
-                            <input type="number" formControlName="size4" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size4').value}" required />
+                            <input type="number" formControlName="size4" class="form-control dt-uname" />
                           </div>
                         </div>
 
@@ -88,34 +85,34 @@
                           </div>
                           <div class="col-md-12 flex">
                             <div class="col-md-6">
-                              <input type="number" formControlName="size1TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size1TolDown').value}" required />
+                              <input type="number" formControlName="size1TolDown" class="form-control dt-uname" />
                             </div>
                             <div class="col-md-6">
-                              <input type="number" formControlName="size1TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size1TolUp').value}" required />
+                              <input type="number" formControlName="size1TolUp" class="form-control dt-uname" />
                               </div>
                           </div>
                           <div class="col-md-12 flex">
                             <div class="col-md-6">
-                              <input type="number" formControlName="size2TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size2TolDown').value}" required />
+                              <input type="number" formControlName="size2TolDown" class="form-control dt-uname" />
                               </div>
                             <div class="col-md-6">
-                              <input type="number" formControlName="size2TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size2TolUp').value}" required />
-                              </div>
-                          </div>
-                          <div class="col-md-12 flex">
-                            <div class="col-md-6">
-                              <input type="number" formControlName="size3TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size3TolDown').value}" required />
-                              </div>
-                            <div class="col-md-6">
-                              <input type="number" formControlName="size3TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size3TolUp').value}" required />
+                              <input type="number" formControlName="size2TolUp" class="form-control dt-uname" />
                               </div>
                           </div>
                           <div class="col-md-12 flex">
                             <div class="col-md-6">
-                              <input type="number" formControlName="size4TolDown" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size4TolDown').value}" required />
+                              <input type="number" formControlName="size3TolDown" class="form-control dt-uname" />
                               </div>
                             <div class="col-md-6">
-                              <input type="number" formControlName="size4TolUp" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('size4TolUp').value}" required />
+                              <input type="number" formControlName="size3TolUp" class="form-control dt-uname" />
+                              </div>
+                          </div>
+                          <div class="col-md-12 flex">
+                            <div class="col-md-6">
+                              <input type="number" formControlName="size4TolDown" class="form-control dt-uname" />
+                              </div>
+                            <div class="col-md-6">
+                              <input type="number" formControlName="size4TolUp" class="form-control dt-uname" />
                               </div>
                           </div>
                         </div>
@@ -182,7 +179,7 @@
 
                           <div class="col-md-12 flex">
                             <label>{{ translateSnackBar.use }}</label>
-                            <input class="form-control input" formControlName="usage" type="text" [ngClass]="{ 'error': submitted && !createProfileForm.get('usage').value}" required>
+                            <input class="form-control input" formControlName="usage" type="text">
                           </div>
 
                           <div class="col-md-12 flex">

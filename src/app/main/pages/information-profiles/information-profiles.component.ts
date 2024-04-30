@@ -322,7 +322,6 @@ export class InformationProfilesComponent implements OnInit {
     modalRef.componentInstance.profileItem = { data: row };
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry == true) {
-        this.pageChanged(1);
         Swal.fire({
           position: 'bottom-end',
           icon: 'success',
@@ -330,9 +329,9 @@ export class InformationProfilesComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
-        this.pageChanged(1);
       }
       this.getFilters(this.urls.length, 'edit');
+      this.pageChanged(1);
     });
   }
 
