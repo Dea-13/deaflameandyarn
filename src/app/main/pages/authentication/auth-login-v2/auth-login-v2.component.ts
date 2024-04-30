@@ -186,7 +186,7 @@ export class AuthLoginV2Component implements OnInit {
       this.coreConfig = config;
     });
 
-    this.closeTime()
+    // this.closeTime()
   }
 
   changeForm(value){

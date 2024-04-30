@@ -26,7 +26,7 @@ export class MachinesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRequest();
-    this.closeTime();
+    // this.closeTime();
   }
 
   getRequest() {

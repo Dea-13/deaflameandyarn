@@ -55,7 +55,7 @@ export class OperationsComponent implements OnInit {
       this.subscription
     );
     this.getRequest();
-    this.closeTime();
+    // this.closeTime();
   }
 
   getRequest() {

@@ -57,7 +57,7 @@ export class ComponentComponent implements OnInit {
     this.produced = this.dataServiceObj.countProduced != '' ? Number(this.dataServiceObj.countProduced) : 0;
     this.getLocationCode(this.dataServiceObj.operation.workCenterId);
     this.getRequest(this.dataServiceObj.operation.id, this.produced, this.scrap);
-    this.closeTime();
+    // this.closeTime();
   }
 
   getRequest(id, produced, scrap) {

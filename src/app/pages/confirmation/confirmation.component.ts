@@ -114,7 +114,7 @@ export class ConfirmationComponent implements OnInit {
         this.comPorts = JSON.parse(localStorage.getItem('ComPort'));
       }
 
-      this.closeTime();
+      // this.closeTime();
 
     } else {
       console.log('Run in browser');
