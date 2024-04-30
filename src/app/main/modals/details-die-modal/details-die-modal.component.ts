@@ -77,8 +77,8 @@ export class DetailsDieModalComponent implements OnInit {
 
   public arrFilters: any = [];
   public refreshed: Date;
-  public orderBy: number = 0;
-  public orderType: number = 1;
+  public orderBy: number = 3;
+  public orderType: number = 0;
   public indColumn: any;
   public userName: any;
   public dieInfo: any = {};
