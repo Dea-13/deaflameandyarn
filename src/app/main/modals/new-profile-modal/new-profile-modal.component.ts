@@ -21,7 +21,7 @@ export class NewProfileModalComponent implements OnInit {
     url: '',
     isHTML5: true
   });
-  public mask = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  public mask = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/]
   public createProfileForm: FormGroup;
   public submitted: boolean;
   public userName: string;
