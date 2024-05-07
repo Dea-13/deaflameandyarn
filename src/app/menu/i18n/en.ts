@@ -47,6 +47,7 @@ export const locale = {
       BILLETMAT: 'Billet Raw Materials',
       RECIPE: 'Recipe',
       SETDIE: 'Settings Die',
+      DIES: 'Dies',
     },
     translate: {
       matrix: 'Die',

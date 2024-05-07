@@ -19,7 +19,7 @@
   ],
   "win": {
     "target": "nsis",
-    "icon": "dist/assets/icons/favicon.png"
+    "icon": "dist/assets/icons/electron.bmp"
   },
   "publish": {
     "provider": "github",
@@ -32,7 +32,7 @@
     "allowToChangeInstallationDirectory": false
   },
   "portable": {
-    "splashImage": "dist/assets/icons/favicon.png"
+    "splashImage": "dist/assets/icons/electron.bmp"
   },
   "mac": {
     "icon": "dist/assets/icons",

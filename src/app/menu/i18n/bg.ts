@@ -47,6 +47,7 @@ export const locale = {
       BILLETMAT: 'Суровини за заготовки',
       RECIPE: 'Рецепта',
       SETDIE: 'Настройка',
+      DIES: 'Матрици',
     },
     translate: {
       matrix: 'Матрица',
@@ -507,7 +508,7 @@ export const locale = {
       created: 'Дата на създаване',
       lastModifiedBy: 'Потребител',
       date: 'Дата',
-      dies: 'Матрица',
+      dies: 'Матрици',
       kgProduced: 'Произведени кг',
       validDate: 'Изисква се валидна дата.',
       fillAllRowsMsg: 'Моля, попълнете всички полета в реда!',

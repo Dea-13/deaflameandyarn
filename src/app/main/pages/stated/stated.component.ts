@@ -99,7 +99,36 @@ export class StatedComponent implements OnInit {
       this.translateSnackBar = snackBar;
     });
 
-    if (this.router.url == '/api/stated') {
+    if (this.router.url == '/api/dies') {
+      this.statusId = 101;
+      this.displayedColumns = [
+        'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
+        'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
+        'gr', 'renewal'
+      ];
+
+      this.urls = [
+        { id: 0, name: 'DieId' },
+        { id: 1, name: 'ProfileId' },
+        { id: 2, name: 'PrimaryResourceName' },
+        { id: 3, name: 'ProducerName' },
+        { id: 4, name: 'Diameter' },
+        { id: 5, name: 'Thickness' },
+        { id: 6, name: 'ClientName' },
+        { id: 7, name: 'Channels' },
+      ];
+
+      this.arrFilters = [
+        {id: 0, ind: 0, url: 'DieId', name: this.translateSnackBar.matrix, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 1, ind: 1, url: 'ProfileId', name: this.translateSnackBar.profile, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 2, ind: 2, url: 'PrimaryResourceName', name: this.translateSnackBar.press, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 3, ind: 3, url: 'ProducerName', name: this.translateSnackBar.manufacturer, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 4, ind: 4, url: 'Diameter', name: this.translateSnackBar.diameter, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 5, ind: 5, url: 'Thickness', name: this.translateSnackBar.thickness, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 6, ind: 6, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+      ]
+    } else if (this.router.url == '/api/stated') {
       this.statusId = 10;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'bmwinventorynumber', 'dieLiveQty', 'diameter',
@@ -370,6 +399,7 @@ export class StatedComponent implements OnInit {
     if (this.router.url == '/api/no-motion'){ this.statusId = 70 };
     console.log("selDateOrder: ", this.selDateOrderForm);
     switch (this.router.url) {
+      case '/api/dies': { url = this.matrixService.getRequestsAllDies(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
       case '/api/stated': { url = this.matrixService.getRequestStated(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
       case '/api/confirmed': { url = this.matrixService.getRequestConfirmed(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
       case '/api/shipped': { url = this.matrixService.getRequestDispatched(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
@@ -397,6 +427,7 @@ export class StatedComponent implements OnInit {
     let url;
     for (let i = 0; i < this.urls.length; i++) {
     switch (this.router.url) {
+      case '/api/dies': { url = this.matrixService.getFiltersAllDies(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model); } break;
       case '/api/stated': { url = this.matrixService.getFiltersStated(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model); } break;
       case '/api/confirmed': { url = this.matrixService.getFiltersConfirmed(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model); } break;
       case '/api/shipped': { url = this.matrixService.getFiltersDispatched(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model); } break;

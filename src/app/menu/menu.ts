@@ -10,6 +10,14 @@ export const menu: CoreMenu[] = [
     icon: 'package',
   },
   {
+    id: 'dies',
+    title: 'Dies',
+    translate: 'MENU.DIES',
+    type: 'item',
+    icon: 'list',
+    url: 'api/dies'
+  },
+  {
     id: 'status',
     title: 'Status',
     translate: 'MENU.STATUS',

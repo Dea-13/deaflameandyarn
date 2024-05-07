@@ -31,6 +31,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${statusId}&DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&Price=${Price}&PriceInv=${PriceInv}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
   }
 
+  getRequestsAllDies(offset:number, limit:any, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string, DateOrder:any, DateConfirmation:string, DateExpedition:string, DateScrapped:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string, orderType: any, orderBy: any) {
+    return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
+  }
+
   getRequestsProd(offset:number, limit:any, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string, DateOrder:any, DateConfirmation:string, DateExpedition:string, DateScrapped:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string, orderType: any, orderBy: any) {
     return this._http.get<any>(`${environment.apiUrl}Dies?offset=${offset}&limit=${limit}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`);
   }
@@ -109,6 +113,10 @@ export class MatrixService {
 
   getFiltersDispatched(url: string, keyword: string, statusId:number, DieId:string, PrimaryResourceName:string, Diameter:string, Thickness:string, Alloy:string, Temper:string, BolsterTooling1:string, BolsterTooling2:string, DieHolder:string, Container:string, Notes:string, ClientName:string, Price:string, PriceInv:string) {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&PrimaryResourceName=${PrimaryResourceName}&Diameter=${Diameter}&Thickness=${Thickness}&Alloy=${Alloy}&Temper=${Temper}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&DieHolder=${DieHolder}&Container=${Container}&Notes=${Notes}&ClientName=${ClientName}&Price=${Price}&PriceInv=${PriceInv}`);
+  }
+
+  getFiltersAllDies(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/all/params/all/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}`);
   }
 
   getFiltersProd(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string) {

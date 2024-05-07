@@ -108,6 +108,11 @@
             </mat-accordion>
           </div>
         </div>
+        <div class="row m-0">
+          <div class="col-12 text-end text-primary">
+            {{ translateSnackBar.dies }}: {{totalResult | number : '1.0-0'}}
+          </div>
+        </div>
         <section class="example-container mat-elevation-z8">
           <table mat-table
             [dataSource]="rows | paginate: { id: 'paginationId', itemsPerPage: limit, currentPage: cPage, totalItems: totalResult }"
@@ -347,7 +352,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition | date:'dd/MM/yyyy'}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 60" matColumnDef="totalWeight">
+            <ng-container *ngIf="statusId === 40 || statusId === 60 || statusId === 101" matColumnDef="totalWeight">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.totalWeight">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.totalWeight }}</span>
@@ -413,7 +418,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateScrapped | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 60 || statusId === 61" matColumnDef="channels">
+            <ng-container *ngIf="statusId === 40 || statusId === 60 || statusId === 61 || statusId === 101" matColumnDef="channels">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.channels">
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.channels }}</span>
                 <button type="button" class="btn order-btn" (click)="sortType(!orderType, 22)">
@@ -434,7 +439,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.storegePlace}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 70" matColumnDef="lastTransaction">
+            <ng-container *ngIf="statusId === 40 || statusId === 70 || statusId === 101" matColumnDef="lastTransaction">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastTransaction">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.lastTransaction }}</span>
@@ -445,7 +450,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.lastTransaction | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 61" matColumnDef="gr">
+            <ng-container *ngIf="statusId === 40 || statusId === 61 || statusId === 101" matColumnDef="gr">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.gr">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.gr }}</span>
@@ -467,7 +472,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.productivity}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 70" matColumnDef="renewal">
+            <ng-container *ngIf="statusId === 40 || statusId === 70 || statusId === 101" matColumnDef="renewal">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.renewal">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.renewal }}</span>

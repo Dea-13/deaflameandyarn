@@ -114,6 +114,11 @@ const appRoutes: Routes = [
   },
   // -----------
   {
+    path: 'api/dies',
+    component: StatedComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/stated',
     component: StatedComponent,
     pathMatch: 'full'
