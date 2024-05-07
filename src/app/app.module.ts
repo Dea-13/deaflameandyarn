@@ -75,6 +75,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { RecipeComponent } from './main/pages/recipe/recipe.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UploadModalComponent } from './main/modals/upload-modal/upload-modal.component';
+import {CookieService} from 'ngx-cookie-service';
 
 
 const appRoutes: Routes = [
@@ -335,7 +336,7 @@ const appRoutes: Routes = [
   ],
 
   bootstrap: [AppComponent],
-  providers: [
+  providers: [CookieService,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true}
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

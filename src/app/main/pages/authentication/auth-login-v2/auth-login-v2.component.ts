@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ElectronService } from '../../../../core/services';
 import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-auth-login-v2',
@@ -38,6 +39,7 @@ export class AuthLoginV2Component implements OnInit {
   cartLength: any;
 
   @ViewChild('myDivRed', { static: false }) myDivRed: ElementRef<HTMLElement>;
+  cookieValue: string;
 
   /**
    * Constructor
@@ -52,7 +54,8 @@ export class AuthLoginV2Component implements OnInit {
     private _router: Router,
     private toastrService: ToastrService,
     public translate: TranslateService,
-    public electronService: ElectronService
+    public electronService: ElectronService,
+    private cookieService: CookieService
   ) {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -136,6 +139,8 @@ export class AuthLoginV2Component implements OnInit {
     url.subscribe(config => {
       // console.log('++++++++', JSON.parse(config.permissionGroup.jsonData).calendar.read);
       if (config) {
+        console.log('config', config);
+        this.cookieService.set('userName', config.userName);
         localStorage.setItem('_currentUser', JSON.stringify(config));
         //redirect to home page
         setTimeout(() => {
@@ -169,8 +174,9 @@ export class AuthLoginV2Component implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    console.log('cookie', this.cookieService.get('userName'))
     this.loginFormUser = this._formBuilder.group({
-      email: ['', [Validators.required]],
+      email: [this.cookieService.get('userName') ? this.cookieService.get('userName') : '', [Validators.required]],
       password: ['', Validators.required]
     });
 
