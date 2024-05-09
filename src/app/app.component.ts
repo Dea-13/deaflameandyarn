@@ -292,31 +292,31 @@ export class AppComponent implements OnInit, OnDestroy {
     this._title.setTitle(this.coreConfig.app.appTitle);
   }
 
-  backToApp(){
+  // backToApp(){
 
-    console.log('backToApp: ', JSON.parse(localStorage.getItem('_currentUser')));
-    if(JSON.parse(localStorage.getItem('_currentUser')) != 'diagram' && JSON.parse(localStorage.getItem('_currentUser')) != 'preactor'){
-      this._coreConfigService.config = {
-        layout: {
-          navbar: {
-            hidden: false
-          },
-          menu: {
-            hidden: false
-          },
-          footer: {
-            hidden: false
-          },
-          customizer: true,
-          enableLocalStorage: false
-        }
-      };
-    } else {
-      localStorage.clear();
-      this.router.navigate(['/api/login']);
-    }
+  //   console.log('backToApp: ', JSON.parse(localStorage.getItem('_currentUser')));
+  //   if(JSON.parse(localStorage.getItem('_currentUser')) != 'diagram' && JSON.parse(localStorage.getItem('_currentUser')) != 'preactor'){
+  //     this._coreConfigService.config = {
+  //       layout: {
+  //         navbar: {
+  //           hidden: false
+  //         },
+  //         menu: {
+  //           hidden: false
+  //         },
+  //         footer: {
+  //           hidden: false
+  //         },
+  //         customizer: true,
+  //         enableLocalStorage: false
+  //       }
+  //     };
+  //   } else {
+  //     // localStorage.clear();
+  //     this.router.navigate(['/api/login']);
+  //   }
 
-  }
+  // }
 
   /**
    * On destroy

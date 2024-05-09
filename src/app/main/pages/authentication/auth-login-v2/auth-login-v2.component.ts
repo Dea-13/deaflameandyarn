@@ -40,6 +40,7 @@ export class AuthLoginV2Component implements OnInit {
 
   @ViewChild('myDivRed', { static: false }) myDivRed: ElementRef<HTMLElement>;
   cookieValue: string;
+  rememberMe: boolean = false;
 
   /**
    * Constructor
@@ -141,6 +142,13 @@ export class AuthLoginV2Component implements OnInit {
       if (config) {
         console.log('config', config);
         this.cookieService.set('userName', config.userName);
+        if(this.rememberMe) {
+          localStorage.setItem('userName', config.userName);
+          localStorage.setItem('password', this.loginFormUser.controls.password.value);
+        } else {
+          localStorage.removeItem('userName');
+          localStorage.removeItem('password');
+        }
         localStorage.setItem('_currentUser', JSON.stringify(config));
         //redirect to home page
         setTimeout(() => {
@@ -174,10 +182,10 @@ export class AuthLoginV2Component implements OnInit {
    * On init
    */
   ngOnInit(): void {
-    console.log('cookie', this.cookieService.get('userName'))
+    localStorage.getItem('userName') ? this.rememberMe = true : this.rememberMe = false;
     this.loginFormUser = this._formBuilder.group({
-      email: [this.cookieService.get('userName') ? this.cookieService.get('userName') : '', [Validators.required]],
-      password: ['', Validators.required]
+      email: [localStorage.getItem('userName') ? localStorage.getItem('userName') : '', [Validators.required]],
+      password: [localStorage.getItem('password') ? localStorage.getItem('password') : '', Validators.required]
     });
 
     this.loginFormCard = this._formBuilder.group({
@@ -193,6 +201,10 @@ export class AuthLoginV2Component implements OnInit {
     });
 
     // this.closeTime()
+  }
+
+  remember(event) {
+    this.rememberMe = event.target.checked;
   }
 
   changeForm(value){
