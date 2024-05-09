@@ -67,7 +67,7 @@
           </div>
           <div class="form-group">
             <div class="custom-control custom-checkbox">
-              <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" (change)="remember($event)" />
+              <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" [checked]="rememberMe" (change)="remember($event)" />
               <label class="custom-control-label" for="remember-me"> Запомни ме</label>
             </div>
           </div>

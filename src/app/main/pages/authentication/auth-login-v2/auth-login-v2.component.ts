@@ -40,7 +40,7 @@ export class AuthLoginV2Component implements OnInit {
 
   @ViewChild('myDivRed', { static: false }) myDivRed: ElementRef<HTMLElement>;
   cookieValue: string;
-  rememberMe: any;
+  rememberMe: boolean = false;
 
   /**
    * Constructor
@@ -145,6 +145,9 @@ export class AuthLoginV2Component implements OnInit {
         if(this.rememberMe) {
           localStorage.setItem('userName', config.userName);
           localStorage.setItem('password', this.loginFormUser.controls.password.value);
+        } else {
+          localStorage.removeItem('userName');
+          localStorage.removeItem('password');
         }
         localStorage.setItem('_currentUser', JSON.stringify(config));
         //redirect to home page
@@ -179,6 +182,7 @@ export class AuthLoginV2Component implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    localStorage.getItem('userName') ? this.rememberMe = true : this.rememberMe = false;
     this.loginFormUser = this._formBuilder.group({
       email: [localStorage.getItem('userName') ? localStorage.getItem('userName') : '', [Validators.required]],
       password: [localStorage.getItem('password') ? localStorage.getItem('password') : '', Validators.required]
