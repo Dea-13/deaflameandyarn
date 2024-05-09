@@ -104,7 +104,7 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
-        'gr', 'renewal'
+        'gr', 'renewal', 'statusName'
       ];
 
       this.urls = [
