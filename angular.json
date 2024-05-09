@@ -31,7 +31,7 @@
             "polyfills": "src/polyfills.ts",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/assets/images/ico/logo.webp",
+              "src/assets/images/ico/logo.png",
               "src/assets"
             ],
             "styles": [
@@ -156,7 +156,7 @@
               "src/styles.scss"
             ],
             "assets": [
-              "src/assets/images/ico/logo.webp",
+              "src/assets/images/ico/logo.png",
               "src/assets"
             ],
             "customWebpackConfig": {
