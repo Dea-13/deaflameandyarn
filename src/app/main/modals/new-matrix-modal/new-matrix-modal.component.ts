@@ -69,6 +69,7 @@ export class NewMatrixModalComponent implements OnInit {
   redirectModal: any;
   storagePlaceArr: Array<any> = [];
   recipeArr: Array<any> = [];
+  diesDefDimByResId: any;
 
   constructor(
     private matrixService: MatrixService,
@@ -103,7 +104,7 @@ export class NewMatrixModalComponent implements OnInit {
       type: [''],
       anodizingQuality: [false],
       container: ['', Validators.required],
-      matrixComplect: [''],
+      diesDefDimByResId: [''],
       bolsterTooling1: [''],
       bolsterTooling2: [''],
       recipeName: [null],
@@ -159,7 +160,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.callFunctions();
       this.fillFormValid();
       setTimeout(() => {
-        if(this.createMatrixForm.controls.matrixComplect.value != null){
+        if(this.createMatrixForm.controls.diesDefDimByResId.value != null){
           this.getMatricComplectById();
         }
       }, 1000);
@@ -197,7 +198,7 @@ export class NewMatrixModalComponent implements OnInit {
         bmwInventoryNumber: this.matrix.bmwInventoryNumber,
         dieLiveQty: this.matrix.dieLiveQty,
         container: this.matrix.container,
-        matrixComplect: this.matrix.matrixComplect,
+        diesDefDimByResId: this.matrix.diesDefDimByResId,
         bolsterTooling1: this.matrix.bolsterTooling1,
         bolsterTooling2: this.matrix.bolsterTooling2,
         recipeName: this.matrix.recipeId,
@@ -474,13 +475,17 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   getMatricComplectById() {
-    console.log('getMatricComplectById', this.createMatrixForm.controls.matrixComplect)
+    console.log('getMatricComplectById', this.createMatrixForm.controls.diesDefDimByResId)
     this.blockUI.start('Loading...');
     let diameter, thickness, resourceId = 0;
     if (this.matrixItem.data == 'new') {
-      diameter = this.createMatrixForm.controls.matrixComplect.value.diameter;
-      thickness = this.createMatrixForm.controls.matrixComplect.value.thickness;
-      resourceId = this.createMatrixForm.controls.matrixComplect.value.resourceId;
+      for(let i=0; i < this.matrixComplectArr.length; i++) {
+        if(this.matrixComplectArr[i].id == this.createMatrixForm.controls.diesDefDimByResId.value) {
+          diameter = this.matrixComplectArr[i].diameter;
+          thickness = this.matrixComplectArr[i].thickness;
+          resourceId = this.matrixComplectArr[i].resourceId;
+        }
+      }
     } else {
       diameter = this.createMatrixForm.controls.diameter.value;
       thickness = this.createMatrixForm.controls.thickness.value;
@@ -491,7 +496,6 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.controls.primaryResource.setValue(data.resourceId);
       this.createMatrixForm.controls.diameter.setValue(data.diameter);
       this.createMatrixForm.controls.thickness.setValue(data.thickness);
-      this.createMatrixForm.controls.matrixComplect.setValue(data.dimensions.concat(' - ').concat(data.resourceName));
       this.blockUI.stop();
     },error => {
       console.log('error', error);
@@ -1077,7 +1081,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.anodizingQuality = this.createMatrixForm.controls.anodizingQuality.value,
       this.matrix.bmwInventoryNumber = this.createMatrixForm.controls.bmwInventoryNumber.value,
       this.matrix.container = this.createMatrixForm.controls.container.value,
-      this.matrix.matrixComplect = this.createMatrixForm.controls.matrixComplect.value,
+      this.matrix.diesDefDimByResId = this.createMatrixForm.controls.diesDefDimByResId.value,
       this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
       this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
       this.matrix.recipeId = this.createMatrixForm.controls.recipeName.value,
@@ -1114,7 +1118,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-      if (this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.matrixComplect.value && this.createMatrixForm.controls.corrector.value) {
+      if (this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.diesDefDimByResId.value && this.createMatrixForm.controls.corrector.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();

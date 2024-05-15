@@ -335,11 +335,10 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.matrixComplect }}</label>
-                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="matrixComplect" appendTo="body"
+                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="diesDefDimByResId" appendTo="body"
                         (change)="getMatricComplectById()"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('matrixComplect').value }">
-                        <ng-option *ngFor="let m of matrixComplectArr" [value]="m">{{ m.dimensions }} - {{
-                          m.resourceName }}</ng-option>
+                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('diesDefDimByResId').value }">
+                        <ng-option *ngFor="let m of matrixComplectArr" [value]="m.id">{{ m.name }}</ng-option>
                       </ng-select>
                     </div>
                   </div>
