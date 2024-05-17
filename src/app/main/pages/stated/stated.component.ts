@@ -103,7 +103,7 @@ export class StatedComponent implements OnInit {
       this.statusId = 101;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
-        'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
+        'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'currentLocation', 'lastTransaction',
         'gr', 'renewal', 'statusName'
       ];
 

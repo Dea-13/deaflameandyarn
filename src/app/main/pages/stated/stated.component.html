@@ -439,6 +439,17 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.storegePlace}}</span></td>
             </ng-container>
 
+            <ng-container *ngIf="statusId === 101" matColumnDef="currentLocation">
+              <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.currentLocation">
+                <div class="filter-th" container="body"></div>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.currentLocation }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 86)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.currentLocation}}</span></td>
+            </ng-container>
+
             <ng-container *ngIf="statusId === 40 || statusId === 70 || statusId === 101" matColumnDef="lastTransaction">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastTransaction">
                 <div class="filter-th" container="body"></div>

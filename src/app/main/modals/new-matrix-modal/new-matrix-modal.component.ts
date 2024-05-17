@@ -1114,7 +1114,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.lastModified = new Date(),
       this.matrix.lastModifiedBy = this.userName,
       this.matrix.diameter = this.createMatrixForm.controls.diameter.value;
-    this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
+      this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {

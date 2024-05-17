@@ -534,6 +534,7 @@ export const locale = {
       longMgs: " the name is too long",
       recordFile: 'Record File',
       removeFile: 'Remove File',
+      currentLocation: 'Current Location',
     }
   }
 }

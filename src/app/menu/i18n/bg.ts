@@ -533,6 +533,7 @@ export const locale = {
       longMgs: " името е твърде дълго",
       recordFile: 'Запис на Файл',
       removeFile: 'Изтриване на Файл',
+      currentLocation: 'Текущо местоположение'
     }
   }
 }
