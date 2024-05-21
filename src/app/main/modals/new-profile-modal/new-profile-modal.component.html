@@ -493,27 +493,19 @@
                 <tbody>
                   <tr *ngFor="let item of uploader.queue;let i=index" class="img-row" (click)="setImage(i, item)">
                     <td class="w-50">
-                      <a href="{{'data:image/png;base64,' + (item.fileData ? item.fileData : item.url)}}" download>
-                        {{item.fileName ? item.fileName : item?.file?.name}}
-                      </a>
+                      {{item.fileName ? item.fileName : item?.file?.name}}
                     </td>
                     <td *ngIf="uploader.options.isHTML5" nowrap>
                       {{ item?.file?.size / 1024 / 1024 | number: '.2' }} MB
                     </td>
-                    <td nowrap>
-                      <button
-                        type="button"
-                        class="btn btn-raised btn-sm mr-50"
-                        (click)="uploadImage(item)"
-                        [disabled]="!item.id || !profile.id"
-                        rippleEffect>
-                      <span [data-feather]="'upload'" [size]="16" [class]="'mr-50 upload-green'"></span>
+                    <td nowrap class="text-right">
+                      <button *ngIf="(profile.id || profileId) && !item.id" type="button" class="btn btn-raised btn-sm mr-50" (click)="uploadImage(item)" rippleEffect>
+                        <span [data-feather]="'upload'" [size]="16" [class]="'mr-50 upload-green'"></span>
                       </button>
-                      <button
-                        type="button"
-                        class="btn btn-raised btn-sm"
-                        (click)="item.id ? deleteImage(item) : item.remove()"
-                        rippleEffect>
+                      <a href="{{'data:image/png;base64,' + (item.fileData ? item.fileData : item.url)}}" download>
+                        <span [data-feather]="'download'" [size]="16" [class]="'mr-50 upload-green'"></span>
+                      </a>
+                      <button type="button" class="btn btn-raised btn-sm" (click)="item.id ? deleteImage(item) : item.remove()" rippleEffect>
                         <span [data-feather]="'trash'" [size]="16" [class]="'mr-50 red-bin'"></span>
                       </button>
                     </td>

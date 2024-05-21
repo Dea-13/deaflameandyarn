@@ -522,6 +522,13 @@ export class NewProfileModalComponent implements OnInit {
               timer: 2000
             });
             this.blockUI.stop();
+            setTimeout(() => {
+              if(this.uploader.queue) {
+                for(let i=0; i < this.uploader.queue.length; i++) {
+                  this.uploadImage(this.uploader.queue[i]);
+                }
+              }
+            }, 500);
           },
           (error) => {
             Swal.fire({
@@ -563,16 +570,17 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   uploadImage(row) {
-    console.log("uploadImage", row);
+    console.log("uploadImage", row, this.profileId);
+    let id = this.profile.id ? this.profile.id : this.profileId;
     let obj = {
-      id: this.profile.id,
-      profileId: this.profile.id,
+      id: id,
+      profileId: id,
       fileName: row.file ? row.file.name : row.fileName,
       fileData: row.url ? row.url : row.fileData
     }
     console.log("obj", obj);
     this.blockUI.start('Loading...');
-    this.profilesService.uploadFile(this.profile.id, obj, row).subscribe((data) => {
+    this.profilesService.uploadFile(id, obj, row).subscribe((data) => {
       Swal.fire({
         position: 'bottom-end',
         icon: 'success',
@@ -580,7 +588,7 @@ export class NewProfileModalComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
-      this.getFiles(this.profile.id);
+      this.getFiles(id);
       this.blockUI.stop();
     }, (error) => {
       this.blockUI.stop();

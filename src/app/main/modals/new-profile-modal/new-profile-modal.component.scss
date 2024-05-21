@@ -173,7 +173,7 @@ input {
 .center-img, .save-center{
   margin: 0 auto;
   display: block;
-  max-width: 1000px;
+  max-width: -webkit-fill-available;
   max-height: 1000px;
 }
 
