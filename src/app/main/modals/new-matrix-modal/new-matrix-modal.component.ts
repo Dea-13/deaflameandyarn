@@ -1070,6 +1070,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrix.profile = !this.redirectModal ? this.createMatrixForm.controls.profile.value.id : this.matrix.profile,
       this.matrix.profileId = !this.redirectModal ? this.createMatrixForm.controls.profile.value.name : this.matrix.profileId,
       this.matrix.dieId = this.createMatrixForm.controls.matrix.value,
+      this.matrix.assetCode = this.createMatrixForm.controls.matrix.value,
       this.matrix.status = this.createMatrixForm.controls.status.value,
       this.matrix.channels = this.createMatrixForm.controls.channels.value,
       this.matrix.dieHolder = this.createMatrixForm.controls.dieHolder.value,
