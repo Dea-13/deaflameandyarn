@@ -37,7 +37,7 @@ export class DieScanPageComponent implements OnInit {
   public resource: Array<any> = [];
   public arrEmployee: Array<any> = [];
   public resourceIn: number;
-  public currentResource: number;
+  public currentResource: number = 1;
   public productionKg: number;
   public notes: string;
   public emplId: any;
@@ -345,7 +345,7 @@ export class DieScanPageComponent implements OnInit {
 
   sendConfirmation(){
     this.submitted = true;
-    if(this.barCode && this.resourceIn && this.currentResource){
+    if(this.barCode && this.resourceIn && this.currentResource && this.employee){
       console.log("sendConfirmation: ", this.barCode, this.resourceIn, this.currentResource, this.productionKg, this.notes, this.emplId);
       let _currentUser = JSON.parse(localStorage.getItem('_currentUser'));
       let obj = {
@@ -375,7 +375,6 @@ export class DieScanPageComponent implements OnInit {
         this.directionReporting = 1;
         this.barCode = '';
         this.resourceIn = undefined;
-        this.currentResource = undefined;
         this.notes = undefined;
         this.productionKg = undefined;
         this.rowsMovements = [];
