@@ -35,7 +35,7 @@ export class DieScanPageComponent implements OnInit {
   public imageLastMovement: any = { name: '' };
   public lastMovements: Array<any> = [];
   public resource: Array<any> = [];
-  public employee: Array<any> = [];
+  public arrEmployee: Array<any> = [];
   public resourceIn: number;
   public currentResource: number;
   public productionKg: number;
@@ -51,6 +51,7 @@ export class DieScanPageComponent implements OnInit {
   public totalResult: number = 0;
   public maxSize = 10;
   public itemsPerPage = 10;
+  public employee: number = null;
 
   public urls = [
     { id: 0, name: 'Resource/all/resourcename' },
@@ -76,7 +77,7 @@ export class DieScanPageComponent implements OnInit {
   public die: string = '';
   public storagePlace: string = '';
   public resourceName: string = '';
-  public sPlace: string = '';  
+  public sPlace: string = '';
 
   constructor(
     public translate: TranslateService,
@@ -287,7 +288,7 @@ export class DieScanPageComponent implements OnInit {
   getEmployee() {
     this.dieService.getEmployee().subscribe(data => {
       console.log("getEmployee", data);
-      this.employee = data;
+      this.arrEmployee = data;
       this.blockUI.stop();
     });
   }
@@ -355,8 +356,8 @@ export class DieScanPageComponent implements OnInit {
         storagePlaceIn: null,
         kgProduced: this.directionReporting == 1 ? this.productionKg : null,
         notes: this.notes,
-        emplId: null, // FOR CHANGE
-        computerName: _currentUser['userName']
+        computerName: _currentUser['userName'],
+        emplId: this.employee
       }
 
       this.blockUI.start('Loading...');
@@ -378,6 +379,7 @@ export class DieScanPageComponent implements OnInit {
         this.notes = undefined;
         this.productionKg = undefined;
         this.rowsMovements = [];
+        this.employee = null;
       });
 
     } else {
