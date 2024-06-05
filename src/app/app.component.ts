@@ -30,8 +30,8 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit, OnDestroy {
   coreConfig: any;
   menu: any;
-  defaultLanguage: 'en'; // This language will be used as a fallback when a translation isn't found in the current language
-  appLanguage: 'en'; // Set application default language i.e fr
+  defaultLanguage: 'bg'; // This language will be used as a fallback when a translation isn't found in the current language
+  appLanguage: 'bg'; // Set application default language i.e fr
 
   port: any;
 
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._translateService.addLangs(['en', 'bg']);
 
     // This language will be used as a fallback when a translation isn't found in the current language
-    this._translateService.setDefaultLang('en');
+    this._translateService.setDefaultLang('bg');
 
     // Set the translations for the menu
     this._coreTranslationService.translate(menuEnglish, menuBulgarian);
@@ -153,7 +153,7 @@ export class AppComponent implements OnInit, OnDestroy {
       // Change application language? Read the ngxTranslate Fix
 
       // ? Use app-config.ts file to set default language
-      const appLanguage = this.coreConfig.app.appLanguage || 'en';
+      const appLanguage = this.coreConfig.app.appLanguage || 'bg';
       this._translateService.use(appLanguage);
 
       // ? OR
