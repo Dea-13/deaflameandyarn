@@ -325,7 +325,7 @@ export class DieScanPageComponent implements OnInit {
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
       if (receivedEntry) {
         this.getImage(receivedEntry);
-        this.currentResource = receivedEntry.resourceIn;
+        this.resourceIn = receivedEntry.resourceIn;
         this.sPlace = receivedEntry.storagePlace;
         this.barCode = receivedEntry.dieId;
         console.log('receivedEntry+++++ ', receivedEntry,this.currentResource, this.barCode);
@@ -378,7 +378,6 @@ export class DieScanPageComponent implements OnInit {
         this.notes = undefined;
         this.productionKg = undefined;
         this.rowsMovements = [];
-        this.employee = null;
       });
 
     } else {

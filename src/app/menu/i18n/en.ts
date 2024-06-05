@@ -535,6 +535,7 @@ export const locale = {
       recordFile: 'Record File',
       removeFile: 'Remove File',
       currentLocation: 'Current Location',
+      oporenPrysten: 'Oporen Prysten',
     }
   }
 }
