@@ -45,10 +45,10 @@
                 {{ translateSnackBar.view }}
               </button>
             </div>
-            <div class="align-items-center fixed-height">
+            <div class="align-items-center fixed-height">              
               <label class="d-flex align-items-center">{{ translateSnackBar.currentResource }}</label>
               <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" class="" [(ngModel)]="resourceIn" [clearable]="false"
-              [ngClass]="{ 'error': submitted && !resourceIn }">
+              [ngClass]="{ 'error': submitted && resourceIn == null }">
                 <ng-option *ngFor="let r of resource" [value]="r.resourceId">{{r.resourceName}}</ng-option>
               </ng-select>
               <div *ngIf="sPlace" style="margin-top: 20px;">
