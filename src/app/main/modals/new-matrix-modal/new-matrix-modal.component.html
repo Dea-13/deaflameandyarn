@@ -235,8 +235,6 @@
                   <div class="col-md-3 col-12">
                     <div class="form-group">
                       <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }}
-                        <span *ngIf="!matrixItem.data.id && submitStated && createMatrixForm.get('anodizingQuality').value === false"
-                          class="error-label">*</span>
                       </label>
                       <input formControlName="anodizingQuality" class="form-control input" type="checkbox"
                         style="width: 10%;margin-top: -2%;">
@@ -260,7 +258,7 @@
                         <mat-datepicker-toggle matIconSuffix  [for]="dateOrder"></mat-datepicker-toggle>
                         <mat-datepicker #dateOrder color="primary"></mat-datepicker>
                       </mat-form-field>
-                      <mat-error class="red-text d-block" *ngIf="submitInUse && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)">
+                      <mat-error class="red-text d-block" *ngIf="submitStated && (createMatrixForm.get('dateOrder').value && createMatrixForm.get('dateOrder').value.length === 0 || !createMatrixForm.get('dateOrder').value)">
                         {{ translateSnackBar.validDate }}
                      </mat-error>
                     </div>
@@ -301,7 +299,7 @@
                         <mat-datepicker-toggle matIconSuffix  [for]="inUseFrom"></mat-datepicker-toggle>
                         <mat-datepicker #inUseFrom color="primary"></mat-datepicker>
                       </mat-form-field>
-                      <mat-error class="red-text d-block" *ngIf="submitStated && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)">
+                      <mat-error class="red-text d-block" *ngIf="submitInUse && (createMatrixForm.get('inUseFrom').value && createMatrixForm.get('inUseFrom').value.length === 0 || !createMatrixForm.get('inUseFrom').value)">
                         {{ translateSnackBar.validDate }}
                      </mat-error>
                     </div>
@@ -431,7 +429,7 @@
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.storageFreePlace }}</label>
                       <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="storageFreePlace" appendTo="body"
-                        [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('storageFreePlace').value }">
+                        [ngClass]="{ 'error': (submitInUse) && !createMatrixForm.get('storageFreePlace').value }">
                         <ng-option *ngFor="let s of storagePlaceArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>
@@ -557,7 +555,7 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.reasonBrak }}</label>
-                      <input formControlName="scrapReason" type="text" class="form-control dt-uname" />
+                      <input formControlName="scrapReason" type="text" class="form-control dt-uname" [ngClass]="{ 'error': (submitBrak) && !createMatrixForm.get('scrapReason').value }" />
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
