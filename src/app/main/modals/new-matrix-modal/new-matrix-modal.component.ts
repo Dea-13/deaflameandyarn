@@ -125,7 +125,7 @@ export class NewMatrixModalComponent implements OnInit {
       altResource1: [null],
       altResource2: [null],
       storageGroup: [''],
-      storageFreePlace: [''],
+      storageFreePlace: [null],
       remarks: [''],
       usageType: [''],
       notes: [''],
@@ -894,7 +894,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitStatedDie(){
     console.log('000000++++', this.createMatrixForm);
     this.submitStated = true;
-    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.inUseFrom.value){
+    if(this.createMatrixForm.controls.dateOrder.value){
       Swal.fire({
         title: this.translateSnackBar.statedMsg,
         icon: 'warning',
@@ -1018,7 +1018,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitInUseDie(){
     this.submitInUse = true;
-    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.dateOrder.value){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.inUseFrom.value){
       if(this.createMatrixForm.controls.status.value == 40 && this.createMatrixForm.controls.requiredTest.value == true){
         this.markedForTestDateTime = new Date();
       }
@@ -1036,7 +1036,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBrakDie(){
     this.submitBrak = true;
-    if(!this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.scrapReason.value){
       Swal.fire({
         title: this.translateSnackBar.brakMsg,
         icon: 'warning',
@@ -1120,7 +1120,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-      if (this.createMatrixForm.controls.storageFreePlace.value && this.createMatrixForm.controls.diesDefDimByResId.value && this.createMatrixForm.controls.corrector.value) {
+      if (this.createMatrixForm.controls.diesDefDimByResId.value && this.createMatrixForm.controls.corrector.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();
