@@ -120,7 +120,7 @@
                       <div class="col-md-12 block">
                         <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.weight }}</label>
-                          <input type="number" formControlName="grM" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('grM').value}" required />
+                          <input type="number" formControlName="grM" class="form-control dt-uname" (input)="sumCut()" [ngClass]="{ 'error': submitted && !createProfileForm.get('grM').value}" required />
                         </div>
                         <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.cut }}</label>

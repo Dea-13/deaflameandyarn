@@ -785,6 +785,10 @@ export class NewProfileModalComponent implements OnInit {
     );
   }
 
+  sumCut() {
+    this.createProfileForm.controls.section.setValue(Math.round(this.createProfileForm.controls.grM.value * 2.7))
+  }
+
   closeModal(): void {
     this.passEntry.emit(false);
     this.activeModal.dismiss();
