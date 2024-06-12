@@ -328,7 +328,7 @@ export const locale = {
       employee: 'Employee',
       last20Movements: 'Last 20 moves',
       positionMatrix: 'Die positions',
-      skladPlace: 'Storage space',
+      skladPlace: 'Storage place',
       msgSkladMatrix: 'The Die is now in the Die Warehouse!',
       view: 'View',
       resourceOut: 'Resource Out',

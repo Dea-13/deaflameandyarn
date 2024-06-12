@@ -80,6 +80,14 @@
               <td mat-cell *matCellDef="let element">{{element.channels}}</td>
             </ng-container>
 
+            <ng-container matColumnDef="storagePlace">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="filter-th" container="body"></div>
+                <span class="th-header">{{ translateSnackBar.skladPlace }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element">{{element.storagePlace}}</td>
+            </ng-container>
+
             <ng-container matColumnDef="oporenPrysten">
               <th mat-header-cell *matHeaderCellDef>
                 <span class="th-header">{{ translateSnackBar.oporenPrysten }}</span>

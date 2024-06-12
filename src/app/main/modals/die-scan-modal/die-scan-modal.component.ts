@@ -16,7 +16,7 @@ export class DieScanModalComponent implements OnInit {
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
   @BlockUI('blockModal') blockUI: NgBlockUI;
 
-  displayedColumns: string[] = ['dieId', 'resourceName', 'channels', 'oporenPrysten',];
+  displayedColumns: string[] = ['dieId', 'resourceName', 'channels', 'storagePlace', 'oporenPrysten',];
   public translateSnackBar: any;
   public dieId: string = '';
   //for pagination

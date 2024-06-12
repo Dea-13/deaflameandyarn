@@ -66,13 +66,9 @@ export class DetailsDieModalComponent implements OnInit {
   public dieRow: any;
   public extrusion: Array<any> = [];
   public movements: Array<any> = [];
-  public sumTotalKg: number = 0;
-  public sumtotalUsed: number = 0;
   public resourceName: string = '';
-  public inUseFrom: string = '';
   public emptyDataHeader: boolean = false;
-  public headerInfo: any = {};
-  public header: Array<any> = [];
+  public header: any;
   public fullScr: boolean = false;
 
   public arrFilters: any = [];
@@ -268,19 +264,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.matrixService.getHeaderDetails(this.dieRow.id).subscribe(data => {
       console.log("getHeaderDetails", data);
       this.header = data;
-      data.length > 0 ? this.headerInfo = data[0].headerInfo : this.headerInfo = {};
-      if(data.length > 0){
-        for(let i=0; i < data.length; i++){
-          this.sumTotalKg = this.sumTotalKg + data[i].totalKg;
-          this.sumtotalUsed = this.sumtotalUsed + data[i].totalUsed;
-          this.resourceName = this.resourceName.concat(data[i].resourceName).concat("(").concat(data[i].totalUsed).concat(")").concat(", ");
-          this.inUseFrom = data[data.length-1].inUseFrom;
-        }
-      } else {
-        this.emptyDataHeader = true;
-      }
-
-      console.log("this.headerDetails", this.sumTotalKg, this.sumtotalUsed, this.resourceName, this.inUseFrom);
+      this.resourceName = this.resourceName.concat(data.ResourceName).concat("(").concat(data.TotalUsed).concat(")").concat(", ");
       this.blockUI.stop();
     }, error => {
       Swal.fire({

@@ -22,29 +22,28 @@
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
         <div class="row m-1">
           <div class="col-12 col-md-9">
-            <div class="row">
-              <h3 *ngIf="!emptyDataHeader && header.length > 0">{{ translateSnackBar.matrix }} {{headerInfo.profilesGroup}} {{headerInfo.matrix}}
-                ({{headerInfo.currentResource}}) - {{headerInfo.status}}</h3>
-              <p *ngIf="!emptyDataHeader && header.length > 0">
+            <div class="col-12">
+              <h3 *ngIf="header && header.HeaderInfo">
+                {{ translateSnackBar.matrix }} {{header.HeaderInfo.profilesGroup}} {{header.HeaderInfo.matrix}}
+                ({{header.HeaderInfo.currentResource}}) - {{header.HeaderInfo.status}}
+              </h3>
+              <p *ngIf="header">
                 <i>
-                  {{ translateSnackBar.inUseFrom }}: <b>{{inUseFrom}}</b>,
-                  {{ translateSnackBar.usedIn }} <b>{{resourceName}}</b> -
-                  {{ translateSnackBar.total }} <b>{{sumtotalUsed}}</b> {{ translateSnackBar.times }}.
-                  {{ translateSnackBar.total }}: <b>{{sumTotalKg}}</b> {{ translateSnackBar.kg }}
+                  {{ translateSnackBar.inUseFrom }}: <b>{{header.InUseFrom === null ? 0 : header.InUseFrom}}</b>,
+                  {{ translateSnackBar.usedIn }} <b>{{resourceName === null ? '-' : header.TotalKg}}</b> - {{ translateSnackBar.total }} <b>{{header.TotalUsed}}</b> {{ translateSnackBar.times }}.
+                  {{ translateSnackBar.total }}: <b>{{header.TotalKg === null ? 0 : header.TotalKg}}</b> {{ translateSnackBar.kg }}
                 </i>
               </p>
-              <p *ngIf="!emptyDataHeader && header.length > 0">
+              <p *ngIf="header">
                 <i>
-                  {{ translateSnackBar.azotirane }}: <b>{{header[0].anodizingCount}}</b>.
-                  {{ translateSnackBar.finalNitriding }} - <b>{{header[0].lastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b>
-                  (<b>{{header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
-                  {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header[0].totalKgProduced -
-                    header[0].kgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
-                  ({{ translateSnackBar.norm }} - <b>{{header[0].manualKGtoNextNitriding === null ? 0 :
-                    header[0].manualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
+                  {{ translateSnackBar.azotirane }}: <b>{{header.AnodizingCount}}</b>.
+                  {{ translateSnackBar.finalNitriding }} - <b>{{header.LastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b>
+                  (<b>{{header.KgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
+                  {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header.TotalKgProduced - header.KgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
+                  ({{ translateSnackBar.norm }} - <b>{{header.ManualKGtoNextNitriding === null ? 0 : header.ManualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
                 </i>
               </p>
-              <p *ngIf="emptyDataHeader">{{ translateSnackBar.noDataHeader }}</p>
+              <p *ngIf="!header">{{ translateSnackBar.noDataHeader }}</p>
             </div>
           </div>
 
