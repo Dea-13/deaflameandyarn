@@ -27,7 +27,7 @@
                 {{ translateSnackBar.matrix }} {{header.HeaderInfo.profilesGroup}} {{header.HeaderInfo.matrix}}
                 ({{header.HeaderInfo.currentResource}}) - {{header.HeaderInfo.status}}
               </h3>
-              <p *ngIf="header.list.length > 0">
+              <p *ngIf="header && header.list.length > 0">
                 <i>
                   {{ translateSnackBar.inUseFrom }}: <b>{{header.list[0].inUseFrom | date:'dd/MM/yyyy H:mm:ss'}}</b>,
                   {{ translateSnackBar.usedIn }}
