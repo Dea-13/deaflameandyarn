@@ -27,11 +27,14 @@
                 {{ translateSnackBar.matrix }} {{header.HeaderInfo.profilesGroup}} {{header.HeaderInfo.matrix}}
                 ({{header.HeaderInfo.currentResource}}) - {{header.HeaderInfo.status}}
               </h3>
-              <p *ngIf="header">
+              <p *ngIf="header.list.length > 0">
                 <i>
-                  {{ translateSnackBar.inUseFrom }}: <b>{{header.InUseFrom === null ? 0 : header.InUseFrom}}</b>,
-                  {{ translateSnackBar.usedIn }} <b>{{resourceName === null ? '-' : header.TotalKg}}</b> - {{ translateSnackBar.total }} <b>{{header.TotalUsed}}</b> {{ translateSnackBar.times }}.
-                  {{ translateSnackBar.total }}: <b>{{header.TotalKg === null ? 0 : header.TotalKg}}</b> {{ translateSnackBar.kg }}
+                  {{ translateSnackBar.inUseFrom }}: <b>{{header.list[0].inUseFrom | date:'MMM d, y, h:mm:ss a'}}</b>,
+                  {{ translateSnackBar.usedIn }}
+                  <span *ngFor="let l of header.list">
+                    {{l.resourceName}} ({{l.totalUsed}}) {{l === header.list.length ? '-' : ','}}</span>
+                    {{ translateSnackBar.total }} <b>{{header.TotalUsed}}</b> {{ translateSnackBar.times }}.
+                    {{ translateSnackBar.total }}: <b>{{header.TotalKgProduced === null ? 0 : header.TotalKgProduced}}</b> {{ translateSnackBar.kg }}
                 </i>
               </p>
               <p *ngIf="header">
