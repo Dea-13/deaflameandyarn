@@ -29,10 +29,10 @@
               </h3>
               <p *ngIf="header.list.length > 0">
                 <i>
-                  {{ translateSnackBar.inUseFrom }}: <b>{{header.list[0].inUseFrom | date:'MMM d, y, h:mm:ss a'}}</b>,
+                  {{ translateSnackBar.inUseFrom }}: <b>{{header.list[0].inUseFrom | date:'dd/MM/yyyy H:mm:ss'}}</b>,
                   {{ translateSnackBar.usedIn }}
-                  <span *ngFor="let l of header.list">
-                    {{l.resourceName}} ({{l.totalUsed}}) {{l === header.list.length ? '-' : ','}}</span>
+                  <span *ngFor="let l of header.list; let i = index">
+                    {{l.resourceName}} ({{l.totalUsed}}) {{i === (header.list.length - 1) ? '-' : ','}}</span>
                     {{ translateSnackBar.total }} <b>{{header.TotalUsed}}</b> {{ translateSnackBar.times }}.
                     {{ translateSnackBar.total }}: <b>{{header.TotalKgProduced === null ? 0 : header.TotalKgProduced}}</b> {{ translateSnackBar.kg }}
                 </i>
@@ -40,7 +40,7 @@
               <p *ngIf="header">
                 <i>
                   {{ translateSnackBar.azotirane }}: <b>{{header.AnodizingCount}}</b>.
-                  {{ translateSnackBar.finalNitriding }} - <b>{{header.LastAnodizingDate | date:'MMM d, y, h:mm:ss a'}} </b>
+                  {{ translateSnackBar.finalNitriding }} - <b>{{header.LastAnodizingDate | date:'dd/MM/yyyy H:mm:ss'}} </b>
                   (<b>{{header.KgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}).
                   {{ translateSnackBar.kgAfterFianlNitriding }} <b>{{header.TotalKgProduced - header.KgAfterLastAnodizing}}</b> {{ translateSnackBar.kg }}
                   ({{ translateSnackBar.norm }} - <b>{{header.ManualKGtoNextNitriding === null ? 0 : header.ManualKGtoNextNitriding}}</b> {{ translateSnackBar.kg }})
