@@ -449,6 +449,7 @@ export const locale = {
       azotirane: 'Nitrogenated',
       norm: 'Norm',
       confMassageInvalid: 'Please fill in the required fields',
+      confMassageInvalidMove: 'Invalid die displacement in the same work center',
       confMassageValid: 'Successful recording',
       totalUseWeight: 'Total Used Weight',
       modalProducts: 'Modal Products',
