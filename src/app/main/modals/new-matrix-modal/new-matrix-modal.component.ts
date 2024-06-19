@@ -104,7 +104,7 @@ export class NewMatrixModalComponent implements OnInit {
       type: [''],
       anodizingQuality: [false],
       container: ['', Validators.required],
-      diesDefDimByResId: [''],
+      diesDefDimByResId: [null],
       bolsterTooling1: [''],
       bolsterTooling2: [''],
       recipeName: [null],
@@ -132,8 +132,8 @@ export class NewMatrixModalComponent implements OnInit {
       scrapReason: [''],
       reasonForPurchase: [''],
       reasonForPurchaseOther: [''],
-      diameter: ['', Validators.required],
-      thickness: ['', Validators.required]
+      diameter: [null],
+      thickness: [null]
     });
 
     this.getStatus();
@@ -1120,7 +1120,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-      if (this.createMatrixForm.controls.diesDefDimByResId.value && this.createMatrixForm.controls.corrector.value) {
+      if (this.createMatrixForm.controls.corrector.value) {
         this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
           this.getProfilesEnds();
           this.blockUI.stop();
