@@ -535,6 +535,7 @@ export const locale = {
       removeFile: 'Изтриване на Файл',
       currentLocation: 'Текущо местоположение',
       oporenPrysten: 'Опорен пръстен',
+      stepAzotirane: 'Стъпки-норми-азотиране',
     }
   }
 }

@@ -536,6 +536,7 @@ export const locale = {
       removeFile: 'Remove File',
       currentLocation: 'Current Location',
       oporenPrysten: 'Oporen Prysten',
+      stepAzotirane: 'Steps-rates-nitrogenation',
     }
   }
 }
