@@ -448,6 +448,7 @@ export const locale = {
       azotirane: 'Азотирания',
       norm: 'Норма',
       confMassageInvalid: 'Mоля попълнете задължителните полета',
+      confMassageInvalidMove: 'Невалидно изместване на матрица в един и същ работен центер',
       confMassageValid: 'Успешен запис',
       totalUseWeight: 'Общо използвано',
       modalProducts: 'Ново Изделие',

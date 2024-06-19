@@ -344,8 +344,20 @@ export class DieScanPageComponent implements OnInit {
   }
 
   sendConfirmation(){
-    this.submitted = true;
+    this.submitted = true;    
     if(this.barCode && this.resourceIn !== null && this.currentResource !== null && this.employee){
+
+      if(this.resourceIn == this.currentResource){
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.confMassageInvalidMove,
+          showConfirmButton: false,
+          timer: 2000
+        })
+        return;
+      }
+
       console.log("sendConfirmation: ", this.barCode, this.resourceIn, this.currentResource, this.productionKg, this.notes, this.emplId);
       let _currentUser = JSON.parse(localStorage.getItem('_currentUser'));
       let obj = {
