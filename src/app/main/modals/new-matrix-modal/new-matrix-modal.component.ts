@@ -115,7 +115,7 @@ export class NewMatrixModalComponent implements OnInit {
       clientName: [''],
       producer: [null],
       purchaser: [null, Validators.required],
-      corrector: [''],
+      corrector: [null],
       price: [null],
       dieID: [''],
       grM: ['', Validators.required],
@@ -1120,34 +1120,23 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
-      if (this.createMatrixForm.controls.corrector.value) {
-        this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
-          this.getProfilesEnds();
-          this.blockUI.stop();
-          Swal.fire({
-            position: 'bottom-end',
-            icon: 'success',
-            title: this.translateSnackBar.saveMsg,
-            showConfirmButton: false,
-            timer: 2000
-          });
-          this.activeModal.dismiss();
-          this.passEntry.emit(true);
-        },error => {
-            console.log('error', error);
-            this.blockUI.stop();
-          }
-        );
-      } else {
+      this.matrixService.createMatrix(this.matrix).subscribe(matrixService => {
+        this.getProfilesEnds();
+        this.blockUI.stop();
         Swal.fire({
           position: 'bottom-end',
-          icon: 'warning',
-          title: this.translateSnackBar.fillAllTabsMsg,
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg,
           showConfirmButton: false,
           timer: 2000
-        })
-        this.blockUI.stop();
-      }
+        });
+        this.activeModal.dismiss();
+        this.passEntry.emit(true);
+      },error => {
+          console.log('error', error);
+          this.blockUI.stop();
+        }
+      );
 
     } else {
       this.matrixService.updateMatrix(this.matrix).subscribe(matrixService => {

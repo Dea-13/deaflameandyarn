@@ -554,14 +554,25 @@ export class NewProfileModalComponent implements OnInit {
 
   handleUpload(event) {
     console.log('handleUpload', event, this.uploader);
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.uploader.queue[this.uploader.queue.length - 1].url = reader.result.toString().replace(/^data:image\/[a-z]+;base64,/, "");
-      console.log(this.uploader.queue);
-      this.img = this.uploader.queue.length > 0 ? this.uploader.queue[this.uploader.queue.length - 1].url : ''
-    };
+    if(event.target.files[0].name.substr(0, event.target.files[0].name.lastIndexOf(".")) != this.createProfileForm.controls.profileName.value) {
+      console.log('++++++ 0', event.target.files[0].name.substr(0, event.target.files[0].name.lastIndexOf(".")), this.createProfileForm.controls.profileName.value);
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.validImg,
+        showConfirmButton: false,
+        timer: 4000
+      })
+    } else {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.uploader.queue[this.uploader.queue.length - 1].url = reader.result.toString().replace(/^data:image\/[a-z]+;base64,/, "");
+        console.log(this.uploader.queue);
+        this.img = this.uploader.queue.length > 0 ? this.uploader.queue[this.uploader.queue.length - 1].url : ''
+      };
+    }
   }
 
   setImage(ind, item) {
@@ -571,35 +582,37 @@ export class NewProfileModalComponent implements OnInit {
 
   uploadImage(row) {
     console.log("uploadImage", row, this.profileId);
-    let id = this.profile.id ? this.profile.id : this.profileId;
-    let obj = {
-      id: id,
-      profileId: id,
-      fileName: row.file ? row.file.name : row.fileName,
-      fileData: row.url ? row.url : row.fileData
+    if(row.file.name.substr(0, row.file.name.lastIndexOf(".")) === this.createProfileForm.controls.profileName.value) {
+      let id = this.profile.id ? this.profile.id : this.profileId;
+      let obj = {
+        id: id,
+        profileId: id,
+        fileName: row.file ? row.file.name : row.fileName,
+        fileData: row.url ? row.url : row.fileData
+      }
+      console.log("obj", obj);
+      this.blockUI.start('Loading...');
+      this.profilesService.uploadFile(id, obj, row).subscribe((data) => {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'success',
+          title: this.translateSnackBar.saveMsg,
+          showConfirmButton: false,
+          timer: 2000
+        })
+        this.getFiles(id);
+        this.blockUI.stop();
+      }, (error) => {
+        this.blockUI.stop();
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: 'Error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      });
     }
-    console.log("obj", obj);
-    this.blockUI.start('Loading...');
-    this.profilesService.uploadFile(id, obj, row).subscribe((data) => {
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'success',
-        title: this.translateSnackBar.saveMsg,
-        showConfirmButton: false,
-        timer: 2000
-      })
-      this.getFiles(id);
-      this.blockUI.stop();
-    }, (error) => {
-      this.blockUI.stop();
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 2000
-      })
-    });
   }
 
   deleteImage(row) {

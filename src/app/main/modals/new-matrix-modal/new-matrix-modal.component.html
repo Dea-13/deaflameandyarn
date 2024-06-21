@@ -485,9 +485,7 @@
                       <label for="city-column">{{ translateSnackBar.matricologist }}</label>
                       <input *ngIf="matrologistArr.length === 0" formControlName="corrector" type="text"
                         class="form-control dt-uname" />
-                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="matrologistArr.length > 0" [clearable]="false" formControlName="corrector"
-                        appendTo="body"
-                        [ngClass]="{ 'error': !matrixItem.data.id && (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('corrector').value }">
+                      <ng-select [virtualScroll]="true" appendTo="body" *ngIf="matrologistArr.length > 0" [clearable]="false" formControlName="corrector" appendTo="body">
                         <ng-option *ngFor="let s of matrologistArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>
