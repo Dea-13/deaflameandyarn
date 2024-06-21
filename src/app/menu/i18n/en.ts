@@ -538,6 +538,7 @@ export const locale = {
       currentLocation: 'Current Location',
       oporenPrysten: 'Oporen Prysten',
       stepAzotirane: 'Steps-rates-nitrogenation',
+      validImg: 'The file name must be the same as the profile. Please correct the name.',
     }
   }
 }
