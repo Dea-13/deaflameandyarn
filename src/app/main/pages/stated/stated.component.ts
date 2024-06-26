@@ -46,7 +46,7 @@ export class StatedComponent implements OnInit {
 
   //for pagination
   public cPage: number = 1;
-  public limit: number = 15;
+  public limit: number = 100;
   public offset: number = 0;
   public totalResult: number = 0;
   public languageOptions: any;
@@ -581,7 +581,7 @@ export class StatedComponent implements OnInit {
 
   clearAll() {
     this.offset = 0;
-    this.limit = 15;
+    this.limit = 100;
     this.orderBy = 0;
     this.orderType = 1;
     for(let i=0; i < this.arrFilters.length; i++) {
