@@ -78,6 +78,7 @@ export class DieScanPageComponent implements OnInit {
   public storagePlace: string = '';
   public resourceName: string = '';
   public sPlace: string = '';
+  selectedDie: any;
 
   constructor(
     public translate: TranslateService,
@@ -125,6 +126,7 @@ export class DieScanPageComponent implements OnInit {
     this.getEmployee();
     this.pageChanged(1);
     this.getFilters();
+    this.getMovementsInit();
   }
 
   public scanPorts () {
@@ -312,6 +314,16 @@ export class DieScanPageComponent implements OnInit {
     });
   }
 
+  getMovementsInit() {
+    this.blockUI.start('Loading...');
+    this.dieService.getMovementsInit().subscribe(data => {
+      console.log("getMovementsInit", data);
+      this.rowsMovements = data;
+      this.imageLastMovement.name = '';
+      this.blockUI.stop();
+    });
+  }
+
   getBarCodesTable() {
     if (this.barCode && this.barCode.toString().length >= 4) {
       this.openBarCodeModal(this.barCode);
@@ -328,6 +340,7 @@ export class DieScanPageComponent implements OnInit {
         this.resourceIn = receivedEntry.resourceIn;
         this.sPlace = receivedEntry.storagePlace;
         this.barCode = receivedEntry.dieId;
+        this.selectedDie = receivedEntry;
         console.log('receivedEntry+++++ ', receivedEntry,this.currentResource, this.barCode);
       }
     });
@@ -344,8 +357,20 @@ export class DieScanPageComponent implements OnInit {
   }
 
   sendConfirmation(){
-    this.submitted = true;    
+    this.submitted = true;
+    console.log('sendConfirmation', this.resourceIn, this.currentResource, this.selectedDie.resourceIn)
     if(this.barCode && this.resourceIn !== null && this.currentResource !== null && this.employee){
+
+      if(this.selectedDie.resourceIn != this.currentResource){
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.confMassageInvalidResource + '('+ this.selectedDie.resourceName +')',
+          showConfirmButton: false,
+          timer: 4000
+        })
+        return;
+      }
 
       if(this.resourceIn == this.currentResource){
         Swal.fire({

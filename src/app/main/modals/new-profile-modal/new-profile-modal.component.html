@@ -3,7 +3,27 @@
   <div id="modals-slide-in">
     <div class="modal-dialog-screen material-dialog-center modal-content pt-0" [ngClass]="{ 'modal-full-screen': fullScr === true, 'modal-normal-screen': fullScr === false }">
       <div class="modal-body flex-grow-1">
-        <div class="row">
+        <div class="form-group">
+          <div class="row alert alert-primary p-0 d-block d-flex" role="alert">
+            <div class="col-md-8 col-lg-10 alert-body d-flex align-items-center">
+              <span>{{ translateSnackBar.modalProfile }}  </span>
+            </div>
+            <div class="col-md-4 col-lg-2 alert-body text-end">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                ×
+              </button>
+              <button (click)="fullScreen()" class="close"type="button">
+                <div [ngStyle]="{'display': fullScr === true ? 'block' : 'none' }"><span [data-feather]="'minimize-2'" [class]="'ficon text-primary'"></span></div>
+                <div [ngStyle]="{'display': fullScr === true ? 'none' : 'block' }"><span [data-feather]="'maximize-2'" [class]="'ficon text-primary'"></span></div>
+              </button>
+              <button (click)="submitForm()" class="close" type="button">
+                <span [class]="'cursor-pointer save-icon-modal text-primary'" [data-feather]="'save'"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row">
           <div class="col-md-12 col-12">
             <div class="alert alert-primary d-block d-md-flex" role="alert">
               <div class="alert-body">
@@ -18,7 +38,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- <form class="form form-general" [formGroup]="createProfileForm"> -->
         <div class="row">
           <div class="section-left col-12 col-xl-7">
@@ -518,11 +538,11 @@
           </div>
         </div>
         <!-- </form> -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-12 p-2 text-center">
             <button rippleEffect class="btn w-25 btn-primary" (click)="submitForm()">{{ translateSnackBar.save }}</button>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

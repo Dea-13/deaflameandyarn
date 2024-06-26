@@ -584,7 +584,7 @@ export class NewMatrixModalComponent implements OnInit {
           speed: row.speed,
           kgperHour: row.kgperHour == undefined ? null : row.kgperHour,
           alloyFamily: row.alloyFamily,
-          maxLengthPress: row.maxLengthPress == undefined ? null : row.maxLengthPress,
+          maxLengthPress: row.maxLengthPress == undefined ? null : row.maxLengthPress == 0 ? null : row.maxLengthPress,
           calculatedProductivity: row.calculatedProductivity == undefined ? true : row.calculatedProductivity,
           firstBilletTemp: row.firstBilletTemp == undefined ? "" : row.firstBilletTemp,
           billetTemp: row.billetTemp == undefined ? "" : row.billetTemp,

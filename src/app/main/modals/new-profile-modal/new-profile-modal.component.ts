@@ -732,6 +732,7 @@ export class NewProfileModalComponent implements OnInit {
 
         if(row.id) {
           obj.id = row.id;
+          if( row.maxLengthPress === 0 ) { row.maxLengthPress = null; }
           url = this.profilesService.updatePress(row);
         } else {
           url = this.profilesService.createPress(obj);

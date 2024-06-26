@@ -539,6 +539,9 @@ export const locale = {
       oporenPrysten: 'Oporen Prysten',
       stepAzotirane: 'Steps-rates-nitrogenation',
       validImg: 'The file name must be the same as the profile. Please correct the name.',
+      height: 'Height',
+      heightTT: 'H',
+      confMassageInvalidResource: 'Reporting Resource must be the same as Current Resource!'
     }
   }
 }

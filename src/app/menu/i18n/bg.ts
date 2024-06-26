@@ -538,6 +538,9 @@ export const locale = {
       oporenPrysten: 'Опорен пръстен',
       stepAzotirane: 'Стъпки-норми-азотиране',
       validImg: 'Името на файла трябва да е същото като на профила. Моля, коригирайте името.',
+      height: 'Височина',
+      heightTT: 'В',
+      confMassageInvalidResource: 'Ресурс за отчитане трябва да бъде същият като Текущ ресурс.',
     }
   }
 }
