@@ -133,7 +133,7 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'bmwinventorynumber', 'dieLiveQty', 'diameter',
         'thickness', 'alloy', 'temper', 'bolsterTooling1', 'bolsterTooling2', 'dieHolder', 'container',
-        'notes', 'visibleSides', 'clientName', 'dateOrder'
+        'notes', 'visibleSides', 'clientName', 'dateOrder', 'channels'
       ];
       // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
@@ -150,6 +150,7 @@ export class StatedComponent implements OnInit {
         { id: 10, name: 'Container' },
         { id: 11, name: 'Notes' },
         { id: 12, name: 'ClientName' },
+        { id: 13, name: 'Channels' },
       ];
 
       this.arrFilters = [
@@ -166,13 +167,14 @@ export class StatedComponent implements OnInit {
         {id: 10, ind: 10, url: 'Container', name: this.translateSnackBar.container, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 11, ind: 11, url: 'Notes', name: this.translateSnackBar.noteRequest, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 12, ind: 12, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 13, ind: 13, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/confirmed') {
       this.statusId = 20;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'bolsterTooling1', 'bolsterTooling2', 'container',
-        'notes', 'clientName', 'countInUse'
+        'notes', 'clientName', 'countInUse', 'channels'
       ];
       // , 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
@@ -185,6 +187,7 @@ export class StatedComponent implements OnInit {
         { id: 6, name: 'BolsterTooling2' },
         { id: 7, name: 'Container' },
         { id: 8, name: 'ClientName' },
+        { id: 9, name: 'Channels' },
       ];
 
       this.arrFilters = [
@@ -197,13 +200,14 @@ export class StatedComponent implements OnInit {
         {id: 6, ind: 6, url: 'BolsterTooling2', name: this.translateSnackBar.bolster2, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 7, ind: 7, url: 'Container', name: this.translateSnackBar.container, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 8, ind: 8, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 9, ind: 9, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/shipped') {
       this.statusId = 30;
       this.displayedColumns = [
         'dieId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'alloy', 'temper', 'bolsterTooling1', 'bolsterTooling2', 'dieHolder', 'container',
-        'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition'
+        'notes', 'visibleSides', 'clientName', 'dateOrder', 'price', 'price_Inv', 'dateConfirmation', 'dateExpedition', 'channels'
       ];
       // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
@@ -221,6 +225,7 @@ export class StatedComponent implements OnInit {
         { id: 11, name: 'ClientName' },
         { id: 12, name: 'Price' },
         { id: 13, name: 'PriceInv' },
+        { id: 14, name: 'Channels' },
       ];
 
       this.arrFilters = [
@@ -238,6 +243,7 @@ export class StatedComponent implements OnInit {
         {id: 11, ind: 11, url: 'ClientName', name: this.translateSnackBar.client, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 12, ind: 12, url: 'Price', name: this.translateSnackBar.price, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
         {id: 13, ind: 13, url: 'PriceInv', name: this.translateSnackBar.invoicePrice, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
+        {id: 14, ind: 14, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/productivity') {
       this.statusId = 40;
@@ -400,9 +406,9 @@ export class StatedComponent implements OnInit {
     console.log("selDateOrder: ", this.selDateOrderForm);
     switch (this.router.url) {
       case '/api/dies': { url = this.matrixService.getRequestsAllDies(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
-      case '/api/stated': { url = this.matrixService.getRequestStated(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
-      case '/api/confirmed': { url = this.matrixService.getRequestConfirmed(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
-      case '/api/shipped': { url = this.matrixService.getRequestDispatched(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/stated': { url = this.matrixService.getRequestStated(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/confirmed': { url = this.matrixService.getRequestConfirmed(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
+      case '/api/shipped': { url = this.matrixService.getRequestDispatched(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.arrFilters[14].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
       case '/api/productivity': { url = this.matrixService.getRequestsProd(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
       case '/api/scrap': { url = this.matrixService.getRequestScrap(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
       case '/api/marked': { url = this.matrixService.getRequestMarked(this.offset, this.limit, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy); } break;
@@ -428,9 +434,9 @@ export class StatedComponent implements OnInit {
     for (let i = 0; i < this.urls.length; i++) {
     switch (this.router.url) {
       case '/api/dies': { url = this.matrixService.getFiltersAllDies(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model); } break;
-      case '/api/stated': { url = this.matrixService.getFiltersStated(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model); } break;
-      case '/api/confirmed': { url = this.matrixService.getFiltersConfirmed(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model); } break;
-      case '/api/shipped': { url = this.matrixService.getFiltersDispatched(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model); } break;
+      case '/api/stated': { url = this.matrixService.getFiltersStated(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model); } break;
+      case '/api/confirmed': { url = this.matrixService.getFiltersConfirmed(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model); } break;
+      case '/api/shipped': { url = this.matrixService.getFiltersDispatched(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model, this.arrFilters[10].model, this.arrFilters[11].model, this.arrFilters[12].model, this.arrFilters[13].model, this.arrFilters[14].model); } break;
       case '/api/productivity': { url = this.matrixService.getFiltersProd(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model); } break;
       case '/api/scrap': { url = this.matrixService.getFiltersScrap(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.arrFilters[8].model, this.arrFilters[9].model); } break;
       case '/api/marked': { url = this.matrixService.getFiltersMarked(this.urls[i].name, this.keyword, this.statusId, this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model); } break;
