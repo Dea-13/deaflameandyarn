@@ -187,7 +187,7 @@ export const locale = {
       noteRequest: 'Note request',
       noteReqTable: 'NR',
       use: 'Usage',
-      reasonBrak: 'Reason brak',
+    reasonBrak: 'Reason brak',
       others: 'Others',
       maker: 'Manufacturer',
       applicant: 'Applicant',
@@ -541,7 +541,8 @@ export const locale = {
       validImg: 'The file name must be the same as the profile. Please correct the name.',
       height: 'Height',
       heightTT: 'H',
-      confMassageInvalidResource: 'Reporting Resource must be the same as Current Resource!'
+      confMassageInvalidResource: 'Reporting Resource must be the same as Current Resource!',
+      scrapPerson: 'Scrapping person',
     }
   }
 }

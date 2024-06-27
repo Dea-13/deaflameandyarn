@@ -322,11 +322,9 @@
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.container }}</label>
                       <input *ngIf="containerArr.length === 0" formControlName="container" type="text"
-                        class="form-control dt-uname" required
-                        [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('container').value }" />
+                        class="form-control dt-uname"/>
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="containerArr.length > 0" [clearable]="false" formControlName="container"
-                        appendTo="body" required
-                        [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('container').value }">
+                        appendTo="body" >
                         <ng-option *ngFor="let s of containerArr" [value]="s.name">{{ s.name }}</ng-option>
                       </ng-select>
                     </div>
@@ -538,8 +536,11 @@
                 <div class="row">
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <label for="city-column">{{ translateSnackBar.noteRequest }}</label>
-                      <input formControlName="remarks" type="text" class="form-control dt-uname" />
+                      <label for="city-column">{{ translateSnackBar.scrapPerson }}</label>
+                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" formControlName="correctorScrapId" appendTo="body"
+                      [ngClass]="{ 'error': (submitBrak) && !createMatrixForm.get('correctorScrapId').value }">
+                        <ng-option *ngFor="let s of matrologistArr" [value]="s.id">{{ s.name }}</ng-option>
+                      </ng-select>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -580,6 +581,16 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.noteRequest }}</label>
+                      <input formControlName="remarks" type="text" class="form-control dt-uname" />
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </form>
           </div>

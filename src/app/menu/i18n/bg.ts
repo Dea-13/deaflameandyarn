@@ -541,6 +541,7 @@ export const locale = {
       height: 'Височина',
       heightTT: 'В',
       confMassageInvalidResource: 'Ресурс за отчитане трябва да бъде същият като Текущ ресурс.',
+      scrapPerson: 'Бракуващ',
     }
   }
 }

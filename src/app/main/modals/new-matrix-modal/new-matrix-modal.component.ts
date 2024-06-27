@@ -40,6 +40,7 @@ export class NewMatrixModalComponent implements OnInit {
   public pressArr: Array<any> = [];
   public bolster1: Array<any> = [];
   public bolster2: Array<any> = [];
+  public scrapPersonArr: Array<any> = [];
   public language: string;
   public dateOrder: any = [];
   public dateConfirmation: any = [];
@@ -103,7 +104,7 @@ export class NewMatrixModalComponent implements OnInit {
       Pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
-      container: ['', Validators.required],
+      container: [null],
       diesDefDimByResId: [null],
       bolsterTooling1: [''],
       bolsterTooling2: [''],
@@ -133,7 +134,8 @@ export class NewMatrixModalComponent implements OnInit {
       reasonForPurchase: [''],
       reasonForPurchaseOther: [''],
       diameter: [null],
-      thickness: [null]
+      thickness: [null],
+      correctorScrapId: [null]
     });
 
     this.getStatus();
@@ -227,7 +229,8 @@ export class NewMatrixModalComponent implements OnInit {
         reasonForPurchase: this.matrix.reasonForPurchase,
         reasonForPurchaseOther: this.matrix.reasonForPurchaseOther,
         diameter:  this.matrix.diameter,
-        thickness: this.matrix.thickness
+        thickness: this.matrix.thickness,
+        correctorScrapId: this.matrix.correctorScrapId
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
       this.blockUI.stop();
@@ -1036,7 +1039,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBrakDie(){
     this.submitBrak = true;
-    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.scrapReason.value){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.scrapReason.value && this.createMatrixForm.controls.correctorScrapId.value){
       Swal.fire({
         title: this.translateSnackBar.brakMsg,
         icon: 'warning',
@@ -1117,6 +1120,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.diameter = this.createMatrixForm.controls.diameter.value;
       this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
       this.matrix.plant = 1;
+      this.matrix.correctorScrapId = this.createMatrixForm.controls.correctorScrapId.value;
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
@@ -1173,7 +1177,7 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   closeModal(): void {
-    this.passEntry.emit(false);
+    this.passEntry.emit(true);
     this.activeModal.dismiss();
   }
 }
