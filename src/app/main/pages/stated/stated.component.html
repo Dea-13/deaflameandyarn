@@ -190,8 +190,8 @@
             </ng-container>
 
             <ng-container matColumnDef="diameter">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.height">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.heightTT }}</span>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.thickness">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.thickTable }}</span>
                 <button type="button" class="btn order-btn" (click)="sortType(!orderType, 5)">
                   <i class="fa fa-sort"></i>
                 </button>
@@ -200,8 +200,8 @@
             </ng-container>
 
             <ng-container matColumnDef="thickness">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.thickness">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.thickTable }}</span>
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.height">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.heightTT }}</span>
                 <button type="button" class="btn order-btn" (click)="sortType(!orderType, 6)">
                   <i class="fa fa-sort"></i>
                 </button>
