@@ -174,6 +174,7 @@ export const locale = {
       pressWasher: 'Пресшайба',
       type: 'Тип',
       qualityAnodization: 'Качество на елоксация',
+      dieIndex: 'Индекс Матрица',
       technicalDataOther: 'Технически данни други',
       matrixComplect: 'Матричен комплект',
       tulling1: 'Тулинг 1',

@@ -174,6 +174,7 @@ export const locale = {
       pressWasher: 'Presswasher',
       type: 'Type',
       qualityAnodization: 'Quiality Anodization',
+      dieIndex: 'Die Index',
       technicalDataOther: 'Other technical Data',
       matrixComplect: 'Die kit',
       tulling1: 'Tulling 1',
