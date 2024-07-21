@@ -542,6 +542,9 @@ export const locale = {
       heightTT: 'В',
       confMassageInvalidResource: 'Ресурс за отчитане трябва да бъде същият като Текущ ресурс.',
       scrapPerson: 'Бракуващ',
+      hardnessManufacturerRockwell: 'Твърдост от производителя/Рокуел',
+      measuredRockwellHardness: 'Измерена твърдост/Рокуел',
+      mechanical: 'Механизни Показатели',
     }
   }
 }

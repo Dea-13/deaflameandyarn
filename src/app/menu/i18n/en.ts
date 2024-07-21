@@ -543,6 +543,9 @@ export const locale = {
       heightTT: 'H',
       confMassageInvalidResource: 'Reporting Resource must be the same as Current Resource!',
       scrapPerson: 'Scrapping person',
+      hardnessManufacturerRockwell: 'Manufacturer/Rockwell hardness',
+      measuredRockwellHardness: 'Measured Hardness/Rockwell',
+      mechanical: 'Mechanical Indicators',
     }
   }
 }
