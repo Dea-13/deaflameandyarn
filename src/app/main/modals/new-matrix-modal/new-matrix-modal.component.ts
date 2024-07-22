@@ -136,7 +136,9 @@ export class NewMatrixModalComponent implements OnInit {
       reasonForPurchaseOther: [''],
       diameter: [null],
       thickness: [null],
-      correctorScrapId: [null]
+      correctorScrapId: [null],
+      hardnessManufacturerRockwell: [null],
+      measuredRockwellHardness: [null],
     });
 
     this.getStatus();
@@ -232,7 +234,9 @@ export class NewMatrixModalComponent implements OnInit {
         reasonForPurchaseOther: this.matrix.reasonForPurchaseOther,
         diameter:  this.matrix.diameter,
         thickness: this.matrix.thickness,
-        correctorScrapId: this.matrix.correctorScrapId
+        correctorScrapId: this.matrix.correctorScrapId,
+        hardnessManufacturerRockwell: this.matrix.hardnessManufacturerRockwell,
+        measuredRockwellHardness: this.matrix.measuredRockwellHardness,
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
       this.blockUI.stop();
@@ -1124,6 +1128,8 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
       this.matrix.plant = 1;
       this.matrix.correctorScrapId = this.createMatrixForm.controls.correctorScrapId.value;
+      this.matrix.hardnessManufacturerRockwell = this.createMatrixForm.controls.hardnessManufacturerRockwell.value;
+      this.matrix.measuredRockwellHardness = this.createMatrixForm.controls.measuredRockwellHardness.value;
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {
