@@ -546,6 +546,7 @@ export const locale = {
       hardnessManufacturerRockwell: 'Твърдост от производителя/Рокуел',
       measuredRockwellHardness: 'Измерена твърдост/Рокуел',
       mechanical: 'Механизни Показатели',
+      zeroMsg: 'Не може да въвеждате стойност 0! Стойността трябва да е по-голяма от 0.',
     }
   }
 }

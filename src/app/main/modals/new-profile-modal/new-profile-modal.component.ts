@@ -718,6 +718,17 @@ export class NewProfileModalComponent implements OnInit {
       }
     }
 
+    if (row.priority <= 0) {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.zeroMsg,
+        showConfirmButton: false,
+        timer: 2500
+      })
+      return;
+    }
+
     if (!flag) {
       this.validation = this.pressValidation(rowsLength[ind]);
       if (this.validation) {
