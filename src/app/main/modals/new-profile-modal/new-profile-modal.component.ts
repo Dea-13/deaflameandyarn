@@ -186,6 +186,12 @@ export class NewProfileModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     console.log('getFiles: ', id);
     this.profilesService.getFiles(id).subscribe(data => {
+      data.forEach(function(item,i){
+        if(item.fileName.includes('png') || item.fileName.includes('PNG')){
+          data.splice(i, 1);
+          data.unshift(item);
+        }
+      });
       this.sectionFiles = data;
       this.uploader.queue = data;
       console.log('getFiles: data', data);
