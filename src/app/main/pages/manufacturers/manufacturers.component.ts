@@ -37,6 +37,7 @@ export class ManufacturersComponent implements OnInit {
   public indColumn: any;
   public count: number = 0;
   public countTable: number = 0;
+  public languageOptions: any;
 
   constructor(
     private manufacturerService: ManufacturersService,
@@ -319,5 +320,56 @@ export class ManufacturersComponent implements OnInit {
     }
     this.pageChanged(1);
     this.getFilters(this.urls.length, 'init');
+  }
+
+  exportTable() {
+    console.log('exportTable', this.rows);
+    if (this.rows.length === 0) {
+      Swal.fire({
+        title: this.translateSnackBar.invalidMsg,
+        icon: 'warning',
+        confirmButtonColor: '#7367F0',
+        confirmButtonText: 'Ok',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+        }
+      }).then((result) => { });
+      return;
+    }
+    this.blockUI.start('Loading...');
+    this.manufacturerService.exportTable(this.arrFilters[0].model,
+      this.arrFilters[1].model,
+      this.arrFilters[2].model,
+      this.orderType,
+      this.orderBy).subscribe(response => {
+      console.log("DATA", response);
+      let blob: Blob = response.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    }, error => {
+      let blob: Blob = error.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    });
   }
 }

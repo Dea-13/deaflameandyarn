@@ -45,6 +45,10 @@ export class ProfilesService {
     return this._http.get<any>(`${environment.apiUrl}ProfileProduct/filter/${url}?eRPItem=${erpitem}&eRPVariant=${erpvariant}&opNo=${opNo}&cNC1=${cNC1}&cNC2=${cNC2}&subContractor1=${subContractor1}&punching1=${punching1}&punching2=${punching2}&garda3=${garda3}&minutesPerPiece=${minutesPerPiece}&weightPerPiece=${weightPerPiece}&lprkr=${lprkr}&lobr=${lobr}&npr=${npr}&setupSameProfile=${setupSameProfile}&setupOtherProfile=${setupOtherProfile}`);
   }
 
+  exportTable(eRPItem:string, eRPVariant:string, opNo:string, cNC1:string, cNC2:string, subContractor1:string, punching1:string, punching2:string, garda3:string, minutesPerPiece:string, weightPerPiece:string, lprkr:string, lobr:string, npr:string, setupSameProfile:string, setupOtherProfile:string, orderType: any, orderBy: any) {
+    return this._http.get<any>(`${environment.apiUrl}ProfileProduct/export?eRPItem=${eRPItem}&eRPVariant=${eRPVariant}&opNo=${opNo}&cNC1=${cNC1}&cNC2=${cNC2}&subContractor1=${subContractor1}&punching1=${punching1}&punching2=${punching2}&garda3=${garda3}&minutesPerPiece=${minutesPerPiece}&weightPerPiece=${weightPerPiece}&lprkr=${lprkr}&lobr=${lobr}&npr=${npr}&setupSameProfile=${setupSameProfile}&setupOtherProfile=${setupOtherProfile}&orderType=${orderType}&orderBy=${orderBy}`, { observe: 'response', responseType: 'blob' as 'json' });
+  }
+
 
   ///////////////// MODAL
 
@@ -141,5 +145,11 @@ export class ProfilesService {
 
   getPress() {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/press`);
+  }
+
+  exportTableProfile(profileName:string, groupCode:string, section:string, perimeter:string, grM:string, primaryPress:string, alternativePress:string, size1:string, size2:string, size3:string,
+    size4:string, usage:string, extrusionSpeed:string, extrusionSpeedSms:string, opPerf:string, tbillet:string, tExit:string, puller:string, scrapStart:string, scrapStartSms:string,
+    scrapEnd:string, cooling:string, coolingSms:string, coolingAdd:string, basketOrdering:string, notesExtrusion:string, important:string, inUse:string, orderType: any, orderBy: any) {
+    return this._http.get<any>(`${environment.apiUrl}Profiles/export?profileName=${profileName}&groupCode=${groupCode}&section=${section}&perimeter=${perimeter}&grM=${grM}&primaryPress=${primaryPress}&alternativePress=${alternativePress}&size1=${size1}&size2=${size2}&size3=${size3}&size4=${size4}&usage=${usage}&extrusionSpeed=${extrusionSpeed}&extrusionSpeedSms=${extrusionSpeedSms}&opPerf=${opPerf}&tbillet=${tbillet}&tExit=${tExit}&puller=${puller}&scrapStart=${scrapStart}&scrapStartSms=${scrapStartSms}&scrapEnd=${scrapEnd}&cooling=${cooling}&coolingSms=${coolingSms}&coolingAdd=${coolingAdd}&basketOrdering=${basketOrdering}&notesExtrusion=${notesExtrusion}&important=${important}&inUse=${inUse}&orderType=${orderType}&orderBy=${orderBy}`, { observe: 'response', responseType: 'blob' as 'json' });
   }
 }

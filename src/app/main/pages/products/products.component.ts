@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ProfilesService } from '../../../@core/services/profiles.service';
 import { ModalProfileProductsComponent } from '../../modals/modal-profile-products/modal-profile-products.component';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -63,7 +65,8 @@ export class ProductsComponent implements OnInit {
     private profileService: ProfilesService,
     public translate: TranslateService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService,
   ) {
     this.translate.get('translate').subscribe((snackBar: string) => {
       this.translateSnackBar = snackBar;
@@ -346,5 +349,71 @@ export class ProductsComponent implements OnInit {
         }
       }
     }
+  }
+
+  exportTable() {
+    console.log('exportTable', this.rows);
+    if (this.rows.length === 0) {
+      Swal.fire({
+        title: this.translateSnackBar.invalidMsg,
+        icon: 'warning',
+        confirmButtonColor: '#7367F0',
+        confirmButtonText: 'Ok',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+        }
+      }).then((result) => { });
+      return;
+    }
+    this.blockUI.start('Loading...');
+    this.profileService.exportTable(
+      this.arrFilters[0].model,
+        this.arrFilters[1].model,
+        this.arrFilters[2].model,
+        this.arrFilters[3].model,
+        this.arrFilters[4].model,
+        this.arrFilters[5].model,
+        this.arrFilters[6].model,
+        this.arrFilters[7].model,
+        this.arrFilters[8].model,
+        this.arrFilters[9].model,
+        this.arrFilters[10].model,
+        this.arrFilters[11].model,
+        this.arrFilters[12].model,
+        this.arrFilters[13].model,
+        this.arrFilters[14].model,
+        this.arrFilters[15].model,
+        this.orderType,
+        this.orderBy
+    ).subscribe(response => {
+      console.log("DATA", response);
+      let blob: Blob = response.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    }, error => {
+      let blob: Blob = error.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    });
   }
 }

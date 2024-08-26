@@ -395,4 +395,8 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}DieDocumentFiles/DownloadFile/${id}/${dieId}`, { observe: 'response', responseType: 'blob' as 'json' });
   }
 
+  exportTable(DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string, DateOrder:any, DateConfirmation:string, DateExpedition:string, DateScrapped:string, GrM:string, LastModified:string, BmwInventoryNumber:string, DieLiveQty: string, orderType: any, orderBy: any) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/export?DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`, { observe: 'response', responseType: 'blob' as 'json' });
+  }
+
 }

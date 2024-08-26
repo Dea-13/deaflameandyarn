@@ -548,6 +548,9 @@ export const locale = {
       measuredRockwellHardness: 'Measured Hardness/Rockwell',
       mechanical: 'Mechanical Indicators',
       zeroMsg: 'You cannot enter value 0! It needs to be higher than 0.',
+      export: 'Export',
+      invalidMsg: 'There is no data for export.',
+      exportSuccess: 'Exported successfully',
     }
   }
 }
