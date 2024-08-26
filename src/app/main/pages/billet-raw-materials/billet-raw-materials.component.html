@@ -32,11 +32,17 @@
 
                     <div class="col-xl-7 col-12">
                       <div class="row col-12 align-items-center  justify-content-start">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-6">
                           <div class="row">
                             <div class="col-12 col-md-4 col-lg-6 text-end filters-header">{{ translateSnackBar.lastRefreshed }}: </div>
                             <div class="col-12 col-md-4 col-lg-6 filters-header">{{ refreshed | date:'dd/MM/yyyy H:mm:ss'}}</div>
                           </div>
+                        </div>
+                        <div class="col-12 col-lg-6 text-right">
+                          <button class="btn btn-warning ml-1" rippleEffect (click)="exportTable()">
+                            <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
+                            <span class="d-none d-sm-inline-block"> {{ translateSnackBar.export }} </span>
+                          </button>
                         </div>
                       </div>
                     </div>

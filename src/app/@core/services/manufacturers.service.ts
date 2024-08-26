@@ -35,6 +35,10 @@ export class ManufacturersService {
   updateManufacturer(manufacturer: any) {
     const data = JSON.stringify(manufacturer);
     return this._http.put(`${environment.apiUrl}Suppliers`, data);
-}
+  }
+
+  exportTable(name:string, email:string, shipment:string, orderType:number, orderBy: number) {
+    return this._http.get<any>(`${environment.apiUrl}Suppliers/export?name=${name}&email=${email}&shipment=${shipment}&orderType=${orderType}&orderBy=${orderBy}`, { observe: 'response', responseType: 'blob' as 'json' });
+  }
 
 }

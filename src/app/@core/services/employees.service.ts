@@ -37,4 +37,8 @@ export class EmployeesService {
     return this._http.put(`${environment.apiUrl}Employees`, data);
   }
 
+  exportTable(name:string, department: string, privilege: string, orderType:number, orderBy: number) {
+    return this._http.get<any>(`${environment.apiUrl}Employees/export?name=${name}&department=${department}&privilege=${privilege}&orderType=${orderType}&orderBy=${orderBy}`, { observe: 'response', responseType: 'blob' as 'json' });
+  }
+
 }

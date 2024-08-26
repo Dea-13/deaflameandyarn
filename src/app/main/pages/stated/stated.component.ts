@@ -8,6 +8,8 @@ import { DetailsDieModalComponent } from '../../modals/details-die-modal/details
 import { FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-stated',
@@ -91,6 +93,7 @@ export class StatedComponent implements OnInit {
     private matrixService: MatrixService,
     public translate: TranslateService,
     private modalService: NgbModal,
+    private toastrService: ToastrService,
     private router: Router
   ) {
     console.log('this.router.url', this.router.url);
@@ -680,6 +683,53 @@ export class StatedComponent implements OnInit {
         }
       }
     }
+  }
+
+  exportTable() {
+    console.log('exportTable', this.rows);
+    if (this.rows.length === 0) {
+      Swal.fire({
+        title: this.translateSnackBar.invalidMsg,
+        icon: 'warning',
+        confirmButtonColor: '#7367F0',
+        confirmButtonText: 'Ok',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+        }
+      }).then((result) => { });
+      return;
+    }
+    this.blockUI.start('Loading...');
+    this.matrixService.exportTable(this.arrFilters[0].model, this.arrFilters[1].model, this.arrFilters[2].model, this.arrFilters[3].model, this.arrFilters[4].model, this.arrFilters[5].model, this.arrFilters[6].model, this.arrFilters[7].model, this.formatDate(this.selDateOrderForm.controls.selDateOrder.value), this.formatDate(this.selDateConfirmForm.controls.selDateConfirm.value), this.formatDate(this.selDateExpedForm.controls.selDateExped.value), this.formatDate(this.selDateScrappedForm.controls.selDateScrapped.value), this.grM, this.lastModified, this.bmwinventorynumber, this.dieLiveQty, this.orderType, this.orderBy).subscribe(response => {
+      console.log("DATA", response);
+      let blob: Blob = response.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    }, error => {
+      let blob: Blob = error.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    });
   }
 
 }

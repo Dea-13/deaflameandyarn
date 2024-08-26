@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '../../../@core/services/confirmation.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { FormGroup, FormControl } from '@angular/forms';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-confirmation-extrusion',
   templateUrl: './confirmation-extrusion.component.html',
@@ -414,4 +415,87 @@ export class ConfirmationExtrusionComponent implements OnInit {
     // this.getFilters(this.urls.length, 'init');
   }
 
+  exportTable() {
+    console.log('exportTable', this.rows);
+    if (this.rows.length === 0) {
+      Swal.fire({
+        title: this.translateSnackBar.invalidMsg,
+        icon: 'warning',
+        confirmButtonColor: '#7367F0',
+        confirmButtonText: 'Ok',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+        }
+      }).then((result) => { });
+      return;
+    }
+    this.blockUI.start('Loading...');
+    this.confService.exportTable(
+      this.arrFilters[0].model,
+      this.arrFilters[1].model,
+      this.arrFilters[2].model,
+      this.arrFilters[3].model,
+      this.arrFilters[4].model,
+      this.arrFilters[5].model,
+      this.arrFilters[6].model,
+      this.arrFilters[7].model,
+      this.arrFilters[8].model,
+      this.arrFilters[9].model,
+      this.arrFilters[10].model,
+      this.arrFilters[11].model,
+      this.arrFilters[12].model,
+      this.arrFilters[13].model,
+      this.arrFilters[14].model,
+      this.arrFilters[15].model,
+      this.arrFilters[16].model,
+      this.arrFilters[17].model,
+      this.arrFilters[18].model,
+      this.arrFilters[19].model,
+      this.arrFilters[20].model,
+      this.arrFilters[21].model,
+      this.arrFilters[22].model,
+      this.arrFilters[23].model,
+      this.arrFilters[24].model,
+      this.arrFilters[25].model,
+      this.arrFilters[26].model,
+      this.arrFilters[27].model,
+      this.arrFilters[28].model,
+      this.arrFilters[29].model,
+      this.arrFilters[30].model,
+      this.arrFilters[30].model,
+      this.arrFilters[30].model,
+      this.arrFilters[30].model,
+      this.orderType,
+      this.orderBy
+    ).subscribe(response => {
+      console.log("DATA", response);
+      let blob: Blob = response.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    }, error => {
+      let blob: Blob = error.body as Blob;
+      let a = document.createElement('a');
+      a.download = 'Export';
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: this.translateSnackBar.exportSuccess ,
+        showConfirmButton: false,
+        timer: 2000
+      }).then((result) => { });
+      this.blockUI.stop();
+    });
+  }
 }
