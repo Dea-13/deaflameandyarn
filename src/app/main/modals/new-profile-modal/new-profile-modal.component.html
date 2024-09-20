@@ -261,15 +261,15 @@
                             </td>
                             <td>
                               <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="r.pressId"
-                                [disabled]="r.profileId" appendTo="body">
+                                [readonly]="!r.profileId" appendTo="body">
                                 <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                               </ng-select>
                             </td>
-                            <td><input class="form-control input" [(ngModel)]="r.channels" type="text"></td>
-                            <td><input class="form-control input" [(ngModel)]="r.priority" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.channels" [readonly]="!r.profileId" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.priority" [readonly]="!r.profileId" type="text"></td>
                             <td class="w-15">
                               <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="r.alloyFamily"
-                                (ngModelChange)="fillPressChannels(r)" appendTo="body">
+                                (ngModelChange)="fillPressChannels(r)" appendTo="body" [readonly]="!r.profileId">
                                 <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                               </ng-select>
                             </td>
@@ -319,13 +319,13 @@
                             </div>
                           </td>
                           <td class="w-25">
-                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [disabled]="rowLength.profileId">
+                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [readonly]="!rowLength.profileId">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text" [disabled]="rowLength.profileId"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="text"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text" [readonly]="!rowLength.profileId"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="text" [readonly]="!rowLength.profileId"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="text" [readonly]="!rowLength.profileId"></td>
                         </tr>
                       </tbody>
                     </table>
