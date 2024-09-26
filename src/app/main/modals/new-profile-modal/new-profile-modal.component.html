@@ -261,15 +261,15 @@
                             </td>
                             <td>
                               <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="r.pressId"
-                                [readonly]="!r.profileId" appendTo="body">
+                                 appendTo="body">
                                 <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                               </ng-select>
                             </td>
-                            <td><input class="form-control input" [(ngModel)]="r.channels" [readonly]="!r.profileId" type="text"></td>
-                            <td><input class="form-control input" [(ngModel)]="r.priority" [readonly]="!r.profileId" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.channels"  type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.priority"  type="text"></td>
                             <td class="w-15">
                               <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="r.alloyFamily"
-                                (ngModelChange)="fillPressChannels(r)" appendTo="body" [readonly]="!r.profileId">
+                                (ngModelChange)="fillPressChannels(r)" appendTo="body" >
                                 <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                               </ng-select>
                             </td>
