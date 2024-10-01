@@ -550,6 +550,7 @@ export const locale = {
       export: 'Екпорт',
       invalidMsg: 'Няма данни за експрот.',
       exportSuccess: 'Успешно изтегляне',
+      revProfile: 'Ревизия профил',
     }
   }
 }

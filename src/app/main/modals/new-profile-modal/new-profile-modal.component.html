@@ -63,6 +63,10 @@
                               <ng-option *ngFor="let g of groupCode" [value]="g.name">{{ g.name }}</ng-option>
                             </ng-select>
                           </div>
+                          <div class="col-md-12 flex header-section-profile">
+                            <label class="w-17-label">{{ translateSnackBar.revProfile }}</label>
+                            <input type="text" formControlName="revisionProfile" class="form-control dt-uname" style="width: 94%"/>
+                          </div>
                           <div class="col-md-12 flex">
                             <label class="label-checkbox">{{ translateSnackBar.inUse }}</label>
                             <input class="form-control input" formControlName="inUse" type="checkbox"
