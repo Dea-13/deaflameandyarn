@@ -551,6 +551,7 @@ export const locale = {
       export: 'Export',
       invalidMsg: 'There is no data for export.',
       exportSuccess: 'Exported successfully',
+      revProfile: 'Revision Profile',
     }
   }
 }
