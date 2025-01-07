@@ -216,6 +216,7 @@ export const locale = {
       general: 'Общи',
       extrusion: 'Екструзия',
       speeds: 'Скорости',
+      pullerSpeeds: "Скорости",
       lengthFrontBack: 'Дължини преден/заден край',
       forPress: 'За преса',
       produced: 'Произведено',

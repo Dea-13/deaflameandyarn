@@ -243,7 +243,10 @@
                           <th>{{ translateSnackBar.channels }}</th>
                           <th>{{ translateSnackBar.priority }}</th>
                           <th>{{ translateSnackBar.alloy }}</th>
-                          <th>{{ translateSnackBar.speed }}</th>
+                          <th>{{ translateSnackBar.pullerSpeeds }}</th>
+                          <th>{{ translateSnackBar.extrusionSpeeds }}</th>
+                          <th>{{ translateSnackBar.BilletT }}</th>
+                          <th>{{ translateSnackBar.DieT }}</th>
                         </thead>
                         <tbody>
                           <tr *ngFor="let r of tabSpeed; let i = index">
@@ -278,6 +281,9 @@
                               </ng-select>
                             </td>
                             <td><input class="form-control input" [(ngModel)]="r.speed" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.extrusionSpeed" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.billetTemperature" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.dieTemperature" type="text"></td>
                           </tr>
                         </tbody>
                       </table>
