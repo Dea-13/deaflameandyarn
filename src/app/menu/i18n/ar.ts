@@ -148,6 +148,7 @@ export const locale = {
       inUseBy: '',
       additional: '',
       noteRequest: '',
+      originalPressOpor: '',
       use: '',
       reasonBrak: '',
       others: '',

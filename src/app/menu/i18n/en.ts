@@ -186,6 +186,7 @@ export const locale = {
       inUseBy: 'In use by',
       additional: 'Additional',
       noteRequest: 'Note request',
+      originalPressOpor: 'Original press support',
       noteReqTable: 'NR',
       use: 'Usage',
     reasonBrak: 'Reason brak',

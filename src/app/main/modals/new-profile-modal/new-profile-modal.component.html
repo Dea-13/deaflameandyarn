@@ -301,8 +301,8 @@
                         </th>
                         <th>{{ translateSnackBar.alloy }}</th>
                         <th>{{ translateSnackBar.channels }}</th>
-                        <th>{{ translateSnackBar.lengthStart }}</th>
                         <th>{{ translateSnackBar.lengthEnd }}</th>
+                        <th>{{ translateSnackBar.lengthStart }}</th>
                       </thead>
                       <tbody>
                         <tr *ngFor="let rowLength of rowsLength; let i = index">
@@ -323,13 +323,13 @@
                             </div>
                           </td>
                           <td class="w-25">
-                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body" [readonly]="!rowLength.profileId">
+                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body">
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text" [readonly]="!rowLength.profileId"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="text" [readonly]="!rowLength.profileId"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="text" [readonly]="!rowLength.profileId"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="text"></td>
                         </tr>
                       </tbody>
                     </table>

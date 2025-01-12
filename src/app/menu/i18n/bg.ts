@@ -186,6 +186,7 @@ export const locale = {
       inUseBy: 'В употреба от',
       additional: 'Допълнителни',
       noteRequest: 'Бележка заявка',
+      originalPressOpor: 'Оригинална опора на преса',
       noteReqTable: 'БЗ',
       use: 'Употреба',
       reasonBrak: 'Причина брак',
