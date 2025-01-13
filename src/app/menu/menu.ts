@@ -57,14 +57,6 @@ export const menu: CoreMenu[] = [
         url: 'api/productivity'
       },
       {
-        id: 'dies-by-month',
-        title: 'In Use By Month',
-        translate: 'MENU.INUSEMONTH',
-        type: 'item',
-        icon: 'check-circle',
-        url: 'api/dies-by-month'
-      },
-      {
         id: 'nomotion',
         title: 'No Motion',
         translate: 'MENU.NOMOTION',
@@ -297,6 +289,21 @@ export const menu: CoreMenu[] = [
   //   url: 'api/reports'
   // },
 
+  {
+    id: 'apps',
+    type: 'section',
+    title: 'Settings',
+    translate: 'MENU.REPORT',
+    icon: 'package',
+  },
+  {
+    id: 'dies-by-month',
+    title: 'In Use By Month',
+    translate: 'MENU.INUSEMONTH',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/dies-by-month'
+  },
   {
     id: 'apps',
     type: 'section',

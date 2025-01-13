@@ -49,6 +49,7 @@ export const locale = {
       SETDIE: 'Настройка',
       DIES: 'Матрици',
       INUSEMONTH: 'В употреба по месец',
+      REPORT: 'Репорт'
     },
     translate: {
       matrix: 'Матрица',

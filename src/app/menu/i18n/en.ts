@@ -49,6 +49,7 @@ export const locale = {
       SETDIE: 'Settings Die',
       DIES: 'Dies',
       INUSEMONTH: 'In Use By Month',
+      REPORT: 'Report',
     },
     translate: {
       matrix: 'Die',
