@@ -92,13 +92,6 @@
                       <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.clientName}}</span></td>
                     </ng-container>
 
-                    <ng-container matColumnDef="countInUse">
-                      <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.usedPieces">
-                        <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.usedPiecesTable }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.countUsages}}</span></td>
-                    </ng-container>
-
                     <ng-container matColumnDef="channels">
                       <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.channels">
                         <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.channels }}</span>
@@ -106,7 +99,7 @@
                       <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.channels}}</span></td>
                     </ng-container>
 
-                    <ng-container matColumnDef="placeSklad">
+                    <ng-container matColumnDef="storegePlace">
                       <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.plaseSklad">
                         <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.plaseSklad }}</span>
                       </th>
@@ -118,13 +111,6 @@
                         <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.lastTransaction }}</span>
                       </th>
                       <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.lastTransaction | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="totalWeight">
-                      <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.totalWeight">
-                        <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.totalWeight }}</span>
-                      </th>
-                      <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kg}}</span></td>
                     </ng-container>
 
                     <ng-container matColumnDef="gr">

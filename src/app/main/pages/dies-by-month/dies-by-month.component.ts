@@ -22,7 +22,7 @@ export class DiesByMonthComponent implements OnInit {
   public columnsToDisplay = ['name'];
   public columnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
   public expandedElement: null;
-  public displayedColumns: string[] = ['dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName', 'countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction', 'gr', 'inUseFrom'];
+  public displayedColumns: string[] = ['dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName', 'channels', 'storegePlace', 'lastTransaction', 'gr', 'inUseFrom'];
   public size = 13;
   public rows = [{}];
   public languageOptions: any;
