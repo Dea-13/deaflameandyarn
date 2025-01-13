@@ -48,6 +48,7 @@ export class DiesByMonthComponent implements OnInit {
   }
 
   getDataByMonth() {
+    this.arrDataMonths = [];
     this.blockUI.start('Loading...');
     this.matrixService.getDataByMonth().subscribe((data) => {
       this.arrDataMonths = data;
