@@ -48,6 +48,7 @@ export const locale = {
       RECIPE: 'Рецепта',
       SETDIE: 'Настройка',
       DIES: 'Матрици',
+      INUSEMONTH: 'В употреба по месец',
     },
     translate: {
       matrix: 'Матрица',
@@ -552,6 +553,8 @@ export const locale = {
       invalidMsg: 'Няма данни за експрот.',
       exportSuccess: 'Успешно изтегляне',
       revProfile: 'Ревизия профил',
+      endTime: 'Крайно време',
+      newClient: 'Добавяне на нов клиент',
     }
   }
 }

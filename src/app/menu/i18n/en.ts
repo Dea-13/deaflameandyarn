@@ -48,6 +48,7 @@ export const locale = {
       RECIPE: 'Recipe',
       SETDIE: 'Settings Die',
       DIES: 'Dies',
+      INUSEMONTH: 'In Use By Month',
     },
     translate: {
       matrix: 'Die',
@@ -553,6 +554,8 @@ export const locale = {
       invalidMsg: 'There is no data for export.',
       exportSuccess: 'Exported successfully',
       revProfile: 'Revision Profile',
+      endTime: 'End Time',
+      newClient: 'Add new client',
     }
   }
 }

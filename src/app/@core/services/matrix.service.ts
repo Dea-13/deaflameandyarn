@@ -399,4 +399,14 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/export?DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}&substatus=${substatus}&DateOrder=${DateOrder}&DateConfirmation=${DateConfirmation}&DateExpedition=${DateExpedition}&DateScrapped=${DateScrapped}&GrM=${GrM}&LastModified=${LastModified}&BmwInventoryNumber=${BmwInventoryNumber}&DieLiveQty=${DieLiveQty}&orderType=${orderType}&orderBy=${orderBy}`, { observe: 'response', responseType: 'blob' as 'json' });
   }
 
+  // BY MONTH MENU
+
+  getDataByMonth(){
+    return this._http.get<any>(`${environment.apiUrl}Dies/report/date/list/40`);
+  }
+
+  subTableByMonth(startTime:number, endTime:any, ) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/report?startTime=${startTime}&endTime=${endTime}&status=40`);
+  }
+
 }

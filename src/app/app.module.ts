@@ -76,6 +76,7 @@ import { RecipeComponent } from './main/pages/recipe/recipe.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UploadModalComponent } from './main/modals/upload-modal/upload-modal.component';
 import {CookieService} from 'ngx-cookie-service';
+import { DiesByMonthComponent } from './main/pages/dies-by-month/dies-by-month.component';
 
 
 const appRoutes: Routes = [
@@ -240,6 +241,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/dies-by-month',
+    component: DiesByMonthComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/recipe',
     component: RecipeComponent,
     pathMatch: 'full'
@@ -260,6 +266,7 @@ const appRoutes: Routes = [
     ComponentComponent,
     PdfViewerModalComponent,
     StatedComponent,
+    DiesByMonthComponent,
     MovementMatrixComponent,
     UserViewComponent,
     ProductsComponent,
