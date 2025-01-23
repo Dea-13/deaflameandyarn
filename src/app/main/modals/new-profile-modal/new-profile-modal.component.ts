@@ -259,6 +259,7 @@ export class NewProfileModalComponent implements OnInit {
   addRowSpeedLength(rowsLength) {
     console.log("add row", rowsLength);
     let emptyRow = {
+      pressId: "",
       channels: "",
       alloy: "",
       lengthStart: "",
@@ -270,7 +271,9 @@ export class NewProfileModalComponent implements OnInit {
 
   pressEndValidation(row: any): boolean {
     console.log("invalid++++++:", row);
-    if (row.alloyFamily == "") {
+    if (row.pressId == "") {
+      return false;
+    } else if (row.alloyFamily == "") {
       return false;
     } else if (row.channels == "") {
       return false;
@@ -309,6 +312,7 @@ export class NewProfileModalComponent implements OnInit {
       this.validation = this.pressEndValidation(rowsLength[ind]);
       if (this.validation) {
         obj = {
+          pressId: row.pressId,
           channels: row.channels,
           alloyFamily: row.alloyFamily,
           profileId: row.profileId ? row.profileId : this.profileId,

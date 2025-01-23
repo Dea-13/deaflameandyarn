@@ -299,6 +299,7 @@
                             <i class="fa fa-plus-circle"></i>
                           </button>
                         </th>
+                        <th>{{ translateSnackBar.press }}</th>
                         <th>{{ translateSnackBar.alloy }}</th>
                         <th>{{ translateSnackBar.channels }}</th>
                         <th>{{ translateSnackBar.lengthEnd }}</th>
@@ -321,6 +322,12 @@
                                 <span [data-feather]="'delete'" [class]="'mr-25 size-feather'"></span>
                               </span>
                             </div>
+                          </td>
+                          <td>
+                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="rowLength.pressId"
+                               appendTo="body">
+                              <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
+                            </ng-select>
                           </td>
                           <td class="w-25">
                             <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body">
