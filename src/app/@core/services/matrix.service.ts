@@ -297,6 +297,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}ExtrusionConfirmation/GetExtrusionConfirmation/${id}`);
   }
 
+  getReport(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/GetDiesDosie/${id}`);
+  }
+
   getResourceTable(id: number) {
     return this._http.get<any>(`${environment.apiUrl}DieMovement/getDieMovementByMachine?dieId=${id}`);
   }

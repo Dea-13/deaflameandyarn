@@ -52,6 +52,7 @@ export const locale = {
       REPORT: 'Report',
     },
     translate: {
+      report: 'Report',
       matrix: 'Die',
       matrixTable: 'Die',
       profile: 'Profile',
@@ -557,6 +558,16 @@ export const locale = {
       revProfile: 'Revision Profile',
       endTime: 'End Time',
       newClient: 'Add new client',
+      pad: 'Pad',
+      dieNumber: 'Die Number',
+      weightGrm: 'Weight, gr/m',
+      supplier: 'Supplier',
+      numberChannels: 'Channels Number',
+      print: 'Print',
+      okCode: 'OKK Code',
+      ecsWeight: 'Extruded weight',
+      TotalM: 'Total, m',
+      weightProfile: 'Weight profile',
     }
   }
 }
