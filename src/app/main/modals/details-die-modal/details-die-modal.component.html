@@ -867,7 +867,7 @@
                     <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.weightProfile }}</th>
                     <!-- <th>{{ translateSnackBar.notes }}</th> -->
                   </thead>
-                  <tbody *ngFor="let d of reportDossier;let i = index;">
+                  <tbody *ngFor="let d of reportDossier;let i = index;" [ngClass]="{ 'bg-success': d.resourceName === 'Азотиране' || d.resourceName === 'Корекция Матрици' }">
                     <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.postingDate | date:'dd/MM/yyyy'}}</td>
                     <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.resourceName}}</td>
                     <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.dieStatus}}</td>
