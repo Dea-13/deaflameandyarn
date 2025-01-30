@@ -293,6 +293,21 @@ export const menu: CoreMenu[] = [
     id: 'apps',
     type: 'section',
     title: 'Settings',
+    translate: 'MENU.REPORT',
+    icon: 'package',
+  },
+  {
+    id: 'dies-by-month',
+    title: 'In Use By Month',
+    translate: 'MENU.INUSEMONTH',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/dies-by-month'
+  },
+  {
+    id: 'apps',
+    type: 'section',
+    title: 'Settings',
     translate: 'MENU.SETTINGS',
     icon: 'package',
   },

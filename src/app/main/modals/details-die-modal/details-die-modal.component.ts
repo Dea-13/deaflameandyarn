@@ -83,6 +83,9 @@ export class DetailsDieModalComponent implements OnInit {
   public filesArr: Array<any> = [];
   public filesUpload: Array<any> = [];
   public modalOption: NgbModalOptions = {};
+  public reportData: any;
+  public reportFiles: any;
+  public reportDossier: any;
 
   constructor(
     private toastrService: ToastrService,
@@ -116,6 +119,7 @@ export class DetailsDieModalComponent implements OnInit {
     this.getResourceTable();
     this.getComments();
     this.getFiles();
+    this.getReport();
   }
 
   fullScreen(){
@@ -649,6 +653,38 @@ export class DetailsDieModalComponent implements OnInit {
       );
       this.getFiles();
     });
+  }
+
+  getReport() {
+    this.blockUI.start('Loading...');
+    this.matrixService.getReport(this.dieRow.id).subscribe((data) => {
+      for(let i=0; i < data.diedosier.length; i++) {
+        // data.diedosier[i].sum = 0;
+      }
+      for(let i=0; i < data.diedosier.length; i++) {
+        if(!data.diedosier[i].sum) { data.diedosier[i].sum = 0;}
+        // if(i != 0 ) {
+          data.diedosier[i].sum = data.diedosier[i === 0 ? 0 : (i-1)].sum + data.diedosier[i].kg;
+          console.log('====', data.diedosier[i].kg, data.diedosier[i === 0 ? 0 : (i-1)].sum)
+        // }
+      }
+      this.reportData = data.dieinfo;
+      this.reportFiles = data.diefiles;
+      this.reportDossier = data.diedosier;
+      this.blockUI.stop();
+    },error => {
+      console.log('error', error);
+      this.blockUI.stop();
+    });
+  }
+
+  print(printSectionId: string) {
+    let popupWinindow
+    let innerContents = document.getElementById(printSectionId).innerHTML;
+    popupWinindow = window.open("", "", "width=880,height=800,resizable,scrollbars=yes");
+    popupWinindow.document.open();
+    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="./../../../../../src/styles.scss" /></head><body onload="window.print();window.close()">' + innerContents + '</html>');
+    popupWinindow.document.close();
   }
 
 }

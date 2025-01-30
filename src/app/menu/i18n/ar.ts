@@ -44,6 +44,7 @@ export const locale = {
       PRODUCTIVITYNITRIFICATION: '',
       CONFEXTRUSION: '',
       BILLETMAT: '',
+      INUSEMONTH: '',
     },
     translate: {
       matrix: '',
@@ -148,6 +149,7 @@ export const locale = {
       inUseBy: '',
       additional: '',
       noteRequest: '',
+      originalPressOpor: '',
       use: '',
       reasonBrak: '',
       others: '',
@@ -389,6 +391,8 @@ export const locale = {
       lastModifiedBy: '',
       date: '',
       dies: '',
+      endTime: '',
+      newClient: '',
     }
   }
 }

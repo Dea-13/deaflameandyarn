@@ -51,6 +51,7 @@ export class NewMatrixModalComponent implements OnInit {
   public isEditableRowsEnd = {};
   public validation: boolean;
   public markedForTestDateTime: any = null;
+  public newClient: boolean = true;
   fullScr: boolean = false;
 
 
@@ -105,7 +106,7 @@ export class NewMatrixModalComponent implements OnInit {
       type: [''],
       anodizingQuality: [false],
       dieIndex: [null],
-      container: [null],      
+      container: [null],
       diesDefDimByResId: [null],
       bolsterTooling1: [''],
       bolsterTooling2: [''],
@@ -193,14 +194,14 @@ export class NewMatrixModalComponent implements OnInit {
         profile: this.matrix.profileId,
         matrix: this.matrix.dieId,
         status: this.matrix.status,
-        channels: this.matrix.channels,        
+        channels: this.matrix.channels,
         dieHolder: this.matrix.dieHolder,
         oporenPrysten: this.matrix.oporenPrysten,
         opora: this.matrix.opora,
         Pressshaiba: this.matrix.Pressshaiba,
         type: this.matrix.type,
         anodizingQuality: this.matrix.anodizingQuality,
-        dieIndex: this.matrix.dieIndex,        
+        dieIndex: this.matrix.dieIndex,
         bmwInventoryNumber: this.matrix.bmwInventoryNumber,
         dieLiveQty: this.matrix.dieLiveQty,
         container: this.matrix.container,
@@ -391,6 +392,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getClientName().subscribe((data) => {
       this.clientNameArr = data;
+      if(this.clientNameArr.length > 0) { this.newClient = false; } else { this.newClient = true }
       this.blockUI.stop();
     },error => {
       console.log('error', error);
@@ -1089,7 +1091,7 @@ export class NewMatrixModalComponent implements OnInit {
       this.matrix.type = this.createMatrixForm.controls.type.value,
       this.matrix.dieLiveQty = this.createMatrixForm.controls.dieLiveQty.value,
       this.matrix.anodizingQuality = this.createMatrixForm.controls.anodizingQuality.value,
-      this.matrix.dieIndex = this.createMatrixForm.controls.dieIndex.value,      
+      this.matrix.dieIndex = this.createMatrixForm.controls.dieIndex.value,
       this.matrix.bmwInventoryNumber = this.createMatrixForm.controls.bmwInventoryNumber.value,
       this.matrix.container = this.createMatrixForm.controls.container.value,
       this.matrix.diesDefDimByResId = this.createMatrixForm.controls.diesDefDimByResId.value,

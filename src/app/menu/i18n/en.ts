@@ -48,8 +48,11 @@ export const locale = {
       RECIPE: 'Recipe',
       SETDIE: 'Settings Die',
       DIES: 'Dies',
+      INUSEMONTH: 'In Use By Month',
+      REPORT: 'Report',
     },
     translate: {
+      report: 'Report',
       matrix: 'Die',
       matrixTable: 'Die',
       profile: 'Profile',
@@ -186,6 +189,7 @@ export const locale = {
       inUseBy: 'In use by',
       additional: 'Additional',
       noteRequest: 'Note request',
+      originalPressOpor: 'Original press support',
       noteReqTable: 'NR',
       use: 'Usage',
     reasonBrak: 'Reason brak',
@@ -556,6 +560,18 @@ export const locale = {
       invalidMsg: 'There is no data for export.',
       exportSuccess: 'Exported successfully',
       revProfile: 'Revision Profile',
+      endTime: 'End Time',
+      newClient: 'Add new client',
+      pad: 'Pad',
+      dieNumber: 'Die Number',
+      weightGrm: 'Weight, gr/m',
+      supplier: 'Supplier',
+      numberChannels: 'Channels Number',
+      print: 'Print',
+      okCode: 'OKK Code',
+      ecsWeight: 'Extruded weight',
+      TotalM: 'Total, m',
+      weightProfile: 'Weight profile',
     }
   }
 }

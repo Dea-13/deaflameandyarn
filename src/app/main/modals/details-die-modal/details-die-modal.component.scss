@@ -168,6 +168,11 @@
     margin: 15px 30px 15px 0px;
     padding: 5px 5px 1px 5px;
   }
+
+  #printSectionId table {
+    display: block;
+    overflow: auto;
+  }
 }
 
 label, h2{
@@ -362,4 +367,17 @@ th {
 .no-image{
   text-align: center;
   margin-top: 200px;
+}
+
+.table.report th, .table.report td {
+  border-right: 1px solid #ebe9f1;
+  border-left: 1px solid #ebe9f1;
+}
+
+table.report {
+  border-top: none!important;
+}
+
+.bg-success {
+  background-color: #CDFFDD !important;
 }
