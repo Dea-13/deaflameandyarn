@@ -567,6 +567,10 @@ export const locale = {
       ecsWeight: 'Екструдирано тегло',
       TotalM: 'Тотал, м',
       weightProfile: 'Тегло профил',
+      ecsWeightPress: 'Екстрд Кг',
+      totalMPress: 'Тотал Кг',
+      weightProfilePress: 'Профил Гр/м',
+      pressTab: 'Машина',
     }
   }
 }

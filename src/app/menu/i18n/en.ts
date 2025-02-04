@@ -568,6 +568,10 @@ export const locale = {
       ecsWeight: 'Extruded weight',
       TotalM: 'Total, m',
       weightProfile: 'Weight profile',
+      ecsWeightPress: 'Extrd Kg',
+      totalMPress: 'Total Kg',
+      weightProfilePress: 'Profile Gr/m',
+      pressTab: 'Workcenter',
     }
   }
 }
