@@ -572,6 +572,8 @@ export const locale = {
       totalMPress: 'Total Kg',
       weightProfilePress: 'Profile Gr/m',
       pressTab: 'Workcenter',
+      clean: 'Cleaning',
+      correction: 'Correction',
     }
   }
 }
