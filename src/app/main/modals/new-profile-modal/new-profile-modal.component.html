@@ -148,11 +148,13 @@
                         </div>
                         <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.cut }}</label>
-                          <input type="number" formControlName="section" class="form-control dt-uname" [ngClass]="{ 'error': submitted && !createProfileForm.get('section').value}" required />
+                          <input type="number" formControlName="section" class="form-control dt-uname" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                           [ngClass]="{ 'error': submitted && !createProfileForm.get('section').value}" required />
                         </div>
                         <div class="col-md-4 flex">
                           <label>{{ translateSnackBar.perimeter }}</label>
-                          <input type="number" formControlName="perimeter" class="form-control dt-uname" [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('perimeter').value}" required />
+                          <input type="number" formControlName="perimeter" class="form-control dt-uname" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                          [ngClass]="{ 'error': !profileId && submitted && !createProfileForm.get('perimeter').value}" required />
                         </div>
                       </div>
                     </form>
