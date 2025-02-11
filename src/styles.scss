@@ -1155,3 +1155,8 @@ input[type="search"] {
 .mat-form-field-appearance-legacy .mat-form-field-wrapper {
   padding-bottom: 0.25em!important;
 }
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #efefef !important;
+  opacity: 1;
+}

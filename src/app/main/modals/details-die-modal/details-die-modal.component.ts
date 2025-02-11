@@ -669,7 +669,7 @@ export class DetailsDieModalComponent implements OnInit {
         // }
       }
       this.reportData = data.dieinfo;
-      this.reportFiles = data.diefiles;
+      this.reportFiles = data.diefiles[0];
       this.reportDossier = data.diedosier;
       this.blockUI.stop();
     },error => {

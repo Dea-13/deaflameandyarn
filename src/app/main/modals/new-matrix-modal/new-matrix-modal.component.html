@@ -543,13 +543,13 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.hardnessManufacturerRockwell }}</label>
-                      <input formControlName="hardnessManufacturerRockwell" type="number" class="form-control dt-uname" />
+                      <input formControlName="hardnessManufacturerRockwell" type="number" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control dt-uname" />
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.measuredRockwellHardness }}</label>
-                      <input formControlName="measuredRockwellHardness" type="number" class="form-control dt-uname" />
+                      <input formControlName="measuredRockwellHardness" type="number" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control dt-uname" />
                     </div>
                   </div>
                 </div>

@@ -412,7 +412,7 @@ export class DieScanPageComponent implements OnInit {
         this.directionReporting = 1;
         this.barCode = '';
         this.resourceIn = undefined;
-        this.notes = undefined;
+        this.notes = '';
         this.productionKg = undefined;
         this.rowsMovements = [];
       });

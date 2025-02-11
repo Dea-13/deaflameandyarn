@@ -414,11 +414,11 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('submitForm', this.profile);
+    console.log('submitForm', this.profile, this.createProfileForm.controls.profileName.value.match(/_/g) != 'null', this.profile, this.createProfileForm.controls.profileName.value.match(/_/g) != null);
     let obj;
     this.submitted = true;
     obj = {
-      profileName: this.createProfileForm.controls.profileName.value,
+      profileName: this.createProfileForm.controls.profileName.value.replace("_",""),
       refNumber: this.createProfileForm.controls.refNumber.value,
       groupCode: this.createProfileForm.controls.groupCode.value,
       revisionProfile: this.createProfileForm.controls.revisionProfile.value,
@@ -469,8 +469,7 @@ export class NewProfileModalComponent implements OnInit {
       thickness: null,
       sideWidth: null
     }
-    console.log('obj', obj, this.profile, this.profileId, this.createProfileForm.controls.profileName.value.match(/_/g), this.createProfileForm);
-    if(this.createProfileForm.controls.profileName.value.match(/_/g) != null){
+    if(this.createProfileForm.controls.profileName.value.match(/_/g) != null && this.createProfileForm.controls.profileName.value.match(/_/g).length != 1){
       Swal.fire({
         position: 'bottom-end',
         icon: 'warning',

@@ -61,7 +61,10 @@
             </div>
             <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.notes }}</label>
-              <input class="form-control input" type="text" [(ngModel)]="notes">
+              <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" class="" [(ngModel)]="notes" [clearable]="false">
+                <ng-option [value]="'Почистване'">{{translateSnackBar.clean}}</ng-option>
+                <ng-option [value]="'Корекция'">{{translateSnackBar.correction}}</ng-option>
+              </ng-select>
             </div>
             <div role="button" class="col-sm-2 align-items-center fixed-height">
               <div class="col-12">

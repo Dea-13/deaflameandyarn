@@ -61,7 +61,87 @@
         </div>
 
         <ul ngbNav #navMain="ngbNav" [(activeId)]="activeId" class="nav nav-fill nav-pills">
+
           <li [ngbNavItem]="6">
+            <a ngbNavLink>{{ translateSnackBar.report }}</a>
+            <ng-template ngbNavContent>
+              <button (click)="print('printSectionId')" class="btn btn-primary ml-1">
+                {{ translateSnackBar.print }}
+              </button>
+              <div id="printSectionId" class="col-12" style="width: 100%">
+                <div class="row" style="display: flex;width: 100%">
+                  <div class="col-12 col-xxl-10" style="margin: 6px 0px 6px 0px;">
+                    <table class="table report" style="display: inline-table;">
+                      <tbody>
+                        <tr>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.profile }}</b></td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ reportData.profileId }}</b></td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.pad }} 1</b></td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>XXXXX</b></td>
+                        </tr>
+
+                        <tr>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.dieNumber }}</b></td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.dieId }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.pad }} 2</b></td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">XXXXX</td>
+                        </tr>
+
+                        <tr>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.weightGrm }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.grM }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.supplier }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.producerName}}</td>
+                        </tr>
+
+                        <tr>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.numberChannels }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.channels }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.pad }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.inUseFrom | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+
+                        <tr>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.size }}, mm</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.diameter}} <span>*</span> {{reportData.thickness}}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.matricologist }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.correctorName}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-12 col-xxl-2">
+                    <img src="{{'data:image/png;base64,' + reportFiles.fileData}}" width="250">
+                  </div>
+                </div>
+
+                <table class="table report" style="width: 100%">
+                  <thead>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.date }}</th>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.pressTab }}</th>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.pullerSpeed }}</th>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.okCode }}</th>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.ecsWeightPress }}</th>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.totalMPress }}</th>
+                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.weightProfilePress }}</th>
+                    <!-- <th>{{ translateSnackBar.notes }}</th> -->
+                  </thead>
+                  <tbody *ngFor="let d of reportDossier;let i = index;" [ngClass]="{ 'bg-success': d.resourceName === 'Азотиране' || d.resourceName === 'Корекция Матрици' }">
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.postingDate | date:'dd/MM/yyyy'}}</td>
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.resourceName}}</td>
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.pullerSpeed}}</td>
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.dieStatus}}</td>
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.kg}}</td>
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.sum}}</td>
+                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.grm}}</td>
+                    <!-- <td>{{d.}}</td> -->
+                  </tbody>
+                </table>
+
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="7">
             <a ngbNavLink>{{ translateSnackBar.infoProfile }}</a>
             <ng-template ngbNavContent>
               <div class="row">
@@ -164,7 +244,7 @@
               </div>
             </ng-template>
           </li>
-          <li [ngbNavItem]="7">
+          <li [ngbNavItem]="8">
             <a ngbNavLink>{{ translateSnackBar.production }}</a>
             <ng-template ngbNavContent>
               <div class="row">
@@ -702,7 +782,7 @@
               </div>
             </ng-template>
           </li>
-          <li [ngbNavItem]="8">
+          <li [ngbNavItem]="9">
             <a ngbNavLink>{{ translateSnackBar.comments }}</a>
             <ng-template ngbNavContent>
               <div class="col-12 text-right">
@@ -747,7 +827,7 @@
               </table>
             </ng-template>
           </li>
-          <li [ngbNavItem]="9">
+          <li [ngbNavItem]="10">
             <a ngbNavLink>{{ translateSnackBar.files }}</a>
             <ng-template ngbNavContent>
               <div class="col-12 text-right m-1">
@@ -802,83 +882,6 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsFiles; sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsFiles;"></tr>
               </table>
-            </ng-template>
-          </li>
-          <li [ngbNavItem]="10">
-            <a ngbNavLink>{{ translateSnackBar.report }}</a>
-            <ng-template ngbNavContent>
-              <button (click)="print('printSectionId')" class="btn btn-primary ml-1">
-                {{ translateSnackBar.print }}
-              </button>
-              <div id="printSectionId" class="col-12" style="width: 100%">
-                <div class="row" style="display: flex;width: 100%">
-                  <div class="col-12 col-xxl-10" style="margin: 6px 0px 6px 0px;">
-                    <table class="table report" style="display: inline-table;">
-                      <tbody>
-                        <tr>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.profile }}</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ reportData.profileId }}</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.pad }} 1</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>XXXXX</b></td>
-                        </tr>
-
-                        <tr>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.dieNumber }}</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.dieId }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.pad }} 2</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">XXXXX</td>
-                        </tr>
-
-                        <tr>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.weightGrm }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.grM }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.supplier }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.producerName}}</td>
-                        </tr>
-
-                        <tr>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.numberChannels }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.channels }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.pad }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.inUseFrom | date:'dd/MM/yyyy'}}</td>
-                        </tr>
-
-                        <tr>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.size }}, mm</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.diameter}} <span>*</span> {{reportData.thickness}}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.matricologist }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.correctorName}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="col-12 col-xxl-2">
-                    <img src="{{'data:image/png;base64,' + reportFiles.fileData}}" width="250">
-                  </div>
-                </div>
-
-                <table class="table report" style="width: 100%">
-                  <thead>
-                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.date }}</th>
-                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.press }}</th>
-                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.okCode }}</th>
-                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.ecsWeight }}</th>
-                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.TotalM }}</th>
-                    <th style="border: 1px solid #ebe9f1;background: #F5F5F5;color: #7367f0;text-transform: uppercase;">{{ translateSnackBar.weightProfile }}</th>
-                    <!-- <th>{{ translateSnackBar.notes }}</th> -->
-                  </thead>
-                  <tbody *ngFor="let d of reportDossier;let i = index;" [ngClass]="{ 'bg-success': d.resourceName === 'Азотиране' || d.resourceName === 'Корекция Матрици' }">
-                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.postingDate | date:'dd/MM/yyyy'}}</td>
-                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.resourceName}}</td>
-                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.dieStatus}}</td>
-                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.kg}}</td>
-                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.sum}}</td>
-                    <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{d.grm}}</td>
-                    <!-- <td>{{d.}}</td> -->
-                  </tbody>
-                </table>
-
-              </div>
             </ng-template>
           </li>
         </ul>
