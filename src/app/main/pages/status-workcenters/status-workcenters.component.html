@@ -46,10 +46,10 @@
                               </button>
                             </div>
                             <div class="col-12 col-lg-4 mb-2">
-                              <button *ngIf="statusId === 101" class="btn btn-warning ml-1" rippleEffect (click)="exportTable()">
+                              <!-- <button *ngIf="statusId === 101" class="btn btn-warning ml-1" rippleEffect (click)="exportTable()">
                                 <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
                                 <span class="d-none d-sm-inline-block"> {{ translateSnackBar.export }} </span>
-                              </button>
+                              </button> -->
                             </div>
                           </div>
                         </div>
@@ -136,7 +136,7 @@
               <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dieId}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId !== 30" matColumnDef="profileId">
+            <ng-container matColumnDef="profileId">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.profile">
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.profileTable }}</span>
                 <button type="button" class="btn order-btn" (click)="sortType(!orderType, 1)">
@@ -164,17 +164,6 @@
                 </button>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.producerName}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 60" matColumnDef="correctorName">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.correctorName">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.matricologist }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 76)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.correctorName}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="bmwinventorynumber">
@@ -217,86 +206,6 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.thickness}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="alloy">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.alloy">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.alloy }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 7)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.alloy}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="temper">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.tempering">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.temTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 8)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.temper}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId !== 40" matColumnDef="bolsterTooling1">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bolster1">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bols1Table }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 9)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.bolsterTooling1}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId !== 40" matColumnDef="bolsterTooling2">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bolster2">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bols2Table }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 10)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.bolsterTooling2}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="dieHolder">
-              <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dieHolder">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dieHolder }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 11)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dieHolder}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 10 || statusId === 20 || statusId === 30" matColumnDef="container">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.container">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.contTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 12)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.container}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId !== 40" matColumnDef="notes">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.noteRequest">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.noteReqTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 13)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.notes}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 10 || statusId === 30" matColumnDef="visibleSides">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.visibleSide">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.visibleSideTable }}</span>
-              </th>
-              <td mat-cell *matCellDef="let element">
-                <input type="checkbox" [(ngModel)]="element.visibleSides" id="visibleSide" name="visibleSide">
-              </td>
-            </ng-container>
-
             <ng-container matColumnDef="clientName">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.client">
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.client }}</span>
@@ -307,60 +216,7 @@
               <td mat-cell *matCellDef="let element" class="min-w-100"><span [ngStyle]="{'font-size': size + 'px'}">{{element.clientName}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 10 || statusId === 30 || statusId === 61" matColumnDef="dateOrder">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.orderDate">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.orderDateTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 15)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateOrder | date:'dd/MM/yyyy'}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 30" matColumnDef="price">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.price">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.price }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 18)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.price}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 30" matColumnDef="price_Inv">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.invoicePrice">
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.invoicePriceTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 19)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.price_Inv}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 30 || statusId === 61" matColumnDef="dateConfirmation">
-              <th class="min-w-100" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.confirmationDate">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.confirmationTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 20)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateConfirmation | date:'dd/MM/yyyy'}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 30 || statusId === 61" matColumnDef="dateExpedition">
-              <th class="min-w-100" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.dispatchedDate">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.dispatchedDateTable }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 21)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition | date:'dd/MM/yyyy'}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 40 || statusId === 60 || statusId === 101" matColumnDef="totalWeight">
+            <ng-container matColumnDef="totalWeight">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.totalWeight">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.totalWeight }}</span>
@@ -415,18 +271,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kgAfterFianlNitriding}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 50 || statusId === 61" matColumnDef="dateScrapped">
-              <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.scrapDate">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.scrapDate }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 50)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateScrapped | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 10 || statusId === 30 || statusId === 20 || statusId === 40 || statusId === 60 || statusId === 61 || statusId === 101" matColumnDef="channels">
+            <ng-container matColumnDef="channels">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.channels">
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.channels }}</span>
                 <button type="button" class="btn order-btn" (click)="sortType(!orderType, 22)">
@@ -436,7 +281,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.channels}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId >= 60" matColumnDef="placeSklad">
+            <ng-container matColumnDef="placeSklad">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.plaseSklad">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.plaseSklad }}</span>
@@ -447,18 +292,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.storegePlace}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 101" matColumnDef="currentLocation">
-              <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.currentLocation">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.currentLocation }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 86)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.currentLocation}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 40 || statusId === 70 || statusId === 101" matColumnDef="lastTransaction">
+            <ng-container matColumnDef="lastTransaction">
               <th class="min-w-175" mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.lastTransaction">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.lastTransaction }}</span>
@@ -469,7 +303,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.lastTransaction | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 61 || statusId === 101" matColumnDef="gr">
+            <ng-container matColumnDef="gr">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.gr">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.gr }}</span>
@@ -480,45 +314,12 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.grM}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 70" matColumnDef="productivity">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.production">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.production }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 39)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.productivity}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 40 || statusId === 70 || statusId === 101" matColumnDef="renewal">
+            <ng-container matColumnDef="renewal">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.renewal">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.renewal }}</span>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.renewal}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 60" matColumnDef="markedForTestDateTime">
-              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.markedForTestDateTime">
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.markedForTestDateTime }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 60)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.markedForTestDateTime | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
-            </ng-container>
-
-            <ng-container *ngIf="statusId === 101" matColumnDef="statusName">
-              <th mat-header-cell *matHeaderCellDef>
-                <div class="filter-th" container="body"></div>
-                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.status }}</span>
-                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 85)">
-                  <i class="fa fa-sort"></i>
-                </button>
-              </th>
-              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.statusName}}</span></td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

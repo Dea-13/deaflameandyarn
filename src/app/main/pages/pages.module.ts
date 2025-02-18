@@ -12,8 +12,6 @@ import { CoreCommonModule } from '../../@core/common.module';
 import { ContentHeaderModule } from '../../layout/components/content-header/content-header.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { ExtrusionModalComponent } from './extrusion-modal/extrusion-modal.component';
-import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
   declarations: [],
