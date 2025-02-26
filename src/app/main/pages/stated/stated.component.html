@@ -360,7 +360,7 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.dateExpedition | date:'dd/MM/yyyy'}}</span></td>
             </ng-container>
 
-            <ng-container *ngIf="statusId === 40 || statusId === 60 || statusId === 101" matColumnDef="totalWeight">
+            <ng-container *ngIf="statusId === 40 || statusId === 50 || statusId === 60 || statusId === 101" matColumnDef="totalWeight">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.totalWeight">
                 <div class="filter-th" container="body"></div>
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.totalWeight }}</span>

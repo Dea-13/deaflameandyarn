@@ -282,7 +282,7 @@ export class StatedComponent implements OnInit {
       this.statusId = 50;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
-        'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
+        'thickness', 'totalWeight', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
         'countInUse', 'dateScrapped'
       ];
       // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
