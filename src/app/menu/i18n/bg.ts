@@ -589,6 +589,8 @@ export const locale = {
       pressTab: 'Машина',
       clean: 'Почистване',
       correction: 'Корекция',
+      bruto: 'Брутно тегло',
+      netno: 'Нетно тегло',
     }
   }
 }

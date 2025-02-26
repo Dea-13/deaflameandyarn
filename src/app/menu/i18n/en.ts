@@ -590,6 +590,8 @@ export const locale = {
       pressTab: 'Workcenter',
       clean: 'Cleaning',
       correction: 'Correction',
+      bruto: 'Gross weight',
+      netno: 'Net weight',
     }
   }
 }
