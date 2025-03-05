@@ -591,6 +591,7 @@ export const locale = {
       correction: 'Корекция',
       bruto: 'Брутно тегло',
       netno: 'Нетно тегло',
+      crNumber: 'Cr №',
     }
   }
 }

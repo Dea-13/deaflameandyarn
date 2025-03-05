@@ -592,6 +592,7 @@ export const locale = {
       correction: 'Correction',
       bruto: 'Gross weight',
       netno: 'Net weight',
+      crNumber: 'Cr №',
     }
   }
 }

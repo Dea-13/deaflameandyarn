@@ -76,6 +76,7 @@ export class NewProfileModalComponent implements OnInit {
     this.createProfileForm = this.formBuilder.group({
       profileName: ['', Validators.required],
       refNumber: [''],
+      crNumber: [''],
       groupCode: [''],
       revisionProfile: [''],
       usage: [''],
@@ -148,6 +149,7 @@ export class NewProfileModalComponent implements OnInit {
       this.createProfileForm = this.formBuilder.group({
         profileName: this.sectionProfiles.profileName,
         refNumber: this.sectionProfiles.refNumber,
+        crNumber: this.sectionProfiles.crNumber,
         groupCode: this.sectionProfiles.groupCode,
         revisionProfile: this.sectionProfiles.revisionProfile,
         inUse: this.sectionProfiles.inUse,
@@ -420,6 +422,7 @@ export class NewProfileModalComponent implements OnInit {
     obj = {
       profileName: this.createProfileForm.controls.profileName.value.replace("_",""),
       refNumber: this.createProfileForm.controls.refNumber.value,
+      crNumber: this.createProfileForm.controls.crNumber.value,
       groupCode: this.createProfileForm.controls.groupCode.value,
       revisionProfile: this.createProfileForm.controls.revisionProfile.value,
       section: this.createProfileForm.controls.section.value,
