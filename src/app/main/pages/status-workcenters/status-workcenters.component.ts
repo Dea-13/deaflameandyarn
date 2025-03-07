@@ -52,7 +52,7 @@ export class StatusWorkcentersComponent implements OnInit {
   public totalResult: number = 0;
   public languageOptions: any;
   public translateSnackBar: any;
-  public statusId: string;
+  public statusId: number;
 
   public orderDateOptions = {
     altInput: true,
@@ -102,7 +102,7 @@ export class StatusWorkcentersComponent implements OnInit {
     });
 
     if (this.router.url == '/api/press-600') {
-      this.statusId = 'Преса  600';
+      this.statusId = 6;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -126,7 +126,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/press-1300') {
-      this.statusId = 'Преса 1300';
+      this.statusId = 8;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -150,7 +150,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/press-1800') {
-      this.statusId = 'Преса 1800';
+      this.statusId = 7;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -174,7 +174,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/press-2000') {
-      this.statusId = 'Преса 2000';
+      this.statusId = 9;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -198,7 +198,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/press-2500') {
-      this.statusId = 'Преса 2500';
+      this.statusId = 22;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -222,7 +222,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/storage-dies') {
-      this.statusId = 'Склад Матрици';
+      this.statusId = 1;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'
       this.urls = [
@@ -247,7 +247,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/nitriding') {
-      this.statusId = 'Азотиране';
+      this.statusId = 12;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -271,7 +271,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if (this.router.url == '/api/boiling-soda') {
-      this.statusId = 'Изваряване (СОДА)';
+      this.statusId = 10;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -295,7 +295,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/correction-dies') {
-      this.statusId = 'Корекция Матрици';
+      this.statusId = 11;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -319,7 +319,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/correction-turkie') {
-      this.statusId = 'Корекция в Турция';
+      this.statusId = 26;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -343,7 +343,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/press-600-oven') {
-      this.statusId = 'Преса 600т - печки';
+      this.statusId = 14;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -367,7 +367,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/press-1300-oven') {
-      this.statusId = 'Преса 1300т - печки';
+      this.statusId = 16;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -391,7 +391,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/press-1800-oven') {
-      this.statusId = 'Преса 1800т - печки';
+      this.statusId = 15;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -415,7 +415,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/press-2000-oven') {
-      this.statusId = 'Преса 2000т - печки';
+      this.statusId = 17;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
@@ -439,7 +439,7 @@ export class StatusWorkcentersComponent implements OnInit {
         {id: 7, ind: 7, url: 'Channels', name: this.translateSnackBar.channels, model: '', filter: '', fullFilter: '', temp: '', selectAll: false, disableScroll: '', searchFilterConf: ''},
       ]
     } else if(this.router.url == '/api/press-2500-oven') {
-      this.statusId = 'Преса 2500т - печки';
+      this.statusId = 23;
       this.displayedColumns = [ 'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter', 'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction','gr', 'renewal' ];
       this.urls = [
         { id: 0, name: 'DieId' },
