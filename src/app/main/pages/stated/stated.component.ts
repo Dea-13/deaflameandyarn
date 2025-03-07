@@ -254,7 +254,7 @@ export class StatedComponent implements OnInit {
       this.statusId = 40;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
-        'thickness', 'clientName','countInUse', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
+        'thickness', 'clientName','countInUse', 'KgNet', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
         'gr', 'renewal'
       ];
       this.urls = [
@@ -282,7 +282,7 @@ export class StatedComponent implements OnInit {
       this.statusId = 50;
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
-        'thickness', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
+        'thickness', 'KgNet', 'totalWeight', 'bolsterTooling1', 'bolsterTooling2', 'notes', 'clientName',
         'countInUse', 'dateScrapped'
       ];
       // , 'countInUse', 'finalNitriding', 'kgToFianlNitriding', 'kgAfterFianlNitriding'

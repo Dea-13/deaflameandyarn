@@ -77,6 +77,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { UploadModalComponent } from './main/modals/upload-modal/upload-modal.component';
 import {CookieService} from 'ngx-cookie-service';
 import { DiesByMonthComponent } from './main/pages/dies-by-month/dies-by-month.component';
+import { StatusWorkcentersComponent } from './main/pages/status-workcenters/status-workcenters.component';
 
 
 const appRoutes: Routes = [
@@ -251,6 +252,81 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/press-600',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-1800',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-1300',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-2000',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-2500',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/storage-dies',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/nitriding',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/boiling-soda',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/correction-dies',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/correction-turkie',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-600-oven',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-1800-oven',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-1300-oven',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-2000-oven',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'api/press-2500-oven',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -266,6 +342,7 @@ const appRoutes: Routes = [
     ComponentComponent,
     PdfViewerModalComponent,
     StatedComponent,
+    StatusWorkcentersComponent,
     DiesByMonthComponent,
     MovementMatrixComponent,
     UserViewComponent,

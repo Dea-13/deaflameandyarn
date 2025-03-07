@@ -99,6 +99,135 @@ export const menu: CoreMenu[] = [
     ]
   },
   {
+    id: 'status',
+    title: 'Status Workcenter',
+    translate: 'MENU.STATUSWORKCENTER',
+    type: 'collapsible',
+    icon: 'check',
+    children: [
+      {
+        id: 'press-600',
+        title: 'Press 600',
+        translate: 'MENU.PRESS600',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-600'
+      },
+      {
+        id: 'press-1300',
+        title: 'Press 1300',
+        translate: 'MENU.PRESS1300',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-1300'
+      },
+      {
+        id: 'press-1800',
+        title: 'Press 1800',
+        translate: 'MENU.PRESS1800',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-1800'
+      },
+      {
+        id: 'press-2000',
+        title: 'Press 2000',
+        translate: 'MENU.PRESS2000',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-2000'
+      },
+      {
+        id: 'press-2500',
+        title: 'Press 2500',
+        translate: 'MENU.PRESS2500',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-2500'
+      },
+      {
+        id: 'storage-dies',
+        title: 'Storage Dies',
+        translate: 'MENU.STORAGEDIES',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/storage-dies'
+      },
+      {
+        id: 'nitriding',
+        title: 'Nitriding',
+        translate: 'MENU.NITRIDING',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/nitriding'
+      },
+      {
+        id: 'boiling-soda',
+        title: 'Boiling (SODA)',
+        translate: 'MENU.BOILING',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/boiling-soda'
+      },
+      {
+        id: 'correction-dies',
+        title: 'Correction Dies',
+        translate: 'MENU.CORRDIE',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/correction-dies'
+      },
+      {
+        id: 'correction-turkie',
+        title: 'Correction Turkie',
+        translate: 'MENU.CORRTURKIE',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/correction-turkie'
+      },
+      {
+        id: 'press-600-oven',
+        title: 'Press 600t Oven',
+        translate: 'MENU.PRESS600OVEN',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-600-oven'
+      },
+      {
+        id: 'press-1300-oven',
+        title: 'Press 1300t Oven',
+        translate: 'MENU.PRESS1300OVEN',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-1300-oven'
+      },
+      {
+        id: 'press-1800-oven',
+        title: 'Press 1800t Oven',
+        translate: 'MENU.PRESS1800OVEN',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-1800-oven'
+      },
+      {
+        id: 'press-2000-oven',
+        title: 'Press 2000t Oven',
+        translate: 'MENU.PRESS2000OVEN',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-2000-oven'
+      },
+      {
+        id: 'press-2500-oven',
+        title: 'Press 2500t Oven',
+        translate: 'MENU.PRESS2500OVEN',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/press-2500-oven'
+      },
+    ]
+  },
+  {
     id: 'movement',
     title: 'Movement Die',
     translate: 'MENU.MOVEMENTMATRIX',

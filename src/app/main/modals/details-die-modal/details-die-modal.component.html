@@ -34,7 +34,8 @@
                   <span *ngFor="let l of header.list; let i = index">
                     {{l.resourceName}} ({{l.totalUsed}}) {{i === (header.list.length - 1) ? '-' : ','}}</span>
                     {{ translateSnackBar.total }} <b>{{header.TotalUsed}}</b> {{ translateSnackBar.times }}.
-                    {{ translateSnackBar.total }}: <b>{{header.TotalKgProduced === null ? 0 : header.TotalKgProduced}}</b> {{ translateSnackBar.kg }}
+                    {{ translateSnackBar.netno }}: <b>{{header.NetKgProduced}}</b> {{ translateSnackBar.kg }}.
+                    {{ translateSnackBar.bruto }}: <b>{{header.TotalKgProduced === null ? 0 : header.TotalKgProduced}}</b> {{ translateSnackBar.kg }}
                 </i>
               </p>
               <p *ngIf="header">
