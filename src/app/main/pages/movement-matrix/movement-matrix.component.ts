@@ -135,6 +135,8 @@ export class MovementMatrixComponent implements OnInit {
     { year: 2021 },
     { year: 2022 },
     { year: 2023 },
+    { year: 2024 },
+    { year: 2025 },
   ]
   public monthArr: Array<any> = []
   // Color Variables
