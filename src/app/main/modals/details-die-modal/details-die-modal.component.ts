@@ -665,7 +665,7 @@ export class DetailsDieModalComponent implements OnInit {
         if(!data.diedosier[i].sum) { data.diedosier[i].sum = 0;}
         // if(i != 0 ) {
           data.diedosier[i].sum = data.diedosier[i === 0 ? 0 : (i-1)].sum + data.diedosier[i].kg;
-          console.log('====', data.diedosier[i].kg, data.diedosier[i === 0 ? 0 : (i-1)].sum)
+          // console.log('====', data.diedosier[i].kg, data.diedosier[i === 0 ? 0 : (i-1)].sum)
         // }
       }
       this.reportData = data.dieinfo;

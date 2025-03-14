@@ -593,6 +593,8 @@ export const locale = {
       bruto: 'Gross weight',
       netno: 'Net weight',
       crNumber: 'Cr №',
+      blockedReason: 'Blocked Reason',
+      unblockedReason: 'Unblocked Reason',
     }
   }
 }

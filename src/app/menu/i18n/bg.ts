@@ -592,6 +592,8 @@ export const locale = {
       bruto: 'Брутно тегло',
       netno: 'Нетно тегло',
       crNumber: 'Cr №',
+      blockedReason: 'Причина блокиране',
+      unblockedReason: 'Причина отблокиране',
     }
   }
 }
