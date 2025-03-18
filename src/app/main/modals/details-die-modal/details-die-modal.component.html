@@ -76,43 +76,43 @@
                       <tbody>
                         <tr>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.profile }}</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ reportData.profileId }}</b></td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ reportData ? reportData.profileId : '' }}</b></td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.pad }} 1</b></td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>XXXXX</b></td>
                         </tr>
 
                         <tr>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.dieNumber }}</b></td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.dieId }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? reportData.dieId : '' }}</td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;font-weight: 600;"><b>{{ translateSnackBar.pad }} 2</b></td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">XXXXX</td>
                         </tr>
 
                         <tr>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.weightGrm }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.grM }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? reportData.grM : '' }}</td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.supplier }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.producerName}}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? reportData.producerName : ''}}</td>
                         </tr>
 
                         <tr>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.numberChannels }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData.channels }}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? reportData.channels : '' }}</td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.pad }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.inUseFrom | date:'dd/MM/yyyy'}}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? (reportData.inUseFrom | date:'dd/MM/yyyy') : ''}}</td>
                         </tr>
 
                         <tr>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.size }}, mm</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.diameter}} <span>*</span> {{reportData.thickness}}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? reportData.diameter : ''}} <span>*</span> {{ reportData ? reportData.thickness : ''}}</td>
                           <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ translateSnackBar.matricologist }}</td>
-                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{reportData.correctorName}}</td>
+                          <td style="border: 1px solid #ebe9f1;padding: 0.20rem;">{{ reportData ? reportData.correctorName : ''}}</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                   <div class="col-12 col-xxl-2">
-                    <img src="{{'data:image/png;base64,' + reportFiles.fileData}}" width="250">
+                    <img src="{{'data:image/png;base64,' + (reportData ? reportFiles.fileData: '')}}" width="250">
                   </div>
                 </div>
 

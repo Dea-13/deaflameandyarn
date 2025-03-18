@@ -89,6 +89,14 @@ export const menu: CoreMenu[] = [
         url: 'api/settings-die'
       },
       {
+        id: 'blocked-die',
+        title: 'Blocked Die',
+        translate: 'MENU.BLOCKEDDIE',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/blocked-die'
+      },
+      {
         id: 'productivity-nitrification',
         title: 'Productivity Nitrification',
         translate: 'MENU.PRODUCTIVITYNITRIFICATION',

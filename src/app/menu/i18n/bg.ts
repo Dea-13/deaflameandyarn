@@ -66,6 +66,7 @@ export const locale = {
       PRESS1800OVEN: 'Преса 1800т - печки',
       PRESS2000OVEN: 'Преса 2000т - печки',
       PRESS2500OVEN: 'Преса 2500т - печки',
+      BLOCKEDDIE: 'Блокирани матрици',
     },
     translate: {
       report: 'Репорт',
@@ -593,6 +594,8 @@ export const locale = {
       bruto: 'Брутно тегло',
       netno: 'Нетно тегло',
       crNumber: 'Cr №',
+      blockedReason: 'Причина блокиране',
+      unblockedReason: 'Причина отблокиране',
     }
   }
 }

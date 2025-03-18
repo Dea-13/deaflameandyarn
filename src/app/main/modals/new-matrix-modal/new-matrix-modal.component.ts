@@ -72,6 +72,7 @@ export class NewMatrixModalComponent implements OnInit {
   storagePlaceArr: Array<any> = [];
   recipeArr: Array<any> = [];
   diesDefDimByResId: any;
+  currentStatus: any;
 
   constructor(
     private matrixService: MatrixService,
@@ -140,6 +141,8 @@ export class NewMatrixModalComponent implements OnInit {
       correctorScrapId: [null],
       hardnessManufacturerRockwell: [null],
       measuredRockwellHardness: [null],
+      blockedReason: [''],
+      unblockedReason: [''],
     });
 
     this.getStatus();
@@ -190,6 +193,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.matrixService.getDieById(this.matrixItem.data.id).subscribe((data) => {
       this.matrix = data;
+      this.currentStatus = data.status;
       this.createMatrixForm = this.formBuilder.group({
         profile: this.matrix.profileId,
         matrix: this.matrix.dieId,
@@ -238,6 +242,8 @@ export class NewMatrixModalComponent implements OnInit {
         correctorScrapId: this.matrix.correctorScrapId,
         hardnessManufacturerRockwell: this.matrix.hardnessManufacturerRockwell,
         measuredRockwellHardness: this.matrix.measuredRockwellHardness,
+        blockedReason: this.matrix.blockedReason,
+        unblockedReason: this.matrix.unblockedReason,
       });
       console.log('EDIT this.createMatrixForm', this.createMatrixForm);
       this.blockUI.stop();
@@ -878,6 +884,17 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitForm() {
     console.log('submitForm', this.createMatrixForm, this.createMatrixForm.controls.profile.value, this.createMatrixForm.controls.matrix.value, this.createMatrixForm.controls.status.value);
+    if(this.currentStatus === 32 && !this.createMatrixForm.controls.unblockedReason.value) {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'warning',
+        title: this.translateSnackBar.fillAllMsg,
+        showConfirmButton: false,
+        timer: 3000
+      })
+      return;
+    }
+
     if(this.createMatrixForm.controls.profile.value && this.createMatrixForm.controls.matrix.value && this.createMatrixForm.controls.status.value){
       switch (this.createMatrixForm.controls.status.value) {
         case 10: { this.submitStatedDie(); } break;
@@ -905,7 +922,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitStatedDie(){
     console.log('000000++++', this.createMatrixForm);
     this.submitStated = true;
-    if(this.createMatrixForm.controls.dateOrder.value){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.dateOrder.value){
       Swal.fire({
         title: this.translateSnackBar.statedMsg,
         icon: 'warning',
@@ -938,7 +955,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBlockedDie(){
     this.submitBlocked = true;
-    if(!this.createMatrixForm.invalid){
+    if(!this.createMatrixForm.invalid && this.currentStatus !== 32 && this.createMatrixForm.controls.blockedReason.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -1078,60 +1095,75 @@ export class NewMatrixModalComponent implements OnInit {
   sendResponce() {
     console.log('sendResponce', this.createMatrixForm);
     this.blockUI.start('Loading...');
+
+    if(this.createMatrixForm.controls.status.value === 32) {
+      this.matrix.blockedReason = this.createMatrixForm.controls.blockedReason.value;
+      this.matrix.blockedUser = this.userName;
+      this.matrix.blockedTime = new Date();
+    }
+
+    if(this.currentStatus === 32) {
+      this.matrix.unblockedReason = this.createMatrixForm.controls.unblockedReason.value;
+      this.matrix.unblockedUser = this.userName;
+      this.matrix.unblockedTime = new Date();
+    }
+
+    console.log('STATUS=>', this.matrix, this.matrix.status, this.createMatrixForm.controls.status.value);
+
     this.matrix.profile = !this.redirectModal ? this.createMatrixForm.controls.profile.value.id : this.matrix.profile,
-      this.matrix.profileId = !this.redirectModal ? this.createMatrixForm.controls.profile.value.name : this.matrix.profileId,
-      this.matrix.dieId = this.createMatrixForm.controls.matrix.value,
-      this.matrix.assetCode = this.createMatrixForm.controls.matrix.value,
-      this.matrix.status = this.createMatrixForm.controls.status.value,
-      this.matrix.channels = this.createMatrixForm.controls.channels.value,
-      this.matrix.dieHolder = this.createMatrixForm.controls.dieHolder.value,
-      this.matrix.oporenPrysten = this.createMatrixForm.controls.oporenPrysten.value,
-      this.matrix.opora = this.createMatrixForm.controls.opora.value,
-      this.matrix.Pressshaiba = this.createMatrixForm.controls.Pressshaiba.value,
-      this.matrix.type = this.createMatrixForm.controls.type.value,
-      this.matrix.dieLiveQty = this.createMatrixForm.controls.dieLiveQty.value,
-      this.matrix.anodizingQuality = this.createMatrixForm.controls.anodizingQuality.value,
-      this.matrix.dieIndex = this.createMatrixForm.controls.dieIndex.value,
-      this.matrix.bmwInventoryNumber = this.createMatrixForm.controls.bmwInventoryNumber.value,
-      this.matrix.container = this.createMatrixForm.controls.container.value,
-      this.matrix.diesDefDimByResId = this.createMatrixForm.controls.diesDefDimByResId.value,
-      this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
-      this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
-      this.matrix.recipeId = this.createMatrixForm.controls.recipeName.value,
-      this.matrix.dateOrder = this.createMatrixForm.controls.dateOrder.value ? moment(this.createMatrixForm.controls.dateOrder.value).format('YYYY-MM-DD') : null,
-      this.matrix.dateConfirmation = this.createMatrixForm.controls.dateConfirmation.value ? moment(this.createMatrixForm.controls.dateConfirmation.value).format('YYYY-MM-DD') : null,
-      this.matrix.dateExpedition = this.createMatrixForm.controls.dateExpedition.value ? moment(this.createMatrixForm.controls.dateExpedition.value).format('YYYY-MM-DD') : null,
-      this.matrix.inUseFrom = this.createMatrixForm.controls.inUseFrom.value ? moment(this.createMatrixForm.controls.inUseFrom.value).format('YYYY-MM-DD') : null,
-      this.matrix.clientName = this.createMatrixForm.controls.clientName.value,
-      this.matrix.producer = this.createMatrixForm.controls.producer.value,
-      this.matrix.purchaser = this.createMatrixForm.controls.purchaser.value,
-      this.matrix.corrector = this.createMatrixForm.controls.corrector.value,
-      this.matrix.price = this.createMatrixForm.controls.price.value,
-      // dieID: this.createMatrixForm.controls.dieID.value,
-      this.matrix.grM = this.createMatrixForm.controls.grM.value,
-      this.matrix.requiredTest = this.createMatrixForm.controls.requiredTest.value,
-      this.matrix.priceInv = this.createMatrixForm.controls.priceInv.value,
-      this.matrix.primaryResource = this.createMatrixForm.controls.primaryResource.value,
-      this.matrix.altResource1 = this.createMatrixForm.controls.altResource1.value,
-      this.matrix.altResource2 = this.createMatrixForm.controls.altResource2.value,
-      this.matrix.storageGroup = this.createMatrixForm.controls.storageGroup.value,
-      this.matrix.storageFreePlace = this.createMatrixForm.controls.storageFreePlace.value,
-      this.matrix.remarks = this.createMatrixForm.controls.remarks.value,
-      this.matrix.usageType = this.createMatrixForm.controls.usageType.value,
-      this.matrix.notes = this.createMatrixForm.controls.notes.value,
-      this.matrix.scrapReason = this.createMatrixForm.controls.scrapReason.value,
-      this.matrix.reasonForPurchase = this.createMatrixForm.controls.reasonForPurchase.value,
-      this.matrix.reasonForPurchaseOther = this.createMatrixForm.controls.reasonForPurchaseOther.value,
-      this.matrix.markedForTestDateTime = this.markedForTestDateTime,
-      this.matrix.created = this.matrix ? this.matrix.created : new Date(),
-      this.matrix.lastModified = new Date(),
-      this.matrix.lastModifiedBy = this.userName,
-      this.matrix.diameter = this.createMatrixForm.controls.diameter.value;
-      this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
-      this.matrix.plant = 1;
-      this.matrix.correctorScrapId = this.createMatrixForm.controls.correctorScrapId.value;
-      this.matrix.hardnessManufacturerRockwell = this.createMatrixForm.controls.hardnessManufacturerRockwell.value;
-      this.matrix.measuredRockwellHardness = this.createMatrixForm.controls.measuredRockwellHardness.value;
+    this.matrix.profileId = !this.redirectModal ? this.createMatrixForm.controls.profile.value.name : this.matrix.profileId,
+    this.matrix.dieId = this.createMatrixForm.controls.matrix.value,
+    this.matrix.assetCode = this.createMatrixForm.controls.matrix.value,
+    this.matrix.status = this.createMatrixForm.controls.status.value,
+    this.matrix.channels = this.createMatrixForm.controls.channels.value,
+    this.matrix.dieHolder = this.createMatrixForm.controls.dieHolder.value,
+    this.matrix.oporenPrysten = this.createMatrixForm.controls.oporenPrysten.value,
+    this.matrix.opora = this.createMatrixForm.controls.opora.value,
+    this.matrix.Pressshaiba = this.createMatrixForm.controls.Pressshaiba.value,
+    this.matrix.type = this.createMatrixForm.controls.type.value,
+    this.matrix.dieLiveQty = this.createMatrixForm.controls.dieLiveQty.value,
+    this.matrix.anodizingQuality = this.createMatrixForm.controls.anodizingQuality.value,
+    this.matrix.dieIndex = this.createMatrixForm.controls.dieIndex.value,
+    this.matrix.bmwInventoryNumber = this.createMatrixForm.controls.bmwInventoryNumber.value,
+    this.matrix.container = this.createMatrixForm.controls.container.value,
+    this.matrix.diesDefDimByResId = this.createMatrixForm.controls.diesDefDimByResId.value,
+    this.matrix.bolsterTooling1 = this.createMatrixForm.controls.bolsterTooling1.value,
+    this.matrix.bolsterTooling2 = this.createMatrixForm.controls.bolsterTooling2.value,
+    this.matrix.recipeId = this.createMatrixForm.controls.recipeName.value,
+    this.matrix.dateOrder = this.createMatrixForm.controls.dateOrder.value ? moment(this.createMatrixForm.controls.dateOrder.value).format('YYYY-MM-DD') : null,
+    this.matrix.dateConfirmation = this.createMatrixForm.controls.dateConfirmation.value ? moment(this.createMatrixForm.controls.dateConfirmation.value).format('YYYY-MM-DD') : null,
+    this.matrix.dateExpedition = this.createMatrixForm.controls.dateExpedition.value ? moment(this.createMatrixForm.controls.dateExpedition.value).format('YYYY-MM-DD') : null,
+    this.matrix.inUseFrom = this.createMatrixForm.controls.inUseFrom.value ? moment(this.createMatrixForm.controls.inUseFrom.value).format('YYYY-MM-DD') : null,
+    this.matrix.clientName = this.createMatrixForm.controls.clientName.value,
+    this.matrix.producer = this.createMatrixForm.controls.producer.value,
+    this.matrix.purchaser = this.createMatrixForm.controls.purchaser.value,
+    this.matrix.corrector = this.createMatrixForm.controls.corrector.value,
+    this.matrix.price = this.createMatrixForm.controls.price.value,
+    // dieID: this.createMatrixForm.controls.dieID.value,
+    this.matrix.grM = this.createMatrixForm.controls.grM.value,
+    this.matrix.requiredTest = this.createMatrixForm.controls.requiredTest.value,
+    this.matrix.priceInv = this.createMatrixForm.controls.priceInv.value,
+    this.matrix.primaryResource = this.createMatrixForm.controls.primaryResource.value,
+    this.matrix.altResource1 = this.createMatrixForm.controls.altResource1.value,
+    this.matrix.altResource2 = this.createMatrixForm.controls.altResource2.value,
+    this.matrix.storageGroup = this.createMatrixForm.controls.storageGroup.value,
+    this.matrix.storageFreePlace = this.createMatrixForm.controls.storageFreePlace.value,
+    this.matrix.remarks = this.createMatrixForm.controls.remarks.value,
+    this.matrix.usageType = this.createMatrixForm.controls.usageType.value,
+    this.matrix.notes = this.createMatrixForm.controls.notes.value,
+    this.matrix.scrapReason = this.createMatrixForm.controls.scrapReason.value,
+    this.matrix.reasonForPurchase = this.createMatrixForm.controls.reasonForPurchase.value,
+    this.matrix.reasonForPurchaseOther = this.createMatrixForm.controls.reasonForPurchaseOther.value,
+    this.matrix.markedForTestDateTime = this.markedForTestDateTime,
+    this.matrix.created = this.matrix ? this.matrix.created : new Date(),
+    this.matrix.lastModified = new Date(),
+    this.matrix.lastModifiedBy = this.userName,
+    this.matrix.diameter = this.createMatrixForm.controls.diameter.value;
+    this.matrix.thickness = this.createMatrixForm.controls.thickness.value;
+    this.matrix.plant = 1;
+    this.matrix.correctorScrapId = this.createMatrixForm.controls.correctorScrapId.value;
+    this.matrix.hardnessManufacturerRockwell = this.createMatrixForm.controls.hardnessManufacturerRockwell.value;
+    this.matrix.measuredRockwellHardness = this.createMatrixForm.controls.measuredRockwellHardness.value;
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {

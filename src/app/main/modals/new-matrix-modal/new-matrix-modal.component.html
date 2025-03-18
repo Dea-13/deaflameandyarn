@@ -611,6 +611,25 @@
                 </div>
 
                 <div class="row">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.blockedReason }}</label>
+                      <input formControlName="blockedReason" type="text" class="form-control dt-uname" [ngClass]="{ 'error': (submitBlocked) && !createMatrixForm.get('blockedReason').value }"
+                       [readonly]="this.createMatrixForm.controls.status.value !== 32" />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.unblockedReason }}</label>
+                      <input formControlName="unblockedReason" type="text" class="form-control dt-uname"
+                      [ngClass]="{ 'error': (currentStatus && currentStatus === 32) &&  !createMatrixForm.get('unblockedReason').value }"
+                      [readonly]="(currentStatus === 32 && this.createMatrixForm.controls.status.value === 32) || currentStatus !== 32"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
                   <div class="col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.originalPressOpor }}</label>

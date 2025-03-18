@@ -66,6 +66,7 @@ export const locale = {
       PRESS1800OVEN: 'Press 1800t Oven',
       PRESS2000OVEN: 'Press 2000t Oven',
       PRESS2500OVEN: 'Press 2500t Oven',
+      BLOCKEDDIE: 'Blocked Die',
     },
     translate: {
       report: 'Report',
@@ -597,6 +598,8 @@ export const locale = {
       bruto: 'Gross weight',
       netno: 'Net weight',
       crNumber: 'Cr №',
+      blockedReason: 'Blocked Reason',
+      unblockedReason: 'Unblocked Reason',
     }
   }
 }
