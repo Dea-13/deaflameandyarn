@@ -922,7 +922,7 @@ export class NewMatrixModalComponent implements OnInit {
   submitStatedDie(){
     console.log('000000++++', this.createMatrixForm);
     this.submitStated = true;
-    if(this.createMatrixForm.controls.dateOrder.value){
+    if(!this.createMatrixForm.invalid && this.createMatrixForm.controls.dateOrder.value){
       Swal.fire({
         title: this.translateSnackBar.statedMsg,
         icon: 'warning',
