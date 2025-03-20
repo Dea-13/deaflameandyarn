@@ -600,6 +600,7 @@ export const locale = {
       crNumber: 'Cr №',
       blockedReason: 'Blocked Reason',
       unblockedReason: 'Unblocked Reason',
+      work50t: 'Work up to 50t',
     }
   }
 }
