@@ -263,11 +263,11 @@ export class NewProfileModalComponent implements OnInit {
   addRowSpeedLength(rowsLength) {
     console.log("add row", rowsLength);
     let emptyRow = {
-      pressId: "",
-      channels: "",
-      alloy: "",
-      lengthStart: "",
-      lengthEnd: "",
+      pressId: null,
+      channels: null,
+      alloyFamily: '',
+      lengthStart: null,
+      lengthEnd: null,
     };
     this.validation = true;
     this.rowsLength.push(emptyRow);
@@ -276,15 +276,15 @@ export class NewProfileModalComponent implements OnInit {
 
   pressEndValidation(row: any): boolean {
     console.log("invalid++++++:", row);
-    if (row.pressId == "" || row.pressId == null) {
+    if (row.pressId == null) {
       return false;
-    } else if (row.alloyFamily == "" || row.alloyFamily == null) {
+    } else if (row.alloyFamily == '') {
       return false;
-    } else if (row.channels == "") {
+    } else if (row.channels == null) {
       return false;
-    } else if (row.lengthEnd == "") {
+    } else if (row.lengthEnd == null) {
       return false;
-    } else if (row.lengthStart == "") {
+    } else if (row.lengthStart == null) {
       return false;
     } else {
       return true
