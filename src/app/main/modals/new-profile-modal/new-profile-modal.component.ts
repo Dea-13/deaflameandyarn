@@ -50,7 +50,7 @@ export class NewProfileModalComponent implements OnInit {
   public rowsLength: Array<any> = [];
   public groupCode: Array<any> = [];
   public alloyArr: Array<any> = [];
-  public validation: boolean;
+  public validation: boolean = true;
   public disableTab: boolean = true;
   public profileId: number;
   public fullScr: boolean = false;
@@ -269,15 +269,16 @@ export class NewProfileModalComponent implements OnInit {
       lengthStart: "",
       lengthEnd: "",
     };
+    this.validation = true;
     this.rowsLength.push(emptyRow);
     this.rowsLength = [...this.rowsLength];
   }
 
   pressEndValidation(row: any): boolean {
     console.log("invalid++++++:", row);
-    if (row.pressId == "") {
+    if (row.pressId == "" || row.pressId == null) {
       return false;
-    } else if (row.alloyFamily == "") {
+    } else if (row.alloyFamily == "" || row.alloyFamily == null) {
       return false;
     } else if (row.channels == "") {
       return false;
