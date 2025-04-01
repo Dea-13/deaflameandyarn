@@ -597,6 +597,9 @@ export const locale = {
       blockedReason: 'Причина блокиране',
       unblockedReason: 'Причина отблокиране',
       work50t: 'Работа до достигнати 50т',
+      blockedReasonTT: 'ПБ',
+      blockedUserTT: 'BU',
+      blockedTimeTT: 'BT'
     }
   }
 }

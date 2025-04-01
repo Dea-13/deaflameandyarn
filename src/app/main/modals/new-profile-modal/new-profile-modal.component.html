@@ -342,18 +342,19 @@
                           </td>
                           <td>
                             <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="rowLength.pressId"
-                               appendTo="body">
+                               appendTo="body" [ngClass]="{ 'error':!validation && rowLength.pressId === null }" required>
                               <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
                           <td class="w-25">
-                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body">
+                            <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowLength.alloyFamily" appendTo="body"
+                            [ngClass]="{ 'error':!validation && rowLength.alloyFamily === '' }" required>
                               <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                             </ng-select>
                           </td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="text"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="text"></td>
-                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="text"></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.channels" type="number" [ngClass]="{ 'error': !validation && rowLength.channels === null }" required></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthEnd" (input)="fillEndChannels(rowLength)" type="number" [ngClass]="{ 'error':!validation && rowLength.lengthEnd === null }" required></td>
+                          <td><input class="form-control input" [(ngModel)]="rowLength.lengthStart" type="number" [ngClass]="{ 'error':!validation && rowLength.lengthStart === null }" required></td>
                         </tr>
                       </tbody>
                     </table>

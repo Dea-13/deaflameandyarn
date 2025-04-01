@@ -398,7 +398,7 @@ export class StatedComponent implements OnInit {
       this.displayedColumns = [
         'dieId', 'profileId', 'primaryResourceName', 'producerName', 'diameter',
         'thickness', 'clientName','countInUse', 'KgNet', 'totalWeight', 'channels', 'placeSklad', 'lastTransaction',
-        'gr', 'renewal'
+        'gr', 'renewal', 'blockedReason', 'blockedUser', 'blockedTime'
       ];
       this.urls = [
         { id: 0, name: 'DieId' },

@@ -50,7 +50,7 @@ export class NewProfileModalComponent implements OnInit {
   public rowsLength: Array<any> = [];
   public groupCode: Array<any> = [];
   public alloyArr: Array<any> = [];
-  public validation: boolean;
+  public validation: boolean = true;
   public disableTab: boolean = true;
   public profileId: number;
   public fullScr: boolean = false;
@@ -263,27 +263,28 @@ export class NewProfileModalComponent implements OnInit {
   addRowSpeedLength(rowsLength) {
     console.log("add row", rowsLength);
     let emptyRow = {
-      pressId: "",
-      channels: "",
-      alloy: "",
-      lengthStart: "",
-      lengthEnd: "",
+      pressId: null,
+      channels: null,
+      alloyFamily: '',
+      lengthStart: null,
+      lengthEnd: null,
     };
+    this.validation = true;
     this.rowsLength.push(emptyRow);
     this.rowsLength = [...this.rowsLength];
   }
 
   pressEndValidation(row: any): boolean {
     console.log("invalid++++++:", row);
-    if (row.pressId == "") {
+    if (row.pressId == null) {
       return false;
-    } else if (row.alloyFamily == "") {
+    } else if (row.alloyFamily == '') {
       return false;
-    } else if (row.channels == "") {
+    } else if (row.channels == null) {
       return false;
-    } else if (row.lengthEnd == "") {
+    } else if (row.lengthEnd == null) {
       return false;
-    } else if (row.lengthStart == "") {
+    } else if (row.lengthStart == null) {
       return false;
     } else {
       return true

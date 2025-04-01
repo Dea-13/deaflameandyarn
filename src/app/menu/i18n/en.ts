@@ -601,6 +601,9 @@ export const locale = {
       blockedReason: 'Blocked Reason',
       unblockedReason: 'Unblocked Reason',
       work50t: 'Work up to 50t',
+      blockedReasonTT: 'BR',
+      blockedUserTT: 'BU',
+      blockedTimeTT: 'BT'
     }
   }
 }
