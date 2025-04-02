@@ -599,7 +599,8 @@ export const locale = {
       work50t: 'Работа до достигнати 50т',
       blockedReasonTT: 'ПБ',
       blockedUserTT: 'BU',
-      blockedTimeTT: 'BT'
+      blockedTimeTT: 'BT',
+      errorPriority: 'Приоритетът не може да е 0!'
     }
   }
 }

@@ -279,22 +279,22 @@
                             </td>
                             <td>
                               <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="r.pressId"
-                                 appendTo="body">
+                                 appendTo="body"  [ngClass]="{ 'error':!validation && r.pressId === null }" required>
                                 <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                               </ng-select>
                             </td>
-                            <td><input class="form-control input" [(ngModel)]="r.channels"  type="text"></td>
-                            <td><input class="form-control input" [(ngModel)]="r.priority"  type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.channels" type="number" [ngClass]="{ 'error':!validation && r.channels === null }" required></td>
+                            <td><input class="form-control input" [(ngModel)]="r.priority" type="number" [ngClass]="{ 'error':!validation && (r.priority === null || r.priority <= 0) }" required></td>
                             <td class="w-15">
                               <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="r.alloyFamily"
-                                (ngModelChange)="fillPressChannels(r)" appendTo="body" >
+                                (ngModelChange)="fillPressChannels(r)" appendTo="body" [ngClass]="{ 'error':!validation && r.alloyFamily === '' }" required>
                                 <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                               </ng-select>
                             </td>
-                            <td><input class="form-control input" [(ngModel)]="r.speed" type="text"></td>
-                            <td><input class="form-control input" [(ngModel)]="r.extrusionSpeed" type="text"></td>
-                            <td><input class="form-control input" [(ngModel)]="r.billetTemperature" type="text"></td>
-                            <td><input class="form-control input" [(ngModel)]="r.dieTemperature" type="text"></td>
+                            <td><input class="form-control input" [(ngModel)]="r.speed" type="number" [ngClass]="{ 'error':!validation && r.speed === null }" required></td>
+                            <td><input class="form-control input" [(ngModel)]="r.extrusionSpeed" type="number" [ngClass]="{ 'error':!validation && r.extrusionSpeed === null }" required></td>
+                            <td><input class="form-control input" [(ngModel)]="r.billetTemperature" type="text" [ngClass]="{ 'error':!validation && r.billetTemperature === '' }" required></td>
+                            <td><input class="form-control input" [(ngModel)]="r.dieTemperature" type="text" [ngClass]="{ 'error':!validation && r.dieTemperature === '' }" required></td>
                           </tr>
                         </tbody>
                       </table>

@@ -680,11 +680,14 @@ export class NewProfileModalComponent implements OnInit {
   addPress() {
     console.log("addPress");
     let emptyRow = {
-      pressId: "",
+      pressId: null,
       channels: null,
-      priority: null,
+      priority: 1,
       alloyFamily: "",
-      speed: "",
+      speed: null,
+      extrusionSpeed: null,
+      billetTemperature: '',
+      dieTemperature: '',
     };
     this.tabSpeed.push(emptyRow);
     this.tabSpeed = [...this.tabSpeed];
@@ -699,15 +702,21 @@ export class NewProfileModalComponent implements OnInit {
 
   pressValidation(row: any): boolean {
     console.log("invalid++++++:", row);
-    if (row.pressId == "") {
+    if (row.pressId == null) {
       return false;
     } else if (row.channels == null) {
       return false;
     } else if (row.alloyFamily == "") {
       return false;
-    } else if (row.speed == "") {
+    } else if (row.speed == null) {
       return false;
     } else if (row.priority == null) {
+      return false;
+    } else if (row.extrusionSpeed == null) {
+      return false;
+    } else if (row.billetTemperature == '') {
+      return false;
+    } else if (row.dieTemperature == '') {
       return false;
     } else {
       return true
@@ -737,19 +746,20 @@ export class NewProfileModalComponent implements OnInit {
       }
     }
 
-    if (row.priority <= 0) {
-      Swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: this.translateSnackBar.zeroMsg,
-        showConfirmButton: false,
-        timer: 2500
-      })
-      return;
-    }
-
     if (!flag) {
       this.validation = this.pressValidation(rowsLength[ind]);
+
+      if (row.priority <= 0) {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.zeroMsg,
+          showConfirmButton: false,
+          timer: 2500
+        })
+        return;
+      }
+
       if (this.validation) {
         obj = {
           profileId: this.profile.id,
@@ -758,6 +768,9 @@ export class NewProfileModalComponent implements OnInit {
           channels: row.channels,
           speed: row.speed,
           alloyFamily: row.alloyFamily,
+          extrusionSpeed: row.extrusionSpeed,
+          billetTemperature: row.billetTemperature,
+          dieTemperature: row.dieTemperature,
         }
 
         if(row.id) {
@@ -782,7 +795,7 @@ export class NewProfileModalComponent implements OnInit {
             Swal.fire({
               position: 'bottom-end',
               icon: 'warning',
-              title: error.status == 304 ? this.translateSnackBar.makeChange : 'Error',
+              title: error.status == 304 ? this.translateSnackBar.makeChange : error.status == 400 ? this.translateSnackBar.errorPriority : 'Error',
               showConfirmButton: false,
               timer: 2000
             })

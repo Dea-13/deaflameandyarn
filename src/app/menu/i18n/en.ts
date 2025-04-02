@@ -603,7 +603,8 @@ export const locale = {
       work50t: 'Work up to 50t',
       blockedReasonTT: 'BR',
       blockedUserTT: 'BU',
-      blockedTimeTT: 'BT'
+      blockedTimeTT: 'BT',
+      errorPriority: 'Priority cant be 0!'
     }
   }
 }
