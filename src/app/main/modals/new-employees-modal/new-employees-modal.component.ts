@@ -37,7 +37,7 @@ export class NewEmployeesModalComponent implements OnInit {
     this.createEmployeeForm = this.formBuilder.group({
       name: ['', Validators.required],
       department: ['', Validators.required],
-      privilege: ['', Validators.required],
+      privilege: [null, Validators.required],
     });
 
     if (this.employee.id) {

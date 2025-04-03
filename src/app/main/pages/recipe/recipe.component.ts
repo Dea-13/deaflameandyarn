@@ -69,9 +69,9 @@ export class RecipeComponent implements OnInit {
       // title: this.translateSnackBar.recipeName,
       html:
           this.translateSnackBar.recipeName +
-          '<input id="swal-upd-recipe" class="swal2-input">' +
+          '<input id="swal-new-recipe" type="text" class="swal2-input">' +
           this.translateSnackBar.dieLiveQty + '<br>' +
-          '<input id="swal-upd-die" type="number" class="swal2-input">',
+          '<input id="swal-new-die" type="number" class="swal2-input">',
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: this.translateSnackBar.save,
@@ -83,11 +83,11 @@ export class RecipeComponent implements OnInit {
       },
       preConfirm: function (recipe) {
         console.log('preConfirm', recipe);
-        if(!document.getElementById('swal-recipe')['value'] || !document.getElementById('swal-die')['value']) {
+        if(!document.getElementById('swal-new-recipe')['value'] || !document.getElementById('swal-new-die')['value']) {
           Swal.showValidationMessage('No data!');
         } else {
-          return recipeName = document.getElementById('swal-recipe')['value'],
-                 dieLiveQty = document.getElementById('swal-die')['value'];
+          return recipeName = document.getElementById('swal-new-recipe')['value'],
+                 dieLiveQty = document.getElementById('swal-new-die')['value'];
         }
       },
       allowOutsideClick: function () {
@@ -115,7 +115,7 @@ export class RecipeComponent implements OnInit {
     Swal.fire({
       // title: this.translateSnackBar.recipeName,
       html: this.translateSnackBar.recipeName +
-      '<input id="swal-upd-recipe" class="swal2-input" value="'+ row.recipeName +'">' +
+      '<input id="swal-upd-recipe" type="text" class="swal2-input" value="'+ row.recipeName +'">' +
       this.translateSnackBar.dieLiveQty + '<br>' +
       '<input id="swal-upd-die" type="number" class="swal2-input" value="'+ row.dieLiveQty +'">',
       focusConfirm: false,

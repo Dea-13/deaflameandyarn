@@ -49,7 +49,7 @@ export class NewMatrixModalComponent implements OnInit {
   public matrixComplectArr: Array<any> = [];
   public isEditableRowsPress = {};
   public isEditableRowsEnd = {};
-  public validation: boolean;
+  public validation: boolean = true;
   public markedForTestDateTime: any = null;
   public newClient: boolean = true;
   fullScr: boolean = false;
@@ -97,16 +97,16 @@ export class NewMatrixModalComponent implements OnInit {
       profile: [[]],
       matrix: [''],
       status: [''],
-      channels: ['', Validators.required],
+      channels: [null, Validators.required],
       dieHolder: [''],
       oporenPrysten: [false],
       opora: [''],
       bmwInventoryNumber: [''],
       dieLiveQty: [null],
-      Pressshaiba: [''],
+      pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
-      dieIndex: [null],
+      dieIndex: [''],
       container: [null],
       diesDefDimByResId: [null],
       bolsterTooling1: [''],
@@ -118,14 +118,14 @@ export class NewMatrixModalComponent implements OnInit {
       inUseFrom: [''],
       clientName: [''],
       producer: [null],
-      purchaser: [null, Validators.required],
+      purchaser: ['', Validators.required],
       corrector: [null],
       price: [null],
       dieID: [''],
-      grM: ['', Validators.required],
+      grM: [null, Validators.required],
       requiredTest: [''],
-      priceInv: [null],
-      primaryResource: [, Validators.required],
+      qtyProduced: [null],
+      primaryResource: [null, Validators.required],
       altResource1: [null],
       altResource2: [null],
       storageGroup: [''],
@@ -202,7 +202,7 @@ export class NewMatrixModalComponent implements OnInit {
         dieHolder: this.matrix.dieHolder,
         oporenPrysten: this.matrix.oporenPrysten,
         opora: this.matrix.opora,
-        Pressshaiba: this.matrix.Pressshaiba,
+        pressshaiba: this.matrix.pressshaiba,
         type: this.matrix.type,
         anodizingQuality: this.matrix.anodizingQuality,
         dieIndex: this.matrix.dieIndex,
@@ -225,14 +225,14 @@ export class NewMatrixModalComponent implements OnInit {
         dieID: this.matrix.dieId,
         grM: this.matrix.grM,
         requiredTest: this.matrix.requiredTest,
-        priceInv: this.matrix.priceInv,
+        qtyProduced: this.matrix.qtyProduced,
         primaryResource: this.matrix.primaryResource,
         altResource1: this.matrix.altResource1,
         altResource2: this.matrix.altResource2,
         storageGroup: this.matrix.storageGroup,
         storageFreePlace: this.matrix.storageFreePlace,
         remarks: this.matrix.remarks,
-        usageType: this.matrix.use,
+        usageType: this.matrix.usageType,
         notes: this.matrix.notes,
         scrapReason: this.matrix.scrapReason,
         reasonForPurchase: this.matrix.reasonForPurchase,
@@ -537,10 +537,11 @@ export class NewMatrixModalComponent implements OnInit {
   addRowPress(rowsLength) {
     console.log("add row", rowsLength);
     let emptyRow = {
-      pressId: "",
+      pressId: null,
       channels: null,
+      priority: 1,
       alloyFamily: "",
-      speed: "",
+      speed: null,
     };
     this.columnsFirstTable.push(emptyRow);
     this.columnsFirstTable = [...this.columnsFirstTable];
@@ -555,13 +556,15 @@ export class NewMatrixModalComponent implements OnInit {
 
   pressValidation(row: any): boolean {
     console.log("invalid++++++:", row);
-    if (row.pressId == "") {
+    if (row.pressId == null) {
       return false;
     } else if (row.channels == null) {
       return false;
+    }  else if (row.priority == null) {
+      return false;
     } else if (row.alloyFamily == "") {
       return false;
-    } else if (row.speed == "") {
+    } else if (row.speed == null) {
       return false;
     } else {
       return true
@@ -592,6 +595,18 @@ export class NewMatrixModalComponent implements OnInit {
 
     if (!flag) {
       this.validation = this.pressValidation(rowsLength[ind]);
+
+      if (row.priority <= 0) {
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.zeroMsg,
+          showConfirmButton: false,
+          timer: 2500
+        })
+        return;
+      }
+
       if (this.validation) {
         obj = {
           profileId: Number(this.matrixItem.data.id ? this.matrix.profile : this.createMatrixForm.controls.profile.value.id),
@@ -1119,7 +1134,7 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrix.dieHolder = this.createMatrixForm.controls.dieHolder.value,
     this.matrix.oporenPrysten = this.createMatrixForm.controls.oporenPrysten.value,
     this.matrix.opora = this.createMatrixForm.controls.opora.value,
-    this.matrix.Pressshaiba = this.createMatrixForm.controls.Pressshaiba.value,
+    this.matrix.pressshaiba = this.createMatrixForm.controls.pressshaiba.value,
     this.matrix.type = this.createMatrixForm.controls.type.value,
     this.matrix.dieLiveQty = this.createMatrixForm.controls.dieLiveQty.value,
     this.matrix.anodizingQuality = this.createMatrixForm.controls.anodizingQuality.value,
@@ -1142,7 +1157,7 @@ export class NewMatrixModalComponent implements OnInit {
     // dieID: this.createMatrixForm.controls.dieID.value,
     this.matrix.grM = this.createMatrixForm.controls.grM.value,
     this.matrix.requiredTest = this.createMatrixForm.controls.requiredTest.value,
-    this.matrix.priceInv = this.createMatrixForm.controls.priceInv.value,
+    this.matrix.qtyProduced = this.createMatrixForm.controls.qtyProduced.value,
     this.matrix.primaryResource = this.createMatrixForm.controls.primaryResource.value,
     this.matrix.altResource1 = this.createMatrixForm.controls.altResource1.value,
     this.matrix.altResource2 = this.createMatrixForm.controls.altResource2.value,

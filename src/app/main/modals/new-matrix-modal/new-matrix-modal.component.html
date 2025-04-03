@@ -72,6 +72,7 @@
                   </th>
                   <th>{{ translateSnackBar.press }}</th>
                   <th>{{ translateSnackBar.channels }}</th>
+                  <th>{{ translateSnackBar.priority }}</th>
                   <th class="w-25">{{ translateSnackBar.alloy }}</th>
                   <th>{{ translateSnackBar.speed }}</th>
                 </thead>
@@ -95,18 +96,19 @@
                     </td>
                     <td>
                       <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" class="select-table width-select" [(ngModel)]="rowPress.pressId"
-                        [disabled]="rowPress.profileId" appendTo="body">
+                        [disabled]="rowPress.profileId"  [ngClass]="{ 'error':!validation && rowPress.profileId === null }" required>
                         <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
                     </td>
-                    <td><input class="form-control input" [(ngModel)]="rowPress.channels" type="text"></td>
+                    <td><input class="form-control input" [(ngModel)]="rowPress.channels" type="number" [ngClass]="{ 'error':!validation && rowPress.channels === null }" required></td>
+                    <td><input class="form-control input" [(ngModel)]="rowPress.priority" type="number" [ngClass]="{ 'error':!validation && (rowPress.priority === null || rowPress.priority <= 0) }" required></td>
                     <td class="w-25">
                       <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowPress.alloyFamily"
-                        (ngModelChange)="fillPressChannels(rowPress)" appendTo="body">
+                        (ngModelChange)="fillPressChannels(rowPress)"  [ngClass]="{ 'error':!validation && rowPress.alloyFamily === '' }" required>
                         <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                       </ng-select>
                     </td>
-                    <td><input class="form-control input" [(ngModel)]="rowPress.speed" type="text"></td>
+                    <td><input class="form-control input" [(ngModel)]="rowPress.speed" type="number" [ngClass]="{ 'error':!validation && rowPress.speed === null }" required></td>
                   </tr>
                 </tbody>
               </table>
@@ -148,15 +150,16 @@
                       </div>
                     </td>
                     <td class="w-25">
-                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowEnd.alloyFamily" appendTo="body" [disabled]="rowEnd.profileId">
+                      <ng-select [virtualScroll]="true" appendTo="body" [clearable]="false" [(ngModel)]="rowEnd.alloyFamily" appendTo="body" [disabled]="rowEnd.profileId"
+                      [ngClass]="{ 'error':!validation && rowEnd.alloyFamily === '' }" required>
                         <ng-option *ngFor="let s of alloyArr" [value]="s.name">{{ s.name }}</ng-option>
                       </ng-select>
                     </td>
-                    <td><input class="form-control input" [(ngModel)]="rowEnd.channels" type="text"
-                        [disabled]="rowEnd.profileId"></td>
+                    <td><input class="form-control input" [(ngModel)]="rowEnd.channels" type="number"
+                        [disabled]="rowEnd.profileId" [ngClass]="{ 'error':!validation && rowEnd.channels === null }" required></td>
                     <td><input class="form-control input" [(ngModel)]="rowEnd.lengthEnd" (input)="fillEndChannels(rowEnd)"
-                        type="text"></td>
-                    <td><input class="form-control input" [(ngModel)]="rowEnd.lengthStart" type="text"></td>
+                        type="number" [ngClass]="{ 'error':!validation && rowEnd.lengthEnd === null }" required></td>
+                    <td><input class="form-control input" [(ngModel)]="rowEnd.lengthStart" type="number" [ngClass]="{ 'error':!validation && rowEnd.lengthStart === null }" required></td>
                   </tr>
                 </tbody>
               </table>
@@ -173,7 +176,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.channels }}</label>
-                      <input *ngIf="channelsArr.length === 0" formControlName="channels" type="text"
+                      <input *ngIf="channelsArr.length === 0" formControlName="channels" type="number"
                         class="form-control dt-uname" required
                         [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitInUse || submitReclamation || submitBlocked || submitRepair || submitBrak) && !createMatrixForm.get('channels').value }" />
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="channelsArr.length > 0" [clearable]="false" formControlName="channels"
@@ -201,12 +204,12 @@
                       <div class="flex">
                         <input class="form-control input" formControlName="oporenPrysten" type="checkbox"
                           style="width: 7%;margin-right: 5%;">
-                        <input *ngIf="oporaArr.length === 0" formControlName="opora" type="text"
-                          class="form-control dt-uname" />
-                        <ng-select [virtualScroll]="true" appendTo="body" *ngIf="oporaArr.length > 0" [clearable]="false" formControlName="opora"
+                        <input formControlName="opora" type="text" class="form-control dt-uname" />
+                          <!-- *ngIf="oporaArr.length === 0" -->
+                        <!-- <ng-select [virtualScroll]="true" appendTo="body" *ngIf="oporaArr.length > 0" [clearable]="false" formControlName="opora"
                           appendTo="body">
                           <ng-option *ngFor="let s of oporaArr" [value]="s.name">{{ s.name }}</ng-option>
-                        </ng-select>
+                        </ng-select> -->
                       </div>
                     </div>
                   </div>
@@ -230,7 +233,7 @@
                   <div class="col-md-3 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.pressWasher }}</label>
-                      <input formControlName="Pressshaiba" type="text" class="form-control dt-uname" />
+                      <input formControlName="pressshaiba" type="text" class="form-control dt-uname" />
                     </div>
                   </div>
 
@@ -327,7 +330,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.container }}</label>
-                      <input *ngIf="containerArr.length === 0" formControlName="container" type="text"
+                      <input *ngIf="containerArr.length === 0" formControlName="container" type="number"
                         class="form-control dt-uname"/>
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="containerArr.length > 0" [clearable]="false" formControlName="container"
                         appendTo="body" >
@@ -400,7 +403,7 @@
                   <div class="col-lg-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.press }}</label>
-                      <input *ngIf="pressArr.length === 0" formControlName="primaryResource" type="text"
+                      <input *ngIf="pressArr.length === 0" formControlName="primaryResource" type="number"
                         class="form-control dt-uname" required
                         [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitInUse || submitReclamation || submitBlocked || submitRepair|| submitBrak) && !createMatrixForm.get('primaryResource').value }" />
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="primaryResource"
@@ -413,7 +416,7 @@
                   <div class="col-lg-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.altPress1 }}</label>
-                      <input *ngIf="pressArr.length === 0" formControlName="altResource1" type="text" class="form-control dt-uname" />
+                      <input *ngIf="pressArr.length === 0" formControlName="altResource1" type="number" class="form-control dt-uname" />
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource1" appendTo="body">
                         <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
@@ -424,7 +427,7 @@
                   <div class="col-lg-6 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.altPress2 }}</label>
-                      <input *ngIf="pressArr.length === 0" formControlName="altResource2" type="text" class="form-control dt-uname" />
+                      <input *ngIf="pressArr.length === 0" formControlName="altResource2" type="number" class="form-control dt-uname" />
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="pressArr.length > 0" [clearable]="false" formControlName="altResource2" appendTo="body">
                         <ng-option *ngFor="let s of pressArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
@@ -470,7 +473,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.maker }}</label>
-                      <input *ngIf="producerArr.length === 0" formControlName="producer" type="text" class="form-control dt-uname" />
+                      <input *ngIf="producerArr.length === 0" formControlName="producer" type="number" class="form-control dt-uname" />
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="producerArr.length > 0" [clearable]="false" formControlName="producer" appendTo="body">
                         <ng-option *ngFor="let s of producerArr" [value]="s.id">{{ s.name }}</ng-option>
                       </ng-select>
@@ -494,7 +497,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.matricologist }}</label>
-                      <input *ngIf="matrologistArr.length === 0" formControlName="corrector" type="text"
+                      <input *ngIf="matrologistArr.length === 0" formControlName="corrector" type="number"
                         class="form-control dt-uname" />
                       <ng-select [virtualScroll]="true" appendTo="body" *ngIf="matrologistArr.length > 0" [clearable]="false" formControlName="corrector" appendTo="body">
                         <ng-option *ngFor="let s of matrologistArr" [value]="s.id">{{ s.name }}</ng-option>
@@ -510,7 +513,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.productionKg }}</label>
-                      <input formControlName="priceInv" type="number" class="form-control dt-uname" />
+                      <input formControlName="qtyProduced" type="number" class="form-control dt-uname" />
                     </div>
                   </div>
                 </div>
@@ -531,7 +534,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.gr }}</label>
-                      <input formControlName="grM" type="text" class="form-control dt-uname" required
+                      <input formControlName="grM" type="number" class="form-control dt-uname" required
                         [ngClass]="{ 'error': (submitStated || submitConfirm || submitDispatched || submitSettings || submitBlocked || submitReclamation || submitRepair || submitInUse || submitBrak) && !createMatrixForm.get('grM').value }" />
                     </div>
                   </div>

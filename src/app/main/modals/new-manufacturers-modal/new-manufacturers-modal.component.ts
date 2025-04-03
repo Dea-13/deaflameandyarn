@@ -40,7 +40,7 @@ export class NewManufacturersModalComponent implements OnInit {
     this.createManufacturerForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', Validators.required],
-      defaultShipmentTerms: ['', Validators.required],
+      defaultShipmentTerms: [null, Validators.required],
     });
 
     if (this.manufacturer.id) {
