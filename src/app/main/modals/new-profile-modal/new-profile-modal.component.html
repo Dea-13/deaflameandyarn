@@ -293,8 +293,8 @@
                             </td>
                             <td><input class="form-control input" [(ngModel)]="r.speed" type="number" [ngClass]="{ 'error':!validation && r.speed === null }" required></td>
                             <td><input class="form-control input" [(ngModel)]="r.extrusionSpeed" type="number" [ngClass]="{ 'error':!validation && r.extrusionSpeed === null }" required></td>
-                            <td><input class="form-control input" [(ngModel)]="r.billetTemperature" type="text" [ngClass]="{ 'error':!validation && r.billetTemperature === '' }" required></td>
-                            <td><input class="form-control input" [(ngModel)]="r.dieTemperature" type="text" [ngClass]="{ 'error':!validation && r.dieTemperature === '' }" required></td>
+                            <td><input class="form-control input" [(ngModel)]="r.billetTemperature" type="text" [ngClass]="{ 'error':!validation && (r.billetTemperature === '' || r.billetTemperature === null) }" required></td>
+                            <td><input class="form-control input" [(ngModel)]="r.dieTemperature" type="text" [ngClass]="{ 'error':!validation && (r.dieTemperature === '' || r.dieTemperature === null) }" required></td>
                           </tr>
                         </tbody>
                       </table>
