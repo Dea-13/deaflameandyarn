@@ -5,7 +5,7 @@
     "name": "AMD JOBS CONSULT",
     "email": "ahmed.musa.isa@gmail.com"
   },
-  "version": "1.0.49",
+  "version": "1.0.50",
   "main": "main.js",
   "private": false,
   "dependencies": {
