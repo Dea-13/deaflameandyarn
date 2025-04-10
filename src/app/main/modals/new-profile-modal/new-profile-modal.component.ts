@@ -292,14 +292,25 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   saveRowsLength(rowsLength, row, ind) {
-    console.log("save row", rowsLength, ind);
+    console.log("saveRowsLength", rowsLength, ind);
     this.isEditableRowsLength[ind] = false;
     let flag = false;
     let obj;
     for (let i = 0; i < this.rowsLength.length; i++) {
       if (this.rowsLength[i].profileId) {
+        if (!row.profileId && this.rowsLength[i].pressId == row.pressId) {
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateProfileMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
+
         if (!row.profileId && this.rowsLength[i].alloyFamily == row.alloyFamily) {
-          console.log('Duplicate row');
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',

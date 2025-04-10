@@ -604,7 +604,8 @@ export const locale = {
       blockedReasonTT: 'BR',
       blockedUserTT: 'BU',
       blockedTimeTT: 'BT',
-      errorPriority: 'Priority cant be 0!'
+      errorPriority: 'Priority cant be 0!',
+      dublicateProfileMSg: 'Row with this profile already exists, please select another!',
     }
   }
 }

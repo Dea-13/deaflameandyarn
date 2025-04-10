@@ -600,7 +600,8 @@ export const locale = {
       blockedReasonTT: 'ПБ',
       blockedUserTT: 'BU',
       blockedTimeTT: 'BT',
-      errorPriority: 'Приоритетът не може да е 0!'
+      errorPriority: 'Приоритетът не може да е 0!',
+      dublicateProfileMSg: 'Запис с тази профил вече съществува, моля изберете друг!',
     }
   }
 }
