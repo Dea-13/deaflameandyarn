@@ -172,6 +172,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/wc-blocked-die',
+    component: StatusWorkcentersComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'api/movement-matrix',
     component: MovementMatrixComponent,
     pathMatch: 'full'

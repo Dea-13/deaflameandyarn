@@ -252,6 +252,27 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-md-2 col-12">
+                    <div class="form-group">
+                      <label for="city-column" class="label-checkbox">{{ translateSnackBar.automotiveDieLive }}
+                      </label>
+                      <mat-checkbox formControlName="automotiveDieLive" color="primary" (change)="checkAutomotive($event)"></mat-checkbox>
+                      <!-- <input class="form-control input" type="checkbox" (input)="checkAutomotive($event)"
+                        style="width: 10%;margin-top: -2%;"> -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 col-12">
+                    <div class="form-group">
+                      <label for="city-column">{{ translateSnackBar.dieLiveQtyEst }}</label>
+                      <input formControlName="dieLiveQtyEst" class="form-control input" type="number" disabled>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8 col-12"></div>
+                </div>
               </div>
             </form>
           </div>

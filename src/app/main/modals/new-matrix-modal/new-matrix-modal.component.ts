@@ -106,6 +106,8 @@ export class NewMatrixModalComponent implements OnInit {
       pressshaiba: [''],
       type: [''],
       anodizingQuality: [false],
+      automotiveDieLive: [false],
+      dieLiveQtyEst: [null],
       dieIndex: [''],
       container: [null],
       diesDefDimByResId: [null],
@@ -176,11 +178,22 @@ export class NewMatrixModalComponent implements OnInit {
       this.createMatrixForm.enable();
       this.createMatrixForm.controls.profile.disable();
       this.createMatrixForm.controls.matrix.disable();
+      if(!this.createMatrixForm.controls.automotiveDieLive.value) { this.createMatrixForm.controls.dieLiveQtyEst.disable(); }
       this.enableButton = false;
     } else {
       this.createMatrixForm.disable();
+      this.createMatrixForm.controls.dieLiveQtyEst.disable();
       this.createMatrixForm.controls.profile.enable();
       this.createMatrixForm.controls.status.enable();
+    }
+  }
+
+  checkAutomotive(event) {
+    console.log('checkAutomotive', event.checked);
+    if(event.checked) {
+      this.createMatrixForm.controls.dieLiveQtyEst.enable();
+    } else {
+      this.createMatrixForm.controls.dieLiveQtyEst.disable();
     }
   }
 
@@ -205,6 +218,8 @@ export class NewMatrixModalComponent implements OnInit {
         pressshaiba: this.matrix.pressshaiba,
         type: this.matrix.type,
         anodizingQuality: this.matrix.anodizingQuality,
+        automotiveDieLive: this.matrix.automotiveDieLive,
+        dieLiveQtyEst: this.matrix.dieLiveQtyEst,
         dieIndex: this.matrix.dieIndex,
         bmwInventoryNumber: this.matrix.bmwInventoryNumber,
         dieLiveQty: this.matrix.dieLiveQty,
@@ -245,7 +260,13 @@ export class NewMatrixModalComponent implements OnInit {
         blockedReason: this.matrix.blockedReason,
         unblockedReason: this.matrix.unblockedReason,
       });
-      console.log('EDIT this.createMatrixForm', this.createMatrixForm);
+      if(this.matrix.status === 32 && this.matrix.dieLiveQtyEst) {
+        Swal.fire({
+          title: this.translateSnackBar.msgDieLifeEstOne + '' + this.translateSnackBar.msgDieLifeEstTwo + '' + this.translateSnackBar.msgDieLifeEstThree,
+          icon: "warning"
+        });
+      }
+      console.log('EDIT this.createMatrixForm', this.createMatrixForm, this.matrix.status, this.matrix.dieLiveQtyEst);
       this.blockUI.stop();
       this.getProfilesEnds();
     },error => {
@@ -267,6 +288,7 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('fillFormValid', this.createMatrixForm.controls.profile.value, this.createMatrixForm.controls.matrix.value, this.createMatrixForm.controls.status.value)
     if(this.createMatrixForm.controls.profile.value && this.createMatrixForm.controls.status.value){
       this.createMatrixForm.enable();
+      if(!this.createMatrixForm.controls.automotiveDieLive.value) {this.createMatrixForm.controls.dieLiveQtyEst.disable();}
       this.createMatrixForm.controls.matrix.disable();
     } else {
       this.createMatrixForm.disable();
@@ -1111,6 +1133,11 @@ export class NewMatrixModalComponent implements OnInit {
     console.log('sendResponce', this.createMatrixForm);
     this.blockUI.start('Loading...');
 
+    if(this.createMatrixForm.controls.automotiveDieLive.value && this.createMatrixForm.controls.dieLiveQtyEst.value) {
+      this.createMatrixForm.controls.status.setValue(32);
+      this.currentStatus = 32;
+    }
+
     if(this.createMatrixForm.controls.status.value === 32) {
       this.matrix.blockedReason = this.createMatrixForm.controls.blockedReason.value;
       this.matrix.blockedUser = this.userName;
@@ -1179,6 +1206,8 @@ export class NewMatrixModalComponent implements OnInit {
     this.matrix.correctorScrapId = this.createMatrixForm.controls.correctorScrapId.value;
     this.matrix.hardnessManufacturerRockwell = this.createMatrixForm.controls.hardnessManufacturerRockwell.value;
     this.matrix.measuredRockwellHardness = this.createMatrixForm.controls.measuredRockwellHardness.value;
+    this.matrix.automotiveDieLive = this.createMatrixForm.controls.automotiveDieLive.value,
+    this.matrix.dieLiveQtyEst = this.createMatrixForm.controls.dieLiveQtyEst.value,
     console.log('send', this.matrix);
 
     if (!this.matrixItem.data.id) {

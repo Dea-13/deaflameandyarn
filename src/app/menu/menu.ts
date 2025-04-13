@@ -233,6 +233,14 @@ export const menu: CoreMenu[] = [
         icon: 'check-circle',
         url: 'api/press-2500-oven'
       },
+      {
+        id: 'wc-blocked-die',
+        title: 'Blocked Die',
+        translate: 'MENU.BLOCKEDDIE',
+        type: 'item',
+        icon: 'check-circle',
+        url: 'api/wc-blocked-die'
+      },
     ]
   },
   {

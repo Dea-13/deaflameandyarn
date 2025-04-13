@@ -604,8 +604,15 @@ export const locale = {
       blockedReasonTT: 'BR',
       blockedUserTT: 'BU',
       blockedTimeTT: 'BT',
+      blockedUser: 'Blocked User',
+      blockedTime: 'Blocked Time',
       errorPriority: 'Priority cant be 0!',
       dublicateProfileMSg: 'Row with this profile already exists, please select another!',
+      automotiveDieLive: 'Auto',
+      dieLiveQtyEst: 'Die Life Estimated',
+      msgDieLifeEstOne: 'Die № ',
+      msgDieLifeEstTwo: ' has exceeded the limit of ',
+      msgDieLifeEstThree: ' kg and is blocked for inspection.',
     }
   }
 }

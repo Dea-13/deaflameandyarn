@@ -227,6 +227,17 @@
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kg}}</span></td>
             </ng-container>
 
+            <ng-container *ngIf="statusId === 102" matColumnDef="KgNet">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.netno">
+                <div class="filter-th" container="body"></div>
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.netno }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 87)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.kgNet}}</span></td>
+            </ng-container>
+
             <ng-container matColumnDef="countInUse">
               <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.usedPieces">
                 <div class="filter-th" container="body"></div>
@@ -320,6 +331,56 @@
                 <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.renewal }}</span>
               </th>
               <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.renewal}}</span></td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId !== 102" matColumnDef="bolsterTooling1">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bolster1">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bols1Table }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 9)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.bolsterTooling1}}</span></td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId !== 102" matColumnDef="bolsterTooling2">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.bolster2">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.bols2Table }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 10)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.bolsterTooling2}}</span></td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId === 102" matColumnDef="blockedReason">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.blockedReason">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.blockedReasonTT }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 90)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.blockedReason}}</span></td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId === 102" matColumnDef="blockedUser">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.blockedUser">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.blockedUserTT }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 88)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.blockedUser}}</span></td>
+            </ng-container>
+
+            <ng-container *ngIf="statusId === 102" matColumnDef="blockedTime">
+              <th mat-header-cell *matHeaderCellDef placement="top-left" container="body" [ngbTooltip]="translateSnackBar.blockedTime">
+                <span class="th-header" [ngStyle]="{'font-size': size + 'px'}">{{ translateSnackBar.blockedTimeTT }}</span>
+                <button type="button" class="btn order-btn" (click)="sortType(!orderType, 89)">
+                  <i class="fa fa-sort"></i>
+                </button>
+              </th>
+              <td mat-cell *matCellDef="let element"><span [ngStyle]="{'font-size': size + 'px'}">{{element.blockedTime | date:'dd/MM/yyyy H:mm:ss'}}</span></td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

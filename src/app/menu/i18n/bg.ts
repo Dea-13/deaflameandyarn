@@ -598,10 +598,17 @@ export const locale = {
       unblockedReason: 'Причина отблокиране',
       work50t: 'Работа до достигнати 50т',
       blockedReasonTT: 'ПБ',
-      blockedUserTT: 'BU',
-      blockedTimeTT: 'BT',
+      blockedUserTT: 'БП',
+      blockedTimeTT: 'БВ',
+      blockedUser: 'Блокиран потребител',
+      blockedTime: 'Време блокиране',
       errorPriority: 'Приоритетът не може да е 0!',
       dublicateProfileMSg: 'Запис с тази профил вече съществува, моля изберете друг!',
+      automotiveDieLive: 'Auto',
+      dieLiveQtyEst: 'Прогнозен живот на матрица',
+      msgDieLifeEstOne: 'Матрица № ',
+      msgDieLifeEstTwo: ' е преминала лимит от ',
+      msgDieLifeEstThree: ' кг и е блокирана за проверка.',
     }
   }
 }
