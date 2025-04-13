@@ -202,9 +202,8 @@
                     <div class="form-group">
                       <label for="city-column">{{ translateSnackBar.support }}</label>
                       <div class="flex">
-                        <input class="form-control input" formControlName="oporenPrysten" type="checkbox"
-                          style="width: 7%;margin-right: 5%;">
-                        <input formControlName="opora" type="text" class="form-control dt-uname" />
+                        <mat-checkbox formControlName="oporenPrysten" color="primary"></mat-checkbox>
+                        <input formControlName="opora" type="text" class="ml-2 form-control dt-uname" />
                           <!-- *ngIf="oporaArr.length === 0" -->
                         <!-- <ng-select [virtualScroll]="true" appendTo="body" *ngIf="oporaArr.length > 0" [clearable]="false" formControlName="opora"
                           appendTo="body">
@@ -239,10 +238,8 @@
 
                   <div class="col-md-2 col-12">
                     <div class="form-group">
-                      <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }}
-                      </label>
-                      <input formControlName="anodizingQuality" class="form-control input" type="checkbox"
-                        style="width: 10%;margin-top: -2%;">
+                      <label for="city-column" class="label-checkbox">{{ translateSnackBar.qualityAnodization }} </label>
+                      <mat-checkbox formControlName="anodizingQuality" color="primary"></mat-checkbox>
                     </div>
                   </div>
                   <div class="col-md-3 col-12">
@@ -259,8 +256,6 @@
                       <label for="city-column" class="label-checkbox">{{ translateSnackBar.automotiveDieLive }}
                       </label>
                       <mat-checkbox formControlName="automotiveDieLive" color="primary" (change)="checkAutomotive($event)"></mat-checkbox>
-                      <!-- <input class="form-control input" type="checkbox" (input)="checkAutomotive($event)"
-                        style="width: 10%;margin-top: -2%;"> -->
                     </div>
                   </div>
 
@@ -480,7 +475,7 @@
                       <!-- <label for="city-column"></label> -->
                       <label class="d-flex align-items-center">
                         <span>{{ translateSnackBar.client }} / </span>
-                        <input type="checkbox" class="form-control dt-uname" style="width: 7%; margin-left: 5px;" (change)="newClient = !newClient; createMatrixForm.controls.clientName.setValue('')" />
+                        <mat-checkbox color="primary" (change)="newClient = !newClient; createMatrixForm.controls.clientName.setValue('')" style="margin-top: -12px;"></mat-checkbox>
                         <span style="margin-left: 5px;">{{ translateSnackBar.newClient }}</span>
                       </label>
                       <input *ngIf="clientNameArr.length === 0 || newClient" formControlName="clientName" type="text"
@@ -543,7 +538,7 @@
                   <div class="col-md-4 col-12">
                     <div class="form-group">
                       <label for="city-column" class="label-checkbox">{{ translateSnackBar.requiredTest }}</label>
-                      <input formControlName="requiredTest" class="form-control input" type="checkbox" style="width: 7%;">
+                      <mat-checkbox formControlName="requiredTest" color="primary"></mat-checkbox>
                     </div>
                   </div>
                   <div class="col-md-4 col-12">
