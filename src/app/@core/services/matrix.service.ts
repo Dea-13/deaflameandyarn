@@ -135,6 +135,10 @@ export class MatrixService {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}`);
   }
 
+  getFiltersWCBlocked(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, ClientName:string, Channels:string) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/filter/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&ClientName=${ClientName}&Channels=${Channels}`);
+  }
+
   getFiltersScrap(url: string, keyword: string, statusId:number, DieId:string, ProfileId:string, PrimaryResourceName:string, ProducerName:string, Diameter:string, Thickness:string, BolsterTooling1:string, BolsterTooling2:string, Notes:string, ClientName:string) {
     return this._http.get<any>(`${environment.apiUrl}Dies/all/params/${url}?SearchKeyword=${keyword}&status=${statusId}&DieId=${DieId}&ProfileId=${ProfileId}&PrimaryResourceName=${PrimaryResourceName}&ProducerName=${ProducerName}&Diameter=${Diameter}&Thickness=${Thickness}&BolsterTooling1=${BolsterTooling1}&BolsterTooling2=${BolsterTooling2}&Notes=${Notes}&ClientName=${ClientName}`);
   }
