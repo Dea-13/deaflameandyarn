@@ -581,12 +581,18 @@ export class StatusWorkcentersComponent implements OnInit {
             for (let j = 0; j < this.arrFilters.length; j++) {
               // console.log('data 1=>', data, this.arrFilters, i);
               if (this.arrFilters[j].ind == i) {
-                for (let l = 0; l < data.length; l++) {
-                  // console.log('data 2=>', data, this.arrFilters[j].filter, j);
-                   for (let k = 0; k < this.arrFilters[j].filter.length; k++){
-                    // console.log('data 3=>', data, this.arrFilters[j].filter[k], k,);
-                    if (this.arrFilters[j].filter[k].checked == true && this.arrFilters[j].filter[k].name == data[l].name) {
-                      data[l].checked = true;
+                this.arrFilters[j].model = '';
+                let selected = [];
+                if(data.length === 0) {
+                  this.arrFilters[j].model = '';
+                } else {
+                  for (let l = 0; l < data.length; l++) {
+                    for (let k = 0; k < this.arrFilters[j].filter.length; k++) {
+                      if (this.arrFilters[j].filter[k].checked === true && this.arrFilters[j].filter[k].name === data[l].name) {
+                        data[l].checked = true;
+                        selected.push(data[l].name)
+                        this.arrFilters[j].model = selected;
+                      }
                     }
                   }
                 }
