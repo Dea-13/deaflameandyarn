@@ -48,6 +48,7 @@ export class NewProfileModalComponent implements OnInit {
   public howSpeedTable: boolean;
   public isEditableRowsLength = {};
   public rowsLength: Array<any> = [];
+  public rowsLengthTemp: Array<any> = [];
   public groupCode: Array<any> = [];
   public alloyArr: Array<any> = [];
   public validation: boolean = true;
@@ -240,6 +241,7 @@ export class NewProfileModalComponent implements OnInit {
   getProfilesEnds(id) {
     this.blockUI.start('Loading...');
     this.profilesService.getProfilesEnds(id).subscribe((data) => {
+      this.rowsLengthTemp = JSON.parse(JSON.stringify(data));
       this.rowsLength = data;
       this.blockUI.stop();
     });
@@ -292,13 +294,14 @@ export class NewProfileModalComponent implements OnInit {
   }
 
   saveRowsLength(rowsLength, row, ind) {
-    console.log("saveRowsLength", rowsLength, ind);
+    console.log("saveRowsLength", this.rowsLengthTemp, ind);
     this.isEditableRowsLength[ind] = false;
     let flag = false;
     let obj;
-    for (let i = 0; i < this.rowsLength.length; i++) {
-      if (this.rowsLength[i].profileId) {
-        if (!row.profileId && this.rowsLength[i].pressId == row.pressId) {
+    for (let i = 0; i < this.rowsLengthTemp.length; i++) {
+      if (this.rowsLengthTemp[i].profileId) {
+        if ((this.rowsLengthTemp[i].pressId == row.pressId) && (i != ind)) {
+          console.log("saveRowsLength", this.rowsLengthTemp[i].pressId, row.pressId);
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',
@@ -310,7 +313,8 @@ export class NewProfileModalComponent implements OnInit {
           break;
         }
 
-        if (!row.profileId && this.rowsLength[i].alloyFamily == row.alloyFamily) {
+        if ((this.rowsLengthTemp[i].alloyFamily == row.alloyFamily) && (i != ind)) {
+          console.log("saveRowsLength Alloy", this.rowsLengthTemp, this.rowsLengthTemp[i].alloyFamily, row.alloyFamily, i);
           Swal.fire({
             position: 'bottom-end',
             icon: 'warning',
