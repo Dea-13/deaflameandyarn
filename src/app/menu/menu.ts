@@ -234,12 +234,12 @@ export const menu: CoreMenu[] = [
         url: 'api/press-2500-oven'
       },
       {
-        id: 'wc-blocked-die',
-        title: 'Blocked Die',
-        translate: 'MENU.BLOCKEDDIE',
+        id: 'scrapped-dies',
+        title: 'Scrapped Dies',
+        translate: 'MENU.SCRAPPEDIES',
         type: 'item',
         icon: 'check-circle',
-        url: 'api/wc-blocked-die'
+        url: 'api/scrapped-dies'
       },
     ]
   },

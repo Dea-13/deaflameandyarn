@@ -172,7 +172,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'api/wc-blocked-die',
+    path: 'api/scrapped-dies',
     component: StatusWorkcentersComponent,
     pathMatch: 'full'
   },
