@@ -26,7 +26,7 @@ export class StatusWorkcentersComponent implements OnInit {
   public lastModified: string = '';
   public grM: string = '';
   public indColumn: any;
-  public orderBy: number = 0;
+  public orderBy: number = 77;
   public orderType: number = 1;
 
   selDateOrderForm = new FormGroup({
