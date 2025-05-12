@@ -920,8 +920,8 @@ export class NewMatrixModalComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('submitForm', this.createMatrixForm, this.createMatrixForm.controls.profile.value, this.createMatrixForm.controls.matrix.value, this.createMatrixForm.controls.status.value);
-    if(this.currentStatus === 32 && !this.createMatrixForm.controls.unblockedReason.value) {
+    console.log('submitForm', this.currentStatus, this.createMatrixForm, this.createMatrixForm.controls.blockedReason.value);
+    if(this.currentStatus === 32 && this.createMatrixForm.controls.status.value != 32 && !this.createMatrixForm.controls.unblockedReason.value) {
       Swal.fire({
         position: 'bottom-end',
         icon: 'warning',
@@ -929,6 +929,7 @@ export class NewMatrixModalComponent implements OnInit {
         showConfirmButton: false,
         timer: 3000
       })
+      console.log('test 1');
       return;
     }
 
@@ -992,7 +993,7 @@ export class NewMatrixModalComponent implements OnInit {
 
   submitBlockedDie(){
     this.submitBlocked = true;
-    if(!this.createMatrixForm.invalid && this.currentStatus !== 32 && this.createMatrixForm.controls.blockedReason.value){
+    if(!this.createMatrixForm.invalid && (this.currentStatus === 32 || this.createMatrixForm.controls.status.value == 32) && this.createMatrixForm.controls.blockedReason.value){
       this.sendResponce();
     } else {
       Swal.fire({
@@ -1002,6 +1003,7 @@ export class NewMatrixModalComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
+      console.log('test 2', this.currentStatus, this.createMatrixForm.controls.blockedReason.value, this.createMatrixForm.controls.blockedReason.value);
     }
   }
 
