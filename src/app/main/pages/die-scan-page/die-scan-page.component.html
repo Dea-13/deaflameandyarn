@@ -57,7 +57,7 @@
             </div>
             <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.productionKg }}</label>
-              <input class="form-control input" type="number" [(ngModel)]="productionKg">
+              <input class="form-control input" type="number" [(ngModel)]="productionKg" [ngClass]="{ 'border-danger': currentResource === 12 && resourceIn === 1 && !productionKg }">
             </div>
             <div class="align-items-center fixed-height">
               <label class="d-flex align-items-center">{{ translateSnackBar.notes }}</label>

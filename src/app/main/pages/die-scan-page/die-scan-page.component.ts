@@ -358,8 +358,19 @@ export class DieScanPageComponent implements OnInit {
 
   sendConfirmation(){
     this.submitted = true;
-    console.log('sendConfirmation', this.resourceIn, this.currentResource, this.selectedDie.resourceIn)
+    console.log('sendConfirmation', this.selectedDie, this.resourceIn, this.currentResource, this.selectedDie.resourceIn)
     if((this.selectedDie.resourceIn == null && this.resourceIn !== null && this.barCode && this.employee) || (this.barCode && this.resourceIn !== null && this.currentResource !== null && this.employee)){
+
+      if(this.currentResource === 12 && this.resourceIn === 1 && !this.productionKg){
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: this.translateSnackBar.msgMissingKg,
+          showConfirmButton: false,
+          timer: 4000
+        })
+        return;
+      }
 
       if(this.selectedDie.resourceIn != null && this.selectedDie.resourceIn != this.currentResource){
         Swal.fire({

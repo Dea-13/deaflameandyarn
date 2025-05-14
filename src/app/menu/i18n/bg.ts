@@ -610,6 +610,7 @@ export const locale = {
       msgDieLifeEstOne: 'Матрица № ',
       msgDieLifeEstTwo: ' е преминала лимит от ',
       msgDieLifeEstThree: ' кг и е блокирана за проверка.',
+      msgMissingKg: 'Полето Продукция(кг) е задължително! Моля, попълнете!',
     }
   }
 }

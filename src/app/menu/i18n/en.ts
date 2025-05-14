@@ -614,6 +614,7 @@ export const locale = {
       msgDieLifeEstOne: 'Die № ',
       msgDieLifeEstTwo: ' has exceeded the limit of ',
       msgDieLifeEstThree: ' kg and is blocked for inspection.',
+      msgMissingKg: 'The Production (kg) field is required! Please fill it in!',
     }
   }
 }
