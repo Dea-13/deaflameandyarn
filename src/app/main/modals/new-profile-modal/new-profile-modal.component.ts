@@ -107,6 +107,7 @@ export class NewProfileModalComponent implements OnInit {
       puller: [''],
       notesExtrusion: [''],
       important: [''],
+      profileComplexity: [null]
     });
 
     console.log('this.profile: ', this.profile);
@@ -180,7 +181,8 @@ export class NewProfileModalComponent implements OnInit {
         usage: this.sectionProfiles.usage,
         puller: this.sectionProfiles.puller,
         notesExtrusion: this.sectionProfiles.notesExtrusion,
-        important: this.sectionProfiles.important
+        important: this.sectionProfiles.important,
+        profileComplexity: this.sectionProfiles.profileComplexity
       });
       this.blockUI.stop();
 
@@ -489,7 +491,8 @@ export class NewProfileModalComponent implements OnInit {
       primaryPress: null,
       alternativePress: null,
       thickness: null,
-      sideWidth: null
+      sideWidth: null,
+      profileComplexity: this.createProfileForm.controls.profileComplexity.value
     }
     if(this.createProfileForm.controls.profileName.value.match(/_/g) != null && this.createProfileForm.controls.profileName.value.match(/_/g).length != 1){
       Swal.fire({

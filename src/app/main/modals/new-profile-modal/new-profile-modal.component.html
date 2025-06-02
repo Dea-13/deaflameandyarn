@@ -109,6 +109,14 @@
                             <label>{{ translateSnackBar.size }} 4</label>
                             <input type="number" formControlName="size4" class="form-control dt-uname" />
                           </div>
+                          <div class="col-md-12 flex mt-2">
+                            <label>{{ translateSnackBar.dificulty }}</label>
+                             <ng-select [virtualScroll]="true" appendTo="body" appendTo="body" [clearable]="false" formControlName="profileComplexity">
+                              <ng-option [value]="1">1</ng-option>
+                              <ng-option [value]="2">2</ng-option>
+                              <ng-option [value]="3">3</ng-option>
+                            </ng-select>
+                          </div>
                         </div>
 
                         <div class="col-md-4">

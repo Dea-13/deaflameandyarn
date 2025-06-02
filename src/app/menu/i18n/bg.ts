@@ -611,6 +611,7 @@ export const locale = {
       msgDieLifeEstTwo: ' е преминала лимит от ',
       msgDieLifeEstThree: ' кг и е блокирана за проверка.',
       msgMissingKg: 'Полето Продукция(кг) е задължително! Моля, попълнете!',
+      dificulty: 'Сложност',
     }
   }
 }
