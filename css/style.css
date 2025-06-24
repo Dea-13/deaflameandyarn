@@ -485,24 +485,39 @@ button {
   padding-top: 30px;
 }
 
-.cream_box {
+.home-page .cream_box {
   width: 100%;
   float: left;
-  background-image: linear-gradient(0deg, #ffffff 37%, #f2f2f0 37%);
+  /* background-image: linear-gradient(0deg, #ffffff 37%, #f2f2f0 37%); */
   height: auto;
   padding: 0; //20px;
   box-shadow: 0px 0px 20px 10px #ededec;
+  /* background: #ffe9ec; */
+}
+
+.candles-page .cream_box, .toys-page .cream_box {
+  width: 100%;
+  float: left;
+  /* background-image: linear-gradient(0deg, #ffffff 37%, #f2f2f0 37%); */
+  height: auto;
+  padding: 0; //20px;
+  /* box-shadow: 0px 0px 20px 10px #ededec; */
+  /* background: #ffe9ec; */
+  background-image: url("/images/frame.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain; /* Resize the background image to cover the entire container */
 }
 
 .cream_box:hover {
-  background-image: linear-gradient(0deg, #ffffff 37%, #faf0c7 37%);
+  /* background-image: linear-gradient(0deg, #ffffff 37%, #faf0c7 37%); */
 }
 
 .cream_img {
   width: 100%;
   text-align: center;
-  padding-bottom: 20px;
-  height: 360px;
+  /* padding-bottom: 20px; */
+  height: 270px;
   display: flex;
   align-items: center;
 }
@@ -1020,6 +1035,11 @@ textarea#comment.update_mail::placeholder {
   height: -webkit-fill-available;
   width: -webkit-fill-available;
   object-fit: contain;
+  /* border: 1px solid red; */
+}
+
+.col-md-3 img {
+  max-height: 200px;
 }
 
 h2 {
@@ -1092,4 +1112,10 @@ tbody tr:nth-child(even) {
 .banner_img img {
   position: relative;
   /* top: -50px; */
+}
+
+.candles-page img {
+  max-width: 210px;
+  display: flex;
+  margin: 0 auto;
 }
