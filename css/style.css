@@ -367,7 +367,7 @@ button {
 .about_section {
   width: 100%;
   float: left;
-  padding: 90px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 .about_taital {
@@ -422,7 +422,7 @@ button {
 .cream_section {
   width: 100%;
   float: left;
-  padding: 90px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
   position: relative;
 }
 
@@ -455,6 +455,7 @@ button {
   font-size: 32px;
   color: #fc95c4;
   font-weight: bold;
+  padding-top: 10px;
 }
 
 .main-cream-page {
@@ -1118,4 +1119,8 @@ tbody tr:nth-child(even) {
   max-width: 210px;
   display: flex;
   margin: 0 auto;
+}
+
+table .p-1 {
+  max-width: 300px;
 }
