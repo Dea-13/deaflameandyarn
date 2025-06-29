@@ -1108,6 +1108,13 @@ tbody tr:nth-child(even) {
     font-weight: bold;
     color: #d63384;
   }
+
+  .banner_img img:nth-child(1) {
+    position: relative;
+    width: 540px;
+    height: 260px!important;
+    /* top: -50px; */
+  }
 }
 
 .banner_img img {
@@ -1117,8 +1124,8 @@ tbody tr:nth-child(even) {
 
 .banner_img img:nth-child(1) {
   position: relative;
-  width: -webkit-fill-available;
-  height: -webkit-fill-available;
+  width: 540px;
+  height: 400px;
   /* top: -50px; */
 }
 
