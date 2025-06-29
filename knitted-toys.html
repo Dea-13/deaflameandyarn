@@ -9,10 +9,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Галерия</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
+      <title>Ръчно плетени играчки и аксесоари | DeaFlame & Yarn</title>
+      <meta name="keywords" content="ръчно изработени свещи, плетени играчки, хендмейд подаръци, плетива на една кука, персонализирани плетива, ръчни изделия по поръчка, арт свещи">
+      <meta name="description" content="Очарователни плетени играчки и аксесоари – ръчна изработка с индивидуален подход. Подходящи за подарък, декорация или детска стая.">
       <meta name="author" content="">
+      <meta property="og:title" content="Плетени играчки и аксесоари | DeaFlame & Yarn">
+      <meta property="og:description" content="Очарователни плетени изделия, създадени с внимание към всеки бод. Изненадай любими хора с ръчно направен подарък.">
+      <meta property="og:image" content="https://deaflameandyarn.netlify.app/images/knitting.jpg">
+      <meta property="og:url" content="https://deaflameandyarn.netlify.app/pletiva">
+      <meta property="og:type" content="article">
+
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
       <!-- style css -->
@@ -70,7 +76,7 @@
          <div class="container">
             <div class="row">
                <div class="col-md-12">
-                  <h1 class="cream_taital">Галерия</h1>
+                  <h1 class="cream_taital">Галерия от ръчно плетени изделия</h1>
                   <p class="cream_text">Добре дошли в нашата вълшебна галерия, където преждата оживява!</p>
                   <p class="cream_text">Всяка играчка, която ще видите тук, е ръчно изработена с много любов, внимание към детайла и усмивка в сърцето.</p>
                   <p class="cream_text mb-4">Използваме висококачествени, меки прежди и безопасни материали, подходящи за бебета и деца. Вдъхновени от японската техника амигуруми, създаваме не просто играчки, а малки приятели с характер.</p>
@@ -357,7 +363,7 @@
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
-               if (href === current || (href === 'knited-toys.html' && current === '')) {
+               if (href === current || (href === 'knited-toys' && current === '')) {
                   link.classList.add('active');
                }
             });

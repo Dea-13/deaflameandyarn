@@ -10,10 +10,16 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
    <!-- site metas -->
-   <title>Dea Flame & Yarn</title>
-   <meta name="keywords" content="">
-   <meta name="description" content="">
+   <title>Свържи се с нас | DeaFlame & Yarn</title>
+   <meta name="keywords" content="ръчно изработени свещи, плетени играчки, хендмейд подаръци, плетива на една кука, персонализирани плетива, ръчни изделия по поръчка, арт свещи">
+   <meta name="description" content="Имате въпрос или искате да направите поръчка? Свържете се с нас чрез формата за контакт или социалните мрежи.">
    <meta name="author" content="">
+   <meta property="og:title" content="Свържи се с нас | DeaFlame & Yarn">
+   <meta property="og:description" content="Искаш поръчка или имаш въпрос? Пиши ни директно или ни намери в социалните мрежи.">
+   <meta property="og:image" content="https://deaflameandyarn.netlify.app/images/contact.jpg">
+   <meta property="og:url" content="https://deaflameandyarn.netlify.app/kontakti">
+   <meta property="og:type" content="website">
+
    <!-- bootstrap css -->
    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
    <!-- style css -->
@@ -116,6 +122,9 @@
                </div>
             </div>
             <div class="col-md-8">
+                  <p class="text-white">
+                     Ако имате въпроси, идеи или искате да направите поръчка – не се колебайте да се свържете с нас. Може да ни намерите и в социалните мрежи: Instagram, Facebook, TikTok. Отговаряме с удоволствие!
+                  </p>
                <img src="images/contact-tr-2.png">
             </div>
          </div>
@@ -136,7 +145,7 @@
          const current = window.location.pathname.split('/').pop();
          document.querySelectorAll('.nav a').forEach(link => {
             const href = link.getAttribute('href');
-            if (href === current || (href === 'contact.html' && current === '')) {
+            if (href === current || (href === 'contact' && current === '')) {
                link.classList.add('active');
             }
          });

@@ -95,7 +95,7 @@
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
-               if (href === current || (href === 'about.html' && current === '')) {
+               if (href === current || (href === 'about' && current === '')) {
                   link.classList.add('active');
                }
             });

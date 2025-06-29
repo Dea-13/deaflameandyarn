@@ -9,10 +9,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Услуги</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
+      <title>Услуги и цени | Индивидуални ръчни поръчки | DeaFlame & Yarn</title>
+      <meta name="keywords" content="ръчно изработени свещи, плетени играчки, хендмейд подаръци, плетива на една кука, персонализирани плетива, ръчни изделия по поръчка, арт свещи">
+      <meta name="description" content="Вижте нашия ценоразпис за изработка на ръчни свещи и плетени изделия. Възможност за персонализирани проекти по заявка.">
       <meta name="author" content="">
+      <meta property="og:title" content="Ръчни изделия по поръчка – цени и услуги | DeaFlame & Yarn">
+      <meta property="og:description" content="Предлагаме изработка на свещи и плетива по индивидуална заявка. Виж цени и възможности.">
+      <meta property="og:image" content="https://deaflameandyarn.netlify.app/images/services.jpg">
+      <meta property="og:url" content="https://deaflameandyarn.netlify.app/uslugi">
+      <meta property="og:type" content="article">
+
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
       <!-- style css -->
@@ -69,9 +75,12 @@
       <div class="services_section layout_padding pb-5">
          <div class="container">
             <div class="row">
-               <div class="col-md-12">
+               <div class="col-md-12 d-block">
                   <h1 class="services_taital">Предлага ме Ви нашите услуги</h1>
                </div>
+               <p>
+                  Предлагаме изработка на ръчни свещи и плетени изделия по индивидуален дизайн. Разгледайте нашия актуален ценоразпис и се свържете с нас за персонална консултация. Всичко, което изработваме, е с мисъл за клиента.
+               </p>
             </div>
             <div class="services_section_2">
                <div class="row">
@@ -226,7 +235,7 @@
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
-               if (href === current || (href === 'services.html' && current === '')) {
+               if (href === current || (href === 'services' && current === '')) {
                   link.classList.add('active');
                }
             });

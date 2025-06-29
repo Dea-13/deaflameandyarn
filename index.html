@@ -9,10 +9,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Dea Flame & Yarn</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
+      <title>Ръчно изработени плетени играчки и свещи | DeaFlame & Yarn</title>
+      <meta name="keywords" content="ръчно изработени свещи, плетени играчки, хендмейд подаръци, плетива на една кука, персонализирани плетива, ръчни изделия по поръчка, арт свещи">
+      <meta name="description" content="Открийте уникални ръчно изработени свещи и плетени изделия. Идеални за подарък или уют в дома. Персонализирани поръчки с внимание към детайла.">
       <meta name="author" content="">
+      <meta property="og:title" content="DeaFlame & Yarn – Ръчно изработени свещи и плетива">
+      <meta property="og:description" content="Уникални ръчни изделия – свещи, плетени играчки и още. Създадени с любов и внимание към детайла.">
+      <meta property="og:image" content="https://deaflameandyarn.netlify.app/images/cover-home.jpg"> <!-- замени с реален URL към снимка -->
+      <meta property="og:url" content="https://deaflameandyarn.netlify.app/">
+      <meta property="og:type" content="website">
+
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
       <!-- style css -->
@@ -78,6 +84,7 @@
                         <div class="row">
                            <div class="col-sm-6">
                               <h1 class="banner_taital">„Светлина с душа – декоративни свещи за всеки дом“</h1>
+                              <p></p>
                               <div class="started_text"><a href="candles.html">Разгледайте</a></div>
                            </div>
                            <div class="col-sm-6">
@@ -133,7 +140,7 @@
                   <div class="about_img"><img src="images/animated-candle.webp"></div>
                </div>
                <div class="col-md-6">
-                  <h2 class="about_taital">Магията на ръчно изработените свещи</h2>
+                  <h1 class="about_taital">Магията на ръчно изработените свещи</h1>
                   <p class="about_text">✨ Добре дошли в света на ръчните декоративни свещи ✨</p>
                   <p class="about_text"> Уют. Красота. Аромат.</p>
                   <p class="about_text">
@@ -244,7 +251,7 @@
                   <div class="about_img"><img src="images/wmremove-transformed.png"></div>
                </div>
                <div class="col-md-6">
-                  <h2 class="about_taital">Ръчно плетени играчки, вдъхновени от детството</h2>
+                  <h1 class="about_taital">Ръчно плетени играчки, вдъхновени от детството</h1>
                   <p class="about_text">Създаваме уникални плетени приятели с много любов и внимание към всеки детайл.</p>
                   <p class="about_text">Всяка играчка е изработена ръчно с естествени материали –</p>
                   <p class="about_text">безопасна, нежна и готова да зарадва малки и големи сърца.</p>
@@ -337,7 +344,7 @@
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
-               if (href === current || (href === 'index.html' && current === '')) {
+               if (href === current || (href === '' && current === '')) {
                   link.classList.add('active');
                }
             });
