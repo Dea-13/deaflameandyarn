@@ -145,6 +145,7 @@
          const current = window.location.pathname.split('/').pop();
          document.querySelectorAll('.nav a').forEach(link => {
             const href = link.getAttribute('href');
+               console.log('====>', href, current);
             if (href === current || (href === '/contact' && current === 'contact')) {
                link.classList.add('active');
             }
