@@ -361,8 +361,7 @@
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
-               console.log('====>', href, current);
-               if (href === '/knited-toys' && current === 'knited-toys') {
+               if (href === '/knitted-toys' && current === 'knitted-toys') {
                   link.classList.add('active');
                }
             });
