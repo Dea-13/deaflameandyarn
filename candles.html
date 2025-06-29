@@ -501,7 +501,7 @@
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
                console.log('====>', href, current, current == '');
-               if (href == current || (href == '/candles' && current == '')) {
+               if (href == current || (href == '/candles' && current == 'candles')) {
                   link.classList.add('active');
                }
             });
