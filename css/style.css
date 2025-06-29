@@ -1114,7 +1114,7 @@ tbody tr:nth-child(even) {
     color: #d63384;
   }
 
-  .banner_img img:nth-child(1) {
+  .banner_img:nth-child(1) img {
     position: relative;
     width: 540px;
     height: 260px!important;
@@ -1127,7 +1127,7 @@ tbody tr:nth-child(even) {
   /* top: -50px; */
 }
 
-.banner_img img:nth-child(1) {
+.banner_img:nth-child(1) img {
   position: relative;
   width: 540px;
   height: 400px;
