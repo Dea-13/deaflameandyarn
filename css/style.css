@@ -1119,6 +1119,7 @@ tbody tr:nth-child(even) {
   max-width: 210px;
   display: flex;
   margin: 0 auto;
+  height: 200px;
 }
 
 table .p-1 {
