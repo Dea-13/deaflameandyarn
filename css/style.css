@@ -1115,12 +1115,14 @@ tbody tr:nth-child(even) {
   /* top: -50px; */
 }
 
-.banner_img img {
+.banner_img img:nth-child(1) {
   position: relative;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
   /* top: -50px; */
 }
 
-.candles-page img:nth-child(1) {
+.candles-page img {
   max-width: 210px;
   display: flex;
   margin: 0 auto;
