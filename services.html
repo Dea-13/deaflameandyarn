@@ -234,7 +234,7 @@
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
                console.log('====>', href, current);
-               if (href === current || (href === '/services' && current === 'services')) {
+               if (href === '/services' && current === 'services') {
                   link.classList.add('active');
                }
             });

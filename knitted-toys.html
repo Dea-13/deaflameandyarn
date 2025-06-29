@@ -362,7 +362,7 @@
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
                console.log('====>', href, current);
-               if (href === current || (href === '/knited-toys' && current === 'knited-toys')) {
+               if (href === '/knited-toys' && current === 'knited-toys') {
                   link.classList.add('active');
                }
             });
