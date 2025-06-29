@@ -1039,6 +1039,11 @@ textarea#comment.update_mail::placeholder {
   /* border: 1px solid red; */
 }
 
+.home-page .cream_img img {
+  height: 260px!important;
+  width: 350px!important;
+}
+
 .col-md-3 img {
   max-height: 200px;
 }
