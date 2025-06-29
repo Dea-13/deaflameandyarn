@@ -500,7 +500,7 @@
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {
                const href = link.getAttribute('href');
-               console.log('====>', href, current, current == '');
+               console.log('====>', href, current, href == current, href == '/candles', current == 'candles');
                if (href == current || (href == '/candles' && current == 'candles')) {
                   link.classList.add('active');
                }
