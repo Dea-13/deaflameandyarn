@@ -213,7 +213,7 @@ button {
 .header_section {
   width: 100%;
   float: left;
-  background-image: url(../images/banner-bg.png);
+  background-image: url(../images/banner-bg.webp);
   height: auto;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -431,7 +431,7 @@ button {
   content: "";
   width: 120px;
   height: 140px;
-  background-image: url(../images/img-6.png);
+  background-image: url(../images/img-6.webp);
   background-size: 100%;
   background-repeat: no-repeat;
   bottom: 80px;
@@ -442,7 +442,7 @@ button {
   content: "";
   width: 120px;
   height: 140px;
-  background-image: url(../images/img-6.png);
+  background-image: url(../images/img-6.webp);
   background-size: 100%;
   background-repeat: no-repeat;
   top: 180px;
@@ -504,7 +504,7 @@ button {
   padding: 0; //20px;
   /* box-shadow: 0px 0px 20px 10px #ededec; */
   /* background: #ffe9ec; */
-  background-image: url("/images/frame.png");
+  background-image: url("/images/frame.webp");
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: contain; /* Resize the background image to cover the entire container */
@@ -686,7 +686,7 @@ button {
   content: "";
   width: 120px;
   height: 102px;
-  background-image: url(../images/quick-icon.png);
+  background-image: url(../images/quick-icon.webp);
   background-size: 100%;
   left: 40px;
   top: 290px;
@@ -697,7 +697,7 @@ button {
   content: "";
   width: 120px;
   height: 102px;
-  background-image: url(../images/quick-icon.png);
+  background-image: url(../images/quick-icon.webp);
   background-size: 100%;
   right: 40px;
   top: 290px;
