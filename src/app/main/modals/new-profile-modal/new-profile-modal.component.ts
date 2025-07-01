@@ -327,6 +327,19 @@ export class NewProfileModalComponent implements OnInit {
           flag = true;
           break;
         }
+
+        if ((this.rowsLengthTemp[i].channels == row.channels) && (i != ind)) {
+          console.log("saveRowsLength Alloy", this.rowsLengthTemp, this.rowsLengthTemp[i].channels, row.channels, i);
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateChannelsMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
       }
     }
 
@@ -749,7 +762,7 @@ export class NewProfileModalComponent implements OnInit {
     let url;
     for (let i = 0; i < this.tabSpeed.length; i++) {
       if (this.tabSpeed[i].id) {
-        if (!row.id && (this.tabSpeed[i].pressId == row.pressId && this.tabSpeed[i].alloyFamily == row.alloyFamily)) {
+        if (i != ind && (this.tabSpeed[i].pressId == row.pressId && this.tabSpeed[i].alloyFamily == row.alloyFamily && this.tabSpeed[i].channels == row.channels)) {
           console.log('Duplicate row');
           Swal.fire({
             position: 'bottom-end',

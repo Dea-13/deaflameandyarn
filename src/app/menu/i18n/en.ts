@@ -609,6 +609,7 @@ export const locale = {
       blockedTime: 'Blocked Time',
       errorPriority: 'Priority cant be 0!',
       dublicateProfileMSg: 'Row with this profile already exists, please select another!',
+      dublicateChannelsMSg: 'Row with this channel already exists, please select another!',
       automotiveDieLive: 'Auto',
       dieLiveQtyEst: 'Die Life Estimated',
       msgDieLifeEstOne: 'Die № ',

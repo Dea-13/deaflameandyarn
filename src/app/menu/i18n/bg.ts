@@ -605,6 +605,7 @@ export const locale = {
       blockedTime: 'Време блокиране',
       errorPriority: 'Приоритетът не може да е 0!',
       dublicateProfileMSg: 'Запис с тази профил вече съществува, моля изберете друг!',
+      dublicateChannelsMSg: 'Запис с този канал вече съществува, моля изберете друг!',
       automotiveDieLive: 'Auto',
       dieLiveQtyEst: 'Прогнозен живот на матрица',
       msgDieLifeEstOne: 'Матрица № ',
