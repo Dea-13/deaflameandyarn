@@ -327,6 +327,19 @@ export class NewProfileModalComponent implements OnInit {
           flag = true;
           break;
         }
+
+        if ((this.rowsLengthTemp[i].channels == row.channels) && (i != ind)) {
+          console.log("saveRowsLength Alloy", this.rowsLengthTemp, this.rowsLengthTemp[i].channels, row.channels, i);
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: this.translateSnackBar.dublicateChannelsMSg,
+            showConfirmButton: false,
+            timer: 2000
+          })
+          flag = true;
+          break;
+        }
       }
     }
 
