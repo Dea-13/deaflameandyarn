@@ -465,6 +465,7 @@
             <table class="clasic-table">
               <thead>
                 <th>{{ translateSnackBar.dies }}</th>
+                <th>{{ translateSnackBar.channels }}</th>
                 <th>{{ translateSnackBar.resource }}</th>
                 <th>{{ translateSnackBar.altResource }}</th>
                 <th>{{ translateSnackBar.dimensions }}</th>
@@ -475,6 +476,7 @@
               <tbody>
                 <tr *ngFor="let row of rowsDies">
                   <td>{{row.dieId}}</td>
+                  <td>{{row.channels}}</td>
                   <td>{{row.currentResource}}</td>
                   <td>{{row.primaryResourceName}}</td>
                   <td>{{row.dimensions}}</td>
