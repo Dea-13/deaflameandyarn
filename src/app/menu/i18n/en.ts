@@ -68,6 +68,7 @@ export const locale = {
       PRESS2500OVEN: 'Press 2500t Oven',
       BLOCKEDDIE: 'Blocked Die',
       SCRAPPEDIES: 'Scrapped Dies',
+      DIEREQUEST: 'Die Request',
     },
     translate: {
       report: 'Report',

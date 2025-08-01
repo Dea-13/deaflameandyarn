@@ -259,6 +259,14 @@ export const menu: CoreMenu[] = [
     icon: 'clipboard',
     url: 'api/die-scan-module'
   },
+  {
+    id: 'dieRequest',
+    title: 'Die Request',
+    translate: 'MENU.DIEREQUEST',
+    type: 'item',
+    icon: 'clipboard',
+    url: 'api/die-requests'
+  },
   // {
   //   id: 'userview',
   //   title: 'User view----',

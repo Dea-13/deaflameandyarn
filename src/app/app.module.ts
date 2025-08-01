@@ -78,6 +78,7 @@ import { UploadModalComponent } from './main/modals/upload-modal/upload-modal.co
 import {CookieService} from 'ngx-cookie-service';
 import { DiesByMonthComponent } from './main/pages/dies-by-month/dies-by-month.component';
 import { StatusWorkcentersComponent } from './main/pages/status-workcenters/status-workcenters.component';
+import { DieRequestPageComponent } from './main/pages/die-request-page/die-request-page.component';
 
 
 const appRoutes: Routes = [
@@ -337,6 +338,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'api/die-requests',
+    component: DieRequestPageComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
   }
@@ -377,7 +383,8 @@ const appRoutes: Routes = [
     BilletRawMaterialsComponent,
     ExtrusionModalComponent,
     RecipeComponent,
-    UploadModalComponent
+    UploadModalComponent,
+    DieRequestPageComponent
   ],
 
   imports: [

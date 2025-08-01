@@ -1,0 +1,67 @@
+<div *blockUI="'block'" class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <section class="users-list-wrapper">
+      <div class="card">
+        <div class="row">
+          <div class="col-12">
+            <mat-accordion multi>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <div class="row col-12" (click)="$event.stopPropagation();">
+                    <div class="d-flex align-items-center">
+                      <button rippleEffect (click)="size = size + 1" class="btn size-btn text-primary p-0"
+                        [disabled]="size >= 22">A<span [data-feather]="'zoom-in'" [class]="'ficon'"></span></button>
+                      <span class="pt-line-3">|</span>
+                      <button rippleEffect (click)="size = size - 1" class="btn size-btn text-primary p-0"
+                        [disabled]="size <= 8">A<span [data-feather]="'zoom-out'" [class]="'ficon'"></span></button>
+                    </div>
+                  </div>
+                </mat-expansion-panel-header>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+        <section class="example-container mat-elevation-z8">
+          <table class="clasic-table">
+                      <thead>
+                        <th>{{ translateSnackBar.press }} 600</th>
+                        <th>{{ translateSnackBar.press }} 1800</th>
+                        <th>{{ translateSnackBar.press }} 1300</th>
+                        <th>{{ translateSnackBar.press }} 2000</th>
+                        <th>{{ translateSnackBar.press }} 2500</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border-right">
+                            <div class="row m-0 justify-content-center" *ngFor="let row of rows['6']">
+                              <span class="mr-3">{{row.porfile}}</span> <span>{{row.ctime | date:'dd/MM/yyyy H:mm:ss'}}</span>
+                            </div>
+                          </td>
+                          <td class="border-right">
+                            <div class="row m-0 justify-content-center" *ngFor="let row of rows['7']">
+                              <span class="mr-3">{{row.porfile}}</span> <span>{{row.ctime | date:'dd/MM/yyyy H:mm:ss'}}</span>
+                            </div>
+                          </td>
+                          <td class="border-right">
+                            <div class="row m-0 justify-content-center" *ngFor="let row of rows['8']">
+                              <span class="mr-3">{{row.porfile}}</span> <span>{{row.ctime | date:'dd/MM/yyyy H:mm:ss'}}</span>
+                            </div>
+                          </td>
+                          <td class="border-right">
+                            <div class="row m-0 justify-content-center" *ngFor="let row of rows['9']">
+                              <span class="mr-3">{{row.porfile}}</span> <span>{{row.ctime | date:'dd/MM/yyyy H:mm:ss'}}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="row" *ngFor="let row of rows['22']">
+                              <span class="mr-3">{{row.porfile}}</span> <span>{{row.ctime | date:'dd/MM/yyyy H:mm:ss'}}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+        </section>
+      </div>
+    </section>
+  </div>
+</div>

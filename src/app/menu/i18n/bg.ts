@@ -68,6 +68,7 @@ export const locale = {
       PRESS2500OVEN: 'Преса 2500т - печки',
       BLOCKEDDIE: 'Блокирани матрици',
       SCRAPPEDIES: 'Бракувани матрици',
+      DIEREQUEST: 'Искане Матрица',
     },
     translate: {
       report: 'Репорт',
