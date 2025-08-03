@@ -1120,6 +1120,21 @@ tbody tr:nth-child(even) {
     height: 260px!important;
     /* top: -50px; */
   }
+
+  td {
+    border: none;
+  }
+
+  table, thead {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: transparent;
+    /* border-radius: 0px; */
+    overflow: hidden;
+    box-shadow: none;
+    border: none;
+  }
 }
 
 .banner_img img {
@@ -1136,4 +1151,8 @@ tbody tr:nth-child(even) {
 
 table .p-1 {
   max-width: 300px;
+}
+
+.text-start {
+  text-align: start!important;
 }
