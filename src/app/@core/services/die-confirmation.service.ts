@@ -68,4 +68,8 @@ export class DieConfirmationService {
     return this._http.get<any>(`${environment.apiUrl}Dies/DieRequest`);
   }
 
+  getDieList(profile) {
+    return this._http.get<any>(`${environment.apiUrl}Dies/GetDiesByProfile?profile=${profile}`);
+  }
+
 }

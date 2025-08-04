@@ -1,0 +1,37 @@
+<div class="slideout-content">
+  <div id="modals-slide-in">
+    <div class="modal-dialog-screen material-dialog-center modal-content pt-0"
+      [ngClass]="{ 'modal-full-screen': fullScr === true, 'modal-normal-screen': fullScr === false }">
+      <div class="modal-body flex-grow-1">
+        <div class="row form-group">
+          <div class="col-md-12 col-12">
+            <div class="alert alert-primary flex" role="alert">
+              <div class="alert-body">
+                {{ translateSnackBar.dieList }}
+              </div>
+              <button type="button" class="modal-icon-header" data-dismiss="modal" aria-label="Close"
+                (click)="fullScreen()">
+                <div [ngStyle]="{'display': fullScr === true ? 'flex' : 'none' }"><span [data-feather]="'minimize-2'"
+                    [class]="'ficon'"></span></div>
+                <div [ngStyle]="{'display': fullScr === true ? 'none' : 'flex' }"><span [data-feather]="'maximize-2'"
+                    [class]="'ficon'"></span></div>
+              </button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row die-view" *ngFor="let l of rows">
+          <div class="col-6">{{ l.dieId }}</div>
+          <div class="col-6">
+            <button class="btn btn-primary" rippleEffect (click)="sendToPress(l)">
+              <span class="d-none d-sm-inline-block">{{ translateSnackBar.sendToPress }}</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

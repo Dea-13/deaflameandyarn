@@ -614,6 +614,7 @@ export const locale = {
       msgDieLifeEstThree: ' кг и е блокирана за проверка.',
       msgMissingKg: 'Полето Продукция(кг) е задължително! Моля, попълнете!',
       dificulty: 'Сложност',
+      sendToPress: 'Изпрати към пресата',
     }
   }
 }

@@ -618,6 +618,7 @@ export const locale = {
       msgDieLifeEstThree: ' kg and is blocked for inspection.',
       msgMissingKg: 'The Production (kg) field is required! Please fill it in!',
       dificulty: 'Complexity',
+      sendToPress: 'Send to Press',
     }
   }
 }
