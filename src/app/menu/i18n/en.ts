@@ -68,6 +68,7 @@ export const locale = {
       PRESS2500OVEN: 'Press 2500t Oven',
       BLOCKEDDIE: 'Blocked Die',
       SCRAPPEDIES: 'Scrapped Dies',
+      DIEREQUEST: 'Die Request',
     },
     translate: {
       report: 'Report',
@@ -617,6 +618,7 @@ export const locale = {
       msgDieLifeEstThree: ' kg and is blocked for inspection.',
       msgMissingKg: 'The Production (kg) field is required! Please fill it in!',
       dificulty: 'Complexity',
+      sendToPress: 'Send to Press',
     }
   }
 }

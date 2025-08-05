@@ -68,6 +68,7 @@ export const locale = {
       PRESS2500OVEN: 'Преса 2500т - печки',
       BLOCKEDDIE: 'Блокирани матрици',
       SCRAPPEDIES: 'Бракувани матрици',
+      DIEREQUEST: 'Искане Матрица',
     },
     translate: {
       report: 'Репорт',
@@ -613,6 +614,7 @@ export const locale = {
       msgDieLifeEstThree: ' кг и е блокирана за проверка.',
       msgMissingKg: 'Полето Продукция(кг) е задължително! Моля, попълнете!',
       dificulty: 'Сложност',
+      sendToPress: 'Изпрати към пресата',
     }
   }
 }
