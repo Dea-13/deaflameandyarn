@@ -66,6 +66,38 @@ export class DieRequestModalComponent implements OnInit {
     console.log('obj', obj);
     this.dieService.postDieMovemanetConf(obj).subscribe(
       (data) => {
+        this.changeDieRequest(row);
+        this.activeModal.dismiss();
+        this.passEntry.emit(true);
+        this.blockUI.stop();
+      },
+      (error) => {
+        this.blockUI.stop();
+        Swal.fire({
+          position: 'bottom-end',
+          icon: 'warning',
+          title: 'Error',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+    );
+  }
+
+  changeDieRequest(row) {
+    console.log('changeDieRequest', row);
+    this.blockUI.start('Loading...');
+
+    let obj = {
+      id: this.dieItem.data.id,
+      porfile: this.dieItem.data.porfile,
+      executionPlanDetailsBaseByMachineId: this.dieItem.data.executionPlanDetailsBaseByMachineId,
+      ctime: this.dieItem.ctime,
+      status: this.dieItem.data.status,
+      pressId: this.dieItem.data.pressId
+    }
+    this.dieService.changeDieRequest(obj).subscribe(
+      (data) => {
         this.activeModal.dismiss();
         this.passEntry.emit(true);
         this.blockUI.stop();

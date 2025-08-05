@@ -64,6 +64,11 @@ export class DieConfirmationService {
     return this._http.post(`${environment.apiUrl}DieMovement/DieMovement`, data);
   }
 
+  changeDieRequest(obj:any){
+    const data = JSON.stringify(obj);
+    return this._http.put(`${environment.apiUrl}Dies/ChangeDieRequest`, data);
+  }
+
   getDiesRequest() {
     return this._http.get<any>(`${environment.apiUrl}Dies/DieRequest`);
   }

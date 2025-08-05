@@ -54,3 +54,12 @@ table.mat-table{
 .clasic-table th, .clasic-table td {
   text-align: center;
 }
+
+.view-dies:hover {
+  cursor: pointer;
+  color: #7367f0;
+}
+
+.clasic-table th {
+  font-weight: 500;
+}
