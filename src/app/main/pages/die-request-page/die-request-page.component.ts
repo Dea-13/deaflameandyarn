@@ -19,6 +19,7 @@ export class DieRequestPageComponent implements OnInit {
   public size = 13;
   public languageOptions: any;
   public translateSnackBar: any;
+  private intervalId: any;
 
   constructor(
     private dieService: DieConfirmationService,
@@ -33,6 +34,9 @@ export class DieRequestPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRequest();
+    this.intervalId = setInterval(() => {
+      this.getRequest();
+    }, 5 * 60 * 1000); // 5 minutes in milliseconds
   }
 
   getRequest() {
@@ -54,6 +58,12 @@ export class DieRequestPageComponent implements OnInit {
         this.getRequest();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
 }
