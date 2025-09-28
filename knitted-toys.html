@@ -71,7 +71,7 @@
       </div>
       <!-- header section end -->
       <!-- cream sectuion start -->
-      <div class="cream_section layout_padding toys-page">
+      <div class="cream_section layout_padding toys-page gallery">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
@@ -87,6 +87,58 @@
                      <li class="cream_text-li">🎀 Тематични колекции за празници и специални поводи</li>
                   </ul>
                   <p class="cream_text mt-4">Насладете се на нашите творения и изберете своя нов пухкав приятел – или направете подарък, който никога няма да бъде забравен. 💝</p>
+               </div>
+            </div>
+
+            <div class="cream_section_2 mb-3">
+               <div class="row">
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Grim Reaper</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-1.jpg"></div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Мини Мумия</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-2.jpg"></div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Лилаво Прилепче</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-4.jpg"></div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Щастлива Шапка</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-5.jpg"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="cream_section_2 mb-3">
+               <div class="row">
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Бу Приятелче</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-6.jpg"></div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Хелуин Стич</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-7.jpg"></div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <h2 class="mt-5 halloween-title">Малка Тиква</h2>
+                     <div class="cream_box-halloween">
+                        <div class="cream_img-halloween"><img  alt="gallery-image" loading="lazy" src="images/crochet_autumn/img-8.jpg"></div>
+                     </div>
+                  </div>
                </div>
             </div>
             
@@ -368,6 +420,14 @@
                </div>
             </div>
          </div>
+
+      <!-- Lightbox Modal -->
+      <div id="lightbox" class="lightbox">
+         <span class="close">&times;</span>
+         <span class="prev">&#10094;</span>
+         <span class="next">&#10095;</span>
+         <img class="lightbox-content" id="lightbox-img">
+      </div>
       </div>
       <!-- cream sectuion end -->
       <!-- Javascript files-->
@@ -380,6 +440,52 @@
       <script src="js/jquery.mCustomScrollbar.concat.min.js" defer></script>
       <script src="js/custom.js" defer></script>
       <script>
+         const lightbox = document.getElementById("lightbox");
+         const lightboxImg = document.getElementById("lightbox-img");
+         const closeBtn = document.querySelector(".close");
+         const prevBtn = document.querySelector(".prev");
+         const nextBtn = document.querySelector(".next");
+         const galleryImages = document.querySelectorAll(".gallery img");
+
+         let currentIndex = 0;
+
+         // Open lightbox on image click
+         galleryImages.forEach((img, index) => {
+         img.addEventListener("click", () => {
+            lightbox.style.display = "block";
+            currentIndex = index;
+            showImage(currentIndex);
+         });
+         });
+
+         // Show image by index
+         function showImage(index) {
+         lightboxImg.src = galleryImages[index].src;
+         }
+
+         // Close lightbox
+         closeBtn.addEventListener("click", () => {
+         lightbox.style.display = "none";
+         });
+
+         // Navigate prev/next
+         prevBtn.addEventListener("click", () => {
+         currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+         showImage(currentIndex);
+         });
+
+         nextBtn.addEventListener("click", () => {
+         currentIndex = (currentIndex + 1) % galleryImages.length;
+         showImage(currentIndex);
+         });
+
+         // Close when clicking outside image
+         lightbox.addEventListener("click", (e) => {
+         if (e.target === lightbox) {
+            lightbox.style.display = "none";
+         }
+         });
+
          document.addEventListener('DOMContentLoaded', () => {
             const current = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav a').forEach(link => {

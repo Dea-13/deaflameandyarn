@@ -510,17 +510,22 @@ button {
   background-size: contain; /* Resize the background image to cover the entire container */
 }
 
-.cream_box:hover {
-  /* background-image: linear-gradient(0deg, #ffffff 37%, #faf0c7 37%); */
+.candles-page .cream_box-halloween, .toys-page .cream_box-halloween {
+  width: 100%;
+  float: left;
+  /* background-image: linear-gradient(0deg, #ffffff 37%, #f2f2f0 37%); */
+  height: auto;
+  padding: 0; //20px;
+  /* box-shadow: 0px 0px 20px 10px #ededec; */
+  /* background: #ffe9ec; */
+  background-image: url("/images/candles_autumn/frame.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain; /* Resize the background image to cover the entire container */
 }
 
-.cream_img {
-  width: 100%;
-  text-align: center;
-  /* padding-bottom: 20px; */
-  height: 270px;
-  display: flex;
-  align-items: center;
+.cream_box:hover {
+  /* background-image: linear-gradient(0deg, #ffffff 37%, #faf0c7 37%); */
 }
 
 .price_text {
@@ -1032,14 +1037,34 @@ textarea#comment.update_mail::placeholder {
   border: 1px solid #fc95c4 !important;
 }
 
-.cream_img img {
+.cream_img {
+  width: 100%;
+  text-align: center;
+  /* padding-bottom: 20px; */
+  height: 270px;
+  display: flex;
+  align-items: center;
+}
+
+.cream_img-halloween {
+  width: 100%;
+  text-align: center;
+  /* padding-bottom: 20px; */
+  height: 310px;
+  display: flex;
+  align-items: center;
+}
+
+.cream_img img,
+.cream_img-halloween img {
   height: -webkit-fill-available;
   width: -webkit-fill-available;
   object-fit: contain;
   /* border: 1px solid red; */
 }
 
-.home-page .cream_img img {
+.home-page .cream_img img,
+.home-page .cream_img-halloween img {
   height: 260px!important;
   width: 350px!important;
 }
@@ -1149,10 +1174,137 @@ tbody tr:nth-child(even) {
   height: 200px;
 }
 
+.cream_img-halloween img {
+  border-radius: 85%;
+}
+
 table .p-1 {
   max-width: 300px;
 }
 
 .text-start {
   text-align: start!important;
+}
+
+.halloween-title {
+  font-family: "Creepster", cursive;
+  color: orange;
+  text-shadow: 2px 2px 6px black, 0 0 0px #ff7518, 0 0 13px #ff4500, 0 0 39px #ff0000;
+  animation: flicker 2s infinite alternate;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.gallery img {
+  width: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.lightbox-content,
+#lightbox-img {
+  width: -webkit-fill-available!important;
+  height: -webkit-fill-available!important;
+  max-width: -webkit-fill-available!important;
+  max-height: -webkit-fill-available!important;
+  object-fit: contain;
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  text-align: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cream_img-halloween img {
+  width: 200px;
+  height: 150px;
+}
+
+/* Navigation arrows */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+  padding: 20px;
+  margin-top: -50px;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+  color: #ff7518;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.halloween-title {
+  font-family: "Creepster", cursive, sans-serif;
+  color: #ff7518;
+  text-shadow: 
+    0 0 10px #ff7518,
+    0 0 20px #ff0000,
+    0 0 40px #ff0000;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+.toys-page .cream_img-halloween img {
+  width: auto;
+  height: 134px;
+  margin: 0 auto;
+  border-radius: 10%;
+}
+
+.toys-page.gallery img{
+  width: -webkit-fill-available;
+  object-fit: contain;
 }
